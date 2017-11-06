@@ -636,9 +636,14 @@
 export default function() {
   this.namespace = '/data';
 
-  this.get('/occasions', function() {
-    return {
-      data: occasions
-    };
+  this.get('/occasions', function(db, request) {
+    let p = request.queryParams.territory;
+    if (p !== undefined) {
+      return {
+        data: occasions.filter(occ => occ.attributes.territory.toLowerCase().indexOf(p.toLowerCase()) !== -1)
+      };
+    } else{
+      return { data: occasions };
+    }
   });
 }
