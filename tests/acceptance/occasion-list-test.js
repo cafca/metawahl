@@ -28,3 +28,13 @@ test('should filter the list of occasions by territory', function(assert) {
       "Datensatz enthält drei Wahlen in Hamburg");
   })
 });
+
+test('clicking an occasion loads its details', function(assert) {
+  visit('/occasions');
+  click('a:contains("Europawahl 2004")');
+  andThen(function() {
+    assert.equal(currentURL(), '/occasions/3', 'should navigate to show route');
+    assert.equal(find('.title').text(), "Europawahl 2004", "Occasion #3 page should have this title");
+    assert.equal(find('.owner').text().trim(), "Territorium: europa", "Occasion #3 page should have this territory");
+  })
+})

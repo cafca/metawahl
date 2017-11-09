@@ -646,4 +646,8 @@ export default function() {
       return { data: occasions };
     }
   });
+
+  this.get('/occasions/:id', function(db, request) {
+    return { data: occasions.find(occ => request.params.id === occ.id) }
+  })
 }

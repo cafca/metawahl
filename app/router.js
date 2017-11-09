@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('occasions');
+  this.route('occasions', function() {
+    this.route('show', { path: '/:occasion_id' });
+  });
   this.route('uber');
 });
 

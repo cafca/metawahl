@@ -1,11 +1,3 @@
 <h2>Wahlen</h2>
 
-{{#list-filter filter=(action 'filterByTerritory') as |occasions|}}
-  <ul>
-    {{#each occasions as |occasionEntry|}}
-      {{occasion-listing occasion=occasionEntry}}
-    {{/each}}
-  </ul>
-{{/list-filter}}
-
 {{outlet}}
