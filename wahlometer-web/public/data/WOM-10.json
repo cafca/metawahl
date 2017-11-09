@@ -1,0 +1,904 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "Statt des Ausbaus von Flugh\u00e4fen fordern wir den Ausbau des Bahnverkehrs und des Radwegenetzes. Das Land f\u00f6rdert Flugh\u00e4fen auf unsinnig teure Weise: Jeder Fluggast, der einen Billigflieger in S\u00f6llingen besteigt, erh\u00e4lt 10 Euro Zuschuss. Wer fliegen soll, soll auch die anteiligen Kosten f\u00fcr den Flughafenbetrieb tragen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Derzeit besteht hierf\u00fcr kein Bedarf", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen eine durchg\u00e4ngige Konzeption f\u00fcr die Zukunft des Luftverkehrs in Baden-W\u00fcrttemberg. Diese muss neben dem Flughafen Stuttgart auch den Entwicklungschancen der Regionalflugh\u00e4fen und Verkehrslandepl\u00e4tzen Rechnung tragen. Ein \u00f6ffentlich subventionierter Verdr\u00e4ngungswettbewerb muss dabei verhindert werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Eine Verkehrskonzeption f\u00fcr das Land muss Schwerpunkte setzen.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Flugh\u00e4fen verursachen massive Luft- und L\u00e4rmbelastungen und zus\u00e4tzlichen Fl\u00e4chenverbrauch. Die WASG lehnt eine weitere Kapazit\u00e4tsaufstockung ab. Gerade Inlandsfl\u00fcge m\u00fcssen durch die Bahn ersetzt werden.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Mit der Stilllegung des AKW Obrigheim wurde der Ausstieg aus der Risikotechnologie Atomkraft im Land eingeleitet. Unser Ziel ist es, bis 2020 den Anteil erneuerbarer Energien bei Strom, bei der W\u00e4rme, den Treibstoffen und bei Industrie-Rohstoffen um 25 % zu steigern.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Durch eine Verl\u00e4ngerung der Laufzeiten der Kernkraftwerke k\u00f6nnen zeitliche und finanzielle Spielr\u00e4ume gewonnen werden, um verst\u00e4rkt regenerative Energien zur Marktreife zu f\u00fchren und zum anderen Energiepreise zu senken.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen auf der Bundesebene erreichen, dass bei Wahrung strengster Sicherheitsanforderungen die Laufzeit der Kernkraftwerke verl\u00e4ngert werden kann, um auf diese Weise zu vermeiden, dass der Prozess des Atomausstiegs durch vermehrte Nutzung fossiler Energietr\u00e4ger die nationalen Klimaschutzziele konterkariert.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Nein! Die AKWs sollen bis 2021 nach und nach vom Netz gehen. Daf\u00fcr steht die SPD. Atomenergie hat keine Zukunft! Der Betrieb ist zu riskant und die Entsorgungsfrage nicht gel\u00f6st.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG lehnt den Einsatz der Risikotechnologie Atomenergie strikt ab. Wir k\u00f6nnen kommenden Generationen nicht noch mehr zehntausende von Jahren strahlenden M\u00fcll hinterlassen. Statt dessen setzen wir auf erneuerbare Energien und Energieeinsparungen.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "F\u00fcr uns sind klare Kennzeichnungsregelungen f\u00fcr gentechnisch manipuliertes Saatgut oder Lebensmittel, die gentechnisch ver\u00e4nderte Bestandteile enthalten, unabdingbare Voraussetzung f\u00fcr den Schutz von VerbraucherInnen. Die Haftungsregelung im Gentechnikgesetz der rot-gr\u00fcnen Bundesregierung ist ein wirksames Instrument, um der schleichenden Verunreinigung von Nahrungsmitteln und Saatgut Einhalt zu gebieten.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Jedes gentechnisch ver\u00e4nderte Lebensmittel muss gem\u00e4\u00df EU-rechtlicher Vorgaben bereits jetzt eindeutig gekennzeichnet werden. ", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Kennzeichnungspflicht f\u00fcr gentechnisch ver\u00e4nderte Produkte ist ausreichend.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wahlfreiheit und Transparenz f\u00fcr Verbraucher! Jeder Verbraucher wei\u00df somit genau, ob er ein gentechnisch ver\u00e4ndertes Produkt vor sich hat oder nicht.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG lehnt grunds\u00e4tzlich den Anbau und Verkauf gentechnisch ver\u00e4nderter Lebensmittel ab. Gentechnikfreie Lebensmittel sollten zumindest f\u00fcr den Verbraucher deutlich gekennzeichnet sein, damit er sich gezielt f\u00fcr diese Lebensmittel entscheiden kann. Dabei ist auch der Einsatz von gentechnisch ver\u00e4ndertem Futter zu beachten.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen uns daf\u00fcr ein, dass das differenzierte Angebot der Aids-Hilfen mit ihrer zielgruppenspezifischen Pr\u00e4vention, Beratung, Betreuung und Versorgung im Land erhalten bleibt und die Pr\u00e4ventionsarbeit vor allem bei jungen Menschen ausgebaut wird.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Eine Erh\u00f6hung der Landesmittel f\u00fcr die AIDS-Aufkl\u00e4rung ist derzeit nicht m\u00f6glich. Allerdings wird eine CDU-gef\u00fchrte Landesregierung die Mittel auch nicht k\u00fcrzen. ", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Angesichts der Haushaltslage kann das Land die Mittel nicht weiter aufstocken. Eine weitere K\u00fcrzung lehnen wir aber ab.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die neuesten Zahlen zu AIDS zeigen, dass die Wahrnehmung und Aufkl\u00e4rung \u00fcber AIDS zur\u00fcckgegangen ist und sich v.a. junge Menschen wieder vermehrt anstecken, daher dringend weitere Aufkl\u00e4rung n\u00f6tig ist.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Graffitis k\u00f6nnen auch heute schon den Straftatbestand der Sachbesch\u00e4digung erf\u00fcllen, eine Strafversch\u00e4rfung bringt nichts.", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Graffiti-Sprayen ist bereits auf Initiative der FDP seit Sommer 2005 als Straftat eingestuft!", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dies ist bereits durch eine Bundesratsinitiative geschehen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir setzten uns gegen die Kriminalisierung von Graffiti-Sprayern ein.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Erststudium bis zum Bachelor bleibt geb\u00fchrenfrei. F\u00fcr weitere Studienabschnitte halten wir eine ma\u00dfvolle, einkommensabh\u00e4ngige und nachlaufend zu finanzierende Eigenbeteiligung f\u00fcr vertretbar, wenn dies mit mehr Gestaltungsmacht in der Hand von Studierenden einhergeht.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Studiengeb\u00fchren sind ein sozial gerechter Beitrag der Studierenden an den gesamtgesellschaftlichen Kosten ihrer hochwertigen Ausbildung, die ihre Berufschancen deutlich erh\u00f6ht.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Den Anschluss an die internationale Spitze kann eine Finanzierung der Hochschulen allein aus \u00f6ffentlichen Mitteln k\u00fcnftig nicht mehr sichern. Die FDP ist seit langem davon \u00fcberzeugt, dass eine Beteiligung der Studierenden an den Kosten ihres Studiums erforderlich und angesichts des individuellen Nutzens eines Studiums auch gerechtfertigt ist. Unsere Bedingung ist, dass die konkrete Ausgestaltung niemanden davon abhalten kann, ein Studium aufzunehmen. Dies ist bei dem erstmals von der FDP in die Diskussion gebrachten Modell einer nachlaufenden Studiengeb\u00fchr gew\u00e4hrleistet; deshalb konnten wir der Einf\u00fchrung allgemeiner Studiengeb\u00fchren in H\u00f6he von 500,- - je Semester zustimmen, obwohl uns hochschuleigene und fachspezifische L\u00f6sungen lieber gewesen w\u00e4ren. Kein Studierender h\u00e4ngt von der finanziellen Leistungsf\u00e4higkeit oder Leistungsbereitschaft seiner Eltern ab. Jeder Studierende kann zur Bezahlung der Studiengeb\u00fchr ein Darlehen in Anspruch nehmen, dessen Zinsen und R\u00fcckzahlung erst nach Eintritt in das Erwerbsleben und \u00dcberschreiten einer Mindesteinkommensgrenze in monatlichen Raten f\u00e4llig werden. Eine Kappungsgrenze von 15.000,- - f\u00fcr die Gesamth\u00f6he der zur\u00fcckzuzahlenden Darlehensschuld aus Studiengeb\u00fchren und in Anspruch genommenen BAf\u00f6G-Leistungen sowie die Ber\u00fccksichtigung von Tatbest\u00e4nden wie Kindererziehung, chronischer Krankheit usw. sichern die Sozialvertr\u00e4glichkeit dieser Studiengeb\u00fchren zus\u00e4tzlich ab.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Studiengeb\u00fchren sind sozial ungerecht und nicht sozialvertr\u00e4glich, denn Kinder aus einkommensschw\u00e4cheren o. kinderreichen Familien sind benachteiligt. Sie versch\u00e4rfen die soziale Selektion, wer studieren kann und schrecken vor einem Studium ab.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir sind generell f\u00fcr kostenfreie Bildung vom Kindergarten bis in\u00b4s hohe Alter. Bildung darf kein Privileg von Besserverdienenden sein. Sie ist ein \u00f6ffentliches Gut und Voraussetzung f\u00fcr die freie Selbstentfaltung und das Funktionieren einer Demokratie kritischer und gebildeter B\u00fcrgerInnen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Abitur und entsprechende Regelungen f\u00fcr berufliche Abschl\u00fcsse sichert die Studienberechtigung. Und dann m\u00fcssen sich Studierende ihre Hochschule aussuchen k\u00f6nnen. Dazu m\u00fcssen ausreichend Studienpl\u00e4tze geschaffen werden.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen weiterhin auf die K\u00fcndigung des Staatsvertrages \u00fcber die Vergabe von Studienpl\u00e4tzen hinwirken, jede Hochschule soll das Recht haben, ihre Studienpl\u00e4tze der Zentralen Vergabestelle (ZVS) zu entziehen und diese nach eigenen Kriterien und Verfahren zu vergeben.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Hochschulzugangsberechtigung gibt einen Anspruch auf einen Studienplatz. Dieser Anspruch darf nicht entfallen, indem etwa eine Bewerbung von allen Hochschulen zur\u00fcckgewiesen wird.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die allgemeine Hochschulreife erh\u00e4lt man durch das Abitur. Wir sind gegen eine immer st\u00e4rkere Selektion im Bildungsbereich. Sie widerspricht dem Recht auf freie Berufswahl und freien Zugang zu Bildung.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Es geht nicht darum das neunj\u00e4hrige Gymnasium wieder einzuf\u00fchren, sondern das neue achtj\u00e4hrige so zu ver\u00e4ndern, dass Sch\u00fclerInnen der sechsten Klasse nicht mehr so belastet werden, wie es derzeit der Fall ist.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Mit der Flexibilisierung des Schuleintritts (Schulanfang auf neuen Wegen) und der Einf\u00fchrung des G 8 als Regelform haben wir auch einen Beitrag zur Verk\u00fcrzung der Erstausbildungszeiten geleistet  und damit nicht zuletzt zur St\u00e4rkung der Wettbewerbsf\u00e4higkeit unserer Schul- und Hochschulabsolventen beigetragen", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ja zum achtj\u00e4hrigen Gymnasium, aber mit Nachbesserungen in den vorhandenen Bildungspl\u00e4nen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Bereits im neunj\u00e4hrigen Gymnasium konnte oftmals aus Zeitgr\u00fcnden der vorgesehene Stoff nicht durchgenommen werden. Wir sehen keinen Sinn darin, Sch\u00fclerInnen k\u00fcnftig noch mehr unter Zeitdruck zu setzen, um sie dann ein Jahr fr\u00fcher auf einen \u00fcberf\u00fcllten Arbeitsmarkt zu entlassen - zumal, wenn durch die Erh\u00f6hung des Renteneintrittsalters noch mehr Arbeitspl\u00e4tze jungen Menschen vorenthalten werden.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir streben an, den Beamtenstatus f\u00fcr k\u00fcnftige LehrerInnen abzuschaffen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen die besten Lehrer f\u00fcr unsere Schulen. Dies bedeutet eine Reform der Lehrerausbildung, den Verzicht auf die Verbeamtung von neueingestellten Lehrern und eine leistungsorientierte Bezahlung.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Lehrkr\u00e4fte m\u00fcssen keine Beamten sein. Die schulische Qualit\u00e4t leidet nicht darunter.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Lehrer sollen prim\u00e4r gute P\u00e4dagogen sein, nicht die Vertreter von Staatsinteressen. Eine Verbeamtung und eine damit verbundene  Garantie f\u00fcr dauerhafte Besch\u00e4ftigung halten wir weder f\u00fcr n\u00f6tig, noch f\u00fcr zielf\u00fchrend.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen Sprachstandsmessung von Beginn des Kindergartens an und integrierte Sprachf\u00f6rderung. Der Sprachtest vor der Einschulung kommt zu sp\u00e4t.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Nach Abschluss der Pilotphase im Konzept Schulreifes Kind sind verbindliche Sprachtests f\u00fcr alle Kinder eineinhalb Jahre vor der Einschulung vorgesehen. ", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen die verbindliche Teilnahme aller Kinder im Alter zwischen 3 und 4 Jahren an einer Sprachstandsdiagnose, welche eventuelle Defizite in der sprachlichen Entwicklung rechtzeitig aufdeckt und gegebenenfalls eine F\u00f6rderung verbindlich eingeleitet; ein Kindergartenpflichtjahr ist hierzu nicht erforderlich.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Damit individuelle F\u00f6rderung von Sprachdefiziten fr\u00fchzeitig erfolgen kann. Ein einzelner Sprachtest reicht dazu jedoch nicht aus. Es wird vielmehr eine F\u00f6rderung von Anfang an ben\u00f6tigt.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Um auf spezifische Sprachschw\u00e4chen gezielt eingehen zu k\u00f6nnen, sind Sprachtests bei Kindern vor der Einschulung sinnvoll. Sprachtests sollten dann aber bei allen Kindern vorgenommen werden und machen nur Sinn, wenn qualifizierte F\u00f6rderma\u00dfnahmen darauf aufbauen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Alleinerziehende sind ganz wesentlich auf flexible und kosteng\u00fcnstige Betreuungsm\u00f6glichkeiten f\u00fcr ihre Kinder angewiesen. Priorit\u00e4t hat f\u00fcr uns daher der fl\u00e4chendeckende Ausbau der Kleinkinderbetreuung, um f\u00fcr Alleinerziehende die Vereinbarkeit von Beruf/Ausbildung/Studium und Kind(ern) zu erm\u00f6glichen. Dies dient im Gegensatz zu kurzfristigen Zusch\u00fcssen in viel besserem Ma\u00dfe der mittel- und langfristigen Pr\u00e4vention von Armut, von der Alleinerziehende und ihre Kinder \u00fcberproportional h\u00e4ufig betroffen sind.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Das Land unterst\u00fctzt Alleinerziehende mit dem Landeserziehungsgeld schon jetzt. Dies ist wesentlich eine Initiative der CDU.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Angesichts der Haushaltslage kann das Land nicht weitere Aufgaben finanziell schultern.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dieses ist bereits im Landeserziehungsgeld enthalten.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Alleinerziehende tragen besondere Lasten und verdienen daher auch eine besondere Unterst\u00fctzung der Gesellschaft.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Mit Zustimmung der Gr\u00fcnen wurde der K\u00fcndigungsschutz bei Neueinstellungen besonders f\u00fcr kleine Unternehmen bereits gelockert.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die CDU im Land orientiert sich an der Koalitionsvereinbarung von CDU, CSU und SPD im Bund: Die Bundesregierung wird das K\u00fcndigungsschutzrecht mit dem Ziel weiterentwickeln, zum einen mehr Besch\u00e4ftigung zu erm\u00f6glichen und zum anderen die Schutzfunktion des K\u00fcndigungsschutzes f\u00fcr bestehende Arbeitsverh\u00e4ltnisse nachhaltig zu sichern. Die Bundesregierung gibt den Arbeitgebern bei der Neueinstellung die Option an die Hand, anstelle der gesetzlichen Probezeit von 6 Monaten eine Probezeit von bis zu 24 Monaten zu vereinbaren. Die Option entsteht auch bei einer erneuten Einstellung bei demselben Arbeitgeber, wenn seit dem Ende des vorhergehenden Arbeitsvertrages mindestens sechs Monate vergangen sind.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der Schutz vor willk\u00fcrlichen K\u00fcndigungen ist in Deutschland im B\u00fcrgerlichen Gesetzbuch geregelt. Der dar\u00fcber hinausgehende besondere K\u00fcndigungsschutz ist ein Einstellungshemmnis und verfehlt zugleich seine soziale Schutzfunktion, da er nur zu einer Vielzahl an Arbeitsgerichtsprozessen f\u00fchrt, die in der Regel nicht den Arbeitsplatz erhalten, sondern ohnehin in Abfindungsregeln m\u00fcnden. Vor allem  kleine Unternehmen scheuen vor Neueinstellungen zur\u00fcck, da sie das komplizierte K\u00fcndigungsschutzrecht f\u00fcrchten. Das K\u00fcndigungsschutzgesetz soll daher erst ab einer Betriebsgr\u00f6\u00dfe von mehr als 50 Mitarbeitern gelten und erst vier Jahre nach Beginn des Arbeitsverh\u00e4ltnisses einsetzen. Den Arbeitnehmern mu\u00df mehr Spielraum einger\u00e4umt werden, welche Form des K\u00fcndigungsschutzes sie wollen. Arbeitnehmer und Arbeitgeber sollen f\u00fcr den Fall einer betriebsbedingten K\u00fcndigung statt des K\u00fcndigungsschutzes eine Abfindungszahlung oder die Finanzierung einer Weiterbildungsma\u00dfnahme vereinbaren k\u00f6nnen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Eine Reihe von Untersuchungen zeigt, dass durch die Lockerung des K\u00fcndigungsschutzes keine neuen Arbeitspl\u00e4tze geschaffen werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der K\u00fcndigungsschutz schafft Planungssicherheit f\u00fcr abh\u00e4ngig Besch\u00e4ftigte und deren Familien. Er ist damit ein wesentlicher Beitrag f\u00fcr die Lebensqualit\u00e4t der Menschen. Bei Neueinstellungen kann der K\u00fcndigungsschutz bereits heute 2 Jahre lang au\u00dfer Kraft gesetzt werden.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir brauchen einen leistungsf\u00e4higen \u00f6ffentlichen Dienst mit motivierten Besch\u00e4ftigten und einer leistungsgerechten Bezahlung.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen den Anteil der Personalkosten am Landeshaushalt dauerhaft begrenzen. Die beschlossenen Stellenabbauprogramme sind konsequent umzusetzen. F\u00fcr die Zukunft muss gelten, dass j\u00e4hrlich im Wege der Fluktuation mindestens 1 % der Stellen im Landesdienst nicht wieder besetzt werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es geht nicht um die Reduzierung von Personal, sondern um die Reduzierung der Beh\u00f6rden; Kein Abbau bei  Polizei und Steuerwesen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG lehnt es ab, dass der Staat sich selbst zu Tode spart und damit eine wirtschaftliche Abw\u00e4rtsspirale nach unten ausl\u00f6st.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Land sollte seine Steuerbasis verbreitern. Zentral ist dabei der Einsatz gegen den Umsatzsteuerbetrug, der die \u00f6ffentliche Hand jedes Jahr mit mindestens 20 Mrd. Euro belastet. Eine Verm\u00f6genssteuer dagegen w\u00fcrde mit hohem b\u00fcrokratischen Aufwand nur wenig Geld in die \u00f6ffentlichen Kassen bringen und kleine und mittelst\u00e4ndische Unternehmen in ihrer Substanz belasten.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Wiedereinf\u00fchrung der umfangreichen Verm\u00f6genssteuer ist nach Ansicht der CDU Baden-W\u00fcrttemberg sch\u00e4dlich f\u00fcr Wachstum und Konjunktur. Au\u00dferdem ist sie mit einem immensen B\u00fcrokratieaufwand verbunden. Die CDU Baden- W\u00fcrttemberg h\u00e4lt nichts davon, B\u00fcrger und Unternehmer mit der Drohung einer umfangreichen Verm\u00f6genssteuer zu verunsichern. Dar\u00fcber hinaus stehen wir zur Koalitionsvereinbarung von CDU, CSU und SPD im Bund, die einen Zuschlag von 3 % f\u00fcr Topverdiener (250.000 Euro Jahresgehalt/Alleinstehende, 500.000 Euro/ Verheiratete) vorsieht.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen die Verm\u00f6genssteuer endg\u00fcltig abschaffen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Jeder soll nach seiner finanziellen Leistungsf\u00e4higkeit einen Beitrag f\u00fcr die Allgemeinheit beitragen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "W\u00fcrden die Verm\u00f6genden in Deutschland nur so viel Steuern bezahlen wie in den USA oder Gro\u00dfbritannien, k\u00f6nnte der Staat Milliardenmehreinnahmen f\u00fcr Bildung, Umweltschutz, soziale Sicherung und den Abbau der Staatsschulden einsetzen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "DNA-Daten sind kein verh\u00e4ltnism\u00e4\u00dfiges Mittel zur Bek\u00e4mpfung von Kleinkriminalit\u00e4t.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Erfassung von DNA-Daten bei Straftaten sollte dem Abnehmen von Fingerabdr\u00fccken gleichgestellt werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die FDP will die Entnahme von DNA beim Menschen sowie die Speicherung, Verarbeitung oder Weitergabe der DNA-Muster auch weiterhin nur zu Zwecken der Strafverfolgung bei Straftaten von erheblicher Bedeutung zulassen. Keinesfalls darf die DNA-Analyse zur Standardma\u00dfnahme bei der Verbrechensbek\u00e4mpfung werden, da im Erbgut hochsensible Informationen (zum Beispiel \u00fcber Krankheiten) verborgen liegen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Eine Ausweitung nur f\u00fcr schwere Straftaten (Zypries# Vorschlag) wie Gewaltdelikte oder sexuelle Verbrechen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG lehnt eine Ausweitung des \u00dcberwachungsstaates ab. Aus der DNA l\u00e4sst sich weit mehr als die blo\u00dfe Identit\u00e4t herauslesen. Die Erhebung und Speicherung eines genetischen Fingerabdrucks stellt deshalb einen tiefen Eingriff in das Pers\u00f6nlichkeitsrecht dar.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen uns seit Jahren f\u00fcr eine Verlagerung des G\u00fcterverkehrs auf die Schiene ein. Es entlastet sowohl die Menschen als auch die Umwelt, wenn der LKW-Verkehr deutlich eingeschr\u00e4nkt wird.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen die Leistungsf\u00e4higkeit der Verkehrstr\u00e4ger erh\u00f6hen und ihre Marktangebote verbessern, damit Transportzeiten und -kosten f\u00fcr Verlader und Spediteure wieder interessant werden, sowie das Netz der Terminals f\u00fcr den kombinierten Verkehr und die zugeh\u00f6rigen G\u00fcterverkehrszentren weiter entwickeln.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "SPD steht f\u00fcr eine Verlagerung des Verkehrs auf die Schiene zur Entlastung der Stra\u00dfe und der Umwelt.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der Stra\u00dfeng\u00fcterverkehr ist eine gro\u00dfe Belastung f\u00fcr Mensch und Umwelt. Eine Verlagerung auf die Schiene muss unbedingt vorangetrieben werden.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir haben uns gegen die K\u00fcrzungen der Landeszusch\u00fcsse f\u00fcr die Sch\u00fclerbef\u00f6rderung gewehrt.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Angesichts der Haushaltslage kann das Land Fahrkarten nicht st\u00e4rker finanziell f\u00f6rdern.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Recht auf Bildungsgleichheit auch im l\u00e4ndlichen Raum.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "In den letzten Jahren ist es zum Teil zu massiven Preiserh\u00f6hungen bei Fahrkarten f\u00fcr Auszubildende, Sch\u00fclerInnen und Studierende gekommen. Die K\u00fcrzungen von Landesmitteln m\u00fcssen r\u00fcckg\u00e4ngig gemacht und Tickets f\u00fcr sozial Schwache verbilligt werden.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Unser Modell der neunj\u00e4hrigen Basisschule sortiert nicht mehr aus, sondern integriert alle Sch\u00fclerInnen. Alle Schulen sollen alle Bildungsg\u00e4nge und alle Abschl\u00fcsse anbieten k\u00f6nnen. Nach der 9. Klasse findet eine Differenzierung in der Oberstufe statt. Entsprechend ihrer Leistungsf\u00e4higkeit oder ihren Neigungen k\u00f6nnen junge Menschen entweder eine Ausbildung im dualen System, eine allgemein bildende gymnasiale Oberstufe, ein berufliches Gymnasium oder eine berufliche Vollzeitschule besuchen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das dreigliedrige Schulsystem hat sich bew\u00e4hrt. Das zeigen auch die Leistungsergebnisse baden-w\u00fcrttembergischer Sch\u00fcler/innen im Vergleich mit anderen Bundesl\u00e4ndern.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "PISA hat gezeigt, dass unser gegliedertes Schulsystem veraltet ist. Es f\u00f6rdert selektive P\u00e4dagogik und behindert eine angemessene individuelle F\u00f6rderung. Nirgends ist der Lernerfolg der Sch\u00fclerInnen so abh\u00e4ngig von der sozialen Herkunft wie bei uns.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG spricht sich gegen soziale Selektion im Bildungsbereich aus. Wir sind dagegen, bereits im Alter von 10 Jahren den k\u00fcnftigen Status von jungen Menschen festzulegen. Wir setzen uns nach dem Vorbild skandinavischer L\u00e4nder f\u00fcr Gemeinschaftsschulen ein.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Komplexe F\u00e4higkeiten k\u00f6nnen nicht innerhalb eines Jahres erworben werden. Wir setzen uns f\u00fcr den Kindergarten als Bildungsgarten ein, um spielerisch emotionale und kognitive Intelligenz, kulturelle Kompetenz und Wissen um die Dinge der Welt zu vermitteln.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Als alternative Modelle begr\u00fc\u00dfen wir den Orientierungsplan f\u00fcr fr\u00fchkindliche Bildung und Erziehung sowie das Projekt Schulreifes Kind der Landesregierung. Eine Verpflichtung kann nur ultima ratio sein.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die FDP spricht sich gegen die Einf\u00fchrung eines Kindergarten-Pflichtjahres aus, das f\u00fcr alle Kinder ein Jahr vor der Einschulung gelten soll. Derzeit besuchen fast alle 5-j\u00e4hrigen Kinder in Baden-W\u00fcrttemberg einen Kindergarten. Die entsprechende Quote liegt bei 97 Prozent. Angesichts dieser sehr hohen Quote der Freiwilligen erschlie\u00dft sich nicht, wie diese Quote durch ein Pflichtjahr noch wesentlich zu steigern w\u00e4re. Wir wollen es den Eltern \u00fcberlassen, wie sie ihre Kinder erziehen, und nicht zu sehr in die Familien hineinregieren.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Um allen Kindern die gleichen Startm\u00f6glichkeiten in der Schule zu geben, v.a. bei der Sprachkompetenz und dem sozialen Verhalten.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Um die Unterschiede in den F\u00e4higkeiten der Sch\u00fclerInnen bei der Einschulung m\u00f6glichst gering zu halten, macht ein verpflichtendes letztes Kindergartenjahr Sinn.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der Schutz des Grundrechts auf informationelle Selbstbestimmung darf nicht preisgegeben werden.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Stra\u00dfenkriminalit\u00e4t, Vandalismus und offene Drogenszenen mit ihren negativen Begleiterscheinungen beeinflussen nachhaltig das Sicherheitsgef\u00fchl der Bev\u00f6lkerung. Durch den offenen Einsatz von Videotechnik an Kriminalit\u00e4tsbrennpunkten werden im Rahmen eines den jeweiligen spezifischen Gegebenheiten Rechnung tragenden Konzepts insbesondere Straftaten verhindert, Gefahren f\u00fcr die \u00f6ffentliche Sicherheit abgewehrt und St\u00f6rungen beseitigt, das Sicherheitsgef\u00fchl der Bev\u00f6lkerung gest\u00e4rkt, Angstr\u00e4ume beseitigt, Fahndungsans\u00e4tze gewonnen, die Aufkl\u00e4rungsquote und die Effizienz und Effektivit\u00e4t polizeilicher Ma\u00dfnahmen verbessert.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "An gewissen Kriminalit\u00e4tsschwerpunkten hat sich die Video\u00fcberwachung bew\u00e4hrt. Eine generelle Video\u00fcberwachung lehnen wir aber ab.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Nur unter strengen Voraussetzungen wie z.B. dem Datenschutz.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG lehnt eine Ausweitung des \u00dcberwachungsstaates ab. Statt in teure \u00dcberwachung zur Folgebek\u00e4mpfung sollte besser in Pr\u00e4vention investiert werden.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-19"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wer in Zukunft verantwortungsbewusst entscheiden soll, muss bereits in jungen Jahren mitbestimmen k\u00f6nnen. Deshalb pl\u00e4dieren wir f\u00fcr ein aktives Wahlrecht ab 16 Jahren.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Wahlrecht ab 18 Jahren halten wir f\u00fcr v\u00f6llig ausreichend.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die SPD setzt sich f\u00fcr eine Aktivierung der jungen Menschen ins politische Leben bereits in fr\u00fchen Jahren ein.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Auch Jugendliche sollen ihre Interessen bei Wahlen vertreten k\u00f6nnen. Viele 16-J\u00e4hrige sind bereits politisch gebildeter und engagierter als mancher 50- oder 90-J\u00e4hrige. Wir sind der Meinung, dass Menschen selbst entscheiden k\u00f6nnen sollten, ab wann sie sich in der Lage sehen, eine qualifizierte Wahlentscheidung treffen zu k\u00f6nnen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-20"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Junk Food hat an Schulen nichts verloren. Die Schulen m\u00fcssen Sorge f\u00fcr gute und gesunde Ern\u00e4hrung ihrer Sch\u00fclerinnen und Sch\u00fcler tragen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Es ist v\u00f6llig lebensfremd bspw. an Schulmensen den Verkauf von Schoko-Riegeln zu verbieten. Die CDU setzt dar\u00fcber hinaus darauf, den Sch\u00fclerinnen und Sch\u00fclern die Grundlagen von gesunder Ern\u00e4hrung im Unterricht beizubringen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Mit Verboten werden Probleme nicht gel\u00f6st. Die FDP setzt auf mehr Aufkl\u00e4rung im Bereich der Ern\u00e4hrung und Gesundheitsvorsorge.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Im Sinne der Pr\u00e4vention \u00fcbergewichtiger Kinder mit der Ursache falscher Ern\u00e4hrung und fehlender Bewegung; mu\u00df jedoch nicht durch ein Gesetz geregelt werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Um eine gesunde Ern\u00e4hrung der Kinder zu f\u00f6rdern, sollten an Schulen auch gesunde Lebensmittel verkauft werden. Statt auf landesweite Verbote setzen wir aber auf verst\u00e4rkte Aufkl\u00e4rung im Unterricht und Diskussionen und Entscheidungen vor Ort, ob solche Lebensmittel an der Schule vertrieben werden.", 
+          "value": 0, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-21"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir brauchen ein wirksames und differenziertes Suchthilfekonzept, in dem Pr\u00e4vention, Therapie und Schadensminderung als gleichberechtigte S\u00e4ulen nebeneinander stehen. Bei weichen Drogen wie Cannabis wollen wir unter Ber\u00fccksichtigung des Jugendschutzes eine legale Abgabeform erm\u00f6glichen. Wir fordern die klare Festsetzung von Grenzwerten beim F\u00fchrerscheinentzug und eine Gleichbehandlung von Alkohol und Cannabis in dieser Frage.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen dass die kontrollierte Abgabe von Heroin bei Schwerstabh\u00e4ngigen \u00fcber den Modellversuch in Karlsruhe hinaus erweitert und vom Land mitgetragen wird. Ge\u00e4nderte bundesgesetzliche Regelungen erm\u00f6glichen die kontrollierte Abgabe von Heroin im Rahmen von Modellversuchen.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Methadon ist eine Krankenkassenleistung; die SPD sieht die Verantwortung des Landes bei der Finanzierung der psychosozialen Begleitung des Methadonprogramms.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Um die Beschaffungskriminalit\u00e4t zu senken, setzt sich die WASG f\u00fcr die kontrollierte Abgabe des Ersatzstoffes Methadon an Heroinabh\u00e4ngige ein.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-22"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die rot-gr\u00fcne Bundesregierung hat das Verbot der K\u00e4fighaltung in der H\u00fchnerhaltung eingef\u00fchrt. Wir setzen alles daran, dass es nicht r\u00fcckg\u00e4ngig gemacht wird, sondern vergleichbare Fortschritte auch bei der Haltung anderer landwirtschaftlicher Nutztiere erreicht werden.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Ein komplettes Verbot von K\u00e4figen w\u00fcrde dazu f\u00fchren, dass die Betriebe ins europ\u00e4ische Ausland (bspw. Tschechien) auswandern und dort zu Bedingungen produzieren, die bei uns verboten w\u00e4ren. \u00dcber den europ\u00e4ischen Binnenmarkt w\u00fcrden die Eier trotzdem eingef\u00fchrt werden k\u00f6nnen. Die CDU Baden-W\u00fcrttemberg setzt deshalb nicht auf ein komplettes Verbot, sondern auf tierschutzgerecht ausgestaltete K\u00e4fige. ", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nationale Alleing\u00e4nge f\u00fchren zu keiner Verbesserung des Tierschutzes sondern zu Produktionsverlagerungen ins Ausland.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ist bereits geltendes EU-Recht. In Deutschland gibt es nur noch max. 3 Jahre Bestandsschutz f\u00fcr bestehende Legebatterien.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG setzt sich f\u00fcr besseren Tierschutz ein und lehnt Legebatterien  ab.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-23"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der LKW-Ausweichverkehr infolge der Autobahnmaut muss kurzfristig durch geeignete Ma\u00dfnahmen reduziert werden.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Bedarfsweise.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Eine Ausweitung der LKW_Maut auf Bundesstra\u00dfen und Ausweichstrecken lehnen wir ab.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dies nur bei genau zu pr\u00fcfenden Einzelfallentscheidungen.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der Zustand, dass LKW-Fahrer von mautpflichtigen Autobahnen auf Bundesstra\u00dfen ausweichen f\u00fchrt zu l\u00e4ngeren Fahrtstrecken und gr\u00f6\u00dferen Belastungen v.a. in den St\u00e4dten. Dies muss dringend durch eine Einbeziehung von Ausweichstrecken in die Lkw-Maut ge\u00e4ndert werden.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-24"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Recht auf Bildung gilt f\u00fcr alle Kinder und es ist daher Verpflichtung f\u00fcr Eltern und Land, dies den Kindern zu erm\u00f6glichen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Schulpflicht ist an Wohnsitz und st\u00e4ndigen Aufenthalt gekn\u00fcpft. F\u00fcr Kinder von Asylbewerbern, deren Verfahren in der Schwebe ist, besteht keine Schulpflicht, allerdings ein Recht auf Schulbesuch. Dies ist zu begr\u00fc\u00dfen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ziel liberaler Integrationspolitik ist es, Zuwanderern gleiche Bildungs- und Berufschancen zu gew\u00e4hren und sie m\u00f6glichst umfassend am gesellschaftlichen und wirtschaftlichen Leben zu beteiligen. Die wechselseitige Bereitschaft, aufeinander zuzugehen, die gegenseitige Anerkennung der kulturellen und religi\u00f6sen Identit\u00e4t, die Bereitschaft zum Erlernen der deutschen Sprache und die uneingeschr\u00e4nkte Akzeptanz unserer Rechts- und Werteordnung sind dabei Voraussetzungen f\u00fcr ein gedeihliches und friedliches Zusammenleben.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Gebot der Chancengleichheit! Man darf diese Kinder nur aufgrund ihres Fl\u00fcchtlingsstatus# nicht chancenlos lassen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Kinder von AsylbewerberInnen und Fl\u00fcchtlingen d\u00fcrfen nicht von der Weiterentwicklung ihrer F\u00e4higkeiten und Kenntnisse abgehalten werden und sollten daher auch der Schulpflicht unterliegen. Sie brauchen besondere F\u00f6rderung, um ihre Sprachkompetenz zu st\u00e4rken.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-25"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die betriebliche Mitbestimmung in Deutschland ist ein gutes und erfolgreiches Instrument, um die Interessen der Besch\u00e4ftigten und die Ziele der Unternehmen in Einklang zu bringen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die CDU im Land orientiert sich an der Koalitionsvereinbarung von CDU, CSU und SPD im Bund: Die Bundesregierung hat eine Regierungskommission eingesetzt, die, ausgehend vom geltenden Recht, bis Ende 2006 Vorschl\u00e4ge f\u00fcr eine moderne und europataugliche Weiterentwicklung der deutschen Unternehmensmitbestimmung erarbeiten will. Die Ergebnisse der Kommission werden aufgegriffen und, soweit erforderlich und geboten, Anpassungen an der Unternehmensmitbestimmung vorgenommen.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen eine mittelstandsfreundliche betriebliche Mitbestimmung. Die Ausweitung durch Rot-gr\u00fcn brachte zus\u00e4tzliche B\u00fcrokratie, zus\u00e4tzlichen Organisationsaufwand und damit zus\u00e4tzliche Kosten in H\u00f6he von mindestens 1,3 Mrd. Euro f\u00fcr die deutschen Unternehmen. Internationale Investoren werden abgeschreckt. Kleine und mittlere Unternehmen werden \u00fcberfordert. Deren Vorteile - kurze, flexible Entscheidungswege - wurden durch die \u00fcbertriebene Verrechtlichung der Beziehungen zwischen Unternehmensleitung, Belegschaft und Betriebsrat beseitigt. Die Gr\u00fcndung eines Betriebsrats halten wir erst in Unternehmen ab 20 Besch\u00e4ftigten (heute 5 Besch\u00e4ftigte) f\u00fcr sinnvoll. F\u00fcr die G\u00fcltigkeit der Betriebsratswahl mu\u00df ein Quorum von mehr als 50 % der wahlberechtigten Arbeitnehmer erf\u00fcllt sein. Die Anzahl der Mitglieder im Betriebsrat ist zu reduzieren. Die Freistellung von Betriebsratsmitgliedern beginnt erst in Unternehmen mit mehr als 500 Besch\u00e4ftigten (heute 200 Besch\u00e4ftigte) mit einem freigestellten Betriebsratsmitglied.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Arbeitnehmerrechte sorgen f\u00fcr motivierte und selbstbewusste Belegschaft, die entscheidender Erfolgsfaktor f\u00fcr die Wirtschaft ist.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG setzt sich f\u00fcr eine st\u00e4rkere Demokratisierung der Gesellschaft ein. Die Arbeitsst\u00e4tte, in denen Menschen einen Gro\u00dfteil ihrer Zeit verbringen, ist dabei ein wesentlicher Bestandteil.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-26"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Wahlrecht sollte aber davon abh\u00e4ngig gemacht werden, dass die Gegenseitigkeit verb\u00fcrgt ist.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Auf kommunaler Ebene halten wir ein solches Wahlrecht f\u00fcr sinnvoll. Auf Landes- und Bundesebene ist die deutsche Staatsb\u00fcrgerschaft als Wahlrechtsvoraussetzung f\u00fcr uns unverzichtbar.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Nicht-EU-B\u00fcrgerInnen haben oftmals kein gesichertes Aufenthaltsrecht und der \u00f6rtliche Bezug wie bei Kommunalwahlen ist bei einer Landtagswahl oft nicht gegeben.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir stehen f\u00fcr eine bessere Integration von Ausl\u00e4nderInnen. Beteiligungsm\u00f6glichkeiten am politischen Leben sind in diesem Zusammenhang ein wichtiger Schritt.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-27"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Suchtpr\u00e4vention muss mit der F\u00f6rderung sozialer Kompetenz schon im Kindergarten und in der Grundschule ansetzen und in weiterf\u00fchrenden Schulen mit sachlicher Aufkl\u00e4rung und spezifischen Informationen sinnvoll fortgesetzt werden. Wir fordern die Unzug\u00e4nglichkeit von Zigarettenautomaten f\u00fcr Kinder und Werbebeschr\u00e4nkungen f\u00fcr Alkohol- und Tabakprodukte.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Verbote sind keine L\u00f6sung. Die FDP Baden-W\u00fcrttemberg sieht dauerhaft einen h\u00f6heren gesellschaftlichen Aufkl\u00e4rungsbedarf \u00fcber die Gefahren des Zigarettenkonsums, der so fr\u00fch als m\u00f6glich befriedigt werden sollte.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Als Pr\u00e4vention gegen das Rauchen bei Schulkindern und Jugendlichen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG ist f\u00fcr die komplette Abschaffung von Zigarettenautomaten, weil diese bereits Kindern die Zerst\u00f6rung ihrer Gesundheit durch Rauchen erm\u00f6glichen. Insbesondere in Umkreis von Schulen haben Zigarettenautomaten nichts zu suchen!", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-28"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Zur Verbesserung der politischen Entscheidungsm\u00f6glichkeiten durch direkte Demokratie wurde ein Gesetzentwurf eingebracht.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Beteiligungsrechte (B\u00fcrgerentscheid, B\u00fcrgerbegehren) sind gerade erst auf kommunaler Ebene erweitert bzw. erleichtert worden und dort am ehesten sinnvoll. Bedarf auf Landesebene besteht nicht.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen die in der Landesverfassung vorgesehene M\u00f6glichkeit des Volksbegehrens und der Volksabstimmung ausbauen. F\u00fcr das Zustandekommen eines Volksbegehrens soll es k\u00fcnftig ausreichen, wenn es von mindestens 10 % der Wahlberechtigten gestellt wird. Ein zur Volksabstimmung gestelltes Gesetz ist beschlossen, wenn es die Mehrheit der abgegebenen g\u00fcltigen Stimmen findet und diese Mehrheit mindestens 20 % der Stimmberechtigten ausmacht. Es bleibt dabei, dass \u00fcber Abgabengesetze, Besoldungsgesetze und das Staatshaushaltsgesetz keine Volksabstimmung stattfinden kann.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ist ein wichtiges Anliegen f\u00fcr die SPD. Die H\u00fcrden f\u00fcr Volksinitiativen sind bislang zu hoch. Die SPD will die Bedingungen daf\u00fcr erleichtern und H\u00fcrden abbauen!", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die WASG steht f\u00fcr eine st\u00e4rkere Demokratisierung der Gesellschaft. Die Erleichterung von Volksentscheiden ist dabei ein wesentlicher Bestandteil.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-10-29"
+    }
+  ]
+}

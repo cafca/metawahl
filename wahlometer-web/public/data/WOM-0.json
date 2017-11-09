@@ -1,0 +1,604 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Alle Versuche mit der sog. Orientierungsstufe in anderen Bundesl&auml;ndern m&uuml;ssen als gescheitert betrachtet werden. Deshalb halten wir an der vierj&auml;hrigen Grundschulzeit fest.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die differenzierte Notengebung an der 2. Klasse tr&auml;gt nach unserer Ansicht dazu bei, sowohl Eltern als auch Sch&uuml;lern Aufschluss zu geben &uuml;ber ihre Leistungen in einzelnen Teilbereichen. Damit werden St&auml;rken und Schw&auml;chen transparenter und k&ouml;nnen die entsprechenden Ma&szlig;nahmen nach sich ziehen.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Nicht nur die Leistungen in den F&auml;chern, sondern auch die Pers&ouml;nlichkeitsentwicklung ist wesentlich f&uuml;r den Schulerfolg. Deshalb soll im Zeugnis oder als Anlage zum Zeugnis zuk&uuml;nftig eine klare Aussage zum Lern- und Arbeitsverhalten sowie zum Sozialverhalten des Sch&uuml;lers getroffen werden.", 
+          "value": 1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Es gibt keine Pl&auml;ne, das Erststudium durch Geb&uuml;hren zu finanzieren. Die Finanzierung der Hochschulen ist gesetzlich klar geregelt.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Es gibt keine Pl&auml;ne, die Schulzeit von neun auf acht Jahre zu verk&uuml;rzen.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "Super schreibi!", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Eine Legalisierung der sog. weichen Drogen Haschisch und Marihuana kommt f&uuml;r uns nicht in Betracht. Der Konsum dieser Drogen kann insbesondere bei Jugendlichen erhebliche negative Auswirkungen haben. Die mit dem Konsum einhergehende Teilnahmslosigkeit f&uuml;hrt in vielen F&auml;llen dazu, dass die Jugendlichen ihren Anforderungen um schulischen und beruflichen Bereich nicht mehr gerecht werden und unter ihr eigentliches Leistungsniveau abrutschen. Zudem kann der regelm&auml;&szlig;ige Konsum von Haschisch und Marihuana zu dauerhaften Hirnsch&auml;digungen f&uuml;hren.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "Im Vordergrund steht f&uuml;r die Liberalen die Suchtpr&auml;vention. Hierzu m&uuml;ssen personelle Engp&auml;sse in den Suchtberatungsstellen, insbesondere im Verbund mit den Schulen, durch die fl&auml;chendeckende Einstellung von Suchtberatern und Suchttherapeuten deutlich verbessert werden.Gesundheitsr&auml;ume sollen als Anlaufstellen f&uuml;r Drogenkonsumenten eingerichtet werden, die hier Unterst&uuml;tzung bei der Bew&auml;ltigung ihrer Sucht erhalten.Die kontrollierte Abgabe von Heroin an Schwerstabh&auml;ngige unter &auml;rztlicher und psychologischer Betreuung kann Heroinkranken bei der Resozialisierung helfen.Das Urteil des Bundesverfassungsgerichts zum Besitz sogenannter weicher Drogen muss umgesetzt werden. Die bayerische FDP spricht sich bei einem Besitz von 10g Cannabis daf&uuml;r aus, von einer Strafverfolgung abzusehen.", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Unser Ziel ist eine wirkungsvolle Bek&auml;mpfung des Alkoholmissbrauchs mit all seinen gesundheitlichen, sozialen und wirtschaftlichen Folgeerscheinungen sowie die Vorbeugung und Verh&uuml;tung von Tabakmissbrauch und Nikotinabh&auml;ngigkeit, die F&ouml;rderunge von Hilfsangeboten f&uuml;r ausstiegswillige Raucherinnen und Raucher sowie der Nichtraucherschutz, insbesondere bei Jugendlichen. Wir haben in Bayern hierzu eine Reihe von staatlichen Ma&szlig;nahmen und Kampagnen gestartet. Wir begr&uuml;&szlig;en, dass das neue Jugendschutzgesetz Werbefilme und Werbeprogramme, die f&uuml;r Tabakwaren oder alkoholische Getr&auml;nke werben,bei Filmveranstaltungen nur nach 18 Uhr erlaubt. Dar&uuml;ber hinaus sollte erwogen werden, st&auml;rker zu pr&uuml;fen, an welche Altersgruppe sich die jeweilige Werbung in Kino, Fernsehen und Zeitschriften richten. Es darf nicht der Eindruck entstehen, Alkohol und Nikotin k&ouml;nnen Lebensdefizite bei Jugendlichen ausgleichen. Bereits nach den jetzigen gesetzlichen Vorschriften bestehen erhebliche Werbeverbote und -Einschr&auml;nkungen f&uuml;r Tabakerzeugnisse z.B. in H&ouml;rfunk und Fernsehen, die wir begr&uuml;&szlig;en", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Zur effektiven Bek&auml;mpfung des Terrorismus fordern wir, die M&ouml;glichkeit zu schaffen, gewaltbereite Ausl&auml;nder schon beim Verdacht terroristischer Straftaten auszuweisen.", 
+          "value": 1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die Ausweitung der Steuerpflicht bei der Ver&auml;u&szlig;erung von Wertpapieren w&auml;re ein weiterer Schlag f&uuml;r den Finanzplatz Deutschland in einer Phase, in der das Vertrauen der Anleger ohnehin auf dem Tiefpunkt ist. Der deutsche Aktienmarkt hat im Jahr 2002 weit mehr verloren als alle anderen wichtigen Aktienm&auml;rkte. Die verfehlte Wirtschaftspolitik der letzen Jahre tr&auml;gt daf&uuml;r die Hauptverantwortung. Bei der Riesterrente hat Rot-Gr&uuml;n noch zum Aufbau der privaten Altersvorsorge aufgerufen. Nun soll der, der f&uuml;r sein Alter privat zus&auml;tzlich vorsorgt, weiter bestraft werden. Die generelle Kursgewinnbesteuerung bestrafft alle Wertpapiere, auch Sparer mit festverzinslichen Wertpapieren und Investmentfonds-Anteilen werden zur Kasse gebeten. Mit der erweiterten Besteuerung von nicht selbst genutzten Immobilien wird der privaten Altersvorsorge ein schwerer Schlag versetzt.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Eine Absenkung des Wahlalters auf den genannten Ebenen wird von uns nicht bef&uuml;rwortet. Es ist nicht sinnvoll, verschiedene Stufen der M&uuml;ndigkeit einzuf&uuml;hren. Die Vollj&auml;hrigkeit sollte auch zuk&uuml;nftig entscheidend f&uuml;r die Wahlm&uuml;ndigkeit sein.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Derzeit bestehen bei uns keine Pl&auml;ne, die f&uuml;r Volksentscheide erforderliche Mindestbeteiligung abzusenken.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Daf&uuml;r w&auml;re eine &Auml;nderung des Wahl- und Verfassungsrechts n&ouml;tig. Gr&uuml;nde hierf&uuml;r sehen wir nicht. Hintergrund der geltenden Regelung ist, dass ein Ministerpr&auml;sident dann deutlich stabiler und effizienter arbeiten kann, wenn er auch eine Mehrheit im Parlament besitzt, um die Pl&auml;ne der Regierung umzusetzen. Dies wird durch das jetzige Wahlrecht gew&auml;hrleistet.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir treten seit langem f&uuml;r eine St&auml;rkung der Regionen im europ&auml;ischen Einigungsprozess ein. Globalisierung, europa- und weltweiter Wettbewerb sind eine gro&szlig;e wirtschaftliche Chance. Aber sie erzeugen bei vielen Menschen auch Gef&uuml;hle der Entfremdung und Verunsicherung. Je rascher die Globalisierung voranschreitet, je st&auml;rker die Grenzen f&uuml;r Waren, Kapital und Wissen fallen, je schneller der Strukturwandel sich vollzieht, um so wichtiger werden die kleineren Einheiten, die Regionen. Sie k&ouml;nnen helfen, den Menschen Geborgenheit in der globalisierten Welt zu vermitteln. Mit der Heimat, ihrer Natur und Landschaft kann sich der einzelne identifizieren, er kann sie eigenverantwortlich mitgestalten. In der Region werden gemeinsame Wertvorstellungen gelebt und Solidarit&auml;t zwischen Mitb&uuml;rgern praktiziert. Europa ist ein Kontinent der Nationen und Regionen, ihre Kreativit&auml;t und Vielfalt haben entscheidend zum kulturellen Reichtum Europas beigetragen. Europa braucht den Dreiklang aus EU, Mitgliedsstaaten und Regionen. In der EU muss n&ouml;tigenfalls im Verh&auml;ltnis zwischen Bund und L&auml;ndern sichergestellt werden, dass sich das Recht der L&auml;nder, bei Betroffenheit ihrer Zust&auml;ndigkeiten Deutschland im Ministerrat zu vertreten, nicht nur auf den Legislativrat beschr&auml;nkt.", 
+          "value": 1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "Die Gr&uuml;nen stehen f&uuml;r ein Mehr an Subsidiarit&auml;t und Demokratisierung in der Europ&auml;ischen Union.", 
+          "value": 0, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Obwohl der nach Geschlechtern getrennte Unterricht in einigen F&auml;llen, v.a. in den Naturwissenschaften durchaus positive Resultate erbracht hat, ist es nicht in unserem Sinn, diese Trennung generell einzuf&uuml;hren. Es bleibt vielmehr der einzelnen Schule &uuml;berlassen, die Klassen beispielsweise in &Uuml;bungsphasen nach eigenem Ermessen zu unterteilen.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir setzen uns daf&uuml;r ein, das Drehkreuz Flughafen M&uuml;nchen zu st&auml;rken. Mit dem Bau der Transrapid-Magnetschwebebahn vom Hauptbahnhof zum Flughafen M&uuml;nchen r&uuml;ckt der Flughafen n&auml;her an den Fernverkehrsknotenpunkt Hauptbahnhof M&uuml;nchen heran und wird besser an das gesamte bayerische Schienennetz angebunden. Davon profitiert ganz Bayern. Verkehrsexperten in aller Welt prognostizieren, dass sich die Magnetschnellbahn schon in wenigen Jahren zu einem wesentlichen Eckpfeiler k&uuml;nftiger Verkehrsinfrastrukturen herausbilden wird. Die Vorteile dieses Verkehrssystems liegen in den geringen St&ouml;reinfl&uuml;ssen von au&szlig;en, weil es einen eigenen Fahrweg hat. Es gibt keine &Uuml;berschneidungen mit Nah-, Fern- oder G&uuml;terverkehr.", 
+          "value": 1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir setzen und daf&uuml;r ein, das Drehkreuz Flughafen M&uuml;nchen zu st&auml;rken. Ein wesentlicher Faktor der nationalen und internationalen Anbindung Bayerns ist der Flughafen N&uuml;rnberg. Dar&uuml;ber hinaus unterst&uuml;tzen wir den Ausbau der Flugh&auml;fen Augsburg und Hof.", 
+          "value": 1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Hauptziel ist es, das tats&auml;chliche Renteneintrittsalter (von derzeit rund 60 Jahren) an das gesetzliche Renteneintrittsalter von 65 Jahren heranzuf&uuml;hren. Grunds&auml;tzlich sollte aber die Anzahl der geleisteten Arbeitsjahre ma&szlig;gebend sein und nicht das absolute Rentenalter. Dies gilt nicht nur f&uuml;r den &ouml;ffentlichen Dienst.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "Die Gr&uuml;nen stehen f&uuml;r eine Heraufsetzung des tats&auml;chlichen Renteneintrittsalters.", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der Meisterbrief steht f&uuml;r Qualit&auml;t handwerklicher Leistungen, f&uuml;r Ausbildungsleistung und Ausbildungsf&auml;higkeit. Der Meisterbrief begr&uuml;ndet die wirtschaftliche Stabilit&auml;t der Betriebe. Kriterien f&uuml;r eine Meisterpflicht sollen der Beitrag der Ausbildungsleistung, Leistungsf&auml;higkeit und Leistungsstand des Handwerks, Gesichtspunkte des Verbraucherschutzes, des Umweltschutzes- und der Gefahrenabwehr sein. Durch eine Revisionsklausel wird die Durchl&auml;ssigkeit zwischen dem Vollhandwerk und den &uuml;brigen handwerklichen Gewerben erh&ouml;ht.Wir setzen darauf, dass in einer neuen Handwerksordnung die St&auml;rkung des Handwerks in einem ge&auml;nderten Wettbewerbsumfeld auch weiterhin voll zum Tragen kommt. Die Bundesregierung will tragende S&auml;ulen des Handwerks im Hauruck-Verfahren zum Einsturz bringen. Deshalb haben wir in einem Alternativkonzept mit konstruktiven Reformvorschl&auml;gen f&uuml;r eine gr&ouml;&szlig;erer Flexibilit&auml;t in der Handwerksordnung unsere Vorschl&auml;ge nicht gegen, sondern mit Vertretern des Handwerks erarbeitet. Ziel des bayerischen Gesetzentwurfes ist es, die hohe Ausbildungsbereitschaft im deutschen Handwerk zu sichern und dabei die Entwicklung der Handwerksbetriebe zu erm&ouml;glichen sowie unn&ouml;tige B&uuml;rokratie abzubauen. Wir wollen dem Handwerk Rahmenbedingungen geben, die seine Leistungsbereitschaft und Innovationskraft st&auml;rken. Unser Handwerk ist seit Bestehen der Bundesrepublik eine wichtige St&uuml;tze f&uuml;r Ausbildung und Besch&auml;ftigung. Das Handwerk spielt auch k&uuml;nftig eine Schl&uuml;sselrolle f&uuml;r mehr wirtschafliches Wachstum und Arbeitspl&auml;tze in Deutschland", 
+          "value": 1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "Die Handwerksordnung behindert in vielen Bereichen Existenzgr&uuml;ndungen, Wettbewerb und unternehmerische Entscheidungen. Die FDP setzt sich f&uuml;r eine durchgreifende Reform der Handwerksordnung ein. Der Meisterbrief soll als G&uuml;tesiegel erhalten werden und auch k&uuml;nftig das Recht zur Ausbildung von Lehrlingen beinhalten, aber nicht mehr Voraussetzung zur Unternehmensf&uuml;hrung sein.", 
+          "value": 0, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Eine Verpflichtung zur Weiterbildung durch den Staat lehnen wir ab. Wir wollen die Rechte der Arbeitnehmer in den Betrieben st&auml;rken, z.B. durch betriebliche B&uuml;ndnisse f&uuml;r Arbeit. Auch die Frage nach der Notwendigkeit einer Weiterbildung muss sich nach dem Ausbildungsstand des Arbeitnehmers und der Notwendigkeit des Betriebs richten. Eine Verpflichtung zu einer j&auml;hrlichen Weiterbildung ist deshalb nicht zielf&uuml;hrend. Wie bereits oben angef&uuml;hrt, sind regelm&auml;&szlig;ige Weiterbildung &uuml;ber die Erstausbildung hinaus von gro&szlig;er Bedeutung. Staatliche Zwangsma&szlig;nahmen sind hierbei aber wohl eher kontraproduktiv.", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die SPD Bayern verweist f&uuml;r ausf&uuml;hrlichere Begr&uuml;ndungen auf ihrRegierungsprogramm unter www.bayernspd.de", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Jugendliche k&ouml;nnen heute in vielen Gemeinden und Landkreisen durch sogenannte Jugendparlamente oder Jugendbeir&auml;te an der politischen Willensbildung mitwirken. Zahlreiche Gemeinder&auml;te und Kreistage benennen auch sogenannte Jugendbeauftragte. Diese Einrichtungen haben sich in der Praxis bew&auml;hrt und bieten ausreichend M&ouml;glichkeit zur politischen Beteiligung von Jugendlichen", 
+          "value": -1, 
+          "party": "CSU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "Freie W&auml;hler Bayern"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B&uuml;ndnis 90/Die Gr&uuml;nen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-0-19"
+    }
+  ]
+}

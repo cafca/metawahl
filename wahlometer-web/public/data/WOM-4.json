@@ -1,0 +1,729 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Windkraft ist nur da sinnvoll, wo der Wind weht. Die besten Fl\u00e4chen sind bereits belegt. Hier m\u00fcssen die besten und effizientesten Anlagen stehen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen die Halbierung der F\u00f6rderung bis 2010.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "40.000 Jobs, Exporte in der Bergbautechnologie von 1 Mrd. \u20ac (Tendenz steigend), Energiesicherheit - das opfern wir nicht auf dem Altar der freien M\u00e4rkte.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "NRW braucht leistungsf\u00e4hige Stra\u00dfen und Autobahnen. Wir werden vorrangig die Autobahnstrecken  A2, A3, A1 und den K\u00f6lner Ring sechsstreifig ausbauen.  Mit einem  modernen Verkehrsmanagement wollen wir die bestehenden Stra\u00dfen und den \u00d6PNV besser nutzen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die SPD steht klar und deutlich zum Luftverkehrsstandort NRW: Wir bef\u00fcrworten den Ausbau der Verkehrsinfrastruktur, aber nur bei einer entsprechenden Nachfrage. ", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wolllen die Gleichbehandlung von alternativen und konventionellen Betrieben.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "NRW f\u00f6rdert bereits im erheblichen Ma\u00dfe die \u00f6kologische und die konventionelle Landwirtschaft. Ein weiterer Ausbau der F\u00f6rderung ist angesichts der extrem knappen Mittel derzeit nicht m\u00f6glich.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen kein generelles Anbauverbot. Der Anbau genver\u00e4nderter Pflanzen er\u00f6ffnet Chancen, die es verantwortungsvoll zu nutzen gilt. Er birgt aber auch Risiken und Verunsicherungen, die zu minimieren sind. Es kommt auf den Einzelfall an.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Deshalb haben wir in NRW das Tariftreuegesetz verabschiedet.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Im Handwerk verb\u00fcrgt der Meisterbrief die notwendige Qualit\u00e4t zur Ausbildung.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Haftungsrisiken der einzelnen Berufsfelder m\u00fcssen Ma\u00dfstab sein. Die Frage ist daher von Fall zu Fall, von Branche zu Branche zu entscheiden.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "In NRW haben wir einen Ausbildungspakt, der wirkungsvoller ist als ein Gesetz.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir sind gegen die Aufgabe des Ladenschlussgesetzes am Sonntag, aber f\u00fcr die vollst\u00e4ndige Liberalisierung an Werktagen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wenn das Leben so einfach w\u00e4re! F\u00fcr Verbraucher prima, f\u00fcr gro\u00dfe Warenh\u00e4user und Filialisten auch. Doch was ist mit den kleinen L\u00e4den und den Angestellten?", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "Grunds\u00e4tzlich st\u00f6\u00dft diese Initiative auf die Unterst\u00fctzung der FDP. Allerdings lautet unser Vorschlag 6x24, d.h. die \u00d6ffnungszeiten sollen an allen Werktagen freigegeben werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das ist im Rahmen einer substantiellen Steuerreform zu entscheiden.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "NRW gibt den Gemeinden schon den h\u00f6chsten Anteil an Steuern ab. Mehr geht nicht.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "F\u00fcr alle Jugendlichen sollen Ausbildungspl\u00e4tze zur Verf\u00fcgung stehen. Rechtsanspr\u00fcche schaffen keine Ausbildungspl\u00e4tze.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Menschen mit Behinderungen werden bereits im \u00f6ffentlichen Dienst gef\u00f6rdert.Mit der kommenden Einf\u00fchrung des Antidiskriminierungsgesetzes wird diese F\u00f6rderung ausgeweitet. Einen Rechtsanspruch h\u00e4lt die SPD jedoch nicht f\u00fcr praktisch umsetzbar.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wegen des katastrophalen Zustands der \u00f6ffentlichen Haushalte ist das zurzeit nicht m\u00f6glich.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Geld wird ben\u00f6tigt, um die dringend erforderlichen Betreuungsangebote f\u00fcr unter dreij\u00e4hrige Kinder auszubauen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Dies ist nicht unbedingt erforderlich, da wir mit den Jugendhilfeaussch\u00fcssen bereits ein Mitwirkungsorgan haben.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "An nordrhein-westf\u00e4lischen Grundschulen wird Englisch ab der dritten Klasse unterrichtet. Ein Vorziehen auf die erste Klasse ist zurzeit nicht vorgesehen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir setzen f\u00fcr alle Kinder auf das Bildungsziel der Mehrsprachigkeit. Fremdsprachen sollen ab der dritten Klasse unterrichtet werden.", 
+          "value": 0, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Sitzenbleiben ist zu h\u00e4ufig eine ineffiziente Ma\u00dfnahme und muss eingeschr\u00e4nkt werden. Die SPD setzt sich f\u00fcr eine deutliche Reduzierung der Sitzenbleiberquote ein. Die Personalressourcen dazu sollen f\u00fcr die F\u00f6rderung verwendet werden - statt f\u00fcr Klassenwiederholungen. ", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "In NRW wird es keine isolierte Abschaffung des Beamtenstatus geben. Wir setzen uns f\u00fcr eine bundeseinheitliche Regelung des Status der Lehrkr\u00e4fte ein.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen nachgelagerte Studiengeb\u00fchren mit Raten-R\u00fcckzahlung bei eigenem Einkommen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die SPD wird auch weiterhin keine Studiengeb\u00fchren f\u00fcr das Erststudium erheben. Die in den unionsgef\u00fchrten Bundesl\u00e4ndern angedachten 500 \u20ac pro Semester lehnen wir ab. Sie halten Menschen gerade mit kleinen und mittleren Einkommen vom Studium fern. Wir wollen nicht, dass Talente vergedeudet werden, nur weil sie von den Kosten eines Studiums abgeschreckt werden. Das k\u00f6nnen wir uns wirtschaftlich und sozial nicht leisten. Deswegen setzt die SPD auf das von ihr entwickelte Studienkontenmodell. Damit ist einerseits gesichert, dass mit den Ressourcen veranwortungsvoll umgegangen wird. Gleichzeitig wird niemand vom Studium ausgeschlossen. F\u00fcr uns ist das die gelebte Kombination aus wirtschaftlichem Erfolg und sozialem Zusammenhang.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "In NRW ist das geb\u00fchrenfreie Erststudium Gesetz.", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "Die FDP m\u00f6chte autonome Hochschulen mit eigener Personal- und Budgetverantwortung. Demnach sollen die Hochschulen selbst \u00fcber die Einf\u00fchrung von Studiengeb\u00fchren entscheiden d\u00fcrfen. Wichtig ist zudem, dass das Geb\u00fchrenaufkommen den betreffenden Hochschulen zuflie\u00dft und nicht dem Finanzminister.", 
+          "value": 0, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "An nordrhein-westf\u00e4lischen Schulen gibt es bereits mehr Sportunterricht als in anderen Bundesl\u00e4ndern.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-19"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Schulen sollen dar\u00fcber entscheiden.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Kinder sollen lernen, wie man sich gesund ern\u00e4hrt. Dazu kann auch mal ein Riegel geh\u00f6ren.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-20"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der Eigenverbrauch wird nicht mehr strafrechtlich verfolgt. Eine generelle Freigabe lehnt die SPD ab.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Zitat aus dem Programm: Wichtig ist f\u00fcr uns die Entkriminalisierung der Konsumenten.", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-21"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der gefundene Kompromiss sollte nicht ohne Not aufgek\u00fcndigt werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-22"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Bezahlbare, hochwertige Kultur f\u00fcr alle ist eine \u00f6ffentliche Aufgabe. Es spricht jedoch nichts gegen eine Zusammenarbeit mit privaten Unternehmen auf diesem Gebiet.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-23"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir sind gegen das Tragen des islamischen Kopftuchs als ein politisches Symbol.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nach den CDU-Vorstellungen m\u00fcssten alle religi\u00f6sen Symbole verboten werden, das wollen wir nicht. Sollten die Probleme steigen und eine rechtlich einwandfreie Regelung gefunden werden, muss neu entschieden werden.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-24"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Es sind das Grundrecht auf informationelle Selbstbestimmung und verfassungsgerichtliche Vorgaben zu beachten. Die Erfassung muss auf bestimmte schwere Straftaten beschr\u00e4nkt werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-25"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-26"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Von Fall zu Fall entscheiden: Die Entscheidung h\u00e4ngt von der Kriminalit\u00e4tsentwicklung vor Ort und der polizeifachlichen Bewertung ab. Man muss das Instrument gezielt einsetzen.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-27"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Was ein Abgeordneter verdient, steht im Gesetz. Mit dem neuen Abgeordnetengesetz ist sichergestellt, dass es keinen Missbrauch mit Nebeneink\u00fcnften gibt. Es ist niemandem verboten, sein Einkommen offenzulegen. Ein Zwang w\u00e4re jedoch falsch.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00fcndnis 90/Die Gr\u00fcnen"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }
+      ], 
+      "id": "WOM-4-28"
+    }
+  ]
+}

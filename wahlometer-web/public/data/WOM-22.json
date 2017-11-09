@@ -1,0 +1,2284 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen allerdings die Energiewende m\u00f6glichst dezentral, erneuerbar und bezahlbar mit Menschen vor Ort umsetzen. Der Erh\u00f6hung der Verg\u00fctung von offshore erzeugter Windenergie und der gleichzeitigen Senkung der Verg\u00fctung f\u00fcr onshore erzeugter Windenergie stehen wir daher kritisch gegen\u00fcber, da sie die bestehende Vormacht der gro\u00dfen Energieunternehmen verfestigt. Allerdings werden durch Offshore-Windparks die Wirtschaftlichkeit vieler H\u00e4fen gesichert und ausgebaut. ", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP bef\u00fcrwortet sowohl die Errichtung von Windkraftanlagen auf dem Land als auch auf dem Meer.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Der \u00f6kologisch-relevante Aufwand f\u00fcr die Installation von Windenergieanlagen im Meer ist ungleich h\u00f6her als an Land. Zudem sind die Offshore-Anlagen nur mit riesigen Investitionsmitteln privater Energieriesen zu realisieren. Windenergieanlagen an Land k\u00f6nnen durch kommunale Energieversorger betrieben werden, die dem Gemeinwohl verpflichtet sind und verantwortungsvoller mit der Technologie umgehen. Deren Anlagen sind auch n\u00e4her an den VerbraucherInnen, sodass weniger Leitungsverluste entstehen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Beide Modelle sollen gleichberechtigt entwickelt werden k\u00f6nnen.", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Der Grund daf\u00fcr, da\u00df die Umsetzung und der Bau von Windkraftanlagen im Meer nur sehr langsam und z\u00f6gerlich vorangeht, obwohl die Konzessionen schon lange vergeben wurden, liegt darin, da\u00df die Errichtung von Meeresanlagen exorbitant teuer und technisch schwierig sind. Hinzu kommt, da\u00df die Netzleitungen erst angelegt und finanziert werden m\u00fcssen. Deshalb sollten Standorte auf dem Festland bevorzugt werden, sofern die landschaftlichen und bev\u00f6lkerungspolitischen Umst\u00e4nde das zulassen.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Sie sollten dort installiert werden, wo es am g\u00fcnstigsten ist.", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Windkraftanlagen auf dem Wasser behindern Schifffahrt, Fischerei und Vogelflug. Es m\u00fcsste sehr genau abgewogen werden, an welchen Orten \u00fcberhaupt noch Windkraftanlagen gebaut werden k\u00f6nnten.  Auf dem Wasser gibt es jedenfalls bis dato genug.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Bei der Chancengleichheit kommt es auf den Anfang an: Unser Ziel ist es, schrittweise f\u00fcr alle Kinder drei Jahre lang den Besuch des Kindergartens f\u00fcr t\u00e4glich mindestens f\u00fcnf Stunden beitragsfrei zu erm\u00f6glichen. Wir werden in der kommenden Legislaturperiode mindestens ein Kita-Jahr beitragsfrei stellen und die Einrichtung von Betriebskinderg\u00e4rten unterst\u00fctzen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Dies w\u00e4re aus Sicht der FDP zwar sehr w\u00fcnschenswert, auf absehbare Zeit jedoch finanziell nicht darstellbar. Aus diesem Grund hat sich die FDP in dieser Legislaturperiode bei den Kitas auf Qualit\u00e4tsverbesserungen konzentriert und wird diesen Weg auch in den n\u00e4chsten Jahren weiter gehen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen die Einf\u00fchrung einer Kita-Sozialstaffel, damit jedes kind eine Kita besuchen kann, unabh\u00e4ngig vom Geldbeutel der Eltern.", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Kitas frei f\u00fcr alle. DIE LINKE ist f\u00fcr die Beitragsfreiheit aller drei Kita-Jahre. Gerade f\u00fcr Kinder aus sogenannten bildungsfernen Schichten ist der Besuch der Kita Voraussetzung daf\u00fcr, nicht den Anschluss zu verlieren. Kindertagesst\u00e4tten haben schon heute einen Bildungsauftrag. Jede Investition in Bildung rechnet sich f\u00fcr die Gesellschaft. Geld in fr\u00fchkindliche Bildung ist gut angelegtes Geld!", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Ist aber nur langfristig realisierbar", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Der Besuch einer vorschulischen Einrichtung leistet einen wichtigen Beitrag dazu, dass Kinder in der Grundschule leichter lernen und sich besser in einer Gruppe zurechtfinden. ", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "F\u00fcr diese Aufgabe m\u00fcssen den Kommunen die Kosten von Bund und Land erstattet werden. ", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Jedes deutsche Kind mu\u00df Anrecht auf einen geb\u00fchrenfreien Kitaplatz haben. Es darf nicht sein, da\u00df sich Eltern aus finanziellen Gr\u00fcnden gegen einen Kitaplatz entscheiden m\u00fcssen. Gerade im letzten Jahr vor der Schule ist die Kita wichtig, um das Kind auf die Schule vorzubereiten.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Eltern sollten generell finanziell entlastet werden.", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Der Besuch der Kita sollte immer geb\u00fchrenfrei sein, ebenso wie der Besuch der Schule. Schlie\u00dflich wird auch hier die Grundlage f\u00fcr unsere zuk\u00fcnftige Gesellschaft und deren Bildungsniveau gelegt.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die feste Fehmarnbeltquerung macht Schleswig-Holstein zur Logistikdrehscheibe Nordeuropas. Das schafft Wirtschaftswachstum und Arbeitspl\u00e4tze.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wenn die feste Fehmarnbeltquerung kommt, werden wir die m\u00f6glichen Chancen f\u00fcr Schleswig-Holstein herausarbeiten und umsetzen. Bei der Entwicklung der Hinterlandkonzepte werden wir die Anliegen der Menschen in den Mittelpunkt r\u00fccken. Wir werden sie bei allen Planungen beteiligen und damit zeigen, dass ein Staat f\u00e4hig ist, auch gesellschaftlich strittige Infrastrukturentwicklungen klug zu begleiten und zum Wohle des Gemeinwesen zu gestalten. \u00dcber den Bau selbst entscheiden Bund und D\u00e4nemark. ", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der Bau der Festen Fehmarnbeltquerung liegt nicht im Bereich der Entscheidungskompetenz des Landtages. Die FDP bef\u00fcrwortet das Projekt und setzt sich f\u00fcr eine (Schienen-)Hinterlandanbindung ein, die die unterschiedlichen Interessen bestm\u00f6glich in Einklang bringt.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Dies ist ein unsinniges Prestigeobjekt, das Milliarden Euro verschlingt. Zu Recht wehren sich die Menschen in der Region. Die jetzige Form des Verkehrs \u00fcber den Fehmarn-Belt ist \u00f6kologisch vertr\u00e4glich und v\u00f6llig ausreichend. Zudem sind die negativen Folgesch\u00e4den f\u00fcr die Natur in der Region und f\u00fcr den Tourismus in Ostholstein sind nicht absehbar. DIE LINKE fordert, die riesigen Summen in den \u00f6kologischen und nachhaltigen Umbau der Verkehrssysteme zu investieren.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir sprechen uns gegen den Bau der Festen Fehmarnbeltquerung zwischen der Ostseeinsel Fehmarn auf deutscher und Lolland auf d\u00e4nischer Seite sowie der damit auf deutscher Seite einhergehenden sog. Hinterlandanbindung aus. Wir werden darauf hinwirken, dass von Artikel  22 Abs. 1 a.E. des Vertrages zwischen der Bundesrepublik Deutschland und dem K\u00f6nigreich D\u00e4nemark \u00fcber eine Feste Fehmarnbeltquerung vom 3.  September 2008 Gebrauch gemacht wird.", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Seit mehreren Jahren wird das Thema feste Beltquerung kontrovers diskutiert, und auf den ersten Blick scheint dieses ehrgeizige Verkehrsprojekt durchaus vorteilhaft zu sein. Betrachtet man jedoch nur einmal die Sch\u00e4digungen der Umwelt, die Umsatzeinbu\u00dfen im Tourismus und die geringe Zeit- und Kostenersparnis wird schnell klar: Eine feste Fehmarnbelt-Querung ist \u00f6kologisch und \u00f6konomisch vollkommen unsinnig.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Auf jeden Fall braucht Schleswig-Holstein endlich eine feste Verbindung nach Skandinavien um die wirtschaftlichen und touristischen Interessen zu f\u00f6rdern.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir bekennen uns dazu, dass Menschen von ihrem Einkommen leben k\u00f6nnen sollen. Auch deshalb haben wir in das neue Mittelstandsf\u00f6rderungsgesetz eine EU-konforme Tariftreueregelung bei \u00f6ffentlichen Auftragsvergaben aufgenommen. Grundlage sind dabei von den Tarifpartnern vereinbarte Mindestl\u00f6hne. Wir achten und st\u00e4rken die Tarifautonomie, fl\u00e4chendeckende gesetzliche Mindestl\u00f6hne lehnen wir ab.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir setzen uns f\u00fcr einen fl\u00e4chendeckenden gesetzlichen Mindestlohn von mindestens 8,50 Euro ein und wollen SH zu einem Land mit den besten Arbeitsbedingungen in Deutschland entwickeln. Hierzu geh\u00f6ren faire, leistungsgerechte und tariflich abgesicherte Entgelte und Mindestl\u00f6hne sowie Mindestausbildungsverg\u00fctungen, die einen eigenst\u00e4ndigen Lebensunterhalt erm\u00f6glichen. Leiharbeit und Befristungen ohne Grund sowie das unangemessene Praktikantenwesen m\u00fcssen wieder arbeitnehmergerecht sein. ", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Einen fl\u00e4chendeckenden gesetzlichen Mindestlohn lehnt die FDP ab. Lohnfindung ist Aufgabe der Tarifparteien. Die FDP will diese dabei unterst\u00fctzen, auch weiterhin die Lohnfindung vorzunehmen, um eine faire Entlohnung der Besch\u00e4ftigten sicherzustellen. Missbrauch im unteren Einkommensbereich soll entgegengewirkt werden. Lohnuntergrenzen sollen von den Tarifpartnern verhandelt werden und nach Branchen und Regionen unterschiedlich sein.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "In Schleswig-Holstein haben ein Viertel der sozialversicherungspflichtig Besch\u00e4ftigten einen Lohn im Niedriglohnbereich. Dies ist das Ergebnis einer falschen Politik vor allem auf der Bundesebene. Die Deregulierung des Arbeitsmarktes und die Hartz-IV-Gesetzgebung haben dazu gef\u00fchrt, dass Arbeitnehmerinnen und Arbeitnehmer in vielen Branchen zu einem Lohn arbeiten m\u00fcssen, der nicht zum Leben reicht. DIE LINKE fordert: Von Arbeit muss man leben k\u00f6nnen!", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Der Mindestlohn ist f\u00fcr uns nur eine angestrebte \u00dcbergangsl\u00f6sung. Auf eine exakte H\u00f6he haben wir uns derzeit nicht festgelegt. Wir wollen letztendlich eine Enquete-Kommmission einf\u00fchren, um eine breite gesellschaftliche Diskussion \u00fcber ein bedingungslosen Grundeinkommens anzustossen.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die NPD setzt sich f\u00fcr die Einf\u00fchrung eines allgemeinen, branchenunabh\u00e4ngigen Mindestlohns ein, um allen Besch\u00e4ftigten ein angemessenes Arbeitsentgelt zu sichern, mit dem man aus eigener Kraft seinen Lebensunterhalt sichern kann.  ", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Es kommt auf die H\u00f6he der Mindestl\u00f6hne an. Mindestl\u00f6hne sind nicht immer von Klein- bzw. Kleinstbetrieben zu leisten.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Mit dem Gl\u00fccksspielgesetz Schleswig-Holstein haben wir eine Grundlage f\u00fcr ein dem illegalen Gl\u00fccksspiel entgegenwirkendes, europarechtskonformes Gl\u00fccksspielrecht geschaffen. Wir haben dabei strenge Kriterien formuliert, unter denen Gl\u00fccksspielangebote im Internet vom Staat genehmigt und kontrolliert werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Eine Verurteilung wegen Geldw\u00e4sche muss ein zwingendes Ausschlusskriterium f\u00fcr die Bewerbung um eine Konzession sein. Es ist unverantwortlich, dass dies bisher nicht der Fall ist. Zudem muss die Kontrolle durch die Aufsichtsbeh\u00f6rden gew\u00e4hrleistet werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der Gesetzgeber kann nur etwas kontrollieren und lenken, wenn es unter seiner Aufsicht steht. Gl\u00fccksspiele und die damit einhergehende Gefahr der Spielsucht k\u00f6nnen nur kontrolliert werden, wenn sie der Aufsicht des Staates unterstehen. Der Spielerschutz ist im neuen Landesgesetz sehr ausf\u00fchrlich geregelt: Gl\u00fccksspielanbieter sind gesetzlich verpflichtet, ein umfassendes Sozialkonzept zu entwickeln, in dem sie Ma\u00dfnahmen zur Vorbeugung gegen pathologisches Spielverhalten ergreifen m\u00fcssen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Leider geht Schleswig-Holstein beim Gl\u00fccksspiel einen Sonderweg. Alle anderen Bundesl\u00e4nder beschr\u00e4nken das Gl\u00fccksspiel st\u00e4rker. DIE LINKE will nicht, dass Schleswig-Holstein zum Las Vegas von Deutschland wird. Mehr Gl\u00fccksspiel bedeutet mehr Gl\u00fccksspielsucht und damit auch mehr Elend in den betroffenen Familien. Gl\u00fccksspiel ist zudem ein Gesch\u00e4ft ohne Risiko. Gewinner ist immer der Gl\u00fccksspielanbieter. Aber die Gesellschaft und wir alle sind bei der Liberalisierung des Gl\u00fccksspiels die Verlierer.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Finanziell schwache Bev\u00f6lkerungsgruppen und labile Personen suchen einen Ausweg aus ihrer finanziellen Misere oder werden spiels\u00fcchtig. Damit verspielen sie Mittel, die f\u00fcr notwendigere Dinge erforderlich sind. Aus sozialer Verantwortung ist die Ausweitung von Gl\u00fccksspielen , die haupts\u00e4chlich die Anbieter bereichert, abzulehnen.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die Zulassung von Gl\u00fccksspielanbietern muss nicht reglementiert werden. Die Zulassung von Alkoholanbietern ist auch nicht reglementiert. Fakt ist, dass beides zur Sucht f\u00fchren kann und der Staat t\u00fcchtig daran verdient.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Schleswig Holstein war bis 2009 pr\u00e4gendes und positives Vorzeigemodell in seiner Minderheitenpolitik. Die Landeszusch\u00fcsse f\u00fcr die Schulen der d\u00e4nischen Minderheit werden von der SPD wieder auf 100% des Sch\u00fclerkostensatzes gesetzt.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Hier m\u00fcssen im Rahmen der Haushaltskonsolidierung aus Sicht der FDP ebenso Strukturen \u00fcberpr\u00fcft werden wie in jedem anderen Bereich des \u00f6ffentlichen Lebens auch. Innerhalb der n\u00e4chsten Legislaturperiode ist hier eine L\u00f6sung zu finden, die auch bei wechselnden politischen Mehrheiten Planungssicherheit garantiert. Die FDP wird durch eine ausk\u00f6mmliche Finanzierung f\u00fcr die n\u00e4chsten Jahre sicherstellen, dass die kulturellen Einrichtungen der Minderheiten handlungsf\u00e4hig bleiben.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Selbstverst\u00e4ndlich sind uns die Sch\u00fclerinnen und Sch\u00fcler der d\u00e4nischen (Ersatz-) Schulen genauso viel wert, wie die Sch\u00fclerinnen und Sch\u00fcler von \u00f6ffentlichen Schulen. Es ist ein fatales Zeichen an unsere d\u00e4nischen Mitb\u00fcrgerinnen und Mitb\u00fcrger, hier an dieser Stelle zu streichen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Die d\u00e4nische Minderheit in Schleswig-Holstein ist Teil unserer  Geschichte, unserer Kultur und damit unserer Gesellschaft. Wir setzen uns nachdr\u00fccklich f\u00fcr ihre F\u00f6rderung auf allen Gebieten ein.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Solange auch bei deutschen Schulen der Rotstift angesetzt wird, und da wir vorrangig dem Wohl des eigenen Volkes verpflichtet sind, d\u00fcrfen die Zusch\u00fcsse f\u00fcr d\u00e4nische Schulen vorerst nicht wieder erh\u00f6ht werden.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "F\u00fcr die d\u00e4nischen Schulen sollte genau so viel Geld bereit gestellt werden wie f\u00fcr deutsche.", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die d\u00e4nischen Schulen k\u00f6nnten sich wieder D\u00e4nemark anschlie\u00dfen, dann braucht Schleswig-Holstein gar nichts mehr bezahlen.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Ablehnung zumutbarer Arbeitsangebote muss weiter Sanktionen nach sich ziehen. Allerdings wollen wir die Zumutbarkeitskriterien dahingehend \u00e4ndern, dass nur tariflich entlohnte Job-Angebote angenommen werden m\u00fcssen.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wenn das Jobangebot f\u00fcr den Betroffenen annehmbar ist, geh\u00f6rt dies f\u00fcr die FDP zur konsequenten Anwendung des Prinzips F\u00f6rdern und Fordern dazu.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die Hartz-IV-Reformen haben viele Menschen direkt in die Armut gef\u00fchrt. Die Hartz-IV-Betroffenen wurden nicht gef\u00f6rdert. Sie wurden vom Staat immer nur gefordert, drangsaliert, ausgegrenzt, in unsinnige Ma\u00dfnahmen gesteckt oder in Ein-Euro-Jobs geparkt. DIE LINKE fordert eine sanktionsfreie und armutsfeste Mindestsicherung f\u00fcr alle Menschen. Die Zumutbarkeitsregelungen m\u00fcssen ver\u00e4ndert werden. Sanktionen schaffen keine existenzsichernden Arbeitspl\u00e4tze  sie geh\u00f6ren deshalb abgeschafft.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Die Piratenpartei setzt sich f\u00fcr die Verbesserung der Situation der Erwerbslosen ein, insbesondere f\u00fcr die Abschaffung und sofortige Nichtanwendung (Moratorium) der Sanktionen bei Arbeitslosengeld II (\u00a7\u00a7 31, 32 SGB II, \u00a7 39 a SGB XII). In einem Staat, der die Menschenrechte wahren will, darf am Existenzminimum nicht noch weiter gek\u00fcrzt werden. ", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Soweit es sich um zumutbare Angebote handelt. ", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Diese Frage kann nicht abschlie\u00dfend beantwortet werden, da sie an bestimmte Rahmenbedingungen gebunden sein mu\u00df. Hierzu z\u00e4hlt u.a. ein fl\u00e4chendeckender Mindeslohn, der es jedem erm\u00f6glichen mu\u00df seinen Lebensunterhalt aus eigener Kraft zu sichern. Wenn diese Rahmenbedingungen geschaffen sind hat jeder Deutsche ein Recht, aber auch die Pflicht zu arbeiten. ", 
+          "value": 0, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Der Regelsatz ist niedrig genug, weitere K\u00fcrzungen sind nicht zumutbar.Man kann nicht verlangen, dass ein Hartz-IV-Empf\u00e4nger jeden x-beliebigen Job annimmt. Allerdings ist ein Arbeitseinsatz f\u00fcr die Allgemeinheit zu empfehlen.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Mit einem Zuwachs der Studierendenzahlen muss auch ein Ausbau der sozialen Infrastruktur verbunden sein. Wir unterst\u00fctzen das Studentenwerk insbesondere dabei, die Wohnheimquote wieder auf ein bundesweit \u00fcbliches Niveau zu steigern und die dazu notwendige Infrastruktur zu schaffen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die Situation auf dem Wohnungsmarkt wird immer schwieriger. Grund ist zum einen die steigende Zahl von Studierenden. Auf der anderen Seite gibt es immer weniger sozialen Wohnungsbau und vor allem auch zu wenig Studierendenwohnheime. Die notwendigen Zusch\u00fcsse f\u00fcr das Studentenwerk sind von der Landesregierung im Haushalt 2011/2012 gek\u00fcrzt worden. Hier muss gegengesteuert werden!", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Der freie Zugang zu Bildungseinrichtungen ist im Interesse aller. Deshalb ist es Aufgabe der gesamten Gesellschaft, eine leistungsf\u00e4hige Bildungsinfrastruktur zu finanzieren und geb\u00fchrenfrei zur Verf\u00fcgung zu stellen: Investitionen in Bildung sind Investitionen in die Zukunft und in eine stabile Demokratie.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Bezahlbarer Wohnraum f\u00fcr Studenten in den Unistandorten in L\u00fcbeck und Kiel ist nicht im erforderlichen Umfang vorhanden, daher mu\u00df es Aufgabe des Landes sein, den Bau von Studentenwohnheimen zu f\u00f6rdern.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die Landesmittel sind ausreichend.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "\u00a7 1 Absatz 1 des Landeswahlgesetzes sieht  mit 69 Abgeordneten bereits eine solche Grenze vor. Diese wird nur \u00fcberschritten, wenn die Einhaltung dieser Grenze die politischen Mehrheitsverh\u00e4ltnisse nur unzureichend abbilden w\u00fcrde, weil sonst vor allem kleinere Parteien benachteiligt werden w\u00fcrden. Das ist undemokratisch!", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP hat sich mehrfach an einer Verkleinerung des Landtages beteiligt. So wurden bspw. bei der letzten Reform des Landeswahlrechts die Zahl der Wahlkreise von 40 auf 35 verringert. Die in der Landesverfassung festgeschriebene Zahl von 69 Abgeordneten wurde von CDU, SPD und FDP jedoch aus rechtlichen Gr\u00fcnden wieder gestrichen, um nicht erneut Verfassungswidrigkeiten in Teilen des Wahlrechts zu riskieren.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir sind f\u00fcr eine Begrenzung/Verkleinerung des Landtages. Deshalb haben wir weniger/gr\u00f6\u00dfere Wahlkreise gefordert als es jetzt gibt. Trotzdem m\u00fcssen \u00dcberhangmandate ausgeglichen werden, damit die wahren prozentualen Verh\u00e4ltnisse abgebildet werden.", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Wichtiger als die Zahl der Abgeordneten ist f\u00fcr DIE LINKE, dass der Landtag das Wahlergebnis genau widerspiegelt. Da dies im jetzigen Landtag nicht der Fall ist (CDU und FDP haben weniger Stimmen aber mehr Mandate erhalten als die Oppositionsparteien), m\u00fcssen nun Neuwahlen stattfinden. DIE LINKE hat sich leider vergeblich f\u00fcr eine weitere Reduzierung der Direktwahlkreise und damit f\u00fcr eine Verkleinerung des Landtages eingesetzt. So besteht weiter die Gefahr von \u00dcberhangs- und Ausgleichsmandaten.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Eine feste Grenze nicht, weil es dadurch wieder ein Parlament geben kann, das nicht das Wahlergebnis richtig wiederspiegelt. Aber so weit wie m\u00f6glich begrenzen durch weniger Wahlkreise.", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Beim Verh\u00e4ltniswahlrecht mu\u00df ein Ausgleich f\u00fcr die kleinen Parteien bei der Mandatszuordnung stattfinden. Die Zahl der Abgeordneten ist durch Verringerung der Anzahl der Wahlkreise schon reduziert worden! (Von 45 Wahlkreisen, auf 40 zu jetzt 35!)", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Viele Landtagsabgeordnete verschlingen viele Geh\u00e4lter. Durch eine feste Obergrenze kann dieser Etat wenigstens halbwegs fest eingeplant werden.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Gute Bildung ist das Fundament f\u00fcr Chancengleichheit und soziale Gerechtigkeit. Wir gestalten deshalb die Bildungsangebote so, dass jeder und jede in Schleswig-Holstein den bestm\u00f6glichen Bildungsabschluss erreichen kann, unabh\u00e4ngig von der sozialen Herkunft, vom Geschlecht, von Hautfarbe oder Religion und Weltanschauung. Alle Kinder und Jugendlichen sind gleich wichtig und wertvoll. Sie haben einen Anspruch auf bestm\u00f6gliche individuelle F\u00f6rderung im Schulsystem.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Der kulturelle Hintergrund ist f\u00fcr die FDP kein Grund, um Kinder nicht gemeinsam zu unterrichten.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE fordert EINE SCHULE F\u00dcR ALLE. Wir wollen, dass die Kinder mindestens bis zur 10 Klasse an einer Schule zusammen lernen. In der Schule sollen vor allem auch die sozialen Kompetenzen gef\u00f6rdert werden. Die Schule soll auch der Ort sein, an dem sich Kinder unterschiedlicher kultureller Hintergr\u00fcnde gegenseitig kennenlernen und sch\u00e4tzen lernen. Kulturelle Unterschiede k\u00f6nnen auch als Chance gesehen werden, \u00fcber die eigenen Vorstellungen zu reflektieren und Toleranz zu lernen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": " Das ist im Weltbild der Piraten selbstverst\u00e4ndlich.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Ein gemeinsamer Unterricht aller Kinder, birgt die Gefahr, da\u00df leitungsstarke Kinder auf der Strecke bleiben. Die NPD spricht sich daher f\u00fcr F\u00f6rderklassen mit ausl\u00e4ndischen Sch\u00fclern aus, die dort gezielt nach ihren Kenntnissen und F\u00e4higkeiten unterrichtet werden.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Nur so kann eine multikulturelle Gesellschaft Zukunft haben, wenn schon unsere Kinder diese kulturellen Unterschiede kennenlernen und damit leben lernen.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die SPD wird den Ausstieg aus der Atomkraft, f\u00fcr den wir seit Anfang der 80er Jahre k\u00e4mpfen, durch den Aufbau einer nachhaltigen Energieversorgung mit Energieeinsparung, Energieeffizienz und erneuerbaren Energien beschleunigen. Zudem fordern wir den schnellstm\u00f6glichen R\u00fcckbau der AKW. Die Strom- und W\u00e4rmeerzeugung aus fossilen Energietr\u00e4gern muss bis zur Mitte des Jahrhunderts durch neue Energien wie Wind, Sonne und Geothermie ersetzt werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP steht zum beschlossenen Atomausstieg der Bundesebene, der f\u00fcr das Kernkraftwerk Brokdarf noch Reststrommengen vorsieht.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Atomkraft ist todsicher. Dies haben schon vor dem Ungl\u00fcck von Fukushima u.a. die Reaktorkatastrophen in den USA (Three Mile Island) und Russland (Tschernobyl) gezeigt. Eine Technologie, die Folgesch\u00e4den und Verstrahlungen \u00fcber Hunderte von Kilometern und Jahren verursacht, darf nicht angewendet werden. Alle AKWs m\u00fcssen schnellstm\u00f6glich abgeschaltet werden. Dies gilt auch f\u00fcr das AKW Brokdorf. Leider wurde der Antrag der LINKEN zur Stilllegung von Brokdorf von allen anderen Fraktionen abgelehnt.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir halten die Risiken der Energiegewinnung durch Atomenergie im Vergleich zum Nutzen f\u00fcr vollkommen unverh\u00e4ltnism\u00e4\u00dfig und wollen die schnellstm\u00f6gliche Stilllegung aller schleswig-holsteinischen Kernkraftwerke bewirken.Dar\u00fcber hinaus wollen wir, dass bei der Lagerung nuklearer Abf\u00e4lle h\u00f6chstm\u00f6gliche Sicherheit angestrebt wird.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die NPD hat bereits vor der Katastrophe in Japan vor den Gefahren der Atomenergie gewarnt, denn die Risiken sind unkalkulierbar. Das Problem ist dabei das atomare Material, das als Kraftquelle eingesetzt wird und unweigerlich und \u00fcber einen Zeitraum von Jahrzehntausenden Strahlung erzeugt. Zurzeit liegen tausende Tonnen radioaktiven Abfalls mehr oder weniger kontrolliert an dutzenden verschiedenen Orten in Deutschland.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Eine Abschaltung soll so erfolgen wie es im Rahmen der Energiewende vorgesehen ist. ", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Brokdorf muss auf jeden Fall abgeschaltet werden, da es in diesem AKW schon zu viele St\u00f6rungen gegeben hat. Jeder St\u00f6rfall ist einer zu viel.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen den Anteil von Frauen in F\u00fchrungspositionen in der Gesellschaft und in der Wirtschaft erh\u00f6hen. Wir erwarten hierzu verst\u00e4rkte und wirkungsvolle Aktivit\u00e4ten.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Landesregierung wird zusammen mit der Wirtschaft, den Gewerkschaften, den Hochschulen und Bildungseinrichtungen eine strategisch angelegte Fachkr\u00e4fteinitiative auf den Weg bringen. Wir werden so der demographischen Entwicklung entgegenwirken und den Fachkr\u00e4ftebedarf der Wirtschaft sichern helfen. Wir werden Rahmenbedingungen schaffen, die dazu beitragen, die Frauenerwerbsquote zu erh\u00f6hen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Von der sehr mittelst\u00e4ndisch gepr\u00e4gten Wirtschaftsstruktur Schleswig-Holsteins einmal abgesehen, m\u00f6chte die FDP privaten Unternehmen die Zahl der weiblichen F\u00fchrungskr\u00e4fte nicht per Gesetz diktieren, sondern vielmehr durch die umfassende Verbesserung der Vereinbarkeit von Familie und Beruf (weitere Verbesserung der Kinderbetreuung, Ganztagsangebote in Schulen, steuerliche Anreize) die Zahl der Frauen in F\u00fchrungspositionen erh\u00f6hen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Seit vielen Jahren haben sich Unternehmen verpflichtet, den Frauenanteil in Aufsichtsr\u00e4ten und Vorst\u00e4nden zu erh\u00f6hen. Die Ergebnisse sind ern\u00fcchternd. Immer noch sind Frauen in allen gesellschaftlichen Bereichen unterrepr\u00e4sentiert. Dies betrifft nicht nur die Wirtschaft: In der Landesregierung haben wir nur eine Ministerin. In den Universit\u00e4ten gibt es viel zu wenige Professorinnen. Deshalb braucht es Frauenquoten in Politik, Verwaltung und auch in Aufsichtsr\u00e4ten und Vorst\u00e4nden von Unternehmen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Gleichbehandlung aller Individuen ist das vorrangige Ziel einer modernen Gesellschaft und von mehr abh\u00e4ngig als nur von Frauenquoten. ", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die NPD bekennt sich zur Unterschiedlichkeit und Gleichwertigkeit von Mann und Frau und lehnt den naturwidrige Gleichstellungswahn linker Politiker und damit auch eine gesetzliche Frauenquote konsequent ab.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Unternehmen sollen Aufsichtsr\u00e4te und Vorst\u00e4nde nach Qualifikation besetzen, nicht nach dem Geschlecht.", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "F\u00fcr eine Frauenquote braucht man kein Gesetz, sondern qualifizierte Frauen.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Aber nur wenn tats\u00e4chliche Anhaltspunkte f\u00fcr erhebliche Gefahren f\u00fcr die \u00f6ffentliche Sicherheit und Ordnung vorliegen. Durch entsprechende Kameraf\u00fchrung und Heranzoomen der St\u00f6rer, muss so weit wie technisch m\u00f6glich, ein Erfassen friedlicher Demonstranten vermieden werden. ", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Videoaufnahmen der Polizei bei Demonstrationen sollen aus Sicht der FDP nur offen vorgenommen und zeitlich begrenzt gespeichert werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Grunds\u00e4tzlich d\u00fcrfen Videoaufnahmen - auch bei Demos - selbstverst\u00e4ndlich dann gemacht werden, wenn es den konkreten Verdacht auf Straftaten gibt oder diese bereits erfolgt sind. Was jedoch nicht erlaubt, jedoch g\u00e4ngige Praxis bei Demos ist, ist das diese per se, ohne Verdacht auf Straftaten und von vornherein durch Kamerawagen begleitet werden und die Teilnehmerinnen und Teilnehmer fl\u00e4chendeckend abgefilmt werden - auch zur Einsch\u00fcchterung. Diese Praxis hat vor Kurzem ein Gericht (Berlin) noch einmal in einem aktuellen Urteil explizit untersagt. Grunds\u00e4tzlich Antwort daher eigentlich Nein, nur in engst beschr\u00e4nkten Ausnahmef\u00e4llen, die im Detail in den Versammlungsgesetzen (Anh\u00f6rungen haben ja dazu gerade auf Landesebene stattgefunden) geregelt werden m\u00fcssen.", 
+          "value": 0, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE ist gegen dieses leider oft eingesetzte Mittel. Mit Videoaufzeichnungen werden Menschen davon abgehalten, an Demonstrationen teilzunehmen. Denn niemand kann sagen, was tats\u00e4chlich mit dem Videomaterial geschieht. Zudem werden Demonstrierende durch eine solche Ma\u00dfnahme quasi unter Generalverdacht gestellt. DIE LINKE ist generell gegen die zunehmende Video\u00fcberwachung in der \u00d6ffentlichkeit. ", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir lehnen die \u00dcberwachung des \u00f6ffentlichen Raums strikt ab. Mit diesen Ma\u00dfnahmen werden alle Nutzer \u00f6ffentlicher Fl\u00e4chen unter Generalverdacht gestellt, ohne dass eine tats\u00e4chliche Steigerung der Zahl aufgekl\u00e4rter oder verhinderter Straftaten belegt werden kann. Auch die Erfassung biometrischer Daten ohne Anfangsverdacht wird von uns kategorisch abgelehnt.", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Die Auswertung durch Polizei und Veranstalter der Demonstrationen muss gew\u00e4hrleistet werden.", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Es ist selbstverst\u00e4ndlich, da\u00df am Rande einer angemeldeten und friedlichen Demonstration Videoaufnahmen von m\u00f6glichen St\u00f6rern gemacht werden d\u00fcrfen, um die Sicherheit und Ordnung sicherzustellen. Eine Video\u00fcberwachung von friedlichen Teilnehmern einer angemeldeten Demonstrationen zur sogenannten Gefahrenabwehr lehnen wir hingegeb ab.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Gewatt\u00e4tige Demonstranten sollten so \u00fcberf\u00fchrt werden k\u00f6nnen.", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die Polizei muss weiterhin  Videoaufnahmen machen d\u00fcrfen um eventuelle Straft\u00e4ter im Vorfeld zu erkennen und auch sp\u00e4ter wieder zu erkennen. Au\u00dferdem dienen sie  der Beweisaufnahme.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Alle profitieren von den Leistungen einer Kommune, die sich zum gr\u00f6\u00dften Teil durch Gewerbesteuern finanziert. Wer von den Leistungen der Kommunen profitiert, muss sich auch mit an den Kosten beteiligen. ", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Freiberufler sind \u00fcberwiegend als Einzelunternehmer oder in Personengesellschaften t\u00e4tig, weshalb ihre Gewerbesteuerbelastung auf die Einkommensteuerschuld anrechenbar ist. Dies ist beinahe ein Nullsummenspiel, es m\u00fcssten jedoch zus\u00e4tzliche Steuererkl\u00e4rungen abgegeben und bearbeitet werden. Die Gewerbesteuer w\u00fcrde zu einer Aufkommensverschiebung zwischen Arbeitsort und Wohnsitz f\u00fchren. Der Aufwand st\u00fcnde in keinem Verh\u00e4ltnis zum fiskalischen Nutzen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Alle Freiberufler sollen in die Gewerberbesteuer einbezogen werden. Bisher zahlen nur etwa ein Drittel der Freiberufler Gewerbesteuer. Das ist ungerecht.", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE will die Gewerbesteuer zu einer Gemeindewirtschaftssteuer weiterentwickeln. Die Gemeindewirtschaftssteuer sieht vor, dass auch Freiberufler und Selbst\u00e4ndige zahlen, anders als bei der jetzigen Gewerbesteuer. Dies verbessert und verstetigt die Einnahmen der St\u00e4dte und Gemeinden.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Die Piratenpartei versteht sich weder als Steuersenkungs- noch als Steuererh\u00f6hungspartei. Fakt ist, dass wir ein gerechteres, verst\u00e4ndlicheres und transparentes Steuersystem ben\u00f6tigen.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Dies erfordert f\u00fcr eine gerechte Regelung grundlegende \u00c4nderungen im Steuersystem. ", 
+          "value": 0, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "\u00c4rzte und Rechtsanw\u00e4lte sind in ihrer gro\u00dfen Mehrheit keine Unternehmer in herk\u00f6mmlichen Sinne, sondern dem allgemeinen Wohl verpflichtet. Ihre Aufgaben sind wichtige Dienstleitungen zur Sicherung der gesundheitlichen F\u00fcrsorge und der Erlangung von Rechtssicherheit. Zus\u00e4tzliche Abgaben dieser Berufsgruppen sind daher abzulehnen. Bei privaten Kliniken (z.B Sch\u00f6nheitschirugie) kann der Ansatz ein anderer sein.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Freiberufler betreiben zwar ein Gewerbe, dienen damit aber oft der Gemeinschaft und sind deshalb nicht zu besteuern.Freiberufler bezahlen schon Steuern genug.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das ist aber nicht an jeder Schule m\u00f6glich, sondern das Angebot muss von der Nachfrage und davon, ob qualifizierte Lehrkr\u00e4fte vorhanden sind, abh\u00e4ngen. Da das nicht sicherzustellen ist, wollen wir mittelfristig den religions- und konfessionsgebundenen Religionsunterricht in Kooperation mit den Kirchen und Religionsgemeinschaften zu einem konfessions\u00fcbergreifenden Religionsunterricht umwandeln, in dem alle Sch\u00fcler unabh\u00e4ngig von ihrer Religionszugeh\u00f6rigkeit gemeinsam unterrichtet werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP bef\u00fcrwortet dieses Angebot an den Schulen, wo es sinnvoll erscheint.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Solange es konfessionsgebundenen Unterricht gibt, muss es auch ein Angebot f\u00fcr alle Religionen geben. Wir setzen uns allerdings daf\u00fcr ein, dass es ein Fach Religion f\u00fcr alle gibt - wie es in Hamburg eingef\u00fchrt wurde.", 
+          "value": 0, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE ist gegen konfessionellen Religionsunterricht an den Schulen. DIE LINKE hat im Landtag gefordert, den konfessionellen Religionsunterricht durch einen religionskundlichen Unterricht beziehungsweise einen Ethikunterricht zu ersetzen. Wir brauchen keine Mauern zwischen den unterschiedlichen Religionen, keine Abgrenzungen. Wir brauchen Verst\u00e4ndnis und Solidarit\u00e4t \u00fcber alle Grenzen hinweg.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir fordern, dass allen Sch\u00fclern an staatlichen Bildungseinrichtungen ethische und religi\u00f6se Inhalte gleichwertig vermittelt werden. Einen konfessionsgebundenen Religionsunterricht lehnen wir ab.", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die NPD setzt sich f\u00fcr die Trennung von Staat und Religion ein, daher ist ein Islamunterricht an deutschen Schulen f\u00fcr uns kein Thema. ", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Generell sollte an den Schulen kein Religionsunterricht sondern ein Ethikunterricht gegeben werden.  ", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die islamische Religion geh\u00f6rt nicht zu unserem Kulturkreis und ist nicht Teil unserer deutschen Bildung. Warum sollte sie an deutschen Schulen gelehrt werden? Es ist nicht Aufgabe der Schule die verschiedenen Religionen, die in unserer multikulturellen Gesellschaft vertreten sind, auch zu unterrichten.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen den hohen Standard unserer Landwirtschaft, des Fischereiwesens und der Ern\u00e4hrungswirtschaft mit einer nachhaltigen Wirtschaftsweise verbinden und hierf\u00fcr Finanzmittel umschichten, um damit Regionalit\u00e4t, Umweltvertr\u00e4glichkeit und Qualit\u00e4t zu f\u00f6rdern. Wir setzen uns f\u00fcr den Erhalt der Beibehaltungsf\u00f6rderung f\u00fcr den \u00d6kolandbau ein, weil die Mehrkosten f\u00fcr \u00d6kolandbau ohne dauerhafte F\u00f6rderung des Landes nicht abzubilden sind.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die Landesregierung hat die F\u00f6rderung der \u00f6kologischen Landwirtschaft eingestellt. Damit wird dem \u00d6kolandbau in Schleswig-Holstein schwerer Schaden zugef\u00fcgt. F\u00fcr eine gute Zukunft sind gesunde, nachhaltig und \u00f6kologisch hergestellte Nahrungsmittel wichtig. Diese m\u00fcssen f\u00fcr alle Menschen bezahlbar bleiben. Deshalb pl\u00e4diert DIE LINKE f\u00fcr eine verst\u00e4rkte F\u00f6rderung des \u00d6kolandbaus in Schleswig-Holstein. Der Nutzen ist viel h\u00f6her als die \u00f6kologischen Folgesch\u00e4den von konventionellen Anbaumethoden.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Schleswig-Holstein ist das einzige Bundesland, dass die \u00d6kolandbauf\u00f6rderung streichen will. Sie kostet das Land 400.000 . Mit der Streichung fallen dann auch 1,8 Millionen Zusch\u00fcsse aus der EU weg, die der \u00d6kolandbau dringend ben\u00f6tigt. Gerade der \u00d6ko-Landbau \u00fcbernimmt zus\u00e4tzlich wichtige gesellschaftliche Aufgaben, wie Natur- und Umweltschutz. Wir erachten die \u00d6kolandbauf\u00f6rderung f\u00fcr wichtig, generell setzen wir uns f\u00fcr eine \u00dcberpr\u00fcfung aller Subventionen ein.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Ursache vieler Lebenmittelskandale ist die immer skrupellosere Haltung der Menschen gegen\u00fcber Tieren und Natur. Zugunsten ihres Profits greifen Futtermittelhersteller und Landwirte , die durch zu niedrige Abnahmepreise dazu gezwungen werden, immer wieder zu Chemikalien und Antibiotika, welche zwar das Wachstum der Tiere und Pflanzen beschleunigen, jedoch f\u00fcr den Menschen eine gro\u00dfe Gefahr und Belastung darstellen. Daher spricht sich die NPD f\u00fcr eine F\u00f6rderung der \u00f6kologischen Landwirtschaft aus.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Wir meinen die bisherige F\u00f6rderung ist ausreichend. Auch konventionelle landwirtschaftliche Produkte sollten so beschaffen sein, dass sie dem Menschen nicht schaden. ", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die \u00f6kologische Landwirtschaft muss gef\u00f6rdert werden, um sie wirtschaftlich zu stabilisieren und konkurrenzf\u00e4hig zu machen. \u00d6kologisch produzierte Lebensmittel m\u00fcssen f\u00fcr alle B\u00fcrger bezahlbar sein und k\u00f6nnen nur mit finanzieller F\u00f6rderung ihre Preise dem Markt anpassen.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Kriminalit\u00e4t und insbesondere die Gewalttaten von jungen Menschen haben in den vergangenen Jahren erschreckend zugenommen. Deshalb sieht die CDU hier einen wichtigen Schwerpunkt in der Kriminalit\u00e4tsbek\u00e4mpfung. Eine fr\u00fchestm\u00f6gliche Pr\u00e4vention und Intervention ist ein Garant f\u00fcr die Verhinderung von kriminellen Karrieren.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Auch Experten halten den Warnschussarrest f\u00fcr sinnlos. Er dient nur der populistischen Forderung des Wegsperrens von jugendlichen Straft\u00e4terInnen. Wirkungsvoller ist eine schnelle Reaktion auf eine Straftat durch ein z\u00fcgiges Jugendverfahren. Daf\u00fcr setzen wir uns ein. ", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP setzt auf pr\u00e4ventive Ma\u00dfnahmen und h\u00e4lt den sog. Warnschussarrest f\u00fcr eine sinnlose Ma\u00dfnahme.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Abweichendes Verhalten, jugendliche Kriminalit\u00e4t, soll nach Ansicht der LINKEN nicht durch Arrest bestraft werden. Es bedarf vielf\u00e4ltiger Hilfen, um der Ursache f\u00fcr dieses abweichende Verhalten auf den Grund zu gehen. Nur so kann ein Abrutschen in kriminelle Karrieren verhindert werden. Junge Menschen brauchen vor allem vern\u00fcnftige Lebensperspektiven und ausreichend Ausbildungs- und Arbeitspl\u00e4tze. Perspektivlosigkeit und Ausgrenzung sind der N\u00e4hrboden f\u00fcr Gewalt. Hier muss angesetzt werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Sicherlich kann es bei einigen Jugendlichen hilfreich sein einen solchen Warnschussarrest anzuordnen. Schon jetzt gibt es in Schleswig-Holstein die M\u00f6glichkeit des Jugendarrestes, der von den Jugendrichtern angeordnet werden kann.  ", 
+          "value": 0, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Es muss nach anderen M\u00f6glichkeiten zur Vermeidung von Straftaten durch Jugendliche gesucht werden. Eine Inhaftierung dient nicht der Straftatvermeidung und wirkt  auch nicht unbedingt abschreckend, bis auf eventuelle Ausnahmen, eher im Gegenteil. Kriminelle Energie und Kontakte werden durch eine Inhaftierung eher noch forciert.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Direktwahl der hauptamtlichen B\u00fcrgermeisterinnen und B\u00fcrgermeister hat sich bew\u00e4hrt.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die Direktwahl von B\u00fcrgermeisterInnen bietet den Menschen in der Kommune mehr Wahlm\u00f6glichkeiten. Allerdings sind bei Einf\u00fchrung der Direktwahl die Rechte der kommunalen Parlamente beschnitten worden. Das bedeutet weniger Demokratie und muss r\u00fcckg\u00e4ngig gemacht werden. Wichtiger als die Direktwahl ist f\u00fcr DIE LINKE, dass die B\u00fcrgerInnen \u00fcber Instrumente wie B\u00fcrgerhaushalt und B\u00fcrgerentscheide unmittelbar in Entscheidungsfindungen einbezogen werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die kommunalen Parlamente, die die Mehrheiten in der Bev\u00f6lkerung widerspiegeln, sollen gest\u00e4rkt werden.", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Eine Legitimierung durch die B\u00fcrger sollte weiterhin die Grundlage zur Wahl eines Kommulvertreter wie bspw. B\u00fcrgermeisters sein.", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Nur weil die Wahlbeteiligung bei den Direktwahlen der B\u00fcrgermeister sinkt, scheint das f\u00fcr viele Politiker schon Grund genug zu sein, die Direktwahl in Frage zu stellen. Wir stehen zur Direktwahl. Vielleicht sollten sich die bundesdeutschen Politiker die Frage stellen, ob ihr eigenes Fehlverhalten ausschlaggebend f\u00fcr eine sinkende Wahlbeteiligung sein k\u00f6nnte.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir setzen auf Inklusion: Kinder und Jugendliche mit Hochbegabung sollen genau wie diejenigen mit Behinderungen oder anderen Defiziten individuell im Rahmen der regul\u00e4ren Klassen und mit Zusatzangeboten (Enrichment-Programmen) gef\u00f6rdert werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP setzt sich in vielf\u00e4ltigerweise f\u00fcr die Hochbegabtenf\u00f6rderung ein.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen individuelle F\u00f6rderung, nicht Segregation. ", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE setzt auf binnendifferenziertes Lernen. Dies bedeutet das Gegenteil zur Separation in Hochbegabtenklassen. DIE LINKE fordert EINE SCHULE F\u00dcR ALLE. Wir wollen, dass Kinder nicht nach der vierten Klasse getrennt werden. Sie sollen bis zur 10. Klasse an einer Schule weiter zusammen lernen. In der Schule sollen vor allem auch die sozialen Kompetenzen gef\u00f6rdert werden. Den unterschiedlichen Interessen und F\u00e4higkeiten wollen wir durch binnendifferenzierten Unterricht gerecht werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir setzen auf Individualit\u00e4t in der Bildung und sprechen uns f\u00fcr geeignete Angebote und F\u00f6rderungen sowohl f\u00fcr Sch\u00fcler mit Lernbehinderungen als auch f\u00fcr sogenannte Hochbegabte aus. ", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die F\u00f6rderung von hochbegabten Sch\u00fclern, ungeachtet der finanziellen M\u00f6glichkeiten der Eltern, sollte f\u00fcr das Land Schleswig-Holstein selbstverst\u00e4ndlich sein, denn viele Eltern verf\u00fcgen nicht \u00fcber die M\u00f6glichkeiten ihre Kinder intensiver zu f\u00f6rdern.  ", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die F\u00f6rderung von Hochbegabten muss weiter angestrebt werden.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ziel ist eine dezentrale und demokratisch getragene Energieversorgung als wesentlicher Bestandteil der Daseinsvorsorge in allen Gemeinden: Durch den Erhalt und Aufbau eigener Stadt- und Gemeindewerke k\u00f6nnen wir die kommunale Versorgung ausbauen und st\u00e4rken damit Einsparung, Effizienz und erneuerbare Energien.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP hat nichts gegen private Unternehmen, die diese Aufgaben unter Umst\u00e4nden \u00fcbernehmen bwz. \u00fcbernommen haben. Dies muss im Einzelfall entschieden werden.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Lage in den Kommunen in SH l\u00e4sst sich nicht \u00fcber einen Kamm scheren. Wichtig ist, dass die Kontrolle \u00fcber die Versorgung in den Kommunen in \u00f6ffentlicher Hand sein muss. Es gibt in vielen Kommunen einen Trend zur Rekommunalisiereung, den wir unterst\u00fctzen, weil die Privatisierungen in der Vergangenheit falsch waren.", 
+          "value": 0, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die \u00f6ffentliche Daseinsvorsorge geh\u00f6rt in \u00f6ffentliche Hand. Die wichtigsten Lebensgrundlagen sollen nicht Profitinteressen untergeordnet werden bzw. ausgeliefert sein. Nicht profitorientierte \u00f6ffentliche Unternehmen bieten Gew\u00e4hr f\u00fcr eine am Gemeinwohl orientierte Versorgung der Menschen mit diesen lebenswichtigen G\u00fctern.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Die Aufrechterhaltung einer grundlegenden Infrastruktur f\u00fcr Bildung, Gesundheit, Energieversorgung, Transport usw. ist Aufgabe des Staates. Eine weitere Privatisierung in diesen Bereichen sehen wir deshalb sehr kritisch. Wir lehnen \u00d6ffentlich Private Partnerschaften grunds\u00e4tzlich ab. ", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die Kommunale Grundversorgung darf nicht auf dem Altar der Privatisierung geopfert werden, sondern geh\u00f6rt in \u00f6ffentliche Hand. Privatwirtschaftliche Konzerne handeln ausschlie\u00dflich nach dem Prinzip der Gewinnmaximierung, was zu unkontrolierbaren Preisanstiegen f\u00fchrt. Kommunale Betriebe stellen hingegen die Bedarfsdeckung in den Mittelpunkt und k\u00f6nnen bei Bedarf auch bei der Preisgestaltung eingreifen. \u00dcbersch\u00fcsse sollen der Gemeinschaft zugute kommen und nicht irgendwelchen Anlegern.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Es sollte auch andere Anbieter geben, so dass der Verbraucher w\u00e4hlen kann.", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die kommunale Grundversorgung muss in staatlicher Hand bleiben um den Einfluss auf diese Grundversorgung nicht zu verlieren.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-19"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Kindergeld ist nicht an die Staatsb\u00fcrgerschaft gekoppelt und soll es nach unsere Auffassung auch nicht sein. Nichtdeutsche Staatsangeh\u00f6rige k\u00f6nnen bereits heute Kindergeld erhalten, wenn sie in Deutschland (dauerhaft) erwerbst\u00e4tig sind.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP hat die H\u00f6he des Kindergeldes zum Jahresbeginn 2010 deutlich auf 184 Euro (f\u00fcr das erste Kind) erh\u00f6ht, um Familien finanziell besser zu stellen. Das Kindergeld soll weiterhin auch an ausl\u00e4ndische Familien gezahlt werden (dies gilt f\u00fcr Staatsangeh\u00f6rige der EU-Mitgliedsstaaten sowie des Europ\u00e4ischen Wirtschaftsraumes und Staatsangeh\u00f6rige der Schweiz, die in Deutschland erwerbst\u00e4tig sind oder, falls sie nicht erwerbst\u00e4tig sind, in Deutschland wohnen).", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Schon bei der Frage ist DIE LINKE mehr als irritiert. Wir unterscheiden die Menschen nicht danach, welchen Pass sie haben. DIE LINKE k\u00e4mpft daf\u00fcr, dass alle Menschen, die in Deutschland leben, die gleichen Rechte erhalten. Das schlie\u00dft selbstverst\u00e4ndlich auch den Anspruch auf Kindergeld ein.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Jeder Mensch hat das Recht auf eine sichere Existenz und gesellschaftliche Teilhabe. Die W\u00fcrde des Menschen zu achten und zu sch\u00fctzen ist das wichtigste Gebot des Grundgesetzes. Ein Mensch kann nur in W\u00fcrde leben, wenn f\u00fcr seine Grundbed\u00fcrfnisse gesorgt und ihm gesellschaftliche Teilhabe m\u00f6glich ist. ", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Familienpolitische Ma\u00dfnahmen des Staates, wie das Kindergeld, das Begr\u00fc\u00dfungsgeld f\u00fcr Neugeborene, das M\u00fcttergehalt und das von der NPD geforderte Familiendarlehen haben ausschlie\u00dflich deutsche Familien zu f\u00f6rdern.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Auch ausl\u00e4ndische Familien sollen einen Anspruch auf Kinderfreibetr\u00e4ge oder ersatzweise auf Kindergeld haben. Vorausgesetzt sie leben und arbeiten in Deutschland", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Wer keine deutsche Staatsb\u00fcrgerschaft annehmen will, kann auch nicht von diesem Staat Gelder verlangen. Warum soll der Staat Kindergeld an Familien zahlen, die keine deutsche Staatsb\u00fcrgerschaft annehmen wollen?Au\u00dferdem w\u00e4re es ein weiterer Anreiz f\u00fcr ausl\u00e4ndische Familien die deutsche Staatsb\u00fcrgerschaft anzunehmen, um das Recht auf Zahlung des Kindergeldes zu erhalten.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-20"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Zum Kern unseres Gesundheitswesens geh\u00f6ren freie Arzt- und Behandlungswahl der Versicherten ebenso wie eine fl\u00e4chendeckende medizinische Versorgung. Daf\u00fcr werden wir uns weiter einsetzen. Wir brauchen verst\u00e4rkt Anreize f\u00fcr \u00c4rztinnen und \u00c4rzte sich in unterversorgten Regionen niederzulassen. Dabei ist die kommunale Kompetenz und Erfahrung vor Ort einzubeziehen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir festigen die regionale und wohnortnahe medizinische Versorgung der Menschen in allen Regionen Schleswig-Holsteins. Wir stellen sicher, dass die haus\u00e4rztliche Versorgung der Menschen eine wesentliche Lotsenfunktion f\u00fcr die Verzahnung medizinischer, pflegerischer und sozialer Ma\u00dfnahmen darstellt. Die Partner der Selbstverwaltung in Schleswig-Holstein zeigen hohe Verantwortung und regionale Handlungskompetenz. Wir werden sie darin unterst\u00fctzen und die Gesundheitsinitiative neu beleben.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP hat die M\u00f6glichkeit f\u00fcr die Kassen\u00e4rztliche Vereinigung geschaffen, unterversorgte Gebiete f\u00fcr \u00c4rzte durch Honorarzuschl\u00e4ge attraktiv zu machen. Die FDP wird niedergelassene \u00c4rzte unterst\u00fctzen, die mit Hilfe einer mobilen Zweitpraxis ihre Patienten im l\u00e4ndlichen Raum vor Ort erreichen wollen. Die FDP unterst\u00fctzt au\u00dferdem die Einrichtung von Lehrst\u00fchlen f\u00fcr Allgemeinmedizin an den Universit\u00e4ten in Kiel und L\u00fcbeck.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir setzen uns aber daf\u00fcr ein, dass die Kassen\u00e4rztliche Vereinigung bei der Verteilung der Arzthonorare Anreize f\u00fcr die T\u00e4tigkeit auf dem Land schafft. Sollte sich die Versorgung auf dem Land in den kommenden Jahren weiter verschlechtern, muss das Land jedoch eine einzelbetriebliche F\u00f6rderung von Praxen in Betracht ziehen.", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die Versorgung auf dem Land wird immer problematischer, weil weniger \u00c4rztInnen bereit sind, im l\u00e4ndlichen Raum Praxen zu er\u00f6ffnen. Dieser Trend ist aber nicht allein durch mehr Euros f\u00fcr Land\u00e4rztInnen umzukehren. Die Vereinbarkeit von Familie und Beruf muss auch f\u00fcr \u00c4rztInnen verbessert und die Attraktivit\u00e4t des l\u00e4ndlichen Raumes generell erh\u00f6ht werden. Noch wichtiger ist aber ein fl\u00e4chendeckendes integriertes Gesundheitssystems auf der Grundlage einer solidarischen B\u00fcrgerversicherung.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Diese Frage wird zur Zeit in der Piratenpartei diskutiert.Die \u00e4rztliche Versorgung auf dem Land ist ein ernsthaftes Problem. Es m\u00fcssen dringend die Rahmenbedingungen verbessert werden, allein finanzielle Anreize reichen nicht aus. Schleswig-Holstein ist ein Fl\u00e4chenland, in dem die l\u00e4ndliche Bev\u00f6lkerung nicht von elementaren Bed\u00fcrfnissen abgeschnitten werden darf.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Eine fl\u00e4chendeckende Ansiedlung von Allgemeinmedizinern auch in l\u00e4ndlichen Regionen ist eine Grundversorgung, die der Staat f\u00fcr seine B\u00fcrger sicherstellen mu\u00df. Wenn sich nicht ausreichend \u00c4rzte im l\u00e4ndlichen Raum ansiedeln, mu\u00df des Land die Ansiedlung finanziell f\u00f6rdern.  ", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Offensichtlich ist zur Zeit eine Praxis auf dem Lande nicht so lukrativ wie in der Stadt", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die Niederlassung von \u00c4rzten und \u00c4rztinnen im l\u00e4ndlichen Raum ist auf jeden Fall zu unterst\u00fctzen, allerdings nur in Gegenden, in denen ein tats\u00e4chlicher Mangel an \u00c4rzten besteht.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-21"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Einbeziehung der Bundeswehr \u00fcber Jugendoffiziere oder Besuche milit\u00e4rischer Einrichtungen kann ein Teil des staatsb\u00fcrgerlichen Unterrichts sein, aber nur, wenn auch bundeswehrkritische Stimmen zu Wort kommen und wenn die Eltern informiert und berechtigt sind, minderj\u00e4hrige Kinder von Kasernenbesuchen abzumelden (vollj\u00e4hrige Sch\u00fcler entscheiden selbst).", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE wendet sich gegen diese Praxis. Wir wollen, dass unsere Kinder eine Erziehung zum Frieden erhalten. Erst recht nach der Umwandlung der Bundeswehr hin zu einer Interventionsarmee, die weltweit Krieg f\u00fchren soll, wenden wir uns ohne Wenn und Aber dagegen, dass die Bundeswehr an unseren Schulen werben darf.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Im Zusammenahng mit Ausbildungs- und Berufsinformationen f\u00fcr Abschlussklassen.", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Wir sind der Auffassung, da\u00df die Bundeswehr wieder ihrer eigentlichen Aufgaben der Landesverteidigung nachkommen sollte und nicht weiter als Kanonenfutter f\u00fcr fremde Interessen verheizt werden darf. Unter dieser Vorraussetzung ist es f\u00fcr uns selbstverst\u00e4ndlich, da\u00df die Bundeswehr auch an Schulen ab der 8. Klasse werben darf.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "F\u00fcr Berufe bei der Bundeswehr sollte nicht anders geworben werden als bei anderen berufen.", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Berufe bei der Bundeswehr sind genauso Berufe, wie andere auch und dienen dem Schutz und Sicherheit der Bev\u00f6lkerung. Warum sollte nicht daf\u00fcr an unseren Schulen geworben werden d\u00fcrfen? ", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-22"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Menschen suchen Schutz nicht nur vor politischer Verfolgung. Deshalb werden wir eine Diskussion anregen, ob der heutige Fl\u00fcchtlingsbegriff noch zeitgem\u00e4\u00df ist. Wir setzen uns f\u00fcr eine stichtagsunabh\u00e4ngige Bleiberechtsregelung f\u00fcr bereits integrierte Fl\u00fcchtlinge ein.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Immer wieder kommt es auch in Schleswig-Holstein zu Abschiebungen von Menschen, die schon seit mehreren Jahrzehnten in Deutschland leben. Sogar Kinder und Jugendliche, die hier in Schleswig-Holstein geboren wurden, werden in ein f\u00fcr sie v\u00f6llig fremdes Land abgeschoben. Dort gibt es keine Perspektive f\u00fcr die Betroffenen. DIE LINKE m\u00f6chte allen Menschen, die hier leben, eine Perspektive bieten.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir fordern ein dauerhaftes Aufenthaltsrecht einzuf\u00fchren und die H\u00fcrden einer Einb\u00fcrgerung deutlich zu senken.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Es darf es kein Bleiberecht geben, das weitere Anreize f\u00fcr Einwanderung in unser Sozialsystem schafft und den Mi\u00dfbrauch durch Asylbetr\u00fcger herausfordert. Wer als Fl\u00fcchtling nach Deutschland kommt, mu\u00df sich bereits bei der Einreise dar\u00fcber im klaren sein, da\u00df er fr\u00fcher oder sp\u00e4ter wieder zur\u00fcck in seine Heimat reisen mu\u00df!", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Das sollte je nach Einzelfall entschieden werden.", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Ein dauerhaftes Bleiberecht kann nur \u00fcber die Annahme der deutschen Staatsb\u00fcrgerschaft erfolgen. Dieser muss ein Nachweis \u00fcber das Erlernen der deutschen Sprache vorausgehen.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-23"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Recht auf Kunst und Kultur, auf kulturelle Teilhabe ist ein B\u00fcrgerrecht. Wir wollen mit den Tr\u00e4gern der gro\u00dfen Theater nach M\u00f6glichkeiten suchen, fl\u00e4chendeckend erreichbare Theater-Angebote aufrecht zu erhalten. In welcher Form das geschieht, ist offen.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP sieht keine Notwendigkeit f\u00fcr eine Zusammenlegung des Landestheaters mit den Theatern in Kiel und L\u00fcbeck. Synergien k\u00f6nnen sich zwar ggf. bei k\u00fcnstlerischen Projekten oder Marketing-Strategien ergeben, eine organisatorische Zusammenlegung ist jedoch nicht erforderlich.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen bessere Kooperation und Mitteleinsatz.", 
+          "value": 0, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Alle drei Einrichtungen leisten gute Arbeit. Die sogenannten Synergieeffekte w\u00e4ren nach Ansicht der LINKEN sehr gering. DIE LINKE m\u00f6chte eine gesicherte Finanzierung aller drei Theater. Die Zusch\u00fcsse f\u00fcr das Landestheater m\u00fcssen endlich wieder dynamisiert, also angehoben werden. Kultur und der Zugang zu Kultur sind f\u00fcr eine Gesellschaft elementar. Wir wollen auch die Soziokultur st\u00e4rker f\u00f6rdern. Kulturelle Teilhabe darf keine Frage des Geldbeutels sein.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Im Rahmen der \u00dcberpr\u00fcfung aller Zuschussmittel f\u00fcr Kultur und Bildung w\u00e4re auch eine solche L\u00f6sung zu pr\u00fcfen.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Ein echter Einspareffekt ist nicht zu erkennen, aber ein Verlust an individueller und kreativer Vielfalt zu bef\u00fcrchten.", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die Theater im Land leisten einen wichtigen kulturellen Auftrag,  m\u00fcssen jedoch leider jedes Jahr durch Steuergelder bezuschu\u00dft werden. Um die Kosten zu senken und alle Spielst\u00e4tten zu erhalten, w\u00e4re es sinnvoll sie organisatorisch zusammenzulegen.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die organisatorische Zusammenlegung k\u00f6nnte Kosten sparen.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-24"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die SPD wird die Beratungsstellen f\u00fcr Frauen und M\u00e4dchen sowie die Frauenh\u00e4user, die in den letzten Jahren einseitig unter K\u00fcrzungen zu leiden hatten, sichern und ihre Arbeit konsequent weiterentwickeln. In diesem Zusammenhang werden wir die Beratungsstellen Frau und Beruf weiter st\u00e4rken.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP setzt sich f\u00fcr den Erhalt von Frauenh\u00e4usern und Frauenberatungsstellen in Schleswig-Holstein ein. Zur erg\u00e4nzenden Finanzierung der Frauenhauspl\u00e4tze wollen wir den Bund an der Finanzierung beteiligen.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Durch die K\u00fcrzungspolitik der CDU/FDP-Regierung ist in L\u00fcbeck bereits ein Frauenhaus geschlossen worden. Das Frauenhaus in Wedel steht vor der Schlie\u00dfung, wenn die K\u00fcrzung der Landesmittel nicht zur\u00fcckgenommen wird. Insgesamt geht es nur um die Streichung von 600.000 EURO. Der Antrag der LINKEN, stattdessen 730.000 EURO durch die K\u00fcrzung der Di\u00e4ten f\u00fcr Landtagsabgeordnete und der Entsch\u00e4digung f\u00fcr Regierungsmitglieder einzusparen, wurde von allen anderen Fraktionen im Landtag abgelehnt.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Frauenh\u00e4user sind eine wichtige Anlaufstelle f\u00fcr in Not geratene und mi\u00dfhandelte Frauen und deren Kinder. Durch die K\u00fcrzungen der Landesmittel stehen einige Frauenh\u00e4user bereits kurz vor der Schlie\u00dfung. Daher fordern wir die Aufstockung der Landesmittel f\u00fcr Frauenh\u00e4user.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Frauenh\u00e4user m\u00fcssen nicht \u00fcber Landesmittel finanziert werden, sondern eher \u00fcber Stiftungen, Vereine und \u00e4hnliches. ", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-25"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Aber wir halten es angesichts der j\u00fcngsten Ereignisse f\u00fcr zwingend notwendig, Aufgabenerf\u00fcllung und Kontrolle des Verfassungsschutzes zu \u00fcberpr\u00fcfen und neu zu justieren.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP h\u00e4lt den Landesverfassungsgesetz angesichts der Bedrohungen durch den politischen und religi\u00f6sen Extremismus f\u00fcr absolut notwendig.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Rolle des Verfassungschutzes, auch auf Landesebene, muss besonders nach den Vorkommnissen im Umfeld der NSU auf den Pr\u00fcfstand. ", 
+          "value": 0, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die schrecklichen Ereignisse um die rechtsextreme Terrorzelle haben gezeigt, dass der Inlandsgeheimdienst v\u00f6llig versagt hat. Er ist nicht demokratisch kontrollierbar, da er sich nicht in die Karten schauen l\u00e4sst. Auch nicht durch parlamentarische Kontrollgremien. DIE LINKE will die Zivilgesellschaft st\u00e4rken, damit die ewig Gestrigen nie wieder den N\u00e4hrboden f\u00fcr ihre menschenverachtenden Ziele finden. Wir brauchen keinen Geheimdienst sondern mehr Geld f\u00fcr Bildung, Ausbildung und Arbeitspl\u00e4tze.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die sogenannten D\u00f6nermorde haben gezeigt, wie tief Mitarbeiter des Verfassungsschutzes in krimminelle Machenschaften verstrickt sind. Auch im damaligen NPD-Verbotsverfahren sorgten V-M\u00e4nner daf\u00fcr, da\u00df das Verfahren eingestellt werden mu\u00dfte, da nicht auszuschlie\u00dfen war, da\u00df diese Spitzel den Kurs der Partei bewu\u00dft in eine falsche Richtung lenkten.  ", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Eine Abschaffung sollte nur erfolgen, wenn die Aufgaben vom Bund oder einem anderen Land gleichwertig \u00fcbernommen werden. ", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Verfassungsfeindliche Personen m\u00fcssen \u00fcberwacht und \u00fcberf\u00fchrt werden k\u00f6nnen. Terroristische Aktivit\u00e4ten m\u00fcssen durch den Verfassungsschutz untersucht und wenn m\u00f6glich unterbunden werden k\u00f6nnen. ", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-26"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der Ausbau des \u00f6ffentlichen Personennahverkehrs ist ein wichtiges Anliegen der SPD. Das Land Schleswig-Holstein f\u00f6rdert, ebenso wie die Kreise im Hamburger Rand, bereits die Hamburger Verkehrsverbund GmbH (HVV GmbH), die als Regieorganisation den \u00d6PNV im Hamburger Verkehrsraum f\u00fcr die Aufgabentr\u00e4ger plant und beteiligt sich an den HVV-Verkehrsleistungen auf schleswig-holsteinischem Gebiet. Das soll beibehalten werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP bef\u00fcrwortet den Anschluss regionaler Verkehrsverb\u00fcnde an den HVV in den Teilen des Landes, wo dies wirtschaftlich und verkehrspolitisch sinnvoll erscheint.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE sieht gro\u00dfe Chancen bei der Entwicklung der Regionen durch einen besseren \u00d6ffentlichen Personenverkehr mit Stadtregionalbahnen und einem besseres Busnetz mit engeren Frequenzen. Dazu geh\u00f6ren auch kundenfreundliche Tarife. Alle Verkehrsunternehmen in Schleswig-Holstein haben 2010 zusammen 310 Mio. Euro f\u00fcr Fahrkarten im Regionalbereich eingenommen, weniger als 10 Euro pro Schleswig-HolsteinerIn pro Monat. Dies zeigt, dass unsere Vision vom kostenfreien \u00d6PNV keine Utopie bleiben muss.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Die Verkehrsbed\u00fcrfnisse im Umfeld regionaler Zentren enden nicht an L\u00e4nder- oder Staatsgrenzen. Wir wollen l\u00e4nder- und staaten\u00fcbergreifende Nahverkehrsverbindungen ebenso f\u00f6rdern wie abgestimmte Ausschreibungen \u00fcberregionaler Verkehrsleistungen und den Ausbau bestehender  Verbindungen.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Eine solche F\u00f6rderung ist nur sinnvoll, wenn ein entsprechendes Passagieraufkommen und damit eine entsprechende Wirtschaftlichkeit sie rechtfertigen. ", 
+          "value": 0, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-27"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen ein weltoffenes Schleswig-Holstein. Deshalb wenden wir uns gegen jede Form demokratiefeindlicher Bestrebungen, religi\u00f6ser oder weltanschaulicher Intoleranz und Diskriminierung. Rechtsradikalismus ist keine Meinung, sondern ein Verbrechen. Wir lehnen jede Form der Verharmlosung von rechtem Gedankengut ab und werden es in all seinen Auspr\u00e4gungen bek\u00e4mpfen. Wir werden eine neue Initiative zum Verbot der NPD als verfassungsfeindlicher Organisation vorantreiben und unterst\u00fctzen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es ist v\u00f6llig unaktzeptabel dass eine rechtsradikale Partei mit kriminellen Mitgliedern staatliche Unterst\u00fctzung bekommt. Trotzdem darf ein NPD Verbotsantrag nur gestellt werden, wenn er wirklich Aussicht auf Erfolg hat. Uns sind Aktivit\u00e4ten gegen Rechtsradiaklismus und Fremdenfeindlichkeit im Alltag wichtiger als ein Parteienverbot. Ein Verbot der NPD wird das Problem mit Rechtsradikalismus nicht l\u00f6sen.", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die NPD ist eine rassistische Partei, die Hass und Ausgrenzung predigt. In der politischen Praxis sind viele NPD-Mitglieder gewaltt\u00e4tig geworden, auch jetzige Landtagskandidaten. Gerade in Schleswig-Holstein sucht die NPD den Schulterschluss mit offen gewaltt\u00e4tigen Rechtsextremen in den sogenannten Freien Kameradschaften. Die Verwicklung einzelner NPD-Mitglieder in die Neonazi-Mordserie ist kein Zufall. Faschismus ist keine Meinung  Faschismus ist ein Verbrechen. Die NPD muss verboten werden.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Ein Verbot l\u00f6st nicht das Problem der Ausl\u00e4nderfeindlichkeit und der rechtsradikale Gesinnung und treibt Rechtsradikale in den Untergrund.", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Rassismus und kulturell begr\u00fcndete Diskriminierung sind nach wie vor ein gravierendes Problem, das dem friedlichen Zusammenleben in einer vielf\u00e4ltigen Gesellschaft im Wege steht. Gewalt und Einsch\u00fcchterung aufgrund der Herkunft, Religion oder Kultur sind in jedem Fall inakzeptabel. Darum muss Rassismus und Ausl\u00e4nderfeindlichkeit jeder Form  entschieden entgegengetreten werden, ebenso wie anderen Formen von gruppenbezogener Menschenfeindlichkeit.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die Frage ist absurd! Genauso k\u00f6nnte man fordern, die Linke bzw. irgendeine andere Partei zu verbieten. Au\u00dferdem kann ein Innenminister eines Bundeslandes keine bundesweite Partei verbieten. Das kann nur das Bundesverfassungsgericht!", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die NPD ist eine zugelassene demokratisch gew\u00e4hlte Partei und kann somit nicht verboten werden.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-28"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen wir auf ein Modell, bei dem private Investoren in die Sanierung des UKSH einbezogen werden k\u00f6nnen, ohne dass die \u00f6ffentlich-rechtliche Tr\u00e4gerschaft aufgegeben wird. Eine Privatisierung wird von uns nicht weiter verfolgt.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Universit\u00e4tsklinikum Schleswig-Holstein (UKSH) ist der gr\u00f6\u00dfte Arbeitgeber im Land, der gr\u00f6\u00dfte Tr\u00e4ger der medizinischen Maximalversorgung in Norddeutschland und das zweitgr\u00f6\u00dfte Universit\u00e4tsklinikum in Deutschland. Es ist ein zentraler Eckpfeiler der qualifizierten Medizinerausbildung in Schleswig-Holstein. Wir halten am UKSH in \u00f6ffentlicher Tr\u00e4gerschaft fest. Beim Bau sehen wir Optionen private Investoren zu beteiligen. ", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Das von uns eingeleitete Markterkundungsverfahren hat verschiedene L\u00f6sungswege ausgelotet, wie die zwingend notwendige Sanierung der UKSH-Geb\u00e4ude mit Hilfe privater Investoren realisierbar ist. Nach dem abgeschlossenen Markterkundungsverfahren bef\u00fcrwortet die FDP die Einleitung eines Interessenbekundungsverfahrens mit dem Ziel, private Investoren f\u00fcr ein \u00d6PP-Modell zu gewinnen, um den Investitionsstau z\u00fcgig abzubauen und damit die Arbeitspl\u00e4tze beim UKSH zu sichern.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es braucht \u00d6ffentlich Private Partnerschaften zur Finanzierung der Sanierung der UKSH-Geb\u00e4ude. Die Versorgung von Patienten muss unbedingt in \u00f6ffentlicher Hand bleiben.", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE will die notwendige Sanierung des UKSH aus Landesmitteln finanzieren. Die Beteiligung privater Investoren (\u00d6PP-Projekt) an der Sanierung der Geb\u00e4ude ist unwirtschaftlich. Allein durch die Steuermehreinnahmen des Landes im Jahr 2011 h\u00e4tten die Kosten f\u00fcr den baulichen Masterplan beim UKSH beglichen werden k\u00f6nnen.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "An den SAnierungsma\u00dfnahmen ja, eine Privatisierungs des Klinikums lehnt der SSW aber ab.", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Begr\u00fcndung: Die Aufrechterhaltung einer grundlegenden Infrastruktur f\u00fcr Bildung, Gesundheit, Energieversorgung, Transport usw. ist Aufgabe des Staates. Eine weitere Privatisierung in diesen Bereichen sehen wir deshalb sehr kritisch.Wir lehnen \u00d6ffentlich Private Partnerschaften grunds\u00e4tzlich ab.", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Eine solches Finanzierungsmodell verschleiert die tats\u00e4chlichen Kosten und  f\u00fchrt im Ergebnis lediglich zu erheblichen (Steuer-)Vorteilen f\u00fcr die Investoren. ", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Privatisierung ist Diebstahl am Volk! Der Staat darf nicht das Recht haben, etwas zu verkaufen, was er urspr\u00fcnglich im Sinne und zum Wohl des Volkes verwalten sollte. Die Heuchelei der Politiker, mit den Einnahmen Schulden - wohlbemerkt eigenverantwortete - zu bezahlen, ist keine Entschuldigung. Wenn ein Staat Volkseigentum verscherbelt,  egal zu welchen Preisen , dann nimmt er seine ureigene Aufgabe nicht wahr und verliert seine Daseinsberechtigung.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Das Land Schleswig-Holstein ist finanziell momentan nicht in der Lage diese Sanierung aus eigener Tasche zu bezahlen.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-29"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir setzen uns f\u00fcr ein gutes Schulsystem mit dauerhaft und verl\u00e4sslich drei S\u00e4ulen ein: ein m\u00f6glichst fl\u00e4chendeckendes Angebot an Gemeinschaftsschulen mit der M\u00f6glichkeit, dort nach neun Jahren das Abitur zu machen; ein Abitur nach acht Jahren an Gymnasien; und gute berufliche Schulen. ", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP setzt sich f\u00fcr den langfristigen Erhalt des Gymnasiums ein und wehrt sich gegen alle Versuche, diese erfolgreiche Schulform abzuschaffen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir streben zwar den Ausbau der Gemeinschaftssschulen an, weil wir \u00fcberzeugt sind, dass durch gemeinsames Lernen mehr Bildungsgerechtigkeit geschaffen werden kann. Aber eine Bildungsreform von Oben wird es mit uns nicht geben.", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE fordert EINE SCHULE F\u00dcR ALLE. Wir wollen, dass Kinder nicht nach der vierten Klasse getrennt werden. Sie sollen bis zur 10. Klasse an einer Schule weiter zusammen lernen. In der Schule sollen vor allem auch die sozialen Kompetenzen gef\u00f6rdert werden. Den unterschiedlichen Interessen und F\u00e4higkeiten wollen wir durch binnendifferenzierten Unterricht gerecht werden.DIE LINKE will mehr Geld f\u00fcr Bildung ausgeben. Schleswig-Holstein darf hier nicht l\u00e4nger das Schlusslicht bilden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir lehnen Schulstrukturreformen aus ideologischen Gr\u00fcnden ab. Unsere Schulpolitik wird sich darauf konzentrieren, wie Sch\u00fcler besser auf ihr Leben vorbereiten werden k\u00f6nnen. Die wichtige Frage ist f\u00fcr uns, was unsere Kinder wie lernen sollen und nicht die Schulorganisation bzw. Art der Differenzierung beim Lernen", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Da sich die NPD als einzige Partei f\u00fcr die R\u00fcckkehr zum altbew\u00e4hren dreigliedrigen Schulsystem ausspricht, mu\u00df selbstverst\u00e4ndlich auch das Gymnasium als Schulform erhalten bleiben.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Die Eltern und sp\u00e4ter die Kinder sollten selbst entscheiden auf welche Schule sie gehen wollen. Das Gymnasium sollte mit angeboten werden. ", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Diese Schulform ist \u00fcberholt. Die Gemeinschaftsschulen sind zu f\u00f6rdern. ", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-30"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Dabei geht es nicht nur um einen h\u00f6heren Anteil von Menschen mit Migrationshintergrund an den Besch\u00e4ftigten, sondern vor allem um ein neues Selbstverst\u00e4ndnis von Verwaltung und \u00f6ffentlichen Diensten.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Wie in allen anderen Berufsfeldern brauchen wir auch im Polizeidienst mehr Menschen mit interkultureller Kompetenz. Immer noch liegt die Besch\u00e4ftigungsquote von Menschen mit Migrationshintergrund bei allen qualifizierten Berufen weit unter dem Durchschnitt. Dies will DIE LINKE \u00e4ndern.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir setzen uns f\u00fcr die Gleichheit aller Menschen ein, insofern ist es selbstverst\u00e4ndlich, dass Mitb\u00fcrger mit Migrationshintergrund die gleichen beruflichen Chancen erhalten und dort gef\u00f6rdert werden, wo solche Chancengleichheit nicht gegeben ist. Der \u00f6ffentliche Dienst sollte da vorbildlich handeln.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die Polizei vertritt den Staat und sorgt f\u00fcr Sicherheit und Ordnung in Deutschland, daher sollte der Polizeidienst ausschlie\u00dflich deutschen Staatsb\u00fcrgern vorbehalten bleiben.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Es sollte nach Bedarf eingestellt werden.", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Um Konflikte und Straftaten von Migranten schneller und effektiver zu entsch\u00e4rfen, bzw. aufzukl\u00e4ren brauchen wir mehr Polizisten mit Migrationshintergrund. Allerdings sollten Menschen mit Migrationshintergrund auch in jedem anderen Beruf t\u00e4tig sein, da diese Menschen ein Teil unserer Gesellschaft sind und diese somit mitgestalten.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-31"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der (Fahrt-)Weg zur Schule geh\u00f6rt f\u00fcr uns zu kostenfreier Bildung dazu. Wir werden die Verpflichtung der Kreise zur Erhebung eines Elternbeitrages zu den Sch\u00fclerbef\u00f6rderungskosten wieder abschaffen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP m\u00f6chte es den Kreisen \u00fcberlassen, ob sie die Eltern an den Kosten f\u00fcr die Bef\u00f6rderung ihrer Kinder zur Schule beteiligt.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es soll den Kreisen anheim gestellt sein, ob sie die Eltern von den Kosten entlasten.", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE ist f\u00fcr die vollst\u00e4ndige Lehr- und Lernmittelfreiheit. Das hei\u00dft, dass keine Kosten im Zusammenhang mit der Bildung auf die Eltern abgew\u00e4lzt werden d\u00fcrfen. Deshalb hat DIE LINKE gefordert, dass die Kosten f\u00fcr die Bef\u00f6rderung der Schulkinder, auch die Kosten f\u00fcr die Berufssch\u00fclerinnen und Berufssch\u00fcler und f\u00fcr die gesamte Sekundarstufe II in ganz Schleswig-Holstein, also auch in den kreisfreien St\u00e4dten, aus dem Landeshaushalt bezahlt wird.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir setzen uns f\u00fcr eine grunds\u00e4tzlich beitragsfreie Sch\u00fclerbef\u00f6rderung ein. Die Finanzierung soll Landesaufgabe sein. ", 
+          "value": -1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Gerade im l\u00e4ndlichen Gegenden ist es kaum m\u00f6glich ohne Schulbusse zur Schule zu gelangen. In den vergangenen Jahren wurden die Eltern immer mehr an den Kosten der Sch\u00fclerbef\u00f6rderung beteiligt. Diese Entwickliung lehnt die NPD ab. Jedes Kind mu\u00df die M\u00f6glichkeit haben, ohne zus\u00e4tzliche Kosten f\u00fcr die Busbef\u00f6rderung eine Schule besuchen zu k\u00f6nnen.  ", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Durch die Zusammenlegung der Schulen m\u00fcssen heute viel mehr Kinder als fr\u00fcher bef\u00f6rdert werden. Die Kosten sollten auf keinen Fall den Eltern angelastet werden, da sie ohnehin die Arbeit und die Kosten f\u00fcr die Kindererziehung und -betreuung tragen m\u00fcssen. ", 
+          "value": -1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die Ausbildung unserer Kinder ist eine Investition in die Zukunft und muss somit auch vom Staat und nicht von den einzelnen Eltern bezahlt werden. Dies gilt somit auch f\u00fcr die Kosten der Bef\u00f6rderung in die Schule.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-32"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Jugendliche m\u00fcssen an politischen Entscheidungen beteiligt werden. Wir werden daher die Jugendbeir\u00e4te st\u00e4rken und das Wahlalter bei Landtagswahlen auf 16 Jahre absenken.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Bei Kommunalwahlen in Schleswig-Holstein k\u00f6nnen sich Jugendliche ab 16 Jahren bereits aktiv beteiligen, wobei ihnen das passive Wahlrecht (also das Recht selbst zu kandidieren) verwehrt bleibt. F\u00fcr die FDP ist das Wahlrecht eines der h\u00f6chsten Rechte, weshalb sie Entkoppelung des aktiven und passiven Wahlalters bei Parlamentswahlen skeptisch sieht. ", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE tritt f\u00fcr W\u00e4hlen ab 16 bei allen Wahlen ein. Im Alter von 16 m\u00fcssen sich viele Jugendliche entscheiden, welchen Beruf sie ergreifen. Dies ist f\u00fcr viele eine Entscheidung f\u00fcr das Leben. Aber vom W\u00e4hlen werden sie ausgeschlossen. Das passt nicht zusammen. 16j\u00e4hrige k\u00f6nnen selbstverst\u00e4ndlich schon entscheiden, welche politische Partei ihre Interessen am besten vertritt. Deshalb ist die Herabsetzung des Wahlalters \u00fcberf\u00e4llig.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir setzen uns f\u00fcr ein kommunales Wahlalter von 14 Jahren und das Wahlrecht auf Landesebene ab 16 Jahren ein. Dadurch soll das durch die Einf\u00fchrung  der f\u00fcnfj\u00e4hrigen Wahlperiode gestiegene Durchschnittsalter der Erstw\u00e4hler wieder unter 20 Jahre gesenkt werden.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Das Wahlalter mu\u00df an die Vollj\u00e4hrigkeit gekoppelt bleiben. Wer nach dem Gesetz noch nicht voll gesch\u00e4ftsf\u00e4hig ist, darf auch nicht das Wahlrecht besitzen. Trotzdem freuen wir uns \u00fcber jeden jungen Deutsche, der die Zukunft unseres Volkes aktiv mitgestalten m\u00f6chte. Mitglied in der NPD kann man daher bereits ab 16 Jahren werden.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Mit 16 Jahren ist das politische Bewusstsein eines Jugendlichen noch nicht gen\u00fcgend ausgepr\u00e4gt und gebildet um zu w\u00e4hlen.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-33"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Zur Bek\u00e4mpfung der Armut von Kindern und Jugendlichen brauchen wir eine abgestimmte Politik zwischen Bund, L\u00e4ndern und Kommunen. Wir treten f\u00fcr eine eigenst\u00e4ndige Grundsicherung f\u00fcr Kinder und Jugendliche ein, weil f\u00fcr uns gilt: Kein Kind ohne Mahlzeit; kein Kind ohne gesundheitliche F\u00f6rderung, kein Kind ohne Ferienfreizeiten, kein Kind ohne Sport.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "An jeder Ganztagsschule soll allerdings ein vollwertiges Mittagessen angeboten werden.", 
+          "value": -1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "DIE LINKE hat in einem ihrer ersten Antr\u00e4ge im Landtag das kostenlose Mittagessen gefordert. Kein Kind darf mehr vom gemeinsamen Mittagessen ausgeschlossen werden, weil seine Eltern nicht genug Geld haben. Kein Kind soll hungrig in der Schule sein.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "W\u00fcnschenswert, aber derzeit nicht finanzierbar", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Schulspeisungen k\u00f6nnen dazu beitragen, dass sich Kinder ausgewogen  ern\u00e4hren. Wir fordern daher die Einf\u00fchrung vollwertiger Schulspeisungen aus regionalem Anbau, an allen Schulen und Kindertagesst\u00e4tten. Die Finanzierung dieser Schulspeisungen ist so zu gestalten, dass alle Sch\u00fcler unabh\u00e4ngig von der sozialen oder finanziellen Lage der Familie diskriminierungsfrei daran teilnehmen k\u00f6nnen.", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Jedes Kind, da\u00df an einer Ganztagsschule unterrichtet wird, sollte ein Recht auf eine kostenlose warme Mahlzeit haben. Wenn Mittagessen durch die Eltern finanziert werden mu\u00df, bilden sich in den Schulen unweigerlich soziale Konflikte unter den Sch\u00fclern, da  Sch\u00fcler, deren Eltern sich die Kosten f\u00fcr eine warme Mahlzeit nicht leisten k\u00f6nnen, ins soziale Abseits gestellt werden. ", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Alle Sch\u00fcler, die es w\u00fcnschen, sollten ein kostenloses Mittagessen erhalten, nicht nur Sch\u00fcler an Ganztagsschulen.", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Ein Unkostenbeitrag sollte geleistet werden, um die entstehenden Kosten im Zaum zu halten.  F\u00fcr Kinder von  Hartz-IV-Empf\u00e4ngern sollte das Mittagessen kostenlos sein.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-34"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die CDU will, dass unsere Mitb\u00fcrgerinnen und Mitb\u00fcrger frei und sicher leben k\u00f6nnen. F\u00fcr uns gibt es null Toleranz gegen\u00fcber jeglichem religi\u00f6sen und politischen Extremismus.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir werden lokale Projekte im Kampf gegen Rechts st\u00e4rken. Projekten wie dem Beratungsnetzwerk gegen Rechtsextremismus gilt unsere Unterst\u00fctzung ebenso wie Projekten, die sich um Opfer rechter Gewalt k\u00fcmmern.  Demokratie braucht starke Demokratinnen und Demokraten. Deshalb setzen wir auf eine verbesserte Demokratieerziehung in den Kindertagesst\u00e4tten und Schulen, die demokratische Werte fr\u00fchzeitig erfahrbar und erlernbar macht. ", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Wer den rechten Rattenf\u00e4ngern das Wasser abgraben will, der muss Projekte gegen Rechts f\u00f6rdern. Bildung ist die beste Medizin gegen die Hass-Parolen der ewig Gestrigen. Wir brauchen die F\u00f6rderung von Projekten gegen Rechts, die \u00fcber die Gefahren des Rechtsextremismus aufkl\u00e4ren, wir brauchen eine gute Bildung f\u00fcr alle, die auch N\u00e4chstenliebe bzw. Solidarit\u00e4t als Wert vermittelt und wir brauchen eine Perspektive f\u00fcr die vielen ausgegrenzten Menschen, damit diese ein w\u00fcrdiges Leben haben k\u00f6nnen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Rassismus und kulturell begr\u00fcndete Diskriminierung sind nach wie vor ein gravierendes Problem, das dem friedlichen Zusammenleben in einer vielf\u00e4ltigen Gesellschaft im Wege steht. Gewalt und Einsch\u00fcchterung aufgrund der Herkunft, Religion oder Kultur sind in jedem Fall inakzeptabel. Darum muss Rassismus und Ausl\u00e4nderfeindlichkeit jeder Form  entschieden entgegengetreten werden, ebenso wie anderen Formen von gruppenbezogener Menschenfeindlichkeit. ", 
+          "value": 1, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Im Kampf gegen Extremismus hat das Bundesfamilienministerium im Jahr 2011 29 Millionen Euro ausgegeben. Der Kampf gegen Rechts ist in Wirklichkeit der Kampf gegen alle Deutschen und ihre berechtigten Forderungen und verletzt die vom Grundgesetz versprochenen Rechte der freien Meinungs\u00e4u\u00dferung und der Weltanschauung. Der Kampf gegen Rechts ist eines wirklich demokratischen Staates unw\u00fcrdig und erinnert an die Inquisition des Mittelalters.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Gegen Rechtsradikalismus muss vorzeitig eingeschritten werden. Die F\u00f6rderung solcher Projekte ist zu f\u00f6rdern, soweit diese erfolgversprechend sind.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-35"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Ebenso wie Bund und L\u00e4nder dem verschuldeten Schleswig-Holstein Konsolidierungshilfe gew\u00e4hren, lassen das Land und die Gesamtheit der Kommunen auch den betroffenen Gebietsk\u00f6rperschaften Hilfen zur Konsolidierung zukommen. Entsprechend der Schuldenbremse sind diese an klare Bedingungen zur Beseitigung aufgelaufener Defizite zu kn\u00fcpfen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Einf\u00fchrung einer kommunalen Schuldenbremse wird abgelehnt. Dieser Vorschlag tr\u00e4gt weder zur Entb\u00fcrokratisierung noch zur St\u00e4rkung der kommunalen Selbstverwaltung bei.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Die FDP sieht die Verschuldung einiger Kommunen im Land mit gro\u00dfer Sorge. Aus diesem Grund hat sie daf\u00fcr gesorgt, dass hochverschuldete Kommunen Konsolidierungshilfen des Landes erhalten k\u00f6nnen, wenn sie selbst dazu beitragen wollen, ihre Finanzen wieder in den Griff zu bekommen. ", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die Kreise, St\u00e4dte und Gemeinden in Schleswig-Holstein k\u00fcrzen schon seit \u00fcber 20 Jahren ihre Haushalte zusammen. Trotzdem nimmt die Verschuldung zu. Eine Entschuldung der Kommunen gelingt nur \u00fcber die Erh\u00f6hung der Einnahmen. Deshalb fordert DIE LINKE, die K\u00fcrzungen im Kommunalen Finanzausgleich in H\u00f6he von 120 Millionen Euro pro Jahr r\u00fcckg\u00e4ngig zu machen. Dar\u00fcber hinaus wollen wir die Gewerbesteuer zu einer Gemeindewirtschaftssteuer weiterentwickeln. Dies verbessert die Einnahmen der Kommunen.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Aber nur unter der Voraussetzung, dass der Eingriff des Landes in den kommunalen Finanzausgleich zur\u00fcckgenommen wird und durch ein Konnexit\u00e4tsprinzip gesichert wird, dass der Bund den Kommunen keine neuen Aufgaben auferlegen kann, ohne dass die entsprechenden Gelder folgen.", 
+          "value": 1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "Wir wollen eine umfangreiche \u00dcberpr\u00fcfung der Aufgaben- und Haushaltsmittelverteilung von Land, Kreisen und Kommunen, Angesichts des Einflusses europ\u00e4ischer Gesetzgebung und der desolaten Haushaltslage m\u00fcssen auch die Grundstrukturen tabufrei und ergebnisoffen auf Reformm\u00f6glichkeiten untersucht werden.Solche Reformen sollen dem Grundsatz folgen, Entscheidungsebenen zu entflechten und so eindeutige Zust\u00e4ndigkeiten und Verantwortlichkeiten schaffen.", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "Die Schuldenbremse ist wichtig, aber erst m\u00f6glich, wenn die Kommunen die finanzielle Ausstattung erhalten, die sie ben\u00f6tigen, um ihre Aufgaben f\u00fcr die B\u00fcrgerinnen und B\u00fcrger ausreichend wahrnehmen zu k\u00f6nnen. Dies ist derzeit nicht der Fall.", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Jeder kann dauerhaft nur so viel ausgeben, wie er auch einnimmt. Leider haben verantwortungslose Politiker \u00fcber Jahrzehnte eine Schuldenpolitik betrieben, die viele Gemeinden an den Rand der Handlungsunf\u00e4higkeit dr\u00e4ngt. Eine Schuldenbremse ist unerl\u00e4sslich, um die leeren Kassen wieder aufzubessern. Zus\u00e4tzlich sollte man aber auch jede Ausgabe, die nicht dem Wohle des Volkes dient auf den Pr\u00fcfstand stellen.", 
+          "value": 1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Auch Kreise, St\u00e4dte und Gemeinen in SH sollten nicht mehr ausgeben als sie einnehmen.", 
+          "value": 1, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Auf diese Art und Weise k\u00f6nnen \u00fcberfl\u00fcssige und unsinnige Projekte, bzw. Ausgaben im Rahmen gehalten und vermieden werden.", 
+          "value": 1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-36"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wenn die Fischerei sich den vorgeschriebenen Bedingungen im Nationalpark Wattenmeer anpasst, kann Fischerei durchgef\u00fchrt werden. ", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "GR\u00dcNE"
+        }, 
+        {
+          "text": "Die konventionelle Fischerei zerst\u00f6rt z.B. durch die Schleppnetzfischerei den Lebensraum im Wattenmeer. Es gibt inzwischen \u00f6kologisch nachhaltigere Fangmethoden, die sich allerdings f\u00fcr die Fischerinnen und Fischer nicht rechnen. Hier gilt es \u00fcber finanzielle Anreize auf der einen Seite die Lebensperspektive der Fischerinnen und Fischer zu erhalten und auf der anderen Seite den \u00f6kologischen Herausforderungen gerecht zu werden.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SSW"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "PIRATEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "FREIE W\u00c4HLER"
+        }, 
+        {
+          "text": "Die Fischerei unterliegt heute schon vielen Auflagen und Fangquoten der EU. Unsere Fischerei mu\u00df erhalten werden und die Menschen wollen Fisch zu bezahlbaren Preisen essen.", 
+          "value": -1, 
+          "party": "NPD"
+        }, 
+        {
+          "text": "Die Fischerei sollte soweit zugesassen werden, wie sie nicht zum Schaden des Naturparks ist", 
+          "value": 0, 
+          "party": "FAMILIE"
+        }, 
+        {
+          "text": "Die traditionelle Fischerei muss auch im Wattenmeer weiterhin bestehen und darf nicht weiter eingeschr\u00e4nkt werden, weil das \u00f6kologische Gleichgewicht dadurch nicht beeintr\u00e4chtigt wird.", 
+          "value": -1, 
+          "party": "MUD"
+        }
+      ], 
+      "id": "WOM-22-37"
+    }
+  ]
+}

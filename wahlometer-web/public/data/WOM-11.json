@@ -1,0 +1,904 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "Autobahnbau ist strukturkonservative Wirtschaftspolitik und widerspricht den Anforderungen des Klimaschutzes.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir werden die wichtigen Autobahnprojekte der K\u00fcstenautobahn A 22, der A 39 zwischen L\u00fcneburg und Wolfsburg und den L\u00fcckenschluss der A 33 bei Osnabr\u00fcck mit Nachdruck vorantreiben. Auch der durchgehende sechsspurige Ausbau der A7 und der A1, die Neubauprojekte der A 21 Kiel - Winsen (Luhe), der A 26 von Stade nach Hamburg sowie das Projekt A 39 haben hohe Priorit\u00e4t.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE wird sich bis auf wenige Ausnahmen daf\u00fcr einsetzen, den Schwerpunkt auf die Erhaltung und Ert\u00fcchtigung bestehender Stra\u00dfen zu legen. Der Neubau von Autobahnen ist in Niedersachsen nicht erforderlich. Dies gilt auch f\u00fcr die geplanten Vorhaben A 22 und A 39.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die FDP fordert den Bau der A22 an der Nordsee sowie den Bau der A39 zwischen L\u00fcneburg und Wolfsburg. Beide Regionen sind verkehrstechnisch schlecht erschlossen und ben\u00f6tigen dringend ein leistungsf\u00e4higes Verkehrsnetz. Die Nieders\u00e4chsischen H\u00e4fen ben\u00f6tigen dringend die A22 f\u00fcr ihre weitere Entwicklung.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Das Fl\u00e4chenland Niedersachsen ben\u00f6tigt noch weitere Autobahnen im Osten und im Norden. Nur so k\u00f6nnen die Wirtschaftsr\u00e4ume erschlossen werden und \u00fcberf\u00fcllte und unfalltr\u00e4chtige Landstra\u00dfen entlastet werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Uneingeschr\u00e4nkte Laden\u00f6ffnungszeiten f\u00fchren zu einem Wandel im Einzelhandel zu Gunsten der gro\u00dfen und zu Lasten der kleinen und mittleren Einzelh\u00e4ndler. Die Gefahr ver\u00f6deter Innenst\u00e4dte nimmt zu.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die jetzige L\u00f6sung ist flexibel und verbraucherfreundlich. Und auch der Schutz der Besch\u00e4ftigten liegt uns am Herzen. An Sonn- und Feiertagen sollen die Gesch\u00e4fte auch in Zukunft grunds\u00e4tzlich geschlossen bleiben.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die von der Landesregierung eingef\u00fchrte Ausweitung der Laden\u00f6ffnungszeiten in die Wochenenden und in die Abendstunden hinein ist zur\u00fcckzunehmen, weil sie besch\u00e4ftigten- und familienfeindlich ist.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Wir wollen den Kunden nicht vorschreiben, wann sie einkaufen und den Ladenbesitzern nicht vorschreiben, wann sie \u00f6ffnen. Mit dem neuen Laden\u00f6ffnungsgesetz haben wir das Recht an die ver\u00e4nderten Lebens-, Arbeits- und Konsumgewohnheiten der Menschen angepasst. Der Schutz von Sonn- und Feiertagen wurde erhalten, dabei wurden aber die Ausnahmeregelungen vereinfacht.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir halten die v\u00f6llige Freigabe der \u00d6ffnungszeiten von Montag bis Samstag f\u00fcr falsch. Dies dient nur den gro\u00dfen Handelsketten und geht zu Lasten der Besch\u00e4ftigten - h\u00e4ufig M\u00fctter, die gro\u00dfe Probleme mit der Kinderbetreuung bekommen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Bestrebungen zu Privatisierungen in den Kernbereichen der Daseinsvorsorge erteilen wir eine klare Absage. Es gibt inzwischen zahlreiche Beispiele, wo private, gewinnorientierte Betriebe z B. die notwendigen Investitionen in das Wasserleitungsnetz jahrelang vernachl\u00e4ssigt und damit gesundheitliche Risiken in Kauf genommen haben.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir werden unsere staatlichen Aufgaben weiter kritisch unter die Lupe nehmen. Aufgaben, die nur vom Staat erf\u00fcllt werden m\u00fcssen, werden wir auch in Zukunft nachkommen. Aufgaben, die in anderen H\u00e4nden besser aufgehoben sind, werden wir abgeben. Dies gilt insbesondere f\u00fcr diejenigen Leistungen, die von der privaten Wirtschaft erbracht werden k\u00f6nnen. ", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Mit den Stimmen der LINKEN wird es keine Stimmen f\u00fcr die Privatisierung \u00f6ffentlicher Daseinsvorsorge geben.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Autos zu bauen oder Kasinos zu betreiben ist nicht die Aufgabe des Staates. Hier leisten private Unternehmer deutlich bessere Arbeit. Dies bedeutet aber nicht, dass sich der Staat aus der Wirtschaft zur\u00fcckzieht. Durch Setzen der richtigen Rahmenbedingungen und Wahrnehmen seiner Aufsichtspflichten in sensiblen Bereichen spielt er stets eine wichtige Rolle.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dies muss differenziert gesehen werden. In vielen F\u00e4llen sind Privatisierungen richtig, in anderen F\u00e4llen werden die privaten Leistungen teurer, als wenn sie durch den Staat erledigt w\u00fcrden. Bestimmte Aufgaben aber m\u00fcssen staatlich bleiben. ", 
+          "value": 0, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Zahllose Appelle an die Wirtschaft, endlich mehr Lehrstellen bereit zu stellen, sind bisher ebenso erfolglos geblieben wie immer neue Ausbildungspakte mit der Wirtschaft. Deshalb wollen wir f\u00fcr nicht oder unterdurchschnittlich ausbildende Betriebe eine Ausbildungsplatzumlage einf\u00fchren. Aus den Mitteln der Umlage werden die ausbildenden Betriebe unterst\u00fctzt und die Ausweitung der vollzeitschulischen Berufsausbildung finanziert.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Beim Ausbildungsplatzangebot lag Niedersachsen im Jahr 2006 bundesweit auf Platz drei aller 16 L\u00e4nder. Mit dem Nieders\u00e4chsischen Pakt f\u00fcr Ausbildung wollen wir jedem jungen Menschen eine faire Chance f\u00fcr eine berufliche Perspektive bieten. Wer ausbildungsf\u00e4hig und ausbildungswillig ist, muss ein Ausbildungsangebot erhalten.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Es ist Aufgabe des Staates, die L\u00fccke der fehlenden Ausbildungspl\u00e4tze zu schlie\u00dfen und von der Wirtschaft die finanziellen Mittel einzufordern. Eine gerechte L\u00f6sung des Problems ist die Einf\u00fchrung einer Ausbildungsabgabe in Abh\u00e4ngigkeit von der H\u00f6he der Wertsch\u00f6pfung des Betriebes unter Ber\u00fccksichtigung der Anzahl der betrieblichen Ausbildungspl\u00e4tze. Betriebe, die nicht ausbilden, aber von der Ausbildungsleistung anderer profitieren, m\u00fcssen einen angemessenen Beitrag leisten, w\u00e4hrend andere, die ausbilden, entsprechend entlastet werden.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Das Duale System der Berufsausbildung ist ein gro\u00dfer Erfolg. Auch in wirtschaftlich schweren Zeiten haben besonders Mittelstand und Handwerk weiterhin viele Ausbildungsstellen angeboten. Ein Zwangssystem gef\u00e4hrdet nur Ausbildungspl\u00e4tze und f\u00fchrt langfristig zu einem rein staatlichen System, dessen Qualit\u00e4t nicht mit der heutigen Berufsausbildung mithalten kann.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Das w\u00e4re nur sehr schwierig und b\u00fcrokratisch umzusetzten. Ein Ausweg w\u00e4re eine Ausbildungsplatzabgabe, auf die wir aber zun\u00e4chst verzichten wollen. Die Wirtschaft ben\u00f6tigt Nachwuchs und bildet daher im Eigeninteresse aus.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen uns f\u00fcr eine gemeinsame Schule ein, in der kein Kind aussortiert wird. Alle Kinder - jene mit sonderp\u00e4dagogischem Bedarf ebenso wie Hochbegabte - sollen individuell gef\u00f6rdert werden.  ", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir haben in Niedersachsen seit vier Jahren ein differenziertes Schulsystem mit Haupt- und Realschulen, mit Gymnasien, Kooperativen Gesamtschulen, Integrierten Gesamtschulen und ein vielf\u00e4ltiges Angebot an Schulen in privater Tr\u00e4gerschaft. Dazu kommen zehn verschiedene F\u00f6rderschulformen. Dieses moderne, differenzierte Schulangebot ist ausgerichtet auf die vielf\u00e4ltigen Begabungen unserer Kinder in Niedersachsen", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE spricht sich eindeutig f\u00fcr die Integrierte Gesamtschule (IGS) aus - verbindlich f\u00fcr alle bis zur zehnten Klasse. Zahlreiche Untersuchungen und Erfahrungen anderer L\u00e4nder zeigen, dass gemeinsames Lernen ohne soziale Schranken nicht nur gerechter ist, sondern auch kl\u00fcger macht. Die IGS bietet zwei Abschl\u00fcsse an: der erste Abschluss erfolgt nach dem zehnten Schuljahr. Hieran schlie\u00dft sich in der Regel die Berufsausbildung an. Der n\u00e4chste Abschluss kann nach dem 13. Schuljahr erfolgen und bietet eine Hochschulzugangsberechtigung.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Im gegliederten Schulsystem k\u00f6nnen die Sch\u00fclerinnen und Sch\u00fcler am besten individuell gef\u00f6rdert werden. Wir wollen aber die Schulvielfalt erhalten, deshalb wird es auch weiterhin KGSen, IGSen, freie Schulen und F\u00f6rderschulen geben.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dazu k\u00f6nnte man Romane schreiben. Kurz: Es verhindert die Durchl\u00e4ssigkeit und eine effektive F\u00f6rderung. Alle lernpsychologischen Erkenntnisse sprechen dagegen. Nur die CDU glaubt weiterhin an den statischen Begabungsbegriff.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Jeder Sch\u00fcler und jede Sch\u00fclerin wird auf seinem bzw. ihrem Lernweg unterst\u00fctzt. Es werden neue Formen (z.B. Portfolios) entwickelt, mit denen die individuelle Lern- und Leistungsentwicklung dokumentiert wird.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "In Niedersachsen erhalten Kinder ab der dritten Klasse Zeugnisse mit Schulnoten. Schulnoten haben unter anderem eine wichtige Anreiz- und Leistungskontrollfunktion. Insbesondere sind Zeugnisse mit Schulnoten bei der Entscheidung \u00fcber die Schulwahl nach der 4. Klasse eine bessere Entscheidungsgrundlage als reine Berichtszeugnisse.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Noten dienen lediglich dazu, Sch\u00fclerinnen und Sch\u00fcler in ein Korsett zu pressen und den Leistungsdruck zu erh\u00f6hen. Wir lehnen dieses ab.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Noten sind wichtig. Sie geben den Sch\u00fclerinnen und Sch\u00fclern Auskunft dar\u00fcber wo sie stehen und wo sie sich weiter verbessern k\u00f6nnen und m\u00fcssen. Durch Noten kann diese Aussage klarer ausgedr\u00fcckt werden als durch schriftliche Formulierungen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Bereits jetzt gibt es im ersten und zweiten Schuljahr schon keine Noten. Bei Einf\u00fchrung einer gemeinsamen Beschulung bis zum 10. Schuljahr kann weitgehend auf Noten verzichtet werden. An ihre Stelle sollen vor allem individuelle F\u00f6rderberichte treten.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Populistische und kaum realisierbare Verbotsforderungen sogenannter Killerspiele sind kontraproduktiv. Wir fordern stattdessen die Kontrolle der Softwareprodukte zu reformieren. Notwendig ist das Errichten europaweiter und unabh\u00e4ngiger Kontrollorgane, die \u00fcber eine m\u00f6gliche Jugendgef\u00e4hrdung entscheiden d\u00fcrfen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wo es der Schutz junger Menschen erfordert, werden wir das Sch\u00fcren von Gewaltphantasien unterbinden. Brutale, Gewalt verherrlichende und pornographische, jugendgef\u00e4hrdende Darstellungen sind f\u00fcr uns kein Ausweis von Freiheit, sondern von Verantwortungslosigkeit. Die massive Gewaltanwendung in Computer- und Videospielen als solche kann die Aggressivit\u00e4t unserer Kinder f\u00f6rdern und ihnen schaden. Deshalb fordern wir, dass das strafrechtliche Verbot auch auf solche Video- und Computerspiele ausgedehnt wird.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die bestehenden Gesetze und Altersfreigaben sind ausreichend und m\u00fcssen konsequent angewandt und \u00fcberpr\u00fcft werden. Verbote greifen in die k\u00fcnstlerische Freiheit der Hersteller ein. Wie auch bei Filmen sind Eltern f\u00fcr den Konsum bei Computerspielen mitverantwortlich. Medienerziehung kann durch die Eltern und Schule gew\u00e4hrleistet werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Verbote helfen bei den so genannten Killerspielen nichts. Denn erstens gilt: Wer sie haben m\u00f6chte, bekommt sie auch. Au\u00dferdem stellt man damit alle Spieler unter einen absurden Generalverdacht. Um der wachsenden Gewaltbereitschaft von Jungendlichen entgegenzutreten, n\u00fctzt ein Verbot ebenfalls nicht. Eine Tabuisierung  verschlie\u00dft die Augen vor den wahren Problemen mancher junger Menschen, die oft ganz woanders liegen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es scheint eine Versachlichung der Diskussion erforderlich: Bereits seit den 1970er Jahren besteht ein strafbewehrtes Verbot von Gewaltdarstellungen in \u00a7 131 StGB, das insbesondere die Verbreitung von Darstellungen grausamer oder unmenschlicher Gewaltt\u00e4tigkeiten gegen Menschen oder seit 2004 auch menschen\u00e4hnliche Wesen unter besonderen Voraussetzungen generell untersagt. Das Strafverbot gilt uneingeschr\u00e4nkt auch f\u00fcr Computerspiele. Dies zeigt nicht zuletzt auch die Praxis der Strafverfolgung. So wurde insbesondere das Gewalt-Computerspiel Manhunt (Playstation2) vom Amtsgericht M\u00fcnchen durch Beschluss vom 19.07.2004 (Aktenzeichen 853 Gs 261/04) gerade wegen Versto\u00dfes gegen \u00a7 131 StGB beschlagnahmt.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der private Computer und das Internet sind keine rechtsfreien R\u00e4ume f\u00fcr die Ermittlungsbeh\u00f6rden. Die Polizei darf nicht rechtswidrig die Privatsph\u00e4re jedes Einzelnen einschr\u00e4nken und ohne Kenntnis des Beschuldigten dessen Computer mithilfe von Viren und Trojanern durchsuchen. Private Daten unterstehen dem Schutz vor staatlichen Eingriffen. Hacking als Ermittlungsmethode muss unzul\u00e4ssig bleiben.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Im Kampf gegen den internationalen Terrorismus und Schwerstkriminelle muss der Staat mit richterlicher Erlaubnis auch Computer-Festplatten durchsuchen d\u00fcrfen, wie er heute bereits Akten durchsuchen darf. Die rasante technologische Entwicklung im Bereich der Kommunikation erfordert, dass unsere Polizei mithalten kann.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Jede B\u00fcrgerin und jeder B\u00fcrger muss selber entscheiden, wann sie oder er Informationen von sich Preis gibt. Onlinedurchsuchungen verletzen zudem \u00a713 Abs. 1 des Grundgesetzes: Die Wohnung ist unverletzlich.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die FDP spricht sich entschieden dagegen aus, denn eine heimliche Schn\u00fcffelei des Staates auf den Festplatten ist kein Mittel des Rechtsstaates.  Auch die gestiegene Terrorgefahr ist keine Legitimation f\u00fcr derartige Pl\u00e4ne. Wesentlich sinnvoller w\u00e4re eine umfassende Sicherheitsstrategie.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Das Bundesverfassungsgericht wird Anfang 2008 \u00fcber eine entsprechende Befugnis im nordrhein-westf\u00e4lischen Verfassungsschutzgesetz entscheiden. Dieses Urteil wird aufzeigen, ob es \u00fcberhaupt einen grundgesetzlichen Spielraum f\u00fcr eine heimliche Online-Durchsuchung privater Computer gibt. Die Entscheidungen des h\u00f6chsten deutschen Gerichts zum Kernbereich privater Lebensf\u00fchrung haben erkennen lassen, dass es auch hier empfindliche Einschr\u00e4nkungen vornehmen wird. Die von CDU und FDP in Niedersachsen geplante pr\u00e4ventive Telefon\u00fcberwachung wurde aus diesem Grunde bereits f\u00fcr nichtig erkl\u00e4rt.", 
+          "value": 0, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen uns f\u00fcr ein generelles Tempolimit von 120 km/h ein.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Ein generelles Tempolimit h\u00e4tte bei geringen klimapolitischen Fortschritten eine erhebliche Beeintr\u00e4chtigung des Automobilstandorts Niedersachsen zur Folge. Hinzu kommt, dass bereits heute 40% aller deutschen Autobahnen einem Tempolimit unterliegen und somit die Unfallschwerpunkte bereits entsch\u00e4rft worden sind.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Praktisch alle anderen europ\u00e4ischen Staaten haben so ein Tempolimit. Es ist nicht nur \u00f6kologisch sinnvoll, sondern senkt auch die Zahl der Unfalltoten. Ein Tempolimit mag bl\u00f6d sein f\u00fcr BMW- und Mercedes-Raser. Es ist aber auch ein Anreiz f\u00fcr den Bau von Elektroantrieben, die zwar nicht schnell, aber \u00f6konomisch und \u00f6kologisch vern\u00fcnftig sind.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die FDP setzt auf flexible L\u00f6sungen statt starre Begrenzungen. Ein starres Tempolimit dient weder dem Klimaschutz noch der Verkehrssicherheit noch der Stauvermeidung.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Geschwindigkeitsbegrenzungen auf Autobahnen sind bereits sehr h\u00e4ufig zu finden. Ein generelles Tempolimit w\u00e4re ein Beitrag zu mehr Sicherheit und einem verbesserten Klimaschutz. Dies ist aber durch weitere Ma\u00dfnahmen zu erg\u00e4nzen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Freiwillige Abmachungen gibt es bereits seit Jahren, ohne den dringend notwendigen Erfolg. Daher muss Politik auch verpflichtende Vorgaben  zum Klimaschutz machen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Den Anteil der Erneuerbaren Energien am Gesamtenergieverbrauch in Niedersachsen wollen wir bis 2020 auf 25 Prozent erh\u00f6hen. Au\u00dferdem werden wir ein Klimaschutzkonzept Niedersachsen erarbeiten, in dem wir ehrgeizige Ma\u00dfnahmen zur Reduzierung der Treibhausgas-Emissionen um zwei bis drei Millionen Tonnen j\u00e4hrlich formulieren. Bestandteil des Klimaschutzkonzeptes wird ein Umweltpakt mit der Wirtschaft sein.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Aus gutem Grunde werden Dinge, wo es in einer Gesellschaft unterschiedliche Interessen gibt, per Gesetz aufgrund demokratischer Entscheidungen geregelt. So genannte freiwillige Abmachungen sind h\u00e4ufig nur Show-Gags. Wer wirklich etwas \u00e4ndern will, braucht den Mut f\u00fcr gesetzliche Regelungen.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Verpflichtende Vorgaben, oft verbunden mit Vorschriften wie sie zu erreichen sind, sind weniger effizient als freiwillige Abmachungen. Sie sind auch teurer und f\u00fchren damit zu einer Belastung der Verbraucher. Ein gutes Beispiel hierf\u00fcr ist es, dass umweltpolitische Ma\u00dfnahmen in Deutschland seit Jahren fast ausnahmslos mit h\u00f6herer staatlicher Energiebesteuerung verbunden sind.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Beide M\u00f6glichkeiten m\u00fcssen zum Tragen kommen. Freiwillige Verpflichtungen k\u00f6nnen ein erfolgreiches Instrument sein. Qualit\u00e4t und \u00dcberpr\u00fcfbarkeit der freiwilligen Vereinbarungen sind entscheidend.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "...aber so einfach ist das nicht! Die Gesetzgebungskompetenz liegt bei der EU. Trotzdem hat jeder Mitgliedsstaat und jedes Bundesland die M\u00f6glichkeit, Koexistenzma\u00dfnahmen zu ergreifen. Gentechnikfreie Zonen sind z.B. eine solche Ma\u00dfnahme, die das Land Niedersachsen f\u00f6rdern k\u00f6nnte.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Es ist im Interesse von Landwirten und Verbrauchern, die Potenziale der Biotechnologie mit gro\u00dfem Verantwortungsbewusstsein weiterzuentwickeln und ethisch verantwortbare Nutzungen zuzulassen. Wir setzen auf eine verst\u00e4rkte Aufkl\u00e4rung der Verbraucher \u00fcber Stand und Chancen von Biotechnik. Die Wahlfreiheit der Verbraucher wollen wir durch strikte Kennzeichnung gew\u00e4hrleisten.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Landesregierung will Niedersachsen zu einem f\u00fchrenden Forschungsstandort auf dem Gebiet der gr\u00fcnen Gentechnik ausbauen und f\u00f6rdert die Entwicklung durch die Firma Kleinwanzlebener Saatzucht (KWS) mit 600.000 Euro. Sie setzt sich im Bundesrat f\u00fcr eine Abschw\u00e4chung der Haftungsregeln f\u00fcr den Freilandanbau genmanipulierter Pflanzen ein. Die Mehrheit der Bev\u00f6lkerung lehnt den Verzehr gentechnisch ver\u00e4nderter Nahrungsmittel ab. Au\u00dferdem sind die Auswirkungen eines solchen Anbaus auf andere Organismen nicht absch\u00e4tzbar. Der Einsatz gentechnisch ver\u00e4nderten Saatgutes erh\u00f6ht zudem die Abh\u00e4ngigkeit der Landwirtschaft von den Saatgutkonzernen. Es geht besser: Eine nachhaltige, auf den Ressourcen l\u00e4ndlicher Regionen basierende Entwicklung bietet Auswege aus einem Kreislauf steigender Arbeitslosigkeit, sinkender Lebensqualit\u00e4t und Abwanderung. DIE LINKE streitet f\u00fcr die Einheit von sozialer, \u00f6kologischer und \u00f6konomischer Nachhaltigkeit. DIE LINKE h\u00e4lt eine Koexistenz von gr\u00fcner Gentechnik und konventioneller Landwirtschaft f\u00fcr unm\u00f6glich. Landwirtinnen und Landwirte sind vielf\u00e4ltige DienstleisterInnen f\u00fcr die Gesellschaft. Sie schaffen nicht nur Lebensmittel, sondern leisten auch Beitr\u00e4ge zur Kulturlandschaftspflege, zu Umweltschutz und Tourismus. In dieser Verantwortung m\u00fcssen sie unterst\u00fctzt werden, ideell wie finanziell.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die M\u00f6glichkeiten, die sich durch gentechnisch ver\u00e4nderte Pflanzen beim Naturschutz, der Energieversorgung und in vielen anderen Bereichen entwickeln, sollten nicht aus ideologischen Gr\u00fcnden abgelehnt werden. Sorgf\u00e4ltige Forschung in diesem Bereich wird dazu beitragen, die M\u00f6glichkeiten der neuen Technologie abzusch\u00e4tzen und die berechtigten Sorgen der Menschen zerstreuen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wird nach Bundes- und Europarecht geregelt, daher leider keine Landesregelungsm\u00f6glichkeit.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Um das Gebot der Generationengerechtigkeit umzusetzen, m\u00fcssen die \u00f6ffentlichen Haushalte auf eine Neuverschuldung verzichten. Die Ausgaben des Landes m\u00fcssen grunds\u00e4tzlich durch die zu erwartenden Einnahmen begrenzt werden. Es muss jedoch m\u00f6glich sein, in besonderen Situationen eine au\u00dferordentliche Neuverschuldung zu beschlie\u00dfen, die an klare und verbindliche Bedingungen zur R\u00fcckf\u00fchrung gekoppelt sein muss.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Sp\u00e4testens ab 2010 wollen wir keine neuen Schulden im Landeshaushalt mehr machen. Wir setzen uns klare Verschuldungsbegrenzungen und erschweren so die Aufnahme neuer Kredite. Sp\u00e4testens bis zur Mitte des n\u00e4chsten Jahrzehnts wollen wir ein grunds\u00e4tzliches, in der Landesverfassung verankertes Neuverschuldungsverbot einf\u00fchren, das die M\u00f6glichkeiten der Neuverschuldung auf unabweisbare Ausnahmetatbest\u00e4nde begrenzt.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Land darf sich politisch nicht diese Fesseln auferlegen. Die Schulden des Landes sind nicht das Problem. Bund und Land nutzen nicht alle M\u00f6glichkeiten, um Einnahmen gerecht durch alle Steuerzahlerinnen und Steuerzahler zu bekommen. In den vergangenen Jahren sind z.B. durch die Abschaffung der K\u00f6rperschaftssteuer wichtige staatliche Einnahmequellen entfallen. Die Einf\u00fchrung einer Verm\u00f6gens- und B\u00f6rsensteuer machten ein solches Gesetz \u00fcberfl\u00fcssig.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Wir sind f\u00fcr ein grunds\u00e4tzliches Neuverschuldungsverbot, das Schuldenaufnahmen nur noch in wenigen Ausnahmef\u00e4llen zul\u00e4sst. Nur so kann der Schuldenberg langfristig abgebaut werden. Der Schuldenabbau ist eine Frage der Generationengerechtigkeit.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es muss weiter m\u00f6glich sein, Gro\u00dfprojekte mit Krediten zu finanzieren. Dies macht auch jedes Unternehmen und jede Familie, die ein Haus baut. Die Kredite m\u00fcssen aber entsprechend der Nutzungsdauer des Investitionsgegenstandes getilgt werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "GR\u00dcNE bef\u00fcrworten hierzu die Wiedereinf\u00fchrung einer Aufwandsentsch\u00e4digung, \u00fcber deren H\u00f6he noch diskutiert werden muss.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Einen Ausgleich der Verdienstausf\u00e4lle kann das Land finanziell nicht leisten. Wir haben uns jedoch f\u00fcr eine st\u00e4rkere steuerliche Entlastung eingesetzt und haben den Versicherungsschutz f\u00fcr ehrenamtlich Engagierte verbessert und als erst zweites Bundesland bislang bestehende L\u00fccken beim Versicherungsschutz geschlossen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ehrenamtliche T\u00e4tigkeit sollte ehrenamtliche T\u00e4tigkeit bleiben. Auslagen sollten erstattet werden, Verdienstausf\u00e4lle in der Regel nicht - Eins\u00e4tze zum Beispiel des Jugendrotkreuzes in Katastrophenf\u00e4llen einmal ausgenommen.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Das Land f\u00f6rdert die Arbeit der Jugendverb\u00e4nde und unterst\u00fctzt ehrenamtliches Engagement u. a. durch die JULEICA. Bei der Erstattung von Verdienstausf\u00e4llen w\u00fcrde es sich um eine freiwillige Leistung des Landes handeln. Angesichts der auch zuk\u00fcnftig erforderlichen Haushaltskonsolidierung sehen wir in dieser Frage keinen zus\u00e4tzlichen Spielraum.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Bereits heute besteht - wenngleich im Rahmen der zur Verf\u00fcgung stehenden Haushaltsmittel - im Rahmen des Ermessens ein Anspruch des Landesjugendrings und der Sportjugend Niedersachsen auf den Ersatz von Verdienstausfall von Teilnehmern an Bildungsveranstaltungen. Eine SPD-Landesregierung wird daf\u00fcr sorgen, dass hier ausreichend Mittel zur Verf\u00fcgung stehen, damit dieser Anspruch nicht leer l\u00e4uft.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir GR\u00dcNEN fordern, dass die Studiengeb\u00fchren in Niedersachsen wieder abgeschafft werden, da sie jungen Menschen mit einkommensschwachem Hintergrund den Weg an die Universit\u00e4t zus\u00e4tzlich erschweren. Finanzierungslasten des Landes d\u00fcrfen nicht auf die Studierenden abgeschoben werden. Stattdessen m\u00fcssen die Hochschuletats aufgestockt werden, um die allgemeinen Studienbedingungen zu verbessern.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Mit der Einf\u00fchrung der Studienbeitr\u00e4ge in H\u00f6he von 500 Euro pro Semester unterst\u00fctzen wir die Hochschulen mit zus\u00e4tzlichen zweckgebundenen Finanzmitteln zur Verbesserung der Studienbedingungen. Mit den Niedersachsen-Studienbeitragsdarlehen haben wir die Basis daf\u00fcr geschaffen, dass jeder die 500 Euro Studienbeitrag aufbringen kann, und setzen uns au\u00dferdem f\u00fcr ein erweitertes Stipendien- und F\u00f6rdernetzwerk ein. ", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE setzt sich weiterhin f\u00fcr die Abschaffung der Langzeitstudiengeb\u00fchren und des Verwaltungskostenbeitrages ein. Neben der Versch\u00e4rfung der Zugangsberechtigungen f\u00fcr die Hochschulen sind diese ein Instrument, ein Studium nur f\u00fcr solche Studierenden zu gew\u00e4hrleisten, deren Eltern in der Lage sind, die Kosten zu tragen.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die Studienbeitr\u00e4ge sind in Niedersachsen so geregelt, dass niemand aufgrund seiner wirtschaftlichen Situation von einem Studium absehen muss. Mit den Studienbeitr\u00e4gen konnten die Bedingungen an den Hochschulen bereits sp\u00fcrbar verbessert werden. Wir wollen, dass die H\u00f6he der Studienbeitr\u00e4ge von den Hochschulen f\u00fcr jedes Fach selbst festgelegt werden k\u00f6nnen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die SPD wird Studiengeb\u00fchren nach einer Regierungs\u00fcbernahme abschaffen.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "GR\u00dcNE Politik setzt auf direkte Demokratie. Wir wollen aus dem Landeshaushalt einen B\u00fcrgerhaushalt machen. Wir wollen die \u00d6ffentlichkeit nachvollziehbar informieren \u00fcber k\u00fcnftige Forderungen und Verbindlichkeiten. Wir wollen in den Kommunen das Aufstellen von B\u00fcrger- und Beteiligungshaushalten erleichtern und f\u00f6rdern. F\u00fcr wichtige Entscheidungen streben wir auch im Land ein Beteiligungsverfahren an.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Haushaltsverantwortung ist Kernaufgabe der Kommunalparlamente. Aufgrund der Komplexit\u00e4t eines Haushaltes soll dieses auch in Zukunft so bleiben. Bei Einzelprojekten haben die B\u00fcrger im Rahmen der B\u00fcrgerentscheide die M\u00f6glichkeit, Einfluss zu nehmen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der B\u00fcrgerhaushalt ist ein Weg zu mehr direkter Demokratie.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Den B\u00fcrgerinnen und B\u00fcrgern in Niedersachsen steht es offen, sich pers\u00f6nlich vor Ort zu engagieren und damit auch Einfluss auf den Haushalt ihrer Gemeinde zu nehmen. Eine direkte Mitentscheidungsm\u00f6glichkeit wird jedoch abgelehnt.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ein Haushaltsplan ist sehr komplex und besteht aus zehntausenden von Titeln, die nicht isoliert betrachtet werden k\u00f6nnen. Der Haushalt eignet sich daher nicht f\u00fcr eine direkte B\u00fcrgerbeteiligung, wie die Erfahrungen entsprechender Modellversuche belegen.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Mehr bisher staatlich wahrgenommene Aufgaben sollen zuk\u00fcnftig auf der kommunalen Ebene wahrgenommen werden. Dies setzt eine St\u00e4rkung der Leistungsf\u00e4higkeit kleiner Landkreise (Verwaltungen) voraus. Deshalb ist eine Fusion erforderlich. ", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir begleiten freiwillige Zusammenschl\u00fcsse ebenso positiv wie die enge Zusammenarbeit von Kommunen. Wir sind aber gegen eine kommunale Gebietsreform.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Demokratie leidet, wenn sie sich immer weiter von den Menschen entfernt. Wir sind f\u00fcr m\u00f6glichst viel Mitbestimmung vor Ort - also in diesem Falle der Kommunen, St\u00e4dte und Landkreise. Sie d\u00fcrfen nicht zu gro\u00df und un\u00fcbersichtlich werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Nein. Wir sprechen uns gegen eine Kreisgebietsreform in Niedersachsen aus, sondern setzen auf interkommunale Zusammenarbeit, die sich seit vielen Jahren bew\u00e4hrt hat.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die von CDU und FDP zu verantwortende  Abschaffung der Bezirksregierungen hat den Druck auf die unterschiedlich leistungsf\u00e4higen nieders\u00e4chsischen Landkreise erh\u00f6ht. Es wird daher zu pr\u00fcfen sein, ob sich die Landesverwaltung effizienter organisieren l\u00e4sst, damit die regionalen Besonderheiten des Fl\u00e4chenlandes Niedersachsen wieder mehr Ber\u00fccksichtigung finden.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "B\u00fcndnis 90/Die Gr\u00fcnen wollen den Cannabiskonsum entkriminalisieren, aber nicht, weil wir die Gefahren bagatellisieren, sondern weil das Verbot einen wirksamen Jugend- und Gesundheitsschutz erschwert.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Cannabis ist eine potenzielle Einstiegsdroge. Die Legalisierung von Cannabis lehnen wir daher ab. Zu unserer Pr\u00e4ventionspolitik geh\u00f6ren eine wirksame Aufkl\u00e4rung und Suchtpr\u00e4vention in der Kinder- und Jugendarbeit und in der Schule. Au\u00dferdem sorgen wir daf\u00fcr, dass bei Drogenabh\u00e4ngigen ausstiegsorientierte gesundheitliche Ma\u00dfnahmen mit Therapie, Beratung und Rehabilitation durchgef\u00fchrt werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE ist f\u00fcr die Freigabe von weichen Drogen.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Ja, denn noch ist unklar, wie eine Straffreiheit bzgl. des Besitzes geringer Mengen weicher Drogen zum Eigenkonsum aussehen sollte: was w\u00e4re z.B. eine geringe Menge? Hier bed\u00fcrfte es zun\u00e4chst einer Harmonisierung der zul\u00e4ssigen Mengen auf L\u00e4nderebene, da die polizeiliche, staatsanwaltliche und richterliche Praxis z.Zt. sehr stark variiert.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es gibt keinen Grund zur \u00c4nderung der bestehenden Gesetze. Bei der zunehmenden Versetzung des Stoffs durch andere Zus\u00e4tze w\u00e4re alles andere Sozialromantik.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der Einfluss des Landes Niedersachsen ist aufgrund des bisherigen Aktien-Volumens vorhanden und sollte durch Verk\u00e4ufe nicht geschw\u00e4cht werden.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir stehen insbesondere zur Landesbeteiligung an der Volkswagen AG. Das Unternehmen hat f\u00fcr Niedersachen als Arbeitgeber f\u00fcr viele tausend Arbeitnehmerinnen und Arbeitnehmer eine \u00fcberragende Bedeutung. Die Landesbeteiligung sichert die Standorte in Niedersachsen und den Einfluss des Landes.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE will, dass die Errungenschaften des jetzt vom Europ\u00e4ischen Gerichtshof zum gro\u00dfen Teil gekippten VW-Gesetzes mit allen politischen und juristischen Mitteln, die dem Land zur Verf\u00fcgung stehen, verteidigt werden, um \u00f6ffentlich Einfluss auf diesen Konzern zu sichern. Volkswagen und seine Standorte sind das industrielle R\u00fcckgrat des Landes Niedersachsen. Nur eine starke Landesbeteiligung ist eine Garantie daf\u00fcr, dass z.B. Standorte wie Salzgitter oder Emden nicht dem Renditewahn zum Opfer fallen. DIE LINKE in Niedersachsen wird den Landesanteil an diesem Unternehmen verteidigen und sich f\u00fcr den Erhalt der im VW-Gesetz festgelegten Regelungen einsetzen, die durch das EuGH-Urteil nicht ber\u00fchrt sind, also vor allem die Regelung, wonach gegen den Willen der Besch\u00e4ftigtenvertreterInnen keine Standortschlie\u00dfungen zul\u00e4ssig sind. Weil mit dem Landesanteil zumindest die M\u00f6glichkeit besteht, auf die Wirtschaftspolitik im Interesse der Gemeinwohls Einfluss zu nehmen, muss in jedem Fall eine Sperrminorit\u00e4t der \u00f6ffentlichen Hand im VW-Konzern gesichert werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die FDP sieht es nicht als Aufgabe des Landes an, Autos zu bauen. Im Falle eines Verkaufs der Aktien sind auch keine negativen Auswirkungen auf die Standorte in Niedersachsen zu erwarten, die alle hoch produktiv arbeiten. Die Verkaufserl\u00f6se k\u00f6nnten in wichtige Investitionen etwa in Bildung und Forschung gesteckt werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Volkswagen ist f\u00fcr die nieders\u00e4chsische Wirtschaft von zentraler Bedeutung. Nach der Einschr\u00e4nkung des VW-Gesetzes durch den Europ\u00e4ischen Gerichtshof ist es wichtig, dass das Land als Aktion\u00e4r Einfluss auf die Gesellschaft aus\u00fcben kann.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Recht auf Adoption f\u00fcr gleichgeschlechtliche Lebensgemeinschaften wollen B\u00fcndnis 90/Die Gr\u00fcnen erreichen. In Deutschland lebt nach Informationen des Statistischen Bundesamtes in jeder achten gleichgeschlechtlichen Partnerschaft ein Kind. Diese Kinder seien im Unterhalts- und Erbrecht gegen\u00fcber anderen Kindern benachteiligt. Keine wissenschaftliche Studie habe bisher belegen k\u00f6nnen, dass Kinder, die mit homosexuellen Eltern aufwachsen, sozial oder psychologisch anders seien als Kinder heterosexueller Eltern. Auch rechtlich gebe es weder im Grundgesetz noch in internationalen Vertr\u00e4gen Verpflichtungen, die Deutschland von einer \u00c4nderung des Adoptionsrechts abhielten. Einzelne Homosexuelle d\u00fcrfen bereits Kinder adoptieren. F\u00fcr schwule oder lesbische Lebensgemeinschaften ist das noch nicht m\u00f6glich.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir respektieren die Entscheidung von Menschen, die in anderen Formen der Partnerschaft ihren Lebensentwurf verwirklichen. Wir erkennen an, dass auch in solchen Beziehungen Werte gelebt werden, die grundlegend f\u00fcr unsere Gesellschaft sind. Wir werben f\u00fcr Toleranz und wenden uns gegen jede Form von Diskriminierung. Eine Gleichstellung mit der Ehe zwischen Mann und Frau als Kern der Familie lehnen wir jedoch ebenso ab wie ein Adoptionsrecht f\u00fcr Homosexuelle.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir sind f\u00fcr die Gleichstellung eingetragener Partnerschaften mit der Ehe. Das bezieht das Adoptions- und das Steuerrecht mit ein.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Ja, dies ist die konsequente Folge aus der Gleichstellung von homosexuellen Partnerschaften auch in anderen Lebensbereichen und Rechtsfragen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Auf Initiative der SPD wird nunmehr s\u00e4mtliches nieders\u00e4chsisches Recht an das Lebenspartnerschaftsgesetz des Bundes angepasst. D.h. Gleichstellung eingetragener Lebenspartnerschaften in allen Rechten und Pflichten mit der Ehe.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das fl\u00e4chendeckende Erfassen \u00f6ffentlicher Orte per Video\u00fcberwachung lehnen wir ab. Nicht alles, was technisch machbar ist, darf im Rechtsstaat angewendet werden. Nur an Orten, an denen ein hohes Kriminalit\u00e4tsaufkommen zu verzeichnen ist, kann Video\u00fcberwachung ein sinnvolles Mittel sein, um Sicherheit f\u00fcr die Menschen zu erh\u00f6hen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die immer neuen Herausforderungen an die Arbeit der Sicherheitsbeh\u00f6rden erfordern eine fortw\u00e4hrende Anpassung der rechtlichen Instrumentarien der Sicherheitsbeh\u00f6rden. Dazu geh\u00f6rt auch eine Ausweitung der Video\u00fcberwachung im \u00f6ffentlichen Raum im Rahmen der rechtlichen Vorgaben.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "\u00d6ffentliche Video\u00fcberwachung stellt alle B\u00fcrgerinnen und B\u00fcrger unter Generalverdacht. Eine Politik, die sich immer und st\u00e4ndig vor seinen B\u00fcrgerinnen und B\u00fcrgern zu sch\u00fctzen versucht, muss sich fragen lassen, ob sie die richtige Politik betreibt.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Grunds\u00e4tzlich ist eine Ausweitung der Video\u00fcberwachung abzulehnen. Ausnahmen sollten jedoch an den \u00f6ffentlichen Pl\u00e4tzen zugelassen werden, an denen erfahrungsgem\u00e4\u00df schwere Straftaten begangen werden. Trotzdem muss man ehrlicherweise dazu sagen, dass sich wohl kein Terrorist von einer \u00dcberwachungskamera abschrecken lassen w\u00fcrde.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Rechtsgrundlagen f\u00fcr die Video\u00fcberwachung wurde bereits im vom Landtag im November 2007 beschlossenen Polizeigesetz ausgebaut. Obwohl die SPD diesem Gesetz aufgrund verfassungsrechtlicher Bedenken nicht zugestimmt hat, tr\u00e4gt sie die beschlossene Ausweitung der Video\u00fcberwachung mit. Allerdings braucht die nieders\u00e4chsische Polizei eine ordentliche finanzielle Ausstattung, um die gesetzlich geschaffenen M\u00f6glichkeiten auch ausnutzen zu k\u00f6nnen. In den letzten Jahren haben sich die Klagen dar\u00fcber geh\u00e4uft, dass die Landesregierung nicht die n\u00f6tigen Mittel f\u00fcr die Ausr\u00fcstung und Ausstattung der Polizei zur Verf\u00fcgung stellt.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-19"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der Kita-Besuch darf nicht vom Einkommen der Eltern abh\u00e4ngig sein. Schrittweise soll deshalb der Besuch des Kindergartens und dann auch der Krippen geb\u00fchrenfrei werden.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir wollen alle drei Kindergartenjahre beitragsfrei stellen. Dieses Ziel hat Priorit\u00e4t. Eine Geb\u00fchrenfreiheit der Betreuung der 0-3 j\u00e4hrigen ist durch das Land derzeit finanziell nicht zu leisten. Wir werden jedoch gemeinsam mit dem Bund einen deutlichen und bedarfsgerechten Ausbau der Krippen- und Tagespflegepl\u00e4tze in Niedersachsen bis 2013 erreichen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Kleinkinderbetreuung z\u00e4hlt f\u00fcr DIE LINKE bereits in den Bereich der fr\u00fchkindlichen Bildung. Bildung ist f\u00fcr uns in allen Lebenslagen, unabh\u00e4ngig vom Alter, geb\u00fchrenfrei bereit zu stellen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die Geb\u00fchrenfreiheit im Krippenbereich kann nur ein langfristiges Ziel sein. Nach der Einf\u00fchrung des beitragsfreien letzten Kindergartenjahres ist als n\u00e4chster Schritt eine Beitragsfreiheit f\u00fcr 3- bis 5-J\u00e4hrige anzustreben. Die FDP setzt zur Umsetzung auf das Modell von Bildungs- und Betreuungsgutscheinen.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Das ist unser Ziel. Aufgrund der knappen Landesfinanzen wird dies jedoch nur schrittweise und langfristig m\u00f6glich sein. Auch die Hilfe des Bundes ist dazu n\u00f6tig.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-20"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen engmaschige und kostenfreie Vorsorgeuntersuchungen f\u00fcr Kinder ausbauen. Vor dem Besuch einer Kita sollen alle Kinder verpflichtend nach einheitlichen Standards untersucht werden.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir unterst\u00fctzen bundeseinheitliche Bem\u00fchungen zur Verbesserung der Vorsorgeuntersuchung f\u00fcr Kleinkinder. Das nieders\u00e4chsische Pr\u00e4ventionsprogramm sieht vor, die Eltern zur Vorsorgeuntersuchung f\u00fcr Kleinkinder aufzufordern.  Dieses soll mit Hilfe der Frauen- und Kinder\u00e4rzte sowie Hebammen, w\u00e4hrend der Geburtsvorbereitung, bei Elternseminaren sowie durch ein verbindlicheres Einladungssystem erreicht werden.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Verpflichtende Vorsorgeuntersuchungen, die Mangelerscheinungen oder schlechte Versorgung von Kindern feststellen, k\u00f6nnen an der Lebenssituation der Kinder nichts \u00e4ndern. Armut muss beseitigt und Betreuungseinrichtungen f\u00fcr die Kleinsten m\u00fcssen geschaffen werden.", 
+          "value": 0, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Die FDP tritt f\u00fcr eine h\u00f6here Verbindlichkeit der Vorsorgeuntersuchungen z. B. durch ein koordiniertes Einladungswesen ein. Eine gesetzliche Verpflichtung mit entsprechenden Sanktionen lehnen wir ab, sie wird auch von den betroffenen Kinder\u00e4rzten nicht f\u00fcr sinnvoll erachtet.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Realit\u00e4t zeigt: Freiwillige Vorsorgeuntersuchungen reichen nicht aus, um wirksam gegen Kindesmissbrauch und -verwahrlosung zu sch\u00fctzen. Die SPD will 5 regelm\u00e4\u00dfige und verpflichtende Vorsorgeuntersuchungen des \u00f6ffentlichen Gesundheitsdienstes in Kitas und Grundschulen. Dazu ein niedrigschwelliges Hilfe- und Fr\u00fchwarnsystemn (Famillienhebammen, Familienzentren, etc.).", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-21"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Schulen erhalten ein eigenes Personal- und Sachkostenbudget.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir setzen die Qualit\u00e4tsentwicklung der Schulen durch die Eigenverantwortliche Schule fort. Wir werden dabei den Schulen erweiterte Entscheidungsspielr\u00e4ume \u00fcbertragen, sodass Schulen \u00fcber gro\u00dfe Teile ihres Budgets selber entscheiden k\u00f6nnen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Grundbedingungen (Bezahlung der Lehrerinnen und Lehrer, Bezahlung von Verwaltungskr\u00e4ften, Hausmeister, Ausstattung der Schule, Geb\u00e4udepflege) sind ausschlie\u00dflich durch die \u00f6ffentliche Hand zu tragen. Negativbeispiele sind derzeit z.B. Kapitalisierung von Lehrkr\u00e4ften, wonach Schulen auf Lehrpersonal verzichten und dieses Geld ausbezahlt bekommen. Die finanzielle Notsituation zwingt Schulen dazu, sich gegen dringende Neueinstellungen zu entscheiden. Das hat fatale Folgen f\u00fcr die ohnehin schlechte Unterrichtsversorgung.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Im Rahmen der Eigenverantwortlichen Schule m\u00fcssen Schulen zuk\u00fcnftig \u00fcber ihr gesamtes Budget entscheiden d\u00fcrfen. Wir setzen uns daf\u00fcr ein, dass alle Schulen ein Budget erhalten, das den Schulen tats\u00e4chlich Gestaltungsspielr\u00e4ume er\u00f6ffnet.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wer eine eigenverantwortliche Schule will, der muss auch den gr\u00f6\u00dftm\u00f6glichen Spielraum f\u00fcr das Aus\u00fcben von Verantwortung geben.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-22"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Keine Sch\u00fclerin und kein Sch\u00fcler darf auf Grund der finanziellen Lage seiner bzw. ihrer Eltern vom Mittagessen ausgeschlossen werden. ", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Trotz Zust\u00e4ndigkeit des Bundes, wollen wir sozial bed\u00fcrftigen Sch\u00fclern die Teilnahme an der Mittagsverpflegung in Ganztagsschulen erm\u00f6glichen. Wir stellen 3 Mio. Euro im Haushalt bereit, mit denen wir kommunalen Initiativen deren Kosten bis zur H\u00e4lfte erstatten. Die Eltern zahlen hierzu einen Beitrag in H\u00f6he der im ALG II veranlagten Mittagessenspauschale.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE wird im Nieders\u00e4chsischen Landtag einen Gesetzesantrag stellen, f\u00fcr alle schulpflichtigen Kinder in Niedersachsen eine gegebenenfalls durch Landeszusch\u00fcsse gef\u00f6rderte, kostenfreie Mahlzeit an den Schulen in Niedersachsen einzuf\u00fchren.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Das Land wird ab dem n\u00e4chsten Jahr als freiwillige Leistung die tats\u00e4chlich Bed\u00fcrftigen mit einem Zuschuss zum Mittagessen unterst\u00fctzen. Die Bundesregierung steht aber in der Pflicht, durch eine angemessene Berechnung der Hartz-IV-Betr\u00e4ge es nicht soweit kommen zu lassen, dass Kinder sich keine Mahlzeit leisten k\u00f6nnen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ja, aber nicht losgel\u00f6st vom Einkommen der Eltern. Reichere Familien k\u00f6nnen durchaus Essensgeld bezahlen. Es muss also eine soziale Staffelung geben.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-23"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Eine l\u00e4ngere Bezugsdauer birgt die Gefahr, dass zu Lasten der Sozialkassen Unternehmen ihre \u00e4lteren Arbeitnehmer weit vor dem offiziellen Renteneintritt entlassen. Damit wird die Position \u00e4lterer Arbeitnehmer auf dem Arbeitsmarkt zudem geschw\u00e4cht.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir unterst\u00fctzen den Kompromiss der Gro\u00dfen Koalition auf Bundesebene. Danach soll das ALG I f\u00fcr Arbeitnehmer ab 50 Jahren, nach ihrem Alter und der Zahl ihrer vorherigen Beitragszahlungszeit gestaffelt, l\u00e4nger gezahlt werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Korrektur der unseligen Hartz-Gesetze, bei denen die skandal\u00f6se K\u00fcrzung der Bezugsdauer des Arbeitslosengeldes I ein Element ist, ist eines der Hauptanliegen der Partei DIE LINKE.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Vorrang vor einer Ausweitung von Leistungen hat f\u00fcr die FDP eine weitere Senkung der Beitr\u00e4ge zur Arbeitslosenversicherung, die zu einer Erh\u00f6hung der Nettoeinkommen aller Arbeitnehmer f\u00fchrt und durch die Entlastung bei den Lohnnebenkosten auch neue Arbeitspl\u00e4tze schafft.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dem stimmen wir zu. Die Forderung nach einer Verl\u00e4ngerung von ALG I f\u00fcr \u00e4ltere Menschen, die auf eine Initiative der SPD zur\u00fcckgeht, ist mittlerweile erf\u00fcllt.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-24"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "An bestimmten Studieng\u00e4ngen k\u00f6nnen Eignungstests sinnvoll sein, aber das Abitur darf als allgemeine Hochschulzugangsberechtigung nicht abgewertet werden. Wir wollen, dass nicht nur Hochschulen Studierende aussuchen, sondern auch die Studierenden sich ihre Hochschule aussuchen k\u00f6nnen - aber dazu brauchen wir mehr Studienpl\u00e4tze.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Hochschulen sollen ihre Studierenden verst\u00e4rkt selber ausw\u00e4hlen k\u00f6nnen. Wir wollen Hochschulen noch st\u00e4rker zur Nutzung von Eingangsfeststellungen motivieren und die Studierenden noch umfassender \u00fcber die Studienanforderungen informieren. Damit wollen wir auch erreichen, dass die Studienabbrecherquote sinkt.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir sind f\u00fcr die freie Wahl der Hochschulen durch die Studentinnen und Studenten - nicht umgekehrt. Das Land hat die Hochschulen entsprechend der Nachfrage der Studierenden und dem gesellschaftlichen Bedarf so auszustatten, dass jede und jeder dort studieren kann, wo er oder sie es am liebsten m\u00f6chte.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Umgekehrt gilt das gleiche: auch die Studenten sollen ihre Hochschulen aussuchen d\u00fcrfen, daf\u00fcr haben wir die ZVS weitgehend abgeschafft. Durch den Wettbewerb um die besten Studenten erhoffen wir uns eine weitere Verbesserung der Qualit\u00e4t der Lehre.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-25"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die derzeit bestehenden Gesetze und Rahmenbedingungen f\u00fcr die Gr\u00fcndung privater Hochschulen sind unseres Erachtens v\u00f6llig angemessen. Wichtig ist f\u00fcr uns, dass die privaten Hochschulen - und damit auch die dort erworbenen Abschl\u00fcsse - staatlich anerkannt werden. Hier lassen die geltenden Bestimmungen gen\u00fcgend Spielraum.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Private Hochschulen sind eine wertvolle Erg\u00e4nzung der \u00f6ffentlichen Hochschulangebote. Der Gr\u00fcndung privater Hochschulen in Niedersachsen stehen wir daher offen gegen\u00fcber. Gegebenenfalls noch vorhandene Hemmnisse werden wir, wo dieses m\u00f6glich ist, abbauen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Gr\u00fcndung privater Hochschulen bef\u00f6rdert den Ausstieg des Landes aus seiner Bildungsverantwortung gegen\u00fcber allen Studierenden. Das Land muss daf\u00fcr sorgen, dass umfassende und die beste Bildung und Forschung an den Hochschulen vermittelt und betrieben werden.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Durch das Nebeneinander von staatlichen und privaten Bildungsanbietern kann der Wettbewerb weiter befl\u00fcgelt und die Qualit\u00e4t der Lehre weiter verbessert werden. Wir wollen die \u00fcberzogenen gesetzlichen H\u00fcrden bei der Errichtung privater Hochschulen abschaffen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Nicht um jeden Preis. Es kommt vielmehr darauf an, die staatlichen Hochschulen gut auszubauen. Privathochschulen nehmen sehr h\u00e4ufig hohe Studiengeb\u00fchren. Das n\u00fctzt vor allem Kindern aus reicheren Familien.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-26"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "GR\u00dcNE fordern seit Langem eine Bleiberechtsregelung. Die bisherigen Bleiberechtsregelungen auf Landes- und Bundesebene bieten keine humanit\u00e4re L\u00f6sung, denn sie grenzen sozial Schwache aus. GR\u00dcNE wollen eine gro\u00dfz\u00fcgige, humanit\u00e4re Bleiberechtsregelung. Sie soll beispielsweise bei Alleinerziehenden, Kindern, Alten, Behinderten und Kranken nicht von der eigenst\u00e4ndigen Sicherung des Lebensunterhalts abh\u00e4ngen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Bereits heute k\u00f6nnen Fl\u00fcchtlinge ein Bleiberecht beantragen, wenn sie Arbeit haben und mindestens acht Jahre in Deutschland leben. Familien mit mindestens einem minderj\u00e4hrigen Kind bekommen nach sechsj\u00e4hrigem Aufenthalt ein dauerhaftes Bleiberecht. Die Antragsteller m\u00fcssen deutsch sprechen und f\u00fcr ihren Lebensunterhalt selbst aufkommen k\u00f6nnen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Tatsache, dass Deutschland ein Einwanderungsland ist, muss zur Leitlinie der Politik werden und ist in allen Gesetzen und Verwaltungsvorschriften umzusetzen. So genannte Kettenduldungen sind abzuschaffen. Ein Bleiberecht nach f\u00fcnf Jahren ist zu schaffen.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Ja, unter der Voraussetzung, dass diese gut integriert sind. Das hei\u00dft, dass sie bereit sein m\u00fcssen, einer Arbeit nachzugehen, um ihren Lebensunterhalt zu sichern und dass sie die deutsche Sprache bereits beherrschen oder diese lernen wollen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die SPD in Niedersachsen setzt sich seit Jahren f\u00fcr eine neuerliche Altfallregelung f\u00fcr Fl\u00fcchtlinge mit langj\u00e4hrigem Aufenthalt ein. Eine solche Bleiberechtsregelung sollte an bestimmte Kriterien gekn\u00fcpft werden,  so z.B. - langj\u00e4hriger Aufenthalt in der Bundesrepublik Deutschland, - in Deutschland geborene und mittlerweile schulpflichtige Kinder oder langj\u00e4hriger Aufenthalt der Kinder, - keine vors\u00e4tzlich begangenen Straftaten, wobei Geldstrafen in geringf\u00fcgiger H\u00f6he au\u00dfer Betracht bleiben k\u00f6nnen, - Bestreiten des Lebensunterhaltes aus eigener Erwerbst\u00e4tigkeit bzw. nur deshalb nicht selbst zu verantwortender Sozialhilfebezug, weil keine Vermittlung in Erwerbst\u00e4tigkeit m\u00f6glich war oder weil Kinder in der Familie zu versorgen sind.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-27"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der Neubau von Kohlekraftwerken ist unvereinbar mit den notwendigen Klimaschutzzielen. Kohlekraftwerke verschleudern einen Gro\u00dfteil der eingesetzten Energie und verursachen gewaltige CO2-Emissionen. Moderne Gas- und Dampfturbinenkraftwerke oder - noch besser - dezentrale Blockheizkraftwerke nutzen dagegen bis zu 90 Prozent der eingesetzten Energie aus.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir unterst\u00fctzen die Ansiedlung von Kraftwerken unterschiedlicher Technologien. Wir werben auch um die Ansiedlung von neuen, hocheffizienten und umweltfreundlicheren Kohlekraftwerken, die \u00e4ltere Anlagen in Deutschland ersetzen k\u00f6nnen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE steht f\u00fcr ein Energiekonzept, das ausschlie\u00dflich regenerative Energien einschlie\u00dft.", 
+          "value": -1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Der Neubau ist notwendig, um die Stromversorgung und den Erhalt von Arbeitspl\u00e4tzen in energieintensiven Bereichen sicherzustellen. Die geplanten Kohlekraftwerke werden nach dem neuesten Stand der Technik gebaut. Sie sto\u00dfen weniger CO2 aus als \u00e4ltere Kohlekraftwerke und k\u00f6nnen als Vorbild f\u00fcr Neubauten dienen, was zur Senkung des weltweiten CO2-Aussto\u00dfes f\u00fchren wird.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Nach neuestem Stand der Technik, CO2-frei und mit Kraftw\u00e4rmekopplung.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-28"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Als Gr\u00fcne in Niedersachsen setzten wir uns f\u00fcr bessere M\u00f6glichkeiten der Partizipation junger Menschen an der politischen Meinungsbildung ein. Daher m\u00f6chten wir das Alter f\u00fcr das aktive Wahlrecht zu Landtags- und Kommunalwahlen auf 14 Jahre und das passive Wahlalter auf 16 Jahre absenken.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Politisches Interesse muss sich entwickeln. Es kann nicht verordnet werden. Das bestehende Wahlrecht ab 16 bei Kommunalwahlen soll aber beibehalten werden. Hierdurch werden Jugendliche zun\u00e4chst vor Ort, wo sie unmittelbarer hiervon betroffen sind, an politische Entscheidungsprozesse herangef\u00fchrt.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Bei den Kommunalwahlen d\u00fcrfen bereits Jugendliche mit 16 Jahren w\u00e4hlen. Hier ist das Gesetz fortschrittlicher. F\u00fcr diesen Unterschied gibt es keine rationale Erkl\u00e4rung.", 
+          "value": 1, 
+          "party": "DIE LINKE"
+        }, 
+        {
+          "text": "Wir sind der Auffassung, dass sich die bisherige Regelung bew\u00e4hrt hat und das es sinnvoll ist, dass das Wahlalter mit der Vollj\u00e4hrigkeit zusammenf\u00e4llt.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Eine SPD-Landesregierung wird pr\u00fcfen, inwieweit der rechtliche Rahmen geschaffen werden kann, um auf kommunaler Ebene auch das passive Wahlalter auf 16 Jahre herunterzusetzen. F\u00fcr eine \u00c4nderung des Wahlalters bei Landtagswahlen w\u00e4re eine Verfassungs\u00e4nderung erforderlich - die hierf\u00fcr erforderliche Zweidrittelmehrheit im Landtag ist derzeit jedoch nicht absehbar.", 
+          "value": 0, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-11-29"
+    }
+  ]
+}

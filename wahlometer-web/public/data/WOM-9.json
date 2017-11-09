@@ -1,0 +1,1054 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir setzen uns f\u00fcr die Abschaffung des Ladenschlusses an Werktagen ein. Zus\u00e4tzlich sollen die Bezirke im Rahmen der gesetzlichen Regelungen k\u00fcnftig \u00fcber zwei verkaufsoffene Sonntage pro Jahr entscheiden k\u00f6nnen. Die Devise lautet: Selbst entscheiden, selbst verantworten und Nischen finden, die auf besondere Kundenw\u00fcnsche eingehen (z.B. Sp\u00e4tverkauf).", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, aber zugleich m\u00fcssen die Rechte der davon betroffenen Besch\u00e4ftigten (Verkaufspersonal usw.) gest\u00e4rkt werden.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Eine uralte Forderung der FDP.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die F\u00f6rderalismusreform erm\u00f6glicht es Berlin, das stark vom Tourismus gepr\u00e4gt ist, wirtschaftlich aus den neuen M\u00f6glichkeiten einen Nutzen zu ziehen. Die Chance, die Laden\u00f6ffnungszeiten zu erweitern, wollen wir daher wahrnehmen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Eine weitere Freigabe der Laden\u00f6ffnungszeiten ist besch\u00e4ftigtenfeindlich. Diese Deregulierung vernichtet dar\u00fcber hinaus die kleineren Gesch\u00e4fte in Randlagen und f\u00fchrt zu Konzentration.  Mehr Kaufkraft gibt es auch mit freigegebenen Laden\u00f6ffnungszeiten nicht.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Verkehrsvertr\u00e4ge mit der BVG sollen Umfang, Kosten und Qualit\u00e4t ihrer Leistungen festlegen. Bei Nichterf\u00fcllung wollen wir die Leistungserbringung ausschreiben. Die Infrastruktur bleibt aber in \u00f6ffentlicher Hand.", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Langfristig (im n\u00e4chsten Jahrzehnt) wird das - wegen der EU-Vorgaben - nicht unver\u00e4ndert bleiben k\u00f6nnen. Die BSR bereitet sich z.B. in einem 14-j\u00e4hrigen Umstellungsprozess darauf vor. Voraussetzung ist immer die volle Wettbewerbsf\u00e4higkeit.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, auch hier gilt, was auf alle Einrichtungen der \u00f6ffentlichen Daseinsvorsorge zutrifft: Die Linkspartei.PDS will sie als effektive Landesunternehmen weiterf\u00fchren, um soziale Steuerung und demokratische Kontrolle zu erm\u00f6glichen.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die BVG bleibt als Personal- und Infrastrukturgesellschaft im Eigentum des Landes. Der Betrieb wird ausgeschrieben.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Das Verkehrsnetz der BVG geh\u00f6rt zu einem der dichtesten Deutschlands und bildet auch die Grundlage f\u00fcr viele Jobs in unserer Stadt.  Um beides auch in Zukunft gew\u00e4hrleisten zu k\u00f6nnen,  d\u00fcrfen nicht allein wirtschaftliche Interessen z\u00e4hlen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Durch das Graffiti-Unwesen entsteht j\u00e4hrlich allein in Berlin ein Schaden von 50 Millionen Euro. Jede erhebliche unbefugte Ver\u00e4nderung des Erscheinungsbildes einer Sache ist unter Strafe zu stellen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, die vorhandenen gesetzlichen M\u00f6glichkeiten zur Strafverfolgung sind ausreichend.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Unerlaubte Beschmutzungen von W\u00e4nden sich Sachbesch\u00e4digungen und dementsprechend zu ahnden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Der Schutz des pers\u00f6nlichen Eigentums liegt uns am Herzen, dazu geh\u00f6ren nat\u00fcrlich auch H\u00e4userw\u00e4nde.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die CDU spricht sich f\u00fcr ein bedarfsorientiertes Angebot an Ganztagsschulen mit ausgewiesenen p\u00e4dagogischen Konzepten aus. Die erweiterten Unterrichts- und Betreuungszeiten sollten zum Beispiel neben einem Angebot an sportlichen Aktivit\u00e4ten auch zur musischen Bildung genutzt werden. In Zusammenarbeit mit Musikschulen k\u00f6nnte auch Instrumentalunterricht angeboten werden.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja. Grundschulen sind in Berlin bereits Ganztagsschulen. Dabei k\u00f6nnen Eltern und Kinder auch weiterhin zwischen zwei M\u00f6glichkeiten w\u00e4hlen: 1. einem Angebot, bei dem Unterricht und Freizeitangebote mindestens bis 16 Uhr verpflichtend sind (gebundene Ganztagsschule) oder 2. einem Angebot, bei dem Freizeitangebote \u00fcber die Unterrichtszeit hinaus frei w\u00e4hlbar sind (offene Ganztagsschule).", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die Eltern m\u00fcssen weiterhin die Wahlfreiheit haben, ob sie ihre Kinder in die Ganztagsschulen schicken oder nicht! Der Erfolg dieser Schulen ist au\u00dferdem abh\u00e4ngig von der Ausstattung - die stimmt in vielen F\u00e4llen leider nicht!", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Bis auf wenige Ausnahmen sind alle Berliner Grundschulen offene Ganztagsgrundschulen. Das hei\u00dft, bei Bedarf kann direkt an der Grundschule eine Hortbetreuung ganzt\u00e4gig in Anspruch genommen werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Langfristig streben wir eine Schule f\u00fcr alle Kinder von der 1. bis 10. Klasse in Berlin an. Andere europ\u00e4ische L\u00e4nder (u.a. Finnland) zeigen, wie gute Gemeinschaftsschulen aussehen: Kleine Klassen, individuelle F\u00f6rderung der Sch\u00fcler/innen, motivierte Lehrer/innen und Lernen durch Unterrichtsprojekte.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Schule hat auch den Auftrag zur Erziehung; die Kopfnoten dokumentieren das.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein. Nach Auffassung der Linkspartei.PDS geh\u00f6ren entsprechende Bewertungen nicht ins Zeugnis. Aber die Schulen in Berlin haben in Abstimmung mit Eltern und Sch\u00fcler/innen die M\u00f6glichkeit, selbst dar\u00fcber zu entscheiden, ob und in welcher Form sie das Verhalten in der Schule beurteilen.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die FDP begr\u00fc\u00dft es, wenn z.B. das Engagement der Sch\u00fcler in und au\u00dferhalb der Schule erw\u00e4hnt wird, wie auch die soziale Kompetenz, die Teamf\u00e4higkeit - das ist allerdings nicht in Noten festzuhalten.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Entscheidung, ob auf den Zeugnissen Kopfnoten verteilt werden, liegt in den H\u00e4nden der Schulen. Den Rahmen hierf\u00fcr setzt das Schulgesetz von Berlin in \u00a7 58 Abs. 7.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Schule hat die Aufgabe, die Zahl der Klassenwiederholer deutlich zu reduzieren. Es gibt im Einzelfall aber auch gute Gr\u00fcnde f\u00fcr eine Klassenwiederholung.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, denn Ehrenrunden sind demotivierend, bringen den Sch\u00fcler/innen selten Bildungserfolge und sind zudem teuer f\u00fcr die \u00f6ffentliche Hand. Fr\u00fchzeitige individuelle F\u00f6rderung ist der richtige Weg. Das ist schon jetzt im Schulgesetz von Rot-Rot festgeschrieben.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Notwendig ist eine bessere individuelle F\u00f6rderung. Sitzenbleiben muss aber dann m\u00f6glich sein, wenn alle anderen Mittel fehlgeschlagen sind, also als ultima ratio!", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir sehen das Sitzenbleiben als letzte Chance, vers\u00e4umten Lernstoff nachzuholen bzw. Leistungen zu verbessern.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Welche Entlastungseffekte die Stadtautobahn mit sich bringt, sieht man, wenn sie gesperrt ist!", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, denn die geplante Verl\u00e4ngerung der Stadtautobahn von Neuk\u00f6lln nach Friedrichshain w\u00fcrde Stadtbereiche zerst\u00f6ren, als Paralleltrasse Fahrg\u00e4ste von der S-Bahn abziehen und somit das Ungleichgewicht von Autoverkehr und Nahverkehr weiter zum Auto verschieben. Der Stra\u00dfenbau w\u00fcrde zudem ernorme Finanzmittel binden, die an anderer Stelle fehlen.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Zur Entlastung der Innenstadt vom Durchgangsverkehr ist diese Erweiterung notwendig.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ein weiterer Ausbau der Stadtautobahn wird sich in auch in Zukunft nach dem Bedarf und den zur Verf\u00fcgung stehenden Mitteln richten.", 
+          "value": 0, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Dieselfahrzeuge ohne Ru\u00dffilter sind im Au\u00dfenbereich auch nicht besser und sollten daher \u00fcber schrittweise Steuererh\u00f6hungen \u00fcberall ausrangiert werden.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, die innerst\u00e4dtische Umweltbelastung ist zu hoch, \u00fcbrigens nicht nur durch Dieselru\u00df. Das ist gesundheitsgef\u00e4hrdend und vermindert die Lebensqualit\u00e4t.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Nur ein integriertes Gesamtkonzept, das auch die Verminderung von Feinstaubemissionen auf Baustellen, technische Ma\u00dfnahmen an Stra\u00dfen sowie Reifen zur Verringerung des Abriebs und den verst\u00e4rkten Hausbrandanteil an der Feinstaubbelastung erfasst, kann Erfolg haben.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Der Umweltschutz bleibt ein zentrales Ziel sozialdemokratischer Politik. In den letzten Jahren konnte die Schadstoffbelastung in der Luft erfolgreich verringert werden. Wir setzen diesen Weg fort.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Da die Nutzung der LKW einmal an ihre Grenzen sto\u00dfen wird, sollte der dritte Verkehrstr\u00e4ger, der einen Bau-Vorlauf von mehreren Jahrzehnten hat, nicht aufgegeben werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, der geplante Ausbau der Binnenschifffahrtswege im Verkehrsprojekt Deutsche Einheit 17 geht eindeutig zu Lasten der letzten verbliebenen Flusslandschaften und l\u00e4uft allen Vorsorgema\u00dfnahmen zur Verhinderung von Flutkatastrophen zuwider. Er geht auch zu Lasten der mittelst\u00e4ndischen Binnenschifffahrt.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir m\u00f6chten die g\u00fcnstige Lage Berlins an Spree und Havel besser nutzen und zeitgleich etwas f\u00fcr den Umweltschutz leisten.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Gewerbesteuer soll auf das Niveau von Potsdam angehoben werden. Dies entspricht auch einer Forderung anderer Bundesl\u00e4nder, die Geld an Berlin abf\u00fchren.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die CDU spricht sich f\u00fcr eine Senkung der Gewerbesteuer aus, um die Rahmenbedingungen f\u00fcr die Berliner Unternehmen konsequent zu verbessern und somit das wirtschaftliche R\u00fcckgrat unserer Stadt zu st\u00e4rken. Auf diese Weise sollen mehr Arbeits- und Ausbildungspl\u00e4tze geschaffen werden.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, die Erh\u00f6hung der Gewerbesteuer k\u00f6nnte zum Minusgesch\u00e4ft f\u00fcr den Landeshaushalt werden. Zwar ist es denkbar, dass im ersten Zugriff mehr Einnahmen in den Landeshaushalt flie\u00dfen. M\u00f6glich ist aber auch, dass dann Betriebe an Standorte verlagert werden, an denen die Gewerbesteuer niedriger ist.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Diese Steuer schw\u00e4cht die Wettbewerbsposition der Berliner Unternehmen. Eine Steuererh\u00f6hung w\u00fcrde weitere Arbeitspl\u00e4tze kosten.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die wirtschaftliche Situation l\u00e4sst eine solche Ma\u00dfnahme nicht zu.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir fordern die Erh\u00f6hung der Gewerbesteuer auf das Potsdamer Niveau von 410 auf 450 Prozent. Das w\u00fcrde dem Landeshaushalt ca. 70 Mio. EUR bringen und k\u00f6nnte z.B. das Sozialticket und andere soziale Ma\u00dfnahmen ausfinanzieren.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Ein ausreichendes landeseigenes Mietwohnungsangebot bietet Steuerungsm\u00f6glichkeiten. In Ausnahmef\u00e4llen kann aber eine Privatisierung von Teilwohnungsbest\u00e4nden, vor allem zur Wiederherstellung der Liquidit\u00e4t der Wohnungsbaugesellschaften, unter Beachtung des Mieterschutzes sowie der st\u00e4dtebaulichen und wirtschaftlichen Auswirkungen notwendig sein.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, Berlin braucht aus sozialen Gr\u00fcnden und im Interesse der Stadtentwicklung einen gro\u00dfen Bestand st\u00e4dtischer Wohnungen. Allerdings: Die entsprechenden Wohnungsgesellschaften m\u00fcssen saniert werden, damit das Land nicht st\u00e4ndig Steuer-Euro zubuttern muss.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Es ist nicht Aufgabe des Landes Berlin, Wohnungen zu besitzen. Durch vertragliche Vereinbarungen mit dem Investor wird der Mieterschutz auch zuk\u00fcnftig gew\u00e4hrleistet. Durch den  gesch\u00e4tzten Erl\u00f6s von 5,5 Mrd. Euro erh\u00e4lt das Land den notwendigen Spielraum, zukunftsweisende Investitionen wieder t\u00e4tigen zu k\u00f6nnen, z.B. im Bereich Bildung, Wissenschaft und Forschung!", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Das Land Berlin muss ein ausreichendes Marktgewicht, dass sich im Interesse der Mieter und Mieterinnen nachhaltig auf die Mietentwicklung auswirkt und sozialpolitische Handlungsspielr\u00e4ume er\u00f6ffnet, behalten.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Aufgabe das Landes Berlin ist es, ausreichend Wohnraum f\u00fcr einkommensschwache Berliner/innen zu sichern. Zus\u00e4tzlich muss die M\u00f6glichkeit bestehen, auf die Mietenentwicklung in der Stadt Einfluss zu nehmen. Dies ist mit den vorhandenen 270.000 Wohnungen gerade noch zu gew\u00e4hrleisten. Der Verkauf der GSW mit ihren 65.000 Wohnungen war einer der S\u00fcndenf\u00e4lle des SPD/Linkspartei.PDS-Senats.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir bef\u00fcrworten ein Modellprojekt. Voraussetzung daf\u00fcr w\u00e4re allerdings eine \u00c4nderung von Bundesgesetzen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir wollen mit staatlichen Mitteln den Ausstieg aus der Sucht finanzieren und nicht die Sucht.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, denn Drogensucht ist eine Krankheit und diese muss nach medizinischen Empfehlungen behandelt werden.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Der illegale Drogenmarkt l\u00e4sst sich nur durch eine kontrollierte Abgabe austrocknen, Pr\u00e4ventionsarbeit wird m\u00f6glich.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es gibt in Berlin ein gro\u00dfes Angebot an erfolgreichen Entzugsprogrammen. Wir wollen alles daf\u00fcr tun, dass die betroffenen Menschen von ihrer Sucht befreit werden. Eine Abgabe harter Drogen halten wir f\u00fcr den falschen Weg.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Leistungen im Rahmen des ALG II sollen auch als befristeter Lohn/Lohnzuschuss gew\u00e4hrt werden. Dar\u00fcber hinaus sollen Eingliederungsmittel z.B. f\u00fcr Qualifikation ausgegeben werden und nicht wie im vergangenen Jahr verfallen.", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Angesichts der vielen zus\u00e4tzlichen Arbeiten im \u00f6ffentlichen Bereich, die unzweifelhaft gerade im sozialen Sektor vorhanden sind, ist das nicht zu verantworten.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, sie sind ohnehin Teil der so genannten Hartz-Gesetze des Bundes, die wir als Linkspartei.PDS immer abgelehnt haben. Wir wollen stattdessen den Einstieg in einen \u00f6ffentlich gef\u00f6rderten Besch\u00e4ftigungssektor.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Ein-Euro-Jobs sind dann sinnvoll, wenn sie keine Arbeitspl\u00e4tze auf dem ersten Arbeitsmarkt verdr\u00e4ngen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die 1-Euro-Jobs stellen daf\u00fcr, dass Menschen, die schon l\u00e4nger keinen Job mehr hatten, wieder ins Berufsleben integriert werden k\u00f6nnen, ein wichtiges Instrument dar.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir fordern anstatt der 1-Euro Jobs ein \u00f6ffentliches Besch\u00e4ftigungsprogramm f\u00fcr 10.000 neue Arbeitspl\u00e4tze im Bereich Bildung, Integration und Sprachf\u00f6rderung. Im Gegensatz zu den 1-Euro-Jobs m\u00fcssen diese die Tarifstandards einhalten. Dies w\u00fcrde das Land ca. 350 Mio. EUR kosten. Wenn die bisherigen Mittel aus dem ALG2 mitgenutzt w\u00fcrden, k\u00f6nnten sogar 25.000 neue Jobs entstehen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die CDU steht f\u00fcr Werte und Religion in der Schule. Deshalb fordern wir die Einf\u00fchrung eines Wahlpflichtbereichs mit den F\u00e4chern Religion oder Ethik/Philosophie. Damit kann auch Islamkunde unter staatlicher Aufsicht erteilt werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, denn das neue Fach Ethik vermittelt Wissen \u00fcber Lebensweisen, Kulturen, die gro\u00dfen Weltreligionen und Grundwerte unserer Gesellschaft. Dieses Fach richtet sich an alle Kinder unabh\u00e4ngig von ihrer kulturellen und religi\u00f6sen Herkunft. Sie sollen miteinander ins Gespr\u00e4ch kommen und sich in ihrer Verschiedenheit akzeptieren lernen. Religionsunterricht bleibt ein freiwilliges Angebot an Berliner Schulen.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die Sch\u00fcler/innen brauchen die Freiheit zur Wahl zwischen Ethik/Philosophie einerseits und dem Unterricht in der eigenen Religion.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Berlin ist eine bunte und vielf\u00e4ltige Stadt, in der Menschen verschiedenster Kulturen leben. Gerade das Fach Ethik kann diese Unterschiedlichkeit sehr gut vermitteln und f\u00fcr ein Miteinander werben.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Einf\u00fchrung von Studiengeb\u00fchren soll den Hochschulen zugute kommen und zu einer Verbesserung der Studienbedingungen und der Lehre f\u00fchren, um die sp\u00e4teren Erfolgschancen der Studierenden auf dem Arbeitsmarkt zu erh\u00f6hen. Eine sozialvertr\u00e4gliche Ausgestaltung der Studiengeb\u00fchren (flankiert durch Stipendien und zinslose Studienkredite der Kreditanstalt f\u00fcr Wiederaufbau) soll dabei im Vordergrund stehen. Niemand soll aus finanziellen Gr\u00fcnden an der Aufnahme eines Studiums gehindert werden.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja. Die Linkspartei.PDS lehnt die Einf\u00fchrung von Studiengeb\u00fchren ab, also selbstverst\u00e4ndlich erst recht f\u00fcr das Erststudium.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die Hochschulen sollen das Recht erhalten, Studienentgelte bis zu einer H\u00f6he von 600 Euro pro Semester zu erheben. Gleichzeitig steht allen Studierenden ein Darlehen zur Finanzierung zur Verf\u00fcgung, das nach dem Studium einkommensabh\u00e4ngig zur\u00fcckgezahlt werden muss.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir stehen f\u00fcr einen kostenfreien Zugang zur akademischen Bildung, da nur dieser sozial gerecht ist.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir setzen uns nicht nur f\u00fcr ein geb\u00fchrenfreies Erststudium ein, sondern sind grunds\u00e4tzlich gegen die Einf\u00fchrung von Studiengeb\u00fchren. Der Zugang von Studierenden aus bildungsfernen und einkommensschwachen Schichten zu den Hochschulen muss leichter werden. Studiengeb\u00fchren erreichen das Gegenteil.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Das kann nur im Einzelfall entschieden werden, u.a. abh\u00e4ngig von den Platzverh\u00e4ltnissen und den Kosten.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, die Stra\u00dfenbahn ist umweltfreundlicher und preiswerter und sichert mehr Arbeitspl\u00e4tze als die U-Bahn. Schon die so genannte Kanzler-U-Bahn ist eine Strecke zu viel. Ihre Fertigstellung wurde jedoch vom Bund erzwungen.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die U-Bahn ist das leistungsf\u00e4higere Verkehrsmittel.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir m\u00f6chten nicht einem Verkehrsmittel Vorrang vor einem anderen Verkehrsmittel geben. Die Mischung und der Bezug zu den \u00f6rtlichen Gegebenheiten sind uns wichtig.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Nur zur Durchsetzung eines Prinzips findet das keine Unterst\u00fctzung, wenn es einen konkreten Bedarf und weitere Gr\u00fcnde gibt (z.B. Sicherheit), im Einzelfall ja.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, Fahrradstra\u00dfen haben sich als Ma\u00dfnahme zur F\u00f6rderung des umweltgerechten Fahrradverkehrs und zur Entlastung der Anwohner/innen von L\u00e4rm und Schadstoffen bew\u00e4hrt. Die Linkspartei.PDS unterst\u00fctzt den Ausbau Berlins zu einer fahrradfreundlichen Stadt.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Wichtiger als autofreie Fahrradstra\u00dfen sind fahrradfreundliche Autostra\u00dfen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "In Berlin gibt es bereits ein dichtes Netz an Fahrradwegen. Sollte jedoch in Zukunft der Bedarf an Fahrradwegen steigen, kann durchaus \u00fcber einen Ausbau nachgedacht werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die landeseigenen Gesundheitsunternehmen Vivantes und Universit\u00e4tsmedizin in Berlin sollen sich abgestimmt und sinnvoll erg\u00e4nzen und dabei mehr privates Engagement einbeziehen.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "F\u00fcr die Linkspartei.PDS geh\u00f6ren Krankenh\u00e4user zur \u00f6ffentlichen Daseinsvorsorge. In Privathand droht Gesundheit zur Ware zu werden. Deshalb setzen wir uns daf\u00fcr ein, dass Vivantes als Unternehmen des Landes Berlin erhalten bleibt und seinen B\u00fcrgerinnen und B\u00fcrgern die bestm\u00f6gliche Versorgung bieten kann. Vivantes wirtschaftet dabei nicht schlechter als Private.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Privat gef\u00fchrte Kliniken sind kosteng\u00fcnstiger und patientenfreundlicher - das zeigen viele Beispiele in der Republik.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Sicherstellung der medizinischen Versorgung muss gew\u00e4hrleistet sein und darf nicht allein von wirtschaftlichen Gesichtspunkten abh\u00e4ngig gemacht werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Wir sagen, dass Gesundheit keine Ware sein darf. Die Krankenversorgung ist in Berlin jetzt schon unzureichend, u.a. durch den Stellenabbau bei den \u00f6ffentlichen Krankenh\u00e4usern. Eine Privatisierung von Vivantes oder Charit\u00e9 w\u00fcrde dies noch versch\u00e4rfen.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Vergabe von Senatsposten sollte von der Qualifikation abh\u00e4ngig gemacht werden, unabh\u00e4ngig davon, ob letztlich mehr Frauen oder mehr M\u00e4nner im Senat vertreten sind.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Im Prinzip ja, aber das ist ein langer Prozess, dessen Ziel noch nicht erreicht ist. Der Linkspartei.PDS ist es bereits gelungen, drei der sechs Staatssekret\u00e4rsposten in ihren Senatsressorts mit Frauen zu besetzen.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Bei der Verteilung der Senatoren\u00e4mter sollte die Leistung z\u00e4hlen, nicht das Geschlecht.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Zusammensetzung des Berliner Senates ist Resultat demokratischer Wahlen und sollte von Vorgaben unbeeinflusst bleiben.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen die Sprachf\u00f6rderung in den Kitas verbessern, da diese von den meisten Kindern besucht werden. Bei festgestellten Defiziten soll st\u00e4rker auf die Eltern zugegangen werden.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Durch ein verpflichtendes Vorschuljahr und eine gezielte Sprachf\u00f6rderung f\u00fcr Kinder mit sprachlichen Defiziten soll jedem Kind - unabh\u00e4ngig von seiner Herkunft - Chancengleichheit einger\u00e4umt werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein. Kinder werden, seit die Linkspartei.PDS in Berlin mitregiert, in der Kita auch sprachlich gef\u00f6rdert. F\u00fcr Kinder, die die deutsche Sprache dennoch nicht ausreichend beherrschen oder keine Kita besuchen, gibt es bereits verpflichtende Sprachkurse vor Schuleintritt.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Dies ist aus rechtlichen Gr\u00fcnden nicht m\u00f6glich, deshalb pl\u00e4diert die FDP f\u00fcr die Einf\u00fchrung der verbindlichen Start-Klasse f\u00fcr alle Kinder.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Alle Kinder m\u00fcssen bei der Schulanmeldung den Sprachtest DeutschPlus ablegen. Reichen die Deutschkenntnisse nicht aus, sind die Kinder verpflichtet, einen halbj\u00e4hrigen F\u00f6rderkurs zu besuchen.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-19"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "In Restaurants soll abh\u00e4ngig von der Gr\u00f6\u00dfe ein kleinerer abgegrenzter Rauchbereich existieren k\u00f6nnen. In Kneipen halten wir ein generelles Rauchverbot wegen der Eigenart des Aufenthalts f\u00fcr nicht durchsetzbar.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, denn Rauchen gef\u00e4hrdet die Gesundheit, auch passives Rauchen. Kommt es zu keinen freiwilligen L\u00f6sungen der Gastronomie zugunsten Nichtrauchender, dann muss ihr Schutz gesetzlich verordnet werden.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die vorgesehene freiwillige Verpflichtungserkl\u00e4rung der Gastst\u00e4tten h\u00e4lt die FDP f\u00fcr ausreichend!", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Rauchen ist eine der h\u00e4ufigsten Todesursachen in Deutschland. Um die Gesundheit der Nichtraucher vor dem Passivrauchen zu sch\u00fctzen, streben wir  ein Rauchverbot in Gastst\u00e4tten und Kneipen an.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-20"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die derzeitige Kennzeichnung, die eine sp\u00e4tere Identifizierung m\u00f6glich macht, halten wir f\u00fcr ausreichend. Angesichts von einzelnen Internet-Ver\u00f6ffentlichungen mit Namen und Adressen von Polizisten ist auch deren Privatsph\u00e4re zu sch\u00fctzen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, die Kennzeichnungspflicht f\u00fcr Polizistinnen und Polizisten ist eine Uralt-Forderung der Linken. Sie nimmt dem Staat die Anonymit\u00e4t und kann im Zweifelsfall f\u00fcr mehr Transparenz und Demokratie sorgen.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Kennung der Uniform tr\u00e4gt zur Transparenz hoheitlichen Handelns bei und schafft Vertrauen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Kennzeichnungspflicht f\u00fcr Polizisten/innen f\u00fchrt zu mehr Transparenz staatlichen Handelns und f\u00f6rdert somit das Vertrauen der B\u00fcrger.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Schon in der Koalitionsvereinbarung von SPD und Linkspartei.PDS 2001 ist die individuelle Kennzeichnungspflicht festgeschrieben worden. Allerdings wurde diese Vereinbarung nicht umgesetzt. Die individuelle Kennzeichnungspflicht ist notwendig, um \u00dcbergriffe durch Polizeibeamte auch vor Gericht beweisbar zu machen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-21"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen Schulen in freier Tr\u00e4gerschaft Planungssicherheit geben und setzen uns f\u00fcr eine verh\u00e4ltnism\u00e4\u00dfige und gesicherte Finanzierung dieser Schulen ein.", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Schulen in freier Tr\u00e4gerschaft sind eine echte bildungspolitische Alternative, die der Staat nicht unterdr\u00fccken sollte. Sie sind kosteng\u00fcnstiger f\u00fcr das Land und sind auch in sozialen Brennpunkten pr\u00e4sent.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein. Die Linkspartei.PDS h\u00e4lt Schulen in freier Tr\u00e4gerschaft f\u00fcr eine wichtige Erg\u00e4nzung und Bereicherung des Schulsystems. Sie haben in Berlin einen festen Platz und werden entsprechend gef\u00f6rdert. Schwerpunkt muss jedoch die Verbesserung und Entwicklung der \u00f6ffentlichen Schulen sein. Diese werden von der Mehrzahl der Sch\u00fcler/innen besucht.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die Schulen in freier Tr\u00e4gerschaft arbeiten eigenverantwortlich, haben enormen Zuspruch von Eltern und Sch\u00fcler/innen - warum nicht mehr davon? In anderen Bundesl\u00e4ndern liegt der Anteil der Freien Schulen wesentlich h\u00f6her als in Berlin.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Privatschulen stellen bereits einen Teil des schulischen Angebotes dar und werden im Rahmen der Finanzierung der Bildungseinrichtungen gef\u00f6rdert.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-22"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen auf eine verst\u00e4rkte und verbindliche Zusammenarbeit mit den Eltern im Rahmen der Kita. Die Jugendhilfe soll verst\u00e4rkt auf belastete Familien zugehen. Von einer Bestrafung der Eltern versprechen wir uns keine Verbesserung der Situation der Kinder.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Das Wohl der Kinder steht an erster Stelle. Staatliche Leistungen wie das Kindergeld sollten allein dem Kinde zugute kommen. Wurde ein Kind aufgrund von Erziehungsproblemen seinen Eltern entzogen, so sollten die Eltern keine staatlichen Leistungen mehr f\u00fcr dieses Kind erhalten.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, staatliche Leistungen haben den Sinn, ein Leben in W\u00fcrde zu erm\u00f6glichen und den freien Fall unter die Armutsgrenze zu verhindern. Es sind Sozialleistungen und keine Werkzeuge aus dem Strafrecht.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "F\u00fcr das Versagen der Eltern in der Erziehung d\u00fcrfen Kinder nicht bestraft werden.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Der Eingriff des Jugendamtes ist oftdie letzte M\u00f6glichkeit, einer Familie zu helfen. Finanzielle Einschnitte sind ein wirkungsvolles Instrument, um bei den Eltern ein Umdenken zu bewirken.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Dem Kind wird durch eine K\u00fcrzung der Leistungen nicht geholfen - im Gegenteil. Anzustreben sind positive Anreize wie in anderen europ\u00e4ischen L\u00e4ndern: Bei der Wahrnehmung der Vorsorgeuntersuchungen bei Schwangerschaft erhalten die M\u00fctter z.B. eine komplette Babyausstattung vom Staat gestellt.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-23"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die CDU wird die Betreuungsangebote f\u00fcr unter Dreij\u00e4hrige verbessern. Insbesondere die Tagespflege ist als erg\u00e4nzende Form der flexiblen und bedarfsgerechten Betreuung auszubauen. Der Rechtsanspruch ist - wenn der Kita-Besuch f\u00fcr die Kinder ab 3 Jahren kostenfrei werden soll - nicht zu finanzieren.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, und zwar unabh\u00e4ngig vom sozialen Status der Eltern.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Damit das neu eingef\u00fchrte Elterngeld erfolgreich sein kann, m\u00fcssen gen\u00fcgend Pl\u00e4tze auch f\u00fcr die unter 3-J\u00e4hrigen zur Verf\u00fcgung stehen. Langfristig muss auch hier der Rechtsanspruch gelten.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "In Berlin stehen bereits 33.000 Pl\u00e4tze in Krippen und bei Tagesm\u00fcttern zur Verf\u00fcgung, womit Berlin bundesweit ganz vorne liegt. Als besonders wichtig erachten wir das letzte Kita-Jahr, weshalb wir es ab dem 01. Januar 2007 beitragsfrei anbieten.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Dies ist sozial- und bilungspolitisch richtig, weil so alle Kinder - insbesondere Kinder aus bildungsfernen Schichten - gef\u00f6rdert werden k\u00f6nnen.", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-24"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen die Hauptschule auslaufen lassen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Um Begabungen besser zu f\u00f6rdern, stehen wir f\u00fcr ein vielf\u00e4ltig gegliedertes Schulwesen mit gro\u00dfer Durchl\u00e4ssigkeit und ohne Sackgassen. Wir wollen keine Einheitsschule. Eine Begabtenf\u00f6rderung soll durch den Ausbau der M\u00f6glichkeit zum leistungsabh\u00e4ngigen \u00dcbergang nach der 4. Klasse auf das Gymnasium, die Realschule und die Gesamtschule erfolgen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, denn das bestehende Schulsystem ist sozial ungerecht und f\u00fchrt dazu, dass bundesdeutsche Sch\u00fcler/innen in internationalen Vergleichen schlecht abschneiden. Die Linkspartei.PDS setzt sich f\u00fcr eine Schule nach skandinavischem Vorbild ein, in der Sch\u00fcler/innen bis zur 10. Klasse mit- und voneinander lernen k\u00f6nnen und individuell gef\u00f6rdert werden.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die FDP setzt auf Vielfalt im Berliner Bildungssystem: Unterschiedliche Schulformen sollen beibehalten, ggf. weiterentwickelt werden. Manche lernen am Gymnasium gut, andere sind an der Gesamtschule erfolgreich.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir sehen eine Zusammenlegung von Haupt- und Realschule als zukunftsf\u00e4higes Modell und streben daher eine Ver\u00e4nderung des dreigliedrigen Schulsystems an.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "Langfristig streben wir eine Schule f\u00fcr alle Kinder von der 1. bis 10. Klasse in Berlin an. Andere europ\u00e4ische L\u00e4nder (u.a. Finnland) zeigen, wie gute Gemeinschaftsschulen aussehen: Kleine Klassen, individuelle F\u00f6rderung der Sch\u00fcler/innen, motivierte Lehrer/innen und Lernen durch Unterrichtsprojekte.", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-25"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Angebote werden bereits f\u00fcr ausreichend erachtet.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ja, denn die freien Theater sind ein unverzichtbarer Teil der vielf\u00e4ltigen Berliner Kulturszene. Sie werden unterst\u00fctzt, wo es angebracht ist, auch durch \u00f6ffentliche R\u00e4ume.", 
+          "value": 1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Es muss sichergestellt werden, dass \u00f6ffentliche leerstehende R\u00e4ume den privaten Kulturschaffenden kosteng\u00fcnstig und unb\u00fcrokratisch zu Verf\u00fcgung gestellt werden (z.B. die Betriebskosten).", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die OFF-Szene ist wichtiger Teil Berliner Kultur und soll deshalb gezielt gef\u00f6rdert werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-26"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Notwehr bzw. Nothilfe sind auch jetzt schon m\u00f6glich. Wir sind jedoch gegen eine Verankerung gezielt t\u00f6dlicher Sch\u00fcsse in Gesetzen des Landes Berlin.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Der Finale Rettungsschuss ist in das Berliner Polizeigesetz aufzunehmen, um als letztes Mittel bei Geiselnahmen das Leben des Opfers zu retten und den Polizeibeamten Rechtssicherheit zu geben.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Polizisten haben schon jetzt das Recht, zur Selbstverteidigung die Schusswaffe einzusetzen. Den so genannten finalen Rettungsschuss per Gesetz indes lehnen wir ab.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die Meinungsbildung im Landesverband ist in dieser Frage noch nicht abgeschlossen.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Zum Schutz des eigenen Lebens und in besonderen Gefahrensituationen m\u00fcssen die Berliner Polizisten/innen die M\u00f6glichkeit haben, auch einen gezielten, t\u00f6dlichen Schuss abgeben zu k\u00f6nnen.", 
+          "value": 1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-27"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir setzen auf die St\u00e4rkung des politischen Bezirksamts.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Dazu gibt es einen offenen Meinungsbildungsprozess in der CDU.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, denn dies w\u00fcrde eine Schw\u00e4chung der Position der gew\u00e4hlten BVV gegen\u00fcber den B\u00fcrgermeistern bedeuten. Stattdessen ist die Linkspartei.PDS f\u00fcr eine St\u00e4rkung bezirklicher Gremien durch Einf\u00fchrung eines politischen Bezirksamtes.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Die direkte Wahl st\u00e4rkt die direkte Beteiligung der B\u00fcrger.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "In Berlin sind die Bezirke laut Verfassung keine selbst\u00e4ndigen Gemeinden, mit eigenst\u00e4ndigen politischen Zielen und politischen Zust\u00e4ndigkeiten, sondern Teil der Verwaltung Berlins.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-28"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Tempelhof als City-Flughafen ist f\u00fcr Berlin ein attraktives Alleinstellungsmerkmal gegen\u00fcber allen anderen Metropolen auf dem Kontinent. Wir streben f\u00fcr Tempelhof ein privates Betreiberkonzept an.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Nein, der neue Flughafen Berlin-Brandenburg-International wurde als Single-Airport konzipiert. Unter anderem, um die innerst\u00e4dtischen und dadurch mit besonderen Risiken behafteten Flugh\u00e4fen Tegel und Tempelhof schlie\u00dfen zu k\u00f6nnen.", 
+          "value": -1, 
+          "party": "DIE LINKE.PDS"
+        }, 
+        {
+          "text": "Der Flughafen Tempelhof ist als City-Airport vor allem f\u00fcr Gesch\u00e4ftsreisende besonders attraktiv und daher zu erhalten.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Mit dem Gro\u00dfflughafen Sch\u00f6nefeld (BBI) bekommt Berlin eines der wichtigsten Verkehrs- und Logistikzentren Deutschlands. Alle Kr\u00e4fte sollen daher hier geb\u00fcndelt werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "WASG"
+        }
+      ], 
+      "id": "WOM-9-29"
+    }
+  ]
+}

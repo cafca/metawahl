@@ -1,0 +1,904 @@
+{
+  "data": [
+    {
+      "positions": [
+        {
+          "text": "Ein generelles Tempolimit auf Bremens Autobahnen w\u00fcrde den Schadstoffaussto\u00df, die L\u00e4rmbelastung und das Unfallrisiko minimieren. Zurzeit haben wir eine sehr aufw\u00e4ndige verkehrsabh\u00e4ngige Temporegulierung. ", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Bremen hat 71 km Autobahn, dass sind rund 0,5 Prozent der Deutschen Autobahnen. Ein Alleingang Bremens bei der Frage des Tempolimits auf Autobahnen macht daher aus unserer Sicht keinen Sinn. Im \u00fcbrigen unterliegen weite Teile der Bremer Autobahnen ohnehin einer verkehrsabh\u00e4ngigen Geschwindigkeitssteuerung.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE. ist f\u00fcr ein generelles Tempolimit auf Autobahnen. Ein Tempolimit dient neben L\u00e4rm- und Umweltschutz auch dem Energiesparen.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Geschwindigkeit soll intelligent und flexibel gestaltet werden. Ziel der FDP ist es, die Mobilit\u00e4t zu erhalten. Ein Tempolimit ist weder eine Garantie f\u00fcr Sicherheit, noch bringt es eine wesentliche CO2-Reduktion. Wichtig ist es, moderne, schadstofffreie und alternative Antriebstechnologien zu finden.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Zur Reduzierung der CO2-Emissionen bedarf es eines geschlossenen Gesamtkonzeptes. Hierbei kommt nat\u00fcrlich auch ein Tempolimit in Betracht, das aber als einzelne Ma\u00dfnahme keine Wirkung entfalten kann.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-0"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das geplante Kohlekraftwerk w\u00e4re ein Klimakiller und eine Festlegung auf eine klimafeindliche Zukunft f\u00fcr viele Jahrzehnte.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Zur Sicherstellung der Energieversorgung zu sozial vertr\u00e4glichen Preisen werden wir noch \u00fcber Jahre auch auf den Einsatz von Kohlekraftwerken angewiesen sein. Den Neubau eines modernen Kohlekraftwerkes halten wir dann f\u00fcr vertretbar, wenn die Energieeffizienz und der Kohlendioxidaussto\u00df technisch optimiert  und auf dem neusten Stand sind.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Es besteht keine Notwendigkeit f\u00fcr ein neues Kohlekraftwerk in Bremen.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Beim Umweltschutz gilt es, zwischen wirtschaftlichen und \u00f6kologischen Interessen der Menschen abzuw\u00e4gen. Dazu geh\u00f6rt, dass wir es f\u00fcr w\u00fcnschenswert halten, falls zum Ersatz alter/veralteter Kohlekraftwerke neue Kohlekraftwerke in Deutschland gebaut werden, diese auch in Bremen zu bauen. Die Filter-Technik und Effizienz neuer Kraftwerke ist allemal besser als die alter Kraftwerke.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Letztlich wird die Frage der private Investor beantworten. Die SPD setzt sich f\u00fcr die Entwicklung moderner CO2-armer Kraftwerkstechnologie und den Ausbau regenerativer Energien ein. Angesichts des drohenden Klimawandels m\u00fcssen wir zu einer deutlichen Senkung des CO2-Aussto\u00dfes auch in Bremen kommen.", 
+          "value": 0, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-1"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Klares Ja!", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir haben in Bremen ein Studienkontengesetz beschlossen, das f\u00fcr Bremerinnen und Bremer ein kostenfreies Erststudium sicherstellt. Geb\u00fchren zahlen diejenigen, die bei ihrem Studium tr\u00f6deln oder nicht in Bremen wohnen. Daran wollen wir nichts \u00e4ndern.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Akademische Bildung soll kein exklusives Luxusgut sein, sondern m\u00f6glichst vielen zugute kommen. Deshalb lehnt DIE LINKE. Studiengeb\u00fchren ab.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP will den Hochschulen das Recht geben, Studienbeitr\u00e4ge zu erheben. Diese sollen zus\u00e4tzlich zur staatlichen Finanzierung ausschlie\u00dflich zur Verbesserung der Lehre dienen. Die Bremer FDP spricht sich f\u00fcr die Einf\u00fchrung von nachgelagerten Studienbeitr\u00e4gen aus. So wird kein/e Studierende/r durch Studienbeitr\u00e4ge belastet, bevor er/sie durch ein Erwerbseinkommen in der Lage ist, diese Beitr\u00e4ge zu entrichten.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Der Zugang zur Uni soll nicht vom Geldbeutel der Eltern abh\u00e4ngig sein. Darum haben wir durchgesetzt, dass das Erststudium f\u00fcr Bremerinnen und Bremer geb\u00fchrenfrei bleibt. Unser politisches Leitbild ist die kostenlose Bildung vom Kindergarten \u00fcber die Schule bis hin zur Hochschule.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-2"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Bu\u00dfgelder wurden  in der Vergangenheit bereits mehrfach erh\u00f6ht.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "R\u00fccksichtnahme ist die Grundvoraussetzung f\u00fcr das Zusammenleben von Menschen, insbesondere in eng besiedelten R\u00e4umen wie unseren St\u00e4dten. Zur R\u00fccksichtnahme geh\u00f6rt es auch, \u00f6ffentliche Stra\u00dfen, Wege und Pl\u00e4tze nicht zu Lasten der Allgemeinheit zu verschmutzen. H\u00f6here Bu\u00dfgelder und mehr Kontrollen werden zu einer angenehmeren Atmosph\u00e4re in Bremen und Bremerhaven beitragen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Wir sind f\u00fcr mehr Sauberkeit in der \u00d6ffentlichkeit. Eine Versch\u00e4rfung des Bu\u00dfgeldkatalogs ist jedoch nur sinnvoll, wenn auch kontrolliert wird. Vorrang f\u00fcr die FDP hat das b\u00fcrgerschaftliche Engagement und R\u00fccksichtnahme der B\u00fcrger/innen. ", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dreck schr\u00e4nkt gerade f\u00fcr Kinder den Lebensraum ein, viele Menschen f\u00fchlen sich gest\u00f6rt. Nur selten werden bei Verst\u00f6\u00dfen \u00fcberhaupt Bu\u00dfgelder gezahlt. Bu\u00dfgelder sollten nicht nur h\u00f6her sein, sondern vor allem h\u00e4ufiger durchgesetzt werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-3"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Bremer Gr\u00fcnen sind f\u00fcr Sprachstandserhebungen und Sprachf\u00f6rderung im Kindertagesheim (KTH) ab dem 3. Lebensjahr.", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Beherrschung der Deutschen Sprache ist die Grundvoraussetzung f\u00fcr eine erfolgreiche Teilhabe an Bildung, Ausbildung und dem gesellschaftlichen Leben in Deutschland. Sp\u00e4testens in der Grundschule sind Kinder ohne ausreichende Deutschkenntnisse stark benachteiligt. Deshalb sind wir f\u00fcr Sprachstandserhebungen im Alter von 4 Jahren, verbunden mit einer gezielten F\u00f6rderung.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Wir wollen Sprachstandsfeststellung, um F\u00f6rderm\u00f6glichkeiten festzulegen, aber keinen Sprachtest, der insbesondere Kinder aus sozial schwachen Gruppen und Kinder mit Migrationshintergrund ausgrenzen w\u00fcrde. ", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP setzt sich f\u00fcr eine allgemeinverbindliche Sprachstandserhebung bei Vierj\u00e4hrigen ein. Auf der Grundlage der Ergebnisse soll dann jedes Kind seinen Begabungen und Schw\u00e4chen entsprechend individuell gef\u00f6rdert und auf den Schuleintritt vorbereitet werden. Die Teilnahme an den gebotenen F\u00f6rderma\u00dfnahmen soll verpflichtend sein.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "97% aller Kinder Bremens besuchen die Kita. Die Erzieher/innen stellen schon jetzt im t\u00e4glichen Umgang fest, welches Kind F\u00f6rderung ben\u00f6tigen k\u00f6nnte. Diese Kinder machen einen Sprachtest und werden gef\u00f6rdert. Der Start ab 4 Jahre ist sinnvoll.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-4"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "PISA-Erfolgsmodell: L\u00e4ngeres gemeinsames Lernen UND individuelle F\u00f6rderung sind wichtig, um den Anforderungen nach PISA gerecht werden zu k\u00f6nnen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wer hierzu ja sagt, sagt ja zur Abschaffung der Gymnasien. Unsere Kinder sind unterschiedlich begabt und darum muss Schule auch unterschiedlich sein. Damit jedes Kind so gef\u00f6rdert und gefordert wird, wie es seinen individuellen Begabungen und Neigungen entspricht brauchen wir unterschiedliche Schulformen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das mehrgliedrige Schulsystem ist nicht mehr zeitgem\u00e4\u00df. DIE LINKE. ist f\u00fcr eine integrative Schulform f\u00fcr alle.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Wir sind die ewige Diskussion um die beste Schulform leid! Wir setzen auf die Entwicklung des Schulsystems hin zu einem System aus Stadtteilschulen und Gymnasien. Inwieweit an den Schulen dann leistungsdifferenziert, voll- oder teilintegriert unterrichtet wird, soll die Schule selbst entscheiden k\u00f6nnen. Die Schulen brauchen endlich mehr Autonomie und Freiheit von staatlicher G\u00e4ngelung.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Unser Ziel ist die gemeinsame Schule von 1 bis 10, wie sie in den L\u00e4ndern, die beim internationalen Vergleichstest PISA am besten abgeschnitten haben, die Regel ist. Gemeinsames Lernen schafft nicht nur mehr Chancengleichheit, sondern f\u00fchrt auch zu besseren Ergebnissen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-5"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Sofern es sich um Verurteilungen zu Haft- oder Geldstrafen oberhalb des im Zuwanderungsgesetz festgelegten Rahmens handelt. Dies gilt nur f\u00fcr Migranten/innen, die \u00fcber keine feste Aufenthaltserlaubnis verf\u00fcgen. ", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wer als geduldeter Ausl\u00e4nder, also ohne einen festen Aufenthaltstitel, in erheblicher Weise straff\u00e4llig wird, verwirkt sein Aufenthaltsrecht.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Das Ausl\u00e4ndergesetz l\u00e4sst den Beh\u00f6rden schon jetzt den notwendigen Spielraum, wenn es notwendig ist, durch Ausweisungen von Ausl\u00e4ndern/innen Gefahren f\u00fcr die \u00f6ffentliche Sicherheit abzuwehren. Eine Gesetzes\u00e4nderung ist daher nach Auffassung der FDP nicht erforderlich. Allerdings m\u00fcssen die bestehenden Gesetze in der Praxis auch angewandt werden. ", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Im Rechtsstaat ist immer der Einzelfall und die konkrete Tat entscheidend.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-6"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir wollen den bedarfsgerechten Ausbau. Untersuchungen zeigen, dass nur rund vierzig Prozent einen Ganztags-Kitaplatz brauchen. Wer einen ben\u00f6tigt, soll ihn auch bekommen k\u00f6nnen - auch aus sozialen Gr\u00fcnden. ", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir brauchen ein bedarfsgerechtes Angebot an Ganztagskinderbetreuung und keine pauschale Zusicherung staatlicher Leistungen f\u00fcr alle Kinder. Wer sein Kind betreuen lassen will oder muss, soll daf\u00fcr in Bremen und Bremerhaven das passende Angebot finden.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP will den Rechtsanspruch auf einen Betreuungsplatz f\u00fcr Kinder im Vorschulalter. Insbesondere die Betreuungsangebote f\u00fcr Ein- bis Dreij\u00e4hrige m\u00fcssen ausgeweitet werden. Hierbei setzen wir neben einer Steigerung der Zahl der Krippenpl\u00e4tze auf den verst\u00e4rkten Einsatz von Tagesm\u00fcttern bzw. -v\u00e4tern.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen ab 2010 einen Rechtsanspruch f\u00fcr einen Ganztages-Kindergartenplatz ab dem 1. Geburtstag. In einem ersten Schritt wollen wir den bestehenden Rechtsanspruch von vier Stunden auf sechs Stunden inklusive Mittagessen f\u00fcr die 3- bis 6-j\u00e4hrigen ausweiten und die Betreuungspl\u00e4tze f\u00fcr bis 3-j\u00e4hrige weiter ausbauen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-7"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Gerade die 3 Prozent Kinder, die heute im letzten Jahr vor der Schule keinen Kindergarten besuchen, wollen wir erreichen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Es gibt die Schulpflicht. Ehe eine Kindergartenpflicht eingef\u00fchrt wird, sollte der Anreiz erh\u00f6ht werden, die Kinder in die Kinderg\u00e4rten zu schicken, zumal es ja bereits jetzt kaum gen\u00fcgend Pl\u00e4tze gibt.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP ist f\u00fcr den freiwilligen Kindergartenbesuch. Die Teilnahme an Angeboten zum Abbau erkannter Sprachdefizite soll verpflichtend sein. ", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Schon heute besuchen 97% aller Kinder das letzte Kindergartenjahr. Es geht deshalb nicht darum, die Menschen zu etwas zu zwingen, wir wollen Angebote machen, die \u00fcberzeugen. Jedem Kind soll ein hochwertiger Betreuungsplatz angeboten werden. ", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-8"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Kosten des Polizeischutzes bei kommerziellen Gro\u00dfveranstaltungen sollen vom Veranstalter (der damit Geld verdient) gezahlt werden und nicht von der Allgemeinheit.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Polizei wird \u00fcber Steuern finanziert und das soll auch so bleiben. Allerdings m\u00fcssen die Veranstalter sich verst\u00e4rkt an den Entsorgungskosten des durch diese Veranstaltungen im \u00f6ffentlichen Raum entstandenen Unrates beteiligen.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die Veranstalter kommerzieller Gro\u00dfveranstaltungen sind an den Kosten der Polizeians\u00e4tze angemessen zu beteiligen. Hierzu strebt die Bremer FDP eine bundeseinheitliche Regelung an.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Hiervon ausgenommen sollen Sportveranstaltungen sein.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-9"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die bisherige Nachtbesetzung n\u00fctzte nicht viel, da nachts kaum Anzeigen pers\u00f6nlich aufgegeben wurden und die Beamten wegen Personalmangel oft nicht auf Streife fahren konnten. Insgesamt brauchen wir mehr Polizeibeamte mit oder ohne Nachtbesetzung.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Sicherheit entsteht nicht durch ge\u00f6ffnete Polizeireviere, die Nachts und in Notf\u00e4llen ohne hin nicht aufgesucht werden, sondern durch mehr Beamtinnen und Beamte im Streifendienst und auf der Stra\u00dfe.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Dazu ist es aber notwendig, dass die Reviere ausreichend besetzt sind. ", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die Polizei muss vor Ort sein, bevor etwas passiert. Wir setzen deshalb auf starke, rund um die Uhr besetzte Polizeireviere, insbesondere in problematischen Ballungszentren mit einem \u00fcberdurchschnittlichen Kriminalit\u00e4tsaufkommen. Die vorwiegend halbtags ge\u00f6ffneten Reviere m\u00fcssen wieder zu starken, voll funktionsf\u00e4higen Revieren gemacht werden, die rund um die Uhr ge\u00f6ffnet sind.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ein solches Versprechen kann angesichts der Haushaltslage nicht seri\u00f6s gemacht werden. F\u00fcr die B\u00fcrgerinnen und B\u00fcrger ist nicht in erster Linie die Besetzung des Reviers wichtig, sondern die Pr\u00e4senz auf der Stra\u00dfe.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-10"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Bev\u00f6lkerung muss viel st\u00e4rker direkt mitbestimmen k\u00f6nnen. Wahlen alle vier Jahre sind zu wenig. Gr\u00fcne sind dar\u00fcber hinaus auch f\u00fcr so genannte Finanzreferenden, das hei\u00dft, die Bev\u00f6lkerung muss bei Gro\u00dfinvestitionen gefragt werden (wie z.B. in der Schweiz).", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Erfahrungen der letzten Jahre haben gezeigt, dass in Bremen Volksbegehren und Volksentscheide m\u00f6glich sind, mithin die H\u00fcrden nicht zu hoch sind. Eine Senkung der Voraussetzungen w\u00fcrde insbesondere rechten und linken Extremisten in die Hand spielen und Begehren aus diesem Kreis vereinfachen.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE. m\u00f6chte neben niedrigeren H\u00fcrden auch mehr B\u00fcrger/innenbeteiligung bei \u00f6ffentlichen Planungsvorhaben und Investitionen im Stadtteil.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die H\u00fcrden f\u00fcr Volksbegehren m\u00fcssen gesenkt werden. F\u00fcnf Prozent der Wahlberechtigten sollen f\u00fcr den Erfolg ausreichen. Die Unterschriften aus der vorhergehenden Initiative sollen auf ein anschlie\u00dfendes, unver\u00e4ndertes Volksbegehren angerechnet werden, so dass B\u00fcrger/innen nicht doppelt Unterst\u00fctzerunterschriften leisten m\u00fcssen.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen die Zugangsh\u00fcrden \u00fcberpr\u00fcfen, um den B\u00fcrgerinnen und B\u00fcrgern mehr M\u00f6glichkeiten zu geben, auf politische Prozesse Einfluss zu nehmen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-11"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Ein Verbot soll nur im konkreten Einzelfall ausgesprochen werden, wenn religi\u00f6se Symbole in der Schule Ansto\u00df erregen oder die Sch\u00fcler/innen religi\u00f6s indoktriniert werden. ", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir setzen uns lediglich f\u00fcr ein Verbot des Kopftuchtragens an \u00f6ffentlichen Schulen ein, welches in Bremen bereits besteht.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Das Gebot der weltanschaulichen und religi\u00f6sen Neutralit\u00e4t der Schule wird nicht dadurch gewahrt, dass Lehrer/innen ihre Religionszugeh\u00f6rigkeit verbergen m\u00fcssen.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Wer durch das Tragen eines religi\u00f6sen Symbols bewusst ein politisches Zeichen der Abgrenzung von unserer Gesellschaft setzen will, ist f\u00fcr den Beruf als Lehrer/in nicht geeignet und muss mit Hilfe der individuellen Eignungspr\u00fcfung und des Disziplinarrechtes vom Schulunterricht ferngehalten werden. Ein grunds\u00e4tzliches Verbot des Kopftuchtragens geht aber weit \u00fcber das erforderliche Ma\u00df hinaus und wird von der FDP nicht mitgetragen.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Ein entsprechendes Gesetz ist bereits beschlossen worden.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-12"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Schulnoten sollten m\u00f6glichst sp\u00e4t gegeben werden, so wie es in den skandinavischen L\u00e4ndern praktiziert wird.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Eine notenfreie Grundschule geht an der Lebenswirklichkeit vorbei. Es gibt keinen Schulabschluss, keine Ausbildungspr\u00fcfung und kein Hochschulabschluss ohne Noten. Sch\u00fclerinnen und Sch\u00fcler und deren Eltern brauchen Noten, um die in der Schule erbrachten Leistungen einsch\u00e4tzen und bewerten zu k\u00f6nnen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP tritt daf\u00fcr ein, dass die Schulen zuk\u00fcnftig organisatorische und p\u00e4dagogische Angelegenheiten im Rahmen ihres Schulprofils eigenst\u00e4ndig regeln k\u00f6nnen. Das hei\u00dft auch, dass neue Freir\u00e4ume beispielsweise bei der Frage der Notenvergabe einger\u00e4umt werden sollen. Aber: Eltern sollen das Recht behalten, ab Klasse 3 ein Notenzeugnis f\u00fcr ihr Kind verlangen zu k\u00f6nnen.", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir treten f\u00fcr die notenfreie Grundschule ein, da sie bessere Bedingungen f\u00fcr die Lernentwicklung von Kindern bietet.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-13"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Es entstehen sukzessive weitere Ganztagsschulen. Wichtig ist die Qualit\u00e4t der Ganztagsschulen und dass in jedem Stadtteil auch Ganztagsschulen angew\u00e4hlt werden k\u00f6nnen. ", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Auch bei den Ganztagsschulen gilt: Wir brauchen ein bedarfsgerechtes Angebot und keine Gleichmacherei.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ganztagsschulen k\u00f6nnen Sch\u00fcler/innen gezielter f\u00f6rdern.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Schule muss Chancen f\u00fcr jedes Kind er\u00f6ffnen k\u00f6nnen, unabh\u00e4ngig vom Elternhaus. Die Ganztagsschule schafft die M\u00f6glichkeit, sich daf\u00fcr Zeit zu nehmen. In den Jahrgangsstufen 5 bis 10 soll die verbindliche Form der Ganztagsschule zur Regel werden. Nur durch die Aufteilung der Unterrichtszeit auf Vor- und Nachmittag l\u00e4sst sich hier die notwendige intensive F\u00f6rderung gew\u00e4hrleisten.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen alle unsere Schulen zu verbindlichen Ganztagsschulen ausbauen, denn der Ganztagsschule geh\u00f6rt die Zukunft. Jedes Jahr sollen vier weitere Schulen zu Ganztagsschulen ausgebaut werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-14"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Es gibt die Aktion vom Landessportbund Holt die Kinder in die Clubs. Au\u00dferdem sollen die Schulen Sportangebote in den Ganztagsschulen machen. ", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die Umsetzung dieser Bezuschussung wird aber viele andere Probleme aufwerfen, daher w\u00e4re es sinnvoller, andere Ma\u00dfnahmen zu finden, die eine Beteiligung von Kindern und Jugendlichen gew\u00e4hrleistet.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Sport ist wichtig f\u00fcr die eigene Entwicklung wie auch f\u00fcr das Lernen sozialer Kompetenz. ", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Auch f\u00fcr Kinder aus diesem Kreis sollen angemessene Beitr\u00e4ge gezahlt werden m\u00fcssen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen in Zusammenarbeit mit den Sportvereinen erm\u00e4\u00dfigte Mitgliedsbeitr\u00e4ge pr\u00fcfen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-15"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Ein Verbot l\u00f6st die Probleme nicht. Gewaltspiele sind ohnehin erst ab 18 Jahren erlaubt. Durch ein Verbot entst\u00fcnde ein Schwarzmarkt. B\u00fcndnis 90/DIE GR\u00dcNEN setzen auf Aufkl\u00e4rung und Angebote zur F\u00f6rderung der Medienkompetenz von Eltern und Kindern.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Die gesetzlichen Voraussetzungen hierf\u00fcr gibt es bereits. Das Verbot alleine wird das Problem nicht l\u00f6sen. Daher wollen wir, durch entsprechende Angebote, vor allem die Medienkompetenz von Kindern und Jugendlichen st\u00e4rken.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Ein Verbot macht keinen Sinn. Verbote machen diese Computerspiele nur attraktiver. ", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP ist gegen ein populistisches Verbot von Computerspielen. Es gibt in Deutschland besonders strenge Jugendschutzregeln. Gewaltverherrlichung ist strafbar. Im Internet w\u00e4re eine wirksame Kontrolle ohnehin unm\u00f6glich.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Seit der Gesetzes\u00e4nderung 2004 kann wirksam gegen die Verbreitung von Killerspielen vorgegangen werden.  Klar ist aber auch: Wer sich ernsthaft bem\u00fcht, an solche Spiele zu gelangen, kann nur schwer daran gehindert werden. ", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-16"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "In Bremen muss auch jeder Handwerksbetrieb zahlendes Mitglied der Handwerkskammer und jedes Industrie- und Handelsunternehmen zahlendes Mitglied der Handelskammer sein.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Au\u00dfer im Saarland gibt es in keinem anderen Bundesland die Pflichtmitgliedschaft in einer Arbeitnehmerkammer. Die Arbeitnehmerinnen und Arbeitnehmer in Bremerhaven und Bremen sollen selbst entscheiden k\u00f6nnen, ob sie Mitglied der Arbeitnehmerkammer werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Arbeitnehmerkammer ist eine sehr wichtige Einrichtung der Arbeitnehmer/innen in Bremen. Die Mitgliedschaft soll so bleiben, wie sie ist: Kosteng\u00fcnstig (0,15% vom Lohn) und mit guten Leistungen f\u00fcr abh\u00e4ngig Besch\u00e4ftigte.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Wir fordern die Abschaffung der Zwangsmitgliedschaft der Bremer und Bremerhavener Arbeitnehmer/innen in der Arbeitnehmerkammer. Arbeitnehmer/innen k\u00f6nnen sich freiwillig in Arbeitnehmerorganisationen wie Gewerkschaften, Berufsverb\u00e4nden und freiwilligen Arbeitnehmerkammern organisieren.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Eine Solidargemeinschaft wie die Arbeitnehmerkammer sollte auch in Zukunft verbindlich sein.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-17"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "B\u00fcndnis 90/DIE GR\u00dcNEN sind f\u00fcr die Einf\u00fchrung von branchen- und regionsspezifischen Mindestl\u00f6hnen, wenn die L\u00f6hne und Geh\u00e4lter nicht existenzsichernd sind.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wer 40 Stunden arbeitet soll von seinem Lohn ausk\u00f6mmlich leben k\u00f6nnen und mehr in der Tasche habe als derjenige, der nicht arbeitet. Die CDU setzt sich daher f\u00fcr ein Mindesteinkommen von 7,50 Euro pro Stunde ein. Der an dieser Summe fehlende Betrag soll ggf. durch staatliche Zahlungen ausgeglichen werden.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Von Arbeit muss man leben k\u00f6nnen. Wer ganztags arbeitet, muss mit dem Lohn \u00fcber die Runden kommen. Daher setzt sich DIE LINKE. f\u00fcr einen gesetzlichen Mindestlohn von 8 Euro die Stunde ein.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Mindestl\u00f6hne, egal in welcher Form, lehnen wir ab. Mindestl\u00f6hne tragen nicht zur L\u00f6sung von Arbeitsmarktproblemen bei, im Gegenteil, sie versch\u00e4rfen diese. Arbeitspl\u00e4tze werden ins Ausland verlagert oder wandern in die Schwarzarbeit ab. Zur Aufstockung marktgerechter, aber zu niedriger L\u00f6hne haben wir das Konzept des liberalen B\u00fcrgergeldes entwickelt.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wer voll arbeitet, muss auch davon leben k\u00f6nnen. Dass Menschen arbeiten und ohne staatliche Hilfe trotzdem unter der Armutsgrenze leben m\u00fcssen, ist absolut inakzeptabel. Darum setzen wir uns f\u00fcr einen existenzsichernden, gesetzlichen Mindestlohn ein!", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-18"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Wasserversorgung geh\u00f6rt f\u00fcr uns zur Daseinsvorsorge. Die Privatisierung der Abwasserentsorgung kommt die Bremer schon heute sehr teuer zu stehen.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE. wendet sich gegen Privatisierungen. Es gibt Bereiche, die nicht den Gesetzen des Marktes unterworfen werden sollen.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Unbestritten ist: Wasser ist ein besonderes Lebensmittel. Durch eine liberalisierte Wasserversorgung k\u00f6nnten die kostensenkenden und innovationsf\u00f6rdernden Kr\u00e4fte von Markt und Wettbewerb zum Wohle der Bev\u00f6lkerung, ohne Abstriche bei der Wasserqualit\u00e4t, genutzt werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir sind dagegen, denn bei einer vollst\u00e4ndigen Privatisierung w\u00fcrden die Verbraucher/innen wegen der anfallenden Mehrwertsteuer zus\u00e4tzlich belastet.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-19"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Risiken der Atomkraft sind nicht zu verantworten. Dieses Kernkraftwerk ist zudem st\u00f6ranf\u00e4llig und nicht gegen m\u00f6gliche terroristische Angriffe gesch\u00fctzt.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Es gibt Festsetzungen im Atomkompromiss, die von Bremen akzeptiert werden sollten.", 
+          "value": 0, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE. ist f\u00fcr den schnellstm\u00f6glichen Ausstieg aus der Kernenergie. Kernkraftwerke sind Risikotr\u00e4ger, die Entsorgung des radioaktiven M\u00fclls ungekl\u00e4rt.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP fordert einen Energiemix, in dem auch Kernenergie eine Rolle spielt. Die weitere Nutzung der Kernenergie kann nicht losgel\u00f6st von Fragen der Entsorgung, der Reaktorsicherheit, der Klimaproblematik und der langfristigen Versorgungssicherheit gesehen werden. Wichtig ist es allerdings auch, den Anteil der erneuerbaren Energien am Energiemix zu erh\u00f6hen.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die SPD hat den Atomausstieg durchgesetzt und wir stehen zum dabei verhandelten Fahrplan. Wenn es aber schneller geht, dann begr\u00fc\u00dfen wir das. Eine Verl\u00e4ngerung von Laufzeiten lehnen wir ab. Die Atomkraft ist eine gef\u00e4hrliche, niemals v\u00f6llig zu kontrollierende Technik und niemand hat heute eine Antwort auf die Frage, wie verantwortungsvoll mit dem strahlenden M\u00fcll umgegangen werden soll.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-20"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Das Diamorphin-Substitutions-Projekt zeigt, dass sich der gesundheitliche und psychosoziale Zustand der Betroffenen erheblich besserte. Die Betroffenen werden entkriminalisiert. Es handelt sich um eine sehr kleine Gruppe von Abh\u00e4ngigen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir wollen den Drogenabh\u00e4ngigen einen Ausstieg erm\u00f6glichen, keinen staatlichen Rausch, und fordern neben der Begleitung durch einen Sozialarbeiter eine medizinisch-psychiatrische Behandlung, da alle Drogenabh\u00e4ngigen unter einer psychischen Grunderkrankung leiden.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP spricht sich f\u00fcr die kontrollierte Abgabe von Heroin an Schwerstabh\u00e4ngige aus, um diesen Menschen das Leben mit der Sucht zu erleichtern und die B\u00fcrger/innen vor Beschaffungskriminalit\u00e4t zu bewahren. Langfristiges Ziel bleibt aber die Heilung der Drogenabh\u00e4ngigen von ihrer Sucht.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Bremen und Bremerhaven haben sich an dem Modellversuch einiger Gro\u00dfst\u00e4dte - auch aufgrund unserer Insellage (Stadtstaatenproblematik) und dem Sogeffekt f\u00fcr Schwerstabh\u00e4ngige - nicht beteiligt.", 
+          "value": 0, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-21"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Die Bev\u00f6lkerung hat ein Recht auf saubere Luft: Um die Feinstaubbelastung zu reduzieren, m\u00fcssen Besitzer/innen schadstoffreicher Fahrzeuge Einschr\u00e4nkungen hinnehmen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": 0, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP tritt seit Jahren f\u00fcr die Einf\u00fchrung von modernen Treibstoffen z.B. mit reduziertem Schwefelgehalt ein, um die Emissionen des Verkehrs zu reduzieren und die Luftqualit\u00e4t zu verbessern. ", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Eine finanzielle F\u00f6rderung  der Ru\u00dfpartikelfilter ist bereits beschlossen. Entstehende Kosten werden durch die gesenkte KFZ-Steuer subventioniert.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-22"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Dieses Vorhaben verfolgen wir seit vielen Jahren - die M\u00f6glichkeit, auch umweltfreundlich mobil zu sein, ist auch und gerade f\u00fcr Menschen mit wenig Geld eine wichtige Voraussetzung f\u00fcr eine eigenst\u00e4ndige Lebensf\u00fchrung.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Mit diesen Tickets w\u00fcrde der Anreiz f\u00fcr Erwerbsarbeit noch geringer werden.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die LINKE. fordert seit langem ein Sozialticket f\u00fcr ALG II-Betroffene und Empf\u00e4nger/innen anderer Sozialtransferleistungen. Das Sozialticket soll auch den kostenlosen Besuch von Kulturveranstaltungen \u00f6ffentlich gef\u00f6rderter Kultureinrichtungen (Theater, Museen etc.) erm\u00f6glichen.", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Mobilit\u00e4t ist kein Luxusgut. Die FDP setzt alles daran, die individuelle Mobilit\u00e4t zu vergr\u00f6\u00dfern. ", 
+          "value": 0, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir setzen uns bei der BSAG daf\u00fcr ein, ein solches Sozialticket zu erm\u00f6glichen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-23"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP will die Menschen m\u00f6glichst gut vor Kriminalit\u00e4t sch\u00fctzen. Daher ist es wichtig, jungen Erwachsenen zwischen 18 und 21 Jahren das eindeutige Signal zu senden, dass sie in der Regel strafrechtlich voll verantwortlich sind. Wir  meinen, dass Straftaten von Heranwachsenden in der Regel nach dem allgemeinen Erwachsenenstrafrecht zu ahnden sind. ", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Die Entscheidung, ob ein 18- bis 21-J\u00e4hriger nach Erwachsenen- oder nach Jugendstrafrecht verurteilt wird, trifft das Gericht unter W\u00fcrdigung des Einzelfalls. Die Forderung nach einer verst\u00e4rkten Anwendung des Erwachsenenstrafrechts ist reiner Populismus und greift in die Entscheidungsfreiheit der Gerichte ein.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-24"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Bisher k\u00f6nnen wir Schulen nicht miteinander vergleichen; ein Problem ist etwa, dass viele Eltern (die es sich leisten k\u00f6nnen) Nachhilfe bezahlen, das verzerrt die Ergebnisse.", 
+          "value": 0, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Gegen eine Evaluierung von Schulen ist nichts einzuwenden. Eine Ver\u00f6ffentlichung der Ergebnisse leistet jedoch einem Zwei-Klassen-System Vorschub anstatt da zu helfen, wo es die Schulen n\u00f6tig haben.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Den Eltern und Sch\u00fclern/innen in Bremen und Bremerhaven die freie Schulwahl zu gew\u00e4hren, ihnen aber jegliche Information \u00fcber die Qualit\u00e4t der Lehre an den einzelnen Schulen vorzuenthalten, ist unverst\u00e4ndlich und inkonsequent. Daher m\u00fcssen zuk\u00fcnftig die durchschnittlichen Leistungen der Schulen in landes- oder stadtweiten Vergleichsarbeiten ver\u00f6ffentlicht werden. Dabei ist f\u00fcr uns klar: Die Ergebnisse, die einzelne Sch\u00fcler/innen erbracht haben, d\u00fcrfen nicht ver\u00f6ffentlicht werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Vergleichsarbeiten sind wichtig, damit die Schulen wissen, wo sie stehen und was sie in ihrer Arbeit verbessern m\u00fcssen. Wir wollen aber nicht einzelne Schulen, die einmal schlechter abgeschnitten haben, stigmatisieren, sondern ihnen helfen, besser zu werden.", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-25"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Wir haben uns f\u00fcr die Familienhebammen stark gemacht und auch einen entsprechenden Antrag in die B\u00fcrgerschaft eingebracht.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Kinder zu haben, bedeutet mehr, als Kinder zu bekommen. Eltern sind an allererster Stelle f\u00fcr die Erziehung ihrer Kinder verantwortlich. Sie sind zur Erziehung und F\u00fcrsorge berechtigt und verpflichtet. Nur dort, wo Eltern ihre F\u00fcrsorgepflicht und Erziehungsverantwortung nicht ausf\u00fcllen k\u00f6nnen oder wollen, muss der Staat mit umfassenden Hilfema\u00dfnahmen eingreifen.", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "DIE LINKE. setzt auf Hilfen und nicht auf Kontrolle und Bevormundung. Und warum sollten in sozial benachteiligten Familien Kinder besser oder schlechter behandelt werden als bei Reichen?", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Nach der UN-Kinderrechtskonvention hat jedes Kind ein Recht auf gesundheitliche Pr\u00e4vention. Die FDP fordert eine Umorganisation des Jugendhilfebereichs. Ziel muss es sein, dass die Mitarbeiter/innen f\u00fcr eine geringere Zahl von F\u00e4llen zust\u00e4ndig sind, die Verantwortlichkeiten klar geregelt werden und die Kinder und Jugendlichen besser betreut werden. Wir erwarten vom Untersuchungsausschuss zum Fall Kevin Hinweise f\u00fcr eine zielgerichtete Umorganisation des Jugendamtes.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Dieses Programm gibt es bereits, aber in zu geringem Umfang. Der Ausbau des Programms ist bereits eingeleitet worden und muss fortgesetzt werden.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-26"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Wir fordern keine Gleichstellung mit der Ehe sondern setzen uns f\u00fcr die rechtliche St\u00e4rkung der gleichgeschlechtlichen Partnerschaften ein.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die \u00d6ffnung der Ehe f\u00fcr lesbische und schwule Paare ist eine legitime M\u00f6glichkeit, Gleichberechtigung gegen\u00fcber verheirateten heterosexuellen Paaren zu erlangen. Solange es die Ehe mit den derzeitigen Verg\u00fcnstigungen f\u00fcr heterosexuelle Paare gibt, darf sie auch anderen nicht vorenthalten werden. ", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Wir streben eine Gleichberechtigung f\u00fcr alle nicht ehelichen Partnerschaften an. Die Liberalen achten alle Lebensgemeinschaften, in denen Menschen Verantwortung f\u00fcreinander \u00fcbernehmen und begr\u00fc\u00dfen daher die M\u00f6glichkeit f\u00fcr gleichgeschlechtliche Paare, ihre Partnerschaft rechtlich abzusichern. Wir  setzen uns daf\u00fcr ein, dass die in vielen Rechtsbereichen noch bestehenden Diskriminierungen eingetragener Lebenspartnerschaften beseitigt werden.", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Gerade im M\u00e4rz 2007 hat die SPD-Fraktion einen Gesetzentwurf beschlossen, der die gleichgeschlechtlichen Partnerschaften im Bereich der Beamtenbesoldung gleichstellt.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-27"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Der K\u00fcndigungsschutz muss so gestaltet sein, dass er im Interesse der Schw\u00e4chsten die Fluktuation auf dem Arbeitsmarkt nicht unterbindet. Mit der generellen Lockerung des K\u00fcndigungsschutzes wird das nicht gew\u00e4hrleistet.", 
+          "value": -1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "", 
+          "value": 1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Der K\u00fcndigungsschutz bedeutet f\u00fcr Arbeitnehmer/innen die Sicherheit ihres Arbeitsplatzes. Durch die Lockerung wird kein zus\u00e4tzlicher Arbeitsplatz geschaffen.", 
+          "value": -1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Die FDP will eine arbeitsf\u00f6rdernde Reform des K\u00fcndigungsschutzgesetzes. Es soll erst f\u00fcr Betriebe mit mehr als 20 Mitarbeitern gelten. Heute schrecken Unternehmen selbst bei guter Auftragslage vor der Neueinstellung zur\u00fcck, weil sie das komplizierte Arbeitsrecht f\u00fcrchten. ", 
+          "value": 1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Es ist nicht wahr, dass, wie von unserem Koalitionspartner CDU behauptet wird, weniger K\u00fcndigungsschutz mehr Arbeitspl\u00e4tze schafft, das hat schon unter Helmut Kohl nicht funktioniert. Weniger K\u00fcndigungsschutz bedeutet aber weniger Sicherheit f\u00fcr die Arbeitnehmerinnen und Arbeitnehmer. Das lehnen wir ab!", 
+          "value": -1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-28"
+    }, 
+    {
+      "positions": [
+        {
+          "text": "Jugendliche ab 16 Jahren sollen die M\u00f6glichkeit haben, den Landtag zu w\u00e4hlen.", 
+          "value": 1, 
+          "party": "B\u00dcNDNIS 90/DIE GR\u00dcNEN"
+        }, 
+        {
+          "text": "Nach wie vor ist es rechtlich nicht m\u00f6glich, als unter 18j\u00e4hriger an Landtagswahlen teilzunehmen. Auf Initiative der CDU ist es in Bremen m\u00f6glich geworden, ab 16 Jahren an Beiratswahlen teilzunehmen. Die Erfahrungen mit dieser Wahl werden in den n\u00e4chsten Jahren ausgewertet.", 
+          "value": -1, 
+          "party": "CDU"
+        }, 
+        {
+          "text": "Die Absenkung des Wahlalters ist \u00fcberf\u00e4llig. Jugendliche sind selbstbewusste B\u00fcrgerinnen und B\u00fcrger mit durchaus eigenen Interessen. Nur jene, die w\u00e4hlen k\u00f6nnen, werden von der Politik auch ernst genommen. ", 
+          "value": 1, 
+          "party": "DIE LINKE."
+        }, 
+        {
+          "text": "Das Wahlrecht zum Landtag sollte an die Vollj\u00e4hrigkeit gebunden bleiben.", 
+          "value": -1, 
+          "party": "FDP"
+        }, 
+        {
+          "text": "Wir wollen das Wahlalter 16 auch bei B\u00fcrgerschaftswahlen. F\u00fcr die Beiratswahlen haben wir das Wahlalter bereits gesenkt. Wir h\u00e4tten es auch gerne f\u00fcr diese B\u00fcrgerschaftswahl getan, aber da hat unseren Koalitionspartner der Mut verlassen.", 
+          "value": 1, 
+          "party": "SPD"
+        }
+      ], 
+      "id": "WOM-12-29"
+    }
+  ]
+}
