@@ -16,21 +16,24 @@ export default class OccasionList extends Component {
         territories[occasion.occasion.territory] = [];
       }
 
-      territories[occasion.occasion.territory].push(<li key={occasion.occasion.title}>
-      <a onClick={() => this.props.navigate("Wahl", occasion.occasion.num)}>
-        {occasion.occasion.title}
-      </a>
-    </li>);
+      territories[occasion.occasion.territory].push(occasion);
     });
 
     const occasions = Object.keys(territories)
       .sort()
       .map(territory => {
-        const cur = territories[territory];
+        const occasions = territories[territory]
+          .sort((a, b) => a.occasion.title > b.occasion.title)
+          .map(occasion => <li key={occasion.occasion.title}>
+            <a onClick={() => this.props.navigate("Wahl", occasion.occasion.num)}>
+              {occasion.occasion.title}
+            </a>
+          </li>);
+
         return <div className="territory" key={territory}>
           <h2>{_.startCase(territory)}</h2>
           <ul>
-            {cur}
+            {occasions}
           </ul>
         </div>;
       });
