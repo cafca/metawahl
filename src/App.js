@@ -5,7 +5,7 @@ import './App.css';
 
 import OccasionList from './OccasionList';
 import Occasion from './Occasion';
-import TopicList from './TopicList';
+import CategoriesList from './CategoriesList';
 
 const Navbar = props => <div className="navbar">
   <a
@@ -82,7 +82,7 @@ class App extends Component {
     } else if (this.state.page === "Wahl") {
       content = <Occasion instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]} navigate={this.navigate} />;
     } else {
-      content = <TopicList {...childProps} />;
+      content = <CategoriesList {...childProps} />;
     }
 
     return (
