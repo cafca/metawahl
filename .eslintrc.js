@@ -12,5 +12,6 @@ module.exports = {
     browser: true
   },
   rules: {
+    "eqeqeq": "off"
   }
 };
