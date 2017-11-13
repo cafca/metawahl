@@ -6,6 +6,7 @@ import './App.css';
 import OccasionList from './OccasionList';
 import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
+import Category from './Category';
 
 const Navbar = props => <div className="navbar">
   <a
@@ -31,6 +32,7 @@ class App extends Component {
   }
 
   navigate(page, instance=null) {
+    console.log("Navigate to " + page + " " + instance)
     this.setState({page, instance}, () => {window.scrollTo(0, 0);});
   }
 
@@ -81,8 +83,10 @@ class App extends Component {
       content = <OccasionList {...childProps} />;
     } else if (this.state.page === "Wahl") {
       content = <Occasion instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]} navigate={this.navigate} />;
-    } else {
+    } else if (this.state.page == "Themen") {
       content = <CategoriesList {...childProps} />;
+    } else {
+      content = <Category instance={this.state.instance} {...childProps} />;
     }
 
     return (

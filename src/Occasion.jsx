@@ -32,11 +32,23 @@ export default class Occasion extends React.Component {
       });
   }
 
+  checkScrolling() {
+    if (window.location.hash != undefined) {
+      const hashElems = window.location.hash.split("-");
+      if (hashElems.length == 3 && parseInt(hashElems[1]) === this.props.instance.occasion.num) {
+        const elem = document.getElementById(window.location.hash.slice(1));
+        elem.scrollTop = 0;
+      }
+    }
+  }
+
   render() {
 
     const theses = this.state.theses.map(t =>
-      <Thesis {...t} key={t.id} loaded={this.state.loading === "success"} />
+      <Thesis {...t} key={t.id} loaded={this.state.loading === "success"} navigate={this.props.navigate} />
     );
+
+    this.checkScrolling();
 
     return <div>
       <h1><a onClick={() => this.props.navigate("Wahlen")}>Wahlen</a> > {this.props.instance.occasion.title}</h1>

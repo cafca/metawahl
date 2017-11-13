@@ -43,11 +43,14 @@ a:hover {
   list-style-type: none;
 }
 
-.theses .position_values {
-  display:
+.theses span.positionWithText {
+  text-decoration: underline;
 }
 
-.theses .position_values span:hover {
-  text-decoration: underline;
-  cursor: pointer;
+.theses span.positionWithText:hover {
+  cursor: pointer
+}
+
+.positionsOverview {
+  margin: .5em 0;
 }

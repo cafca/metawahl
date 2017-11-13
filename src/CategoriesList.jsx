@@ -3,7 +3,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
 
-export default class TopicList extends Component {
+export default class CategoriesList extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -11,7 +11,7 @@ export default class TopicList extends Component {
 
   render() {
     const categories = Object.keys(this.props.categories).sort().map(category => (
-      <li>
+      <li key={category}>
         <a onClick={() => this.props.navigate("Thema", category)}>
           {category}
         </a>
