@@ -28,3 +28,26 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.navbar a {
+  margin-right: .5em;
+}
+
+.theses li {
+  margin-bottom: 5em;
+  list-style-type: none;
+}
+
+.theses .position_values {
+  display:
+}
+
+.theses .position_values span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import logo from './logo.svg';
 import './App.css';
+import _ from 'lodash';
 
-const Navbar = props => <div>
-  <a onClick={() => props.navigate("Wahlen")} style={{color: (props.page === "Wahlen" ? "red" : "white")}}>Wahlen</a>
-  <a onClick={() => props.navigate("Themen")} style={{color: (props.page === "Themen" ? "red" : "white")}}>Themen</a>
+const Navbar = props => <div className="navbar">
+  <a
+    onClick={() => props.navigate("Wahlen")}
+    style={{color: (props.page === "Wahlen" ? "red" : "white")}}>Wahlen</a>
+  <a
+    onClick={() => props.navigate("Themen")}
+    style={{color: (props.page === "Themen" ? "red" : "white")}}>Themen</a>
 </div>;
 
 class OccasionList extends Component {
@@ -15,11 +20,31 @@ class OccasionList extends Component {
   }
 
   render() {
-    const occasions = this.props.occasions.map(occasion => <li key={occasion.occasion.title}>
+    const territories = {};
+    this.props.occasions.map(occasion => {
+      if (territories[occasion.occasion.territory] == undefined) {
+        territories[occasion.occasion.territory] = [];
+      }
+
+      territories[occasion.occasion.territory].push(<li key={occasion.occasion.title}>
       <a onClick={() => this.props.navigate("Wahl", occasion.occasion.num)}>
         {occasion.occasion.title}
       </a>
     </li>);
+    });
+
+    const occasions = Object.keys(territories)
+      .sort()
+      .map(territory => {
+        const cur = territories[territory];
+        return <div className="territory">
+          <h2>{_.startCase(territory)}</h2>
+          <ul>
+            {cur}
+          </ul>
+        </div>;
+      });
+
     return this.props.data === "loading" ? <p>Loading...</p> :
       <div>
         <h1>Wahlen</h1>
@@ -49,29 +74,43 @@ class Thesis extends Component {
     let contraParties = this.props.positions.filter(p => p.value === -1);
 
     let showPro = proParties.length > 0
-      ? <p>Pro: {proParties.map(p =>
+      ? <div className="position_values">Pro: {proParties.map(p =>
           <span key={p.party} onClick={() => this.toggleOpen(p)}>{p.party}, </span>
-        )}</p> : null;
+        )}</div> : null;
 
     let showNeutral = neutralParties.length > 0
-      ? <p>Neutral: {neutralParties.map(p =>
+      ? <div className="position_values">Neutral: {neutralParties.map(p =>
           <span key={p.party} onClick={() => this.toggleOpen(p)}>{p.party}, </span>
-        )}</p> : null;
+        )}</div> : null;
 
     let showContra = contraParties.length > 0
-      ? <p>Contra: {contraParties.map(p =>
+      ? <div className="position_values">Contra: {contraParties.map(p =>
           <span key={p.party} onClick={() => this.toggleOpen(p)}>{p.party}, </span>
-        )}</p> : null;
+        )}</div> : null;
 
     const positionText = this.state.openText == undefined || this.props.loaded === false
       ? null : <p>Position der {this.state.openText.party}: {this.state.openText.text}</p>;
 
     return <li>
-      <strong>{this.props.id}</strong>&nbsp;<span>{this.props.title}</span>
-      <p style={{marginLeft: 10}}>{this.props.text}</p>
-      {showPro}
-      {showNeutral}
-      {showContra}
+      {this.props.title.length > 0 &&
+        <span>
+        <h2>{this.props.title}</h2>
+        <h4>{this.props.text}</h4>
+        </span>
+      }
+
+      {this.props.title.length == 0 &&
+        <h2>
+          <span style={{marginLeft: 5}}>{this.props.text}</span>
+        </h2>
+      }
+
+      <em>{this.props.id}</em>&nbsp;
+      <p>
+        {showPro}
+        {showNeutral}
+        {showContra}
+      </p>
       {positionText}
     </li>
   }
@@ -114,7 +153,7 @@ class Occasion extends React.Component {
     return <div>
       <h1><a onClick={() => this.props.navigate("Wahlen")}>Wahlen</a> > {this.props.instance.occasion.title}</h1>
       <h3>Thesen</h3>
-      <ul>
+      <ul className="theses">
         {theses}
       </ul>
     </div>;
@@ -146,7 +185,7 @@ class App extends Component {
   }
 
   navigate(page, instance=null) {
-    this.setState({page, instance});
+    this.setState({page, instance}, () => {window.scrollTo(0, 0);});
   }
 
   componentDidMount() {
