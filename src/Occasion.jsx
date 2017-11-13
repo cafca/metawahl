@@ -37,7 +37,7 @@ export default class Occasion extends React.Component {
       const hashElems = window.location.hash.split("-");
       if (hashElems.length == 3 && parseInt(hashElems[1]) === this.props.instance.occasion.num) {
         const elem = document.getElementById(window.location.hash.slice(1));
-        elem.scrollTop = 0;
+        if (elem) elem.scrollTop = 0;
       }
     }
   }
