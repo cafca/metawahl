@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import logo from './logo.svg';
 import './App.css';
+import _ from 'lodash';
 
 import OccasionList from './OccasionList';
 import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
 import Category from './Category';
+
+const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+  ? "/data" : "/tamolhaw/data";
 
 const Navbar = props => <div className="navbar">
   <a
@@ -37,7 +41,7 @@ class App extends Component {
   }
 
   loadOccasions() {
-    fetch("/data/occasions.json")
+    fetch(`${DATA_DIR}/data/occasions.json`)
       .then(response => response.json())
       .then(occasions => {
         this.setState({occasions, occasionsState: "success"});
@@ -51,22 +55,46 @@ class App extends Component {
   }
 
   loadCategories() {
-    fetch("/data/categories.json")
+    fetch(`${DATA_DIR}/categories.json`)
       .then(response => response.json())
       .then(categories => {
-        this.setState({categories, categoriesState: "success"});
+        this.setState({
+          categories,
+          categoriesState: "success"
+        });
       })
       .catch(error => {
         this.setState({
           categoriesState: "error",
-          error: error
+          error: error,
         });
       });
+  }
+
+  loadPositionTexts() {
+    _.range(43).forEach(womId => {
+      fetch(`${DATA_DIR}/WOM-${womId}.json`)
+        .then(response => response.json())
+        .then(respData => {
+          const posData = {};
+          respData.data.forEach(womData => {
+            posData[womData.id] = womData.positions
+          });
+          this.setState({
+            positionTexts: Object.assign(
+              {}, this.state.positionTexts, { [womId]: posData })
+          }, () => console.log("Finished loading position texts #" + womId));
+        })
+        .catch(error => {
+          console.log("Error loading position texts", error);
+        });
+    })
   }
 
   componentDidMount() {
     this.loadOccasions();
     this.loadCategories();
+    this.loadPositionTexts();
   }
 
   render() {
@@ -82,11 +110,17 @@ class App extends Component {
     if (this.state.page === "Wahlen") {
       content = <OccasionList {...childProps} />;
     } else if (this.state.page === "Wahl") {
-      content = <Occasion instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]} navigate={this.navigate} />;
+      content = <Occasion
+        instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]}
+        positionTexts={this.state.positionTexts[this.state.instance]}
+        navigate={this.navigate} />;
     } else if (this.state.page == "Themen") {
       content = <CategoriesList {...childProps} />;
     } else {
-      content = <Category instance={this.state.instance} {...childProps} />;
+      content = <Category
+        instance={this.state.instance}
+        positionTexts={this.state.positionTexts}
+        {...childProps} />;
     }
 
     return (

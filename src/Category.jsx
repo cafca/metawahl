@@ -34,7 +34,6 @@ export default class Category extends React.Component {
     const theses = props.categoriesState == "success" && props.occasionsState == "success" && props.categories[props.instance]
       .map(thesisID => {
         const {womID, thesisNUM} = this.extractThesisID(thesisID);
-        if (props.occasions[parseInt(womID)] == undefined) debugger;
         return props.occasions[parseInt(womID)].theses[parseInt(thesisNUM)];
       });
     if(theses && theses.length !== this.state.theses.length) this.setState({theses});
@@ -47,8 +46,13 @@ export default class Category extends React.Component {
       .sort(thesisIdSorter)
       .map(thesis => {
         const {womID} = this.extractThesisID(thesis.id);
+        const thesisExtended = Object.assign({}, thesis, { positions: this.props.positionTexts[womID][thesis.id]});
         return <div key={thesis.id}>
-          <Thesis {...thesis} loaded={false} navigate={this.props.navigate} />
+          <Thesis
+            {...thesisExtended}
+            loaded={thesisExtended.positions != undefined && thesisExtended.positions.length > 0}
+            navigate={this.props.navigate}
+            showLink={true} />
         </div>;
       });
 
@@ -57,7 +61,7 @@ export default class Category extends React.Component {
 
     return <div className="category">
       <h1><a onClick={() => this.props.navigate("Themen")}>Themen</a> > {this.props.instance}</h1>
-      <ul>
+      <ul class="theses">
         {loading}
         {theses}
       </ul>

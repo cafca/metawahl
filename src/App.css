@@ -43,11 +43,11 @@ a:hover {
   list-style-type: none;
 }
 
-.theses span.positionWithText {
+.positionWithText {
   text-decoration: underline;
 }
 
-.theses span.positionWithText:hover {
+.positionWithText:hover {
   cursor: pointer
 }
 

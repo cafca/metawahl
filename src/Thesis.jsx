@@ -35,7 +35,7 @@ export default class Thesis extends Component {
     let neutralPositions = this.props.positions.filter(p => p.value === 0);
     let contraPositions = this.props.positions.filter(p => p.value === -1);
 
-    const positionText = this.state.openText == undefined || this.props.loaded === false
+    const positionText = this.state.openText == null || this.props.loaded === false
       ? null : <p>Position der {this.state.openText.party}: {this.state.openText.text}</p>;
 
     const womID = parseInt(this.props.id.split("-")[1]);
@@ -53,13 +53,19 @@ export default class Thesis extends Component {
           <span style={{marginLeft: 5}}>{this.props.text}</span>
         </h2>
       }
-      <em><a onClick={() => this.props.navigate("Wahl", womID)} href={"#" + this.props.id}>{this.props.id}</a></em>&nbsp;
       <div className="positionsOverview">
         <Positions value="Pro" positions={proPositions} toggleOpen={this.toggleOpen}/>
         <Positions value="Neutral" positions={neutralPositions} toggleOpen={this.toggleOpen}/>
         <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
       </div>
       {positionText}
+      { this.props.showLink &&
+        <small>
+          <em><a
+            onClick={() => this.props.navigate("Wahl", womID)}
+            href={"#" + this.props.id}>Zum Wahlomat für These {this.props.id}</a></em>
+        </small>
+      }
     </li>
   }
 }
