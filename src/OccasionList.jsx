@@ -11,8 +11,8 @@ export default class OccasionList extends Component {
 
   render() {
     const territories = {};
-    this.props.occasions.map(occasion => {
-      if (territories[occasion.occasion.territory] == undefined) {
+    this.props.occasions.forEach(occasion => {
+      if (territories[occasion.occasion.territory] == null) {
         territories[occasion.occasion.territory] = [];
       }
 

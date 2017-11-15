@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
 
 export default class CategoriesList extends Component {
   constructor(props) {
@@ -18,7 +17,7 @@ export default class CategoriesList extends Component {
       </li>
     ));
 
-    return this.props.categoriesState == "loading" ? <h2>Loading categories...</h2> :
+    return this.props.categoriesState === "loading" ? <h2>Loading categories...</h2> :
       <div className="categories">
         <h1>Themen</h1>
         <ul>

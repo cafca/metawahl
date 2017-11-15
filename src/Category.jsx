@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
 import Thesis from './Thesis';
 
 export default class Category extends React.Component {
@@ -25,16 +24,16 @@ export default class Category extends React.Component {
     const elems = thesisID.split("-");
     return {
       type: elems[0],
-      womID: parseInt(elems[1]),
-      thesisNUM: parseInt(elems[2])
+      womID: parseInt(elems[1], 10),
+      thesisNUM: parseInt(elems[2], 10)
     }
   }
 
   updateTheses(props) {
-    const theses = props.categoriesState == "success" && props.occasionsState == "success" && props.categories[props.instance]
+    const theses = props.categoriesState === "success" && props.occasionsState === "success" && props.categories[props.instance]
       .map(thesisID => {
         const {womID, thesisNUM} = this.extractThesisID(thesisID);
-        return props.occasions[parseInt(womID)].theses[parseInt(thesisNUM)];
+        return props.occasions[womID].theses[thesisNUM];
       });
     if(theses && theses.length !== this.state.theses.length) this.setState({theses});
   }
@@ -50,18 +49,18 @@ export default class Category extends React.Component {
         return <div key={thesis.id}>
           <Thesis
             {...thesisExtended}
-            loaded={thesisExtended.positions != undefined && thesisExtended.positions.length > 0}
+            loaded={thesisExtended.positions != null && thesisExtended.positions.length > 0}
             navigate={this.props.navigate}
             showLink={true} />
         </div>;
       });
 
-    const loading = this.props.categoriesState == "success" && this.props.occasionsState == "success" ? null
+    const loading = this.props.categoriesState === "success" && this.props.occasionsState === "success" ? null
       : <p>Loading...</p>
 
     return <div className="category">
       <h1><a onClick={() => this.props.navigate("Themen")}>Themen</a> > {this.props.instance}</h1>
-      <ul class="theses">
+      <ul className="theses">
         {loading}
         {theses}
       </ul>

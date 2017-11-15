@@ -38,7 +38,7 @@ export default class Thesis extends Component {
     const positionText = this.state.openText == null || this.props.loaded === false
       ? null : <p>Position der {this.state.openText.party}: {this.state.openText.text}</p>;
 
-    const womID = parseInt(this.props.id.split("-")[1]);
+    const womID = parseInt(this.props.id.split("-")[1], 10);
 
     return <li id={this.props.id}>
       {this.props.title && this.props.title.length > 0 &&
@@ -48,7 +48,7 @@ export default class Thesis extends Component {
         </span>
       }
 
-      {(this.props.title == undefined || this.props.title.length == 0) &&
+      {(this.props.title == null || this.props.title.length === 0) &&
         <h2>
           <span style={{marginLeft: 5}}>{this.props.text}</span>
         </h2>

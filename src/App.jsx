@@ -15,10 +15,10 @@ const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 const Navbar = props => <div className="navbar">
   <a
     onClick={() => props.navigate("Wahlen")}
-    style={{color: (props.page === "Wahlen" ? "red" : "white")}}>Wahlen</a>
+    style={{color: (props.page.startsWith("Wahl") ? "red" : "white")}}>Wahlen</a>
   <a
     onClick={() => props.navigate("Themen")}
-    style={{color: (props.page === "Themen" ? "red" : "white")}}>Themen</a>
+    style={{color: (props.page.startsWith("Them") ? "red" : "white")}}>Themen</a>
 </div>;
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   loadOccasions() {
-    fetch(`${DATA_DIR}/data/occasions.json`)
+    fetch(`${DATA_DIR}/occasions.json`)
       .then(response => response.json())
       .then(occasions => {
         this.setState({occasions, occasionsState: "success"});
@@ -114,7 +114,7 @@ class App extends Component {
         instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]}
         positionTexts={this.state.positionTexts[this.state.instance]}
         navigate={this.navigate} />;
-    } else if (this.state.page == "Themen") {
+    } else if (this.state.page === "Themen") {
       content = <CategoriesList {...childProps} />;
     } else {
       content = <Category

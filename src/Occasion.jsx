@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
 import Thesis from './Thesis';
 
 export default class Occasion extends React.Component {
@@ -15,9 +14,9 @@ export default class Occasion extends React.Component {
   }
 
   checkScrolling() {
-    if (window.location.hash != undefined) {
+    if (window.location.hash != null) {
       const hashElems = window.location.hash.split("-");
-      if (hashElems.length == 3 && parseInt(hashElems[1]) === this.props.instance.occasion.num) {
+      if (hashElems.length === 3 && parseInt(hashElems[1], 10) === this.props.instance.occasion.num) {
         const elem = document.getElementById(window.location.hash.slice(1));
         if (elem) elem.scrollTop = 0;
       }
@@ -27,7 +26,7 @@ export default class Occasion extends React.Component {
   render() {
     const theses = this.state.theses.map((t, i) => {
       // Set to positionTexts entry once loaded
-      const positions = this.props.positionTexts != undefined
+      const positions = this.props.positionTexts != null
         ? this.props.positionTexts[t.id] : t.positions;
 
       return <Thesis
@@ -35,10 +34,9 @@ export default class Occasion extends React.Component {
         loaded={this.state.loading === "success"}
         navigate={this.props.navigate}
         {...t}
-        positions={this.props.positionTexts[t.id]}
+        positions={positions}
       />
-      }
-    );
+    });
 
     return <div>
       <h1><a onClick={() => this.props.navigate("Wahlen")}>Wahlen</a> > {this.props.instance.occasion.title}</h1>
