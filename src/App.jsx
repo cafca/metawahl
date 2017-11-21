@@ -30,7 +30,9 @@ class App extends Component {
       occasionsState: "loading",
       occasions: [],
       categoriesState: "loading",
-      categories: {}
+      categories: {},
+      positionTexts: {},
+      positionTextsState: "loading"
     }
     autoBind(this);
   }
@@ -81,11 +83,13 @@ class App extends Component {
             posData[womData.id] = womData.positions
           });
           this.setState({
+            positionTextsState: "success",
             positionTexts: Object.assign(
               {}, this.state.positionTexts, { [womId]: posData })
           }, () => console.log("Finished loading position texts #" + womId));
         })
         .catch(error => {
+          this.setState({positionTextsState: "error"});
           console.log("Error loading position texts", error);
         });
     })
@@ -113,6 +117,7 @@ class App extends Component {
       content = <Occasion
         instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]}
         positionTexts={this.state.positionTexts[this.state.instance]}
+        positionTextsState={this.state.positionTextsState}
         navigate={this.navigate} />;
     } else if (this.state.page === "Themen") {
       content = <CategoriesList {...childProps} />;

@@ -8,7 +8,6 @@ export default class Occasion extends React.Component {
     super(props);
     autoBind(this);
     this.state = {
-      loading: "loading",
       theses: this.props.instance.theses
     }
   }
@@ -31,7 +30,7 @@ export default class Occasion extends React.Component {
 
       return <Thesis
         key={t.id}
-        loaded={this.state.loading === "success"}
+        loaded={this.props.positionTextsState === "success"}
         navigate={this.props.navigate}
         {...t}
         positions={positions}
