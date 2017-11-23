@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
@@ -43,15 +44,15 @@ export default class Thesis extends Component {
     return <li id={this.props.id}>
       {this.props.title && this.props.title.length > 0 &&
         <span>
-        <h2>{this.props.title}</h2>
+        <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>{this.props.title}</h2></Link>
         <h4>{this.props.text}</h4>
         </span>
       }
 
       {(this.props.title == null || this.props.title.length === 0) &&
-        <h2>
+        <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>
           <span style={{marginLeft: 5}}>{this.props.text}</span>
-        </h2>
+        </h2></Link>
       }
       <div className="positionsOverview">
         <Positions value="Pro" positions={proPositions} toggleOpen={this.toggleOpen}/>
@@ -59,13 +60,6 @@ export default class Thesis extends Component {
         <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
       </div>
       {positionText}
-      { this.props.showLink &&
-        <small>
-          <em><a
-            onClick={() => this.props.navigate("Wahl", womID)}
-            href={"#" + this.props.id}>Zum Wahlomat für These {this.props.id}</a></em>
-        </small>
-      }
     </li>
   }
 }

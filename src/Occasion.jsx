@@ -2,46 +2,52 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
+import { Link } from 'react-router-dom';
 
 export default class Occasion extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
-    this.state = {
-      theses: this.props.instance.theses
+    this.state =  {
+      occasion: null,
+      occasionNum: this.props.match.params.occasionNum,
+      theses: []
     }
   }
 
-  checkScrolling() {
-    if (window.location.hash != null) {
-      const hashElems = window.location.hash.split("-");
-      if (hashElems.length === 3 && parseInt(hashElems[1], 10) === this.props.instance.occasion.num) {
-        const elem = document.getElementById(window.location.hash.slice(1));
-        if (elem) elem.scrollTop = 0;
-      }
-    }
+  componentDidMount() {
+    this.makeStateFromProps(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.makeStateFromProps(nextProps);
+  }
+
+  makeStateFromProps(props) {
+    const occasion = props.occasions[this.state.occasionNum];
+    const theses = occasion ? occasion.theses : [];
+    this.setState({occasion, theses});
   }
 
   render() {
-    const theses = this.state.theses.map((t, i) => {
+    const thesesElems = this.state.theses.map((t, i) => {
       // Set to positionTexts entry once loaded
-      const positions = this.props.positionTexts != null
-        ? this.props.positionTexts[t.id] : t.positions;
+      const positions = this.props.positions[this.state.occasionNum]
+        ? this.props.positions[this.state.occasionNum][t.id] : t.positions;
 
       return <Thesis
         key={t.id}
-        loaded={this.props.positionTextsState === "success"}
-        navigate={this.props.navigate}
+        loaded={this.props.positions != null}
         {...t}
         positions={positions}
       />
     });
 
     return <div>
-      <h1><a onClick={() => this.props.navigate("Wahlen")}>Wahlen</a> > {this.props.instance.occasion.title}</h1>
+      <h1><Link to="/">Wahlen</Link> > {this.state.occasion == null ? "Loading..." : this.state.occasion.occasion.title}</h1>
       <h3>Thesen</h3>
       <ul className="theses">
-        {theses}
+        {thesesElems}
       </ul>
     </div>;
   }

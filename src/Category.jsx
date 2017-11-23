@@ -2,22 +2,17 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
+import { Link } from 'react-router-dom';
 
 export default class Category extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
-    this.state = {
-      theses: []
-    }
+    this.state = this.makeStateFromProps(this.props);
   }
 
-  componentDidMount() {
-    this.updateTheses(this.props);
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    this.updateTheses(nextProps);
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.makeStateFromProps(nextProps));
   }
 
   extractThesisID(thesisID) {
@@ -29,40 +24,37 @@ export default class Category extends React.Component {
     }
   }
 
-  updateTheses(props) {
-    const theses = props.categoriesState === "success" && props.occasionsState === "success" && props.categories[props.instance]
-      .map(thesisID => {
+  makeStateFromProps(props) {
+    const category = this.props.match.params.category;
+    let theses = [];
+    if (props.categories && props.categories[category] && props.occasions) {
+      theses = props.categories[category].map(thesisID => {
         const {womID, thesisNUM} = this.extractThesisID(thesisID);
-        return props.occasions[womID].theses[thesisNUM];
+        const thesisData = props.occasions[womID].theses[thesisNUM];
+        const positions = this.props.positions[womID]
+          ? this.props.positions[womID][thesisID] : thesisData.positions;
+        return Object.assign({}, thesisData, { womID, thesisNUM, positions });
       });
-    if(theses && theses.length !== this.state.theses.length) this.setState({theses});
+    }
+    return { category, theses };
   }
 
   render() {
-    // Can't sort with theses ids directly because e.g. "WOM-50-21" < "WOM-7-3".
-    const thesisIdSorter = (t1, t2) => this.extractThesisID(t1.id).womID - this.extractThesisID(t2.id).womID
-    const theses = this.state.theses
-      .sort(thesisIdSorter)
+    const thesesElems = this.state.theses
+      .sort((t1, t2) => t1.womID - t2.womID)
       .map(thesis => {
-        const {womID} = this.extractThesisID(thesis.id);
-        const thesisExtended = Object.assign({}, thesis, { positions: this.props.positionTexts[womID][thesis.id]});
         return <div key={thesis.id}>
           <Thesis
-            {...thesisExtended}
-            loaded={thesisExtended.positions != null && thesisExtended.positions.length > 0}
-            navigate={this.props.navigate}
+            {...thesis}
+            loaded={thesis.positions != null && thesis.positions.length > 0}
             showLink={true} />
         </div>;
       });
 
-    const loading = this.props.categoriesState === "success" && this.props.occasionsState === "success" ? null
-      : <p>Loading...</p>
-
     return <div className="category">
-      <h1><a onClick={() => this.props.navigate("Themen")}>Themen</a> > {this.props.instance}</h1>
+      <h1><Link to="/themen/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.props.match.params.category : <span>Loading...</span>}</h1>
       <ul className="theses">
-        {loading}
-        {theses}
+        {thesesElems}
       </ul>
     </div>
   }

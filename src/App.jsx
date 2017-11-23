@@ -3,6 +3,11 @@ import autoBind from 'react-autobind';
 import logo from './logo.svg';
 import './App.css';
 import _ from 'lodash';
+import {
+  BrowserRouter,
+  Route,
+  Link
+} from 'react-router-dom'
 
 import OccasionList from './OccasionList';
 import Occasion from './Occasion';
@@ -12,15 +17,6 @@ import Category from './Category';
 const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
   ? "/data" : "/tamolhaw/data";
 
-const Navbar = props => <div className="navbar">
-  <a
-    onClick={() => props.navigate("Wahlen")}
-    style={{color: (props.page.startsWith("Wahl") ? "red" : "white")}}>Wahlen</a>
-  <a
-    onClick={() => props.navigate("Themen")}
-    style={{color: (props.page.startsWith("Them") ? "red" : "white")}}>Themen</a>
-</div>;
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,11 +24,10 @@ class App extends Component {
       page: "Wahlen",
       instance: null,
       occasionsState: "loading",
-      occasions: [],
+      occasions: {},
       categoriesState: "loading",
       categories: {},
-      positionTexts: {},
-      positionTextsState: "loading"
+      positions: {}
     }
     autoBind(this);
   }
@@ -45,11 +40,16 @@ class App extends Component {
   loadOccasions() {
     fetch(`${DATA_DIR}/occasions.json`)
       .then(response => response.json())
-      .then(occasions => {
+      .then(occasionList => {
+        const occasions = {};
+        occasionList.forEach(o => {
+          occasions[o.occasion.num] = o;
+        })
         this.setState({occasions, occasionsState: "success"});
       })
       .catch(error => {
         this.setState({
+          occasions: null,
           occasionsState: "error",
           error: error
         });
@@ -73,7 +73,7 @@ class App extends Component {
       });
   }
 
-  loadPositionTexts() {
+  loadPositions() {
     _.range(43).forEach(womId => {
       fetch(`${DATA_DIR}/WOM-${womId}.json`)
         .then(response => response.json())
@@ -82,14 +82,12 @@ class App extends Component {
           respData.data.forEach(womData => {
             posData[womData.id] = womData.positions
           });
-          this.setState({
-            positionTextsState: "success",
-            positionTexts: Object.assign(
-              {}, this.state.positionTexts, { [womId]: posData })
-          }, () => console.log("Finished loading position texts #" + womId));
+          this.setState(prevState => ({
+            positions: Object.assign(
+              {}, this.state.positions, { [womId]: posData })
+          }), () => console.log("Finished loading position texts #" + womId));
         })
         .catch(error => {
-          this.setState({positionTextsState: "error"});
           console.log("Error loading position texts", error);
         });
     })
@@ -98,45 +96,46 @@ class App extends Component {
   componentDidMount() {
     this.loadOccasions();
     this.loadCategories();
-    this.loadPositionTexts();
+    this.loadPositions();
   }
 
   render() {
-    const childProps = {
+    const extraProps = {
       occasions: this.state.occasions,
-      occasionsState: this.state.occasionsState,
       categories: this.state.categories,
-      categoriesState: this.state.categoriesState,
-      navigate: this.navigate
+      positions: this.state.positions
     };
 
-    let content;
-    if (this.state.page === "Wahlen") {
-      content = <OccasionList {...childProps} />;
-    } else if (this.state.page === "Wahl") {
-      content = <Occasion
-        instance={this.state.occasions.filter(o => o.occasion.num === this.state.instance)[0]}
-        positionTexts={this.state.positionTexts[this.state.instance]}
-        positionTextsState={this.state.positionTextsState}
-        navigate={this.navigate} />;
-    } else if (this.state.page === "Themen") {
-      content = <CategoriesList {...childProps} />;
-    } else {
-      content = <Category
-        instance={this.state.instance}
-        positionTexts={this.state.positionTexts}
-        {...childProps} />;
-    }
-
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Wahl-o-Meter Web</h1>
-          <Navbar navigate={this.navigate} page={this.state.page} />
-        </header>
-        {content}
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Wahl-o-Meter Web</h1>
+            <div className="navbar">
+              <Link to="/">Wahlen</Link>
+              <Link to="/themen/">Themen</Link>
+            </div>
+          </header>
+
+          <Route exact path="/" render={props => (
+            <OccasionList {...props} {...extraProps} />
+          )} />
+
+          <Route path="/wahlen/:occasionNum/" render={props => (
+            <Occasion {...props} {...extraProps} />
+          )} />
+
+          <Route exact path="/themen/" render={props => (
+            <CategoriesList {...props} {...extraProps} />
+          )} />
+
+          <Route path="/themen/:category/" render={props => (
+            <Category {...props} {...extraProps} />
+          )} />
+
+        </div>
+      </BrowserRouter>
     );
   }
 }

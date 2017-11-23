@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 export default class OccasionList extends Component {
   constructor(props) {
@@ -11,12 +12,15 @@ export default class OccasionList extends Component {
 
   render() {
     const territories = {};
-    this.props.occasions.forEach(occasion => {
-      if (territories[occasion.occasion.territory] == null) {
-        territories[occasion.occasion.territory] = [];
-      }
 
-      territories[occasion.occasion.territory].push(occasion);
+    // Make object that maps each territory to its occasions
+    Object.keys(this.props.occasions).forEach(occasionNum => {
+      const terr = this.props.occasions[occasionNum].occasion.territory;
+      if (territories[terr]) {
+        territories[terr].push(this.props.occasions[occasionNum]);
+      } else {
+        territories[terr] = [this.props.occasions[occasionNum]];
+      }
     });
 
     const occasions = Object.keys(territories)
@@ -25,9 +29,9 @@ export default class OccasionList extends Component {
         const occasions = territories[territory]
           .sort((a, b) => a.occasion.title > b.occasion.title)
           .map(occasion => <li key={occasion.occasion.title}>
-            <a onClick={() => this.props.navigate("Wahl", occasion.occasion.num)}>
+            <Link to={`/wahlen/${occasion.occasion.num}/`}>
               {occasion.occasion.title}
-            </a>
+            </Link>
           </li>);
 
         return <div className="territory" key={territory}>

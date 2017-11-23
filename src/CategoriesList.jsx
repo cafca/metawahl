@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 export default class CategoriesList extends Component {
   constructor(props) {
@@ -11,9 +12,7 @@ export default class CategoriesList extends Component {
   render() {
     const categories = Object.keys(this.props.categories).sort().map(category => (
       <li key={category}>
-        <a onClick={() => this.props.navigate("Thema", category)}>
-          {category}
-        </a>
+        <Link to={`/themen/${category}/`}>{category}</Link>
       </li>
     ));
 
