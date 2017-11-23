@@ -2,7 +2,7 @@
   "name": "wahlometer-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://demo.vincentahrend.com/tamolhaw/",
+  "homepage": "http://demo.vincentahrend.com/",
   "dependencies": {
     "lodash": "^4.17.4",
     "react": "^16.0.0",

@@ -14,8 +14,10 @@ import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
 import Category from './Category';
 
-const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-  ? "/data" : "/tamolhaw/data";
+// const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+//   ? "/data" : "/tamolhaw/data";
+
+const DATA_DIR = "/data"
 
 class App extends Component {
   constructor(props) {
