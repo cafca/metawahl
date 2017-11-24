@@ -14,7 +14,7 @@ export default class OccasionList extends Component {
     const territories = {};
 
     // Make object that maps each territory to its occasions
-    Object.keys(this.props.occasions).forEach(occasionNum => {
+    this.props.occasions && Object.keys(this.props.occasions).forEach(occasionNum => {
       const terr = this.props.occasions[occasionNum].occasion.territory;
       if (territories[terr]) {
         territories[terr].push(this.props.occasions[occasionNum]);

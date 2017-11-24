@@ -5,18 +5,21 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 
 export default class Occasion extends React.Component {
+  occasionNum;
+
   constructor(props) {
     super(props);
     autoBind(this);
+    this.occasionNum = this.props.match.params.occasionNum;
     this.state =  {
       occasion: null,
-      occasionNum: this.props.match.params.occasionNum,
       theses: []
     }
   }
 
   componentDidMount() {
     this.makeStateFromProps(this.props);
+    this.props.loadPositions(this.occasionNum);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,7 +27,7 @@ export default class Occasion extends React.Component {
   }
 
   makeStateFromProps(props) {
-    const occasion = props.occasions[this.state.occasionNum];
+    const occasion = props.occasions[this.occasionNum];
     const theses = occasion ? occasion.theses : [];
     this.setState({occasion, theses});
   }
@@ -32,8 +35,8 @@ export default class Occasion extends React.Component {
   render() {
     const thesesElems = this.state.theses.map((t, i) => {
       // Set to positionTexts entry once loaded
-      const positions = this.props.positions[this.state.occasionNum]
-        ? this.props.positions[this.state.occasionNum][t.id] : t.positions;
+      const positions = this.props.positions[this.occasionNum]
+        ? this.props.positions[this.occasionNum][t.id] : t.positions;
 
       return <Thesis
         key={t.id}

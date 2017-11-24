@@ -5,14 +5,17 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 
 export default class Category extends React.Component {
+  category = null;
+
   constructor(props) {
     super(props);
     autoBind(this);
-    this.state = this.makeStateFromProps(this.props);
+    this.category = this.props.match.params.category;
+    this.state = this.makeStateFromProps(this.props, true);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(this.makeStateFromProps(nextProps));
+    this.setState(this.makeStateFromProps(nextProps, false));
   }
 
   extractThesisID(thesisID) {
@@ -24,24 +27,34 @@ export default class Category extends React.Component {
     }
   }
 
-  makeStateFromProps(props) {
-    const category = this.props.match.params.category;
+  makeStateFromProps(props, loadProps) {
     let theses = [];
-    if (props.categories && props.categories[category] && props.occasions) {
-      theses = props.categories[category].map(thesisID => {
+    const positionsToLoad = new Set();
+    if (props.categories && props.categories[this.category] && props.occasions) {
+      theses = props.categories[this.category].map(thesisID => {
         const {womID, thesisNUM} = this.extractThesisID(thesisID);
         const thesisData = props.occasions[womID].theses[thesisNUM];
-        const positions = this.props.positions[womID]
-          ? this.props.positions[womID][thesisID] : thesisData.positions;
+
+        let positions;
+        if (this.props.positions[womID]) {
+          positions = this.props.positions[womID][thesisID];
+        } else {
+          positions = thesisData.positions;
+          positionsToLoad.add(womID)
+        }
+
         return Object.assign({}, thesisData, { womID, thesisNUM, positions });
       });
     }
-    return { category, theses };
+    if (loadProps) {
+      positionsToLoad.forEach(this.props.loadPositions);
+    }
+    return { theses };
   }
 
   render() {
     const thesesElems = this.state.theses
-      .sort((t1, t2) => t1.womID - t2.womID)
+      .sort((t1, t2) => t1.womID > t2.womID)
       .map(thesis => {
         return <div key={thesis.id}>
           <Thesis
@@ -52,7 +65,7 @@ export default class Category extends React.Component {
       });
 
     return <div className="category">
-      <h1><Link to="/themen/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.props.match.params.category : <span>Loading...</span>}</h1>
+      <h1><Link to="/themen/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.category : <span>Loading...</span>}</h1>
       <ul className="theses">
         {thesesElems}
       </ul>
