@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import logo from './logo.svg';
 import './App.css';
 import _ from 'lodash';
 import {
@@ -50,11 +49,14 @@ class App extends Component {
         this.setState({occasions, occasionsState: "success"});
       })
       .catch(error => {
-        this.setState({
-          occasions: null,
-          occasionsState: "error",
-          error: error
-        });
+        // https://github.com/facebookincubator/create-react-app/issues/3482
+        if (process.env.NODE_ENV !== 'test') {
+          this.setState({
+            occasions: null,
+            occasionsState: "error",
+            error: error
+          });
+        }
       });
   }
 
@@ -112,8 +114,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Wahl-o-Meter Web</h1>
+            <h1 className="App-title">metawahl</h1>
             <div className="navbar">
               <Link to="/">Wahlen</Link>
               <Link to="/themen/">Themen</Link>

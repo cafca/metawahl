@@ -3,7 +3,7 @@ import os
 import logging
 
 INPUT_DIR = "/Users/vaul/Projects/wahl-o-meter/export"
-OUTPUT_DIR = "/Users/vaul/Projects/tam-o-lhaw/public/data"
+OUTPUT_DIR = "/Users/vaul/Projects/metawahl/src/public/data"
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
