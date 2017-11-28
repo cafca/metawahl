@@ -2,6 +2,40 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
+import { Segment, Menu, Dropdown } from 'semantic-ui-react'
+
+const categoryNames = [
+  "Arbeit und Beschäftigung",
+  "Ausländerpolitik, Zuwanderung",
+  "Außenpolitik und internationale Beziehungen",
+  "Außenwirtschaft",
+  "Bildung und Erziehung",
+  "Bundestag",
+  "Energie",
+  "Entwicklungspolitik",
+  "Europapolitik und Europäische Union",
+  "Gesellschaftspolitik, soziale Gruppen",
+  "Gesundheit",
+  "Innere Sicherheit",
+  "Kultur",
+  "Landwirtschaft und Ernährung",
+  "Medien, Kommunikation und Informationstechnik",
+  "Neue Bundesländer",
+  "Öffentliche Finanzen, Steuern und Abgaben",
+  "Politisches Leben, Parteien",
+  "Raumordnung, Bau- und Wohnungswesen",
+  "Recht",
+  "Soziale Sicherung",
+  "Sport, Freizeit und Tourismus",
+  "Staat und Verwaltung",
+  "Umwelt",
+  "Verkehr",
+  "Verteidigung",
+  "Wirtschaft",
+  "Wissenschaft, Forschung und Technologie"
+];
+
+const categoryOptions = categoryNames.map(name => ({key: name, value: name, text: name}));
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
@@ -9,7 +43,8 @@ const Position = (p) => {
     onClick={hasText ? () => p.toggleOpen(p) : null}
     className={hasText ? "positionWithText" : null}
   >
-    {p.party},&nbsp;
+    {p.party}
+    ,&nbsp;
   </span>
 }
 
@@ -17,6 +52,13 @@ const Positions = ({positions, value, toggleOpen}) => positions.length === 0 ? n
   : <div className="position_values">
       {value}: {positions.map(p => <Position toggleOpen={toggleOpen} key={p.party} {...p} />)}
     </div>
+
+const ThesisActions = ({id}) => {
+  return <Menu vertical fluid>
+    <Dropdown button item placeholder='Kategorie' multiple selection options={categoryOptions} />
+
+  </Menu>;
+}
 
 export default class Thesis extends Component {
   constructor(props) {
@@ -37,11 +79,11 @@ export default class Thesis extends Component {
     let contraPositions = this.props.positions.filter(p => p.value === -1);
 
     const positionText = this.state.openText == null || this.props.loaded === false
-      ? null : <p>Position der {this.state.openText.party}: {this.state.openText.text}</p>;
+      ? null : <p>Position der Partei {this.state.openText.party}: {this.state.openText.text}</p>;
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
-    return <li id={this.props.id}>
+    return <Segment id={this.props.id}>
       {this.props.title && this.props.title.length > 0 &&
         <span>
         <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>{this.props.title}</h2></Link>
@@ -60,6 +102,7 @@ export default class Thesis extends Component {
         <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
       </div>
       {positionText}
-    </li>
+      <ThesisActions {...this.props} />
+    </Segment>
   }
 }

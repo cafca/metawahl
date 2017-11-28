@@ -42,20 +42,19 @@ export default class Category extends React.Component {
   render() {
     const thesesElems = this.state.theses
       .sort((t1, t2) => t1.womID - t2.womID)
-      .map(thesis => {
-        return <div key={thesis.id}>
-          <Thesis
-            {...thesis}
-            loaded={thesis.positions != null && thesis.positions.length > 0}
-            showLink={true} />
-        </div>;
-      });
+      .map(thesis => (
+        <Thesis
+          key={thesis.id}
+          {...thesis}
+          loaded={thesis.positions != null && thesis.positions.length > 0}
+          showLink={true} />)
+      );
 
     return <div className="category">
       <h1><Link to="/themen/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.props.match.params.category : <span>Loading...</span>}</h1>
-      <ul className="theses">
+      <div className="theses">
         {thesesElems}
-      </ul>
+      </div>
     </div>
   }
 }

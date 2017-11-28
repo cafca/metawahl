@@ -3,6 +3,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
+import { Segment } from 'semantic-ui-react';
 
 export default class OccasionList extends Component {
   constructor(props) {
@@ -28,26 +29,26 @@ export default class OccasionList extends Component {
       .map(territory => {
         const occasions = territories[territory]
           .sort((a, b) => a.occasion.title > b.occasion.title)
-          .map(occasion => <li key={occasion.occasion.title}>
+          .map(occasion => <Segment key={occasion.occasion.title}>
             <Link to={`/wahlen/${occasion.occasion.num}/`}>
               {occasion.occasion.title}
             </Link>
-          </li>);
+          </Segment>);
 
         return <div className="territory" key={territory}>
           <h2>{_.startCase(territory)}</h2>
-          <ul>
+          <Segment.Group>
             {occasions}
-          </ul>
+          </Segment.Group>
         </div>;
       });
 
     return this.props.occasionsState === "loading" ? <p>Loading occasions...</p> :
-      <div>
+      <div className="occasionList">
         <h1>Wahlen</h1>
-        <ul>
+        <div>
           {occasions}
-        </ul>
+        </div>
       </div>;
   }
 };

@@ -3,6 +3,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
+import { Segment } from 'semantic-ui-react';
 
 export default class Occasion extends React.Component {
   constructor(props) {
@@ -43,12 +44,17 @@ export default class Occasion extends React.Component {
       />
     });
 
-    return <div>
+    return <div className="occasion">
       <h1><Link to="/">Wahlen</Link> > {this.state.occasion == null ? "Loading..." : this.state.occasion.occasion.title}</h1>
-      <h3>Thesen</h3>
-      <ul className="theses">
+      {this.state.occasion == null &&
+      <Segment loading style={{ minHeight: 100 }}></Segment>
+      }
+
+      {this.state.occasion != null &&
+      <Segment.Group className="theses" loading={this.state.occasion == null}>
         {thesesElems}
-      </ul>
+      </Segment.Group>
+      }
     </div>;
   }
 }

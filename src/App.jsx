@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
-import {
-  BrowserRouter,
-  Route,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
 
+import HeaderMenu from './HeaderMenu';
+import Footer from './Footer';
 import OccasionList from './OccasionList';
 import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
@@ -113,30 +112,25 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">metawahl</h1>
-            <div className="navbar">
-              <Link to="/">Wahlen</Link>
-              <Link to="/themen/">Themen</Link>
-            </div>
-          </header>
+          <HeaderMenu />
+          <Container text style={{ marginTop: '7em' }}>
+            <Route exact path="/" render={props => (
+              <OccasionList {...props} {...extraProps} />
+            )} />
 
-          <Route exact path="/" render={props => (
-            <OccasionList {...props} {...extraProps} />
-          )} />
+            <Route path="/wahlen/:occasionNum/" render={props => (
+              <Occasion {...props} {...extraProps} />
+            )} />
 
-          <Route path="/wahlen/:occasionNum/" render={props => (
-            <Occasion {...props} {...extraProps} />
-          )} />
+            <Route exact path="/themen/" render={props => (
+              <CategoriesList {...props} {...extraProps} />
+            )} />
 
-          <Route exact path="/themen/" render={props => (
-            <CategoriesList {...props} {...extraProps} />
-          )} />
-
-          <Route path="/themen/:category/" render={props => (
-            <Category {...props} {...extraProps} />
-          )} />
-
+            <Route path="/themen/:category/" render={props => (
+              <Category {...props} {...extraProps} />
+            )} />
+          </Container>
+          <Footer />
         </div>
       </BrowserRouter>
     );
