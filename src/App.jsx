@@ -37,13 +37,46 @@ class App extends Component {
     this.setState({page, instance}, () => {window.scrollTo(0, 0);});
   }
 
-  loadOccasions() {
-    fetch(`${DATA_DIR}/occasions.json`)
-      .then(response => response.json())
-      .then(occasionList => {
-        const occasions = {};
-        occasionList.forEach(o => {
-          occasions[o.occasion.num] = o;
+  load(key) {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
+
+    let rv = null;
+    try {
+      rv = localStorage.getItem(key);
+    } catch(e) {
+      console.log("Error loading from local storage. " + e);
+    }
+    return rv;
+  }
+
+  save(key, json) {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
+
+    try {
+      localStorage.setItem(key, json);
+    } catch(e) {
+      console.log("Error saving to local storage. " + e)
+    }
+  }
+
+  loadOccasions(cb) {
+    const savedOccasions = this.load("occasions")
+
+    if (savedOccasions) {
+      this.setState({
+        occasions: JSON.parse(savedOccasions),
+        occasionsState: "success"
+      }, cb);
+    } else {
+      fetch(`${DATA_DIR}/occasions.json`)
+        .then(response => response.json())
+        .then(occasionList => {
+          const occasions = {};
+          occasionList.forEach(o => {
+            occasions[o.occasion.num] = o;
+          })
+          this.setState({occasions, occasionsState: "success"}, cb);
+          this.save("occasions", JSON.stringify(occasions));
         })
         this.setState({occasions, occasionsState: "success"});
       })
@@ -60,13 +93,22 @@ class App extends Component {
   }
 
   loadCategories() {
-    fetch(`${DATA_DIR}/categories.json`)
+    const savedCategories = this.load("categories");
+
+    if (savedCategories) {
+      this.setState({
+        categories: JSON.parse(savedCategories),
+        categoriesState: "success"
+      });
+    } else {
+      fetch(`${DATA_DIR}/categories.json`)
       .then(response => response.json())
       .then(categories => {
         this.setState({
           categories,
           categoriesState: "success"
         });
+        this.save("categories", JSON.stringify(categories));
       })
       .catch(error => {
         this.setState({
@@ -74,39 +116,52 @@ class App extends Component {
           error: error,
         });
       });
+    }
   }
 
-  loadPositions() {
-    _.range(43).forEach(womId => {
-      fetch(`${DATA_DIR}/WOM-${womId}.json`)
+  loadPositions(womID) {
+    const addPositions = (womID, posData) => prevState => ({
+      positions: Object.assign(
+        {}, this.state.positions, { [womID]: posData })
+    });
+
+    const savedPositions = this.load("positions-" + womID);
+
+    if (savedPositions) {
+      this.setState(
+        addPositions(womID, JSON.parse(savedPositions)),
+        () => console.log("Finished loading position texts #" + womID)
+      );
+    } else {
+      fetch(`${DATA_DIR}/WOM-${womID}.json`)
         .then(response => response.json())
         .then(respData => {
           const posData = {};
           respData.data.forEach(womData => {
             posData[womData.id] = womData.positions
           });
-          this.setState(prevState => ({
-            positions: Object.assign(
-              {}, this.state.positions, { [womId]: posData })
-          }), () => console.log("Finished loading position texts #" + womId));
+          this.setState(
+            addPositions(womID, posData),
+            () => console.log("Finished loading position texts #" + womID)
+          );
+          this.save("positions-" + womID, JSON.stringify(posData));
         })
         .catch(error => {
           console.log("Error loading position texts", error);
         });
-    })
+    }
   }
 
   componentDidMount() {
-    this.loadOccasions();
-    this.loadCategories();
-    this.loadPositions();
+    this.loadOccasions(() => this.loadCategories());
   }
 
   render() {
     const extraProps = {
       occasions: this.state.occasions,
       categories: this.state.categories,
-      positions: this.state.positions
+      positions: this.state.positions,
+      loadPositions: womID => this.loadPositions(womID)
     };
 
     return (
