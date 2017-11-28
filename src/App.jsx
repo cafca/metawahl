@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
 import { BrowserRouter, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
@@ -78,18 +77,18 @@ class App extends Component {
           this.setState({occasions, occasionsState: "success"}, cb);
           this.save("occasions", JSON.stringify(occasions));
         })
-        this.setState({occasions, occasionsState: "success"});
-      })
-      .catch(error => {
-        // https://github.com/facebookincubator/create-react-app/issues/3482
-        if (process.env.NODE_ENV !== 'test') {
-          this.setState({
-            occasions: null,
-            occasionsState: "error",
-            error: error
-          });
+        .catch(error => {
+          // https://github.com/facebookincubator/create-react-app/issues/3482
+          if (process.env.NODE_ENV !== 'test') {
+            this.setState({
+              occasions: null,
+              occasionsState: "error",
+              error: error
+            });
+          }
         }
-      });
+      );
+    }
   }
 
   loadCategories() {

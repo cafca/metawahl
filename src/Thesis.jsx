@@ -55,7 +55,7 @@ const Positions = ({positions, value, toggleOpen}) => positions.length === 0 ? n
 
 const ThesisActions = ({id}) => {
   return <Menu vertical fluid>
-    <Dropdown button item placeholder='Kategorie' multiple selection options={categoryOptions} />
+    <Dropdown item placeholder='Kategorie' search multiple selection options={categoryOptions} />
 
   </Menu>;
 }
