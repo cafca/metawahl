@@ -35,7 +35,7 @@ const categoryNames = [
   "Wissenschaft, Forschung und Technologie"
 ];
 
-const categoryOptions = categoryNames.map(name => ({key: name, value: name, text: name}));
+export const categoryOptions = categoryNames.map(name => ({key: name, value: name, text: name}));
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
@@ -51,14 +51,7 @@ const Position = (p) => {
 const Positions = ({positions, value, toggleOpen}) => positions.length === 0 ? null
   : <div className="position_values">
       {value}: {positions.map(p => <Position toggleOpen={toggleOpen} key={p.party} {...p} />)}
-    </div>
-
-const ThesisActions = ({id}) => {
-  return <Menu vertical fluid>
-    <Dropdown item placeholder='Kategorie' search multiple selection options={categoryOptions} />
-
-  </Menu>;
-}
+    </div>;
 
 export default class Thesis extends Component {
   constructor(props) {
@@ -83,26 +76,45 @@ export default class Thesis extends Component {
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
-    return <Segment id={this.props.id}>
-      {this.props.title && this.props.title.length > 0 &&
-        <span>
-        <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>{this.props.title}</h2></Link>
-        <h4>{this.props.text}</h4>
-        </span>
-      }
+    return <div style={{marginBottom: "1em"}}>
+      <Segment id={this.props.id} attached='top'>
+        {this.props.title && this.props.title.length > 0 &&
+          <span>
+          <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>{this.props.title}</h2></Link>
+          <h4>{this.props.text}</h4>
+          </span>
+        }
 
-      {(this.props.title == null || this.props.title.length === 0) &&
-        <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>
-          <span style={{marginLeft: 5}}>{this.props.text}</span>
-        </h2></Link>
-      }
-      <div className="positionsOverview">
-        <Positions value="Pro" positions={proPositions} toggleOpen={this.toggleOpen}/>
-        <Positions value="Neutral" positions={neutralPositions} toggleOpen={this.toggleOpen}/>
-        <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
-      </div>
-      {positionText}
-      <ThesisActions {...this.props} />
-    </Segment>
+        {(this.props.title == null || this.props.title.length === 0) &&
+          <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>
+            <span style={{marginLeft: 5}}>{this.props.text}</span>
+          </h2></Link>
+        }
+        <div className="positionsOverview">
+          <Positions value="Pro" positions={proPositions} toggleOpen={this.toggleOpen}/>
+          <Positions value="Neutral" positions={neutralPositions} toggleOpen={this.toggleOpen}/>
+          <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
+        </div>
+        {positionText}
+      </Segment>
+      <Menu attached='bottom'>
+        <Dropdown item placeholder='Kategorien wählen' style={{border: "none"}}
+          search multiple selection options={categoryOptions} />
+        <Menu.Menu position='right'>
+          <Dropdown
+            item
+            style={{border: "none"}}
+            onChange={() => {}}
+            onSearchChange={() => {}}
+            placeholder='Tag hinzufügen'
+            search
+            searchQuery={null}
+            selection
+            value={null}
+          />
+        </Menu.Menu>
+
+      </Menu>
+    </div>
   }
 }

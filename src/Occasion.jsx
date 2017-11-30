@@ -54,9 +54,9 @@ export default class Occasion extends React.Component {
       }
 
       {this.state.occasion != null &&
-      <Segment.Group className="theses" loading={this.state.occasion == null}>
+      <div className="theses">
         {thesesElems}
-      </Segment.Group>
+      </div>
       }
     </div>;
   }

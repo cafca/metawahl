@@ -3,6 +3,8 @@ import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
+import { categoryOptions } from './Thesis';
+import { Menu, Dropdown } from 'semantic-ui-react';
 
 export default class Category extends React.Component {
   category = null;
@@ -65,6 +67,13 @@ export default class Category extends React.Component {
 
     return <div className="category">
       <h1><Link to="/themen/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.category : <span>Loading...</span>}</h1>
+      <Menu>
+        <Dropdown item placeholder='Kategorie für alle hinzufügen' style={{border: "none"}}
+          search selection options={categoryOptions} />
+        <Menu.Item onClick={() => {}}>
+          Bestätigen
+        </Menu.Item>
+      </Menu>
       <div className="theses">
         {thesesElems}
       </div>
