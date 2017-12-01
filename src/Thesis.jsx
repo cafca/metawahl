@@ -3,6 +3,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
 import { Segment, Menu, Dropdown } from 'semantic-ui-react'
+import WikidataTagger from './WikidataTagger';
 
 const categoryNames = [
   "Arbeit und Beschäftigung",
@@ -58,8 +59,15 @@ export default class Thesis extends Component {
     super(props);
     autoBind(this);
     this.state = {
-      openText: null
+      openText: null,
+      tags: []
     }
+  }
+
+  handleTag({ title, concepturi, label, description}) {
+    const currentTags = this.state.tags;
+    currentTags.push(<span><a href={concepturi}>{label}</a>{description}</span>);
+    this.setState({tags: currentTags});
   }
 
   toggleOpen(party) {
@@ -97,23 +105,15 @@ export default class Thesis extends Component {
         </div>
         {positionText}
       </Segment>
+      { this.state.tags.length > 0 &&
+        <Segment>{this.state.tags}</Segment>
+      }
       <Menu attached='bottom'>
         <Dropdown item placeholder='Kategorien wählen' style={{border: "none"}}
           search multiple selection options={categoryOptions} />
         <Menu.Menu position='right'>
-          <Dropdown
-            item
-            style={{border: "none"}}
-            onChange={() => {}}
-            onSearchChange={() => {}}
-            placeholder='Tag hinzufügen'
-            search
-            searchQuery={null}
-            selection
-            value={null}
-          />
+          <WikidataTagger onSelection={this.handleTag} />
         </Menu.Menu>
-
       </Menu>
     </div>
   }
