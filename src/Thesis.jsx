@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Menu, Dropdown, Label, Icon } from 'semantic-ui-react'
+import { Segment, Menu, Dropdown, Label, Icon } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
+import Tag from './Tag';
+import CategoryRibbon from './CategoryRibbon';
 
 const categoryNames = [
   "Arbeit und Beschäftigung",
@@ -36,7 +38,8 @@ const categoryNames = [
   "Wissenschaft, Forschung und Technologie"
 ];
 
-export const categoryOptions = categoryNames.map(name => ({key: name, value: name, text: name}));
+export const categoryOptions = categoryNames.map(
+  name => ({key: name, value: name, text: name}));
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
@@ -49,8 +52,8 @@ const Position = (p) => {
   </span>
 }
 
-const Positions = ({positions, value, toggleOpen}) => positions.length === 0 ? null
-  : <div className="position_values">
+const Positions = ({positions, value, toggleOpen}) =>
+  positions.length > 0 && <div className="position_values">
       {value}: {positions.map(p => <Position toggleOpen={toggleOpen} key={p.party} {...p} />)}
     </div>;
 
@@ -101,25 +104,12 @@ export default class Thesis extends Component {
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
-    const categories = this.state.categories.map(category => (
-      <span style={{marginRight: "1em"}} key={category}>
-        {category}
-        <Icon name="delete"
-          onClick={() => this.handleCategoryRemove(category)} />
-      </span>
-    ));
-
-    const tagElems = this.state.tags.map(tag => (
-      <Label key={tag.title} as='a' tag href={tag.concepturi} target="_blank" color='teal'>
-        {tag.label}
-        <Icon name="delete"
-          onClick={() => this.handleTagRemove(tag.title)} />
-      </Label>
-    ));
+    const tagElems = this.state.tags.map(tag =>
+      <Tag data={tag} remove={this.handleTagRemove} />);
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
-        { categories.length > 0 && <Label as='a' ribbon color='blue'>{categories}</Label>}
+        <CategoryRibbon categories={this.state.categories} remove={this.handleCategoryRemove} />
 
         {this.props.title && this.props.title.length > 0 &&
           <span>
