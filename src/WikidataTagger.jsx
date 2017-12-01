@@ -6,6 +6,8 @@ import { Menu, Search } from 'semantic-ui-react';
 const searchLanguage = "de";
 
 class WikidataTagger extends React.Component {
+  searchTimeout;
+
   constructor(props) {
     super(props);
     autoBind(this);
@@ -15,7 +17,8 @@ class WikidataTagger extends React.Component {
     }
   }
 
-  search(query) {
+  search() {
+    const query = this.state.query;
     return new Promise((resolve, reject) => {
       const url = wikidata.searchEntities({
         search: query,
@@ -26,7 +29,6 @@ class WikidataTagger extends React.Component {
       fetch(url)
         .then(response => response.json())
         .then(results => {
-          console.log(results);
           if (results.success === 1) {
             resolve(results.search);
           } else {
@@ -50,10 +52,13 @@ class WikidataTagger extends React.Component {
     });
 
     if (isQueryValid) {
-      this.search(e.target.value)
-        .then(results => {
+      clearTimeout(this.searchTimeout)
+      this.searchTimeout = setTimeout(query => {
+        this.search().then(results => {
           this.setState({results, isLoading: false});
-        });
+        })
+      },
+      350);
     }
   }
 
@@ -81,7 +86,8 @@ class WikidataTagger extends React.Component {
         results={this.state.results}
         resultRenderer={this.renderResult}
         style={style}
-        value={this.state.value}
+        value={this.state.query}
+        className="searchNoBorder"
       />
     </Menu.Menu>
   }

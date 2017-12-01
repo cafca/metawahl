@@ -18,3 +18,7 @@
 .occasionList .territory {
   margin-bottom: 1em;
 }
+
+.searchNoBorder input {
+  border: none !important;
+}

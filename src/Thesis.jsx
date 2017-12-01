@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Menu, Dropdown } from 'semantic-ui-react'
+import { Segment, Menu, Dropdown, Label, Icon } from 'semantic-ui-react'
 import WikidataTagger from './WikidataTagger';
 
 const categoryNames = [
@@ -60,14 +60,31 @@ export default class Thesis extends Component {
     autoBind(this);
     this.state = {
       openText: null,
-      tags: []
+      tags: [],
+      categories: []
     }
   }
 
-  handleTag({ title, concepturi, label, description}) {
-    const currentTags = this.state.tags;
-    currentTags.push(<span><a href={concepturi}>{label}</a>{description}</span>);
-    this.setState({tags: currentTags});
+  handleCategory(e, { value }) {
+    const categories = this.state.categories;
+    categories.push(value);
+    this.setState({categories});
+  }
+
+  handleCategoryRemove(category) {
+    const categories = this.state.categories.filter(c => c !== category);
+    this.setState({categories});
+  }
+
+  handleTag(tagData) {
+    const tags = this.state.tags;
+    tags.push(tagData);
+    this.setState({tags});
+  }
+
+  handleTagRemove(title) {
+    const tags = this.state.tags.filter(tag => tag.title !== title);
+    this.setState({tags});
   }
 
   toggleOpen(party) {
@@ -84,8 +101,26 @@ export default class Thesis extends Component {
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
+    const categories = this.state.categories.map(category => (
+      <span style={{marginRight: "1em"}} key={category}>
+        {category}
+        <Icon name="delete"
+          onClick={() => this.handleCategoryRemove(category)} />
+      </span>
+    ));
+
+    const tagElems = this.state.tags.map(tag => (
+      <Label key={tag.title} as='a' tag href={tag.concepturi} target="_blank" color='teal'>
+        {tag.label}
+        <Icon name="delete"
+          onClick={() => this.handleTagRemove(tag.title)} />
+      </Label>
+    ));
+
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
+        { categories.length > 0 && <Label as='a' ribbon color='blue'>{categories}</Label>}
+
         {this.props.title && this.props.title.length > 0 &&
           <span>
           <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>{this.props.title}</h2></Link>
@@ -104,14 +139,27 @@ export default class Thesis extends Component {
           <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
         </div>
         {positionText}
+        <div>
+            { tagElems.length === 0 && " Noch keine Tags gewählt"}
+            { tagElems }
+        </div>
       </Segment>
-      { this.state.tags.length > 0 &&
-        <Segment>{this.state.tags}</Segment>
-      }
       <Menu attached='bottom'>
-        <Dropdown item placeholder='Kategorien wählen' style={{border: "none"}}
-          search multiple selection options={categoryOptions} />
-        <Menu.Menu position='right'>
+        <Dropdown
+          item
+          placeholder='Bereiche wählen'
+          style={{border: "none"}}
+          search
+          selection
+          selectOnNavigation={false}
+          onChange={this.handleCategory}
+          options={categoryOptions}
+          value={null}
+        />
+        <Menu.Menu
+          position='right'
+          style={{borderLeft: "1px solid #ccc"}}
+        >
           <WikidataTagger onSelection={this.handleTag} />
         </Menu.Menu>
       </Menu>
