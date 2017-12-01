@@ -142,6 +142,7 @@ export default class Thesis extends Component {
           search
           selection
           selectOnNavigation={false}
+          selectOnBlur={false}
           onChange={this.handleCategory}
           options={categoryOptions}
           value={null}
