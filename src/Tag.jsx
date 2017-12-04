@@ -10,6 +10,10 @@ const Tag = ({ data, remove }) => {
       window.open(data.concepturi, "_blank")
     }}
     color='teal'
+    style={{
+      marginRight: ".4em",
+      marginBottom: ".4em"
+    }}
   >
     {data.label}
     <Icon name="delete"

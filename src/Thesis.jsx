@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Menu, Dropdown, Label, Icon } from 'semantic-ui-react';
+import { Segment, Menu, Dropdown } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
