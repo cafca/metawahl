@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
@@ -7,7 +9,10 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
 
-const categoryNames = [
+import type { RouteProps } from './Types';
+import type { TagType } from './WikidataTagger';
+
+const categoryNames : Array<string> = [
   "Arbeit und Beschäftigung",
   "Ausländerpolitik, Zuwanderung",
   "Außenpolitik und internationale Beziehungen",
@@ -57,8 +62,17 @@ const Positions = ({positions, value, toggleOpen}) =>
       {value}: {positions.map(p => <Position toggleOpen={toggleOpen} key={p.party} {...p} />)}
     </div>;
 
-export default class Thesis extends Component {
-  constructor(props) {
+type State = {
+  openText: ?{
+    party: string,
+    text: string
+  },
+  tags: Array<TagType>,
+  categories: Array<string>
+};
+
+export default class Thesis extends Component<RouteProps, State> {
+  constructor(props: RouteProps) {
     super(props);
     autoBind(this);
     this.state = {
@@ -68,30 +82,30 @@ export default class Thesis extends Component {
     }
   }
 
-  handleCategory(e, { value }) {
+  handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
     const categories = this.state.categories;
     categories.push(value);
     this.setState({categories});
   }
 
-  handleCategoryRemove(category) {
+  handleCategoryRemove(category: string) {
     const categories = this.state.categories.filter(c => c !== category);
     this.setState({categories});
   }
 
-  handleTag(tagData) {
+  handleTag(tagData: TagType) {
     const tags = this.state.tags;
     tags.push(tagData);
     this.setState({tags});
   }
 
-  handleTagRemove(title) {
+  handleTagRemove(title: string) {
     const tags = this.state.tags.filter(tag => tag.title !== title);
     this.setState({tags});
   }
 
-  toggleOpen(party) {
-    this.setState({openText: party});
+  toggleOpen(party: { party: string, text: string}) {
+    this.setState({ openText: party });
   }
 
   render() {

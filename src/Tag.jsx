@@ -1,7 +1,15 @@
-import React from 'react';
-import { Label, Icon } from 'semantic-ui-react'
+// @flow
 
-const Tag = ({ data, remove }) => {
+import React from 'react';
+import { Label, Icon } from 'semantic-ui-react';
+import type { TagType } from './WikidataTagger';
+
+type Props = {
+  data: TagType,
+  remove: (string) => mixed
+};
+
+const Tag = ({ data, remove }: Props) => {
   return <Label
     key={data.title}
     as='a'

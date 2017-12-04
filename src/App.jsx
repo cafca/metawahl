@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
@@ -11,17 +13,29 @@ import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
 import Category from './Category';
 
+import type { OccasionType, CategoryType, PositionType, RouteProps } from './Types';
+
 // const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 //   ? "/data" : "/tamolhaw/data";
 
 const DATA_DIR = "/data"
 
-class App extends Component {
-  constructor(props) {
+type State = {
+  page: string,
+  occasionsState: string,
+  occasions: ?{ [ womID: number ]: OccasionType },
+  categoriesState: string,
+  categories: ?{ [ category: string ]: CategoryType },
+  positions: ?{ [ womID: number ]: PositionType }
+};
+
+type Props = {};
+
+class App extends Component<Props, State> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       page: "Wahlen",
-      instance: null,
       occasionsState: "loading",
       occasions: {},
       categoriesState: "loading",
@@ -31,12 +45,7 @@ class App extends Component {
     autoBind(this);
   }
 
-  navigate(page, instance=null) {
-    console.log("Navigate to " + page + " " + instance)
-    this.setState({page, instance}, () => {window.scrollTo(0, 0);});
-  }
-
-  load(key) {
+  load(key: string) {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
 
     let rv = null;
@@ -48,7 +57,7 @@ class App extends Component {
     return rv;
   }
 
-  save(key, json) {
+  save(key: string, json: string) {
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
 
     try {
@@ -58,7 +67,7 @@ class App extends Component {
     }
   }
 
-  loadOccasions(cb) {
+  loadOccasions(cb: () => mixed): void {
     const savedOccasions = this.load("occasions")
 
     if (savedOccasions) {
@@ -81,9 +90,8 @@ class App extends Component {
           // https://github.com/facebookincubator/create-react-app/issues/3482
           if (process.env.NODE_ENV !== 'test') {
             this.setState({
-              occasions: null,
-              occasionsState: "error",
-              error: error
+              occasions: {},
+              occasionsState: "Error: " + error
             });
           }
         }
@@ -91,7 +99,7 @@ class App extends Component {
     }
   }
 
-  loadCategories() {
+  loadCategories(): void {
     const savedCategories = this.load("categories");
 
     if (savedCategories) {
@@ -110,15 +118,15 @@ class App extends Component {
         this.save("categories", JSON.stringify(categories));
       })
       .catch(error => {
+        console.log(error);
         this.setState({
-          categoriesState: "error",
-          error: error,
+          categoriesState: "error"
         });
       });
     }
   }
 
-  loadPositions(womID) {
+  loadPositions(womID: number): void {
     const addPositions = (womID, posData) => prevState => ({
       positions: Object.assign(
         {}, this.state.positions, { [womID]: posData })
@@ -151,16 +159,16 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.loadOccasions(() => this.loadCategories());
   }
 
   render() {
-    const extraProps = {
+    const extraProps : RouteProps = {
       occasions: this.state.occasions,
       categories: this.state.categories,
       positions: this.state.positions,
-      loadPositions: womID => this.loadPositions(womID)
+      loadPositions: (womID: number) => this.loadPositions(womID)
     };
 
     return (

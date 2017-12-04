@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
@@ -5,8 +7,10 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 
-export default class OccasionList extends Component {
-  constructor(props) {
+import { RouteProps } from './Types';
+
+export default class OccasionList extends Component<RouteProps> {
+  constructor(props: RouteProps) {
     super(props);
     autoBind(this);
   }

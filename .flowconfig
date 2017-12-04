@@ -1,0 +1,12 @@
+[ignore]
+
+[include]
+
+[libs]
+./node_modules/iflow-react-router/index.js.flow
+
+[lints]
+
+[options]
+
+[strict]

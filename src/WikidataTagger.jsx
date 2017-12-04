@@ -1,3 +1,5 @@
+// @flow
+
 import wikidata from '../node_modules/wikidata-sdk/dist/wikidata-sdk';
 import React from 'react';
 import autoBind from 'react-autobind';
@@ -5,10 +7,36 @@ import { Menu, Search } from 'semantic-ui-react';
 
 const searchLanguage = "de";
 
-class WikidataTagger extends React.Component {
-  searchTimeout;
+export type TagType = {
+  concepturi: string,
+  description: string,
+  id: string,
+  label: string,
+  match: {
+    language: string,
+    text: string,
+    type: string
+  },
+  pageid: number,
+  repository: string,
+  title: string,
+  url: string
+};
 
-  constructor(props) {
+type Props = {
+  onSelection: (TagType) => mixed
+};
+
+type State = {
+  query: string,
+  isLoading: boolean,
+  results?: Array<TagType>
+};
+
+class WikidataTagger extends React.Component<Props, State> {
+  searchTimeout: number;
+
+  constructor(props: Props) {
     super(props);
     autoBind(this);
     this.state = {
@@ -17,7 +45,7 @@ class WikidataTagger extends React.Component {
     }
   }
 
-  search() {
+  search(): Promise<any> {
     const query = this.state.query;
     return new Promise((resolve, reject) => {
       const url = wikidata.searchEntities({
@@ -42,7 +70,7 @@ class WikidataTagger extends React.Component {
     });
   }
 
-  handleChange(e) {
+  handleChange(e: SyntheticInputEvent<HTMLInputElement>) {
     const query = e.target.value;
     const isQueryValid = query != null && query.length >= 3;
 
@@ -62,12 +90,12 @@ class WikidataTagger extends React.Component {
     }
   }
 
-  handleSelect(e, { result }) {
+  handleSelect(e: SyntheticInputEvent<HTMLInputElement>, { result }: { result: TagType }) {
     this.props.onSelection(result);
     this.setState({query: '', results: [], isLoading: false});
   }
 
-  renderResult({ title, label, description, concepturi }) {
+  renderResult({ title, label, description, concepturi }: TagType) {
     return <div key='content' className='content'>
       {title && <div className='price'>{title}</div>}
       {label && <div className='title'>{label}</div>}

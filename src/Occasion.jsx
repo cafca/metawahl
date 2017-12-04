@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
@@ -5,13 +7,20 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 
-export default class Occasion extends React.Component {
-  occasionNum;
+import { RouteProps, ThesisType, OccasionType } from './Types';
 
-  constructor(props) {
+type State = {
+  occasion: ?OccasionType,
+  theses: Array<ThesisType>
+};
+
+export default class Occasion extends React.Component<RouteProps, State> {
+  occasionNum: number;
+
+  constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.occasionNum = this.props.match.params.occasionNum;
+    this.occasionNum = parseInt(this.props.match.params.occasionNum, 10);
     this.state =  {
       occasion: null,
       theses: []
@@ -23,11 +32,11 @@ export default class Occasion extends React.Component {
     this.props.loadPositions(this.occasionNum);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: RouteProps) {
     this.makeStateFromProps(nextProps);
   }
 
-  makeStateFromProps(props) {
+  makeStateFromProps(props: RouteProps) {
     const occasion = props.occasions[this.occasionNum];
     const theses = occasion ? occasion.theses : [];
     this.setState({occasion, theses});
@@ -48,7 +57,13 @@ export default class Occasion extends React.Component {
     });
 
     return <div className="occasion">
-      <h1><Link to="/">Wahlen</Link> > {this.state.occasion == null ? "Loading..." : this.state.occasion.occasion.title}</h1>
+      <h1>
+        <Link to="/">Wahlen</Link>
+        >
+        { this.state.occasion == null
+          ? "Loading..." : this.state.occasion.occasion.title }
+      </h1>
+
       {this.state.occasion == null &&
       <Segment loading style={{ minHeight: 100 }}></Segment>
       }

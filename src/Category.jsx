@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
@@ -6,21 +8,27 @@ import { Link } from 'react-router-dom';
 import { categoryOptions } from './Thesis';
 import { Menu, Dropdown } from 'semantic-ui-react';
 
-export default class Category extends React.Component {
-  category = null;
+import type { RouteProps, ThesisType } from './Types';
 
-  constructor(props) {
+type State = {
+  theses: Array<ThesisType>
+};
+
+export default class Category extends React.Component<RouteProps, State> {
+  category : string;
+
+  constructor(props: RouteProps) {
     super(props);
     autoBind(this);
     this.category = this.props.match.params.category;
     this.state = this.makeStateFromProps(this.props, true);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: RouteProps) {
     this.setState(this.makeStateFromProps(nextProps, false));
   }
 
-  extractThesisID(thesisID) {
+  extractThesisID(thesisID: string) {
     const elems = thesisID.split("-");
     return {
       type: elems[0],
@@ -29,13 +37,13 @@ export default class Category extends React.Component {
     }
   }
 
-  makeStateFromProps(props, loadProps) {
+  makeStateFromProps(props: RouteProps, loadProps: boolean) {
     let theses = [];
     const positionsToLoad = new Set();
     if (props.categories && props.categories[this.category] && props.occasions) {
       theses = props.categories[this.category].map(thesisID => {
-        const {womID, thesisNUM} = this.extractThesisID(thesisID);
-        const thesisData = props.occasions[womID].theses[thesisNUM];
+        const { womID, thesisNUM } = this.extractThesisID(thesisID);
+        const thesisData : ThesisType = props.occasions[womID].theses[thesisNUM];
 
         let positions;
         if (this.props.positions[womID]) {
