@@ -1,4 +1,4 @@
-import wikidata from 'wikidata-sdk';
+import wikidata from '../node_modules/wikidata-sdk/dist/wikidata-sdk';
 import React from 'react';
 import autoBind from 'react-autobind';
 import { Menu, Search } from 'semantic-ui-react';
