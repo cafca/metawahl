@@ -1,0 +1,5 @@
+pytest>=3.0
+Flask==0.12.2
+Flask-SQLAlchemy>=2.3
+flask-cors>=3.0
+prettyprint>=0.1.5

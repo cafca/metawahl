@@ -71,8 +71,13 @@ type State = {
   categories: Array<string>
 };
 
-export default class Thesis extends Component<RouteProps, State> {
-  constructor(props: RouteProps) {
+type Props = RouteProps & {
+  tags: Array<TagType>,
+  categories: Array<string>
+};
+
+export default class Thesis extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     autoBind(this);
     this.state = {
@@ -82,7 +87,31 @@ export default class Thesis extends Component<RouteProps, State> {
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      tags: this.props.tags || [],
+      categories: this.props.categories || []
+    });
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    nextProps.id === "WOM-42-0" && console.log(nextProps);
+    nextProps.tags && nextProps.tags.forEach(this.handleTag);
+    nextProps.categories && nextProps.categories.forEach(value => {
+      const newCategory = categoryNames[value];
+      if (this.state.categories.indexOf(newCategory) === -1) {
+        this.setState((prevState: State) => {
+          const categories = prevState.categories;
+          categories.push(categoryNames[value]);
+          return categories;
+        })
+      }
+    });
+  }
+
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
+    if (this.state.categories.indexOf(value) > -1) return;
+
     const categories = this.state.categories;
     categories.push(value);
     this.setState({categories});
@@ -94,6 +123,8 @@ export default class Thesis extends Component<RouteProps, State> {
   }
 
   handleTag(tagData: TagType) {
+    if (this.state.tags.filter(t => t.id === tagData.id).length !== 0) return;
+
     const tags = this.state.tags;
     tags.push(tagData);
     this.setState({tags});
@@ -119,11 +150,13 @@ export default class Thesis extends Component<RouteProps, State> {
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
     const tagElems = this.state.tags.map(tag =>
-      <Tag data={tag} remove={this.handleTagRemove} />);
+      <Tag data={tag} key={tag.label} remove={this.handleTagRemove} />);
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
-        <CategoryRibbon categories={this.state.categories} remove={this.handleCategoryRemove} />
+        <CategoryRibbon
+          categories={this.state.categories}
+          remove={this.handleCategoryRemove} />
 
         {this.props.title && this.props.title.length > 0 &&
           <span>

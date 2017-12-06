@@ -18,7 +18,10 @@ import type { OccasionType, CategoryType, PositionType, RouteProps } from './Typ
 // const DATA_DIR = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 //   ? "/data" : "/tamolhaw/data";
 
-const DATA_DIR = "/data"
+const DATA_DIR = "/data";
+const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+  ? "http://localhost:8000/api/v1"
+  : "http://demo.vincentahrend.com:9000/api/v1/";
 
 type State = {
   page: string,
@@ -76,7 +79,7 @@ class App extends Component<Props, State> {
         occasionsState: "success"
       }, cb);
     } else {
-      fetch(`${DATA_DIR}/occasions.json`)
+      fetch(`${API_ROOT}/occasions/`)
         .then(response => response.json())
         .then(occasionList => {
           const occasions = {};
@@ -108,7 +111,7 @@ class App extends Component<Props, State> {
         categoriesState: "success"
       });
     } else {
-      fetch(`${DATA_DIR}/categories.json`)
+      fetch(`${API_ROOT}/categories/`)
       .then(response => response.json())
       .then(categories => {
         this.setState({
