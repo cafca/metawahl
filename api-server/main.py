@@ -7,6 +7,7 @@ import os
 import sys
 import logging
 
+from collections import defaultdict
 from flask import Flask, jsonify, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -20,9 +21,11 @@ API_ROOT = "/api/v1"
 
 db = SQLAlchemy()
 
+
 def log_request_info(name, request):
-  logger.info("{} API".format(name))
-  logger.info("Data: {}".format(pformat(request.args)))
+    logger.info("{} API".format(name))
+    logger.info("Data: {}".format(pformat(request.args)))
+
 
 # Categories
 #
@@ -68,53 +71,72 @@ def create_app(config=None):
     @app.route(API_ROOT + "/occasions/", methods=["GET"])
     def occasions():
         """Return a list of all occasions."""
+        from models import Occasion
 
-        return send_file("./data/occasions.json")
+        occasions = Occasion.query.all()
+
+        rv = {"data": defaultdict(list)}
+        for occasion in occasions:
+            rv["data"][occasion.territory].append(occasion.to_dict())
+
+        return jsonify(rv)
 
     @app.route(API_ROOT + "/occasions/<int:wom_id>", methods=["GET"])
     def occasion(wom_id: int):
         """Return metadata for an occasion and all theses therein."""
-        # from model import Occasion
-        rv = {
-          "data": {
-            "WOM-42-0": {
-              "categories": [0, 5],
-              "tags": [{
-                "id": "Q4032",
-                "label": "Zuwanderung",
-                "description": "Wenn mehr Leute reinkommen"
-              }]
-            }
-          }
-        }
+        from models import Occasion
 
         log_request_info("Occasion", request)
+
+        occasion = Occasion.query.get(wom_id)
+        tag_data = request.args.get("tag_data", False)
+
+        rv = {
+            "data": occasion.to_dict(),
+            "theses": [thesis.to_dict(tag_data=tag_data)
+                for thesis in occasion.theses]
+        }
 
         return jsonify(rv)
 
     @app.route(API_ROOT + "/categories/", methods=["GET"])
     def categories():
         """Return list of all categories."""
+        from models import Category
 
-        return send_file("./data/categories.json")
+        categories = Category.query.all()
+        rv = {
+            "data": [category.to_dict() for category in categories]
+        }
+
+        return jsonify(rv)
 
     @app.route(API_ROOT + "/categories/<string:category>", methods=["GET"])
     def category(category: str):
         """Return metadata for all theses in a category."""
-        # from model import Category
-        rv = {}
+        from models import Category
 
         log_request_info("Category", request)
 
+        category = Category.query.get(category)
+        rv = {
+            "data": category.to_dict(thesis_data=True, tag_data=True)
+        }
+
         return jsonify(rv)
 
-    @app.route(API_ROOT + "/thesis/<string:thesis_id>", methods=["GET", "POST"])
+    @app.route(
+        API_ROOT + "/thesis/<string:thesis_id>", methods=["GET", "POST"])
     def thesis(thesis_id: str):
         """Return metadata for a specific thesis."""
-        # from model import Thesis
-        rv = {}
+        from models import Thesis
 
         log_request_info("Thesis", request)
+
+        thesis = Thesis.query.get(thesis_id)
+        rv = {
+            "data": thesis.to_dict(tag_data=True)
+        }
 
         return jsonify(rv)
     return app
