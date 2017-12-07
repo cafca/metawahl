@@ -24,6 +24,22 @@ speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api-server`.
     $ cd src/api-server
     $ python main.py
 
+## Dataset
+
+The dataset needs to be downloaded and imported to a Postgresql database available to the server. First, initialize the Git submodule containing the dataset.
+
+    $ git submodule init
+    $ git submodule update
+
+Make sure that a Postgres server is running and update the server config file `api-server/dev.conf.py` to include its connection URI.
+
+    SQLALCHEMY_DATABASE_URI="postgresql://localhost/metawahl"
+
+Now you can import the dataset to the database:
+
+    $ cd api-server
+    $ python models.py
+
 ## Client
 
 Die Benutzeroberfläche ist als React-Webapp umgesetzt. Nach Installation des
