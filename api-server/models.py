@@ -24,6 +24,7 @@ class Occasion(db.Model):
     territory = db.Column(db.String(32), nullable=False)
     title = db.Column(db.String(128), nullable=False)
     wikidata_id = db.Column(db.String(16))
+    source = db.Column(db.Text)
 
     def __repr__(self):
         return "<Occasion {}: {}>".format(self.id, self.title)
@@ -32,7 +33,7 @@ class Occasion(db.Model):
 class Party(db.Model):
     """Represent a party electable in one of the occasions."""
     name = db.Column(db.String(32), primary_key=True)
-    long_name = db.Column(db.Text, unique=True)
+    long_name = db.Column(db.Text)
 
     def __repr__(self):
         return "<Party {}>".format(self.name)
@@ -42,6 +43,7 @@ class Position(db.Model):
     """Represent a party's position towards a thesis."""
     id = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer, nullable=False)
+    text = db.Column(db.Text)
 
     party_name = db.Column(db.String(32),
         db.ForeignKey('party.name'), nullable=False)
@@ -82,11 +84,15 @@ if __name__ == '__main__':
 
     if input("Reset database? [y/N]") == "y":
         app = create_app()
-        db.create_all(app=app)
 
         with app.app_context():
-            # Create categories
+            logger.info("Drop and recreate...")
+            db.drop_all(app=app)
+            db.create_all(app=app)
+
+            logger.info("Adding back categories...")
             for name in app.config.get("CATEGORY_NAMES"):
                 db.session.add(Category(name=name))
             db.session.commit()
+    logger.info("OK")
 
