@@ -75,9 +75,12 @@ def create_app(config=None):
 
         occasions = Occasion.query.all()
 
+        thesis_data = request.args.get("thesis_data", False)
+
         rv = {"data": defaultdict(list)}
         for occasion in occasions:
-            rv["data"][occasion.territory].append(occasion.to_dict())
+            rv["data"][occasion.territory].append(
+                occasion.to_dict(thesis_data=thesis_data))
 
         return jsonify(rv)
 

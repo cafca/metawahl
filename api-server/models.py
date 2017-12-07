@@ -50,18 +50,19 @@ class Occasion(db.Model):
     def __repr__(self):
         return "<Occasion {}: {}>".format(self.id, self.title)
 
-    def to_dict(self):
+    def to_dict(self, thesis_data=False):
         rv = {
             "id": self.id,
             "date": self.date.isoformat(),
             "title": self.title,
             "wikidata_id": self.wikidata_id,
-            "source": self.source,
-            "theses": dict()
+            "source": self.source
         }
 
-        for thesis in self.theses:
-            rv["theses"][thesis.id] = thesis.text
+        if thesis_data:
+            rv["theses"] = dict()
+            for thesis in self.theses:
+                rv["theses"][thesis.id] = thesis.text
         return rv
 
 
@@ -94,7 +95,7 @@ class Position(db.Model):
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
     thesis = db.relationship('Thesis',
-        backref=db.backref('positions', lazy=True))
+        backref=db.backref('positions', lazy=False))
 
     def __repr__(self):
         return "<Position {}/{}: {}>".format(
@@ -152,7 +153,7 @@ class Thesis(db.Model):
     occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
         nullable=False)
     occasion = db.relationship('Occasion',
-        backref=db.backref('theses', lazy=False))
+        backref=db.backref('theses', lazy=True))
 
     tags = db.relationship('Tag', secondary=tags, lazy=False,
        backref=db.backref('theses'))
