@@ -9,7 +9,7 @@ import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
-from models import Occasion, Thesis, Position, Party
+from models import Occasion, Thesis, Position, Party, Tag
 from main import logger, create_app, db
 
 DATADIR = os.path.join("..", "qual-o-mat-data")
@@ -61,6 +61,7 @@ OCCASION_IDS = {
 }
 
 party_instances = defaultdict(Party)
+tag_instances = defaultdict(Tag)
 
 
 def load_data_file(fp, index=False):
@@ -166,12 +167,37 @@ def load_position(position_data, comments, parties):
     return position
 
 
+def load_tags():
+    """One off."""
+    with open("categories.json") as f:
+        tag_data = json.load(f)
+    logger.info("{} tags".format(len(tag_data)))
+    for tag_title in tag_data:
+        tag = tag_instances[tag_title]
+        tag.title = tag_title
+        logger.info("\n" + str(tag))
+        thesis_ids = []
+        for tid in tag_data[tag_title]:
+            womtype, occasion, thesis_num = tid.split("-")
+            thesis_id = "WOM-{occasion:03d}-{thesis:02d}".format(
+                occasion=int(occasion),
+                thesis=int(thesis_num)
+            )
+            thesis = Thesis.query.get(thesis_id)
+            thesis.tags.append(tag)
+        yield tag
+
+
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         for obj in load_occasions():
             db.session.add(obj)
             logger.info("Added {}".format(obj))
+
+        for tag in load_tags():
+            db.session.add(tag)
+            logger.info("Added {}".format(tag))
 
         logger.info("Committing session to disk...")
         db.session.commit()

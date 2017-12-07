@@ -45,9 +45,10 @@ class Position(db.Model):
     value = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text)
 
-    party_name = db.Column(db.String(32),
-        db.ForeignKey('party.name'), nullable=False)
-    party = db.relationship('Party', backref=db.backref('positions', lazy=True))
+    party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
+                           nullable=False)
+    party = db.relationship('Party', backref=db.backref('positions',
+                            lazy=True))
 
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
@@ -58,6 +59,12 @@ class Position(db.Model):
             self.thesis_id, self.party_name, self.value)
 
 
+tags = db.Table('tags',
+    db.Column('tag_title', db.String(128), db.ForeignKey('tag.title'), primary_key=True),
+    db.Column('thesis_id', db.String(10), db.ForeignKey('thesis.id'), primary_key=True)
+)
+
+
 class Tag(db.Model):
     """Represent a tag linked to a Wikidata ID."""
     title = db.Column(db.String(128), primary_key=True)
@@ -66,7 +73,8 @@ class Tag(db.Model):
     url = db.Column(db.Text)
 
     def __repr__(self):
-        return "<Tag {}>".format(self.title)
+        return "<Tag #{}>".format(self.title)
+
 
 class Thesis(db.Model):
     """Represent a single thesis within an occasions thesis set."""
@@ -74,9 +82,12 @@ class Thesis(db.Model):
     title = db.Column(db.Text)
     text = db.Column(db.Text, nullable=False)
 
-    occasion_id = db.Column(db.Integer,
-        db.ForeignKey('occasion.id'), nullable=False)
+    occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
+                            nullable=False)
     occasion = db.relationship('Occasion', backref=db.backref('theses'))
+
+    tags = db.relationship('Tag', secondary=tags, lazy=False,
+                           backref=db.backref('theses'))
 
 
 if __name__ == '__main__':
@@ -95,4 +106,3 @@ if __name__ == '__main__':
                 db.session.add(Category(name=name))
             db.session.commit()
     logger.info("OK")
-
