@@ -138,6 +138,9 @@ def load_theses(occasion_dir, comments=None, opinions=None, overview=None,
             text=theses[thesis_num]["text"]
         )
 
+        if thesis.title == thesis.text:
+            thesis.title = None
+
         positions = [load_position(position_data, comments, parties)
                      for position_data in opinions[thesis_num]]
 
@@ -175,7 +178,6 @@ def load_tags():
     for tag_title in tag_data:
         tag = tag_instances[tag_title]
         tag.title = tag_title
-        logger.info("\n" + str(tag))
         thesis_ids = []
         for tid in tag_data[tag_title]:
             womtype, occasion, thesis_num = tid.split("-")
