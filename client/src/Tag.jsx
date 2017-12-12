@@ -26,6 +26,7 @@ const Tag = ({ data, remove }: Props) => {
       <Icon name="delete"
         onClick={e => {
           e.stopPropagation();
+          e.preventDefault();
           remove(data.title);
         }} />
     </Label>
@@ -45,6 +46,7 @@ const Tag = ({ data, remove }: Props) => {
       <Icon name="delete"
         onClick={e => {
           e.stopPropagation();
+          e.preventDefault();
           remove(data.title);
         }} />
     </Label>

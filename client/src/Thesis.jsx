@@ -8,44 +8,44 @@ import { Segment, Menu, Dropdown, Loader } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
-import { API_ROOT } from './Config';
+import { API_ROOT, makeJSONRequest } from './Config';
 
 import type { RouteProps, PositionType, ThesisType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
-const categoryNames : Array<string> = [
-  "Arbeit und Beschäftigung",
-  "Ausländerpolitik, Zuwanderung",
-  "Außenpolitik und internationale Beziehungen",
-  "Außenwirtschaft",
-  "Bildung und Erziehung",
-  "Bundestag",
-  "Energie",
-  "Entwicklungspolitik",
-  "Europapolitik und Europäische Union",
-  "Gesellschaftspolitik, soziale Gruppen",
-  "Gesundheit",
-  "Innere Sicherheit",
-  "Kultur",
-  "Landwirtschaft und Ernährung",
-  "Medien, Kommunikation und Informationstechnik",
-  "Neue Bundesländer",
-  "Öffentliche Finanzen, Steuern und Abgaben",
-  "Politisches Leben, Parteien",
-  "Raumordnung, Bau- und Wohnungswesen",
-  "Recht",
-  "Soziale Sicherung",
-  "Sport, Freizeit und Tourismus",
-  "Staat und Verwaltung",
-  "Umwelt",
-  "Verkehr",
-  "Verteidigung",
-  "Wirtschaft",
-  "Wissenschaft, Forschung und Technologie"
-];
+const categoryNames : {[string]: [string]} = {
+  "arbeit-und-beschaftigung": "Arbeit und Beschäftigung",
+  "auslanderpolitik-zuwanderung": "Ausländerpolitik, Zuwanderung",
+  "aussenpolitik-und-internationale-beziehungen": "Außenpolitik und internationale Beziehungen",
+  "aussenwirtschaft": "Außenwirtschaft",
+  "bildung-und-erziehung": "Bildung und Erziehung",
+  "bundestag": "Bundestag",
+  "energie": "Energie",
+  "entwicklungspolitik": "Entwicklungspolitik",
+  "europapolitik-und-europaische-union": "Europapolitik und Europäische Union",
+  "gesellschaftspolitik-soziale-gruppen": "Gesellschaftspolitik, soziale Gruppen",
+  "gesundheit": "Gesundheit",
+  "innere-sicherheit": "Innere Sicherheit",
+  "kultur": "Kultur",
+  "landwirtschaft-und-ernahrung": "Landwirtschaft und Ernährung",
+  "medien-kommunikation-und-informationstechnik": "Medien, Kommunikation und Informationstechnik",
+  "neue-bundeslander": "Neue Bundesländer",
+  "politisches-leben-parteien": "Politisches Leben, Parteien",
+  "raumordnung-bau-und-wohnungswesen": "Raumordnung, Bau- und Wohnungswesen",
+  "recht": "Recht",
+  "soziale-sicherung": "Soziale Sicherung",
+  "sport-freizeit-und-tourismus": "Sport, Freizeit und Tourismus",
+  "staat-und-verwaltung": "Staat und Verwaltung",
+  "umwelt": "Umwelt",
+  "verkehr": "Verkehr",
+  "verteidigung": "Verteidigung",
+  "wirtschaft": "Wirtschaft",
+  "wissenschaft-forschung-und-technologie": "Wissenschaft, Forschung und Technologie",
+  "offentliche-finanzen-steuern-und-abgaben": "Öffentliche Finanzen, Steuern und Abgaben"
+};
 
-export const categoryOptions = categoryNames.map(
-  name => ({key: name, value: name, text: name}));
+export const categoryOptions = Object.keys(categoryNames).map(
+  slug => ({key: slug, value: slug, text: categoryNames[slug]}));
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
@@ -85,8 +85,10 @@ export default class Thesis extends Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    nextProps.tags.forEach(this.handleTag);
-    nextProps.categories.forEach(this.handleCategory);
+    this.setState({
+      tags: nextProps.tags,
+      categories: nextProps.categories
+    });
   }
 
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
@@ -139,19 +141,11 @@ export default class Thesis extends Component<Props, State> {
     this.setState({ loading: true });
 
     const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
-    const params = {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    };
+    const params = makeJSONRequest(data);
 
     fetch(endpoint, params)
       .then(response => response.json())
       .then(response => {
-        console.log(response);
         this.setState({ loading: false });
       });
   }

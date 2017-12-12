@@ -24,7 +24,9 @@ db = SQLAlchemy()
 
 def log_request_info(name, request):
     logger.info("{} API".format(name))
-    # logger.info("Data: {}".format(pformat(request.args)))
+    jsond = request.get_json()
+    if jsond:
+        logger.info("Data: {}".format(pformat(jsond)))
 
 
 # Categories
@@ -117,15 +119,31 @@ def create_app(config=None):
 
         return jsonify(rv)
 
-    @app.route(API_ROOT + "/categories/<string:category>", methods=["GET"])
+    @app.route(API_ROOT + "/categories/<string:category>", methods=["GET", "POST"])
     def category(category: str):
         """Return metadata for all theses in a category."""
-        from models import Category
+        from models import Category, Thesis
         log_request_info("Category", request)
 
         category = db.session.query(Category) \
             .filter(Category.slug == category) \
             .first()
+
+        if request.method == "POST":
+            data = request.get_json()
+            for thesis_id in data.get("add", []):
+                logger.info("Adding {} to {}".format(category, thesis_id))
+                thesis = db.session.query(Thesis).get(thesis_id)
+                category.theses.append(thesis)
+
+            for thesis_id in data.get("remove", []):
+                logger.info("Removing {} from {}".format(category, thesis_id))
+                thesis = db.session.query(Thesis).get(thesis_id)
+                category.theses = [thesis for thesis in category.theses
+                    if thesis.id != thesis_id]
+
+            db.session.add(category)
+            db.session.commit()
 
         rv = {
             "data": category.to_dict(thesis_data=True)
@@ -207,6 +225,7 @@ def create_app(config=None):
 
         db.session.add(thesis)
         db.session.commit()
+        db.session.refresh(thesis)
         return jsonify({"data": thesis.to_dict()})
     return app
 

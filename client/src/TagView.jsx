@@ -5,18 +5,30 @@ import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { Segment, Icon, Loader, Header } from 'semantic-ui-react';
+import {
+  Dropdown,
+  Header,
+  Icon,
+  Label,
+  Loader,
+  Menu,
+  Segment
+} from 'semantic-ui-react';
 
-import { API_ROOT } from './Config';
-import Thesis from './Thesis';
+import { API_ROOT, makeJSONRequest } from './Config';
+import Thesis, { categoryOptions } from './Thesis';
 import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
+import type { WikidataType } from './WikidataTagger';
+import WikidataTagger from './WikidataTagger';
 
 type State = {
   tag: ?TagType,
-  theses: Array<ThesisType>
+  theses: Array<ThesisType>,
+  selectedCategory: ?string,
+  loading: boolean
 };
 
-export default class TagList extends Component<RouteProps, State> {
+export default class TagView extends Component<RouteProps, State> {
   slug: string;
 
   constructor(props: RouteProps) {
@@ -25,12 +37,63 @@ export default class TagList extends Component<RouteProps, State> {
     this.slug = this.props.match.params.tag;
     this.state = {
       tag: null,
-      theses: []
+      theses: [],
+      selectedCategory: null,
+      loading: true
     }
   }
 
   componentDidMount() {
     this.loadTag();
+  }
+
+  handleCategorySelection(e: Event, { value }:{ value:string }) {
+    this.setState({ selectedCategory: value})
+  }
+
+  handleCategoryChange(add: boolean) {
+    if (this.state.selectedCategory == null) return;
+
+    this.setState({loading: true});
+
+    const endpoint = `${API_ROOT}/categories/${this.state.selectedCategory}`;
+    const data = {};
+    if (add == true) {
+      data["add"] = this.state.theses.map(t => t.id);
+    } else {
+      data["remove"] = this.state.theses.map(t => t.id);
+    }
+
+    fetch(endpoint, makeJSONRequest(data))
+      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        this.loadTag();
+      });
+  }
+
+  handleTag(tagData: WikidataType) {
+    this.setState({ loading: true });
+
+    const tag: TagType = {
+      title: tagData.label,
+      description: tagData.description,
+      url: tagData.concepturi,
+      wikidata_id: tagData.id
+    };
+
+    const theses = this.state.theses.map(t => t.id);
+    const requests = this.state.theses.map(thesis =>
+      fetch(
+        `${API_ROOT}/thesis/${thesis.id}/tags/`,
+        makeJSONRequest({add: [tag,]})
+      )
+    );
+
+    Promise.all(requests).then(responses => {
+      responses.map(console.log);
+      this.loadTag();
+    });
   }
 
   loadTag(): void {
@@ -39,7 +102,8 @@ export default class TagList extends Component<RouteProps, State> {
       .then(response => {
         this.setState({
           tag: response.data,
-          theses: response.theses
+          theses: response.theses,
+          loading: false
         });
       })
       .catch((error: Error) => {
@@ -48,7 +112,8 @@ export default class TagList extends Component<RouteProps, State> {
           console.log(error.message)
           this.setState({
             tag: null,
-            theses: []
+            theses: [],
+            loading: false
           });
         }
       }
@@ -61,27 +126,63 @@ export default class TagList extends Component<RouteProps, State> {
     );
 
     return <div>
-        <Loader active={this.state.tag == undefined} />
+      <Loader active={this.state.tag == undefined} />
 
+      {this.state.tag != undefined && this.state.tag.wikidata_id != undefined &&
+        <Header as='h1' floated='right'>
+          <Label as='a' basic image href={this.state.tag.url} >
+            <img src="/img/Wikidata-logo.svg" /> {this.state.tag.wikidata_id}
+          </Label>
+        </Header>
+      }
+
+      <Header as='h1' disabled={this.state.tag == undefined}>
+        <Icon name='hashtag' />
         {this.state.tag != undefined &&
-          <Header as='h1'>
-            <Icon name='hashtag' />
-            <Header.Content>
+          <Header.Content>
               {this.state.tag.title}
+              <Loader active={this.state.loading} inline={true} size="small"
+                style={{marginLeft: "1em", marginBottom: "0.2em"}} />
               {this.state.tag.description != undefined &&
                 <Header.Subheader>
-                  {this.state.tag.description}
+                  {this.state.tag.description} <br />
                 </Header.Subheader>
               }
-            </Header.Content>
-          </Header>
+          </Header.Content>
         }
+      </Header>
 
-        { this.state.theses.length > 0 &&
-          <div>
-            {theses}
-          </div>
-        }
-      </div>;
+      <Menu>
+        <Dropdown
+          item
+          options={categoryOptions}
+          onChange={this.handleCategorySelection}
+          placeholder='Kategorie für alle...'
+          search
+          selection
+          selectOnNavigation={false}
+          selectOnBlur={false}
+          style={{border: "none"}}
+        />
+        <Menu.Item onClick={() => this.handleCategoryChange(true)} disabled={this.state.selectedCategory == null}>
+          Hinzufügen
+        </Menu.Item>
+        <Menu.Item onClick={() => this.handleCategoryChange(false)} disabled={this.state.selectedCategory == null}>
+          Entfernen
+        </Menu.Item>
+        <Menu.Menu
+          position='right'
+          style={{borderLeft: "1px solid #ccc"}}
+        >
+          <WikidataTagger onSelection={this.handleTag} text={"Alle taggen..."} />
+        </Menu.Menu>
+      </Menu>
+
+      { this.state.theses.length > 0 &&
+        <div>
+          {theses}
+        </div>
+      }
+    </div>;
   }
 };

@@ -24,7 +24,8 @@ export type WikidataType = {
 };
 
 type Props = {
-  onSelection: (WikidataType) => mixed
+  onSelection: (WikidataType) => mixed,
+  text?: string
 };
 
 type State = {
@@ -110,7 +111,7 @@ class WikidataTagger extends React.Component<Props, State> {
         loading={this.state.isLoading}
         onResultSelect={this.handleSelect}
         onSearchChange={this.handleChange}
-        placeholder="Tag hinzufügen"
+        placeholder={this.props.text || "Tag hinzufügen"}
         results={this.state.results}
         resultRenderer={this.renderResult}
         style={style}

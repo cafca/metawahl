@@ -56,7 +56,7 @@ export default class TagList extends Component<RouteProps, State> {
     };
     const tags = this.state.tags
       .sort(sortTags)
-      .map((tag, i) => <li>
+      .map((tag, i) => <li key={"Tag-" + i}>
         <Link to={"/tags/" + tag.slug}>{tag.title}</Link>
       </li>);
 
