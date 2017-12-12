@@ -7,25 +7,24 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 import { categoryOptions } from './Thesis';
 import { Menu, Dropdown } from 'semantic-ui-react';
+import { API_ROOT } from './Config';
 
-import type { RouteProps, ThesisType } from './Types';
+import type { RouteProps, ThesisType, CategoryType } from './Types';
 
-type State = {
-  theses: Array<ThesisType>
-};
+type State = CategoryType | {};
 
 export default class Category extends React.Component<RouteProps, State> {
-  category : string;
+  categorySlug : string;
 
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.category = this.props.match.params.category;
-    this.state = this.makeStateFromProps(this.props, true);
+    this.categorySlug = this.props.match.params.category;
+    this.state = {};
   }
 
-  componentWillReceiveProps(nextProps: RouteProps) {
-    this.setState(this.makeStateFromProps(nextProps, false));
+  componentDidMount() {
+    this.loadCategory();
   }
 
   extractThesisID(thesisID: string) {
@@ -37,44 +36,20 @@ export default class Category extends React.Component<RouteProps, State> {
     }
   }
 
-  makeStateFromProps(props: RouteProps, loadProps: boolean) {
-    let theses = [];
-    const positionsToLoad = new Set();
-    if (props.categories && props.categories[this.category] && props.occasions) {
-      theses = props.categories[this.category].map(thesisID => {
-        const { womID, thesisNUM } = this.extractThesisID(thesisID);
-        const thesisData : ThesisType = props.occasions[womID].theses[thesisNUM];
-
-        let positions;
-        if (this.props.positions[womID]) {
-          positions = this.props.positions[womID][thesisID];
-        } else {
-          positions = thesisData.positions;
-          positionsToLoad.add(womID)
-        }
-
-        return Object.assign({}, thesisData, { womID, thesisNUM, positions });
-      });
-    }
-    if (loadProps) {
-      positionsToLoad.forEach(this.props.loadPositions);
-    }
-    return { theses };
+  loadCategory() {
+    const endpoint = `${API_ROOT}/categories/${this.categorySlug}`;
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(response => this.setState(response.data));
   }
 
   render() {
-    const thesesElems = this.state.theses
+    const thesesElems = this.state.theses != undefined && this.state.theses
       .sort((t1, t2) => t1.womID - t2.womID)
-      .map(thesis => (
-        <Thesis
-          key={thesis.id}
-          {...thesis}
-          loaded={thesis.positions != null && thesis.positions.length > 0}
-          showLink={true} />)
-      );
+      .map(thesis => <Thesis key={thesis.id} {...thesis} />);
 
     return <div className="category">
-      <h1><Link to="/bereiche/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.category : <span>Loading...</span>}</h1>
+      <h1><Link to="/bereiche/">Themen</Link> > {this.state.name ? this.state.name : <span>Loading...</span>}</h1>
       <Menu>
         <Dropdown item placeholder='Kategorie für alle hinzufügen' style={{border: "none"}}
           search selection options={categoryOptions} />
@@ -83,6 +58,7 @@ export default class Category extends React.Component<RouteProps, State> {
         </Menu.Item>
       </Menu>
       <div className="theses">
+        { thesesElems.length === 0 && <p>In diesem Bereich gibt es noch keine Thesen.</p> }
         {thesesElems}
       </div>
     </div>

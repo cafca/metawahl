@@ -24,7 +24,7 @@ db = SQLAlchemy()
 
 def log_request_info(name, request):
     logger.info("{} API".format(name))
-    logger.info("Data: {}".format(pformat(request.args)))
+    # logger.info("Data: {}".format(pformat(request.args)))
 
 
 # Categories
@@ -123,7 +123,10 @@ def create_app(config=None):
         from models import Category
         log_request_info("Category", request)
 
-        category = Category.query.get(category)
+        category = db.session.query(Category) \
+            .filter(Category.slug == category) \
+            .first()
+
         rv = {
             "data": category.to_dict(thesis_data=True)
         }

@@ -21,14 +21,22 @@ categories = db.Table('categories',
 class Category(db.Model):
     """Represent one of the 27 categories."""
     name = db.Column(db.String(64), primary_key=True)
+    slug = db.Column(db.String(64), unique=True)
 
     def __repr__(self):
         return "<Category {}>".format(self.name)
 
+    def __init__(self, name):
+        self.name = name
+        self.make_slug()
+
+    def make_slug(self):
+        self.slug = slugify(self.name)
+
     def to_dict(self, thesis_data=False):
         rv = {
             "name": self.name,
-            "slug": slugify(self.name)
+            "slug": self.slug
         }
 
         if thesis_data:
@@ -132,6 +140,9 @@ class Tag(db.Model):
     def __repr__(self):
         return "<Tag #{}>".format(self.title)
 
+    def make_slug(self):
+        self.slug = slugify(self.title)
+
     def to_dict(self):
         rv = {
             "title": self.title,
@@ -144,9 +155,6 @@ class Tag(db.Model):
             rv["description"] = self.description
 
         return rv
-
-    def make_slug(self):
-        self.slug = slugify(self.title)
 
 
 class Thesis(db.Model):
