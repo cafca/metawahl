@@ -8,6 +8,7 @@ export type PositionType = {
 
 export type TagType = {
   title: string,
+  slug: string,
   description?: string,
   url: ?string,
   wikidata_id: ?string

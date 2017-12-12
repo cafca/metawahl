@@ -12,6 +12,8 @@ import OccasionList from './OccasionList';
 import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
 import Category from './Category';
+import TagList from './TagList';
+import TagView from './TagView';
 import { API_ROOT } from './Config';
 
 import type { OccasionType, CategoryType, PositionType, RouteProps } from './Types';
@@ -75,6 +77,14 @@ class App extends Component<Props, State> {
 
             <Route path="/bereiche/:category/" render={props => (
               <Category {...props} />
+            )} />
+
+            <Route exact path="/tags/" render={props => (
+              <TagList {...props} />
+            )} />
+
+            <Route path="/tags/:tag/" render={props => (
+              <TagView {...props} />
             )} />
           </Container>
           <Footer />

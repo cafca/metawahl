@@ -13,7 +13,9 @@ const Tag = ({ data, remove }: Props) => {
   if (data.wikidata_id == null) {
     return <Label
       key={data.title}
+      as='a'
       tag
+      href={"/tags/" + data.slug}
       color='grey'
       style={{
         marginRight: ".4em",
@@ -32,9 +34,7 @@ const Tag = ({ data, remove }: Props) => {
       key={data.wikidata_id}
       as='a'
       tag
-      onClick={() => {
-        window.open(data.url, "_blank")
-      }}
+      href={"/tags/" + data.slug}
       color='teal'
       style={{
         marginRight: ".4em",
