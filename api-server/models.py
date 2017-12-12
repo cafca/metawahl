@@ -7,6 +7,7 @@ import json
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
+from slugify import slugify
 
 
 categories = db.Table('categories',
@@ -24,15 +25,14 @@ class Category(db.Model):
     def __repr__(self):
         return "<Category {}>".format(self.name)
 
-    def to_dict(self, thesis_data=False, tag_data=False):
+    def to_dict(self, thesis_data=False):
         rv = {
             "name": self.name,
+            "slug": slugify(self.name)
         }
 
         if thesis_data:
-            rv["theses"] = [
-                thesis.to_dict(tag_data=tag_data) for thesis in self.theses
-            ]
+            rv["theses"] = [thesis.to_dict() for thesis in self.theses]
         else:
             rv["theses"] = [thesis.id for thesis in self.theses]
         return rv
@@ -124,6 +124,7 @@ tags = db.Table('tags',
 class Tag(db.Model):
     """Represent a tag linked to a Wikidata ID."""
     title = db.Column(db.String(128), primary_key=True)
+    slug = db.Column(db.String(128), unique=True, nullable=False)
     wikidata_id = db.Column(db.String(16))
     description = db.Column(db.Text)
     url = db.Column(db.Text)
@@ -134,6 +135,7 @@ class Tag(db.Model):
     def to_dict(self):
         rv = {
             "title": self.title,
+            "slug": self.slug,
             "wikidata_id": self.wikidata_id,
             "url": self.url
         }
@@ -142,6 +144,9 @@ class Tag(db.Model):
             rv["description"] = self.description
 
         return rv
+
+    def make_slug(self):
+        self.slug = slugify(self.title)
 
 
 class Thesis(db.Model):
@@ -164,31 +169,26 @@ class Thesis(db.Model):
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
 
-    def to_dict(self, tag_data=False):
+    def to_dict(self):
         rv = {
             "id": self.id,
             "title": self.title,
             "categories": [category.name for category in self.categories],
-            "positions": [position.to_dict() for position in self.positions]
+            "positions": [position.to_dict() for position in self.positions],
+            "tags": [tag.to_dict() for tag in self.tags]
         }
 
         if self.text is not None:
             rv["text"] = self.text
-
-        if tag_data:
-            rv["tags"] = [tag.to_dict() for tag in self.tags]
-        else:
-            rv["tags"] = [tag.title for tag in self.tags]
 
         return rv
 
 
 if __name__ == '__main__':
     from main import create_app
+    app = create_app()
 
     if input("Reset database? [y/N]") == "y":
-        app = create_app()
-
         with app.app_context():
             logger.info("Drop and recreate...")
             db.drop_all(app=app)

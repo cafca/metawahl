@@ -88,7 +88,7 @@ def load_occasions():
     with open(os.path.join(DATADIR, "list.json")) as f:
         occasion_list = json.load(f)
 
-    for occasion_dir in occasion_list:
+    for occasion_dir in sorted(occasion_list):
         # occasion_dir is like "2017/deutschland"
         year, territory = occasion_dir.split("/")
 
@@ -178,6 +178,7 @@ def load_tags():
     for tag_title in tag_data:
         tag = tag_instances[tag_title]
         tag.title = tag_title
+        tag.make_slug()
         thesis_ids = []
         for tid in tag_data[tag_title]:
             womtype, occasion, thesis_num = tid.split("-")

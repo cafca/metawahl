@@ -9,8 +9,8 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
 
-import type { RouteProps } from './Types';
-import type { TagType } from './WikidataTagger';
+import type { RouteProps, PositionType, ThesisType, TagType } from './Types';
+import type { WikidataType } from './WikidataTagger';
 
 const categoryNames : Array<string> = [
   "Arbeit und Beschäftigung",
@@ -63,18 +63,12 @@ const Positions = ({positions, value, toggleOpen}) =>
     </div>;
 
 type State = {
-  openText: ?{
-    party: string,
-    text: string
-  },
+  openText: ?PositionType,
   tags: Array<TagType>,
   categories: Array<string>
 };
 
-type Props = RouteProps & {
-  tags: Array<TagType>,
-  categories: Array<string>
-};
+type Props = RouteProps & ThesisType;
 
 export default class Thesis extends Component<Props, State> {
   constructor(props: Props) {
@@ -82,39 +76,22 @@ export default class Thesis extends Component<Props, State> {
     autoBind(this);
     this.state = {
       openText: null,
-      tags: [],
-      categories: []
+      tags: this.props.tags,
+      categories: this.props.categories
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      tags: this.props.tags || [],
-      categories: this.props.categories || []
-    });
-  }
-
   componentWillReceiveProps(nextProps: Props) {
-    nextProps.id === "WOM-42-0" && console.log(nextProps);
-    nextProps.tags && nextProps.tags.forEach(this.handleTag);
-    nextProps.categories && nextProps.categories.forEach(value => {
-      const newCategory = categoryNames[value];
-      if (this.state.categories.indexOf(newCategory) === -1) {
-        this.setState((prevState: State) => {
-          const categories = prevState.categories;
-          categories.push(categoryNames[value]);
-          return categories;
-        })
-      }
-    });
+    nextProps.tags.forEach(this.handleTag);
+    nextProps.categories.forEach(this.handleCategory);
   }
 
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
     if (this.state.categories.indexOf(value) > -1) return;
 
-    const categories = this.state.categories;
-    categories.push(value);
-    this.setState({categories});
+    this.setState(prevState => {
+      categories: prevState.categories.concat([ value ])
+    });
   }
 
   handleCategoryRemove(category: string) {
@@ -122,12 +99,19 @@ export default class Thesis extends Component<Props, State> {
     this.setState({categories});
   }
 
-  handleTag(tagData: TagType) {
+  handleTag(tagData: WikidataType) {
     if (this.state.tags.filter(t => t.id === tagData.id).length !== 0) return;
 
-    const tags = this.state.tags;
-    tags.push(tagData);
-    this.setState({tags});
+    const tag: TagType = {
+      title: tagData.label,
+      description: tagData.description,
+      url: tagData.concepturi,
+      wikidata_id: tagData.id
+    };
+
+    this.setState({
+      tags: this.state.tags.concat([ tag ])
+    });
   }
 
   handleTagRemove(title: string) {
@@ -135,8 +119,8 @@ export default class Thesis extends Component<Props, State> {
     this.setState({tags});
   }
 
-  toggleOpen(party: { party: string, text: string}) {
-    this.setState({ openText: party });
+  toggleOpen(position: PositionType) {
+    this.setState({ openText: position });
   }
 
   render() {
@@ -144,13 +128,13 @@ export default class Thesis extends Component<Props, State> {
     let neutralPositions = this.props.positions.filter(p => p.value === 0);
     let contraPositions = this.props.positions.filter(p => p.value === -1);
 
-    const positionText = this.state.openText == null || this.props.loaded === false
+    const positionText = this.state.openText == null
       ? null : <p>Position der Partei {this.state.openText.party}: {this.state.openText.text}</p>;
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
     const tagElems = this.state.tags.map(tag =>
-      <Tag data={tag} key={tag.label} remove={this.handleTagRemove} />);
+      <Tag data={tag} key={tag.title} remove={this.handleTagRemove} />);
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>

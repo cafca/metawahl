@@ -7,7 +7,7 @@ import { Menu, Search } from 'semantic-ui-react';
 
 const searchLanguage = "de";
 
-export type TagType = {
+export type WikidataType = {
   concepturi: string,
   description: string,
   id: string,
@@ -24,13 +24,13 @@ export type TagType = {
 };
 
 type Props = {
-  onSelection: (TagType) => mixed
+  onSelection: (WikidataType) => mixed
 };
 
 type State = {
   query: string,
   isLoading: boolean,
-  results?: Array<TagType>
+  results?: Array<WikidataType>
 };
 
 class WikidataTagger extends React.Component<Props, State> {
@@ -90,12 +90,12 @@ class WikidataTagger extends React.Component<Props, State> {
     }
   }
 
-  handleSelect(e: SyntheticInputEvent<HTMLInputElement>, { result }: { result: TagType }) {
+  handleSelect(e: SyntheticInputEvent<HTMLInputElement>, { result }: { result: WikidataType }) {
     this.props.onSelection(result);
     this.setState({query: '', results: [], isLoading: false});
   }
 
-  renderResult({ title, label, description, concepturi }: TagType) {
+  renderResult({ title, label, description, concepturi }: WikidataType) {
     return <div key='content' className='content'>
       {title && <div className='price'>{title}</div>}
       {label && <div className='title'>{label}</div>}

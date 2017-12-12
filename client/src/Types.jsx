@@ -1,31 +1,38 @@
+export const ErrorState = "loading" | "success" | "error";
+
 export type PositionType = {
   value: -1 | 0 | 1,
   party: string,
   text?: string
 };
 
-export type ThesisType = {
-  id: string,
+export type TagType = {
   title: string,
-  text: string,
-  positions: ?Array<PositionType>
+  description?: string,
+  url: ?string,
+  wikidata_id: ?string
 };
 
-export type OccasionMetaType = {
-  title: string,
-  occasion_id: string,
-  extraData: { texts: Array<string> },
-  num: number,
-  wikidata: string,
-  data: string,
-  territory: string,
-  type: "Wahl-o-Mat"
+export type ThesisType = {
+  id: string,
+  text: string,
+  title: ?string,
+  categories: Array<string>,
+  tags: Array<TagType>,
+  positions: Array<PositionType>
 };
 
 export type OccasionType = {
-  occasion: OccasionMetaType,
-  parties: Array<Party>,
-  theses: Array<ThesisType>
+  id: number,
+  date: string,
+  source: ?string,
+  title: string,
+  wikidata_id: ?string,
+  theses?: Array<ThesisType>
+};
+
+export type OccasionListType = {
+  [ territory: string ]: Array<OccasionType>
 };
 
 export type PartyType = {
@@ -33,7 +40,11 @@ export type PartyType = {
   name: string
 };
 
-export type CategoryType = Array<String>;
+export type CategoryType = {
+  name: string,
+  slug: string,
+  theses?: Array<ThesisType> | Array<string>
+};
 
 export type RouteProps = {
   occasions: ?{ [ womID: number ]: OccasionType },

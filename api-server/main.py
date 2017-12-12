@@ -62,7 +62,11 @@ def log_request_info(name, request):
 def create_app(config=None):
     app = Flask(__name__)
     app.config.update(config or {})
-    app.config.from_envvar("METAWAHL_CONFIG")
+    try:
+        app.config.from_envvar("METAWAHL_CONFIG")
+    except RuntimeError as e:
+        logger.error(e)
+        quit()
 
     db.init_app(app)
 
@@ -92,11 +96,10 @@ def create_app(config=None):
         log_request_info("Occasion", request)
 
         occasion = Occasion.query.get(wom_id)
-        tag_data = request.args.get("tag_data", False)
 
         rv = {
             "data": occasion.to_dict(),
-            "theses": [thesis.to_dict(tag_data=tag_data)
+            "theses": [thesis.to_dict()
                 for thesis in occasion.theses]
         }
 
@@ -118,27 +121,25 @@ def create_app(config=None):
     def category(category: str):
         """Return metadata for all theses in a category."""
         from models import Category
-
         log_request_info("Category", request)
 
         category = Category.query.get(category)
         rv = {
-            "data": category.to_dict(thesis_data=True, tag_data=True)
+            "data": category.to_dict(thesis_data=True)
         }
 
         return jsonify(rv)
 
     @app.route(
-        API_ROOT + "/thesis/<string:thesis_id>", methods=["GET", "POST"])
+        API_ROOT + "/thesis/<string:thesis_id>", methods=["GET"])
     def thesis(thesis_id: str):
         """Return metadata for a specific thesis."""
         from models import Thesis
-
         log_request_info("Thesis", request)
 
         thesis = Thesis.query.get(thesis_id)
         rv = {
-            "data": thesis.to_dict(tag_data=True)
+            "data": thesis.to_dict()
         }
 
         return jsonify(rv)

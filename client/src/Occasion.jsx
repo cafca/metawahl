@@ -7,10 +7,12 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 
-import { RouteProps, ThesisType, OccasionType } from './Types';
+import { API_ROOT } from './Config';
+import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
 
 type State = {
   occasion: ?OccasionType,
+  occasionState: ErrorState,
   theses: Array<ThesisType>
 };
 
@@ -23,19 +25,13 @@ export default class Occasion extends React.Component<RouteProps, State> {
     this.occasionNum = parseInt(this.props.match.params.occasionNum, 10);
     this.state =  {
       occasion: null,
+      occasionState: "loading",
       theses: []
     }
   }
 
   componentDidMount() {
-    this.makeStateFromProps(this.props);
-    this.props.loadPositions(this.occasionNum);
-    if (this.state.theses.length > 0) this.loadMetaData();
-  }
-
-  componentWillReceiveProps(nextProps: RouteProps) {
-    this.makeStateFromProps(nextProps);
-    if (this.state.theses.length > 0) this.loadMetaData();
+    this.loadOccasion();
   }
 
   extractThesisID(thesisID: string) {
@@ -47,61 +43,36 @@ export default class Occasion extends React.Component<RouteProps, State> {
     }
   }
 
-  makeStateFromProps(props: RouteProps) {
-    const occasion = props.occasions[this.occasionNum];
-    const theses = occasion ? occasion.theses : [];
-    this.setState({occasion, theses});
-  }
-
-  loadMetaData() {
-    const endpoint = "http://localhost:8000/api/v1/occasions/42";
-    const t = this;
-
-    const updateThesisData = (t, thesisNUM, metaData) => {
-      t.setState(prevState => {
-        const theses = prevState.theses;
-        theses[thesisNUM] = Object.assign({}, theses[thesisNUM],
-          { ...metaData });
-        return { theses };
-      });
-    };
-
+  loadOccasion() {
+    const endpoint = `${API_ROOT}/occasions/${this.occasionNum}`;
     fetch(endpoint)
-      .then(resp => resp.json())
-      .then(resp => {
-        console.log("Received" + JSON.stringify(resp));
-        if (resp.data) {
-          for (const thesisId in resp.data) {
-            const { thesisNUM } = t.extractThesisID(thesisId);
-            updateThesisData(t, thesisNUM, resp.data[thesisId])
-          }
-        }
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          occasion: response.data,
+          theses: response.theses
+        })
       })
       .catch((error: Error) => {
-        console.log("Error loading metadata " + error.message);
+        console.log(error.message);
+        this.setState({
+          occasion: null,
+          occasionState: "error"
+        })
       })
   }
 
   render() {
-    const thesesElems = this.state.theses.map((t, i) => {
-      // Set to positionTexts entry once loaded
-      const positions = this.props.positions[this.occasionNum]
-        ? this.props.positions[this.occasionNum][t.id] : t.positions;
-
-      return <Thesis
-        key={t.id}
-        loaded={this.props.positions != null}
-        {...t}
-        positions={positions}
-      />
-    });
+    const thesesElems = this.state.theses.map(
+      (t, i) => <Thesis key={t.id} {...t} />
+    );
 
     return <div className="occasion">
       <h1>
         <Link to="/">Wahlen</Link>
         >
         { this.state.occasion == null
-          ? "Loading..." : this.state.occasion.occasion.title }
+          ? "Loading..." : this.state.occasion.title }
       </h1>
 
       {this.state.occasion == null &&

@@ -74,7 +74,7 @@ export default class Category extends React.Component<RouteProps, State> {
       );
 
     return <div className="category">
-      <h1><Link to="/themen/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.category : <span>Loading...</span>}</h1>
+      <h1><Link to="/bereiche/">Themen</Link> > {this.state.theses && this.state.theses.length > 0 ? this.category : <span>Loading...</span>}</h1>
       <Menu>
         <Dropdown item placeholder='Kategorie für alle hinzufügen' style={{border: "none"}}
           search selection options={categoryOptions} />

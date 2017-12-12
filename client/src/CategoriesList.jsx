@@ -1,24 +1,58 @@
+// @flow
+
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
+import { API_ROOT } from './Config';
+import { RouteProps, CategoryType } from './Types';
 
-export default class CategoriesList extends Component {
-  constructor(props) {
+type State = {
+  categories: Array<CategoryType>
+};
+
+export default class CategoriesList extends Component<RouteProps, State> {
+  constructor(props: RouteProps) {
     super(props);
+    this.state = {
+      categories: []
+    }
     autoBind(this);
   }
 
+  componentDidMount() {
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    const endpoint = `${API_ROOT}/categories/`;
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          categories: response.data
+        })
+      });
+  }
+
   render() {
-    const categories = Object.keys(this.props.categories).sort().map(category => (
-      <li key={category}>
-        <Link to={`/themen/${category}/`}>{category}</Link>
-      </li>
-    ));
+    const sortCategories = (catA, catB) => {
+      return catA.name === catB.name
+        ? 0
+        : catA.name < catB.name ? -1 : 1;
+    };
+
+    const categories = this.state.categories
+      .sort(sortCategories)
+      .map(category => (
+        <li key={category.name}>
+          <Link to={`/bereiche/${category.slug}/`}>{category.name}</Link>
+        </li>
+      ));
 
     return this.props.categoriesState === "loading" ? <h2>Loading categories...</h2> :
       <div className="categories">
-        <h1>Themen</h1>
+        <h1>Liste der Themenbereiche</h1>
         <ul>
           {categories}
         </ul>
