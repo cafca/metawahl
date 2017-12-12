@@ -225,7 +225,6 @@ def create_app(config=None):
 
         db.session.add(thesis)
         db.session.commit()
-        db.session.refresh(thesis)
         return jsonify({"data": thesis.to_dict()})
     return app
 

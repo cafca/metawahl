@@ -3,16 +3,15 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { Segment, Loader } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 import { API_ROOT } from './Config';
-import Tag from './Tag';
-import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
+import type { TagType, RouteProps, ErrorState } from './Types';
 
 type State = {
-  tags: Array<TagType>
+  tags: Array<TagType>,
+  tagsState: ErrorState
 };
 
 export default class TagList extends Component<RouteProps, State> {
@@ -20,7 +19,8 @@ export default class TagList extends Component<RouteProps, State> {
     super(props);
     autoBind(this);
     this.state = {
-      tags: []
+      tags: [],
+      tagsState: "loading"
     }
   }
 
@@ -33,7 +33,8 @@ export default class TagList extends Component<RouteProps, State> {
       .then(response => response.json())
       .then(response => {
         this.setState({
-          tags: response.data
+          tags: response.data,
+          tagsState: "success"
         });
       })
       .catch((error: Error) => {
@@ -41,7 +42,8 @@ export default class TagList extends Component<RouteProps, State> {
         if (process.env.NODE_ENV !== 'test') {
           console.log(error.message)
           this.setState({
-            tags: []
+            tags: [],
+            tagsState: "error"
           });
         }
       }
@@ -60,10 +62,12 @@ export default class TagList extends Component<RouteProps, State> {
         <Link to={"/tags/" + tag.slug}>{tag.title}</Link>
       </li>);
 
+    // TODO: Error message when loadin failed
+
     return <div className="tagList">
         <h1>Tags</h1>
         <div>
-          <Loader active={this.state.tags.length == 0}
+          <Loader active={this.state.tagsState === "loading"}
             inline='centered' />
           { tags.length > 0 &&
             <ul>

@@ -3,16 +3,13 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import {
   Dropdown,
   Header,
   Icon,
   Label,
   Loader,
-  Menu,
-  Segment
+  Menu
 } from 'semantic-ui-react';
 
 import { API_ROOT, makeJSONRequest } from './Config';
@@ -25,7 +22,8 @@ type State = {
   tag: ?TagType,
   theses: Array<ThesisType>,
   selectedCategory: ?string,
-  loading: boolean
+  loading: boolean,
+  tagState: ErrorState
 };
 
 export default class TagView extends Component<RouteProps, State> {
@@ -39,7 +37,8 @@ export default class TagView extends Component<RouteProps, State> {
       tag: null,
       theses: [],
       selectedCategory: null,
-      loading: true
+      loading: false,
+      tagState: "loading"
     }
   }
 
@@ -58,7 +57,7 @@ export default class TagView extends Component<RouteProps, State> {
 
     const endpoint = `${API_ROOT}/categories/${this.state.selectedCategory}`;
     const data = {};
-    if (add == true) {
+    if (add === true) {
       data["add"] = this.state.theses.map(t => t.id);
     } else {
       data["remove"] = this.state.theses.map(t => t.id);
@@ -82,7 +81,6 @@ export default class TagView extends Component<RouteProps, State> {
       wikidata_id: tagData.id
     };
 
-    const theses = this.state.theses.map(t => t.id);
     const requests = this.state.theses.map(thesis =>
       fetch(
         `${API_ROOT}/thesis/${thesis.id}/tags/`,
@@ -103,7 +101,7 @@ export default class TagView extends Component<RouteProps, State> {
         this.setState({
           tag: response.data,
           theses: response.theses,
-          loading: false
+          tagState: "success"
         });
       })
       .catch((error: Error) => {
@@ -113,7 +111,7 @@ export default class TagView extends Component<RouteProps, State> {
           this.setState({
             tag: null,
             theses: [],
-            loading: false
+            tagState: "error"
           });
         }
       }
@@ -126,30 +124,32 @@ export default class TagView extends Component<RouteProps, State> {
     );
 
     return <div>
-      <Loader active={this.state.tag == undefined} />
+      <Loader active={this.state.tagState === "loading"} />
 
-      {this.state.tag != undefined && this.state.tag.wikidata_id != undefined &&
-        <Header as='h1' floated='right'>
+      {this.state.tagState === "success" && this.state.tag.wikidata_id != null &&
+        <Header as='h1' floated='right' style={{marginRight: "-10.5px"}}>
           <Label as='a' basic image href={this.state.tag.url} >
-            <img src="/img/Wikidata-logo.svg" /> {this.state.tag.wikidata_id}
+            <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" /> {this.state.tag.wikidata_id}
           </Label>
         </Header>
       }
 
-      <Header as='h1' disabled={this.state.tag == undefined}>
+      <Header as='h1' disabled={this.state.tagState === "loading"}>
         <Icon name='hashtag' />
-        {this.state.tag != undefined &&
+        {this.state.tagState === "success" &&
           <Header.Content>
               {this.state.tag.title}
               <Loader active={this.state.loading} inline={true} size="small"
                 style={{marginLeft: "1em", marginBottom: "0.2em"}} />
-              {this.state.tag.description != undefined &&
+              {this.state.tag.description != null &&
                 <Header.Subheader>
                   {this.state.tag.description} <br />
                 </Header.Subheader>
               }
           </Header.Content>
         }
+
+        {this.state.tagState === "error" && <h2>There was an error loading this page.</h2>}
       </Header>
 
       <Menu>

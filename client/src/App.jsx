@@ -14,9 +14,6 @@ import CategoriesList from './CategoriesList';
 import Category from './Category';
 import TagList from './TagList';
 import TagView from './TagView';
-import { API_ROOT } from './Config';
-
-import type { OccasionType, CategoryType, PositionType, RouteProps } from './Types';
 
 type State = {
   page: string

@@ -5,11 +5,9 @@ import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
-import { categoryOptions } from './Thesis';
-import { Menu, Dropdown } from 'semantic-ui-react';
 import { API_ROOT } from './Config';
 
-import type { RouteProps, ThesisType, CategoryType } from './Types';
+import type { RouteProps, CategoryType } from './Types';
 
 type State = CategoryType | {};
 
@@ -44,7 +42,7 @@ export default class Category extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const thesesElems = this.state.theses != undefined && this.state.theses
+    const thesesElems = this.state.theses != null && this.state.theses
       .sort((t1, t2) => t1.womID - t2.womID)
       .map(thesis => <Thesis key={thesis.id} {...thesis} />);
 

@@ -13,7 +13,7 @@ import { API_ROOT, makeJSONRequest } from './Config';
 import type { RouteProps, PositionType, ThesisType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
-const categoryNames : {[string]: [string]} = {
+const categoryNames = {
   "arbeit-und-beschaftigung": "Arbeit und Beschäftigung",
   "auslanderpolitik-zuwanderung": "Ausländerpolitik, Zuwanderung",
   "aussenpolitik-und-internationale-beziehungen": "Außenpolitik und internationale Beziehungen",
@@ -94,9 +94,9 @@ export default class Thesis extends Component<Props, State> {
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
     if (this.state.categories.indexOf(value) > -1) return;
 
-    this.setState(prevState => {
+    this.setState(prevState => ({
       categories: prevState.categories.concat([ value ])
-    });
+    }));
   }
 
   handleCategoryRemove(category: string) {
