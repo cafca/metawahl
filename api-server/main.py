@@ -133,6 +133,35 @@ def create_app(config=None):
 
         return jsonify(rv)
 
+    @app.route(API_ROOT + "/tags/", methods=["GET"])
+    def tags():
+        """Return list of all categories."""
+        from models import Tag
+
+        tags = db.session.query(Tag).all()
+        rv = {
+            "data": [tag.to_dict() for tag in tags]
+        }
+
+        return jsonify(rv)
+
+    @app.route(API_ROOT + "/tags/<string:tag_title>", methods=["GET"])
+    def tag(tag_title: str):
+        """Return metadata for all theses in a category."""
+        from models import Tag
+        log_request_info("Tag", request)
+
+        tag = db.session.query(Tag) \
+            .filter(Tag.slug == tag_title) \
+            .first()
+
+        rv = {
+            "data": tag.to_dict(),
+            "theses": [thesis.to_dict() for thesis in tag.theses]
+        }
+
+        return jsonify(rv)
+
     @app.route(
         API_ROOT + "/thesis/<string:thesis_id>", methods=["GET"])
     def thesis(thesis_id: str):
