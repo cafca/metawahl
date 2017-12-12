@@ -143,6 +143,39 @@ def create_app(config=None):
         }
 
         return jsonify(rv)
+
+    @app.route(API_ROOT + "/thesis/<string:thesis_id>/tags/", methods=["POST"])
+    def thesis_tags(thesis_id: str):
+        from models import Thesis, Tag
+        log_request_info("Thesis tags update", request)
+
+        thesis = db.session.query(Thesis).get(thesis_id)
+        data = request.get_json()
+
+        for tag_data in data.get("add", []):
+            tag = db.session.query(Tag) \
+                .filter(Tag.wikidata_id == tag_data["wikidata_id"]) \
+                .first()
+            if tag is None:
+                tag = Tag(
+                    title=tag_data["title"],
+                    wikidata_id=tag_data["wikidata_id"],
+                    url=tag_data["url"],
+                    description=tag_data.get("description", None),
+                )
+                tag.make_slug()
+                logger.info("New tag {}".format(tag))
+            logger.info("Appending {} to {}".format(tag, thesis))
+            thesis.tags.append(tag)
+
+        if len(data.get("remove", [])) > 0:
+            logger.info("Removing tags {}".format(", ".join(data.get("remove"))))
+            thesis.tags = [tag for tag in thesis.tags
+                if tag.title not in data.get("remove")]
+
+        db.session.add(thesis)
+        db.session.commit()
+        return jsonify({"data": thesis.to_dict()})
     return app
 
 

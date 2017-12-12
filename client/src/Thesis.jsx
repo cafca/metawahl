@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Menu, Dropdown } from 'semantic-ui-react';
+import { Segment, Menu, Dropdown, Loader } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
+import { API_ROOT } from './Config';
 
 import type { RouteProps, PositionType, ThesisType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
@@ -65,7 +66,8 @@ const Positions = ({positions, value, toggleOpen}) =>
 type State = {
   openText: ?PositionType,
   tags: Array<TagType>,
-  categories: Array<string>
+  categories: Array<string>,
+  loading: boolean
 };
 
 type Props = RouteProps & ThesisType;
@@ -77,7 +79,8 @@ export default class Thesis extends Component<Props, State> {
     this.state = {
       openText: null,
       tags: this.props.tags,
-      categories: this.props.categories
+      categories: this.props.categories,
+      loading: false
     }
   }
 
@@ -112,15 +115,45 @@ export default class Thesis extends Component<Props, State> {
     this.setState({
       tags: this.state.tags.concat([ tag ])
     });
+
+    this.sendChanges({
+      add: [ tag ],
+      remove: []
+    })
   }
 
   handleTagRemove(title: string) {
     const tags = this.state.tags.filter(tag => tag.title !== title);
     this.setState({tags});
+    this.sendChanges({
+      add: [],
+      remove: [ title ]
+    })
   }
 
   toggleOpen(position: PositionType) {
     this.setState({ openText: position });
+  }
+
+  sendChanges(data: { remove: ?Array<string>, add: ?Array<TagType> }) {
+    this.setState({ loading: true });
+
+    const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
+    const params = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+
+    fetch(endpoint, params)
+      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        this.setState({ loading: false });
+      });
   }
 
   render() {
@@ -183,6 +216,7 @@ export default class Thesis extends Component<Props, State> {
           style={{borderLeft: "1px solid #ccc"}}
         >
           <WikidataTagger onSelection={this.handleTag} />
+          { this.state.loading && <Loader />}
         </Menu.Menu>
       </Menu>
     </div>

@@ -177,7 +177,7 @@ def load_tags():
     logger.info("{} tags".format(len(tag_data)))
     for tag_title in tag_data:
         tag = tag_instances[tag_title]
-        tag.title = tag_title
+        tag.title = tag_title + "-OLD"
         tag.make_slug()
         thesis_ids = []
         for tid in tag_data[tag_title]:
