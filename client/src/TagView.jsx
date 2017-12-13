@@ -10,7 +10,7 @@ import {
   Loader
 } from 'semantic-ui-react';
 
-import { API_ROOT } from './Config';
+import { API_ROOT, setTitle } from './Config';
 import Thesis from './Thesis';
 import TagViewMenu from './TagViewMenu';
 
@@ -52,6 +52,7 @@ export default class TagView extends Component<RouteProps, State> {
           tagState: "success",
           loading: false
         });
+        setTitle("#" + response.data.title);
       })
       .catch((error: Error) => {
         // https://github.com/facebookincubator/create-react-app/issues/3482

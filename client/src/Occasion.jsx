@@ -7,7 +7,7 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 
-import { API_ROOT } from './Config';
+import { API_ROOT, setTitle } from './Config';
 import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
 
 type State = {
@@ -31,7 +31,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    this.loadOccasion();
+    this.loadOccasion(
+      occasion => occasion != null && setTitle("- " + occasion.title)
+    );
   }
 
   extractThesisID(thesisID: string) {
@@ -43,7 +45,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
     }
   }
 
-  loadOccasion() {
+  loadOccasion(cb?: OccasionType => mixed) {
     const endpoint = `${API_ROOT}/occasions/${this.occasionNum}`;
     fetch(endpoint)
       .then(response => response.json())
@@ -52,6 +54,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
           occasion: response.data,
           theses: response.theses
         })
+        if (cb != null) cb(response.data);
       })
       .catch((error: Error) => {
         console.log(error.message);

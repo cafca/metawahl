@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 
-import { API_ROOT } from './Config';
+import { API_ROOT, setTitle } from './Config';
 import { OccasionListType, RouteProps, ErrorState } from './Types';
 
 type State = {
@@ -27,6 +27,7 @@ export default class OccasionList extends Component<RouteProps, State> {
 
   componentDidMount() {
     this.loadOccasions();
+    setTitle();
   }
 
   loadOccasions(): void {

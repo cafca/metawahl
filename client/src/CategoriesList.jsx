@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { API_ROOT } from './Config';
+import { API_ROOT, setTitle } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
 
@@ -24,6 +24,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
 
   componentDidMount() {
     this.loadCategories();
+    setTitle('Bereiche');
   }
 
   loadCategories() {

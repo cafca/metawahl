@@ -6,7 +6,7 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
 
-import { API_ROOT } from './Config';
+import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
 import type { TagType, RouteProps, ErrorState } from './Types';
 
@@ -28,6 +28,7 @@ export default class TagList extends Component<RouteProps, State> {
 
   componentDidMount() {
     this.loadTags();
+    setTitle('Tags');
   }
 
   loadTags(): void {

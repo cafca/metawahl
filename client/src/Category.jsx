@@ -5,7 +5,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
-import { API_ROOT } from './Config';
+import { API_ROOT, setTitle } from './Config';
 
 import type { RouteProps, CategoryType } from './Types';
 
@@ -38,7 +38,10 @@ export default class Category extends React.Component<RouteProps, State> {
     const endpoint = `${API_ROOT}/categories/${this.categorySlug}`;
     fetch(endpoint)
       .then(response => response.json())
-      .then(response => this.setState(response.data));
+      .then(response => {
+        this.setState(response.data);
+        response.data && setTitle("- " + response.data.name);
+      });
   }
 
   render() {
