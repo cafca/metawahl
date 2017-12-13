@@ -53,8 +53,6 @@ export default class TagView extends Component<RouteProps, State> {
   handleCategoryChange(add: boolean) {
     if (this.state.selectedCategory == null) return;
 
-    this.setState({loading: true});
-
     const endpoint = `${API_ROOT}/categories/${this.state.selectedCategory}`;
     const data = {};
     if (add === true) {
@@ -63,11 +61,18 @@ export default class TagView extends Component<RouteProps, State> {
       data["remove"] = this.state.theses.map(t => t.id);
     }
 
+    this.setState({loading: true});
+
     fetch(endpoint, makeJSONRequest(data))
       .then(response => response.json())
       .then(response => {
         console.log(response);
+        this.setState({loading: false});
         this.loadTag();
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({loading: false});
       });
   }
 
@@ -88,10 +93,18 @@ export default class TagView extends Component<RouteProps, State> {
       )
     );
 
-    Promise.all(requests).then(responses => {
-      responses.map(console.log);
-      this.loadTag();
-    });
+    Promise.all(requests)
+      .then(responses => {
+        responses.map(console.log);
+        this.setState({loading: false});
+        this.loadTag();
+      })
+      .catch((error: Error) => {
+        // TODO: Error message
+        console.log(error);
+        this.setState({loading: false});
+        this.loadTag();
+      });
   }
 
   loadTag(): void {
@@ -126,7 +139,7 @@ export default class TagView extends Component<RouteProps, State> {
     return <div>
       <Loader active={this.state.tagState === "loading"} />
 
-      {this.state.tagState === "success" && this.state.tag.wikidata_id != null &&
+      {this.state.tag != null && this.state.tag.wikidata_id != null &&
         <Header as='h1' floated='right' style={{marginRight: "-10.5px"}}>
           <Label as='a' basic image href={this.state.tag.url} >
             <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" /> {this.state.tag.wikidata_id}
@@ -136,7 +149,7 @@ export default class TagView extends Component<RouteProps, State> {
 
       <Header as='h1' disabled={this.state.tagState === "loading"}>
         <Icon name='hashtag' />
-        {this.state.tagState === "success" &&
+        {this.state.tag != null &&
           <Header.Content>
               {this.state.tag.title}
               <Loader active={this.state.loading} inline={true} size="small"
