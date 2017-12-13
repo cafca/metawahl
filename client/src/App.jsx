@@ -14,6 +14,7 @@ import CategoriesList from './CategoriesList';
 import Category from './Category';
 import TagList from './TagList';
 import TagView from './TagView';
+import ScrollToTop from './ScrollToTop';
 
 type State = {
   page: string
@@ -62,35 +63,37 @@ class App extends Component<Props, State> {
 
     return (
       <BrowserRouter>
-        <div className="App">
-          <HeaderMenu />
-          <Container text style={{ marginTop: '7em' }}>
-            <Route exact path="/" render={props => (
-              <OccasionList {...props} {...extraProps} />
-            )} />
+        <ScrollToTop>
+          <div className="App">
+            <HeaderMenu />
+            <Container text style={{ marginTop: '7em' }}>
+              <Route exact path="/" render={props => (
+                <OccasionList {...props} />
+              )} />
 
-            <Route path="/wahlen/:occasionNum/" render={props => (
-              <Occasion {...props} {...extraProps} />
-            )} />
+              <Route path="/wahlen/:occasionNum/" render={props => (
+                <Occasion {...props} />
+              )} />
 
-            <Route exact path="/bereiche/" render={props => (
-              <CategoriesList {...props} {...extraProps} />
-            )} />
+              <Route exact path="/bereiche/" render={props => (
+                <CategoriesList {...props} />
+              )} />
 
-            <Route path="/bereiche/:category/" render={props => (
-              <Category {...props} {...extraProps} />
-            )} />
+              <Route path="/bereiche/:category/" render={props => (
+                <Category {...props} />
+              )} />
 
-            <Route exact path="/tags/" render={props => (
-              <TagList {...props} {...extraProps} />
-            )} />
+              <Route exact path="/tags/" render={props => (
+                <TagList {...props} />
+              )} />
 
-            <Route path="/tags/:tag/" render={props => (
-              <TagView {...props} {...extraProps} />
-            )} />
-          </Container>
-          <Footer />
-        </div>
+              <Route path="/tags/:tag/" render={props => (
+                <TagView {...props} />
+              )} />
+            </Container>
+            <Footer />
+          </div>
+        </ScrollToTop>
       </BrowserRouter>
     );
   }
