@@ -4,24 +4,17 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import {
-  Dropdown,
   Header,
   Icon,
   Label,
-  Loader,
-  Menu,
-  Segment,
-  Modal,
-  Button
+  Loader
 } from 'semantic-ui-react';
 
-import { API_ROOT, makeJSONRequest } from './Config';
-import Thesis, { categoryOptions, categoryNames } from './Thesis';
-import WikidataTagger from './WikidataTagger';
+import { API_ROOT } from './Config';
+import Thesis from './Thesis';
 import TagViewMenu from './TagViewMenu';
 
 import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
-import type { WikidataType } from './WikidataTagger';
 
 type State = {
   tag: ?TagType,

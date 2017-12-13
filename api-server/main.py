@@ -119,7 +119,8 @@ def create_app(config=None):
 
         return jsonify(rv)
 
-    @app.route(API_ROOT + "/categories/<string:category>", methods=["GET", "POST"])
+    @app.route(API_ROOT + "/categories/<string:category>",
+        methods=["GET", "POST"])
     def category(category: str):
         """Return metadata for all theses in a category."""
         from models import Category, Thesis
@@ -163,7 +164,8 @@ def create_app(config=None):
 
         return jsonify(rv)
 
-    @app.route(API_ROOT + "/tags/<string:tag_title>", methods=["GET", "DELETE"])
+    @app.route(API_ROOT + "/tags/<string:tag_title>",
+        methods=["GET", "DELETE"])
     def tag(tag_title: str):
         """Return metadata for all theses in a category."""
         from models import Tag

@@ -19,7 +19,7 @@ export default class TagList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    const savedTags = loadFromCache('taglist')
+    const savedTags = loadFromCache('taglist');
     this.state = {
       tags: savedTags != null ? JSON.parse(savedTags) : [],
       tagsState: savedTags != null ? "success" : "loading"

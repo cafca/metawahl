@@ -6,22 +6,18 @@ import autoBind from 'react-autobind';
 import './App.css';
 import {
   Dropdown,
-  Header,
   Icon,
-  Label,
-  Loader,
   Menu,
-  Segment,
   Modal,
   Button,
   Confirm
 } from 'semantic-ui-react';
 
 import { API_ROOT, makeJSONRequest } from './Config';
-import Thesis, { categoryOptions, categoryNames } from './Thesis';
+import { categoryOptions, categoryNames } from './Thesis';
 import WikidataTagger from './WikidataTagger';
 
-import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
+import type { TagType, ThesisType, ErrorState } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
 type Props = {
@@ -83,7 +79,7 @@ class TagViewMenu extends Component<Props, State> {
         console.log(response);
         this.props.refresh();
       })
-      .catch(error => {
+      .catch((error:ErrorState) => {
         console.log(error);
         this.props.refresh();
       });
@@ -131,11 +127,13 @@ class TagViewMenu extends Component<Props, State> {
 
   handleTagRemove() {
     if (this.props.tag == null) return;
+    const slug = this.props.tag.slug;
     const endpoint = `${API_ROOT}/tags/${this.props.tag.slug}`;
+
     fetch(endpoint, { method: 'delete'})
       .then(response => {
         console.log(response);
-        this.props.history.push("/tags/?removed=" + this.props.tag.slug);
+        this.props.history.push("/tags/?removed=" + slug);
       })
       .catch(error => {
         // TODO: Show error message
@@ -148,6 +146,10 @@ class TagViewMenu extends Component<Props, State> {
   }
 
   render() {
+    const categoryName = this.state.selectedCategory
+      ? categoryNames[this.state.selectedCategory]
+      : null;
+
     return <Menu>
       <Dropdown
         item
@@ -171,7 +173,7 @@ class TagViewMenu extends Component<Props, State> {
         open={this.state.confirmCategoryOpen}
       >
         <Modal.Content>
-          <p>Möchtest du die Kategorie "{categoryNames[this.state.selectedCategory]}" bei all diesen
+          <p>Möchtest du die Kategorie "{categoryName}" bei all diesen
             Thesen hinzufügen oder entfernen?</p>
         </Modal.Content>
         <Modal.Actions>
