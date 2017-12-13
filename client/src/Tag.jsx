@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
-import type { WikidataType } from './WikidataTagger';
+import type { TagType } from './Types';
 
 type Props = {
-  data: WikidataType,
+  data: TagType,
   remove: (string) => mixed
 };
 

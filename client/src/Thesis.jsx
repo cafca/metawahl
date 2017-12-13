@@ -114,10 +114,6 @@ export default class Thesis extends Component<Props, State> {
       wikidata_id: tagData.id
     };
 
-    this.setState({
-      tags: this.state.tags.concat([ tag ])
-    });
-
     this.sendChanges({
       add: [ tag ],
       remove: []
@@ -125,8 +121,6 @@ export default class Thesis extends Component<Props, State> {
   }
 
   handleTagRemove(title: string) {
-    const tags = this.state.tags.filter(tag => tag.title !== title);
-    this.setState({tags});
     this.sendChanges({
       add: [],
       remove: [ title ]
@@ -146,7 +140,10 @@ export default class Thesis extends Component<Props, State> {
     fetch(endpoint, params)
       .then(response => response.json())
       .then(response => {
-        this.setState({ loading: false });
+        this.setState({
+          loading: false,
+          tags: response.data.tags
+        });
       });
   }
 
@@ -161,7 +158,7 @@ export default class Thesis extends Component<Props, State> {
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
     const tagElems = this.state.tags.map(tag =>
-      <Tag data={tag} key={tag.title} remove={this.handleTagRemove} />);
+      <Tag data={tag} key={"Tag-" + tag.title} remove={this.handleTagRemove} />);
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
