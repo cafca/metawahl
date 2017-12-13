@@ -127,6 +127,24 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
       });
   }
 
+  handleTagRemove() {
+    if (this.props.tag == null) return;
+    const endpoint = `${API_ROOT}/tags/${this.props.tag.slug}`;
+    fetch(endpoint, { method: 'delete'})
+      .then(response => {
+        console.log(response);
+        this.props.history.push("/tags/?removed=" + this.props.tag.slug);
+      })
+      .catch(error => {
+        // TODO: Show error message
+        console.log(error);
+      })
+  }
+
+  handleTagRemoveCancel() {
+    this.setState({tagRemoveOpen: false});
+  }
+
   render() {
     return <Menu>
       <Dropdown

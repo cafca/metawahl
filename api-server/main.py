@@ -163,7 +163,7 @@ def create_app(config=None):
 
         return jsonify(rv)
 
-    @app.route(API_ROOT + "/tags/<string:tag_title>", methods=["GET"])
+    @app.route(API_ROOT + "/tags/<string:tag_title>", methods=["GET", "DELETE"])
     def tag(tag_title: str):
         """Return metadata for all theses in a category."""
         from models import Tag
@@ -172,6 +172,11 @@ def create_app(config=None):
         tag = db.session.query(Tag) \
             .filter(Tag.slug == tag_title) \
             .first()
+
+        if request.method == "DELETE":
+            logger.warning("Removing {}".format(tag))
+            db.session.delete(tag)
+            db.session.commit()
 
         rv = {
             "data": tag.to_dict(),
