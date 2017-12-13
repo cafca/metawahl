@@ -54,7 +54,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
 
     return this.props.categoriesState === "loading" ? <h2>Loading categories...</h2> :
       <div className="categories">
-        <h1>Liste der Themenbereiche</h1>
+        <h1>Themenbereiche</h1>
         <ul>
           {categories}
         </ul>

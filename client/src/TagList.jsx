@@ -54,9 +54,9 @@ export default class TagList extends Component<RouteProps, State> {
 
   render() {
     const sortTags = (tagA, tagB) => {
-      return tagA.title === tagB.title
+      return tagA.slug === tagB.slug
         ? 0
-        : tagA.title < tagB.title ? -1 : 1;
+        : tagA.slug < tagB.slug ? -1 : 1;
     };
     const tags = this.state.tags
       .sort(sortTags)

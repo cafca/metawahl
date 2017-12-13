@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import { withRouter } from 'react-router'
 import autoBind from 'react-autobind';
 import './App.css';
 import {
@@ -12,7 +13,8 @@ import {
   Menu,
   Segment,
   Modal,
-  Button
+  Button,
+  Confirm
 } from 'semantic-ui-react';
 
 import { API_ROOT, makeJSONRequest } from './Config';
@@ -22,29 +24,32 @@ import WikidataTagger from './WikidataTagger';
 import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
-type MenuProps = {
+type Props = {
   tag: ?TagType,
   theses: Array<ThesisType>,
   setLoading: boolean => void,
-  refresh: () => void
+  refresh: () => void,
+  history: { push: string => mixed }
 };
 
-type MenuState = {
-  selectedCategory: ?string,
-  selectedTag: ?WikidataType,
+type State = {
   confirmCategoryOpen: boolean,
   confirmTagOpen: boolean,
+  selectedCategory: ?string,
+  selectedTag: ?WikidataType,
+  tagRemoveOpen: boolean
 };
 
-export default class TagViewMenu extends Component<MenuProps, MenuState> {
-  constructor(props: MenuProps) {
+class TagViewMenu extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     autoBind(this);
     this.state = {
       selectedCategory: null,
       selectedTag: null,
       confirmTagOpen: false,
-      confirmCategoryOpen: false
+      confirmCategoryOpen: false,
+      tagRemoveOpen: false
     }
   }
 
@@ -66,7 +71,7 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
       data["remove"] = this.props.theses.map(t => t.id);
     }
 
-    this.props.setLoading(false);
+    this.props.setLoading(true);
     this.setState({
       confirmCategoryOpen: false,
       selectedCategory: null
@@ -76,12 +81,11 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
       .then(response => response.json())
       .then(response => {
         console.log(response);
-        this.props.setLoading(false);
         this.props.refresh();
       })
       .catch(error => {
         console.log(error);
-        this.props.setLoading(false);
+        this.props.refresh();
       });
   }
 
@@ -116,13 +120,11 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
     Promise.all(requests)
       .then(responses => {
         responses.map(console.log);
-        this.props.setLoading(false);
         this.props.refresh();
       })
       .catch((error: Error) => {
         // TODO: Error message
         console.log(error);
-        this.props.setLoading(false);
         this.props.refresh();
       });
   }
@@ -184,9 +186,15 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
         </Modal.Actions>
       </Modal>
 
-      <Menu.Item onClick={() => {}}>
-        <Icon name="remove" /> Tag löschen
+      <Menu.Item onClick={() => {this.setState({tagRemoveOpen: true})}} style={{color: "#999"}}>
+        <Icon name="trash outline" /> Tag löschen
       </Menu.Item>
+
+      <Confirm
+        open={this.state.tagRemoveOpen}
+        onCancel={this.handleTagRemoveCancel}
+        onConfirm={this.handleTagRemove}
+      />
 
       <Menu.Menu
         position='right'
@@ -207,7 +215,7 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
           open={this.state.confirmTagOpen}
         >
           <Modal.Content>
-            <p>Möchtest du das Tag "{this.state.selectedTag.title}" bei all diesen
+            <p>Möchtest du das Tag "{this.state.selectedTag.label}" bei all diesen
               Thesen hinzufügen oder entfernen?</p>
           </Modal.Content>
           <Modal.Actions>
@@ -226,3 +234,5 @@ export default class TagViewMenu extends Component<MenuProps, MenuState> {
     </Menu>
   }
 }
+
+export default withRouter(TagViewMenu);

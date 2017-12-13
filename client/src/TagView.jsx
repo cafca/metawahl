@@ -56,7 +56,8 @@ export default class TagView extends Component<RouteProps, State> {
         this.setState({
           tag: response.data,
           theses: response.theses,
-          tagState: "success"
+          tagState: "success",
+          loading: false
         });
       })
       .catch((error: Error) => {
@@ -66,7 +67,8 @@ export default class TagView extends Component<RouteProps, State> {
           this.setState({
             tag: null,
             theses: [],
-            tagState: "error"
+            tagState: "error",
+            loading: false
           });
         }
       }
