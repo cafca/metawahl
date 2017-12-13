@@ -14,8 +14,9 @@ type State = {
 export default class CategoriesList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
+    const savedCategories = this.props.load('categorylist')
     this.state = {
-      categories: []
+      categories: savedCategories != null ? JSON.parse(savedCategories) : []
     }
     autoBind(this);
   }
@@ -31,7 +32,8 @@ export default class CategoriesList extends Component<RouteProps, State> {
       .then(response => {
         this.setState({
           categories: response.data
-        })
+        });
+        this.props.save('categorylist', JSON.stringify(response.data));
       });
   }
 

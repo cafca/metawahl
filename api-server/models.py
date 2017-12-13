@@ -181,7 +181,7 @@ class Thesis(db.Model):
         rv = {
             "id": self.id,
             "title": self.title,
-            "categories": [category.name for category in self.categories],
+            "categories": [category.slug for category in self.categories],
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags]
         }

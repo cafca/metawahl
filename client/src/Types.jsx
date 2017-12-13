@@ -48,8 +48,6 @@ export type CategoryType = {
 };
 
 export type RouteProps = {
-  occasions: ?{ [ womID: number ]: OccasionType },
-  categories: ?{ [ category: string ]: CategoryType },
-  positions: ?{ [ womID: number ]: PositionType },
-  loadPositions: ( string ) => mixed
+  load: (string) => mixed,
+  save: (string, string) => mixed
 };

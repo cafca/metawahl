@@ -55,33 +55,38 @@ class App extends Component<Props, State> {
   }
 
   render() {
+    const extraProps = {
+      load: this.load,
+      save: this.save
+    };
+
     return (
       <BrowserRouter>
         <div className="App">
           <HeaderMenu />
           <Container text style={{ marginTop: '7em' }}>
             <Route exact path="/" render={props => (
-              <OccasionList {...props} />
+              <OccasionList {...props} {...extraProps} />
             )} />
 
             <Route path="/wahlen/:occasionNum/" render={props => (
-              <Occasion {...props} />
+              <Occasion {...props} {...extraProps} />
             )} />
 
             <Route exact path="/bereiche/" render={props => (
-              <CategoriesList {...props} />
+              <CategoriesList {...props} {...extraProps} />
             )} />
 
             <Route path="/bereiche/:category/" render={props => (
-              <Category {...props} />
+              <Category {...props} {...extraProps} />
             )} />
 
             <Route exact path="/tags/" render={props => (
-              <TagList {...props} />
+              <TagList {...props} {...extraProps} />
             )} />
 
             <Route path="/tags/:tag/" render={props => (
-              <TagView {...props} />
+              <TagView {...props} {...extraProps} />
             )} />
           </Container>
           <Footer />
