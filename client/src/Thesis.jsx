@@ -13,7 +13,7 @@ import { API_ROOT, makeJSONRequest } from './Config';
 import type { RouteProps, PositionType, ThesisType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
-const categoryNames = {
+export const categoryNames = {
   "arbeit-und-beschaftigung": "Arbeit und Beschäftigung",
   "auslanderpolitik-zuwanderung": "Ausländerpolitik, Zuwanderung",
   "aussenpolitik-und-internationale-beziehungen": "Außenpolitik und internationale Beziehungen",

@@ -9,11 +9,14 @@ import {
   Icon,
   Label,
   Loader,
-  Menu
+  Menu,
+  Segment,
+  Modal,
+  Button
 } from 'semantic-ui-react';
 
 import { API_ROOT, makeJSONRequest } from './Config';
-import Thesis, { categoryOptions } from './Thesis';
+import Thesis, { categoryOptions, categoryNames } from './Thesis';
 import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
 import type { WikidataType } from './WikidataTagger';
 import WikidataTagger from './WikidataTagger';
@@ -22,6 +25,9 @@ type State = {
   tag: ?TagType,
   theses: Array<ThesisType>,
   selectedCategory: ?string,
+  selectedTag: ?WikidataType,
+  confirmCategoryOpen: boolean,
+  confirmTagOpen: boolean,
   loading: boolean,
   tagState: ErrorState
 };
@@ -37,6 +43,9 @@ export default class TagView extends Component<RouteProps, State> {
       tag: null,
       theses: [],
       selectedCategory: null,
+      selectedTag: null,
+      confirmTagOpen: false,
+      confirmCategoryOpen: false,
       loading: false,
       tagState: "loading"
     }
@@ -47,7 +56,10 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   handleCategorySelection(e: Event, { value }:{ value:string }) {
-    this.setState({ selectedCategory: value})
+    this.setState({
+      selectedCategory: value,
+      confirmCategoryOpen: true
+    });
   }
 
   handleCategoryChange(add: boolean) {
@@ -61,7 +73,11 @@ export default class TagView extends Component<RouteProps, State> {
       data["remove"] = this.state.theses.map(t => t.id);
     }
 
-    this.setState({loading: true});
+    this.setState({
+      loading: true,
+      confirmCategoryOpen: false,
+      selectedCategory: null
+    });
 
     fetch(endpoint, makeJSONRequest(data))
       .then(response => response.json())
@@ -76,20 +92,30 @@ export default class TagView extends Component<RouteProps, State> {
       });
   }
 
-  handleTag(tagData: WikidataType) {
-    this.setState({ loading: true });
+  handleTagSelection(tagData: WikidataType) {
+    this.setState({
+      selectedTag: tagData,
+      confirmTagOpen: true
+    });
+  }
+
+  handleTagChange(add: boolean) {
+    if (this.state.selectedTag == null) return;
 
     const tag: TagType = {
-      title: tagData.label,
-      description: tagData.description,
-      url: tagData.concepturi,
-      wikidata_id: tagData.id
+      title: this.state.selectedTag.label,
+      description: this.state.selectedTag.description,
+      url: this.state.selectedTag.concepturi,
+      wikidata_id: this.state.selectedTag.id
     };
 
+    this.setState({ loading: true, confirmTagOpen: false, selectedTag: null });
+
+    const data = add ? {add: [tag, ]} : {remove: [tag, ]};
     const requests = this.state.theses.map(thesis =>
       fetch(
         `${API_ROOT}/thesis/${thesis.id}/tags/`,
-        makeJSONRequest({add: [tag,]})
+        makeJSONRequest(data)
       )
     );
 
@@ -170,25 +196,78 @@ export default class TagView extends Component<RouteProps, State> {
           item
           options={categoryOptions}
           onChange={this.handleCategorySelection}
-          placeholder='Kategorie für alle...'
+          placeholder='Bereich für alle...'
           search
           selection
           selectOnNavigation={false}
           selectOnBlur={false}
           style={{border: "none"}}
+          value={this.state.selectedCategory}
         />
-        <Menu.Item onClick={() => this.handleCategoryChange(true)} disabled={this.state.selectedCategory == null}>
-          Hinzufügen
+
+        <Modal
+          closeIcon={true}
+          onClose={() => {this.setState({
+            confirmCategoryOpen: false,
+            selectedCategory: null
+          })}}
+          open={this.state.confirmCategoryOpen}
+        >
+          <Modal.Content>
+            <p>Möchtest du die Kategorie "{categoryNames[this.state.selectedCategory]}" bei all diesen
+              Thesen hinzufügen oder entfernen?</p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button basic color="red"
+              onClick={() => this.handleCategoryChange(false)}>
+              <Icon name='remove' /> Entfernen
+            </Button>
+            <Button basic color="green"
+              onClick={() => this.handleCategoryChange(true)}>
+              <Icon name='checkmark' /> Hinzufügen
+            </Button>
+          </Modal.Actions>
+        </Modal>
+
+        <Menu.Item onClick={() => {}}>
+          <Icon name="remove" /> Tag löschen
         </Menu.Item>
-        <Menu.Item onClick={() => this.handleCategoryChange(false)} disabled={this.state.selectedCategory == null}>
-          Entfernen
-        </Menu.Item>
+
         <Menu.Menu
           position='right'
           style={{borderLeft: "1px solid #ccc"}}
         >
-          <WikidataTagger onSelection={this.handleTag} text={"Alle taggen..."} />
+          <WikidataTagger
+            onSelection={this.handleTagSelection}
+            text={"Tag für alle..."} />
         </Menu.Menu>
+
+        { this.state.selectedTag != null &&
+          <Modal
+            closeIcon={true}
+            onClose={() => {this.setState({
+              confirmTagOpen: false,
+              selectedTag: null
+            })}}
+            open={this.state.confirmTagOpen}
+          >
+            <Modal.Content>
+              <p>Möchtest du das Tag "{this.state.selectedTag.title}" bei all diesen
+                Thesen hinzufügen oder entfernen?</p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button basic color="red"
+                onClick={() => this.handleTagChange(false)}>
+                <Icon name='remove' /> Entfernen
+              </Button>
+              <Button basic color="green"
+                onClick={() => this.handleTagChange(true)}>
+                <Icon name='checkmark' /> Hinzufügen
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        }
+
       </Menu>
 
       { this.state.theses.length > 0 &&

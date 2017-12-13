@@ -219,9 +219,12 @@ def create_app(config=None):
             thesis.tags.append(tag)
 
         if len(data.get("remove", [])) > 0:
-            logger.info("Removing tags {}".format(", ".join(data.get("remove"))))
+            remove_tags_titles = [
+                tag["title"] for tag in data.get("remove", [])]
+            logger.info("Removing tags {}".format(
+                ", ".join(remove_tags_titles)))
             thesis.tags = [tag for tag in thesis.tags
-                if tag.title not in data.get("remove")]
+                if tag.title not in remove_tags_titles]
 
         db.session.add(thesis)
         db.session.commit()
