@@ -16,6 +16,30 @@ import TagList from './TagList';
 import TagView from './TagView';
 import ScrollToTop from './ScrollToTop';
 
+
+
+export const loadFromCache = (key: string) => {
+  // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
+
+  let rv = null;
+  try {
+    rv = localStorage.getItem(key);
+  } catch(e) {
+    console.log("Error loading from local storage. " + e);
+  }
+  return rv;
+}
+
+export const saveToCache = (key: string, json: string) => {
+  // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
+
+  try {
+    localStorage.setItem(key, json);
+  } catch(e) {
+    console.log("Error saving to local storage. " + e)
+  }
+}
+
 type State = {
   page: string
 };
@@ -33,34 +57,7 @@ class App extends Component<Props, State> {
     autoBind(this);
   }
 
-  load(key: string) {
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
-
-    let rv = null;
-    try {
-      rv = localStorage.getItem(key);
-    } catch(e) {
-      console.log("Error loading from local storage. " + e);
-    }
-    return rv;
-  }
-
-  save(key: string, json: string) {
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
-
-    try {
-      localStorage.setItem(key, json);
-    } catch(e) {
-      console.log("Error saving to local storage. " + e)
-    }
-  }
-
   render() {
-    const extraProps = {
-      load: this.load,
-      save: this.save
-    };
-
     return (
       <BrowserRouter>
         <ScrollToTop>

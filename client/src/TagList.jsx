@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
 
 import { API_ROOT } from './Config';
+import { loadFromCache, saveToCache } from './App';
 import type { TagType, RouteProps, ErrorState } from './Types';
 
 type State = {
@@ -18,7 +19,7 @@ export default class TagList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    const savedTags = this.props.load('taglist')
+    const savedTags = loadFromCache('taglist')
     this.state = {
       tags: savedTags != null ? JSON.parse(savedTags) : [],
       tagsState: savedTags != null ? "success" : "loading"
@@ -37,7 +38,7 @@ export default class TagList extends Component<RouteProps, State> {
           tags: response.data,
           tagsState: "success"
         });
-        this.props.save('taglist', JSON.stringify(response.data));
+        saveToCache('taglist', JSON.stringify(response.data));
       })
       .catch((error: Error) => {
         // https://github.com/facebookincubator/create-react-app/issues/3482

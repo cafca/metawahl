@@ -6,6 +6,7 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import { API_ROOT } from './Config';
 import { RouteProps, CategoryType } from './Types';
+import { loadFromCache, saveToCache } from './App';
 
 type State = {
   categories: Array<CategoryType>
@@ -14,7 +15,7 @@ type State = {
 export default class CategoriesList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
-    const savedCategories = this.props.load('categorylist')
+    const savedCategories = loadFromCache('categorylist')
     this.state = {
       categories: savedCategories != null ? JSON.parse(savedCategories) : []
     }
@@ -33,7 +34,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
         this.setState({
           categories: response.data
         });
-        this.props.save('categorylist', JSON.stringify(response.data));
+        saveToCache('categorylist', JSON.stringify(response.data));
       });
   }
 
