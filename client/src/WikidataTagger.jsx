@@ -6,6 +6,7 @@ import autoBind from 'react-autobind';
 import { Menu, Search, Icon } from 'semantic-ui-react';
 
 import { loadFromCache, saveToCache } from './App';
+import type { TagType } from './Types';
 
 const searchLanguage = "de";
 
@@ -31,26 +32,35 @@ type Props = {
 };
 
 type State = {
+  existingTags: Array<string>,
   query: string,
   isLoading: boolean,
   results: Array<WikidataType>,
-  open: boolean
+  open: boolean,
 };
 
 class WikidataTagger extends React.Component<Props, State> {
   searchTimeout: number;
-  existingTags: Array<TagType>;
 
   constructor(props: Props) {
     super(props);
     autoBind(this);
-    this.existingTags = [];
     this.state = {
+      existingTags: [],
       query: '',
       isLoading: false,
       results: [],
       open: false
     }
+  }
+
+  cancelLoading() {
+    clearTimeout(this.searchTimeout);
+    this.setState({isLoading: false});
+  }
+
+  componentDidMount() {
+    this.loadExistingTags();
   }
 
   search(): Promise<any> {
@@ -81,22 +91,31 @@ class WikidataTagger extends React.Component<Props, State> {
   handleChange(e: SyntheticInputEvent<HTMLInputElement>) {
     const query = e.target.value;
     const isQueryValid = query != null && query.length >= 3;
+    const isUnique = (current, index, items) =>
+      index === items.map(t => t.id).indexOf(current.id);
 
     this.setState({
       query,
       isLoading: isQueryValid
     });
 
+    const cachedResults = this.getCachedResults(query);
+
     if (isQueryValid) {
-      clearTimeout(this.searchTimeout)
+      clearTimeout(this.searchTimeout);
       this.searchTimeout = setTimeout(query => {
         this.search().then(results => {
-          this.setState({results, isLoading: false});
+          this.setState({
+            results: cachedResults
+              .concat(results)
+              .filter(isUnique),
+            isLoading: false
+          });
         })
       },
       350);
     } else {
-      this.showCached(query);
+      this.setState({ results: cachedResults });
     }
   }
 
@@ -107,7 +126,7 @@ class WikidataTagger extends React.Component<Props, State> {
   }
 
   renderResult({ title, label, description, concepturi }: WikidataType) {
-    const isExistingTag = this.existingTags.indexOf(title) > -1
+    const isExistingTag = this.state.existingTags.indexOf(title) > -1
       ? <Icon name="star" /> : null;
 
     return <div key='content' className='content'>
@@ -120,25 +139,28 @@ class WikidataTagger extends React.Component<Props, State> {
   addToCached(tag: WikidataType) {
     const cachedJSON = loadFromCache('recent-tags');
     const cached = cachedJSON == null ? [] : JSON.parse(cachedJSON);
-    if (cached.map(e => e.title).indexOf(tag.title) == -1) {
+    if (cached.map(e => e.title).indexOf(tag.title) === -1) {
       cached.unshift(tag);
     }
     saveToCache('recent-tags', JSON.stringify(cached))
+    this.setState({existingTags: this.state.existingTags.concat(tag.id)});
   }
 
-  showCached(query: string) {
+  getCachedResults(query: string): Array<WikidataType> {
+    let rv = [];
     const cachedJSON = loadFromCache('recent-tags');
     if (cachedJSON != null) {
-      const results = JSON.parse(cachedJSON).filter(
+      rv = JSON.parse(cachedJSON).filter(
         t => t.label.toLowerCase().startsWith(query.toLowerCase()))
-      this.setState({ results });
     }
+    return rv;
   }
 
   loadExistingTags() {
     const cachedJSON = loadFromCache('taglist');
     if (cachedJSON != null) {
-      this.existingTags = JSON.parse(cachedJSON).map(t => t.wikidata_id);
+      this.state.existingTags = JSON.parse(cachedJSON)
+        .map(t => t.wikidata_id);
     }
   }
 
@@ -152,6 +174,7 @@ class WikidataTagger extends React.Component<Props, State> {
         onFocus={this.loadExistingTags}
         onResultSelect={this.handleSelect}
         onSearchChange={this.handleChange}
+        onSelectionChange={this.cancelLoading}
         placeholder={this.props.text || "Tag hinzufügen"}
         results={this.state.results}
         resultRenderer={this.renderResult}
