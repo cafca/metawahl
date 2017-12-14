@@ -95,8 +95,6 @@ def load_occasions():
         def path_for(fn):
             return os.path.join(DATADIR, year, territory, fn)
 
-        logger.info("Loading occasion {}".format(occasion_dir))
-
         dataset = {
             "comments": load_data_file(path_for("comment.json"), index=True),
             "opinions": load_data_file(path_for("opinion.json")),
@@ -200,6 +198,9 @@ def load_tags():
             wikidata_id=tag_data["wikidata_id"]
         )
 
+        if "description" in tag_data:
+            tag.description = tag_data["description"]
+
         for thesis_id in tag_data["theses"]:
             tag.theses.append(Thesis.query.get(thesis_id))
 
@@ -229,7 +230,6 @@ def load_categories():
         for thesis_id in category_data["theses"]:
             category.theses.append(Thesis.query.get(thesis_id))
 
-        logger.info("Adding {}".format(category))
         yield category
 
 
