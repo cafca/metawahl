@@ -1,8 +1,5 @@
 # Metawahl
 
-![Screenshot von Metawahl](https://raw.githubusercontent.com/ciex/metawahl/master/screenshot.png)
-
-
 Metawahl schafft einen interaktiven Zugang zum Wandel der politischen Landschaft 
 in Deutschland über eine Aufbereitung der vielen hundert Thesen, die im Rahmen 
 des Wahl-o-Maten von den Parteien bewertet wurden. Hieraus lässt sich nicht nur
