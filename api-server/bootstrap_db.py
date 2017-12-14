@@ -158,12 +158,18 @@ def load_position(position_data, comments, parties):
     party.name = party_data["name"]
     party.long_name = party_data["longname"]
 
-    assert position_data["answer"] in [0, 1, 2]
+    # Im Datensatz werden Antworten mit einem Schlüssel in answer.json
+    # kodiert. Da Metawahl davon ausgeht, dass Antworten immer zustimmend,
+    # ablehnend oder neutral sind, wird der Schlüssel hier hart kodiert,
 
-    position = Position(
-        value=(position_data["answer"] - 1),
-        party=party
-    )
+    assert position_data["answer"] in [0, 1, 2]
+    value = {
+        0: 1,
+        1: -1,
+        2: 0
+    }[position_data["answer"]]
+
+    position = Position(value=value, party=party)
 
     if position_data["comment"] is not None:
         position.text = comments[position_data["comment"]]["text"]
