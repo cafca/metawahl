@@ -7,9 +7,10 @@ import os
 import sys
 import logging
 import time
+import json
 
 from collections import defaultdict
-from flask import Flask, jsonify, request, send_file, g
+from flask import Flask, jsonify, request, send_file, g, make_response
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from flask_cors import CORS
@@ -62,13 +63,21 @@ def log_request_info(name, request):
 # 26: Wirtschaft
 # 27: Wissenschaft, Forschung und Technologie
 
-def json_response(rv):
-    rv["meta"] = {
+def json_response(data, filename=None):
+    data["meta"] = {
         "render_time": g.request_time(),
         "license": "Please see https://github.com/ciex/metawahl/master/LICENSE \
 for licensing information"
     }
-    return jsonify(rv)
+
+    rv = jsonify(data)
+
+    if filename is not None:
+        rv.headers['Content-Type'] = 'text/json'
+        rv.headers['Content-Disposition'] = \
+            'attachment; filename={}'.format(filename)
+
+    return rv
 
 
 def create_app(config=None):
@@ -124,17 +133,20 @@ def create_app(config=None):
 
         return json_response(rv)
 
+    @app.route(API_ROOT + "/categories.json",
+        defaults={'filename': "categories.json"})
     @app.route(API_ROOT + "/categories/", methods=["GET"])
-    def categories():
+    def categories(filename=None):
         """Return list of all categories."""
         from models import Category
 
         categories = Category.query.all()
         rv = {
-            "data": [category.to_dict() for category in categories]
+            "data": [category.to_dict()
+                for category in categories]
         }
 
-        return json_response(rv)
+        return json_response(rv, filename=filename)
 
     @app.route(API_ROOT + "/categories/<string:category>",
         methods=["GET", "POST"])
@@ -169,8 +181,10 @@ def create_app(config=None):
 
         return json_response(rv)
 
+    @app.route(API_ROOT + "/tags.json",
+        methods=["GET"], defaults={'filename': 'tags.json'})
     @app.route(API_ROOT + "/tags/", methods=["GET"])
-    def tags():
+    def tags(filename=None):
         """Return list of all categories."""
         from models import Tag, Thesis
         logger.info("param: " + str(len(request.args.get("include_theses_ids", "No"))))
@@ -196,7 +210,7 @@ def create_app(config=None):
                     for item in results]
             }
 
-        return json_response(rv)
+        return json_response(rv, filename=filename)
 
     @app.route(API_ROOT + "/tags/<string:tag_title>",
         methods=["GET", "DELETE"])
