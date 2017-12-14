@@ -43,12 +43,14 @@ const Tag = ({ data, remove }: Props) => {
       }}
     >
       {data.title}
-      <Icon name="delete"
+      <Label.Detail>
+        <Icon name="delete"
         onClick={e => {
           e.stopPropagation();
           e.preventDefault();
           remove(data.title);
         }} />
+      </Label.Detail>
     </Label>
   }
 };
