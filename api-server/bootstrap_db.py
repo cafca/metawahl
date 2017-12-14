@@ -92,7 +92,8 @@ def load_occasions():
         # occasion_dir is like "2017/deutschland"
         year, territory = occasion_dir.split("/")
 
-        def path_for(fn): return os.path.join(DATADIR, year, territory, fn)
+        def path_for(fn):
+            return os.path.join(DATADIR, year, territory, fn)
 
         logger.info("Loading occasion {}".format(occasion_dir))
 
@@ -176,7 +177,7 @@ def load_position(position_data, comments, parties):
     return position
 
 
-def load_tags():
+def load_tags_from_old_categories():
     """One off."""
     with open("categories.json") as f:
         tag_data = json.load(f)
@@ -201,13 +202,13 @@ if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         for obj in load_occasions():
-            db.session.add(obj)
+            # db.session.add(obj)
             logger.info("Added {}".format(obj))
 
         for tag in load_tags():
-            db.session.add(tag)
+            # db.session.add(tag)
             logger.info("Added {}".format(tag))
 
         logger.info("Committing session to disk...")
-        db.session.commit()
+        # db.session.commit()
         logger.info("OK")
