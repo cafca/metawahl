@@ -22,7 +22,7 @@ speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api-server`.
     $ cd metawahl && source bin/activate
     $ git clone https://github.com/ciex/metawahl.git src
     $ cd src/api-server
-    $ python main.py
+    $ METAWAHL_CONFIG=dev.conf.py python main.py
 
 ## Dataset
 
@@ -39,6 +39,7 @@ Now you can import the dataset to the database:
 
     $ cd api-server
     $ python models.py
+    $ METAWAHL_CONFIG=dev.conf.py python bootstrap_db.py
 
 ## Client
 
