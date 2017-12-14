@@ -321,6 +321,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "0.14260s"
+    "render_time": "0.70529s"
   }
 }

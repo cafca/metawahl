@@ -131,11 +131,14 @@ tags = db.Table('tags',
 
 class Tag(db.Model):
     """Represent a tag linked to a Wikidata ID."""
+    aliases = db.Column(db.Text)
+    description = db.Column(db.Text)
+    labels = db.Column(db.Text)
     title = db.Column(db.String(128), primary_key=True)
     slug = db.Column(db.String(128), unique=True, nullable=False)
-    wikidata_id = db.Column(db.String(16))
-    description = db.Column(db.Text)
     url = db.Column(db.Text)
+    wikidata_id = db.Column(db.String(16))
+    wikipedia_title = db.Column(db.String(256))
 
     def __repr__(self):
         return "<Tag #{}>".format(self.title)
@@ -153,6 +156,15 @@ class Tag(db.Model):
 
         if self.description is not None:
             rv["description"] = self.description
+
+        if self.wikipedia_title is not None:
+            rv["wikipedia_title"] = self.wikipedia_title
+
+        if self.aliases is not None and len(self.aliases) > 0:
+            rv["aliases"] = self.aliases.split(';')
+
+        if self.labels is not None and len(self.labels) > 0:
+            rv["labels"] = self.labels.split(';')
 
         if thesis_count is not None:
             rv["thesis_count"] = thesis_count

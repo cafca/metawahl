@@ -22,7 +22,10 @@ export type WikidataType = {
   pageid: number,
   repository: string,
   title: string,
-  url: string
+  url: string,
+  wikipedia_title?: string,
+  labels?: Array<string>,
+  aliases?: Array<string>
 };
 
 type Props = {
@@ -119,9 +122,40 @@ class WikidataTagger extends React.Component<Props, State> {
   }
 
   handleSelect(e: SyntheticInputEvent<HTMLInputElement>, { result }: { result: WikidataType }) {
-    this.props.onSelection(result);
-    this.setState({query: '', results: [], isLoading: false});
-    this.addToCached(result);
+
+    const url = wikidata.getEntities({
+      ids: [result.id, ],
+      languages: [searchLanguage, ],
+    });
+
+    fetch(url)
+      .then(response => response.json())
+      .then(response => {
+        if (response.success === 1) {
+          const data = response.entities[result.id];
+
+          if (data.aliases != null && data.aliases.de != null) {
+            result.aliases = data.aliases.de.length != null
+              ? data.aliases.de.map(a => a.value)
+              : [data.aliases.de.value, ];
+          }
+
+          if (data.sitelinks != null && data.sitelinks.dewiki != null) {
+            result.wikipedia_title = data.sitelinks.dewiki.title;
+          }
+
+          if (data.labels != null && data.labels.de != null) {
+            result.labels = data.labels.de.length != null
+              ? data.labels.de.map(l => l.value)
+              : [data.labels.de.value, ];
+          }
+        }
+
+        this.props.onSelection(result);
+        this.setState({query: '', results: [], isLoading: false});
+        this.addToCached(result);
+      });
+
   }
 
   renderResult({ title, label, description, concepturi }: WikidataType) {

@@ -7,7 +7,8 @@ import {
   Header,
   Icon,
   Label,
-  Loader
+  Loader,
+  Segment
 } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
@@ -78,9 +79,17 @@ export default class TagView extends Component<RouteProps, State> {
       <Loader active={this.state.tagState === "loading"} />
 
       {this.state.tag != null && this.state.tag.wikidata_id != null &&
-        <Header as='h1' floated='right' style={{marginRight: "-10.5px"}}>
+        <Header floated='right' style={{marginRight: "-10.5px"}}>
           <Label as='a' basic image href={this.state.tag.url} >
             <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" /> {this.state.tag.wikidata_id}
+          </Label>
+        </Header>
+      }
+
+      {this.state.tag != null && this.state.tag.wikipedia_title != null &&
+        <Header floated='right' style={{marginRight: "-10.5px"}}>
+          <Label as='a' basic image href={"https://de.wikipedia.org/wiki/" + this.state.tag.wikipedia_title} >
+            <Icon name="wikipedia" /> {this.state.tag.wikipedia_title}
           </Label>
         </Header>
       }
@@ -102,6 +111,13 @@ export default class TagView extends Component<RouteProps, State> {
 
         {this.state.tagState === "error" && <h2>There was an error loading this page.</h2>}
       </Header>
+
+      { this.state.tag != null && this.state.tag.aliases != null
+          && this.state.tag.aliases.length > 0 &&
+        <Segment>
+          Auch: {this.state.tag.aliases.map(a => <span>{a}, </span>)}
+        </Segment>
+      }
 
       <TagViewMenu
         tag={this.state.tag}

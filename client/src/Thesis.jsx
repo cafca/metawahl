@@ -111,8 +111,14 @@ export default class Thesis extends Component<Props, State> {
       title: tagData.label,
       description: tagData.description,
       url: tagData.concepturi,
-      wikidata_id: tagData.id
+      wikidata_id: tagData.id,
     };
+
+    if (tagData.wikipedia_title != null) {
+      tag.wikipedia_title = tagData.wikipedia_title;
+    }
+    if (tagData.labels != null) tag.labels = tagData.labels;
+    if (tagData.aliases != null) tag.aliases = tagData.aliases;
 
     this.sendChanges({
       add: [ tag ],

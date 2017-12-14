@@ -144,7 +144,7 @@ def create_app(config=None):
         """Return list of all categories."""
         from models import Category
 
-        categories = Category.query.all()
+        categories = Category.query.order_by(Category.slug).all()
         rv = {
             "data": [category.to_dict()
                 for category in categories]
@@ -196,6 +196,7 @@ def create_app(config=None):
             results = db.session.query(Tag) \
                 .join(Tag.theses) \
                 .group_by(Tag.title) \
+                .order_by(Tag.title) \
                 .all()
 
             rv = {
@@ -267,13 +268,19 @@ def create_app(config=None):
                 .first()
             if tag is None:
                 tag = Tag(
-                    title=tag_data["title"],
-                    wikidata_id=tag_data["wikidata_id"],
-                    url=tag_data["url"],
                     description=tag_data.get("description", None),
+                    title=tag_data["title"],
+                    url=tag_data["url"],
+                    wikidata_id=tag_data["wikidata_id"],
                 )
+
                 tag.make_slug()
                 logger.info("New tag {}".format(tag))
+
+            tag.wikipedia_title = tag_data.get("wikipedia_title", None)
+            tag.labels = ";".join(tag_data.get("labels", []))
+            tag.aliases = ";".join(tag_data.get("aliases", []))
+
             logger.info("Appending {} to {}".format(tag, thesis))
             thesis.tags.append(tag)
 

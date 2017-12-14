@@ -186,7 +186,7 @@ def load_tags():
         return
 
     assert tag_export["meta"]["api"] == "Metawahl API v1"
-    logger.info("{} tags".format(len(tag_export["data"])))
+    logger.info("{} tags...".format(len(tag_export["data"])))
 
     # TODO: Update existing tags
 
@@ -198,8 +198,10 @@ def load_tags():
             wikidata_id=tag_data["wikidata_id"]
         )
 
-        if "description" in tag_data:
-            tag.description = tag_data["description"]
+        tag.description = tag_data.get("description", None)
+        tag.wikipedia_title = tag_data.get("wikipedia_title", None)
+        tag.labels = ";".join(tag_data.get("labels", []))
+        tag.aliases = ";".join(tag_data.get("aliases", []))
 
         for thesis_id in tag_data["theses"]:
             tag.theses.append(Thesis.query.get(thesis_id))
@@ -218,7 +220,7 @@ def load_categories():
         return
 
     assert categories_export["meta"]["api"] == "Metawahl API v1"
-    logger.info("{} categorries".format(len(categories_export["data"])))
+    logger.info("{} categories...".format(len(categories_export["data"])))
 
     # TODO: Update existing categories
 

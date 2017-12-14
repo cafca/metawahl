@@ -11,7 +11,10 @@ export type TagType = {
   slug: string,
   description?: string,
   url: ?string,
-  wikidata_id: ?string
+  wikidata_id: ?string,
+  wikipedia_title?: string,
+  labels?: Array<string>,
+  aliases?: Array<string>
 };
 
 export type ThesisType = {
