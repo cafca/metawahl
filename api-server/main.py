@@ -187,7 +187,7 @@ def create_app(config=None):
     def tags(filename=None):
         """Return list of all categories."""
         from models import Tag, Thesis
-        logger.info("param: " + str(len(request.args.get("include_theses_ids", "No"))))
+
         if request.args.get("include_theses_ids", False):
             results = db.session.query(Tag) \
                 .join(Tag.theses) \

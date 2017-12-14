@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
+import { Button, Icon, Header } from 'semantic-ui-react';
 
 type State = {
   categories: Array<CategoryType>
@@ -56,7 +57,17 @@ export default class CategoriesList extends Component<RouteProps, State> {
 
     return this.props.categoriesState === "loading" ? <h2>Loading categories...</h2> :
       <div className="categories">
-        <h1>Themenbereiche</h1>
+        <Button icon as='a' color='blue' basic floated="right"
+          href={API_ROOT + '/categories.json?include_tag_ids=1'}
+          labelPosition='left'>
+          <Icon name='download' />
+          categories.json
+        </Button>
+
+        <Header as='h1'>
+          Themenbereiche
+        </Header>
+
         <ul>
           {categories}
         </ul>

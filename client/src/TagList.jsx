@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Loader, Menu, Segment } from 'semantic-ui-react';
+import { Loader, Menu, Segment, Icon, Header, Button } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -85,7 +85,20 @@ export default class TagList extends Component<RouteProps, State> {
     // TODO: Error message when loadin failed
 
     return <div className="tagList">
-        <h1>Tags</h1>
+        <Button icon as='a' color='blue' basic floated="right"
+          href={API_ROOT + '/tags.json?include_theses_ids=1'}
+          labelPosition='left'>
+          <Icon name='download' />
+          tags.json
+        </Button>
+
+        <Header as='h1'>
+          <Icon name="hashtag" />
+          <Header.Content>
+            Tags
+          </Header.Content>
+        </Header>
+
         <Menu attached="top" tabular>
           <Menu.Item
             name="alphabetisch"
@@ -96,6 +109,7 @@ export default class TagList extends Component<RouteProps, State> {
             active={this.state.sortBy == "count"}
             onClick={() => this.sortBy("count")} />
         </Menu>
+
         <Segment attached="bottom">
           <Loader active={this.state.tagsState === "loading"}
             inline='centered' />
