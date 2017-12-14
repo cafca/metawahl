@@ -6,9 +6,10 @@ Metawahl API
 import os
 import sys
 import logging
+import time
 
 from collections import defaultdict
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request, send_file, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from flask_cors import CORS
@@ -61,6 +62,14 @@ def log_request_info(name, request):
 # 26: Wirtschaft
 # 27: Wissenschaft, Forschung und Technologie
 
+def json_response(rv):
+    rv["meta"] = {
+        "render_time": g.request_time(),
+        "license": "Please see https://github.com/ciex/metawahl/master/LICENSE \
+for licensing information"
+    }
+    return jsonify(rv)
+
 
 def create_app(config=None):
     app = Flask(__name__)
@@ -74,6 +83,13 @@ def create_app(config=None):
     db.init_app(app)
 
     CORS(app)
+
+    @app.before_request
+    def before_request():
+        # Measure request timing
+        # https://gist.github.com/lost-theory/4521102
+        g.request_start_time = time.time()
+        g.request_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
 
     @app.route(API_ROOT + "/occasions/", methods=["GET"])
     def occasions():
@@ -89,7 +105,7 @@ def create_app(config=None):
             rv["data"][occasion.territory].append(
                 occasion.to_dict(thesis_data=thesis_data))
 
-        return jsonify(rv)
+        return json_response(rv)
 
     @app.route(API_ROOT + "/occasions/<int:wom_id>", methods=["GET"])
     def occasion(wom_id: int):
@@ -106,7 +122,7 @@ def create_app(config=None):
                 for thesis in occasion.theses]
         }
 
-        return jsonify(rv)
+        return json_response(rv)
 
     @app.route(API_ROOT + "/categories/", methods=["GET"])
     def categories():
@@ -118,7 +134,7 @@ def create_app(config=None):
             "data": [category.to_dict() for category in categories]
         }
 
-        return jsonify(rv)
+        return json_response(rv)
 
     @app.route(API_ROOT + "/categories/<string:category>",
         methods=["GET", "POST"])
@@ -151,7 +167,7 @@ def create_app(config=None):
             "data": category.to_dict(thesis_data=True)
         }
 
-        return jsonify(rv)
+        return json_response(rv)
 
     @app.route(API_ROOT + "/tags/", methods=["GET"])
     def tags():
@@ -191,7 +207,7 @@ def create_app(config=None):
             "theses": [thesis.to_dict() for thesis in tag.theses]
         }
 
-        return jsonify(rv)
+        return json_response(rv)
 
     @app.route(
         API_ROOT + "/thesis/<string:thesis_id>", methods=["GET"])
@@ -205,7 +221,7 @@ def create_app(config=None):
             "data": thesis.to_dict()
         }
 
-        return jsonify(rv)
+        return json_response(rv)
 
     @app.route(API_ROOT + "/thesis/<string:thesis_id>/tags/", methods=["POST"])
     def thesis_tags(thesis_id: str):
@@ -239,7 +255,7 @@ def create_app(config=None):
 
         db.session.add(thesis)
         db.session.commit()
-        return jsonify({"data": thesis.to_dict()})
+        return json_response({"data": thesis.to_dict()})
     return app
 
 
