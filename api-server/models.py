@@ -143,7 +143,7 @@ class Tag(db.Model):
     def make_slug(self):
         self.slug = slugify(self.title)
 
-    def to_dict(self):
+    def to_dict(self, thesis_count=None):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -153,6 +153,9 @@ class Tag(db.Model):
 
         if self.description is not None:
             rv["description"] = self.description
+
+        if thesis_count is not None:
+            rv["thesis_count"] = thesis_count
 
         return rv
 

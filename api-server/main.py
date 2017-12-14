@@ -10,6 +10,7 @@ import logging
 from collections import defaultdict
 from flask import Flask, jsonify, request, send_file
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from flask_cors import CORS
 from logger import setup_logger
 from pprint import pformat
@@ -155,11 +156,16 @@ def create_app(config=None):
     @app.route(API_ROOT + "/tags/", methods=["GET"])
     def tags():
         """Return list of all categories."""
-        from models import Tag
+        from models import Tag, Thesis
 
-        tags = db.session.query(Tag).all()
+        results = db.session.query(Tag, func.count(Thesis.id)) \
+            .join(Tag.theses) \
+            .group_by(Tag.title) \
+            .all()
+
         rv = {
-            "data": [tag.to_dict() for tag in tags]
+            "data": [item[0].to_dict(thesis_count=item[1])
+                for item in results]
         }
 
         return jsonify(rv)

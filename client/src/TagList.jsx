@@ -4,15 +4,18 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Menu, Segment } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
 import type { TagType, RouteProps, ErrorState } from './Types';
 
+type sorting = "count" | "name";
+
 type State = {
   tags: Array<TagType>,
-  tagsState: ErrorState
+  tagsState: ErrorState,
+  sortBy: sorting
 };
 
 export default class TagList extends Component<RouteProps, State> {
@@ -22,13 +25,18 @@ export default class TagList extends Component<RouteProps, State> {
     const savedTags = loadFromCache('taglist');
     this.state = {
       tags: savedTags != null ? JSON.parse(savedTags) : [],
-      tagsState: savedTags != null ? "success" : "loading"
+      tagsState: savedTags != null ? "success" : "loading",
+      sortBy: "name"
     }
   }
 
   componentDidMount() {
     this.loadTags();
     setTitle('Tags');
+  }
+
+  sortBy(method: sorting) {
+    this.setState({sortBy: method});
   }
 
   loadTags(): void {
@@ -55,22 +63,40 @@ export default class TagList extends Component<RouteProps, State> {
   }
 
   render() {
-    const sortTags = (tagA, tagB) => {
+    // TODO: Protect against infinite recursion
+    const sortByName = (tagA, tagB) => {
       return tagA.slug === tagB.slug
-        ? 0
+        ? sortByThesisCount(tagA, tagB)
         : tagA.slug < tagB.slug ? -1 : 1;
     };
+
+    const sortByThesisCount = (tagA, tagB) => {
+      return tagA.thesis_count === tagB.thesis_count
+        ? sortByName(tagA, tagB)
+        : tagA.thesis_count > tagB.thesis_count ? -1 : 1;
+    };
+
     const tags = this.state.tags
-      .sort(sortTags)
+      .sort(this.state.sortBy === "name" ? sortByName : sortByThesisCount)
       .map((tag, i) => <li key={"Tag-" + i}>
-        <Link to={"/tags/" + tag.slug}>{tag.title}</Link>
+        <Link to={"/tags/" + tag.slug}>{tag.title} ({tag.thesis_count})</Link>
       </li>);
 
     // TODO: Error message when loadin failed
 
     return <div className="tagList">
         <h1>Tags</h1>
-        <div>
+        <Menu attached="top" tabular>
+          <Menu.Item
+            name="alphabetisch"
+            active={this.state.sortBy == "name"}
+            onClick={() => this.sortBy("name")} />
+          <Menu.Item
+            name="nach Anzahl Thesen"
+            active={this.state.sortBy == "count"}
+            onClick={() => this.sortBy("count")} />
+        </Menu>
+        <Segment attached="bottom">
           <Loader active={this.state.tagsState === "loading"}
             inline='centered' />
           { tags.length > 0 &&
@@ -78,7 +104,7 @@ export default class TagList extends Component<RouteProps, State> {
             {tags}
             </ul>
           }
-        </div>
+        </Segment>
       </div>;
   }
 };
