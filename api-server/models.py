@@ -143,7 +143,7 @@ class Tag(db.Model):
     def make_slug(self):
         self.slug = slugify(self.title)
 
-    def to_dict(self, thesis_count=None):
+    def to_dict(self, thesis_count=None, include_theses_ids=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -156,6 +156,9 @@ class Tag(db.Model):
 
         if thesis_count is not None:
             rv["thesis_count"] = thesis_count
+
+        if include_theses_ids:
+            rv["theses"] = [thesis.id for thesis in self.theses]
 
         return rv
 
@@ -180,7 +183,7 @@ class Thesis(db.Model):
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
 
-    def to_dict(self):
+    def to_dict(self, include_tags=True):
         rv = {
             "id": self.id,
             "title": self.title,

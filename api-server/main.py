@@ -173,18 +173,30 @@ def create_app(config=None):
     def tags():
         """Return list of all categories."""
         from models import Tag, Thesis
+        logger.info("param: " + str(len(request.args.get("include_theses_ids", "No"))))
+        if request.args.get("include_theses_ids", False):
+            results = db.session.query(Tag) \
+                .join(Tag.theses) \
+                .group_by(Tag.title) \
+                .all()
 
-        results = db.session.query(Tag, func.count(Thesis.id)) \
-            .join(Tag.theses) \
-            .group_by(Tag.title) \
-            .all()
+            rv = {
+                "data": [tag.to_dict(include_theses_ids=True)
+                    for tag in results]
+            }
 
-        rv = {
-            "data": [item[0].to_dict(thesis_count=item[1])
-                for item in results]
-        }
+        else:
+            results = db.session.query(Tag, func.count(Thesis.id)) \
+                .join(Tag.theses) \
+                .group_by(Tag.title) \
+                .all()
 
-        return jsonify(rv)
+            rv = {
+                "data": [item[0].to_dict(thesis_count=item[1])
+                    for item in results]
+            }
+
+        return json_response(rv)
 
     @app.route(API_ROOT + "/tags/<string:tag_title>",
         methods=["GET", "DELETE"])
