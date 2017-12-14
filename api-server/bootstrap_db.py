@@ -9,7 +9,7 @@ import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
-from models import Occasion, Thesis, Position, Party, Tag
+from models import Occasion, Thesis, Position, Party, Tag, Category
 from main import logger, create_app, db
 
 DATADIR = os.path.join("..", "qual-o-mat-data")
@@ -177,38 +177,77 @@ def load_position(position_data, comments, parties):
     return position
 
 
-def load_tags_from_old_categories():
-    """One off."""
-    with open("categories.json") as f:
-        tag_data = json.load(f)
-    logger.info("{} tags".format(len(tag_data)))
-    for tag_title in tag_data:
-        tag = tag_instances[tag_title]
-        tag.title = tag_title + "-OLD"
-        tag.make_slug()
-        thesis_ids = []
-        for tid in tag_data[tag_title]:
-            womtype, occasion, thesis_num = tid.split("-")
-            thesis_id = "WOM-{occasion:03d}-{thesis:02d}".format(
-                occasion=int(occasion),
-                thesis=int(thesis_num)
-            )
-            thesis = Thesis.query.get(thesis_id)
-            thesis.tags.append(tag)
+def load_tags():
+    """Load tags from exported tags.json."""
+    try:
+        with open("../userdata/tags.json") as f:
+            tag_export = json.load(f)
+    except FileNotFoundError:
+        logger.warning("File ../userdata/tags.json not found - tags were not" +
+            "imported")
+        return
+
+    assert tag_export["meta"]["api"] == "Metawahl API v1"
+    logger.info("{} tags".format(len(tag_export["data"])))
+
+    # TODO: Update existing tags
+
+    for tag_data in tag_export["data"]:
+        tag = Tag(
+            title=tag_data["title"],
+            slug=tag_data["slug"],
+            url=tag_data["url"],
+            wikidata_id=tag_data["wikidata_id"]
+        )
+
+        for thesis_id in tag_data["theses"]:
+            tag.theses.append(Thesis.query.get(thesis_id))
+
         yield tag
+
+
+def load_categories():
+    """Load categories from exported categories.json."""
+    try:
+        with open("../userdata/categories.json") as f:
+            categories_export = json.load(f)
+    except FileNotFoundError:
+        logger.warning("File ../userdata/categories.json not found - " +
+            "categories were not imported")
+        return
+
+    assert categories_export["meta"]["api"] == "Metawahl API v1"
+    logger.info("{} categorries".format(len(categories_export["data"])))
+
+    # TODO: Update existing categories
+
+    for category_data in categories_export["data"]:
+        category = Category(
+            name=category_data["name"],
+        )
+
+        for thesis_id in category_data["theses"]:
+            category.theses.append(Thesis.query.get(thesis_id))
+
+        logger.info("Adding {}".format(category))
+        yield category
 
 
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         for obj in load_occasions():
-            # db.session.add(obj)
+            db.session.add(obj)
             logger.info("Added {}".format(obj))
 
         for tag in load_tags():
-            # db.session.add(tag)
+            db.session.add(tag)
             logger.info("Added {}".format(tag))
 
+        for category in load_categories():
+            db.session.add(category)
+            logger.info("Added {}".format(category))
+
         logger.info("Committing session to disk...")
-        # db.session.commit()
+        db.session.commit()
         logger.info("OK")

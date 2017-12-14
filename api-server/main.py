@@ -20,7 +20,10 @@ from pprint import pformat
 logfile = os.getenv("METAWAHL_API_LOGFILE", "../metawahl-api.log")
 logger = setup_logger(logfile=logfile, level=logging.DEBUG)
 
-API_ROOT = "/api/v1"
+API_NAME = "Metawahl API"
+API_VERSION = "v1"
+API_FULL_NAME = "{name} {version}".format(name=API_NAME, version=API_VERSION)
+API_ROOT = "/api/{}".format(API_VERSION)
 
 db = SQLAlchemy()
 
@@ -65,6 +68,7 @@ def log_request_info(name, request):
 
 def json_response(data, filename=None):
     data["meta"] = {
+        "api": API_FULL_NAME,
         "render_time": g.request_time(),
         "license": "Please see https://github.com/ciex/metawahl/master/LICENSE \
 for licensing information"

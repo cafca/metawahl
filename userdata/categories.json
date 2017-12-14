@@ -1,0 +1,326 @@
+{
+  "data": [
+    {
+      "name": "Arbeit und Besch\u00e4ftigung", 
+      "slug": "arbeit-und-beschaftigung", 
+      "theses": []
+    }, 
+    {
+      "name": "Ausl\u00e4nderpolitik, Zuwanderung", 
+      "slug": "auslanderpolitik-zuwanderung", 
+      "theses": [
+        "WOM-001-01", 
+        "WOM-001-21", 
+        "WOM-016-08", 
+        "WOM-015-03", 
+        "WOM-025-36", 
+        "WOM-021-16", 
+        "WOM-018-17", 
+        "WOM-014-08", 
+        "WOM-014-13", 
+        "WOM-019-16", 
+        "WOM-023-21", 
+        "WOM-020-33", 
+        "WOM-022-31", 
+        "WOM-026-18", 
+        "WOM-029-22", 
+        "WOM-024-14", 
+        "WOM-031-05", 
+        "WOM-028-36", 
+        "WOM-027-16", 
+        "WOM-036-23", 
+        "WOM-036-29", 
+        "WOM-032-26", 
+        "WOM-034-10", 
+        "WOM-039-12", 
+        "WOM-039-29", 
+        "WOM-040-13", 
+        "WOM-041-28", 
+        "WOM-041-36"
+      ]
+    }, 
+    {
+      "name": "Au\u00dfenpolitik und internationale Beziehungen", 
+      "slug": "aussenpolitik-und-internationale-beziehungen", 
+      "theses": [
+        "WOM-033-23", 
+        "WOM-016-30", 
+        "WOM-016-28", 
+        "WOM-035-15", 
+        "WOM-039-28", 
+        "WOM-034-32", 
+        "WOM-042-07"
+      ]
+    }, 
+    {
+      "name": "Au\u00dfenwirtschaft", 
+      "slug": "aussenwirtschaft", 
+      "theses": []
+    }, 
+    {
+      "name": "Bildung und Erziehung", 
+      "slug": "bildung-und-erziehung", 
+      "theses": [
+        "WOM-000-17", 
+        "WOM-003-16", 
+        "WOM-004-07", 
+        "WOM-004-12", 
+        "WOM-008-07", 
+        "WOM-007-10", 
+        "WOM-011-03", 
+        "WOM-017-15", 
+        "WOM-021-36", 
+        "WOM-019-22", 
+        "WOM-022-22", 
+        "WOM-026-26", 
+        "WOM-031-19", 
+        "WOM-030-21", 
+        "WOM-028-17", 
+        "WOM-027-11", 
+        "WOM-027-24", 
+        "WOM-027-32", 
+        "WOM-035-29", 
+        "WOM-038-32", 
+        "WOM-039-22", 
+        "WOM-034-34", 
+        "WOM-034-36", 
+        "WOM-037-15"
+      ]
+    }, 
+    {
+      "name": "Bundestag", 
+      "slug": "bundestag", 
+      "theses": []
+    }, 
+    {
+      "name": "Energie", 
+      "slug": "energie", 
+      "theses": [
+        "WOM-001-15", 
+        "WOM-001-18", 
+        "WOM-006-02", 
+        "WOM-005-28", 
+        "WOM-010-01", 
+        "WOM-012-20", 
+        "WOM-017-00", 
+        "WOM-016-12", 
+        "WOM-015-11", 
+        "WOM-025-02", 
+        "WOM-018-36", 
+        "WOM-019-04", 
+        "WOM-020-01", 
+        "WOM-022-10", 
+        "WOM-026-11", 
+        "WOM-024-00", 
+        "WOM-036-22", 
+        "WOM-032-14", 
+        "WOM-035-18"
+      ]
+    }, 
+    {
+      "name": "Entwicklungspolitik", 
+      "slug": "entwicklungspolitik", 
+      "theses": []
+    }, 
+    {
+      "name": "Europapolitik und Europ\u00e4ische Union", 
+      "slug": "europapolitik-und-europaische-union", 
+      "theses": []
+    }, 
+    {
+      "name": "Gesellschaftspolitik, soziale Gruppen", 
+      "slug": "gesellschaftspolitik-soziale-gruppen", 
+      "theses": []
+    }, 
+    {
+      "name": "Gesundheit", 
+      "slug": "gesundheit", 
+      "theses": []
+    }, 
+    {
+      "name": "Innere Sicherheit", 
+      "slug": "innere-sicherheit", 
+      "theses": [
+        "WOM-033-01", 
+        "WOM-006-14", 
+        "WOM-017-36", 
+        "WOM-042-00"
+      ]
+    }, 
+    {
+      "name": "Kultur", 
+      "slug": "kultur", 
+      "theses": []
+    }, 
+    {
+      "name": "Landwirtschaft und Ern\u00e4hrung", 
+      "slug": "landwirtschaft-und-ernahrung", 
+      "theses": [
+        "WOM-006-11", 
+        "WOM-004-04", 
+        "WOM-008-18", 
+        "WOM-007-27", 
+        "WOM-017-21", 
+        "WOM-016-13", 
+        "WOM-026-04", 
+        "WOM-020-23", 
+        "WOM-042-11", 
+        "WOM-022-15", 
+        "WOM-029-07", 
+        "WOM-031-21", 
+        "WOM-030-06", 
+        "WOM-030-11", 
+        "WOM-028-26", 
+        "WOM-035-04", 
+        "WOM-039-00", 
+        "WOM-042-18", 
+        "WOM-041-11", 
+        "WOM-040-29", 
+        "WOM-037-02"
+      ]
+    }, 
+    {
+      "name": "Medien, Kommunikation und Informationstechnik", 
+      "slug": "medien-kommunikation-und-informationstechnik", 
+      "theses": []
+    }, 
+    {
+      "name": "Neue Bundesl\u00e4nder", 
+      "slug": "neue-bundeslander", 
+      "theses": []
+    }, 
+    {
+      "name": "\u00d6ffentliche Finanzen, Steuern und Abgaben", 
+      "slug": "offentliche-finanzen-steuern-und-abgaben", 
+      "theses": []
+    }, 
+    {
+      "name": "Politisches Leben, Parteien", 
+      "slug": "politisches-leben-parteien", 
+      "theses": []
+    }, 
+    {
+      "name": "Raumordnung, Bau- und Wohnungswesen", 
+      "slug": "raumordnung-bau-und-wohnungswesen", 
+      "theses": []
+    }, 
+    {
+      "name": "Recht", 
+      "slug": "recht", 
+      "theses": []
+    }, 
+    {
+      "name": "Soziale Sicherung", 
+      "slug": "soziale-sicherung", 
+      "theses": [
+        "WOM-033-12", 
+        "WOM-003-15", 
+        "WOM-002-01", 
+        "WOM-011-24", 
+        "WOM-017-35", 
+        "WOM-029-06", 
+        "WOM-038-12", 
+        "WOM-042-36", 
+        "WOM-040-06", 
+        "WOM-037-20"
+      ]
+    }, 
+    {
+      "name": "Sport, Freizeit und Tourismus", 
+      "slug": "sport-freizeit-und-tourismus", 
+      "theses": []
+    }, 
+    {
+      "name": "Staat und Verwaltung", 
+      "slug": "staat-und-verwaltung", 
+      "theses": []
+    }, 
+    {
+      "name": "Umwelt", 
+      "slug": "umwelt", 
+      "theses": [
+        "WOM-004-04", 
+        "WOM-008-18", 
+        "WOM-007-27", 
+        "WOM-017-21", 
+        "WOM-026-04", 
+        "WOM-020-23", 
+        "WOM-042-11", 
+        "WOM-022-15", 
+        "WOM-029-07", 
+        "WOM-031-21", 
+        "WOM-030-06", 
+        "WOM-028-26", 
+        "WOM-035-04", 
+        "WOM-039-00", 
+        "WOM-042-18", 
+        "WOM-041-11", 
+        "WOM-040-29", 
+        "WOM-037-02"
+      ]
+    }, 
+    {
+      "name": "Verkehr", 
+      "slug": "verkehr", 
+      "theses": [
+        "WOM-010-15", 
+        "WOM-009-15", 
+        "WOM-009-16", 
+        "WOM-007-07", 
+        "WOM-025-00", 
+        "WOM-021-37", 
+        "WOM-014-02", 
+        "WOM-022-27", 
+        "WOM-024-07", 
+        "WOM-031-12", 
+        "WOM-028-14", 
+        "WOM-030-29", 
+        "WOM-035-10", 
+        "WOM-036-14", 
+        "WOM-032-01", 
+        "WOM-032-16", 
+        "WOM-032-37", 
+        "WOM-038-36", 
+        "WOM-034-13", 
+        "WOM-041-17", 
+        "WOM-037-07"
+      ]
+    }, 
+    {
+      "name": "Verteidigung", 
+      "slug": "verteidigung", 
+      "theses": [
+        "WOM-021-36", 
+        "WOM-019-22", 
+        "WOM-022-22", 
+        "WOM-031-19", 
+        "WOM-039-22", 
+        "WOM-034-34", 
+        "WOM-037-15"
+      ]
+    }, 
+    {
+      "name": "Wirtschaft", 
+      "slug": "wirtschaft", 
+      "theses": [
+        "WOM-033-11", 
+        "WOM-001-11", 
+        "WOM-009-12", 
+        "WOM-016-15", 
+        "WOM-018-26", 
+        "WOM-014-26", 
+        "WOM-037-26"
+      ]
+    }, 
+    {
+      "name": "Wissenschaft, Forschung und Technologie", 
+      "slug": "wissenschaft-forschung-und-technologie", 
+      "theses": []
+    }
+  ], 
+  "meta": {
+    "api": "Metawahl API v1", 
+    "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
+    "render_time": "0.14260s"
+  }
+}

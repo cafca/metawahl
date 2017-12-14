@@ -207,9 +207,4 @@ if __name__ == '__main__':
             logger.info("Drop and recreate...")
             db.drop_all(app=app)
             db.create_all(app=app)
-
-            logger.info("Adding back categories...")
-            for name in app.config.get("CATEGORY_NAMES"):
-                db.session.add(Category(name=name))
-            db.session.commit()
     logger.info("OK")
