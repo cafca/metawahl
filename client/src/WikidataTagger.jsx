@@ -6,7 +6,6 @@ import autoBind from 'react-autobind';
 import { Menu, Search, Icon } from 'semantic-ui-react';
 
 import { loadFromCache, saveToCache } from './App';
-import type { TagType } from './Types';
 
 const searchLanguage = "de";
 
@@ -159,8 +158,9 @@ class WikidataTagger extends React.Component<Props, State> {
   loadExistingTags() {
     const cachedJSON = loadFromCache('taglist');
     if (cachedJSON != null) {
-      this.state.existingTags = JSON.parse(cachedJSON)
-        .map(t => t.wikidata_id);
+      this.setState({
+        existingTags: JSON.parse(cachedJSON).map(t => t.wikidata_id)
+      });
     }
   }
 
