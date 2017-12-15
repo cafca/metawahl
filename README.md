@@ -26,6 +26,21 @@ zu speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api-server`.
     $ cd src/api-server
     $ METAWAHL_CONFIG=dev.conf.py python main.py
 
+Um den Server dauerhaft laufen zu lassen, sollte dieser z.B. als uWSGI Awendung 
+über einen Webserver wie Nginx laufen. Hierzu:
+
+1. Server-Einrichtung wie oben
+2. Firewall Port für die API öffnen (z.B. 9000)
+3. Analog zum Beispiel in `uwsgi.ini.sample` eine uWSGI Konfiguration 
+erstellen. Hierbei unbedingt die letzte Zeile ent-kommentieren und ein SECRET eintragen.
+4. Systemd Unit File erstellen um uWSGI automatisch zu starten
+5. Nginx konfigurieren, so dass Anfragen an die entsprechende Domain an den 
+Metawahl-Socket weitergeleitet werden.
+
+Eine ausführliche Anleitung hierzu findet sich zum Beispiel auf:
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04
+
 ## Dataset
 
 The dataset needs to be downloaded and imported to a Postgresql database 

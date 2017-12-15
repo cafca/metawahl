@@ -13,3 +13,5 @@ die-on-term = true
 
 logto = /var/log/metawahl/uwsgi.log
 env = METAWAHL_CONFIG=prod.conf.py
+env = METAWAHL_API_LOGFILE=/var/log/metawahl/api.log
+# env = METAWAHL_SECRET = <MANY RANDOM BYTES>

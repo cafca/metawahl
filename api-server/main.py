@@ -297,6 +297,6 @@ def create_app(config=None):
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("METAWAHL_PORT", 8000))
+    port = int(os.environ.get("METAWAHL_PORT", 9000))
     app = create_app()
     app.run(host="0.0.0.0", port=port)
