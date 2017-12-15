@@ -23,3 +23,5 @@ metawahl-api.log
 
 __pycache__
 *.pyc
+
+uwsgi.ini
