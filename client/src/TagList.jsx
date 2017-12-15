@@ -102,11 +102,11 @@ export default class TagList extends Component<RouteProps, State> {
         <Menu attached="top" tabular>
           <Menu.Item
             name="alphabetisch"
-            active={this.state.sortBy == "name"}
+            active={this.state.sortBy === "name"}
             onClick={() => this.sortBy("name")} />
           <Menu.Item
             name="nach Anzahl Thesen"
-            active={this.state.sortBy == "count"}
+            active={this.state.sortBy === "count"}
             onClick={() => this.sortBy("count")} />
         </Menu>
 
