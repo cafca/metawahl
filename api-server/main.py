@@ -29,7 +29,7 @@ db = SQLAlchemy()
 
 
 def log_request_info(name, request):
-    logger.info("{} API".format(name))
+    # logger.info("{} API".format(name))
     jsond = request.get_json()
     if jsond:
         logger.info("Data: {}".format(pformat(jsond)))
