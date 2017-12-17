@@ -32,8 +32,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
   componentDidMount() {
     this.loadOccasion(
-      occasion => occasion != null && setTitle("- " + occasion.title)
-    );
+      occasion => occasion != null && setTitle("- " + occasion.title));
   }
 
   extractThesisID(thesisID: string) {

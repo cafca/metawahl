@@ -5,27 +5,27 @@ import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Loader } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
+import { loadFromCache, saveToCache } from './App';
 import { OccasionListType, RouteProps, ErrorState } from './Types';
 
 type State = {
-  occasions: OccasionListType,
-  occasionsState: ErrorState
+  occasions: ?OccasionListType
 };
 
 export default class OccasionList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.state = {
-      occasions: [],
-      occasionsState: "loading"
-    }
+    this.state = { occasions: null };
   }
 
   componentDidMount() {
+    const savedOccasions = loadFromCache('occasions');
+    if (savedOccasions != null) this.setState(
+      { occasions: JSON.parse(savedOccasions)});
     this.loadOccasions();
     setTitle();
   }
@@ -35,17 +35,16 @@ export default class OccasionList extends Component<RouteProps, State> {
       .then(response => response.json())
       .then(response => {
         this.setState({
-          occasions: response.data,
-          occasionsState: "success"
+          occasions: response.data
         });
+        saveToCache('occasions', JSON.stringify(response.data));
       })
       .catch((error: Error) => {
         // https://github.com/facebookincubator/create-react-app/issues/3482
         if (process.env.NODE_ENV !== 'test') {
           console.log(error.message)
           this.setState({
-            occasions: [],
-            occasionsState: "error"
+            occasions: []
           });
         }
       }
@@ -53,10 +52,10 @@ export default class OccasionList extends Component<RouteProps, State> {
   }
 
   render() {
-    const occasions = Object.keys(this.state.occasions)
+    const occasions = this.state.occasions && Object.keys(this.state.occasions)
       .sort()
       .map(territory => {
-        const occasions = this.state.occasions[territory]
+        const occasions = this.state.occasions && this.state.occasions[territory]
           .sort((a, b) => a.title > b.title)
           .map(occasion => <Segment key={occasion.id}>
             <Link to={`/wahlen/${occasion.id}/`}>
@@ -72,8 +71,7 @@ export default class OccasionList extends Component<RouteProps, State> {
         </div>;
       });
 
-    return this.props.occasionsState === "loading" ? <p>Loading occasions...</p> :
-      <div className="occasionList">
+    return <div className="occasionList">
         <h1>Wahlen</h1>
         <div>
           {occasions}
