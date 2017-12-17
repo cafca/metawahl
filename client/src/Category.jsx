@@ -6,6 +6,8 @@ import './App.css';
 import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle } from './Config';
+import { loadFromCache } from './App';
+import { Header, Loader } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 
@@ -17,11 +19,15 @@ export default class Category extends React.Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.categorySlug = this.props.match.params.category;
+    this.categorySlug = props.match.params.category;
     this.state = {};
   }
 
   componentDidMount() {
+    const savedCategories = loadFromCache('categorylist');
+    if (savedCategories != null) this.setState(
+      JSON.parse(savedCategories).filter(c => c.slug === this.categorySlug)[0]
+    );
     this.loadCategory();
   }
 
@@ -45,14 +51,26 @@ export default class Category extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const thesesElems = this.state.theses != null && this.state.theses
-      .sort((t1, t2) => t1.womID - t2.womID)
-      .map(thesis => <Thesis key={thesis.id} {...thesis} />);
+    const isCategoryFullyLoaded = Array.isArray(this.state.theses)
+      && ( this.state.theses.length === 0
+        || typeof this.state.theses[0] !== "string");
+
+    const thesesElems = isCategoryFullyLoaded
+      ? this.state.theses
+        .sort((t1, t2) => t1.womID - t2.womID)
+        .map(thesis => <Thesis key={thesis.id} {...thesis} />)
+      : null;
 
     return <div className="category">
-      <h1><Link to="/bereiche/">Themen</Link> > {this.state.name ? this.state.name : <span>Loading...</span>}</h1>
+      <Header as='h1'>
+        <Link to="/bereiche/">
+          Themenbereiche</Link>
+          >
+          {this.state.name ? this.state.name : <span>Loading...</span>}
+      </Header>
       <div className="theses">
-        { thesesElems.length === 0 && <p>In diesem Bereich gibt es noch keine Thesen.</p> }
+        <Loader active={isCategoryFullyLoaded === false} inline='centered' />
+        { thesesElems && thesesElems.length === 0 && <p>In diesem Bereich gibt es noch keine Thesen.</p> }
         {thesesElems}
       </div>
     </div>
