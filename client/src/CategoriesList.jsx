@@ -51,7 +51,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
       .sort(sortCategories)
       .map(category => (
         <li key={category.name}>
-          <Link to={`/bereiche/${category.slug}/`}>{category.name}</Link>
+          <Link to={`/bereiche/${category.slug}/`}>{category.name} ({category.theses.length})</Link>
         </li>
       ));
 
