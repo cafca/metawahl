@@ -16,7 +16,7 @@ type State = {
 export default class CategoriesList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
-    const savedCategories = loadFromCache('categorylist')
+    const savedCategories = loadFromCache('categorylist');
     this.state = {
       categories: savedCategories != null ? JSON.parse(savedCategories) : []
     }
@@ -42,9 +42,9 @@ export default class CategoriesList extends Component<RouteProps, State> {
 
   render() {
     const sortCategories = (catA, catB) => {
-      return catA.name === catB.name
+      return catA.slug === catB.slug
         ? 0
-        : catA.name < catB.name ? -1 : 1;
+        : catA.slug < catB.slug ? -1 : 1;
     };
 
     const categories = this.state.categories
