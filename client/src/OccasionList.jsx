@@ -11,6 +11,25 @@ import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
 import { OccasionListType, RouteProps } from './Types';
 
+const TERRITORY_NAMES = {
+  "badenwuerttemberg": "Baden-Württemberg",
+  "bayern": "Bayern",
+  "berlin": "Berlin",
+  "brandenburg": "Brandenburg",
+  "bremen": "Bremen",
+  "deutschland": "Deutschland",
+  "europa": "Europa",
+  "hamburg": "Hamburg",
+  "niedersachsen": "Niedersachsen",
+  "nordrheinwestfalen": "Nordrhein-Westfalen",
+  "rheinlandpfalz": "Rheinland-Pfalz",
+  "saarland": "Saarland",
+  "sachsen": "Sachsen",
+  "sachsenanhalt": "Sachsen-Anhalt",
+  "schleswigholstein": "Schleswig-Holstein",
+  "thueringen": "Thüringen"
+};
+
 type State = {
   occasions: ?OccasionListType
 };
@@ -64,7 +83,7 @@ export default class OccasionList extends Component<RouteProps, State> {
           </Segment>);
 
         return <div className="territory" key={territory}>
-          <h2>{_.startCase(territory)}</h2>
+          <h2>{TERRITORY_NAMES[territory]}</h2>
           <Segment.Group>
             {occasions}
           </Segment.Group>
