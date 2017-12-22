@@ -5,11 +5,11 @@ import autoBind from 'react-autobind';
 import './App.css';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import { Segment, Loader } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
-import { OccasionListType, RouteProps, ErrorState } from './Types';
+import { OccasionListType, RouteProps } from './Types';
 
 type State = {
   occasions: ?OccasionListType

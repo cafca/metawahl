@@ -114,6 +114,9 @@ class WikidataTagger extends React.Component<Props, State> {
             isLoading: false
           });
         })
+        .catch(error => {
+          console.log(error);
+        });
       },
       350);
     } else {

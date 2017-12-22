@@ -60,7 +60,9 @@ const Position = (p) => {
 
 const Positions = ({positions, value, toggleOpen}) =>
   positions.length > 0 && <div className="position_values">
-      {value}: {positions.map(p => <Position toggleOpen={toggleOpen} key={p.party} {...p} />)}
+      {value}: {positions.map(p =>
+        <Position toggleOpen={toggleOpen} key={p.party} {...p} />
+      )}
     </div>;
 
 type State = {
@@ -94,12 +96,15 @@ export default class Thesis extends Component<Props, State> {
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
     if (this.state.categories.indexOf(value) > -1) return;
 
+    this.sendCategoryChanges(value, false);
+
     this.setState(prevState => ({
       categories: prevState.categories.concat([ value ])
     }));
   }
 
   handleCategoryRemove(category: string) {
+    this.sendCategoryChanges(category, true);
     const categories = this.state.categories.filter(c => c !== category);
     this.setState({categories});
   }
@@ -120,14 +125,14 @@ export default class Thesis extends Component<Props, State> {
     if (tagData.labels != null) tag.labels = tagData.labels;
     if (tagData.aliases != null) tag.aliases = tagData.aliases;
 
-    this.sendChanges({
+    this.sendTagChanges({
       add: [ tag ],
       remove: []
     })
   }
 
   handleTagRemove(title: string) {
-    this.sendChanges({
+    this.sendTagChanges({
       add: [],
       remove: [ title ]
     })
@@ -137,7 +142,27 @@ export default class Thesis extends Component<Props, State> {
     this.setState({ openText: position });
   }
 
-  sendChanges(data: { remove: ?Array<string>, add: ?Array<TagType> }) {
+  sendCategoryChanges(categoryName: string, remove: boolean) {
+    if (categoryName == null) return;
+
+    this.setState({loading: true});
+
+    const endpoint = `${API_ROOT}/categories/${categoryName}`;
+    const data = remove === true
+      ? {"remove": [this.props.id]}
+      : {"add": [this.props.id]};
+
+    fetch(endpoint, makeJSONRequest(data))
+      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+      })
+      .catch((error:Error) => {
+        console.log(error);
+      });
+  }
+
+  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType> }) {
     this.setState({ loading: true });
 
     const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
@@ -159,12 +184,17 @@ export default class Thesis extends Component<Props, State> {
     let contraPositions = this.props.positions.filter(p => p.value === -1);
 
     const positionText = this.state.openText == null
-      ? null : <p>Position der Partei {this.state.openText.party}: {this.state.openText.text}</p>;
+      ? null : <p>Position der Partei \
+        {this.state.openText.party}: {this.state.openText.text}</p>;
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
     const tagElems = this.state.tags.map(tag =>
-      <Tag data={tag} key={"Tag-" + tag.title} remove={this.handleTagRemove} />);
+      <Tag
+        data={tag}
+        key={"Tag-" + tag.title}
+        remove={this.handleTagRemove}
+      />);
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
@@ -174,7 +204,9 @@ export default class Thesis extends Component<Props, State> {
 
         {this.props.title && this.props.title.length > 0 &&
           <span>
-          <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>{this.props.title}</h2></Link>
+          <Link to={`/wahlen/${womID}/#${this.props.id}`}>
+            <h2>{this.props.title}</h2>
+          </Link>
           <h4>{this.props.text}</h4>
           </span>
         }
@@ -185,9 +217,12 @@ export default class Thesis extends Component<Props, State> {
           </h2></Link>
         }
         <div className="positionsOverview">
-          <Positions value="Pro" positions={proPositions} toggleOpen={this.toggleOpen}/>
-          <Positions value="Neutral" positions={neutralPositions} toggleOpen={this.toggleOpen}/>
-          <Positions value="Contra" positions={contraPositions} toggleOpen={this.toggleOpen}/>
+          <Positions value="Pro" positions={proPositions}
+            toggleOpen={this.toggleOpen}/>
+          <Positions value="Neutral" positions={neutralPositions}
+            toggleOpen={this.toggleOpen}/>
+          <Positions value="Contra" positions={contraPositions}
+            toggleOpen={this.toggleOpen}/>
         </div>
         {positionText}
         <div>
