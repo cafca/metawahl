@@ -62,6 +62,7 @@ class Occasion(db.Model):
         rv = {
             "id": self.id,
             "date": self.date.isoformat(),
+            "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
             "source": self.source

@@ -14,6 +14,7 @@ import CategoriesList from './CategoriesList';
 import Category from './Category';
 import TagList from './TagList';
 import TagView from './TagView';
+import Territory from './Territory';
 import ScrollToTop from './ScrollToTop';
 
 
@@ -66,6 +67,10 @@ class App extends Component<Props, State> {
             <Container text style={{ marginTop: '7em' }}>
               <Route exact path="/" render={props => (
                 <OccasionList {...props} />
+              )} />
+
+              <Route path="/gebiete/:territory/" render={props => (
+                <Territory {...props} />
               )} />
 
               <Route path="/wahlen/:occasionNum/" render={props => (

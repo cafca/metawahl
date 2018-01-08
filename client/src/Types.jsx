@@ -30,6 +30,7 @@ export type OccasionType = {
   id: number,
   date: string,
   source: ?string,
+  territory: string,
   title: string,
   wikidata_id: ?string,
   theses?: Array<ThesisType>

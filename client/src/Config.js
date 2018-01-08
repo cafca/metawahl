@@ -25,3 +25,22 @@ export const makeJSONRequest = (data: {}) => {
     body: JSON.stringify(data)
   };
 }
+
+export const TERRITORY_NAMES = {
+  "badenwuerttemberg": "Baden-Württemberg",
+  "bayern": "Bayern",
+  "berlin": "Berlin",
+  "brandenburg": "Brandenburg",
+  "bremen": "Bremen",
+  "deutschland": "Deutschland",
+  "europa": "Europa",
+  "hamburg": "Hamburg",
+  "niedersachsen": "Niedersachsen",
+  "nordrheinwestfalen": "Nordrhein-Westfalen",
+  "rheinlandpfalz": "Rheinland-Pfalz",
+  "saarland": "Saarland",
+  "sachsen": "Sachsen",
+  "sachsenanhalt": "Sachsen-Anhalt",
+  "schleswigholstein": "Schleswig-Holstein",
+  "thueringen": "Thüringen"
+};

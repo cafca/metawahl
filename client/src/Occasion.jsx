@@ -5,9 +5,9 @@ import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Breadcrumb } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle } from './Config';
+import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
 
 type State = {
@@ -71,10 +71,23 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
     return <div className="occasion">
       <h1>
-        <Link to="/">Wahlen</Link>
-        >
-        { this.state.occasion == null
-          ? "Loading..." : this.state.occasion.title }
+        <Breadcrumb size='big'>
+          <Breadcrumb.Section link to="/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Divider icon='right angle' />
+          { this.state.occasion == null
+            ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+            : <span>
+              <Breadcrumb.Section
+                href={"/gebiete/" + this.state.occasion.territory + "/"}>
+                {TERRITORY_NAMES[this.state.occasion.territory]}
+              </Breadcrumb.Section>
+              <Breadcrumb.Divider icon='right angle' />
+              <Breadcrumb.Section active>
+                {this.state.occasion.title}
+              </Breadcrumb.Section>
+            </span>
+          }
+        </Breadcrumb>
       </h1>
 
       {this.state.occasion == null &&

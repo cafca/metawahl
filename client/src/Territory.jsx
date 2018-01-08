@@ -15,11 +15,14 @@ type State = {
   occasions: ?OccasionListType
 };
 
-export default class OccasionList extends Component<RouteProps, State> {
+export default class Territory extends Component<RouteProps, State> {
+  slug: string;
+
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
     this.state = { occasions: null };
+    this.slug = this.props.match.params.territory;
   }
 
   componentDidMount() {
@@ -52,30 +55,22 @@ export default class OccasionList extends Component<RouteProps, State> {
   }
 
   render() {
-    const occasions = this.state.occasions && Object.keys(this.state.occasions)
-      .sort()
-      .map(territory => {
-        const occasions = this.state.occasions && this.state.occasions[territory]
-          .sort((a, b) => a.title > b.title)
-          .map(occasion => <Segment key={occasion.id}>
-            <Link to={`/wahlen/${occasion.id}/`}>
-              {occasion.title} {new Date(occasion.date).getFullYear()}
-            </Link>
-          </Segment>);
+    const territoryName = TERRITORY_NAMES[this.slug];
 
-        return <div className="territory" key={territory}>
-          <h2><Link to={"/gebiete/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link></h2>
-          <Segment.Group>
-            {occasions}
-          </Segment.Group>
-        </div>;
-      });
+    const occasions = this.state.occasions && this.state.occasions[this.slug]
+      .sort((a, b) => a.title > b.title)
+      .map(occasion => <Segment key={occasion.id}>
+          <Link to={`/wahlen/${occasion.id}/`}>
+            {occasion.title} {new Date(occasion.date).getFullYear()}
+          </Link>
+        </Segment>
+      );
 
     return <div className="occasionList">
-        <h1>Wahlen</h1>
-        <div>
-          {occasions}
-        </div>
+        <h1>{territoryName}</h1>
+        <Segment.Group>
+            {occasions}
+        </Segment.Group>
       </div>;
   }
 };
