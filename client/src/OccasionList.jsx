@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
-import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { Segment } from 'semantic-ui-react';
 

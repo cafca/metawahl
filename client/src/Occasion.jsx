@@ -4,7 +4,6 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
-import { Link } from 'react-router-dom';
 import { Segment, Breadcrumb } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
