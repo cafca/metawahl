@@ -212,9 +212,7 @@ export default class Thesis extends Component<Props, State> {
 
         {this.props.title && this.props.title.length > 0 &&
           <div>
-            <Link to={`/wahlen/${this.props.occasion.territory}/${womID}/#${this.props.id}`}>
-              <h2>{this.props.title}</h2>
-            </Link>
+            <h2>{this.props.title}</h2>
             <OccasionSubtitle occasion={this.props.occasion} />
             <h4>{this.props.text}</h4>
           </div>
@@ -222,9 +220,7 @@ export default class Thesis extends Component<Props, State> {
 
         {(this.props.title == null || this.props.title.length === 0) &&
           <div>
-            <Link to={`/wahlen/${this.props.occasion.territory}/${womID}/#${this.props.id}`}><h2>
-              <span style={{marginLeft: 5}}>{this.props.text}</span>
-            </h2></Link>
+            <h2><span style={{marginLeft: 5}}>{this.props.text}</span></h2>
             <OccasionSubtitle occasion={this.props.occasion} />
           </div>
         }
