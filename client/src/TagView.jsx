@@ -75,7 +75,7 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   render() {
-    const theses = this.state.theses.sort().map(
+    const theses = this.state.tagState === "success" && this.state.theses.sort().map(
       (thesis, i) => <Thesis
         key={"Thesis-" + i}
         occasion={this.state.occasions[thesis.occasion_id]}

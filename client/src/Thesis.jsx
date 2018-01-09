@@ -7,45 +7,11 @@ import { Link } from 'react-router-dom';
 import { Segment, Menu, Dropdown, Loader } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
-import CategoryRibbon from './CategoryRibbon';
+import CategoryLabel from './CategoryLabel';
 
-import { API_ROOT, makeJSONRequest } from './Config';
+import { API_ROOT, makeJSONRequest, CATEGORY_NAMES, categoryOptions } from './Config';
 import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
-
-export const categoryNames = {
-  "arbeit-und-beschaftigung": "Arbeit und Beschäftigung",
-  "auslanderpolitik-zuwanderung": "Ausländerpolitik, Zuwanderung",
-  "aussenpolitik-und-internationale-beziehungen": "Außenpolitik und internationale Beziehungen",
-  "aussenwirtschaft": "Außenwirtschaft",
-  "bildung-und-erziehung": "Bildung und Erziehung",
-  "bundestag": "Bundestag",
-  "energie": "Energie",
-  "entwicklungspolitik": "Entwicklungspolitik",
-  "europapolitik-und-europaische-union": "Europapolitik und Europäische Union",
-  "gesellschaftspolitik-soziale-gruppen": "Gesellschaftspolitik, soziale Gruppen",
-  "gesundheit": "Gesundheit",
-  "innere-sicherheit": "Innere Sicherheit",
-  "kultur": "Kultur",
-  "landwirtschaft-und-ernahrung": "Landwirtschaft und Ernährung",
-  "medien-kommunikation-und-informationstechnik": "Medien, Kommunikation und Informationstechnik",
-  "neue-bundeslander": "Neue Bundesländer",
-  "politisches-leben-parteien": "Politisches Leben, Parteien",
-  "raumordnung-bau-und-wohnungswesen": "Raumordnung, Bau- und Wohnungswesen",
-  "recht": "Recht",
-  "soziale-sicherung": "Soziale Sicherung",
-  "sport-freizeit-und-tourismus": "Sport, Freizeit und Tourismus",
-  "staat-und-verwaltung": "Staat und Verwaltung",
-  "umwelt": "Umwelt",
-  "verkehr": "Verkehr",
-  "verteidigung": "Verteidigung",
-  "wirtschaft": "Wirtschaft",
-  "wissenschaft-forschung-und-technologie": "Wissenschaft, Forschung und Technologie",
-  "offentliche-finanzen-steuern-und-abgaben": "Öffentliche Finanzen, Steuern und Abgaben"
-};
-
-export const categoryOptions = Object.keys(categoryNames).map(
-  slug => ({key: slug, value: slug, text: categoryNames[slug]}));
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
@@ -197,6 +163,13 @@ export default class Thesis extends Component<Props, State> {
 
     const womID = parseInt(this.props.id.split("-")[1], 10);
 
+    const categoryElems = this.state.categories.map(slug =>
+      <CategoryLabel
+        slug={slug}
+        key={"CategoryLabel-" + slug}
+        remove={this.handleCategoryRemove}
+      />);
+
     const tagElems = this.state.tags.map(tag =>
       <Tag
         data={tag}
@@ -206,10 +179,6 @@ export default class Thesis extends Component<Props, State> {
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
-        <CategoryRibbon
-          categories={this.state.categories}
-          remove={this.handleCategoryRemove} />
-
         {this.props.title && this.props.title.length > 0 &&
           <div>
             <h2>{this.props.title}</h2>
@@ -237,8 +206,11 @@ export default class Thesis extends Component<Props, State> {
         {positionText}
 
         <div>
-            { tagElems.length === 0 && " Noch keine Tags gewählt"}
+            { categoryElems }
             { tagElems }
+            <br />
+            { tagElems.length === 0 && " Noch keine Tags gewählt"}
+            { categoryElems.length === 0 && " Noch keine Kategorie gewählt"}
         </div>
       </Segment>
       <Menu attached='bottom'>

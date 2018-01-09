@@ -3,7 +3,7 @@
 import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { categoryNames } from './Thesis';
+import { CATEGORY_NAMES } from './Config';
 
 type Props = {
   categories: Array<string>,
@@ -14,7 +14,7 @@ const CategoryRibbon = ({ categories, remove }: Props) => {
   const categoryElems = categories.map(category => (
     <span style={{marginRight: "1em"}} key={category}>
     <Link to={"/bereiche/" + category + "/"} style={{color: "white"}}>
-      {categoryNames[category]}
+      {CATEGORY_NAMES[category]}
     </Link>
     <Icon name="delete" style={{cursor: "pointer"}}
       onClick={e => {

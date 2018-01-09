@@ -13,8 +13,12 @@ import {
   Confirm
 } from 'semantic-ui-react';
 
-import { API_ROOT, makeJSONRequest } from './Config';
-import { categoryOptions, categoryNames } from './Thesis';
+import {
+  API_ROOT,
+  CATEGORY_NAMES,
+  categoryOptions,
+  makeJSONRequest
+} from './Config';
 import WikidataTagger from './WikidataTagger';
 
 import type { TagType, ThesisType, ErrorState } from './Types';
@@ -147,7 +151,7 @@ class TagViewMenu extends Component<Props, State> {
 
   render() {
     const categoryName = this.state.selectedCategory
-      ? categoryNames[this.state.selectedCategory]
+      ? CATEGORY_NAMES[this.state.selectedCategory]
       : null;
 
     return <Menu>
