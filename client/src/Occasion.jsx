@@ -66,7 +66,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const thesesElems = this.state.theses.map(
+    const thesesElems = this.state.theses.sort((a, b) => a.id > b.id).map(
       (t, i) => <Thesis key={t.id} occasion={this.state.occasion} {...t} />
     );
 
