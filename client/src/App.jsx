@@ -69,11 +69,11 @@ class App extends Component<Props, State> {
                 <OccasionList {...props} />
               )} />
 
-              <Route path="/gebiete/:territory/" render={props => (
+              <Route exact path="/wahlen/:territory/" render={props => (
                 <Territory {...props} />
               )} />
 
-              <Route path="/wahlen/:occasionNum/" render={props => (
+              <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
                 <Occasion {...props} />
               )} />
 

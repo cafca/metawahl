@@ -41,6 +41,8 @@ class Category(db.Model):
 
         if thesis_data:
             rv["theses"] = [thesis.to_dict() for thesis in self.theses]
+            rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
+                for thesis in self.theses}
         else:
             rv["theses"] = [thesis.id for thesis in self.theses]
         return rv
@@ -202,7 +204,8 @@ class Thesis(db.Model):
             "title": self.title,
             "categories": [category.slug for category in self.categories],
             "positions": [position.to_dict() for position in self.positions],
-            "tags": [tag.to_dict() for tag in self.tags]
+            "tags": [tag.to_dict() for tag in self.tags],
+            "occasion_id": self.occasion_id
         }
 
         if self.text is not None:

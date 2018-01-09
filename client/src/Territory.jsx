@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Breadcrumb } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -59,14 +59,23 @@ export default class Territory extends Component<RouteProps, State> {
     const occasions = this.state.occasions && this.state.occasions[this.slug]
       .sort((a, b) => a.title > b.title)
       .map(occasion => <Segment key={occasion.id}>
-          <Link to={`/wahlen/${occasion.id}/`}>
+          <Link to={`/wahlen/${occasion.territory}/${occasion.id}/`}>
             {occasion.title} {new Date(occasion.date).getFullYear()}
           </Link>
         </Segment>
       );
 
     return <div className="occasionList">
-        <h1>{territoryName}</h1>
+
+      <h1>
+        <Breadcrumb size='big'>
+          <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Divider icon='right angle' />
+          <Breadcrumb.Section href={`/wahlen/${this.slug}/`}>
+            {territoryName}
+          </Breadcrumb.Section>
+        </Breadcrumb>
+      </h1>
         <Segment.Group>
             {occasions}
         </Segment.Group>

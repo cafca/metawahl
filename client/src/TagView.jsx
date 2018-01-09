@@ -15,11 +15,12 @@ import { API_ROOT, setTitle } from './Config';
 import Thesis from './Thesis';
 import TagViewMenu from './TagViewMenu';
 
-import type { TagType, ThesisType, RouteProps, ErrorState } from './Types';
+import type { TagType, ThesisType, OccasionType, RouteProps, ErrorState } from './Types';
 
 type State = {
   tag: ?TagType,
   theses: Array<ThesisType>,
+  occasions: { [occasionNum: number]: OccasionType},
   loading: boolean,
   tagState: ErrorState
 };
@@ -34,6 +35,7 @@ export default class TagView extends Component<RouteProps, State> {
     this.state = {
       tag: null,
       theses: [],
+      occasions: {},
       loading: false,
       tagState: "loading"
     }
@@ -50,6 +52,7 @@ export default class TagView extends Component<RouteProps, State> {
         this.setState({
           tag: response.data,
           theses: response.theses,
+          occasions: response.occasions,
           tagState: "success",
           loading: false
         });
@@ -62,6 +65,7 @@ export default class TagView extends Component<RouteProps, State> {
           this.setState({
             tag: null,
             theses: [],
+            occasions: {},
             tagState: "error",
             loading: false
           });
@@ -72,7 +76,10 @@ export default class TagView extends Component<RouteProps, State> {
 
   render() {
     const theses = this.state.theses.sort().map(
-      (thesis, i) => <Thesis key={"Thesis-" + i} {...thesis} />
+      (thesis, i) => <Thesis
+        key={"Thesis-" + i}
+        occasion={this.state.occasions[thesis.occasion_id]}
+        {...thesis} />
     );
 
     return <div>
@@ -115,7 +122,7 @@ export default class TagView extends Component<RouteProps, State> {
       { this.state.tag != null && this.state.tag.aliases != null
           && this.state.tag.aliases.length > 0 &&
         <Segment>
-          Auch: {this.state.tag.aliases.map(a => <span>{a}, </span>)}
+          Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}
         </Segment>
       }
 

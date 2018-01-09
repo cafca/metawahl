@@ -11,7 +11,7 @@ import { Header, Loader } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 
-type State = CategoryType | {};
+type State = (CategoryType & { occasions: {} }) | {};
 
 export default class Category extends React.Component<RouteProps, State> {
   categorySlug : string;
@@ -58,7 +58,11 @@ export default class Category extends React.Component<RouteProps, State> {
     const thesesElems = isCategoryFullyLoaded
       ? this.state.theses
         .sort((t1, t2) => t1.womID - t2.womID)
-        .map(thesis => <Thesis key={thesis.id} {...thesis} />)
+        .map(thesis => <Thesis
+          key={thesis.id}
+          occasion={this.state.occasions[thesis.occasion_id]}
+          {...thesis} />
+        )
       : null;
 
     return <div className="category">

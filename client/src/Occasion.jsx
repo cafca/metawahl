@@ -16,12 +16,14 @@ type State = {
 };
 
 export default class Occasion extends React.Component<RouteProps, State> {
+  territory: string;
   occasionNum: number;
 
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
     this.occasionNum = parseInt(this.props.match.params.occasionNum, 10);
+    this.territory = this.props.match.params.territory;
     this.state =  {
       occasion: null,
       occasionState: "loading",
@@ -65,26 +67,23 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
   render() {
     const thesesElems = this.state.theses.map(
-      (t, i) => <Thesis key={t.id} {...t} />
+      (t, i) => <Thesis key={t.id} occasion={this.state.occasion} {...t} />
     );
 
     return <div className="occasion">
       <h1>
         <Breadcrumb size='big'>
-          <Breadcrumb.Section link to="/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Divider icon='right angle' />
+          <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
+            {TERRITORY_NAMES[this.territory]}
+          </Breadcrumb.Section>
           <Breadcrumb.Divider icon='right angle' />
           { this.state.occasion == null
             ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-            : <span>
-              <Breadcrumb.Section
-                href={"/gebiete/" + this.state.occasion.territory + "/"}>
-                {TERRITORY_NAMES[this.state.occasion.territory]}
+            : <Breadcrumb.Section active>
+                {this.state.occasion.title} {new Date(this.state.occasion.date).getFullYear()}
               </Breadcrumb.Section>
-              <Breadcrumb.Divider icon='right angle' />
-              <Breadcrumb.Section active>
-                {this.state.occasion.title}
-              </Breadcrumb.Section>
-            </span>
           }
         </Breadcrumb>
       </h1>

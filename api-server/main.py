@@ -222,6 +222,7 @@ def create_app(config=None):
     def tag(tag_title: str):
         """Return metadata for all theses in a category."""
         from models import Tag
+
         log_request_info("Tag", request)
 
         tag = db.session.query(Tag) \
@@ -235,7 +236,9 @@ def create_app(config=None):
 
         rv = {
             "data": tag.to_dict(),
-            "theses": [thesis.to_dict() for thesis in tag.theses]
+            "theses": [thesis.to_dict() for thesis in tag.theses],
+            "occasions": {thesis.occasion_id: thesis.occasion.to_dict()
+                for thesis in tag.theses}
         }
 
         return json_response(rv)

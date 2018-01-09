@@ -23,6 +23,7 @@ export type ThesisType = {
   title: ?string,
   categories: Array<string>,
   tags: Array<TagType>,
+  occasion_id: number,
   positions: Array<PositionType>
 };
 

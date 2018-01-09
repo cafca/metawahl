@@ -8,9 +8,10 @@ import { Segment, Menu, Dropdown, Loader } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
-import { API_ROOT, makeJSONRequest } from './Config';
 
-import type { RouteProps, PositionType, ThesisType, TagType } from './Types';
+import { loadFromCache } from './App';
+import { API_ROOT, makeJSONRequest } from './Config';
+import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
 export const categoryNames = {
@@ -65,6 +66,14 @@ const Positions = ({positions, value, toggleOpen}) =>
       )}
     </div>;
 
+const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
+  occasion != null &&
+    <p style={{fontVariant: "small-caps"}}>
+      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`}>
+        {occasion.title} {new Date(occasion.date).getFullYear()}
+      </Link>
+    </p>;
+
 type State = {
   openText: ?PositionType,
   tags: Array<TagType>,
@@ -72,7 +81,7 @@ type State = {
   loading: boolean
 };
 
-type Props = RouteProps & ThesisType;
+type Props = RouteProps & ThesisType & { occasion?: OccasionType };
 
 export default class Thesis extends Component<Props, State> {
   constructor(props: Props) {
@@ -203,19 +212,24 @@ export default class Thesis extends Component<Props, State> {
           remove={this.handleCategoryRemove} />
 
         {this.props.title && this.props.title.length > 0 &&
-          <span>
-          <Link to={`/wahlen/${womID}/#${this.props.id}`}>
-            <h2>{this.props.title}</h2>
-          </Link>
-          <h4>{this.props.text}</h4>
-          </span>
+          <div>
+            <Link to={`/wahlen/${this.props.occasion.territory}/${womID}/#${this.props.id}`}>
+              <h2>{this.props.title}</h2>
+            </Link>
+            <OccasionSubtitle occasion={this.props.occasion} />
+            <h4>{this.props.text}</h4>
+          </div>
         }
 
         {(this.props.title == null || this.props.title.length === 0) &&
-          <Link to={`/wahlen/${womID}/#${this.props.id}`}><h2>
-            <span style={{marginLeft: 5}}>{this.props.text}</span>
-          </h2></Link>
+          <div>
+            <Link to={`/wahlen/${this.props.occasion.territory}/${womID}/#${this.props.id}`}><h2>
+              <span style={{marginLeft: 5}}>{this.props.text}</span>
+            </h2></Link>
+            <OccasionSubtitle occasion={this.props.occasion} />
+          </div>
         }
+
         <div className="positionsOverview">
           <Positions value="Pro" positions={proPositions}
             toggleOpen={this.toggleOpen}/>
@@ -224,7 +238,9 @@ export default class Thesis extends Component<Props, State> {
           <Positions value="Contra" positions={contraPositions}
             toggleOpen={this.toggleOpen}/>
         </div>
+
         {positionText}
+
         <div>
             { tagElems.length === 0 && " Noch keine Tags gewählt"}
             { tagElems }

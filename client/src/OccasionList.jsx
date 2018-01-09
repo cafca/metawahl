@@ -51,19 +51,19 @@ export default class OccasionList extends Component<RouteProps, State> {
   }
 
   render() {
-    const occasions = this.state.occasions && Object.keys(this.state.occasions)
+    const occasions = this.state.occasions != null && Object.keys(this.state.occasions)
       .sort()
       .map(territory => {
-        const occasions = this.state.occasions && this.state.occasions[territory]
+        const occasions = this.state.occasions[territory]
           .sort((a, b) => a.title > b.title)
           .map(occasion => <Segment key={occasion.id}>
-            <Link to={`/wahlen/${occasion.id}/`}>
+            <Link to={`/wahlen/${occasion.territory}/${occasion.id}/`}>
               {occasion.title} {new Date(occasion.date).getFullYear()}
             </Link>
           </Segment>);
 
         return <div className="territory" key={territory}>
-          <h2><Link to={"/gebiete/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link></h2>
+          <h2><Link to={"/wahlen/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link></h2>
           <Segment.Group>
             {occasions}
           </Segment.Group>
