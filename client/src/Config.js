@@ -3,7 +3,7 @@
 export const DATA_DIR = "/data";
 export const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
   ? "http://localhost:9000/api/v1"
-  : "http://metawahl.de:9000/api/v1/";
+  : "http://metawahl.de:9000/api/v1";
 
 export const PAGE_TITLE = "Metawahl ";
 
