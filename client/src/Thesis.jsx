@@ -9,7 +9,6 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryRibbon from './CategoryRibbon';
 
-import { loadFromCache } from './App';
 import { API_ROOT, makeJSONRequest } from './Config';
 import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
