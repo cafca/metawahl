@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
-import type { CategoryType } from './Types';
 import { CATEGORY_NAMES, CATEGORY_COLORS } from './Config';
 
 type Props = {

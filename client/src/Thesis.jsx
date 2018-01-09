@@ -9,7 +9,7 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 
-import { API_ROOT, makeJSONRequest, CATEGORY_NAMES, categoryOptions } from './Config';
+import { API_ROOT, makeJSONRequest, categoryOptions } from './Config';
 import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
@@ -161,8 +161,6 @@ export default class Thesis extends Component<Props, State> {
       ? null : <p>Position der Partei \
         {this.state.openText.party}: {this.state.openText.text}</p>;
 
-    const womID = parseInt(this.props.id.split("-")[1], 10);
-
     const categoryElems = this.state.categories.map(slug =>
       <CategoryLabel
         slug={slug}
@@ -179,6 +177,7 @@ export default class Thesis extends Component<Props, State> {
 
     return <div style={{marginBottom: "1em"}}>
       <Segment id={this.props.id} attached='top'>
+        {/* Show title if available */}
         {this.props.title && this.props.title.length > 0 &&
           <div>
             <h2>{this.props.title}</h2>
@@ -187,6 +186,7 @@ export default class Thesis extends Component<Props, State> {
           </div>
         }
 
+        {/* Alternative: Use thesis text as title*/}
         {(this.props.title == null || this.props.title.length === 0) &&
           <div>
             <h2><span style={{marginLeft: 5}}>{this.props.text}</span></h2>
@@ -209,8 +209,8 @@ export default class Thesis extends Component<Props, State> {
             { categoryElems }
             { tagElems }
             <br />
-            { tagElems.length === 0 && " Noch keine Tags gewählt"}
-            { categoryElems.length === 0 && " Noch keine Kategorie gewählt"}
+            { tagElems.length === 0 && " Noch keine Tags gewählt. "}
+            { categoryElems.length === 0 && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
       <Menu attached='bottom'>
