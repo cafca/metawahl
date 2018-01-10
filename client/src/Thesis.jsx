@@ -161,14 +161,14 @@ export default class Thesis extends Component<Props, State> {
       ? null : <p>Position der Partei \
         {this.state.openText.party}: {this.state.openText.text}</p>;
 
-    const categoryElems = this.state.categories.map(slug =>
+    const categoryElems = this.state.categories.sort().map(slug =>
       <CategoryLabel
         slug={slug}
         key={"CategoryLabel-" + slug}
         remove={this.handleCategoryRemove}
       />);
 
-    const tagElems = this.state.tags.map(tag =>
+    const tagElems = this.state.tags.sort().map(tag =>
       <Tag
         data={tag}
         key={"Tag-" + tag.title}

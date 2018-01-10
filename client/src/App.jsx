@@ -64,7 +64,7 @@ class App extends Component<Props, State> {
         <ScrollToTop>
           <div className="App">
             <HeaderMenu />
-            <Container text style={{ marginTop: '7em' }}>
+            <Container text style={{ marginTop: '5em' }}>
               <Route exact path="/" render={props => (
                 <OccasionList {...props} />
               )} />
