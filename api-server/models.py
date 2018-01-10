@@ -12,7 +12,7 @@ from slugify import slugify
 
 
 categories = db.Table('categories',
-    db.Column('category.name', db.String(64), db.ForeignKey('category.name'),
+    db.Column('category_name', db.String(64), db.ForeignKey('category.name'),
         primary_key=True),
     db.Column('thesis_id', db.String(10), db.ForeignKey('thesis.id'),
         primary_key=True)
