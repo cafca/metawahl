@@ -150,7 +150,9 @@ def create_app(config=None):
                 for category in categories]
         }
 
-        rv["data"].append(Category.uncategorized())
+        uncategorized = Category.uncategorized()
+        if len(uncategorized["theses"]) > 0:
+            rv["data"].append(uncategorized)
 
         return json_response(rv, filename=filename)
 
