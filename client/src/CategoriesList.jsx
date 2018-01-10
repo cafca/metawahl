@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle, CATEGORY_COLORS } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
-import { Button, Icon, Header, Label } from 'semantic-ui-react';
+import { Button, Icon, Header, Label, Breadcrumb } from 'semantic-ui-react';
 
 type State = {
   categories: Array<CategoryType>
@@ -51,12 +51,14 @@ export default class CategoriesList extends Component<RouteProps, State> {
       .sort(sortCategories)
       .map(category => (
         <li key={category.slug}>
-          <Label empty circular style={{
+          <Label circular style={{
             backgroundColor: CATEGORY_COLORS[category.slug],
             borderColor: CATEGORY_COLORS[category.slug],
             color: "#fff",
-            marginRight: 7}} />
-          <Link to={`/bereiche/${category.slug}/`}>{category.name} ({category.theses.length})</Link>
+            marginLeft: -35}}>
+            {category.theses.length}
+          </Label>
+          <Link to={`/bereiche/${category.slug}/`}>{category.name}</Link>
         </li>
       ));
 
@@ -69,9 +71,17 @@ export default class CategoriesList extends Component<RouteProps, State> {
           categories.json
         </Button>
 
+        <Breadcrumb>
+          <Breadcrumb.Section href="/bereiche/">Themenbereiche</Breadcrumb.Section>
+        </Breadcrumb>
+
         <Header as='h1'>
           Themenbereiche
         </Header>
+
+        <p>Hier finden sich die Thesen aus allen Wahl-o-Maten, sortiert nach
+        dem Themenbereich der Bundesregierung, dem sie am ehesten zuzuordnen
+        sind.</p>
 
         <ul style={{listStyle: "none"}}>
           {categories}

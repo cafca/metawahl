@@ -7,7 +7,7 @@ import Thesis from './Thesis';
 import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache } from './App';
-import { Header, Loader } from 'semantic-ui-react';
+import { Header, Loader, Breadcrumb, Dropdown } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 
@@ -66,11 +66,18 @@ export default class Category extends React.Component<RouteProps, State> {
       : null;
 
     return <div className="category">
+      <Breadcrumb>
+        <Breadcrumb.Section href="/bereiche/">Themenbereiche</Breadcrumb.Section>
+        <Breadcrumb.Divider icon='right angle' />
+        { this.state.name
+          ? <Breadcrumb.Section active>
+              {this.state.name}
+            </Breadcrumb.Section>
+          : <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+        }
+      </Breadcrumb>
       <Header as='h1'>
-        <Link to="/bereiche/">
-          Themenbereiche</Link>
-          >
-          {this.state.name ? this.state.name : <span>Loading...</span>}
+        { this.state.name }
       </Header>
       <div className="theses">
         <Loader active={isCategoryFullyLoaded === false} inline='centered' />
