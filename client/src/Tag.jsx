@@ -36,7 +36,7 @@ const Tag = ({ data, remove }: Props) => {
       as='a'
       tag
       href={"/tags/" + data.slug}
-      color='teal'
+      color='blue'
       style={{
         marginRight: ".4em",
         marginBottom: ".4em"

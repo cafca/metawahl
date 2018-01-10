@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { API_ROOT, setTitle } from './Config';
+import { API_ROOT, setTitle, CATEGORY_COLORS } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
-import { Button, Icon, Header } from 'semantic-ui-react';
+import { Button, Icon, Header, Label } from 'semantic-ui-react';
 
 type State = {
   categories: Array<CategoryType>
@@ -50,7 +50,12 @@ export default class CategoriesList extends Component<RouteProps, State> {
     const categories = this.state.categories
       .sort(sortCategories)
       .map(category => (
-        <li key={category.name}>
+        <li key={category.slug}>
+          <Label empty circular style={{
+            backgroundColor: CATEGORY_COLORS[category.slug],
+            borderColor: CATEGORY_COLORS[category.slug],
+            color: "#fff",
+            marginRight: 7}} />
           <Link to={`/bereiche/${category.slug}/`}>{category.name} ({category.theses.length})</Link>
         </li>
       ));
@@ -68,7 +73,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
           Themenbereiche
         </Header>
 
-        <ul>
+        <ul style={{listStyle: "none"}}>
           {categories}
         </ul>
       </div>;

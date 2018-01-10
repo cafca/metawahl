@@ -14,10 +14,12 @@ const CategoryLabel = ({ slug, remove }: Props) => {
     as='a'
     tag
     href={"/categories/" + slug}
-    color={CATEGORY_COLORS[slug]}
     style={{
       marginRight: ".4em",
-      marginBottom: ".4em"
+      marginBottom: ".4em",
+      backgroundColor: CATEGORY_COLORS[slug],
+      borderColor: CATEGORY_COLORS[slug],
+      color: '#fff'
     }}
   >
     {CATEGORY_NAMES[slug]}
