@@ -6,7 +6,6 @@ import './App.css';
 import {
   Header,
   Icon,
-  Label,
   Loader,
   Segment
 } from 'semantic-ui-react';

@@ -4,10 +4,9 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
-import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache } from './App';
-import { Header, Loader, Breadcrumb, Dropdown } from 'semantic-ui-react';
+import { Header, Loader, Breadcrumb } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 

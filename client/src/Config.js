@@ -76,10 +76,6 @@ export const CATEGORY_NAMES = {
   "wissenschaft-forschung-und-technologie": "Wissenschaft, Forschung und Technologie"
 };
 
-// All colors without teal, brown, pink
-const colorNames = ["red", "orange", "yellow", "olive", "green",
-  "blue", "violet", "purple", "grey", "black"];
-
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#dcbc37,a56072,82e8b3,796da0
 const colorPalette = ["#dcbc37", "#d6a63b", "#d09240", "#ca8144", "#c47248", "#be654d", "#b85b52", "#b25659", "#ab5b67", "#a56072", "#ae6562", "#b78164", "#c0a167", "#c8c46a", "#b6cf6e", "#9dd672", "#84dd77", "#7ce38e", "#82e8b3", "#7de2c1", "#79dccf", "#76cfd5", "#73b6cd", "#719fc5", "#6f8abd", "#6e79b4", "#706daa", "#796da0" ]
 
