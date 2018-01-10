@@ -41,9 +41,10 @@ class Category(db.Model):
         }
 
         if thesis_data:
-            rv["theses"] = [thesis.to_dict() for thesis in self.theses]
+            theses = self.theses.order_by(Thesis.id)
+            rv["theses"] = [thesis.to_dict() for thesis in theses]
             rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
-                for thesis in self.theses}
+                for thesis in theses}
         else:
             rv["theses"] = [thesis.id for thesis in self.theses]
         return rv
