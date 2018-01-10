@@ -150,6 +150,8 @@ def create_app(config=None):
                 for category in categories]
         }
 
+        rv["data"].append(Category.uncategorized())
+
         return json_response(rv, filename=filename)
 
     @app.route(API_ROOT + "/categories/<string:category>",
@@ -157,31 +159,33 @@ def create_app(config=None):
     def category(category: str):
         """Return metadata for all theses in a category."""
         from models import Category, Thesis
-        log_request_info("Category", request)
 
-        category = db.session.query(Category) \
-            .filter(Category.slug == category) \
-            .first()
+        if category == "_uncategorized":
+            rv = {"data": Category.uncategorized(thesis_data=True)}
+        else:
+            category = db.session.query(Category) \
+                .filter(Category.slug == category) \
+                .first()
 
-        if request.method == "POST":
-            data = request.get_json()
-            for thesis_id in data.get("add", []):
-                logger.info("Adding {} to {}".format(category, thesis_id))
-                thesis = db.session.query(Thesis).get(thesis_id)
-                category.theses.append(thesis)
+            if request.method == "POST":
+                data = request.get_json()
+                for thesis_id in data.get("add", []):
+                    logger.info("Adding {} to {}".format(category, thesis_id))
+                    thesis = db.session.query(Thesis).get(thesis_id)
+                    category.theses.append(thesis)
 
-            for thesis_id in data.get("remove", []):
-                logger.info("Removing {} from {}".format(category, thesis_id))
-                thesis = db.session.query(Thesis).get(thesis_id)
-                category.theses = [thesis for thesis in category.theses
-                    if thesis.id != thesis_id]
+                for thesis_id in data.get("remove", []):
+                    logger.info("Removing {} from {}".format(category, thesis_id))
+                    thesis = db.session.query(Thesis).get(thesis_id)
+                    category.theses = [thesis for thesis in category.theses
+                        if thesis.id != thesis_id]
 
-            db.session.add(category)
-            db.session.commit()
+                db.session.add(category)
+                db.session.commit()
 
-        rv = {
-            "data": category.to_dict(thesis_data=True)
-        }
+            rv = {
+                "data": category.to_dict(thesis_data=True)
+            }
 
         return json_response(rv)
 

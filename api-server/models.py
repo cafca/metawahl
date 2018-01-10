@@ -7,6 +7,7 @@ import json
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from slugify import slugify
 
 
@@ -45,6 +46,26 @@ class Category(db.Model):
                 for thesis in self.theses}
         else:
             rv["theses"] = [thesis.id for thesis in self.theses]
+        return rv
+
+    @classmethod
+    def uncategorized(cls, thesis_data=False):
+        rv = {
+            "name": "(Noch in keinem Themenbereich)",
+            "slug": "_uncategorized"
+        }
+
+        theses = db.session.query(Thesis) \
+            .filter(Thesis.categories == None) \
+            .order_by(Thesis.id)
+
+        if thesis_data:
+            rv["theses"] = [thesis.to_dict() for thesis in theses]
+            rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
+                for thesis in theses}
+        else:
+            rv["theses"] = [thesis.id for thesis in theses]
+
         return rv
 
 
