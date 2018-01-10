@@ -76,6 +76,7 @@ class Occasion(db.Model):
     territory = db.Column(db.String(32), nullable=False)
     title = db.Column(db.String(128), nullable=False)
     wikidata_id = db.Column(db.String(16))
+    wikipedia_title = db.Column(db.Text)
     source = db.Column(db.Text)
 
     def __repr__(self):
@@ -88,6 +89,7 @@ class Occasion(db.Model):
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
+            "wikipedia_title": self.wikipedia_title,
             "source": self.source
         }
 
