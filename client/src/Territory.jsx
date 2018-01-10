@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Breadcrumb } from 'semantic-ui-react';
+import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -66,16 +66,18 @@ export default class Territory extends Component<RouteProps, State> {
       );
 
     return <div className="occasionList">
-
-      <h1>
-        <Breadcrumb size='big'>
+        <Breadcrumb>
           <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
           <Breadcrumb.Divider icon='right angle' />
           <Breadcrumb.Section href={`/wahlen/${this.slug}/`}>
             {territoryName}
           </Breadcrumb.Section>
         </Breadcrumb>
-      </h1>
+
+        <Header as='h1'>
+          {territoryName}
+        </Header>
+
         <Segment.Group>
             {occasions}
         </Segment.Group>

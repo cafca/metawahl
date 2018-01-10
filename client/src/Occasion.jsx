@@ -4,10 +4,11 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
-import { Segment, Breadcrumb } from 'semantic-ui-react';
+import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
+import { WikidataLabel, WikipediaLabel } from './DataLabel.jsx'
 
 type State = {
   occasion: ?OccasionType,
@@ -71,22 +72,28 @@ export default class Occasion extends React.Component<RouteProps, State> {
     );
 
     return <div className="occasion">
-      <h1>
-        <Breadcrumb size='big'>
-          <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
-          <Breadcrumb.Divider icon='right angle' />
-          <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
-            {TERRITORY_NAMES[this.territory]}
-          </Breadcrumb.Section>
-          <Breadcrumb.Divider icon='right angle' />
-          { this.state.occasion == null
-            ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-            : <Breadcrumb.Section active>
-                {this.state.occasion.title} {new Date(this.state.occasion.date).getFullYear()}
-              </Breadcrumb.Section>
-          }
-        </Breadcrumb>
-      </h1>
+      <Breadcrumb>
+        <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
+        <Breadcrumb.Divider icon='right angle' />
+        <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
+          {TERRITORY_NAMES[this.territory]}
+        </Breadcrumb.Section>
+        <Breadcrumb.Divider icon='right angle' />
+        { this.state.occasion == null
+          ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+          : <Breadcrumb.Section active>
+              {new Date(this.state.occasion.date).getFullYear()}
+            </Breadcrumb.Section>
+        }
+      </Breadcrumb>
+
+      <WikidataLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
+      <WikipediaLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
+
+      <Header as='h1'>
+        { this.state.occasion == null ? "Loading..."
+          : this.state.occasion.title + " " + new Date(this.state.occasion.date).getFullYear()}
+      </Header>
 
       {this.state.occasion == null &&
       <Segment loading style={{ minHeight: 100 }}></Segment>

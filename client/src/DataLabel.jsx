@@ -13,7 +13,8 @@ type WikidataProps = {
 };
 
 export const WikidataLabel = ({ wikidata_id, url } : WikidataProps) => {
-  return <Header floated='right' style={{marginRight: "-10.5px"}}>
+  return wikidata_id == null ? null :
+    <Header floated='right' style={{marginRight: "-10.5px"}}>
       <Label as='a' basic image href={url} >
         <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" /> {wikidata_id}
       </Label>
@@ -21,15 +22,28 @@ export const WikidataLabel = ({ wikidata_id, url } : WikidataProps) => {
 }
 
 type WikipediaProps = {
-  wikipedia_title: string,
+  wikipedia_title: ?string,
+  wikipedia_url: ?string,
   style?: Object
 };
 
-export const WikipediaLabel = ({ wikipedia_title, style } : WikipediaProps) => {
-  return <Header floated='right' style={style}>
+export const WikipediaLabel = ({ wikipedia_title, wikipedia_url, style } : WikipediaProps) => {
+  if (wikipedia_title == null && wikipedia_url == null) return null;
+
+  const href = wikipedia_url == null
+    ? "https://de.wikipedia.org/wiki/" + wikipedia_title
+    : wikipedia_url;
+
+  const lastSepPos = wikipedia_url && wikipedia_url.lastIndexOf("/");
+  const title = wikipedia_title == null
+    ? wikipedia_url.slice(lastSepPos).replace("_", " ")
+    : wikipedia_title;
+
+  return wikipedia_title == null ? null :
+    <Header floated='right' style={style}>
       <Label as='a' basic image
-        href={"https://de.wikipedia.org/wiki/" + wikipedia_title} >
-        <Icon name="wikipedia" /> {wikipedia_title}
+        href={href} >
+        <Icon name="wikipedia" /> {title}
       </Label>
     </Header>
 }
