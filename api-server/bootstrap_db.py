@@ -60,6 +60,12 @@ OCCASION_IDS = {
     "2017/deutschland": 42
 }
 
+INVALID_POSITION_TEXTS = [
+    '"Die SPD Bayern verweist für ausführlichere Begründungen auf ihr Regierungsprogramm unter www.bayernspd.de"',
+    'Die Begründung der Partei zu ihrem Abstimmverhalten wird nachgereicht, da noch nicht alle Begründungen vorliegen.',
+    'Zu dieser These hat die Partei keine Begründung vorgelegt.'
+]
+
 party_instances = defaultdict(Party)
 tag_instances = defaultdict(Tag)
 
@@ -114,7 +120,8 @@ def load_occasions():
             title=dataset["overview"]["title"],
             date=dateutil.parser.parse(dataset["overview"]["date"]),
             source=dataset["overview"]["data_source"],
-            territory=territory
+            territory=territory,
+            wikipedia_title=dataset["overview"]["info"]
         )
 
         occasion.theses = load_theses(occasion_dir, **dataset)
@@ -170,8 +177,10 @@ def load_position(position_data, comments, parties):
 
     position = Position(value=value, party=party)
 
-    if position_data["comment"] is not None:
-        position.text = comments[position_data["comment"]]["text"]
+    comment_id = position_data["comment"]
+    if comment_id and comments[comment_id]["text"] not in INVALID_POSITION_TEXTS:
+        position.text = comments[comment_id]["text"]
+
     return position
 
 
@@ -186,7 +195,7 @@ def load_tags():
         return
 
     assert tag_export["meta"]["api"] == "Metawahl API v1"
-    logger.info("{} tags...".format(len(tag_export["data"])))
+    logger.info("Adding {} tags...".format(len(tag_export["data"])))
 
     # TODO: Update existing tags
 
@@ -220,7 +229,7 @@ def load_categories():
         return
 
     assert categories_export["meta"]["api"] == "Metawahl API v1"
-    logger.info("{} categories...".format(len(categories_export["data"])))
+    logger.info("Adding {} categories...".format(len(categories_export["data"])))
 
     # TODO: Update existing categories
 
@@ -244,11 +253,9 @@ if __name__ == '__main__':
 
         for tag in load_tags():
             db.session.add(tag)
-            logger.info("Added {}".format(tag))
 
         for category in load_categories():
             db.session.add(category)
-            logger.info("Added {}".format(category))
 
         logger.info("Committing session to disk...")
         db.session.commit()
