@@ -14,6 +14,7 @@ import {
 import { API_ROOT, setTitle } from './Config';
 import Thesis from './Thesis';
 import TagViewMenu from './TagViewMenu';
+import {WikidataLabel, WikipediaLabel} from './DataLabel';
 
 import type { TagType, ThesisType, OccasionType, RouteProps, ErrorState } from './Types';
 
@@ -86,19 +87,11 @@ export default class TagView extends Component<RouteProps, State> {
       <Loader active={this.state.tagState === "loading"} />
 
       {this.state.tag != null && this.state.tag.wikidata_id != null &&
-        <Header floated='right' style={{marginRight: "-10.5px"}}>
-          <Label as='a' basic image href={this.state.tag.url} >
-            <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" /> {this.state.tag.wikidata_id}
-          </Label>
-        </Header>
+        <WikidataLabel {...this.state.tag} style={{marginRight: "-10.5px"}} />
       }
 
       {this.state.tag != null && this.state.tag.wikipedia_title != null &&
-        <Header floated='right' style={{marginRight: "-10.5px"}}>
-          <Label as='a' basic image href={"https://de.wikipedia.org/wiki/" + this.state.tag.wikipedia_title} >
-            <Icon name="wikipedia" /> {this.state.tag.wikipedia_title}
-          </Label>
-        </Header>
+        <WikipediaLabel {...this.state.tag} style={{marginRight: "-10.5px"}} />
       }
 
       <Header as='h1' disabled={this.state.tagState === "loading"}>
