@@ -115,13 +115,17 @@ def load_occasions():
             opinions_sorted[op["statement"]].append(op)
         dataset["opinions"] = opinions_sorted
 
+        if dataset["overview"]["info"] is not None:
+            splitPos = dataset["overview"]["info"].rfind("/") + 1
+            wikipedia_title = dataset["overview"]["info"][splitPos:].replace("_", " ")
+
         occasion = Occasion(
             id=OCCASION_IDS[occasion_dir],
             title=dataset["overview"]["title"],
             date=dateutil.parser.parse(dataset["overview"]["date"]),
             source=dataset["overview"]["data_source"],
             territory=territory,
-            wikipedia_title=dataset["overview"]["info"]
+            wikipedia_title=wikipedia_title
         )
 
         occasion.theses = load_theses(occasion_dir, **dataset)
