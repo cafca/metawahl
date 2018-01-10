@@ -7,7 +7,7 @@ import json
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
+from sqlalchemy import func, desc
 from slugify import slugify
 
 
@@ -41,10 +41,9 @@ class Category(db.Model):
         }
 
         if thesis_data:
-            theses = self.theses.order_by(Thesis.id)
-            rv["theses"] = [thesis.to_dict() for thesis in theses]
+            rv["theses"] = [thesis.to_dict() for thesis in self.theses]
             rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
-                for thesis in theses}
+                for thesis in self.theses}
         else:
             rv["theses"] = [thesis.id for thesis in self.theses]
         return rv
@@ -217,7 +216,7 @@ class Thesis(db.Model):
        backref=db.backref('theses'))
 
     categories = db.relationship('Category', secondary=categories, lazy=False,
-       backref=db.backref('theses'))
+       backref=db.backref('theses', order_by=desc(categories.c.thesis_id)), order_by='Category.name')
 
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
