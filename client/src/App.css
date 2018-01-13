@@ -3,12 +3,8 @@
   list-style-type: none;
 }
 
-.positionWithText {
-  text-decoration: underline;
-}
-
 .positionWithText:hover {
-  cursor: pointer
+  cursor: pointer,
 }
 
 .positionsOverview {

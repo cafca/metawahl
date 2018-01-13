@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Menu, Dropdown, Loader } from 'semantic-ui-react';
+import { Segment, Menu, Dropdown, Loader, Label, Icon } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
@@ -15,21 +15,17 @@ import type { WikidataType } from './WikidataTagger';
 
 const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
-  return <span
+  let style = {margin: "0 5px 7px 0"};
+  if (hasText) style = {margin: "0 5px 7px 0", borderBottom: "3px solid"};
+  return <Label
+    className={hasText ? "positionWithText" : "position"}
+    basic
     onClick={hasText ? () => p.toggleOpen(p) : null}
-    className={hasText ? "positionWithText" : null}
-  >
+    color={p.value === 1 ? "green" : p.value === -1 ? "red" : "grey"}
+    style={style}>
     {p.party}
-    ,&nbsp;
-  </span>
+  </Label>;
 }
-
-const Positions = ({positions, value, toggleOpen}) =>
-  positions.length > 0 && <div className="position_values">
-      {value}: {positions.map(p =>
-        <Position toggleOpen={toggleOpen} key={p.party} {...p} />
-      )}
-    </div>;
 
 const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
   occasion != null &&
@@ -153,9 +149,24 @@ export default class Thesis extends Component<Props, State> {
   }
 
   render() {
-    let proPositions = this.props.positions.filter(p => p.value === 1);
-    let neutralPositions = this.props.positions.filter(p => p.value === 0);
-    let contraPositions = this.props.positions.filter(p => p.value === -1);
+    const positionLabel = p =>
+      <Position toggleOpen={() => this.toggleOpen(p)} {...p} />;
+
+    let proPositions = this.props.positions
+      .sort((a, b) => a.party > b.party)
+      .filter(p => p.value === 1)
+      .map(positionLabel);
+
+    let neutralPositions = this.props.positions
+      .sort((a, b) => a.party > b.party)
+      .filter(p => p.value === 0)
+      .map(positionLabel);
+
+    let contraPositions = this.props.positions
+      .sort((a, b) => a.party > b.party)
+      .filter(p => p.value === -1)
+      .map(positionLabel);
+
 
     const positionText = this.state.openText == null
       ? null : <p>Position der Partei \
@@ -195,12 +206,9 @@ export default class Thesis extends Component<Props, State> {
         }
 
         <div className="positionsOverview">
-          <Positions value="Pro" positions={proPositions}
-            toggleOpen={this.toggleOpen}/>
-          <Positions value="Neutral" positions={neutralPositions}
-            toggleOpen={this.toggleOpen}/>
-          <Positions value="Contra" positions={contraPositions}
-            toggleOpen={this.toggleOpen}/>
+          {proPositions}
+          {neutralPositions}
+          {contraPositions}
         </div>
 
         {positionText}
