@@ -34,10 +34,14 @@ export const loadFromCache = (key: string) => {
 export const saveToCache = (key: string, json: string) => {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
 
-  try {
-    localStorage.setItem(key, json);
-  } catch(e) {
-    console.log("Error saving to local storage. " + e)
+  if (json == null || json === "undefined" || json === "") {
+    console.log("Error: Tried saving undefined variable to local storage.")
+  } else {
+    try {
+      localStorage.setItem(key, json);
+    } catch(e) {
+      console.log("Error saving to local storage. " + e)
+    }
   }
 }
 
