@@ -70,6 +70,16 @@ Servers:
     $ npm install
     $ npm start
 
+## Daten bearbeiten
+
+Nur der Seitenbetreiber sollte Tags, Kategorien, etc. bearbeiten können um 
+Missbrauch auszuschließen. Um sich als Admin einzuloggen muss in der Browser-Konsole
+der Local Storage Schlüssel `admin_key` auf den gleichen Wert gesetzt sein, wie
+die Umgebungsvariable `METAWAHL_ADMIN_KEY` auf dem Server. 
+
+Die Umgebungsvariable kann zum Beispiel über die Konfigurationsdatei `uwsgi.ini`
+gesetzt werden. Ist sie nicht gesetzt, wird beim Start des Server eine 
+Warnung ausgegeben. 
 
 # Lizenz
 

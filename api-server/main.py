@@ -36,37 +36,6 @@ def log_request_info(name, request):
         logger.info("Data: {}".format(pformat(jsond)))
 
 
-# Categories
-#
-# 0:  Arbeit und Beschäftigung
-# 1:  Ausländerpolitik, Zuwanderung
-# 2:  Außenpolitik und internationale Beziehungen
-# 3:  Außenwirtschaft
-# 4:  Bildung und Erziehung
-# 5:  Bundestag
-# 6:  Energie
-# 7:  Entwicklungspolitik
-# 8:  Europapolitik und Europäische Union
-# 9:  Gesellschaftspolitik, soziale Gruppen
-# 10: Gesundheit
-# 11: Innere Sicherheit
-# 12: Kultur
-# 13: Landwirtschaft und Ernährung
-# 14: Medien, Kommunikation und Informationstechnik
-# 15: Neue Bundesländer
-# 16: Öffentliche Finanzen, Steuern und Abgaben
-# 17: Politisches Leben, Parteien
-# 18: Raumordnung, Bau- und Wohnungswesen
-# 19: Recht
-# 20: Soziale Sicherung
-# 21: Sport, Freizeit und Tourismus
-# 22: Staat und Verwaltung
-# 23: Umwelt
-# 24: Verkehr
-# 25: Verteidigung
-# 26: Wirtschaft
-# 27: Wissenschaft, Forschung und Technologie
-
 def json_response(data, filename=None):
     data["meta"] = {
         "api": API_FULL_NAME,
@@ -168,6 +137,8 @@ def create_app(config=None):
         """Return metadata for all theses in a category."""
         from models import Category, Thesis
 
+        error = None
+
         if category == "_uncategorized":
             rv = {"data": Category.uncategorized(thesis_data=True)}
         else:
@@ -177,22 +148,28 @@ def create_app(config=None):
 
             if request.method == "POST":
                 data = request.get_json()
-                for thesis_id in data.get("add", []):
-                    logger.info("Adding {} to {}".format(category, thesis_id))
-                    thesis = db.session.query(Thesis).get(thesis_id)
-                    category.theses.append(thesis)
 
-                for thesis_id in data.get("remove", []):
-                    logger.info("Removing {} from {}".format(category, thesis_id))
-                    thesis = db.session.query(Thesis).get(thesis_id)
-                    category.theses = [thesis for thesis in category.theses
-                        if thesis.id != thesis_id]
+                if (data.get('admin_key', '') == app.config.get('ADMIN_KEY')):
+                    for thesis_id in data.get("add", []):
+                        logger.info("Adding {} to {}".format(category, thesis_id))
+                        thesis = db.session.query(Thesis).get(thesis_id)
+                        category.theses.append(thesis)
 
-                db.session.add(category)
-                db.session.commit()
+                    for thesis_id in data.get("remove", []):
+                        logger.info("Removing {} from {}".format(category, thesis_id))
+                        thesis = db.session.query(Thesis).get(thesis_id)
+                        category.theses = [thesis for thesis in category.theses
+                            if thesis.id != thesis_id]
+
+                    db.session.add(category)
+                    db.session.commit()
+                else:
+                    logger.warning("Invalid admin password")
+                    error = "Invalid admin password"
 
             rv = {
-                "data": category.to_dict(thesis_data=True)
+                "data": category.to_dict(thesis_data=True),
+                "error": error
             }
 
         return json_response(rv)
@@ -242,9 +219,13 @@ def create_app(config=None):
             .first()
 
         if request.method == "DELETE":
-            logger.warning("Removing {}".format(tag))
-            db.session.delete(tag)
-            db.session.commit()
+            admin_key = request.get_json().get('admin_key', '')
+            if admin_key == app.config.get('ADMIN_KEY'):
+                logger.warning("Removing {}".format(tag))
+                db.session.delete(tag)
+                db.session.commit()
+            else:
+                logger.warning("Invalid admin password")
 
         rv = {
             "data": tag.to_dict(),
@@ -276,38 +257,43 @@ def create_app(config=None):
 
         thesis = db.session.query(Thesis).get(thesis_id)
         data = request.get_json()
+        error = None
 
-        for tag_data in data.get("add", []):
-            tag = db.session.query(Tag) \
-                .filter(Tag.wikidata_id == tag_data["wikidata_id"]) \
-                .first()
-            if tag is None:
-                tag = Tag(
-                    description=tag_data.get("description", None),
-                    title=tag_data["title"],
-                    url=tag_data["url"],
-                    wikidata_id=tag_data["wikidata_id"],
-                )
+        if data.get('admin_key', '') != app.config.get('ADMIN_KEY'):
+            logger.warning("Invalid admin key")
+            error = "Invalid admin key"
+        else:
+            for tag_data in data.get("add", []):
+                tag = db.session.query(Tag) \
+                    .filter(Tag.wikidata_id == tag_data["wikidata_id"]) \
+                    .first()
+                if tag is None:
+                    tag = Tag(
+                        description=tag_data.get("description", None),
+                        title=tag_data["title"],
+                        url=tag_data["url"],
+                        wikidata_id=tag_data["wikidata_id"],
+                    )
 
-                tag.make_slug()
-                logger.info("New tag {}".format(tag))
+                    tag.make_slug()
+                    logger.info("New tag {}".format(tag))
 
-            tag.wikipedia_title = tag_data.get("wikipedia_title", None)
-            tag.labels = ";".join(tag_data.get("labels", []))
-            tag.aliases = ";".join(tag_data.get("aliases", []))
+                tag.wikipedia_title = tag_data.get("wikipedia_title", None)
+                tag.labels = ";".join(tag_data.get("labels", []))
+                tag.aliases = ";".join(tag_data.get("aliases", []))
 
-            logger.info("Appending {} to {}".format(tag, thesis))
-            thesis.tags.append(tag)
+                logger.info("Appending {} to {}".format(tag, thesis))
+                thesis.tags.append(tag)
 
-        if len(data.get("remove", [])) > 0:
-            logger.info("Removing tags {}".format(
-                ", ".join(data.get("remove"))))
-            thesis.tags = [tag for tag in thesis.tags
-                if tag.title not in data.get("remove")]
+            if len(data.get("remove", [])) > 0:
+                logger.info("Removing tags {}".format(
+                    ", ".join(data.get("remove"))))
+                thesis.tags = [tag for tag in thesis.tags
+                    if tag.title not in data.get("remove")]
 
-        db.session.add(thesis)
-        db.session.commit()
-        return json_response({"data": thesis.to_dict()})
+            db.session.add(thesis)
+            db.session.commit()
+        return json_response({"data": thesis.to_dict(), "error": error})
     return app
 
 

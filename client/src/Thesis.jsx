@@ -9,7 +9,7 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 
-import { API_ROOT, makeJSONRequest, categoryOptions, IS_ADMIN } from './Config';
+import { API_ROOT, makeJSONRequest, categoryOptions, IS_ADMIN, adminKey } from './Config';
 import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
@@ -126,6 +126,8 @@ export default class Thesis extends Component<Props, State> {
       ? {"remove": [this.props.id]}
       : {"add": [this.props.id]};
 
+    data["admin_key"] = adminKey();
+
     fetch(endpoint, makeJSONRequest(data))
       .then(response => response.json())
       .then(response => {
@@ -140,6 +142,7 @@ export default class Thesis extends Component<Props, State> {
     this.setState({ loading: true });
 
     const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
+    data["admin_key"] = adminKey()
     const params = makeJSONRequest(data);
 
     fetch(endpoint, params)
@@ -155,6 +158,7 @@ export default class Thesis extends Component<Props, State> {
   render() {
     const positionLabel = p =>
       <Position
+        key={"PositionLabel-" + this.props.id + p.party}
         toggleOpen={() => this.toggleOpen(p)}
         open={this.state.openText != null
           && p.party === this.state.openText.party}

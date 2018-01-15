@@ -1,3 +1,4 @@
+ADMIN_KEY = 'saltyBeaver'
 DEBUG = True
 SECRET_KEY = "server development secret key"
 SQLALCHEMY_DATABASE_URI = "postgresql://localhost/metawahl"

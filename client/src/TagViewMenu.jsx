@@ -17,7 +17,8 @@ import {
   API_ROOT,
   CATEGORY_NAMES,
   categoryOptions,
-  makeJSONRequest
+  makeJSONRequest,
+  adminKey
 } from './Config';
 import WikidataTagger from './WikidataTagger';
 
@@ -70,6 +71,8 @@ class TagViewMenu extends Component<Props, State> {
     } else {
       data["remove"] = this.props.theses.map(t => t.id);
     }
+
+    data["admin_key"] = adminKey();
 
     this.props.setLoading(true);
     this.setState({
@@ -134,7 +137,16 @@ class TagViewMenu extends Component<Props, State> {
     const slug = this.props.tag.slug;
     const endpoint = `${API_ROOT}/tags/${this.props.tag.slug}`;
 
-    fetch(endpoint, { method: 'delete'})
+    const requestData = {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({admin_key: adminKey()})
+    }
+
+    fetch(endpoint, requestData)
       .then(response => {
         console.log(response);
         this.props.history.push("/tags/?removed=" + slug);
