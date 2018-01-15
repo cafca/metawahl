@@ -13,7 +13,7 @@ const CategoryLabel = ({ slug, remove }: Props) => {
   return <Label
     as='a'
     tag
-    href={"/categories/" + slug}
+    href={"/bereiche/" + slug}
     style={{
       marginRight: ".4em",
       marginBottom: ".4em",
