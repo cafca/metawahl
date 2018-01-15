@@ -10,6 +10,16 @@ export const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'devel
 
 // Tools
 
+export const adminKey = () => {
+  try {
+    return localStorage.getItem("admin_key");
+  } catch(e) {}
+
+  return null;
+}
+
+export const IS_ADMIN = adminKey() != null;
+
 export const makeJSONRequest = (data: {}) => {
   return {
     method: 'post',

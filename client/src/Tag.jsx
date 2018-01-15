@@ -4,6 +4,8 @@ import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
 import type { TagType } from './Types';
 
+import { IS_ADMIN } from './Config';
+
 type Props = {
   data: TagType,
   remove: (string) => mixed
@@ -23,12 +25,14 @@ const Tag = ({ data, remove }: Props) => {
       }}
     >
       {data.title}
-      <Icon name="delete"
-        onClick={e => {
-          e.stopPropagation();
-          e.preventDefault();
-          remove(data.title);
-        }} />
+      { IS_ADMIN &&
+        <Icon name="delete"
+          onClick={e => {
+            e.stopPropagation();
+            e.preventDefault();
+            remove(data.title);
+          }} />
+      }
     </Label>
   } else {
     return <Label
@@ -43,14 +47,16 @@ const Tag = ({ data, remove }: Props) => {
       }}
     >
       {data.title}
-      <Label.Detail>
-        <Icon name="delete"
-        onClick={e => {
-          e.stopPropagation();
-          e.preventDefault();
-          remove(data.title);
-        }} />
-      </Label.Detail>
+      { IS_ADMIN &&
+        <Label.Detail>
+          <Icon name="delete"
+          onClick={e => {
+            e.stopPropagation();
+            e.preventDefault();
+            remove(data.title);
+          }} />
+        </Label.Detail>
+      }
     </Label>
   }
 };

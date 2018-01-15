@@ -9,7 +9,7 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 
-import { API_ROOT, makeJSONRequest, categoryOptions } from './Config';
+import { API_ROOT, makeJSONRequest, categoryOptions, IS_ADMIN } from './Config';
 import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
@@ -227,27 +227,29 @@ export default class Thesis extends Component<Props, State> {
             { categoryElems.length === 0 && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
-      <Menu attached='bottom'>
-        <Dropdown
-          item
-          placeholder='Bereiche wählen'
-          style={{border: "none"}}
-          search
-          selection
-          selectOnNavigation={false}
-          selectOnBlur={false}
-          onChange={this.handleCategory}
-          options={categoryOptions}
-          value={null}
-        />
-        <Menu.Menu
-          position='right'
-          style={{borderLeft: "1px solid #ccc"}}
-        >
-          <WikidataTagger onSelection={this.handleTag} />
-          { this.state.loading && <Loader />}
-        </Menu.Menu>
-      </Menu>
+      { IS_ADMIN &&
+        <Menu attached='bottom'>
+          <Dropdown
+            item
+            placeholder='Bereiche wählen'
+            style={{border: "none"}}
+            search
+            selection
+            selectOnNavigation={false}
+            selectOnBlur={false}
+            onChange={this.handleCategory}
+            options={categoryOptions}
+            value={null}
+          />
+          <Menu.Menu
+            position='right'
+            style={{borderLeft: "1px solid #ccc"}}
+          >
+            <WikidataTagger onSelection={this.handleTag} />
+            { this.state.loading && <Loader />}
+          </Menu.Menu>
+        </Menu>
+      }
     </div>
   }
 }

@@ -6,7 +6,7 @@ import './App.css';
 import Thesis from './Thesis';
 import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
+import { API_ROOT, setTitle, TERRITORY_NAMES, IS_ADMIN } from './Config';
 import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
 import { WikidataLabel, WikipediaLabel } from './DataLabel.jsx'
 

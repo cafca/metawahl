@@ -10,7 +10,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle } from './Config';
+import { API_ROOT, setTitle, IS_ADMIN } from './Config';
 import Thesis from './Thesis';
 import TagViewMenu from './TagViewMenu';
 import {WikidataLabel, WikipediaLabel} from './DataLabel';
@@ -118,12 +118,14 @@ export default class TagView extends Component<RouteProps, State> {
         </Segment>
       }
 
-      <TagViewMenu
-        tag={this.state.tag}
-        theses={this.state.theses}
-        setLoading={(isLoading) => this.setState({loading: isLoading})}
-        refresh={() => this.loadTag()}
-      />
+      { IS_ADMIN &&
+        <TagViewMenu
+          tag={this.state.tag}
+          theses={this.state.theses}
+          setLoading={(isLoading) => this.setState({loading: isLoading})}
+          refresh={() => this.loadTag()}
+        />
+      }
 
       { this.state.theses.length > 0 &&
         <div>

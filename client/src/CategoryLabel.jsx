@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Label, Icon } from 'semantic-ui-react';
-import { CATEGORY_NAMES, CATEGORY_COLORS } from './Config';
+import { CATEGORY_NAMES, CATEGORY_COLORS, IS_ADMIN } from './Config';
 
 type Props = {
   slug: string,
@@ -23,12 +23,14 @@ const CategoryLabel = ({ slug, remove }: Props) => {
     }}
   >
     {CATEGORY_NAMES[slug]}
-    <Icon name="delete"
-      onClick={e => {
-        e.stopPropagation();
-        e.preventDefault();
-        remove(slug);
-      }} />
+    { IS_ADMIN &&
+      <Icon name="delete"
+        onClick={e => {
+          e.stopPropagation();
+          e.preventDefault();
+          remove(slug);
+        }} />
+    }
   </Label>
 };
 
