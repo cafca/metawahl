@@ -13,6 +13,7 @@ from collections import defaultdict
 from flask import Flask, jsonify, request, send_file, g, make_response
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
+from sqlalchemy.exc import OperationalError
 from flask_cors import CORS
 from logger import setup_logger
 from pprint import pformat
@@ -109,7 +110,11 @@ def create_app(config=None):
         """Return a list of all occasions."""
         from models import Occasion
 
-        occasions = Occasion.query.all()
+        try:
+            occasions = Occasion.query.all()
+        except OperationalError as e:
+            logger.error(e)
+            return json_response({"error": "Server Error"})
 
         thesis_data = request.args.get("thesis_data", False)
 
