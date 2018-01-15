@@ -4,7 +4,9 @@
 }
 
 .positionWithText:hover {
-  cursor: pointer,
+  cursor: pointer;
+  border-bottom-width: 2px !important;
+  margin-bottom: 6px;
 }
 
 .positionsOverview {

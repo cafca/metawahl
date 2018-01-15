@@ -17,12 +17,14 @@ const Position = (p) => {
   const hasText = p.text && p.text.length > 0;
   let style = {margin: "0 5px 7px 0"};
   if (hasText) style = {margin: "0 5px 7px 0", borderBottom: "3px solid"};
+
   return <Label
     className={hasText ? "positionWithText" : "position"}
     basic
-    onClick={hasText ? () => p.toggleOpen(p) : null}
+    onClick={() => p.toggleOpen()}
     color={p.value === 1 ? "green" : p.value === -1 ? "red" : "grey"}
-    style={style}>
+    style={style}
+    pointing={p.open ? "below" : false}>
     {p.party}
   </Label>;
 }
@@ -109,6 +111,8 @@ export default class Thesis extends Component<Props, State> {
   }
 
   toggleOpen(position: PositionType) {
+    if (position.text == null || position.text.length === 0) return;
+
     this.setState({ openText: position });
   }
 
@@ -150,26 +154,28 @@ export default class Thesis extends Component<Props, State> {
 
   render() {
     const positionLabel = p =>
-      <Position toggleOpen={() => this.toggleOpen(p)} {...p} />;
+      <Position
+        toggleOpen={() => this.toggleOpen(p)}
+        open={this.state.openText != null
+          && p.party === this.state.openText.party}
+        {...p} />;
+
+    const sortPositions = (a, b) => a.party > b.party;
 
     let proPositions = this.props.positions
-      .sort((a, b) => a.party > b.party)
       .filter(p => p.value === 1)
       .map(positionLabel);
 
     let neutralPositions = this.props.positions
-      .sort((a, b) => a.party > b.party)
       .filter(p => p.value === 0)
       .map(positionLabel);
 
     let contraPositions = this.props.positions
-      .sort((a, b) => a.party > b.party)
       .filter(p => p.value === -1)
       .map(positionLabel);
 
-
     const positionText = this.state.openText == null
-      ? null : <p>Position der Partei \
+      ? null : <p>Position der Partei
         {this.state.openText.party}: {this.state.openText.text}</p>;
 
     const categoryElems = this.state.categories.sort().map(slug =>
