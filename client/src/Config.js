@@ -1,19 +1,14 @@
 // @flow
 
+// Settings
+
 export const DATA_DIR = "/data";
+
 export const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
   ? "http://localhost:9000/api/v1"
   : "http://metawahl.de:9000/api/v1";
 
-export const PAGE_TITLE = "Metawahl ";
-
-export const setTitle = (title?:string) => {
-  if (title != null) {
-    document.title = PAGE_TITLE + title;
-  } else {
-    document.title = PAGE_TITLE;
-  }
-}
+// Tools
 
 export const makeJSONRequest = (data: {}) => {
   return {
@@ -25,6 +20,8 @@ export const makeJSONRequest = (data: {}) => {
     body: JSON.stringify(data)
   };
 }
+
+// Language
 
 export const TERRITORY_NAMES = {
   "badenwuerttemberg": "Baden-Württemberg",
@@ -76,6 +73,22 @@ export const CATEGORY_NAMES = {
   "wissenschaft-forschung-und-technologie": "Wissenschaft, Forschung und Technologie"
 };
 
+export const categoryOptions = Object.keys(CATEGORY_NAMES).map(
+  slug => ({key: slug, value: slug, text: CATEGORY_NAMES[slug]}));
+
+// Cosmetic
+
+export const PAGE_TITLE = "Metawahl ";
+
+export const setTitle = (title?:string) => {
+  if (title != null) {
+    document.title = PAGE_TITLE + title;
+  } else {
+    document.title = PAGE_TITLE;
+  }
+}
+
+
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#dcbc37,a56072,82e8b3,796da0
 const colorPalette = ["#dcbc37", "#d6a63b", "#d09240", "#ca8144", "#c47248", "#be654d", "#b85b52", "#b25659", "#ab5b67", "#a56072", "#ae6562", "#b78164", "#c0a167", "#c8c46a", "#b6cf6e", "#9dd672", "#84dd77", "#7ce38e", "#82e8b3", "#7de2c1", "#79dccf", "#76cfd5", "#73b6cd", "#719fc5", "#6f8abd", "#6e79b4", "#706daa", "#796da0" ]
 
@@ -85,6 +98,3 @@ export const CATEGORY_COLORS = Object.keys(CATEGORY_NAMES)
     prev[cur] = colorPalette[i % colorPalette.length];
     return prev;
   }, {});
-
-export const categoryOptions = Object.keys(CATEGORY_NAMES).map(
-  slug => ({key: slug, value: slug, text: CATEGORY_NAMES[slug]}));
