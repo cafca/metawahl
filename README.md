@@ -81,6 +81,13 @@ Die Umgebungsvariable kann zum Beispiel über die Konfigurationsdatei `uwsgi.ini
 gesetzt werden. Ist sie nicht gesetzt, wird beim Start des Server eine 
 Warnung ausgegeben. 
 
+## Updates
+
+Das Skript `deploy.sample.sh` kann angepasst werden, um eine bestehende 
+Installation von metawahl durch Ausfürung eines einzelnen Skripts zu 
+aktualisieren. Hierbei bleiben alle Daten bestehen, nur die Quellen für
+Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
+
 # Lizenz
 
 Siehe die Datei `./LICENSE`.
