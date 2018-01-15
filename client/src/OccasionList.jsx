@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Header, Icon } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -71,7 +71,14 @@ export default class OccasionList extends Component<RouteProps, State> {
       });
 
     return <div className="occasionList">
-        <h1>Wahlen</h1>
+        <Header as='h1'>
+          <Icon  name='university' />
+          <Header.Content>
+            Metawahl
+            <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland, und öffnen den Raum für kritische Retrospektive.</Header.Subheader>
+          </Header.Content>
+        </Header>
+        <h2>Wahlen</h2>
         <div>
           {occasions}
         </div>
