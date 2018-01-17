@@ -67,8 +67,11 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const thesesElems = this.state.theses.sort((a, b) => a.id > b.id).map(
-      (t, i) => <Thesis key={t.id} {...t} />
+    const thesesElems = this.state.theses.sort((a, b) => a.id > b.id ? 1 : -1).map(
+      (t, i) => <Thesis
+        key={t.id}
+        results={this.state.occasion && this.state.occasion.results}
+        {...t} />
     );
 
     return <div className="occasion">
@@ -91,8 +94,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
       <WikipediaLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
 
       <Header as='h1'>
-        { this.state.occasion == null ? "Loading..."
-          : this.state.occasion.title + " " + new Date(this.state.occasion.date).getFullYear()}
+        { this.state.occasion == null ? " "
+          : this.state.occasion.title}
       </Header>
 
       {this.state.occasion == null &&

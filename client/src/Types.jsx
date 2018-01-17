@@ -27,15 +27,26 @@ export type ThesisType = {
   positions: Array<PositionType>
 };
 
+export type ResultsType = {
+  [party: string]: {
+    votes: number,
+    pct: number,
+    is_seated?: boolean,
+    is_mandated?: boolean,
+    source?: string
+  }
+};
+
 export type OccasionType = {
   id: number,
   date: string,
+  results: ResultsType,
   source: ?string,
   territory: string,
+  theses?: Array<ThesisType>,
   title: string,
   wikidata_id: ?string,
-  wikipedia_title: ?string,
-  theses?: Array<ThesisType>
+  wikipedia_title: ?string
 };
 
 export type OccasionListType = {

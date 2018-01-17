@@ -10,7 +10,7 @@ import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 
 import { API_ROOT, makeJSONRequest, categoryOptions, IS_ADMIN, adminKey } from './Config';
-import type { RouteProps, PositionType, ThesisType, OccasionType, TagType } from './Types';
+import type { RouteProps, PositionType, ThesisType, OccasionType, TagType, ResultsType } from './Types';
 import type { WikidataType } from './WikidataTagger';
 
 const Position = (p) => {
@@ -41,10 +41,16 @@ type State = {
   openText: ?PositionType,
   tags: Array<TagType>,
   categories: Array<string>,
-  loading: boolean
+  loading: boolean,
+  proPositions: Array<PositionType>,
+  neutralPositions: Array<PositionType>,
+  contraPositions: Array<PositionType>
 };
 
-type Props = RouteProps & ThesisType & { occasion?: OccasionType };
+type Props = RouteProps & ThesisType & {
+  occasion?: OccasionType ,
+  results?: ResultsType
+};
 
 export default class Thesis extends Component<Props, State> {
   constructor(props: Props) {
@@ -54,8 +60,37 @@ export default class Thesis extends Component<Props, State> {
       openText: null,
       tags: this.props.tags,
       categories: this.props.categories,
-      loading: false
+      loading: false,
+      proPositions: [],
+      neutralPositions: [],
+      contraPositions: []
     }
+  }
+
+  componentWillMount() {
+    const sortPositions = (a, b) => {
+      if (this.props.results != null && this.props.results[a.party] && this.props.results[b.party]) {
+        if (this.props.results[a.party]["votes"] !== this.props.results[b.party]["votes"]) {
+          return this.props.results[a.party]["votes"] > this.props.results[b.party]["votes"] ? -1 : 1;
+        }
+      }
+
+      return a.party > b.party ? 1 : -1;
+    }
+
+    let proPositions = this.props.positions
+      .filter(p => p.value === 1)
+      .sort(sortPositions)
+
+    let neutralPositions = this.props.positions
+      .filter(p => p.value === 0)
+      .sort(sortPositions)
+
+    let contraPositions = this.props.positions
+      .filter(p => p.value === -1)
+      .sort(sortPositions)
+
+    this.setState({proPositions, neutralPositions, contraPositions});
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -164,17 +199,28 @@ export default class Thesis extends Component<Props, State> {
           && p.party === this.state.openText.party}
         {...p} />;
 
-    const sortPositions = (a, b) => a.party > b.party;
+    const sortPositions = (a, b) => {
+      if (this.props.results != null && this.props.results[a.party] && this.props.results[b.party]) {
+        if (this.props.results[a.party]["votes"] !== this.props.results[b.party]["votes"]) {
+          return this.props.results[a.party]["votes"] > this.props.results[b.party]["votes"] ? -1 : 1;
+        }
+      }
+
+      return a.party > b.party ? 1 : -1;
+    }
 
     let proPositions = this.props.positions
+      .sort(sortPositions)
       .filter(p => p.value === 1)
       .map(positionLabel);
 
     let neutralPositions = this.props.positions
+      .sort(sortPositions)
       .filter(p => p.value === 0)
       .map(positionLabel);
 
     let contraPositions = this.props.positions
+      .sort(sortPositions)
       .filter(p => p.value === -1)
       .map(positionLabel);
 
