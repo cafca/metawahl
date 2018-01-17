@@ -33,7 +33,7 @@ const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
   occasion != null &&
     <p style={{fontVariant: "small-caps"}}>
       <Link to={`/wahlen/${occasion.territory}/${occasion.id}`}>
-        {occasion.title} {new Date(occasion.date).getFullYear()}
+        {occasion.title}
       </Link>
     </p>;
 
