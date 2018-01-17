@@ -86,17 +86,25 @@ class Occasion(db.Model):
         rv = {
             "id": self.id,
             "date": self.date.isoformat(),
+            "source": self.source,
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
-            "wikipedia_title": self.wikipedia_title,
-            "source": self.source
+            "wikipedia_title": self.wikipedia_title
         }
 
         if thesis_data:
             rv["theses"] = dict()
             for thesis in self.theses:
                 rv["theses"][thesis.id] = thesis.text
+
+        rv["results"] = dict()
+        for r in self.results:
+            rv["results"][r.party_name] = {
+                "votes": r.votes,
+                "pct": r.pct
+            }
+
         return rv
 
 
@@ -145,6 +153,26 @@ class Position(db.Model):
             rv["text"] = self.text
 
         return rv
+
+
+class Result(db.Model):
+    """Represent an official result from an election for a party."""
+    id = db.Column(db.Integer, primary_key=True)
+    votes = db.Column(db.Integer, nullable=False)
+    pct = db.Column(db.Float, nullable=False)
+    is_seated = db.Column(db.Boolean, default=False)
+    is_mandated = db.Column(db.Boolean, default=False)
+    source = db.Column(db.String(256), nullable=True)
+
+    party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
+        nullable=False)
+    party = db.relationship('Party', backref=db.backref('results',
+        lazy=True))
+
+    occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
+        nullable=False)
+    occasion = db.relationship('Occasion',
+        backref=db.backref('results', lazy=False))
 
 
 tags = db.Table('tags',

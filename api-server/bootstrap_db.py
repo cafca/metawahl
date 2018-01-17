@@ -9,7 +9,7 @@ import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
-from models import Occasion, Thesis, Position, Party, Tag, Category
+from models import Occasion, Thesis, Position, Party, Tag, Category, Result
 from main import logger, create_app, db
 
 DATADIR = os.path.join("..", "qual-o-mat-data")
@@ -119,10 +119,12 @@ def load_occasions():
             splitPos = dataset["overview"]["info"].rfind("/") + 1
             wikipedia_title = dataset["overview"]["info"][splitPos:].replace("_", " ")
 
+        dt = dateutil.parser.parse(dataset["overview"]["date"])
+
         occasion = Occasion(
             id=OCCASION_IDS[occasion_dir],
-            title=dataset["overview"]["title"],
-            date=dateutil.parser.parse(dataset["overview"]["date"]),
+            title="{} {}".format(dataset["overview"]["title"], dt.year),
+            date=dt,
             source=dataset["overview"]["data_source"],
             territory=territory,
             wikipedia_title=wikipedia_title
@@ -248,12 +250,113 @@ def load_categories():
         yield category
 
 
+def load_wahlergebnisse():
+    """Load Wahlergebnisse from wahlergebnisse submodule."""
+
+    try:
+        with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
+            wahlergebnisse = json.load(f)
+    except FileNotFoundError:
+        logger.warning("wahlergebnisse/wahlergebnisse.json not found. Is " +
+            "the submodule initialised?")
+        quit()
+
+    return wahlergebnisse
+
+
+def make_substitutions():
+    """Create a dict of substitutions for parties that have a slightly
+    different name in vote results and wahl o mat."""
+
+    wahlergebnisse = load_wahlergebnisse()
+
+    with open("substitutions.json") as f:
+        substitutions = json.load(f)
+
+    substitutions = defaultdict(list, substitutions)
+
+    we = dict()
+    for w in wahlergebnisse:
+        d = dateutil.parser.parse(w["date"]).date()
+        we[d] = w
+
+    occasions = db.session.query(Occasion).order_by(Occasion.title).all()
+    for i, occ in enumerate(occasions):
+        print(occ.title)
+        print("{} of {}".format(i + 1, len(occasions)))
+        d = occ.date.date()
+        parties = dict()
+        for t in occ.theses:
+            for pos in t.positions:
+                parties[pos.party.name] = pos
+
+        for p in parties.keys():
+            found = False
+
+            for p1 in ([p] + substitutions[p]):
+                if p1.upper() in map(str.upper, we[d]["results"].keys()):
+                    found = True
+
+            if found is False:
+                print("\n".join("{}: {}".format(i, n) for i, n in enumerate(we[d]["results"].keys())))
+
+                choice = int(input("Welche Partei ist {}?\n{}\n\n".format(p, parties[p].text)))
+
+                if choice != -1:
+                    substitutions[p].append(list(we[d]["results"].keys())[choice])
+
+        with open("substitutions.json", "w") as f:
+            json.dump(substitutions, f, indent=2, ensure_ascii=False)
+
+
+def load_results():
+    """Match voting records to the existing occasion datasets."""
+    logger.info("Matching voting results...")
+
+    with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
+        result_data = json.load(f)
+    with open("./substitutions.json") as f:
+        substitutions = json.load(f)
+
+    for occ in db.session.query(Occasion).all():
+        dt = occ.date.date()
+        occ_results = [o for o in result_data
+            if o["territory"].lower().startswith(occ.territory.lower()[:2])
+                and dateutil.parser.parse(o["date"]).date() == dt]
+
+        if len(occ_results) == 0:
+            logger.error("Didn't find results for {}".format(occ))
+        else:
+            res = occ_results[0]
+            parties = set([p.party for p in occ.theses[0].positions])
+            for p in parties:
+                options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
+                matches = [result for name, result in res["results"].items() if name.lower() in options]
+
+                if len(matches) == 0:
+                    if p.name == "DIE LINKE":
+                        import pdb; pdb.set_trace()
+                    logger.warning("No vote count for {} in {}".format(p, occ))
+                else:
+                    match = matches[0]
+                    yield Result(
+                        occasion=occ,
+                        party=p,
+                        votes=match["votes"],
+                        pct=match["pct"],
+                        source=res["url"]
+                    )
+
+
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         for obj in load_occasions():
             db.session.add(obj)
             logger.info("Added {}".format(obj))
+
+        for result in load_results():
+            db.session.add(result)
 
         for tag in load_tags():
             db.session.add(tag)
@@ -263,4 +366,4 @@ if __name__ == '__main__':
 
         logger.info("Committing session to disk...")
         db.session.commit()
-        logger.info("OK")
+        logger.info("Done")
