@@ -68,13 +68,23 @@ export default class Thesis extends Component<Props, State> {
   }
 
   componentWillMount() {
+    this.sortPositions();
+  }
+
+  sortPositions() {
+    const res = this.props.results;
     const sortPositions = (a, b) => {
-      if (this.props.results != null && this.props.results[a.party] && this.props.results[b.party]) {
-        if (this.props.results[a.party]["votes"] !== this.props.results[b.party]["votes"]) {
-          return this.props.results[a.party]["votes"] > this.props.results[b.party]["votes"] ? -1 : 1;
+      if (res != null) {
+        // Sort last if vote count unknown
+        if (res[a.party] == null) return 1;
+        if (res[b.party] == null) return -1;
+
+        if (res[a.party]["votes"] !== res[b.party]["votes"]) {
+          return res[a.party]["votes"] > res[b.party]["votes"] ? -1 : 1;
         }
       }
 
+      // Sort by name otherwise
       return a.party > b.party ? 1 : -1;
     }
 
@@ -98,6 +108,8 @@ export default class Thesis extends Component<Props, State> {
       tags: nextProps.tags,
       categories: nextProps.categories
     });
+
+    if (nextProps.results != this.props.results) this.sortPositions();
   }
 
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
@@ -199,30 +211,9 @@ export default class Thesis extends Component<Props, State> {
           && p.party === this.state.openText.party}
         {...p} />;
 
-    const sortPositions = (a, b) => {
-      if (this.props.results != null && this.props.results[a.party] && this.props.results[b.party]) {
-        if (this.props.results[a.party]["votes"] !== this.props.results[b.party]["votes"]) {
-          return this.props.results[a.party]["votes"] > this.props.results[b.party]["votes"] ? -1 : 1;
-        }
-      }
-
-      return a.party > b.party ? 1 : -1;
-    }
-
-    let proPositions = this.props.positions
-      .sort(sortPositions)
-      .filter(p => p.value === 1)
-      .map(positionLabel);
-
-    let neutralPositions = this.props.positions
-      .sort(sortPositions)
-      .filter(p => p.value === 0)
-      .map(positionLabel);
-
-    let contraPositions = this.props.positions
-      .sort(sortPositions)
-      .filter(p => p.value === -1)
-      .map(positionLabel);
+    let proPositions = this.state.proPositions.map(positionLabel);
+    let neutralPositions = this.state.neutralPositions.map(positionLabel);
+    let contraPositions = this.state.contraPositions.map(positionLabel);
 
     const positionText = this.state.openText == null
       ? null : <p>Position der Partei
