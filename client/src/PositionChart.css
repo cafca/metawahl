@@ -2,6 +2,13 @@
   border: 1px solid #999;
   margin: 0.3em 0;
   cursor: pointer;
+  background: repeating-linear-gradient(
+    -55deg,
+    #222,
+    #222 5px,
+    #444 5px,
+    #444 10px
+  );
 }
 
 .rect .hovered {

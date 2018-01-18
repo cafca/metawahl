@@ -38,8 +38,8 @@ import type { WikidataType } from './WikidataTagger';
 
 const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
   occasion != null &&
-    <p style={{fontVariant: "small-caps", marginBottom: 0}}>
-      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`}>
+    <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
+      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "#666"}}>
         {occasion.title}
       </Link>
     </p>;
@@ -249,16 +249,20 @@ export default class Thesis extends Component<Props, State> {
       />);
 
     const valueNames = {
-      "-1": "Pro",
+      "-1": "Contra",
       "0": "Neutral",
-      "1": "Contra"
+      "1": "Pro"
     };
 
     return <div style={{marginBottom: "2em"}}>
-      <Header attached="top" size="large">
+      <Header attached="top" size="huge">
         <Icon
           name={this.state.voterOpinion}
           style={{float: "right"}}/>
+
+        { this.props.linkOccasion &&
+          <OccasionSubtitle occasion={this.props.occasion} />
+        }
 
         {this.props.text}
 
@@ -270,10 +274,6 @@ export default class Thesis extends Component<Props, State> {
       </Header>
 
       <Segment id={this.props.id} attached>
-          { this.props.linkOccasion &&
-            <OccasionSubtitle occasion={this.props.occasion} />
-          }
-
         <PositionChart
           positions={this.props.positions}
           results={this.props.occasion.results}
