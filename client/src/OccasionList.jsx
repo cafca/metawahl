@@ -75,7 +75,7 @@ export default class OccasionList extends Component<RouteProps, State> {
           <Icon  name='university' />
           <Header.Content>
             Metawahl
-            <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland, und öffnen den Raum für kritische Retrospektive.</Header.Subheader>
+            <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland und fordern kritische Retrospektive.</Header.Subheader>
           </Header.Content>
         </Header>
         <h2>Wahlen</h2>
