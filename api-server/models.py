@@ -86,6 +86,7 @@ class Occasion(db.Model):
         rv = {
             "id": self.id,
             "date": self.date.isoformat(),
+            "results": self.result_dict(),
             "source": self.source,
             "territory": self.territory,
             "title": self.title,
@@ -98,9 +99,12 @@ class Occasion(db.Model):
             for thesis in self.theses:
                 rv["theses"][thesis.id] = thesis.text
 
-        rv["results"] = dict()
+        return rv
+
+    def result_dict(self):
+        rv = dict()
         for r in self.results:
-            rv["results"][r.party_name] = {
+            rv[r.party_name] = {
                 "votes": r.votes,
                 "pct": r.pct
             }

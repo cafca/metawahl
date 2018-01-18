@@ -6,7 +6,7 @@ import './App.css';
 import Thesis from './Thesis';
 import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle, TERRITORY_NAMES, IS_ADMIN } from './Config';
+import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
 import { WikidataLabel, WikipediaLabel } from './DataLabel.jsx'
 
@@ -70,7 +70,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
     const thesesElems = this.state.theses.sort((a, b) => a.id > b.id ? 1 : -1).map(
       (t, i) => <Thesis
         key={t.id}
-        results={this.state.occasion && this.state.occasion.results}
+        occasion={this.state.occasion}
         {...t} />
     );
 

@@ -3,7 +3,8 @@ export const ErrorState = "loading" | "success" | "error";
 export type PositionType = {
   value: -1 | 0 | 1,
   party: string,
-  text?: string
+  text?: string,
+  pct?: number
 };
 
 export type TagType = {

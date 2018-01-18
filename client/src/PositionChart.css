@@ -1,0 +1,32 @@
+.positionChart {
+  border: 1px solid #999;
+  margin: 0.3em 0;
+  cursor: pointer;
+}
+
+.rect .hovered {
+  fill: #2185d0;
+}
+
+.rect-pro {
+  fill: white;
+}
+.rect-neutral {
+  fill: gray;
+}
+.rect-contra {
+  fill: black;
+}
+
+.partyNames {
+  line-height: 1.2;
+}
+
+.partyNames span {
+  padding: 0 0.3em;
+  font-size: 0.9em;
+}
+
+.partyNames span:hover {
+  cursor: pointer;
+}

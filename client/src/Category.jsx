@@ -60,6 +60,7 @@ export default class Category extends React.Component<RouteProps, State> {
         .map(thesis => <Thesis
           key={thesis.id}
           occasion={this.state.occasions[thesis.occasion_id]}
+          linkOccasion={true}
           {...thesis} />
         )
       : null;

@@ -4,34 +4,41 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Menu, Dropdown, Loader, Label, Icon } from 'semantic-ui-react';
+import {
+  Segment,
+  Menu,
+  Dropdown,
+  Loader,
+  Icon,
+  Header,
+  Message
+} from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
+import PositionChart from './PositionChart';
 
-import { API_ROOT, makeJSONRequest, categoryOptions, IS_ADMIN, adminKey } from './Config';
-import type { RouteProps, PositionType, ThesisType, OccasionType, TagType, ResultsType } from './Types';
+import {
+  API_ROOT,
+  makeJSONRequest,
+  categoryOptions,
+  IS_ADMIN,
+  adminKey
+  } from './Config';
+
+import type {
+  RouteProps,
+  PositionType,
+  ThesisType,
+  OccasionType,
+  TagType
+} from './Types';
+
 import type { WikidataType } from './WikidataTagger';
-
-const Position = (p) => {
-  const hasText = p.text && p.text.length > 0;
-  let style = {margin: "0 5px 7px 0"};
-  if (hasText) style = {margin: "0 5px 7px 0", borderBottom: "3px solid"};
-
-  return <Label
-    className={hasText ? "positionWithText" : "position"}
-    basic
-    onClick={() => p.toggleOpen()}
-    color={p.value === 1 ? "green" : p.value === -1 ? "red" : "grey"}
-    style={style}
-    pointing={p.open ? "below" : false}>
-    {p.party}
-  </Label>;
-}
 
 const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
   occasion != null &&
-    <p style={{fontVariant: "small-caps"}}>
+    <p style={{fontVariant: "small-caps", marginBottom: 0}}>
       <Link to={`/wahlen/${occasion.territory}/${occasion.id}`}>
         {occasion.title}
       </Link>
@@ -44,12 +51,13 @@ type State = {
   loading: boolean,
   proPositions: Array<PositionType>,
   neutralPositions: Array<PositionType>,
-  contraPositions: Array<PositionType>
+  contraPositions: Array<PositionType>,
+  voterOpinion: "smile" | "meh" | "frown"
 };
 
 type Props = RouteProps & ThesisType & {
-  occasion?: OccasionType ,
-  results?: ResultsType
+  occasion?: OccasionType,
+  linkOccasion?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -63,44 +71,13 @@ export default class Thesis extends Component<Props, State> {
       loading: false,
       proPositions: [],
       neutralPositions: [],
-      contraPositions: []
+      contraPositions: [],
+      voterOpinion: "meh"
     }
   }
 
   componentWillMount() {
     this.sortPositions();
-  }
-
-  sortPositions() {
-    const res = this.props.results;
-    const sortPositions = (a, b) => {
-      if (res != null) {
-        // Sort last if vote count unknown
-        if (res[a.party] == null) return 1;
-        if (res[b.party] == null) return -1;
-
-        if (res[a.party]["votes"] !== res[b.party]["votes"]) {
-          return res[a.party]["votes"] > res[b.party]["votes"] ? -1 : 1;
-        }
-      }
-
-      // Sort by name otherwise
-      return a.party > b.party ? 1 : -1;
-    }
-
-    let proPositions = this.props.positions
-      .filter(p => p.value === 1)
-      .sort(sortPositions)
-
-    let neutralPositions = this.props.positions
-      .filter(p => p.value === 0)
-      .sort(sortPositions)
-
-    let contraPositions = this.props.positions
-      .filter(p => p.value === -1)
-      .sort(sortPositions)
-
-    this.setState({proPositions, neutralPositions, contraPositions});
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -109,7 +86,10 @@ export default class Thesis extends Component<Props, State> {
       categories: nextProps.categories
     });
 
-    if (nextProps.results != this.props.results) this.sortPositions();
+    if (nextProps.results !== this.props.results) {
+      this.sortPositions();
+      this.updateVoterOpinion();
+    }
   }
 
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
@@ -185,7 +165,7 @@ export default class Thesis extends Component<Props, State> {
       });
   }
 
-  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType> }) {
+  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType>, admin_key?: string }) {
     this.setState({ loading: true });
 
     const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
@@ -202,23 +182,58 @@ export default class Thesis extends Component<Props, State> {
       });
   }
 
+  sortPositions() {
+    const res = this.props.occasion.results;
+    const sortPositions = (a, b) => {
+      if (res != null) {
+        // Sort last if vote count unknown
+        if (res[a.party] == null) return 1;
+        if (res[b.party] == null) return -1;
+
+        if (res[a.party]["votes"] !== res[b.party]["votes"]) {
+          return res[a.party]["votes"] > res[b.party]["votes"] ? -1 : 1;
+        }
+      }
+
+      // Sort by name otherwise
+      return a.party > b.party ? 1 : -1;
+    }
+
+    let proPositions = this.props.positions
+      .filter(p => p.value === 1)
+      .sort(sortPositions)
+
+    let neutralPositions = this.props.positions
+      .filter(p => p.value === 0)
+      .sort(sortPositions)
+
+    let contraPositions = this.props.positions
+      .filter(p => p.value === -1)
+      .sort(sortPositions)
+
+    this.setState({proPositions, neutralPositions, contraPositions},
+      this.updateVoterOpinion);
+  }
+
+  updateVoterOpinion() {
+    const countVotes = (prev, cur) =>
+      this.props.occasion.results[cur["party"]] == null
+        ? prev
+        : prev + this.props.occasion.results[cur["party"]]["pct"];
+
+    let voterOpinion;
+    if (this.state.proPositions.reduce(countVotes, 0.0) > 50.0) {
+      voterOpinion = "smile";
+    } else if (this.state.contraPositions.reduce(countVotes, 0.0) < 50.0) {
+      voterOpinion = "meh";
+    } else {
+      voterOpinion = "frown";
+    }
+
+    this.setState({voterOpinion});
+  }
+
   render() {
-    const positionLabel = p =>
-      <Position
-        key={"PositionLabel-" + this.props.id + p.party}
-        toggleOpen={() => this.toggleOpen(p)}
-        open={this.state.openText != null
-          && p.party === this.state.openText.party}
-        {...p} />;
-
-    let proPositions = this.state.proPositions.map(positionLabel);
-    let neutralPositions = this.state.neutralPositions.map(positionLabel);
-    let contraPositions = this.state.contraPositions.map(positionLabel);
-
-    const positionText = this.state.openText == null
-      ? null : <p>Position der Partei
-        {this.state.openText.party}: {this.state.openText.text}</p>;
-
     const categoryElems = this.state.categories.sort().map(slug =>
       <CategoryLabel
         slug={slug}
@@ -233,39 +248,53 @@ export default class Thesis extends Component<Props, State> {
         remove={this.handleTagRemove}
       />);
 
-    return <div style={{marginBottom: "1em"}}>
-      <Segment id={this.props.id} attached='top'>
-        {/* Show title if available */}
-        {this.props.title && this.props.title.length > 0 &&
-          <div>
-            <h2>{this.props.title}</h2>
+    const valueNames = {
+      "-1": "Pro",
+      "0": "Neutral",
+      "1": "Contra"
+    };
+
+    return <div style={{marginBottom: "2em"}}>
+      <Header attached="top" size="large">
+        <Icon
+          name={this.state.voterOpinion}
+          style={{float: "right"}}/>
+
+        {this.props.text}
+
+        {(this.props.title != null && this.props.title.length > 0) &&
+          <Header.Subheader>
+            {this.props.title}
+          </Header.Subheader>
+        }
+      </Header>
+
+      <Segment id={this.props.id} attached>
+          { this.props.linkOccasion &&
             <OccasionSubtitle occasion={this.props.occasion} />
-            <h4>{this.props.text}</h4>
-          </div>
+          }
+
+        <PositionChart
+          positions={this.props.positions}
+          results={this.props.occasion.results}
+          toggleOpen={this.toggleOpen} />
+
+        { this.state.openText !== null &&
+          <Message
+            content={this.state.openText.text}
+            floating
+            header={this.state.openText.party + " - " + valueNames[this.state.openText.value]} />
         }
 
-        {/* Alternative: Use thesis text as title*/}
-        {(this.props.title == null || this.props.title.length === 0) &&
-          <div>
-            <h2><span style={{marginLeft: 5}}>{this.props.text}</span></h2>
-            <OccasionSubtitle occasion={this.props.occasion} />
-          </div>
-        }
+      </Segment>
 
-        <div className="positionsOverview">
-          {proPositions}
-          {neutralPositions}
-          {contraPositions}
-        </div>
-
-        {positionText}
-
-        <div>
+      <Segment attached={IS_ADMIN ? true : 'bottom'}>
+        <div style={{marginBottom: "-0.4em"}}>
             { categoryElems }
             { tagElems }
             <br />
-            { tagElems.length === 0 && " Noch keine Tags gewählt. "}
-            { categoryElems.length === 0 && " Noch keine Kategorie gewählt. "}
+            { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
+            { categoryElems.length === 0 && IS_ADMIN && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
       { IS_ADMIN &&
