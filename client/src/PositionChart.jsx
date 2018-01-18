@@ -72,20 +72,19 @@ export default class PositionChart extends React.Component<Props, State> {
   }
 
   render() {
-    const results = this.props.results;
-    const hovered = this.state.hovered;
+    const t = this;
 
     // Place rectangles from left to right, counting the used space
     // for absolute positioning
     let usedPct = 0.0;
 
     const Rect = ({party,value,toggleOpen}) => {
-      const result = results[party] && results[party]["pct"];
+      const result = t.props.results[party] && t.props.results[party]["pct"];
       usedPct += result || 0;
 
       // Changing SVG classnames with react is buggy, therefore this inline
       // style for a hover effect
-      const style = hovered === party ? {fill: accentColor} : null;
+      const style = t.state.hovered === party ? {fill: accentColor} : null;
       return <rect
         className={"rect rect-" + valueNames[value.toString()]}
         height="100%"
@@ -110,7 +109,8 @@ export default class PositionChart extends React.Component<Props, State> {
         key={"label-" + pos.party}
         onMouseOver={() => this.handleHover(pos.party)}
         onMouseOut={() => this.handleHover(undefined)}
-        style={hovered === pos.party ? {backgroundColor: "black", color: "white"} : null}
+        onClick={() => this.props.toggleOpen(pos)}
+        style={t.state.hovered === pos.party ? {backgroundColor: "black", color: "white"} : null}
       >{pos.party}</span>);
 
     return <div>
