@@ -3,4 +3,4 @@
 	url = https://github.com/gockelhahn/qual-o-mat-data
 [submodule "wahlergebnisse"]
 	path = wahlergebnisse
-	url = git@github.com:ciex/wahlergebnisse.git
+        url = https://github.com/ciex/wahlergebnisse.git
