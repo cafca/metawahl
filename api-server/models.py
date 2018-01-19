@@ -244,11 +244,17 @@ class Thesis(db.Model):
     occasion = db.relationship('Occasion',
         backref=db.backref('theses', lazy=True))
 
-    tags = db.relationship('Tag', secondary=tags, lazy=False,
-       backref=db.backref('theses'))
+    tags = db.relationship('Tag',
+        secondary=tags,
+        lazy=False,
+        backref=db.backref('theses', order_by=desc(tags.c.thesis_id)))
 
-    categories = db.relationship('Category', secondary=categories, lazy=False,
-       backref=db.backref('theses', order_by=desc(categories.c.thesis_id)), order_by='Category.name')
+    categories = db.relationship('Category',
+        secondary=categories,
+        lazy=False,
+        backref=db.backref('theses',
+            order_by=desc(categories.c.thesis_id)),
+        order_by='Category.name')
 
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
