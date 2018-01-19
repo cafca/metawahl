@@ -113,6 +113,7 @@ class TagViewMenu extends Component<Props, State> {
     this.setState({ confirmTagOpen: false, selectedTag: null });
 
     const data = add ? {add: [tag, ]} : {remove: [tag.title, ]};
+    data["admin_key"] = adminKey();
     const requests = this.props.theses.map(thesis =>
       fetch(
         `${API_ROOT}/thesis/${thesis.id}/tags/`,
