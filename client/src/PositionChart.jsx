@@ -80,6 +80,7 @@ export default class PositionChart extends React.Component<Props, State> {
 
     const Rect = ({party,value,toggleOpen}) => {
       const result = t.props.results[party] && t.props.results[party]["pct"];
+      if (result == null) { console.log("No vote count for " + party); return null;}
       usedPct += result || 0;
 
       // Changing SVG classnames with react is buggy, therefore this inline
