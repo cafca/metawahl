@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Loader, Menu, Segment, Icon, Header, Button } from 'semantic-ui-react';
+import { Checkbox, Loader, Menu, Segment, Icon, Header, Button } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -15,6 +15,7 @@ type sorting = "count" | "name";
 type State = {
   tags: Array<TagType>,
   tagsState: ErrorState,
+  showSingleTags: boolean,
   sortBy: sorting
 };
 
@@ -24,6 +25,7 @@ export default class TagList extends Component<RouteProps, State> {
     autoBind(this);
     const savedTags = loadFromCache('taglist');
     this.state = {
+      showSingleTags: false,
       tags: savedTags != null ? JSON.parse(savedTags) : [],
       tagsState: savedTags != null ? "success" : "loading",
       sortBy: "name"
@@ -33,10 +35,6 @@ export default class TagList extends Component<RouteProps, State> {
   componentDidMount() {
     this.loadTags();
     setTitle('Tags');
-  }
-
-  sortBy(method: sorting) {
-    this.setState({sortBy: method});
   }
 
   loadTags(): void {
@@ -62,6 +60,14 @@ export default class TagList extends Component<RouteProps, State> {
     );
   }
 
+  sortBy(method: sorting) {
+    this.setState({sortBy: method});
+  }
+
+  toggleSingleTags(e: SyntheticInputEvent<HTMLInputElement>, { checked }: { checked: boolean }) {
+    this.setState({showSingleTags: checked});
+  }
+
   render() {
     // TODO: Protect against infinite recursion
     const sortByName = (tagA, tagB) => {
@@ -77,6 +83,7 @@ export default class TagList extends Component<RouteProps, State> {
     };
 
     const tags = this.state.tags
+      .filter(t => this.state.showSingleTags === true ? true : t.thesis_count > 1)
       .sort(this.state.sortBy === "name" ? sortByName : sortByThesisCount)
       .map((tag, i) => <li key={"Tag-" + i}>
         <Link to={"/tags/" + tag.slug}>{tag.title} ({tag.thesis_count})</Link>
@@ -114,9 +121,16 @@ export default class TagList extends Component<RouteProps, State> {
           <Loader active={this.state.tagsState === "loading"}
             inline='centered' />
           { tags.length > 0 &&
-            <ul>
-            {tags}
-            </ul>
+            <div>
+              <Checkbox
+                label="Zeige Tags mit nur einer These"
+                onChange={this.toggleSingleTags}
+                toggle
+              />
+              <ul>
+              {tags}
+              </ul>
+            </div>
           }
         </Segment>
       </div>;
