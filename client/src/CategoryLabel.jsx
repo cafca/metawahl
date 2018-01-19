@@ -12,7 +12,7 @@ type Props = {
 const CategoryLabel = ({ slug, remove }: Props) => {
   return <Label
     as='a'
-    tag
+    basic
     href={"/bereiche/" + slug}
     style={{
       marginRight: ".4em",

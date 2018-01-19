@@ -36,14 +36,15 @@ const Tag = ({ data, remove }: Props) => {
     </Label>
   } else {
     return <Label
+      basic
       key={data.wikidata_id}
       as='a'
-      tag
       href={"/tags/" + data.slug}
-      color='blue'
       style={{
         marginRight: ".4em",
-        marginBottom: ".4em"
+        marginBottom: ".4em",
+        borderColor: "#2e34a3",
+        color: "#2e34a3"
       }}
     >
       {data.title}

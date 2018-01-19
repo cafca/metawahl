@@ -100,11 +100,12 @@ export const setTitle = (title?:string) => {
 
 
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#dcbc37,a56072,82e8b3,796da0
-const colorPalette = ["#dcbc37", "#d6a63b", "#d09240", "#ca8144", "#c47248", "#be654d", "#b85b52", "#b25659", "#ab5b67", "#a56072", "#ae6562", "#b78164", "#c0a167", "#c8c46a", "#b6cf6e", "#9dd672", "#84dd77", "#7ce38e", "#82e8b3", "#7de2c1", "#79dccf", "#76cfd5", "#73b6cd", "#719fc5", "#6f8abd", "#6e79b4", "#706daa", "#796da0" ]
+// http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#f1376c,2d339f
+const COLOR_PALETTE = ["#f1376c", "#eb376e", "#e63770", "#e03773", "#db3775", "#d53777", "#cf3779", "#ca377b", "#c4377d", "#be377f", "#b83781", "#b23783", "#ac3785", "#a63687", "#a03689", "#99368b", "#93368d", "#8c368f", "#853691", "#7e3693", "#773595", "#6f3597", "#673599", "#5e359b", "#55359d", "#4a349f", "#3e34a1", "#2e34a3"];
 
 // Assign a color to each category
 export const CATEGORY_COLORS = Object.keys(CATEGORY_NAMES)
   .reduce((prev, cur, i) => {
-    prev[cur] = colorPalette[i % colorPalette.length];
+    prev[cur] = COLOR_PALETTE[i % COLOR_PALETTE.length];
     return prev;
   }, {});
