@@ -98,6 +98,7 @@ export const setTitle = (title?:string) => {
   }
 }
 
+export const THESES_PER_PAGE = 5;
 
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#dcbc37,a56072,82e8b3,796da0
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#f1376c,2d339f

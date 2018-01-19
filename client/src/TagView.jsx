@@ -7,10 +7,11 @@ import {
   Header,
   Icon,
   Loader,
+  Pagination,
   Segment
 } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle, IS_ADMIN } from './Config';
+import { API_ROOT, setTitle, IS_ADMIN, THESES_PER_PAGE } from './Config';
 import Thesis from './Thesis';
 import TagViewMenu from './TagViewMenu';
 import {WikidataLabel, WikipediaLabel} from './DataLabel';
@@ -18,11 +19,12 @@ import {WikidataLabel, WikipediaLabel} from './DataLabel';
 import type { TagType, ThesisType, OccasionType, RouteProps, ErrorState } from './Types';
 
 type State = {
-  tag: ?TagType,
-  theses: Array<ThesisType>,
   occasions: { [occasionNum: number]: OccasionType},
   loading: boolean,
-  tagState: ErrorState
+  page: number,
+  tag: ?TagType,
+  tagState: ErrorState,
+  theses: Array<ThesisType>
 };
 
 export default class TagView extends Component<RouteProps, State> {
@@ -33,16 +35,26 @@ export default class TagView extends Component<RouteProps, State> {
     autoBind(this);
     this.slug = this.props.match.params.tag;
     this.state = {
-      tag: null,
-      theses: [],
-      occasions: {},
       loading: false,
-      tagState: "loading"
+      occasions: {},
+      page: parseInt(this.props.match.params.page, 10) || 1,
+      tag: null,
+      tagState: "loading",
+      theses: []
     }
   }
 
   componentDidMount() {
     this.loadTag();
+  }
+
+  handlePaginationChange(
+    e: SyntheticInputEvent<HTMLInputElement>,
+    { activePage }: { activePage: number }
+  ) {
+    this.setState({ page: activePage });
+    this.props.history.push(
+      "/tags/" + this.props.match.params.tag + "/" + activePage);
   }
 
   loadTag(): void {
@@ -75,13 +87,20 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   render() {
-    const theses = this.state.tagState === "success" && this.state.theses.sort().map(
-      (thesis, i) => <Thesis
-        key={"Thesis-" + i}
-        occasion={this.state.occasions[thesis.occasion_id]}
-        linkOccasion={true}
-        {...thesis} />
-    );
+    const startPos = (this.state.page - 1) * THESES_PER_PAGE;
+    const endPos = startPos + THESES_PER_PAGE;
+
+    const theses = this.state.tagState === "success" && this.state.theses
+      .sort((t1, t2) => t2.occasion_id - t1.occasion_id)
+      .slice(startPos, endPos)
+      .map((thesis, i) =>
+        <Thesis
+          key={"Thesis-" + i}
+          occasion={this.state.occasions[thesis.occasion_id]}
+          linkOccasion={true}
+          {...thesis}
+        />
+      );
 
     return <div>
       <Loader active={this.state.tagState === "loading"} />
@@ -131,6 +150,14 @@ export default class TagView extends Component<RouteProps, State> {
       { this.state.theses.length > 0 &&
         <div>
           {theses}
+
+          <Pagination
+            activePage={this.state.page}
+            onPageChange={this.handlePaginationChange}
+            prevItem={null}
+            nextItem={null}
+            totalPages={Math.ceil(this.state.theses.length / THESES_PER_PAGE)}
+          />
         </div>
       }
     </div>;

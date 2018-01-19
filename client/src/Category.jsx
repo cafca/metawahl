@@ -4,13 +4,13 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
-import { API_ROOT, setTitle } from './Config';
+import { API_ROOT, setTitle, THESES_PER_PAGE } from './Config';
 import { loadFromCache } from './App';
-import { Header, Loader, Breadcrumb } from 'semantic-ui-react';
+import { Header, Loader, Breadcrumb, Pagination } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 
-type State = (CategoryType & { occasions: {} }) | {};
+type State = (CategoryType & { occasions: {}, page: number }) | {page: number};
 
 export default class Category extends React.Component<RouteProps, State> {
   categorySlug : string;
@@ -19,7 +19,9 @@ export default class Category extends React.Component<RouteProps, State> {
     super(props);
     autoBind(this);
     this.categorySlug = props.match.params.category;
-    this.state = {};
+    this.state = {
+      page: this.props.match.params.page || 1
+    };
   }
 
   componentDidMount() {
@@ -39,6 +41,15 @@ export default class Category extends React.Component<RouteProps, State> {
     }
   }
 
+  handlePaginationChange(
+    e: SyntheticInputEvent<HTMLInputElement>,
+    { activePage }: { activePage: number }
+  ) {
+    this.setState({ page: activePage });
+    this.props.history.push(
+      "/bereiche/" + this.props.match.params.category + "/" + activePage);
+  }
+
   loadCategory() {
     const endpoint = `${API_ROOT}/categories/${this.categorySlug}`;
     fetch(endpoint)
@@ -54,9 +65,13 @@ export default class Category extends React.Component<RouteProps, State> {
       && ( this.state.theses.length === 0
         || typeof this.state.theses[0] !== "string");
 
+    const startPos = (this.state.page - 1) * THESES_PER_PAGE;
+    const endPos = startPos + THESES_PER_PAGE;
+
     const thesesElems = isCategoryFullyLoaded
       ? this.state.theses
-        .sort((t1, t2) => t1.womID - t2.womID)
+        .sort((t1, t2) => t2.occasion_id - t1.occasion_id)
+        .slice(startPos, endPos)
         .map(thesis => <Thesis
           key={thesis.id}
           occasion={this.state.occasions[thesis.occasion_id]}
@@ -83,6 +98,16 @@ export default class Category extends React.Component<RouteProps, State> {
         <Loader active={isCategoryFullyLoaded === false} inline='centered' />
         { thesesElems && thesesElems.length === 0 && <p>In diesem Bereich gibt es noch keine Thesen.</p> }
         {thesesElems}
+
+        { thesesElems && thesesElems.length > 0 &&
+          <Pagination
+            activePage={this.state.page}
+            onPageChange={this.handlePaginationChange}
+            prevItem={null}
+            nextItem={null}
+            totalPages={Math.ceil(this.state.theses.length / THESES_PER_PAGE)}
+          />
+        }
       </div>
     </div>
   }

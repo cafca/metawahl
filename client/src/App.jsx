@@ -85,7 +85,11 @@ class App extends Component<Props, State> {
                 <CategoriesList {...props} />
               )} />
 
-              <Route path="/bereiche/:category/" render={props => (
+              <Route exact path="/bereiche/:category/" render={props => (
+                <Category {...props} />
+              )} />
+
+              <Route path="/bereiche/:category/:page/" render={props => (
                 <Category {...props} />
               )} />
 
@@ -93,7 +97,11 @@ class App extends Component<Props, State> {
                 <TagList {...props} />
               )} />
 
-              <Route path="/tags/:tag/" render={props => (
+              <Route exact path="/tags/:tag/" render={props => (
+                <TagView {...props} />
+              )} />
+
+              <Route path="/tags/:tag/:page/" render={props => (
                 <TagView {...props} />
               )} />
             </Container>
