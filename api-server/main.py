@@ -10,7 +10,7 @@ import time
 import json
 
 from collections import defaultdict
-from flask import Flask, jsonify, request, send_file, g, make_response
+from flask import Flask, jsonify, request, send_file, g, make_response, abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from sqlalchemy.exc import OperationalError
@@ -103,6 +103,9 @@ def create_app(config=None):
 
         occasion = Occasion.query.get(wom_id)
 
+        if occasion is None:
+            abort(404)
+
         rv = {
             "data": occasion.to_dict(),
             "theses": [thesis.to_dict()
@@ -146,17 +149,22 @@ def create_app(config=None):
                 .filter(Category.slug == category) \
                 .first()
 
+            if category is None:
+                abort(404)
+
             if request.method == "POST":
                 data = request.get_json()
 
                 if (data.get('admin_key', '') == app.config.get('ADMIN_KEY')):
                     for thesis_id in data.get("add", []):
-                        logger.info("Adding {} to {}".format(category, thesis_id))
+                        logger.info("Adding {} to {}".format(
+                            category, thesis_id))
                         thesis = db.session.query(Thesis).get(thesis_id)
                         category.theses.append(thesis)
 
                     for thesis_id in data.get("remove", []):
-                        logger.info("Removing {} from {}".format(category, thesis_id))
+                        logger.info("Removing {} from {}".format(
+                            category, thesis_id))
                         thesis = db.session.query(Thesis).get(thesis_id)
                         category.theses = [thesis for thesis in category.theses
                             if thesis.id != thesis_id]
@@ -168,7 +176,8 @@ def create_app(config=None):
                     error = "Invalid admin password"
 
             rv = {
-                "data": category.to_dict(thesis_data=True),
+                "data": category.to_dict(
+                    thesis_data=True, include_related_tags=True),
                 "error": error
             }
 
@@ -218,6 +227,9 @@ def create_app(config=None):
             .filter(Tag.slug == tag_title) \
             .first()
 
+        if tag is None:
+            abort(404)
+
         if request.method == "DELETE":
             admin_key = request.get_json().get('admin_key', '')
             if admin_key == app.config.get('ADMIN_KEY'):
@@ -228,7 +240,7 @@ def create_app(config=None):
                 logger.warning("Invalid admin password")
 
         rv = {
-            "data": tag.to_dict(),
+            "data": tag.to_dict(include_related_tags=True),
             "theses": [thesis.to_dict() for thesis in tag.theses],
             "occasions": {thesis.occasion_id: thesis.occasion.to_dict()
                 for thesis in tag.theses}
@@ -244,6 +256,10 @@ def create_app(config=None):
         log_request_info("Thesis", request)
 
         thesis = Thesis.query.get(thesis_id)
+
+        if thesis is None:
+            abort(404)
+
         rv = {
             "data": thesis.to_dict()
         }
@@ -258,6 +274,9 @@ def create_app(config=None):
         thesis = db.session.query(Thesis).get(thesis_id)
         data = request.get_json()
         error = None
+
+        if thesis is None:
+            abort(404)
 
         if data.get('admin_key', '') != app.config.get('ADMIN_KEY'):
             logger.warning("Invalid admin key")

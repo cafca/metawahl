@@ -8,7 +8,7 @@ import { IS_ADMIN } from './Config';
 
 type Props = {
   data: TagType,
-  remove: (string) => mixed
+  remove?: (string) => mixed
 };
 
 const Tag = ({ data, remove }: Props) => {
@@ -25,7 +25,7 @@ const Tag = ({ data, remove }: Props) => {
       }}
     >
       {data.title}
-      { IS_ADMIN &&
+      { IS_ADMIN && remove !== null &&
         <Icon name="delete"
           onClick={e => {
             e.stopPropagation();
@@ -48,7 +48,7 @@ const Tag = ({ data, remove }: Props) => {
       }}
     >
       {data.title}
-      { IS_ADMIN &&
+      { IS_ADMIN && remove !== null &&
         <Label.Detail>
           <Icon name="delete"
           onClick={e => {

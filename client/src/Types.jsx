@@ -15,7 +15,8 @@ export type TagType = {
   wikidata_id: ?string,
   wikipedia_title?: string,
   labels?: Array<string>,
-  aliases?: Array<string>
+  aliases?: Array<string>,
+  related_tags?: { count: number, tag: TagType }
 };
 
 export type ThesisType = {
@@ -62,6 +63,7 @@ export type PartyType = {
 export type CategoryType = {
   name: string,
   slug: string,
+  related_tags?: { count: number, tag: TagType },
   theses?: Array<ThesisType> | Array<string>
 };
 

@@ -13,6 +13,7 @@ import {
 
 import { API_ROOT, setTitle, IS_ADMIN, THESES_PER_PAGE } from './Config';
 import Thesis from './Thesis';
+import Tag from './Tag';
 import TagViewMenu from './TagViewMenu';
 import {WikidataLabel, WikipediaLabel} from './DataLabel';
 
@@ -102,6 +103,15 @@ export default class TagView extends Component<RouteProps, State> {
         />
       );
 
+    const relatedTags = (this.state.tag && this.state.tag.related_tags) || {};
+    const relatedTagsElems = Object.keys(relatedTags)
+      .sort((a, b) => relatedTags[a].count < relatedTags[a].count)
+      .map(i =>
+        <Tag
+          data={relatedTags[i].tag}
+          key={"Tag-" + relatedTags[i].title}
+        />);
+
     return <div>
       <Loader active={this.state.tagState === "loading"} />
 
@@ -131,10 +141,20 @@ export default class TagView extends Component<RouteProps, State> {
         {this.state.tagState === "error" && <h2>There was an error loading this page.</h2>}
       </Header>
 
-      { this.state.tag != null && this.state.tag.aliases != null
-          && this.state.tag.aliases.length > 0 &&
+      { this.state.tag != null &&
         <Segment>
-          Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}
+          { this.state.tag.aliases != null && this.state.tag.aliases.length > 0 &&
+            <div>
+              Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}
+            </div>
+          }
+
+          {relatedTagsElems.length > 0 &&
+            <div>
+              <p>Verwandte Tags:</p>
+              <p>{relatedTagsElems}</p>
+            </div>
+          }
         </Segment>
       }
 

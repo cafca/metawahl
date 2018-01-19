@@ -9,6 +9,7 @@ from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func, desc
 from slugify import slugify
+from collections import defaultdict
 
 
 categories = db.Table('categories',
@@ -34,7 +35,30 @@ class Category(db.Model):
     def make_slug(self):
         self.slug = slugify(self.name)
 
-    def to_dict(self, thesis_data=False):
+    @property
+    def related_tags(self):
+        tag_counts = defaultdict(int)
+        tags = dict()
+
+        for thesis in self.theses:
+            for tag in thesis.tags:
+                tag_counts[tag.title] += 1
+                tags[tag.title] = tag
+
+        num_related_tags = 10
+        cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+
+        rv = dict()
+        for tag in tag_counts.keys():
+            if tag_counts[tag] > cutoff:
+                rv[tag] = {
+                    "count": tag_counts[tag],
+                    "tag": tags[tag].to_dict()
+                }
+
+        return rv
+
+    def to_dict(self, thesis_data=False, include_related_tags=False):
         rv = {
             "name": self.name,
             "slug": self.slug
@@ -46,6 +70,10 @@ class Category(db.Model):
                 for thesis in self.theses}
         else:
             rv["theses"] = [thesis.id for thesis in self.theses]
+
+        if include_related_tags:
+            rv["related_tags"] = self.related_tags
+
         return rv
 
     @classmethod
@@ -204,7 +232,8 @@ class Tag(db.Model):
     def make_slug(self):
         self.slug = slugify(self.title)
 
-    def to_dict(self, thesis_count=None, include_theses_ids=False):
+    def to_dict(self, thesis_count=None, include_theses_ids=False,
+            include_related_tags=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -230,7 +259,38 @@ class Tag(db.Model):
         if include_theses_ids:
             rv["theses"] = [thesis.id for thesis in self.theses]
 
+        if include_related_tags:
+            rv["related_tags"] = self.related_tags()
+
         return rv
+
+    def related_tags(self):
+        tag_counts = defaultdict(int)
+        tags = dict()
+
+        for thesis in self.theses:
+            for tag in thesis.tags:
+                if tag != self:
+                    tag_counts[tag.title] += 1
+                    tags[tag.title] = tag
+
+        num_related_tags = 10
+        try:
+            cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+            logger.info("Cutoff {}".format(cutoff))
+        except IndexError:
+            logger.info("No related tags")
+            return {}
+        else:
+            rv = dict()
+            for tag in tag_counts.keys():
+                if tag_counts[tag] >= cutoff:
+                    rv[tag] = {
+                        "count": tag_counts[tag],
+                        "tag": tags[tag].to_dict()
+                    }
+
+            return rv
 
 
 class Thesis(db.Model):

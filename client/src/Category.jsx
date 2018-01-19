@@ -4,9 +4,10 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
+import Tag from './Tag';
 import { API_ROOT, setTitle, THESES_PER_PAGE } from './Config';
 import { loadFromCache } from './App';
-import { Header, Loader, Breadcrumb, Pagination } from 'semantic-ui-react';
+import { Header, Loader, Breadcrumb, Pagination, Segment } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 
@@ -80,6 +81,14 @@ export default class Category extends React.Component<RouteProps, State> {
         )
       : null;
 
+    const relatedTags = this.state.related_tags && Object.keys(this.state.related_tags)
+      .sort((a, b) => this.state.related_tags[a].count < this.state.related_tags[a].count)
+      .map(i =>
+        <Tag
+          data={this.state.related_tags[i].tag}
+          key={"Tag-" + this.state.related_tags[i].title}
+        />);
+
     return <div className="category">
       <Breadcrumb>
         <Breadcrumb.Section href="/bereiche/">Themenbereiche</Breadcrumb.Section>
@@ -94,6 +103,12 @@ export default class Category extends React.Component<RouteProps, State> {
       <Header as='h1'>
         { this.state.name }
       </Header>
+      <Segment>
+        <p>Themen in diesem Bereich:</p>
+        <p>
+          {relatedTags}
+        </p>
+      </Segment>
       <div className="theses">
         <Loader active={isCategoryFullyLoaded === false} inline='centered' />
         { thesesElems && thesesElems.length === 0 && <p>In diesem Bereich gibt es noch keine Thesen.</p> }
