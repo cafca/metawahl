@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle, CATEGORY_COLORS } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
-import { Button, Icon, Header, Label, Breadcrumb } from 'semantic-ui-react';
+import { Button, Icon, Header, Label, Breadcrumb, Loader } from 'semantic-ui-react';
 
 type State = {
   categories: Array<CategoryType>
@@ -82,6 +82,9 @@ export default class CategoriesList extends Component<RouteProps, State> {
         <p>Hier finden sich die Thesen aus allen Wahl-o-Maten, sortiert nach
         dem Themenbereich der Bundesregierung, dem sie am ehesten zuzuordnen
         sind.</p>
+
+
+        <Loader active={categories.length === 0} />
 
         <ul style={{listStyle: "none"}}>
           {categories}
