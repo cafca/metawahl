@@ -277,9 +277,8 @@ class Tag(db.Model):
         num_related_tags = 10
         try:
             cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
-            logger.info("Cutoff {}".format(cutoff))
         except IndexError:
-            logger.info("No related tags")
+            logger.debug("No related tags")
             return {}
         else:
             rv = dict()
