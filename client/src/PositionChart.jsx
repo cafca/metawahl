@@ -78,7 +78,7 @@ export default class PositionChart extends React.Component<Props, State> {
     // for absolute positioning
     let usedPct = 0.0;
 
-    const Rect = ({party,value,toggleOpen}) => {
+    const Rect = ({party, value, toggleOpen}) => {
       const result = t.props.results[party] && t.props.results[party]["pct"];
       if (result == null) { console.log("No vote count for " + party); return null;}
       usedPct += result || 0;
@@ -100,7 +100,7 @@ export default class PositionChart extends React.Component<Props, State> {
 
     const rectangles = this.state.positions.map(
       pos => <Rect
-        toggleOpen={() => this.props.toggleOpen(pos)}
+        toggleOpen={() => t.props.toggleOpen(pos)}
         key={"rect-" + pos.party} {...pos} />
     );
 

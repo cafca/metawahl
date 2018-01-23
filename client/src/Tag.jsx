@@ -8,10 +8,11 @@ import { IS_ADMIN } from './Config';
 
 type Props = {
   data: TagType,
-  remove?: (string) => mixed
+  remove?: (string) => mixed,
+  detail?: string | number
 };
 
-const Tag = ({ data, remove }: Props) => {
+const Tag = ({ data, remove, detail }: Props) => {
   if (data.wikidata_id == null) {
     return <Label
       key={data.title}
@@ -48,6 +49,11 @@ const Tag = ({ data, remove }: Props) => {
       }}
     >
       {data.title}
+      { detail !== null &&
+        <Label.Detail style={{color: "#686CB2"}}>
+          {detail}
+        </Label.Detail>
+      }
       { IS_ADMIN && remove !== null &&
         <Label.Detail>
           <Icon name="delete"

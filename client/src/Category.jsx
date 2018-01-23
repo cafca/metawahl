@@ -82,10 +82,11 @@ export default class Category extends React.Component<RouteProps, State> {
       : null;
 
     const relatedTags = this.state.related_tags && Object.keys(this.state.related_tags)
-      .sort((a, b) => this.state.related_tags[a].count < this.state.related_tags[a].count)
+      .sort((a, b) => this.state.related_tags[b].count - this.state.related_tags[a].count)
       .map(i =>
         <Tag
           data={this.state.related_tags[i].tag}
+          detail={this.state.related_tags[i].count}
           key={"Tag-" + this.state.related_tags[i].title}
         />);
 

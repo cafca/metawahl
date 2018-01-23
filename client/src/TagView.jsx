@@ -105,10 +105,11 @@ export default class TagView extends Component<RouteProps, State> {
 
     const relatedTags = (this.state.tag && this.state.tag.related_tags) || {};
     const relatedTagsElems = Object.keys(relatedTags)
-      .sort((a, b) => relatedTags[a].count < relatedTags[a].count)
+      .sort((a, b) => relatedTags[b].count - relatedTags[a].count)
       .map(i =>
         <Tag
           data={relatedTags[i].tag}
+          detail={relatedTags[i].count}
           key={"Tag-" + relatedTags[i].title}
         />);
 
