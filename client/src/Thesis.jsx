@@ -318,7 +318,7 @@ export default class Thesis extends Component<Props, State> {
           on='hover'
           trigger={<Icon
             name={voterOpinionNames[this.state.voterOpinion]}
-            style={{float: "right"}}/>}
+            style={{float: "right", marginTop: 4}}/>}
         />
 
 
@@ -357,7 +357,8 @@ export default class Thesis extends Component<Props, State> {
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
         <div style={{marginBottom: "-0.4em"}}>
             <Popup
-              content="Melde diesen Eintrag, wenn die Position der Parteien nicht den Inhalten im Wahl-o-Mat entspricht oder die angegebenen Wahlergebnisse falsch sind. Danke!"
+              content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns helfen, indem du uns mit diesem Button darauf hinweist. Danke!"
+              header="Fehler melden"
               trigger={
                 <Button basic compact circular icon floated='right' disabled={this.state.reported}
                   onClick={this.handleReport} style={{marginTop: -2}}>

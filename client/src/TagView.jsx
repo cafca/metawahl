@@ -170,7 +170,7 @@ export default class TagView extends Component<RouteProps, State> {
 
       { this.state.theses.length > 0 &&
         <div>
-          <h2>Thesen zum Thema {this.state.tag.title}:</h2>
+          <h2>Alle {this.state.theses.length} Thesen zum Thema {this.state.tag.title}:</h2>
           {theses}
 
           <Pagination
