@@ -5,13 +5,14 @@ import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
 import {
-  Segment,
-  Menu,
   Dropdown,
-  Loader,
-  Icon,
   Header,
-  Message
+  Icon,
+  Loader,
+  Menu,
+  Message,
+  Popup,
+  Segment
 } from 'semantic-ui-react';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
@@ -19,19 +20,19 @@ import CategoryLabel from './CategoryLabel';
 import PositionChart from './PositionChart';
 
 import {
+  adminKey,
   API_ROOT,
-  makeJSONRequest,
   categoryOptions,
   IS_ADMIN,
-  adminKey
+  makeJSONRequest
   } from './Config';
 
 import type {
-  RouteProps,
-  PositionType,
-  ThesisType,
   OccasionType,
-  TagType
+  PositionType,
+  RouteProps,
+  TagType,
+  ThesisType
 } from './Types';
 
 import type { WikidataType } from './WikidataTagger';
@@ -44,6 +45,31 @@ const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
       </Link>
     </p>;
 
+  const valueNames = {
+    "-1": "Contra",
+    "0": "Neutral",
+    "1": "Pro"
+  };
+
+  const voterOpinionTitles = {
+    "-1": "dagegen",
+    "0": "neutral",
+    "1": "dafür"
+  };
+
+  const voterOpinionNames = {
+    "-1": "frown",
+    "0": "meh",
+    "1": "smile"
+  };
+
+  const voterOpinionIntro = {
+    "-1": "Die Mehrheit der Stimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
+    "0": `Es ging weder eine Mehrheit der Stimmen an Parteien, die sich für diese These ausgesprochen haben,
+      noch ging eine Mehrheit an Parteien, die sich gegen diese These ausgesprochen haben.`,
+    "1": "Die Mehrheit der Stimmen ging an Parteien, die sich für diese These ausgesprochen haben."
+  };
+
 type State = {
   openText: ?PositionType,
   tags: Array<TagType>,
@@ -52,7 +78,7 @@ type State = {
   proPositions: Array<PositionType>,
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
-  voterOpinion: "smile" | "meh" | "frown"
+  voterOpinion: -1 | 0 | 1
 };
 
 type Props = RouteProps & ThesisType & {
@@ -72,7 +98,7 @@ export default class Thesis extends Component<Props, State> {
       proPositions: [],
       neutralPositions: [],
       contraPositions: [],
-      voterOpinion: "meh"
+      voterOpinion: 0
     }
   }
 
@@ -222,12 +248,13 @@ export default class Thesis extends Component<Props, State> {
         : prev + this.props.occasion.results[cur["party"]]["pct"];
 
     let voterOpinion;
+
     if (this.state.proPositions.reduce(countVotes, 0.0) > 50.0) {
-      voterOpinion = "smile";
+      voterOpinion = 1;
     } else if (this.state.contraPositions.reduce(countVotes, 0.0) < 50.0) {
-      voterOpinion = "meh";
+      voterOpinion = 0;
     } else {
-      voterOpinion = "frown";
+      voterOpinion = -1;
     }
 
     this.setState({voterOpinion});
@@ -248,17 +275,17 @@ export default class Thesis extends Component<Props, State> {
         remove={this.handleTagRemove}
       />);
 
-    const valueNames = {
-      "-1": "Contra",
-      "0": "Neutral",
-      "1": "Pro"
-    };
-
     return <div style={{marginBottom: "2em"}}>
       <Header attached="top" size="huge">
-        <Icon
-          name={this.state.voterOpinion}
-          style={{float: "right"}}/>
+        <Popup
+          content={voterOpinionIntro[this.state.voterOpinion]}
+          header={`Wähler stimmen ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
+          on='hover'
+          trigger={<Icon
+            name={voterOpinionNames[this.state.voterOpinion]}
+            style={{float: "right"}}/>}
+        />
+
 
         { this.props.linkOccasion &&
           <OccasionSubtitle occasion={this.props.occasion} />
