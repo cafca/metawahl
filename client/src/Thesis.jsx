@@ -318,7 +318,7 @@ export default class Thesis extends Component<Props, State> {
           on='hover'
           trigger={<Icon
             name={voterOpinionNames[this.state.voterOpinion]}
-            style={{float: "right"}}/>}
+            style={{float: "right", marginTop: 4}}/>}
         />
 
 
