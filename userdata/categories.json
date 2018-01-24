@@ -974,6 +974,7 @@
         "WOM-034-14", 
         "WOM-034-06", 
         "WOM-034-03", 
+        "WOM-033-04", 
         "WOM-033-01", 
         "WOM-032-33", 
         "WOM-032-27", 
@@ -1167,7 +1168,10 @@
     {
       "name": "Neue Bundesl\u00e4nder", 
       "slug": "neue-bundeslander", 
-      "theses": []
+      "theses": [
+        "WOM-029-20", 
+        "WOM-026-08"
+      ]
     }, 
     {
       "name": "\u00d6ffentliche Finanzen, Steuern und Abgaben", 
@@ -1520,6 +1524,8 @@
         "WOM-036-01", 
         "WOM-035-30", 
         "WOM-034-18", 
+        "WOM-033-04", 
+        "WOM-032-35", 
         "WOM-032-06", 
         "WOM-032-00", 
         "WOM-031-37", 
@@ -1568,6 +1574,7 @@
         "WOM-028-23", 
         "WOM-027-23", 
         "WOM-026-36", 
+        "WOM-026-08", 
         "WOM-025-28", 
         "WOM-025-14", 
         "WOM-024-28", 
@@ -1889,6 +1896,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "5.46000s"
+    "render_time": "26.98015s"
   }
 }

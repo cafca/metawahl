@@ -2,36 +2,40 @@
 
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import './App.css';
 import { Link } from 'react-router-dom';
 import {
-  Segment,
-  Menu,
+  Button,
   Dropdown,
-  Loader,
-  Icon,
   Header,
-  Message
+  Icon,
+  Loader,
+  Menu,
+  Message,
+  Popup,
+  Segment
 } from 'semantic-ui-react';
+
+import './App.css';
+import { loadFromCache } from './App';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 import PositionChart from './PositionChart';
 
 import {
+  adminKey,
   API_ROOT,
-  makeJSONRequest,
   categoryOptions,
   IS_ADMIN,
-  adminKey
+  makeJSONRequest
   } from './Config';
 
 import type {
-  RouteProps,
-  PositionType,
-  ThesisType,
   OccasionType,
-  TagType
+  PositionType,
+  RouteProps,
+  TagType,
+  ThesisType
 } from './Types';
 
 import type { WikidataType } from './WikidataTagger';
@@ -44,6 +48,31 @@ const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
       </Link>
     </p>;
 
+  const valueNames = {
+    "-1": "Contra",
+    "0": "Neutral",
+    "1": "Pro"
+  };
+
+  const voterOpinionTitles = {
+    "-1": "dagegen",
+    "0": "neutral",
+    "1": "dafür"
+  };
+
+  const voterOpinionNames = {
+    "-1": "frown",
+    "0": "meh",
+    "1": "smile"
+  };
+
+  const voterOpinionIntro = {
+    "-1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
+    "0": `Es ging weder eine Mehrheit der Zweitstimmen an Parteien, die sich für diese These ausgesprochen haben,
+      noch ging eine Mehrheit an Parteien, die sich gegen diese These ausgesprochen haben.`,
+    "1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich für diese These ausgesprochen haben."
+  };
+
 type State = {
   openText: ?PositionType,
   tags: Array<TagType>,
@@ -52,7 +81,8 @@ type State = {
   proPositions: Array<PositionType>,
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
-  voterOpinion: "smile" | "meh" | "frown"
+  voterOpinion: -1 | 0 | 1,
+  reported: boolean
 };
 
 type Props = RouteProps & ThesisType & {
@@ -72,7 +102,8 @@ export default class Thesis extends Component<Props, State> {
       proPositions: [],
       neutralPositions: [],
       contraPositions: [],
-      voterOpinion: "meh"
+      voterOpinion: 0,
+      reported: false
     }
   }
 
@@ -108,6 +139,32 @@ export default class Thesis extends Component<Props, State> {
     this.setState({categories});
   }
 
+  handleReport() {
+    const uuid = loadFromCache('uuid');
+
+    if (uuid != null) {
+      const data = {
+        uuid,
+        text: "",
+        thesis_id: this.props.id
+      };
+
+      this.setState({reported: true});
+
+      fetch(`${API_ROOT}/react/thesis-report`, makeJSONRequest(data))
+        .then(resp => resp.json())
+        .then(resp => {
+          // TODO: Show success
+        })
+        .catch(error => {
+          this.setState({reported: false});
+          console.log(error);
+        })
+    } else {
+      // TODO: Handle no cookies allowed
+    }
+  }
+
   handleTag(tagData: WikidataType) {
     if (this.state.tags.filter(t => t.id === tagData.id).length !== 0) return;
 
@@ -138,9 +195,13 @@ export default class Thesis extends Component<Props, State> {
   }
 
   toggleOpen(position: PositionType) {
-    if (position.text == null || position.text.length === 0) return;
-
-    this.setState({ openText: position });
+    if (position.text == null || position.text.length === 0) {
+      this.setState({ openText: Object.assign({}, position, {
+        text: "Es liegt keine Begründung zur Position dieser Partei vor."
+      })});
+    } else {
+      this.setState({ openText: position });
+    }
   }
 
   sendCategoryChanges(categoryName: string, remove: boolean) {
@@ -222,12 +283,13 @@ export default class Thesis extends Component<Props, State> {
         : prev + this.props.occasion.results[cur["party"]]["pct"];
 
     let voterOpinion;
+
     if (this.state.proPositions.reduce(countVotes, 0.0) > 50.0) {
-      voterOpinion = "smile";
+      voterOpinion = 1;
     } else if (this.state.contraPositions.reduce(countVotes, 0.0) < 50.0) {
-      voterOpinion = "meh";
+      voterOpinion = 0;
     } else {
-      voterOpinion = "frown";
+      voterOpinion = -1;
     }
 
     this.setState({voterOpinion});
@@ -248,17 +310,17 @@ export default class Thesis extends Component<Props, State> {
         remove={this.handleTagRemove}
       />);
 
-    const valueNames = {
-      "-1": "Contra",
-      "0": "Neutral",
-      "1": "Pro"
-    };
-
     return <div style={{marginBottom: "2em"}}>
       <Header attached="top" size="huge">
-        <Icon
-          name={this.state.voterOpinion}
-          style={{float: "right"}}/>
+        <Popup
+          content={voterOpinionIntro[this.state.voterOpinion]}
+          header={`Wähler stimmen ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
+          on='hover'
+          trigger={<Icon
+            name={voterOpinionNames[this.state.voterOpinion]}
+            style={{float: "right"}}/>}
+        />
+
 
         { this.props.linkOccasion &&
           <OccasionSubtitle occasion={this.props.occasion} />
@@ -283,13 +345,27 @@ export default class Thesis extends Component<Props, State> {
           <Message
             content={this.state.openText.text}
             floating
-            header={this.state.openText.party + " - " + valueNames[this.state.openText.value]} />
+            header={
+              `${this.state.openText.party} -
+              ${this.props.occasion.results[this.state.openText.party]["pct"]}% -
+              ${valueNames[this.state.openText.value]}`
+            } />
         }
 
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
         <div style={{marginBottom: "-0.4em"}}>
+            <Popup
+              content="Melde diesen Eintrag, wenn die Position der Parteien nicht den Inhalten im Wahl-o-Mat entspricht oder die angegebenen Wahlergebnisse falsch sind. Danke!"
+              trigger={
+                <Button basic compact circular icon floated='right' disabled={this.state.reported}
+                  onClick={this.handleReport} style={{marginTop: -2}}>
+                  <Icon name='warning circle' />
+                </Button>
+              }
+            />
+
             { categoryElems }
             { tagElems }
             <br />
