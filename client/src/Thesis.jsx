@@ -310,7 +310,11 @@ export default class Thesis extends Component<Props, State> {
           <Message
             content={this.state.openText.text}
             floating
-            header={this.state.openText.party + " - " + valueNames[this.state.openText.value]} />
+            header={
+              `${this.state.openText.party} -
+              ${this.props.occasion.results[this.state.openText.party]["pct"]}% -
+              ${valueNames[this.state.openText.value]}`
+            } />
         }
 
       </Segment>
