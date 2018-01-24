@@ -64,10 +64,10 @@ const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
   };
 
   const voterOpinionIntro = {
-    "-1": "Die Mehrheit der Stimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
-    "0": `Es ging weder eine Mehrheit der Stimmen an Parteien, die sich für diese These ausgesprochen haben,
+    "-1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
+    "0": `Es ging weder eine Mehrheit der Zweitstimmen an Parteien, die sich für diese These ausgesprochen haben,
       noch ging eine Mehrheit an Parteien, die sich gegen diese These ausgesprochen haben.`,
-    "1": "Die Mehrheit der Stimmen ging an Parteien, die sich für diese These ausgesprochen haben."
+    "1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich für diese These ausgesprochen haben."
   };
 
 type State = {
