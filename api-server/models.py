@@ -353,9 +353,10 @@ class Tag(db.Model):
 
         num_related_tags = 10
         try:
+            # Determine the amount of tags where n=num_related_tags theses have
+            # more related tags
             cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
         except IndexError:
-            logger.debug("No related tags")
             return {}
         else:
             rv = dict()
