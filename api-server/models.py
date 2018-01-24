@@ -4,6 +4,7 @@ Metawahl Flask-SQLAlchemy models
 
 """
 import json
+import datetime
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
@@ -95,6 +96,82 @@ class Category(db.Model):
             rv["theses"] = [thesis.id for thesis in theses]
 
         return rv
+
+
+class ThesisReport(db.Model):
+    """Represent a report of a thesis for some error."""
+    id = db.Column(db.Integer, primary_key=True)
+    uuid = db.Column(db.String(36), nullable=False)
+    date = db.Column(db.DateTime,
+        nullable=False, default=datetime.datetime.utcnow)
+    text = db.Column(db.Text, nullable=False)
+
+    thesis_id = db.Column(db.String(10),
+        db.ForeignKey('thesis.id'), nullable=False)
+    thesis = db.relationship('Thesis',
+        backref=db.backref('reports', lazy=True))
+
+    def __repr__(self):
+        return "<Report {}>".format(self.thesis_id)
+
+    def to_dict(self):
+        return {
+            "date": self.date.isoformat(),
+            "text": self.text,
+            "thesis": self.thesis_id,
+            "uuid": self.uuid
+        }
+
+
+class Objection(db.Model):
+    """Represent an objection."""
+    id = db.Column(db.Integer, primary_key=True)
+    uuid = db.Column(db.String(36), nullable=False)
+    date = db.Column(db.DateTime,
+        nullable=False, default=datetime.datetime.utcnow)
+    source = db.Column(db.Text, nullable=False)
+    vote_count = db.Column(db.Integer, default=1)
+
+    thesis_id = db.Column(db.String(10),
+        db.ForeignKey('thesis.id'), nullable=False)
+    thesis = db.relationship('Thesis',
+        backref=db.backref('objections', lazy=False))
+
+    def __repr__(self):
+        return "<Objection {} / {}>".format(self.thesis_id, self.date.isoformat())
+
+    def to_dict(self):
+        return {
+            "date": self.date.isoformat(),
+            "source": self.source,
+            "thesis": self.thesis_id,
+            "uuid": self.uuid,
+            "votes": [{date: v.date.isoformat(), value: v.value, uuid: v.uuid}
+                for v in self.votes]
+        }
+
+    def vote(self, value):
+        self.vote_count += 1
+        return ObjectionVote(value=value, objection=self)
+
+
+class ObjectionVote(db.Model):
+    """Represent a vote or report on an objection."""
+    id = db.Column(db.Integer, primary_key=True)
+    uuid = db.Column(db.String(36), nullable=False)
+    date = db.Column(db.DateTime,
+        nullable=False, default=datetime.datetime.utcnow)
+    value = db.Column(db.Boolean, nullable=False)
+    reported_for = db.Column(db.Text)
+
+    objection_id = db.Column(db.Integer(),
+        db.ForeignKey('objection.id'), nullable=False)
+    objection = db.relationship('Objection',
+        backref=db.backref('votes', lazy=True))
+
+    def __repr__(self):
+        return "<Vote {}>".format(self.id) if self.reported_for is None \
+            else "<ObjectionReport {}/{}>".format(self.objection_id, self.id)
 
 
 class Occasion(db.Model):

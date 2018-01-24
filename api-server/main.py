@@ -134,6 +134,36 @@ def create_app(config=None):
 
         return json_response(rv, filename=filename)
 
+    @app.route(API_ROOT + "/react/<string:kind>", methods=["POST"])
+    def react(kind: str):
+        """Save a user submitted reaction."""
+        from models import ThesisReport
+        rv = {}
+
+        data = request.get_json()
+
+        if (kind == "thesis-report"):
+            report = ThesisReport(
+                uuid=data.get('uuid'),
+                text=data.get('text'),
+                thesis_id=data.get('thesis_id')
+            )
+
+            try:
+                db.session.add(report)
+                db.session.commit()
+            except OperationalError as e:
+                logger.error(e)
+                rv["error"] = "There was a server error saving your reaction."
+            else:
+                logger.warning("Received {}: {}".format(report, report.text))
+                db.session.expire(report)
+                rv["data"] = report.to_dict()
+        else:
+            logger.error("Unknown reaction kind: {}".format(kind))
+
+        return json_response(rv)
+
     @app.route(API_ROOT + "/categories/<string:category>",
         methods=["GET", "POST"])
     def category(category: str):

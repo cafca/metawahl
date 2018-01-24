@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import './App.css';
 import { Link } from 'react-router-dom';
 import {
+  Button,
   Dropdown,
   Header,
   Icon,
@@ -14,6 +14,9 @@ import {
   Popup,
   Segment
 } from 'semantic-ui-react';
+
+import './App.css';
+import { loadFromCache } from './App';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
@@ -78,7 +81,8 @@ type State = {
   proPositions: Array<PositionType>,
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
-  voterOpinion: -1 | 0 | 1
+  voterOpinion: -1 | 0 | 1,
+  reported: boolean
 };
 
 type Props = RouteProps & ThesisType & {
@@ -98,7 +102,8 @@ export default class Thesis extends Component<Props, State> {
       proPositions: [],
       neutralPositions: [],
       contraPositions: [],
-      voterOpinion: 0
+      voterOpinion: 0,
+      reported: false
     }
   }
 
@@ -132,6 +137,32 @@ export default class Thesis extends Component<Props, State> {
     this.sendCategoryChanges(category, true);
     const categories = this.state.categories.filter(c => c !== category);
     this.setState({categories});
+  }
+
+  handleReport() {
+    const uuid = loadFromCache('uuid');
+
+    if (uuid != null) {
+      const data = {
+        uuid,
+        text: "",
+        thesis_id: this.props.id
+      };
+
+      this.setState({reported: true});
+
+      fetch(`${API_ROOT}/react/thesis-report`, makeJSONRequest(data))
+        .then(resp => resp.json())
+        .then(resp => {
+          // TODO: Show success
+        })
+        .catch(error => {
+          this.setState({reported: false});
+          console.log(error);
+        })
+    } else {
+      // TODO: Handle no cookies allowed
+    }
   }
 
   handleTag(tagData: WikidataType) {
@@ -325,6 +356,16 @@ export default class Thesis extends Component<Props, State> {
 
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
         <div style={{marginBottom: "-0.4em"}}>
+            <Popup
+              content="Melde diesen Eintrag, wenn die Position der Parteien nicht den Inhalten im Wahl-o-Mat entspricht oder die angegebenen Wahlergebnisse falsch sind. Danke!"
+              trigger={
+                <Button basic compact circular icon floated='right' disabled={this.state.reported}
+                  onClick={this.handleReport} style={{marginTop: -2}}>
+                  <Icon name='warning circle' />
+                </Button>
+              }
+            />
+
             { categoryElems }
             { tagElems }
             <br />
