@@ -164,9 +164,13 @@ export default class Thesis extends Component<Props, State> {
   }
 
   toggleOpen(position: PositionType) {
-    if (position.text == null || position.text.length === 0) return;
-
-    this.setState({ openText: position });
+    if (position.text == null || position.text.length === 0) {
+      this.setState({ openText: Object.assign({}, position, {
+        text: "Es liegt keine Begründung zur Position dieser Partei vor."
+      })});
+    } else {
+      this.setState({ openText: position });
+    }
   }
 
   sendCategoryChanges(categoryName: string, remove: boolean) {
