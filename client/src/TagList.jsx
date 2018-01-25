@@ -96,7 +96,12 @@ export default class TagList extends Component<RouteProps, State> {
       .sort(this.state.sortBy === "name" ? sortByName : sortByThesisCount)
       .map((tag, i) => <Item key={"Tag-" + i} href={'/tags/' + tag.slug}>
         <Item.Content>
-          <Item.Header>{tag.title}</Item.Header>
+          <Item.Header>
+            {tag.title}
+            <span style={{color: "rgba(0,0,0,.4)"}}>
+              &nbsp; {tag.thesis_count}
+            </span>
+          </Item.Header>
           { tag.description != null && tag.description.length > 0 &&
             <Item.Description>
               {tag.description}
