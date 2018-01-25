@@ -63,10 +63,12 @@ class App extends Component<Props, State> {
   }
 
   componentDidMount() {
+    // Assign a unique id to this browser on mount
+
     function uuid(a){
-      return a
-        ?(a^Math.random()*16>>a/4).toString(16)
-        :([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, uuid)
+      return a // eslint-disable-next-line no-mixed-operators
+        ? (a^Math.random()*16>>a/4).toString(16)
+        : ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, uuid)
     };
     if(loadFromCache('uuid') == null) saveToCache('uuid', uuid());
   }
