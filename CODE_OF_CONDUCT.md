@@ -35,7 +35,7 @@ Dieser Verhaltenskodex gilt sowohl für die Arbeit an dem Projekt selbst, als au
 
 ## Umsetzung
 
-Verstoßen Beteiligte gegen diesen Kodex, kann dies dem Projektteam unter metawahl@vincentahrend.com gemeldet werden. Alle Beschwerden werden geprüft und den Umständen entsprechend angemessen beantwortet. Das Projektteam schützt hierbei nach bestem Können die Identität von Personen, die Vorfälle melden, solange diese hierbei nicht selbst gegen die in diesem Kodex definierten Standards verstoßen.
+Fälle von AD HOMINEM, DOXING, BELÄSTIGUNG und TROLLEN sollen dem Projektteam möglichst zeitnah unter metawahl@vincentahrend.com gemeldet werden. Alle Beschwerden werden geprüft und den Umständen entsprechend angemessen beantwortet. Das Projektteam schützt hierbei nach bestem Können die Identität von Personen, die Vorfälle melden, solange diese hierbei nicht selbst gegen die in diesem Kodex definierten Standards verstoßen.
 
 Projektverantwortliche, welche den Verhaltenskodex nicht befolgen, oder nicht nach bestem Wissen und Glauben für dessen Einhaltung sorgen, können sich vorübergehenden oder dauerhaften Auswirkungen gegenübersehen, die durch andere Mitglieder der Projektleitung bestimmt wurden.
 
