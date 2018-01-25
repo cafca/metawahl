@@ -14,6 +14,7 @@ export type WikidataType = {
   description: string,
   id: string,
   label: string,
+  image: ?string,
   match: {
     language: string,
     text: string,
@@ -136,6 +137,11 @@ class WikidataTagger extends React.Component<Props, State> {
       .then(response => {
         if (response.success === 1) {
           const data = response.entities[result.id];
+
+          result.image = data.claims['P18'] == null ? null : data.claims['P18']
+            .map(({ mainsnak }) => mainsnak.datavalue.value)
+            .find(fn => fn != null)
+            // .map(fn => "https://commons.wikimedia.org/w/thumb.php?width=500&f=" + fn);
 
           if (data.aliases != null && data.aliases.de != null) {
             result.aliases = data.aliases.de.length != null

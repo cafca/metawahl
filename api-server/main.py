@@ -322,6 +322,7 @@ def create_app(config=None):
                         title=tag_data["title"],
                         url=tag_data["url"],
                         wikidata_id=tag_data["wikidata_id"],
+                        image=tag_data.get('image', None)
                     )
 
                     tag.make_slug()

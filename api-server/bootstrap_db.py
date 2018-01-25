@@ -217,6 +217,7 @@ def load_tags():
         tag.wikipedia_title = tag_data.get("wikipedia_title", None)
         tag.labels = ";".join(tag_data.get("labels", []))
         tag.aliases = ";".join(tag_data.get("aliases", []))
+        tag.image = tag_data.get("image", None)
 
         for thesis_id in tag_data["theses"]:
             tag.theses.append(Thesis.query.get(thesis_id))
