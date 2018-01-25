@@ -9,9 +9,11 @@ import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
-from models import Occasion, Thesis, Position, Party, Tag, Category, Result
+from models import Occasion, Thesis, Position, Party, Tag, Category, Result, \
+    ThesisReport
 from main import logger, create_app, db
 
+API_VERSION = "Metawahl API v1"
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
 OCCASION_IDS = {
@@ -200,7 +202,7 @@ def load_tags():
             "imported")
         return
 
-    assert tag_export["meta"]["api"] == "Metawahl API v1"
+    assert tag_export["meta"]["api"] == API_VERSION
     logger.info("Adding {} tags...".format(len(tag_export["data"])))
 
     # TODO: Update existing tags
@@ -217,6 +219,15 @@ def load_tags():
         tag.wikipedia_title = tag_data.get("wikipedia_title", None)
         tag.labels = ";".join(tag_data.get("labels", []))
         tag.aliases = ";".join(tag_data.get("aliases", []))
+        tag.image = tag_data.get("image", None)
+
+        if tag.description is not None and len(tag.description) > 1:
+            # Always start with upper case
+            tag.description = tag.description[0].upper() + tag.description[1:]
+
+            # Remove non-descriptions
+            if tag.description.startswith("Wikimedia-"):
+                tag.description = None
 
         for thesis_id in tag_data["theses"]:
             tag.theses.append(Thesis.query.get(thesis_id))
@@ -234,7 +245,7 @@ def load_categories():
             "categories were not imported")
         return
 
-    assert categories_export["meta"]["api"] == "Metawahl API v1"
+    assert categories_export["meta"]["api"] == API_VERSION
     logger.info("Adding {} categories...".format(len(categories_export["data"])))
 
     # TODO: Update existing categories
@@ -248,6 +259,31 @@ def load_categories():
             category.theses.append(Thesis.query.get(thesis_id))
 
         yield category
+
+
+def load_reports():
+    """Load user submitted reports from json file."""
+    try:
+        with open("../userdata/thesis_reports.json") as f:
+            reports_export = json.load(f)
+    except FileNotFoundError:
+        logger.warning("File ../userdata/thesis_reports.json not found - " +
+            "reports were not imported")
+        return
+
+    assert reports_export["meta"]["api"] == API_VERSION
+    logger.info("Adding {} reports...".format(len(reports_export["data"])))
+
+    for report_data in reports_export["data"]:
+        date = dateutil.parser.parse(report_data.get('date'))
+        report = ThesisReport(
+            uuid=report_data.get('uuid'),
+            date=date,
+            text=report_data.get('text'),
+            thesis=Thesis.query.get(report_data.get('thesis'))
+        )
+
+        yield report
 
 
 def load_wahlergebnisse():
@@ -363,6 +399,9 @@ if __name__ == '__main__':
 
         for category in load_categories():
             db.session.add(category)
+
+        for report in load_reports():
+            db.session.add(report)
 
         logger.info("Committing session to disk...")
         db.session.commit()

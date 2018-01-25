@@ -20,3 +20,11 @@
 .searchNoBorder input {
   border: none !important;
 }
+
+.tagContainer {
+  margin-bottom: -0.4em
+}
+
+.tagContainer a.label {
+  margin-left: 0;
+}

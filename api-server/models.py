@@ -302,6 +302,7 @@ class Tag(db.Model):
     url = db.Column(db.Text)
     wikidata_id = db.Column(db.String(16))
     wikipedia_title = db.Column(db.String(256))
+    image = db.Column(db.String(255))
 
     def __repr__(self):
         return "<Tag #{}>".format(self.title)
@@ -329,6 +330,9 @@ class Tag(db.Model):
 
         if self.labels is not None and len(self.labels) > 0:
             rv["labels"] = self.labels.split(';')
+
+        if self.image is not None:
+            rv["image"] = self.image
 
         if thesis_count is not None:
             rv["thesis_count"] = thesis_count

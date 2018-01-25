@@ -312,16 +312,6 @@ export default class Thesis extends Component<Props, State> {
 
     return <div style={{marginBottom: "2em"}}>
       <Header attached="top" size="huge">
-        <Popup
-          content={voterOpinionIntro[this.state.voterOpinion]}
-          header={`Wähler stimmen ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
-          on='hover'
-          trigger={<Icon
-            name={voterOpinionNames[this.state.voterOpinion]}
-            style={{float: "right", marginTop: 4}}/>}
-        />
-
-
         { this.props.linkOccasion &&
           <OccasionSubtitle occasion={this.props.occasion} />
         }
@@ -351,21 +341,52 @@ export default class Thesis extends Component<Props, State> {
               ${valueNames[this.state.openText.value]}`
             } />
         }
+      </Segment>
 
+      <Segment attached>
+        <Popup
+          basic
+          on='hover'
+          content={voterOpinionIntro[this.state.voterOpinion]}
+          offset={20}
+          trigger={
+            <span style={{marginRight: "1em"}}>
+              <Icon
+              size='big'
+              name={voterOpinionNames[this.state.voterOpinion]}
+              /> {`Wähler stimmen ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
+            </span>
+          }
+        />
+
+        <Popup
+          content={this.state.voterOpinion !== 0 ? "Wurde das Anliegen dieser These nicht so umgesetzt, wie es hier angekündigt wurde?" : "Hast du Informationen zu einer geplanten oder erfolgten Umsetzung dieser These?"}
+          header={this.state.voterOpinion !== 0 ? "Einspruch erheben" : null}
+          wide
+          trigger={
+            <Button as='span' basic compact disabled={true}
+              onClick={this.handleComment} style={{marginTop: -2}}>
+              <Icon name='bullhorn' /> {this.state.voterOpinion === -1
+                  ? "Wurde trotzdem umgesetzt!"
+                  : this.state.voterOpinion === 1
+                    ? "Wurde nie umgesetzt!"
+                    : "Wurde dies umgesetzt?"}
+            </Button>
+          } />
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
-        <div style={{marginBottom: "-0.4em"}}>
+        <div className="tagContainer">
             <Popup
-              content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns helfen, indem du uns mit diesem Button darauf hinweist. Danke!"
+              content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du helfen, indem du mit diesem Button darauf hinweist. Danke!"
               header="Fehler melden"
+              wide
               trigger={
-                <Button basic compact circular icon floated='right' disabled={this.state.reported}
+                <Button basic compact floated='right' icon disabled={this.state.reported}
                   onClick={this.handleReport} style={{marginTop: -2}}>
                   <Icon name='warning circle' />
                 </Button>
-              }
-            />
+              } />
 
             { categoryElems }
             { tagElems }

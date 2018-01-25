@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Label, Icon } from 'semantic-ui-react';
+import { Label, Icon, Popup } from 'semantic-ui-react';
 import type { TagType } from './Types';
 
 import { IS_ADMIN } from './Config';
@@ -13,59 +13,41 @@ type Props = {
 };
 
 const Tag = ({ data, remove, detail }: Props) => {
-  if (data.wikidata_id == null) {
-    return <Label
-      key={data.title}
-      as='a'
-      tag
-      href={"/tags/" + data.slug}
-      color='grey'
-      style={{
-        marginRight: ".4em",
-        marginBottom: ".4em"
-      }}
-    >
-      {data.title}
-      { IS_ADMIN && remove !== null &&
+  const labelElem = <Label
+    basic
+    key={data.wikidata_id}
+    as='a'
+    href={"/tags/" + data.slug}
+    style={{
+      marginRight: ".4em",
+      marginBottom: ".4em",
+      borderColor: "#2e34a3",
+      color: "#2e34a3"
+    }}
+  >
+    {data.title}
+    { detail != null &&
+      <Label.Detail style={{color: "#686CB2"}} as='span'>
+        {detail}
+      </Label.Detail>
+    }
+    { IS_ADMIN && remove !== null &&
+      <Label.Detail>
         <Icon name="delete"
-          onClick={e => {
-            e.stopPropagation();
-            e.preventDefault();
-            remove(data.title);
-          }} />
-      }
-    </Label>
-  } else {
-    return <Label
-      basic
-      key={data.wikidata_id}
-      as='a'
-      href={"/tags/" + data.slug}
-      style={{
-        marginRight: ".4em",
-        marginBottom: ".4em",
-        borderColor: "#2e34a3",
-        color: "#2e34a3"
-      }}
-    >
-      {data.title}
-      { detail !== null &&
-        <Label.Detail style={{color: "#686CB2"}}>
-          {detail}
-        </Label.Detail>
-      }
-      { IS_ADMIN && remove !== null &&
-        <Label.Detail>
-          <Icon name="delete"
-          onClick={e => {
-            e.stopPropagation();
-            e.preventDefault();
-            remove(data.title);
-          }} />
-        </Label.Detail>
-      }
-    </Label>
-  }
+        onClick={e => {
+          e.stopPropagation();
+          e.preventDefault();
+          remove && remove(data.title);
+        }} />
+      </Label.Detail>
+    }
+  </Label>;
+
+  return data.description != null && data.description.length > 0
+    ? <Popup
+        content={data.description}
+        trigger={labelElem} />
+    : labelElem;
 };
 
 export default Tag;
