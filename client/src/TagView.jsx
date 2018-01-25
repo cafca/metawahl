@@ -110,7 +110,7 @@ export default class TagView extends Component<RouteProps, State> {
         <Tag
           data={relatedTags[i].tag}
           detail={relatedTags[i].count}
-          key={"Tag-" + relatedTags[i].title}
+          key={"Tag-" + relatedTags[i].tag}
         />);
 
     return <div>
