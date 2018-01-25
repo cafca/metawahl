@@ -45,9 +45,7 @@ const Tag = ({ data, remove, detail }: Props) => {
 
   return data.description != null && data.description.length > 0
     ? <Popup
-        content={
-          data.description.charAt(0).toUpperCase() + data.description.slice(1)
-        }
+        content={data.description}
         trigger={labelElem} />
     : labelElem;
 };

@@ -364,7 +364,7 @@ export default class Thesis extends Component<Props, State> {
           header={this.state.voterOpinion !== 0 ? "Einspruch erheben" : null}
           wide
           trigger={
-            <Button as='span' basic compact disabled={this.state.commented}
+            <Button as='span' basic compact disabled={true}
               onClick={this.handleComment} style={{marginTop: -2}}>
               <Icon name='bullhorn' /> {this.state.voterOpinion === -1
                   ? "Wurde trotzdem umgesetzt!"

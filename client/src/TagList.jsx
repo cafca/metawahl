@@ -4,7 +4,16 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Checkbox, Loader, Menu, Segment, Icon, Header, Button } from 'semantic-ui-react';
+import {
+  Checkbox,
+  Button,
+  Header,
+  Icon,
+  Item,
+  Loader,
+  Menu,
+  Segment
+} from 'semantic-ui-react';
 
 import { API_ROOT, setTitle } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -82,12 +91,19 @@ export default class TagList extends Component<RouteProps, State> {
         : tagA.thesis_count > tagB.thesis_count ? -1 : 1;
     };
 
-    const tags = this.state.tags
+    const tagElems = this.state.tags
       .filter(t => this.state.showSingleTags === true ? true : t.thesis_count > 1)
       .sort(this.state.sortBy === "name" ? sortByName : sortByThesisCount)
-      .map((tag, i) => <li key={"Tag-" + i}>
-        <Link to={"/tags/" + tag.slug}>{tag.title} ({tag.thesis_count})</Link>
-      </li>);
+      .map((tag, i) => <Item key={"Tag-" + i} href={'/tags/' + tag.slug}>
+        <Item.Content>
+          <Item.Header>{tag.title}</Item.Header>
+          { tag.description != null && tag.description.length > 0 &&
+            <Item.Description>
+              {tag.description}
+            </Item.Description>
+          }
+        </Item.Content>
+      </Item>);
 
     // TODO: Error message when loadin failed
 
@@ -120,16 +136,16 @@ export default class TagList extends Component<RouteProps, State> {
         <Segment attached="bottom">
           <Loader active={this.state.tagsState === "loading"}
             inline='centered' />
-          { tags.length > 0 &&
+          { tagElems.length > 0 &&
             <div>
               <Checkbox
                 label="Zeige Tags mit nur einer These"
                 onChange={this.toggleSingleTags}
                 toggle
               />
-              <ul>
-              {tags}
-              </ul>
+              <Item.Group link className="divided">
+                {tagElems}
+              </Item.Group>
             </div>
           }
         </Segment>
