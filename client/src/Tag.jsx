@@ -32,7 +32,7 @@ const Tag = ({ data, remove, detail }: Props) => {
       </Label.Detail>
     }
     { IS_ADMIN && remove !== null &&
-      <Label.Detail>
+      <Label.Detail as='span'>
         <Icon name="delete"
         onClick={e => {
           e.stopPropagation();

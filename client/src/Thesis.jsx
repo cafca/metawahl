@@ -354,7 +354,7 @@ export default class Thesis extends Component<Props, State> {
               <Icon
               size='big'
               name={voterOpinionNames[this.state.voterOpinion]}
-              /> {`Wähler stimmen ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
+              /> {`Mehrheit ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
             </span>
           }
         />

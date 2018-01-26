@@ -92,7 +92,7 @@ export default class Category extends React.Component<RouteProps, State> {
 
     return <div className="category">
       <Breadcrumb>
-        <Breadcrumb.Section href="/bereiche/">Themenbereiche</Breadcrumb.Section>
+        <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />
         { this.state.name
           ? <Breadcrumb.Section active>
