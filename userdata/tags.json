@@ -86,7 +86,6 @@
         "Abschlu\u00dfpr\u00fcfung", 
         "Ausbildungsabschlusspr\u00fcfung"
       ], 
-      "description": "Wikimedia-Begriffskl\u00e4rungsseite", 
       "labels": [
         "Abschlusspr\u00fcfung"
       ], 
@@ -206,7 +205,7 @@
       "aliases": [
         "Halballee"
       ], 
-      "description": "in der Regel beidseits von B\u00e4umen begrenzter Weg", 
+      "description": "In der Regel beidseits von B\u00e4umen begrenzter Weg", 
       "labels": [
         "Allee"
       ], 
@@ -228,7 +227,7 @@
         "Einelternfamilie", 
         "Alleinerziehende"
       ], 
-      "description": "parent raising a child alone", 
+      "description": "Parent raising a child alone", 
       "labels": [
         "Alleinerziehender"
       ], 
@@ -283,7 +282,6 @@
       "wikipedia_title": "Ampel (Lebensmittelkennzeichnung)"
     }, 
     {
-      "description": "Wikimedia-Begriffskl\u00e4rungsseite", 
       "labels": [
         "Anerkennungsgesetz"
       ], 
@@ -399,7 +397,7 @@
       "wikipedia_title": "Arbeitnehmerkammer Bremen"
     }, 
     {
-      "description": "situation where the employee is expected to leave the employer within a certain period of time", 
+      "description": "Situation where the employee is expected to leave the employer within a certain period of time", 
       "slug": "arbeitnehmeruberlassung", 
       "theses": [
         "WOM-042-20", 
@@ -413,7 +411,7 @@
       "wikidata_id": "Q667944"
     }, 
     {
-      "description": "remuneration paid by an employer to an employee", 
+      "description": "Remuneration paid by an employer to an employee", 
       "slug": "arbeitsentgelt", 
       "theses": [
         "WOM-030-36", 
@@ -429,7 +427,6 @@
         "Arbeitsbewilligung", 
         "Arbeitsgenehmigung-EU"
       ], 
-      "description": "Wikimedia-Begriffskl\u00e4rungsseite", 
       "labels": [
         "Arbeitserlaubnis"
       ], 
@@ -531,7 +528,7 @@
       "wikipedia_title": "Arbeitsmarktpolitik"
     }, 
     {
-      "description": "alle Gesetze, Verordnungen und sonstige verbindliche Bestimmungen zur unselbst\u00e4ndigen, abh\u00e4ngigen Erwerbst\u00e4tigkeit", 
+      "description": "Alle Gesetze, Verordnungen und sonstige verbindliche Bestimmungen zur unselbst\u00e4ndigen, abh\u00e4ngigen Erwerbst\u00e4tigkeit", 
       "labels": [
         "Arbeitsrecht"
       ], 
@@ -619,7 +616,7 @@
         "Asylsuchende", 
         "Asylberechtigter"
       ], 
-      "description": "individual who seeks refuge, esp. political asylum, in a foreign country", 
+      "description": "Individual who seeks refuge, esp. political asylum, in a foreign country", 
       "labels": [
         "Asylbewerber"
       ], 
@@ -685,7 +682,7 @@
         "Atomverzicht", 
         "Kernkraftausstieg"
       ], 
-      "description": "politische Entscheidung, auf die Erzeugung von Atomenergie beziehungsweise den Verbrauch von Atomstrom zu verzichten", 
+      "description": "Politische Entscheidung, auf die Erzeugung von Atomenergie beziehungsweise den Verbrauch von Atomstrom zu verzichten", 
       "labels": [
         "Atomausstieg"
       ], 
@@ -700,7 +697,7 @@
       "wikipedia_title": "Atomausstieg"
     }, 
     {
-      "description": "die Vermittlung von Verm\u00f6gen, Kenntnissen und Wissen an einen Menschen", 
+      "description": "Die Vermittlung von Verm\u00f6gen, Kenntnissen und Wissen an einen Menschen", 
       "labels": [
         "Ausbildung"
       ], 
@@ -961,7 +958,7 @@
       "wikidata_id": "Q811941"
     }, 
     {
-      "description": "system of social security in which all citizens or residents of a country regularly receive an unconditional sum of money, either from a government or some other public institution, in addition to any income received from elsewhere", 
+      "description": "System of social security in which all citizens or residents of a country regularly receive an unconditional sum of money, either from a government or some other public institution, in addition to any income received from elsewhere", 
       "slug": "bedingungsloses-grundeinkommen", 
       "theses": [
         "WOM-042-36", 
@@ -980,7 +977,7 @@
         "Entfristungsklage", 
         "Befristung (Arbeitsverh\u00e4ltnis)"
       ], 
-      "description": "employment contract", 
+      "description": "Employment contract", 
       "labels": [
         "Befristetes Arbeitsverh\u00e4ltnis"
       ], 
@@ -999,7 +996,7 @@
         "Hochbegabtenf\u00f6rderung", 
         "Early Entrance"
       ], 
-      "description": "broad term for special practices, procedures, and theories used in the education of children who have been identified as gifted or talented; the main approaches to gifted education are enrichment and acceleration", 
+      "description": "Broad term for special practices, procedures, and theories used in the education of children who have been identified as gifted or talented; the main approaches to gifted education are enrichment and acceleration", 
       "labels": [
         "Begabtenf\u00f6rderung"
       ], 
@@ -1032,7 +1029,7 @@
       "wikipedia_title": "Begleitetes Fahren"
     }, 
     {
-      "description": "k\u00f6rperliche oder psychische Funktionsst\u00f6rung einer Person", 
+      "description": "K\u00f6rperliche oder psychische Funktionsst\u00f6rung einer Person", 
       "slug": "behinderung", 
       "theses": [
         "WOM-004-12"
@@ -1194,7 +1191,6 @@
       "wikipedia_title": "Betriebsrat"
     }, 
     {
-      "description": "Wikimedia-Liste", 
       "labels": [
         "Bewerbungen f\u00fcr Olympische Sommerspiele"
       ], 
@@ -1209,7 +1205,6 @@
       "wikipedia_title": "Bewerbungen f\u00fcr Olympische Sommerspiele"
     }, 
     {
-      "description": "Wikimedia-Liste", 
       "labels": [
         "Bewerbungen f\u00fcr Olympische Winterspiele"
       ], 
@@ -1277,7 +1272,6 @@
         "Bienenweide", 
         "Trachtpflanze"
       ], 
-      "description": "Wikimedia-Liste", 
       "labels": [
         "Bienentrachtpflanze"
       ], 
@@ -1459,7 +1453,7 @@
         "Nummernbrand", 
         "Schenkelbrand"
       ], 
-      "description": "technique for marking livestock so as to identify the owner, traditionally with a hot iron", 
+      "description": "Technique for marking livestock so as to identify the owner, traditionally with a hot iron", 
       "labels": [
         "Brandzeichen"
       ], 
@@ -1780,7 +1774,7 @@
       "aliases": [
         "B\u00fcrgergarde"
       ], 
-      "description": "milit\u00e4r\u00e4hnliche Einrichtung von B\u00fcrgern zur Verteidigung ihrer Stadt", 
+      "description": "Milit\u00e4r\u00e4hnliche Einrichtung von B\u00fcrgern zur Verteidigung ihrer Stadt", 
       "labels": [
         "B\u00fcrgerwehr"
       ], 
@@ -1804,7 +1798,7 @@
         "Ganzk\u00f6rperschleier", 
         "Burkha"
       ], 
-      "description": "loose garments covering the entire body and having a veiled opening for the eyes; worn by Muslim wome", 
+      "description": "Loose garments covering the entire body and having a veiled opening for the eyes; worn by Muslim wome", 
       "labels": [
         "Burka"
       ], 
@@ -1907,7 +1901,7 @@
       "wikipedia_title": "D\u00e4nischer Schulverein f\u00fcr S\u00fcdschleswig"
     }, 
     {
-      "description": "alle Ma\u00dfnahmen zur angemessenen Nutzung von personenbezogenen Daten", 
+      "description": "Alle Ma\u00dfnahmen zur angemessenen Nutzung von personenbezogenen Daten", 
       "slug": "datenschutz", 
       "theses": [
         "WOM-042-06", 
@@ -1964,7 +1958,7 @@
         "DB", 
         "Deutsche Bahn AG"
       ], 
-      "description": "deutsches Verkehrsunternehmen", 
+      "description": "Deutsches Verkehrsunternehmen", 
       "labels": [
         "Deutsche Bahn"
       ], 
@@ -2001,7 +1995,7 @@
       "wikipedia_title": "Deutsche Demokratische Republik"
     }, 
     {
-      "description": "ehemalige W\u00e4hrung in Deutschland", 
+      "description": "Ehemalige W\u00e4hrung in Deutschland", 
       "slug": "deutsche-mark", 
       "theses": [
         "WOM-042-23", 
@@ -2018,7 +2012,7 @@
       "aliases": [
         "Polizei in Deutschland"
       ], 
-      "description": "deutsche Polizeibeh\u00f6rden", 
+      "description": "Deutsche Polizeibeh\u00f6rden", 
       "labels": [
         "deutsche Polizei"
       ], 
@@ -2063,7 +2057,7 @@
         "Staatsangeh\u00f6rigkeitsgesetz", 
         "StAG"
       ], 
-      "description": "rechtliche Mitgliedschaft einer nat\u00fcrlichen Person zum deutschen Staat, der Bundesrepublik Deutschland.", 
+      "description": "Rechtliche Mitgliedschaft einer nat\u00fcrlichen Person zum deutschen Staat, der Bundesrepublik Deutschland.", 
       "labels": [
         "Deutsche Staatsangeh\u00f6rigkeit"
       ], 
@@ -2104,7 +2098,7 @@
         "Automotive Gas Oil", 
         "Sommerdiesel"
       ], 
-      "description": "chemische Verbindung", 
+      "description": "Chemische Verbindung", 
       "labels": [
         "Dieselkraftstoff"
       ], 
@@ -2130,7 +2124,7 @@
         "Dieselpartikelfilter", 
         "Ru\u00dfpartikelfilter"
       ], 
-      "description": "removes diesel particulate matter or soot from the exhaust gas of a diesel engine", 
+      "description": "Removes diesel particulate matter or soot from the exhaust gas of a diesel engine", 
       "labels": [
         "Dieselru\u00dfpartikelfilter"
       ], 
@@ -2183,7 +2177,7 @@
       "wikidata_id": "Q171174"
     }, 
     {
-      "description": "election in which people vote directly for the person that they want elected to a political position", 
+      "description": "Election in which people vote directly for the person that they want elected to a political position", 
       "slug": "direktwahl", 
       "theses": [
         "WOM-033-08", 
@@ -2224,7 +2218,7 @@
         "Dresseur", 
         "Futterdressur"
       ], 
-      "description": "teaching animals specific responses to specific conditions or stimuli", 
+      "description": "Teaching animals specific responses to specific conditions or stimuli", 
       "labels": [
         "Dressur"
       ], 
@@ -2256,17 +2250,23 @@
       "wikipedia_title": "Drittmittel"
     }, 
     {
-      "labels": [
-        "Drogenpolitik"
-      ], 
       "slug": "drogenpolitik", 
       "theses": [
+        "WOM-042-31", 
+        "WOM-040-36", 
         "WOM-038-28", 
         "WOM-038-19", 
+        "WOM-037-24", 
         "WOM-036-34", 
+        "WOM-036-04", 
         "WOM-035-31", 
         "WOM-035-00", 
+        "WOM-034-31", 
+        "WOM-033-00", 
         "WOM-032-21", 
+        "WOM-031-17", 
+        "WOM-027-17", 
+        "WOM-026-07", 
         "WOM-025-27", 
         "WOM-025-03", 
         "WOM-024-26", 
@@ -2275,21 +2275,25 @@
         "WOM-014-35", 
         "WOM-013-00", 
         "WOM-012-21", 
+        "WOM-011-16", 
         "WOM-010-28", 
         "WOM-010-22", 
         "WOM-009-11", 
         "WOM-008-19", 
+        "WOM-007-24", 
+        "WOM-006-28", 
+        "WOM-005-21", 
         "WOM-005-00", 
         "WOM-004-21", 
         "WOM-003-18", 
+        "WOM-002-22", 
         "WOM-001-14", 
         "WOM-000-06", 
         "WOM-000-05"
       ], 
       "title": "Drogenpolitik", 
       "url": "http://www.wikidata.org/entity/Q1260003", 
-      "wikidata_id": "Q1260003", 
-      "wikipedia_title": "Drogenpolitik"
+      "wikidata_id": "Q1260003"
     }, 
     {
       "slug": "drug-checking", 
@@ -2314,7 +2318,7 @@
       "wikipedia_title": "Duales System (Abfallwirtschaft)"
     }, 
     {
-      "description": "vor\u00fcbergehende Aussetzung der Abschiebung im deutschen Aufenthaltsrecht", 
+      "description": "Vor\u00fcbergehende Aussetzung der Abschiebung im deutschen Aufenthaltsrecht", 
       "slug": "duldung", 
       "theses": [
         "WOM-041-04", 
@@ -2381,7 +2385,7 @@
         "Freiwilligenarbeit", 
         "Benevol"
       ], 
-      "description": "altruistic activity", 
+      "description": "Altruistic activity", 
       "labels": [
         "Ehrenamt"
       ], 
@@ -2433,7 +2437,7 @@
         "Vorverkauf", 
         "Vvk."
       ], 
-      "description": "cover", 
+      "description": "Cover", 
       "labels": [
         "Eintritt"
       ], 
@@ -2596,7 +2600,7 @@
       "wikipedia_title": "Entwicklungszusammenarbeit"
     }, 
     {
-      "description": "besteuert den \u00dcbergang von Verm\u00f6genswerten einer verstorbenen nat\u00fcrlichen Person an den Erben", 
+      "description": "Besteuert den \u00dcbergang von Verm\u00f6genswerten einer verstorbenen nat\u00fcrlichen Person an den Erben", 
       "labels": [
         "Erbschaftsteuer"
       ], 
@@ -2691,7 +2695,7 @@
       "aliases": [
         "EU-Erweiterung"
       ], 
-      "description": "the accession process of new countries to the European Union", 
+      "description": "The accession process of new countries to the European Union", 
       "labels": [
         "Erweiterung der Europ\u00e4ischen Union"
       ], 
@@ -2732,7 +2736,7 @@
         "Pro-Gamer", 
         "Progaming"
       ], 
-      "description": "elektronischer Sport", 
+      "description": "Elektronischer Sport", 
       "labels": [
         "E-Sport"
       ], 
@@ -2746,7 +2750,7 @@
       "wikipedia_title": "E-Sport"
     }, 
     {
-      "description": "government bonds jointly issued by eurozone countries", 
+      "description": "Government bonds jointly issued by eurozone countries", 
       "labels": [
         "EU-Anleihe"
       ], 
@@ -2761,7 +2765,7 @@
       "wikipedia_title": "EU-Anleihe"
     }, 
     {
-      "description": "europ\u00e4ische W\u00e4hrung", 
+      "description": "Europ\u00e4ische W\u00e4hrung", 
       "slug": "euro", 
       "theses": [
         "WOM-042-23", 
@@ -2825,7 +2829,7 @@
       "wikipedia_title": "Frontex"
     }, 
     {
-      "description": "politisches Konzept, das den Ausbau der Europ\u00e4ischen Union mit dem Ziel der Errichtung eines f\u00f6deralen europ\u00e4ischen Bundesstaats anstrebt", 
+      "description": "Politisches Konzept, das den Ausbau der Europ\u00e4ischen Union mit dem Ziel der Errichtung eines f\u00f6deralen europ\u00e4ischen Bundesstaats anstrebt", 
       "labels": [
         "europ\u00e4ischer F\u00f6deralismus"
       ], 
@@ -2853,7 +2857,7 @@
         "AIDCO", 
         "EU-Au\u00dfenhilfe"
       ], 
-      "description": "directorate-general of the European Union", 
+      "description": "Directorate-general of the European Union", 
       "labels": [
         "Europ\u00e4isches Amt f\u00fcr Zusammenarbeit"
       ], 
@@ -2868,7 +2872,7 @@
       "wikipedia_title": "Europ\u00e4isches Amt f\u00fcr Zusammenarbeit"
     }, 
     {
-      "description": "europ\u00e4ischer Staatenbund", 
+      "description": "Europ\u00e4ischer Staatenbund", 
       "slug": "europaische-wirtschafts-und-wahrungsunion", 
       "theses": [
         "WOM-030-00", 
@@ -2912,7 +2916,7 @@
       "wikipedia_title": "Europol"
     }, 
     {
-      "description": "unacceptable ideology", 
+      "description": "Unacceptable ideology", 
       "slug": "extremismus", 
       "theses": [
         "WOM-042-28", 
@@ -3001,7 +3005,7 @@
       "aliases": [
         "Falschmeldung"
       ], 
-      "description": "hoax or deliberate spread of misinformation", 
+      "description": "Hoax or deliberate spread of misinformation", 
       "labels": [
         "Fake news"
       ], 
@@ -3065,7 +3069,6 @@
       "aliases": [
         "Q649352"
       ], 
-      "description": "Wikimedia-Liste", 
       "labels": [
         "Feiertage in Deutschland"
       ], 
@@ -3087,7 +3090,7 @@
       "aliases": [
         "FeWo"
       ], 
-      "description": "m\u00f6blierte Wohnung f\u00fcr Urlaubsg\u00e4ste", 
+      "description": "M\u00f6blierte Wohnung f\u00fcr Urlaubsg\u00e4ste", 
       "labels": [
         "Ferienwohnung"
       ], 
@@ -3117,7 +3120,7 @@
       "wikipedia_title": "Feste Fehmarnbeltquerung"
     }, 
     {
-      "description": "force that a person knows would create a substantial risk of causing, death or serious bodily harm or injury", 
+      "description": "Force that a person knows would create a substantial risk of causing, death or serious bodily harm or injury", 
       "labels": [
         "finaler Rettungsschuss"
       ], 
@@ -3293,7 +3296,7 @@
       "wikipedia_title": "Flugsicherheitsbegleiter"
     }, 
     {
-      "description": "politisches System, Organisationsprinzip von Staaten", 
+      "description": "Politisches System, Organisationsprinzip von Staaten", 
       "slug": "foderalismus", 
       "theses": [
         "WOM-033-16", 
@@ -3322,7 +3325,7 @@
         "Franz\u00f6sische Sprache", 
         "Fach Romanistik/Arbeitsgruppe Franz\u00f6sisch"
       ], 
-      "description": "romanische Sprache", 
+      "description": "Romanische Sprache", 
       "labels": [
         "Franz\u00f6sisch"
       ], 
@@ -3336,7 +3339,7 @@
       "wikipedia_title": "Franz\u00f6sische Sprache"
     }, 
     {
-      "description": "place of temporary refuge and support for women escaping violent or abusive situations", 
+      "description": "Place of temporary refuge and support for women escaping violent or abusive situations", 
       "labels": [
         "Frauenhaus"
       ], 
@@ -3566,7 +3569,7 @@
         "Legehennenbatterie", 
         "Legebatterien"
       ], 
-      "description": "part of animal husbandry", 
+      "description": "Part of animal husbandry", 
       "labels": [
         "Gefl\u00fcgelproduktion"
       ], 
@@ -3684,7 +3687,7 @@
       "wikipedia_title": "Genetischer Fingerabdruck"
     }, 
     {
-      "description": "direct manipulation of an organism's genome using biotechnology", 
+      "description": "Direct manipulation of an organism's genome using biotechnology", 
       "slug": "gentechnik", 
       "theses": [
         "WOM-039-17", 
@@ -3717,7 +3720,7 @@
       "aliases": [
         "Integrierte Gesamtschule"
       ], 
-      "description": "integrierte Schulform", 
+      "description": "Integrierte Schulform", 
       "labels": [
         "Gesamtschule"
       ], 
@@ -3748,7 +3751,7 @@
       "wikipedia_title": "Geschlechtergerechte Sprache"
     }, 
     {
-      "description": "krankenversicherung", 
+      "description": "Krankenversicherung", 
       "slug": "gesetzliche-krankenversicherung", 
       "theses": [
         "WOM-042-27", 
@@ -4001,7 +4004,7 @@
         "frei", 
         "kostenfrei"
       ], 
-      "description": "ohne Bezahlung erh\u00e4ltlich", 
+      "description": "Ohne Bezahlung erh\u00e4ltlich", 
       "labels": [
         "gratis"
       ], 
@@ -4048,7 +4051,7 @@
         "griechische Finanzkrise", 
         "griechische Depression"
       ], 
-      "description": "economic crisis", 
+      "description": "Economic crisis", 
       "labels": [
         "Griechische Staatsschuldenkrise"
       ], 
@@ -4150,7 +4153,7 @@
       "wikidata_id": "Q3259956"
     }, 
     {
-      "description": "au\u00dferbetriebliche Bef\u00f6rderung von G\u00fctern", 
+      "description": "Au\u00dferbetriebliche Bef\u00f6rderung von G\u00fctern", 
       "labels": [
         "G\u00fcterverkehr"
       ], 
@@ -4168,7 +4171,7 @@
       "aliases": [
         "Lyzeum"
       ], 
-      "description": "weiterf\u00fchrende Schule des sekund\u00e4ren Bildungsbereichs", 
+      "description": "Weiterf\u00fchrende Schule des sekund\u00e4ren Bildungsbereichs", 
       "labels": [
         "Gymnasium"
       ], 
@@ -4228,7 +4231,7 @@
         "Hamburger Hafen-und Lagerhaus", 
         "Hamburger Hafen und Logistik AG"
       ], 
-      "description": "company", 
+      "description": "Company", 
       "labels": [
         "Hamburger Hafen und Logistik"
       ], 
@@ -4273,9 +4276,23 @@
       ], 
       "slug": "hanf", 
       "theses": [
+        "WOM-042-31", 
+        "WOM-040-36", 
         "WOM-038-19", 
+        "WOM-037-24", 
+        "WOM-036-04", 
         "WOM-035-31", 
+        "WOM-034-31", 
+        "WOM-033-00", 
+        "WOM-031-17", 
+        "WOM-027-17", 
+        "WOM-026-07", 
+        "WOM-011-16", 
+        "WOM-007-24", 
+        "WOM-006-28", 
+        "WOM-005-21", 
         "WOM-004-21", 
+        "WOM-002-22", 
         "WOM-000-05"
       ], 
       "title": "Hanf", 
@@ -4310,7 +4327,7 @@
         "Hauptschulzweig", 
         "Hauptsch\u00fcler"
       ], 
-      "description": "allgemeinbildende Schulform der mittleren Bildung", 
+      "description": "Allgemeinbildende Schulform der mittleren Bildung", 
       "labels": [
         "Hauptschule"
       ], 
@@ -4361,7 +4378,7 @@
         "Katze", 
         "Felis silvestris catus"
       ], 
-      "description": "domestizierte Katze", 
+      "description": "Domestizierte Katze", 
       "labels": [
         "Hauskatze"
       ], 
@@ -4461,7 +4478,7 @@
       "wikipedia_title": "Hilfen zur Erziehung"
     }, 
     {
-      "description": "menschliches Immunschw\u00e4che-Virus", 
+      "description": "Menschliches Immunschw\u00e4che-Virus", 
       "slug": "hiv", 
       "theses": [
         "WOM-010-03"
@@ -4536,7 +4553,7 @@
         "Schoa", 
         "Shoah"
       ], 
-      "description": "nationalsozialistischer V\u00f6lkermord an den europ\u00e4ischen Juden", 
+      "description": "Nationalsozialistischer V\u00f6lkermord an den europ\u00e4ischen Juden", 
       "labels": [
         "Holocaust"
       ], 
@@ -4557,7 +4574,7 @@
         "Schwulenangst", 
         "Schwulenhass"
       ], 
-      "description": "soziale, gegen Lesben und Schwule gerichtete Aversion bzw. Feindseligkeit", 
+      "description": "Soziale, gegen Lesben und Schwule gerichtete Aversion bzw. Feindseligkeit", 
       "labels": [
         "Homophobie"
       ], 
@@ -4692,7 +4709,7 @@
       "wikipedia_title": "Impfpflicht"
     }, 
     {
-      "description": "berufsst\u00e4ndische K\u00f6rperschaft des \u00f6ffentlichen Rechts", 
+      "description": "Berufsst\u00e4ndische K\u00f6rperschaft des \u00f6ffentlichen Rechts", 
       "slug": "industrie-und-handelskammer", 
       "theses": [
         "WOM-037-26"
@@ -4845,7 +4862,7 @@
       "aliases": [
         "Massentierhaltung"
       ], 
-      "description": "technisierte Viehhaltung in Gro\u00dfbetrieben", 
+      "description": "Technisierte Viehhaltung in Gro\u00dfbetrieben", 
       "labels": [
         "Intensivtierhaltung"
       ], 
@@ -4865,7 +4882,7 @@
         "Internetwahlen", 
         "I-Voting"
       ], 
-      "description": "elektronische Form einer Wahl oder Volksabstimmung \u00fcber das Internet", 
+      "description": "Elektronische Form einer Wahl oder Volksabstimmung \u00fcber das Internet", 
       "labels": [
         "Internetwahl"
       ], 
@@ -4913,7 +4930,7 @@
         "Daaisch", 
         "ISIL"
       ], 
-      "description": "dschihadistisch-salafistische Terrororganisation, deren Ziel die gewaltsame Errichtung eines Kalifats im Irak und in Syrien ist", 
+      "description": "Dschihadistisch-salafistische Terrororganisation, deren Ziel die gewaltsame Errichtung eines Kalifats im Irak und in Syrien ist", 
       "labels": [
         "Islamischer Staat"
       ], 
@@ -4927,7 +4944,7 @@
       "wikipedia_title": "Islamischer Staat (Organisation)"
     }, 
     {
-      "description": "form of Islam", 
+      "description": "Form of Islam", 
       "labels": [
         "Islamistischer Extremismus"
       ], 
@@ -4980,7 +4997,7 @@
       "wikidata_id": "Q18189"
     }, 
     {
-      "description": "eine Organisationseinheit innerhalb der Kommunalverwaltung, welche sich mit Kindern und Jugendlichen besch\u00e4ftigt", 
+      "description": "Eine Organisationseinheit innerhalb der Kommunalverwaltung, welche sich mit Kindern und Jugendlichen besch\u00e4ftigt", 
       "labels": [
         "Jugendamt"
       ], 
@@ -4994,7 +5011,7 @@
       "wikipedia_title": "Jugendamt"
     }, 
     {
-      "description": "ein klassisches T\u00e4tigkeitsfeld der Sozialen Arbeit", 
+      "description": "Ein klassisches T\u00e4tigkeitsfeld der Sozialen Arbeit", 
       "slug": "jugendarbeit", 
       "theses": [
         "WOM-018-35", 
@@ -5006,7 +5023,7 @@
       "wikidata_id": "Q1711247"
     }, 
     {
-      "description": "government", 
+      "description": "Government", 
       "slug": "jugendschutz", 
       "theses": [
         "WOM-012-16", 
@@ -5021,7 +5038,7 @@
       "wikidata_id": "Q1029430"
     }, 
     {
-      "description": "ein Sonderstrafrecht und ein Sonderstrafprozessrecht f\u00fcr junge T\u00e4ter in Deutschland", 
+      "description": "Ein Sonderstrafrecht und ein Sonderstrafprozessrecht f\u00fcr junge T\u00e4ter in Deutschland", 
       "slug": "jugendstrafrecht-deutschland", 
       "theses": [
         "WOM-042-26", 
@@ -5044,7 +5061,7 @@
         "Junk Food", 
         "Junk-Food"
       ], 
-      "description": "als minderwertig oder ungesund betrachtete Lebensmittel", 
+      "description": "Als minderwertig oder ungesund betrachtete Lebensmittel", 
       "labels": [
         "Junkfood"
       ], 
@@ -5090,7 +5107,7 @@
       "wikidata_id": "Q1394561"
     }, 
     {
-      "description": "durch Kernfusion oder Kernspaltung erzeugte Energie", 
+      "description": "Durch Kernfusion oder Kernspaltung erzeugte Energie", 
       "slug": "kernenergie", 
       "theses": [
         "WOM-036-22", 
@@ -5168,7 +5185,7 @@
       "wikipedia_title": "Killerspiel"
     }, 
     {
-      "description": "junger Mensch", 
+      "description": "Junger Mensch", 
       "labels": [
         "Kind"
       ], 
@@ -5206,7 +5223,7 @@
       "aliases": [
         "Familienbeihilfe"
       ], 
-      "description": "castellano", 
+      "description": "Castellano", 
       "labels": [
         "Kindergeld"
       ], 
@@ -5376,7 +5393,7 @@
       "wikipedia_title": "Koedukation"
     }, 
     {
-      "description": "festes Sedimentgestein", 
+      "description": "Festes Sedimentgestein", 
       "slug": "kohle", 
       "theses": [
         "WOM-042-19", 
@@ -5476,7 +5493,7 @@
       "wikipedia_title": "Kopfnote"
     }, 
     {
-      "description": "piece of cloth worn on one's head", 
+      "description": "Piece of cloth worn on one's head", 
       "labels": [
         "Kopftuch"
       ], 
@@ -5546,7 +5563,7 @@
       "wikidata_id": "Q240673"
     }, 
     {
-      "description": "medizinische Einrichtung", 
+      "description": "Medizinische Einrichtung", 
       "slug": "krankenhaus", 
       "theses": [
         "WOM-039-05", 
@@ -5619,7 +5636,7 @@
       "wikidata_id": "Q1520664"
     }, 
     {
-      "description": "gesetzliche Regelungen um Beendigung eines Arbeitsvertrages erschweren", 
+      "description": "Gesetzliche Regelungen um Beendigung eines Arbeitsvertrages erschweren", 
       "slug": "kundigungsschutz", 
       "theses": [
         "WOM-033-10", 
@@ -5764,7 +5781,7 @@
       "wikipedia_title": "Landwirtschaft"
     }, 
     {
-      "description": "period of duration, time or occurrence, in relation to an event", 
+      "description": "Period of duration, time or occurrence, in relation to an event", 
       "labels": [
         "Laufzeit"
       ], 
@@ -5790,7 +5807,7 @@
       "wikipedia_title": "Laufzeit (Wirtschaft)"
     }, 
     {
-      "description": "political ideology", 
+      "description": "Political ideology", 
       "slug": "legalisierung-von-drogen", 
       "theses": [
         "WOM-042-31", 
@@ -5863,7 +5880,7 @@
       "wikipedia_title": "Lehrplan"
     }, 
     {
-      "description": "money paid relating to how well one works", 
+      "description": "Money paid relating to how well one works", 
       "slug": "leistungsorientierte-vergutung", 
       "theses": [
         "WOM-030-36", 
@@ -5988,7 +6005,7 @@
         "Linksextrem", 
         "Linksextremistisch"
       ], 
-      "description": "political alignment", 
+      "description": "Political alignment", 
       "labels": [
         "Linksextremismus"
       ], 
@@ -6005,7 +6022,6 @@
       "aliases": [
         "Liste in Deutschland verbotener rechtsextremistischer Organisationen"
       ], 
-      "description": "Wikimedia-Liste", 
       "labels": [
         "Liste in Deutschland verbotener rechtsextremer Organisationen"
       ], 
@@ -6069,7 +6085,7 @@
         "Masterstudium", 
         "Abschluss 2. Grades"
       ], 
-      "description": "akademischer Grad", 
+      "description": "Akademischer Grad", 
       "labels": [
         "Master"
       ], 
@@ -6083,7 +6099,7 @@
       "wikipedia_title": "Master"
     }, 
     {
-      "description": "neuzeitlicher Wegzoll", 
+      "description": "Neuzeitlicher Wegzoll", 
       "labels": [
         "Maut"
       ], 
@@ -6136,7 +6152,7 @@
         "Mehrfachstaatsb\u00fcrgerschaft", 
         "multiple Staatsb\u00fcrgerschaft"
       ], 
-      "description": "citizenship in multiple countries by the same person", 
+      "description": "Citizenship in multiple countries by the same person", 
       "labels": [
         "Mehrfache Staatsb\u00fcrgerschaft"
       ], 
@@ -6159,7 +6175,7 @@
         "USt", 
         "Mwst"
       ], 
-      "description": "auf den Verkaufspreis eines Produktes oder einer Leistung aufgeschlagene Umsatzsteuer (im Steuerrecht irref\u00fchrend als Umsatzsteuer bezeichnet)", 
+      "description": "Auf den Verkaufspreis eines Produktes oder einer Leistung aufgeschlagene Umsatzsteuer (im Steuerrecht irref\u00fchrend als Umsatzsteuer bezeichnet)", 
       "labels": [
         "Mehrwertsteuer"
       ], 
@@ -6174,7 +6190,7 @@
       "wikipedia_title": "Mehrwertsteuer"
     }, 
     {
-      "description": "h\u00f6herer Berufsabschluss", 
+      "description": "H\u00f6herer Berufsabschluss", 
       "slug": "meister", 
       "theses": [
         "WOM-027-11", 
@@ -6215,7 +6231,7 @@
         "Methadon-Therapie", 
         "L-Polamidon"
       ], 
-      "description": "chemische Verbindung", 
+      "description": "Chemische Verbindung", 
       "labels": [
         "Methadon"
       ], 
@@ -6287,7 +6303,7 @@
       "aliases": [
         "Bev\u00f6lkerungswanderung"
       ], 
-      "description": "dauerhafter Wohnortwechsel von Menschen", 
+      "description": "Dauerhafter Wohnortwechsel von Menschen", 
       "labels": [
         "Migration"
       ], 
@@ -6352,7 +6368,7 @@
         "Minaret", 
         "Minar"
       ], 
-      "description": "erh\u00f6hter Standplatz oder Turm f\u00fcr den Gebetsrufer bei oder an einer Moschee", 
+      "description": "Erh\u00f6hter Standplatz oder Turm f\u00fcr den Gebetsrufer bei oder an einer Moschee", 
       "labels": [
         "Minarett"
       ], 
@@ -6370,7 +6386,7 @@
       "wikipedia_title": "Minarett"
     }, 
     {
-      "description": "festgelegtes kleinstes rechtlich zul\u00e4ssiges Arbeitsentgelt", 
+      "description": "Festgelegtes kleinstes rechtlich zul\u00e4ssiges Arbeitsentgelt", 
       "slug": "mindestlohn", 
       "theses": [
         "WOM-041-09", 
@@ -6515,7 +6531,7 @@
       "wikipedia_title": "Mittlerer Schulabschluss"
     }, 
     {
-      "description": "technische Infrastruktur f\u00fcr den Mobilfunk", 
+      "description": "Technische Infrastruktur f\u00fcr den Mobilfunk", 
       "slug": "mobilfunknetz", 
       "theses": [
         "WOM-034-00"
@@ -6617,7 +6633,6 @@
       "aliases": [
         "Liste der Nationalparks in Deutschland"
       ], 
-      "description": "Wikimedia-Liste", 
       "labels": [
         "Nationalparks in Deutschland"
       ], 
@@ -6631,7 +6646,7 @@
       "wikipedia_title": "Nationalparks in Deutschland"
     }, 
     {
-      "description": "geplanter Nationalpark in Deutschland", 
+      "description": "Geplanter Nationalpark in Deutschland", 
       "labels": [
         "Nationalpark Teutoburger Wald"
       ], 
@@ -6652,7 +6667,7 @@
         "Nordatlantikpakt-Organisation", 
         "Atlantisches B\u00fcndnis"
       ], 
-      "description": "milit\u00e4risches B\u00fcndnis europ\u00e4ischer und nordamerikanischer Staaten", 
+      "description": "Milit\u00e4risches B\u00fcndnis europ\u00e4ischer und nordamerikanischer Staaten", 
       "labels": [
         "NATO"
       ], 
@@ -6778,7 +6793,7 @@
       "wikidata_id": "Q18185"
     }, 
     {
-      "description": "place for people to live temporarily when they cannot live in their previous residence", 
+      "description": "Place for people to live temporarily when they cannot live in their previous residence", 
       "labels": [
         "Notunterkunft"
       ], 
@@ -6792,7 +6807,6 @@
       "wikipedia_title": "Notunterkunft"
     }, 
     {
-      "description": "Wikimedia-Begriffskl\u00e4rungsseite", 
       "slug": "npd-verbotsverfahren", 
       "theses": [
         "WOM-023-18", 
@@ -6932,7 +6946,7 @@
       "aliases": [
         "\u00d6ffentlicher Bereich"
       ], 
-      "description": "places for public use", 
+      "description": "Places for public use", 
       "labels": [
         "\u00f6ffentlicher Raum"
       ], 
@@ -6999,7 +7013,7 @@
         "\u00d6PP", 
         "PPP"
       ], 
-      "description": "vertragliche Zusammenarbeit zwischen \u00f6ffentlicher Hand und privatrechtlich organisierten Unternehmen", 
+      "description": "Vertragliche Zusammenarbeit zwischen \u00f6ffentlicher Hand und privatrechtlich organisierten Unternehmen", 
       "labels": [
         "\u00d6ffentlich-Private Partnerschaft"
       ], 
@@ -7135,7 +7149,7 @@
       "wikipedia_title": "Olympische Sommerspiele 2028"
     }, 
     {
-      "description": "alle vier Jahre stattfindende Sportveranstaltung mit zahlreichen Disziplinen", 
+      "description": "Alle vier Jahre stattfindende Sportveranstaltung mit zahlreichen Disziplinen", 
       "slug": "olympische-spiele", 
       "theses": [
         "WOM-032-00", 
@@ -7201,7 +7215,7 @@
         "Bundestrojaner", 
         "Staatstrojaner-Aff\u00e4re"
       ], 
-      "description": "verdeckter staatlicher Zugriff auf fremde informationstechnische Systeme in Deutschland", 
+      "description": "Verdeckter staatlicher Zugriff auf fremde informationstechnische Systeme in Deutschland", 
       "labels": [
         "Online-Durchsuchung"
       ], 
@@ -7266,7 +7280,7 @@
         "Orthographisch", 
         "Orthografie"
       ], 
-      "description": "allgemein \u00fcbliche Schreibweise der W\u00f6rter einer Sprache in der verwendeten Schrift", 
+      "description": "Allgemein \u00fcbliche Schreibweise der W\u00f6rter einer Sprache in der verwendeten Schrift", 
       "labels": [
         "Orthographie"
       ], 
@@ -7457,7 +7471,7 @@
       "wikipedia_title": "Pflegezeit (Arbeitsfreistellung)"
     }, 
     {
-      "description": "das, was jemand aus moralischen (oder rechtlichen) Gr\u00fcnden tun muss", 
+      "description": "Das, was jemand aus moralischen (oder rechtlichen) Gr\u00fcnden tun muss", 
       "slug": "pflicht", 
       "theses": [
         "WOM-035-11", 
@@ -7566,7 +7580,7 @@
       "wikipedia_title": "Polizei Bremen"
     }, 
     {
-      "description": "polizeiliches Handeln im Au\u00dfendienst", 
+      "description": "Polizeiliches Handeln im Au\u00dfendienst", 
       "slug": "polizeieinsatz", 
       "theses": [
         "WOM-041-08", 
@@ -7671,7 +7685,7 @@
         "Praktikant", 
         "Praktikantin"
       ], 
-      "description": "eine auf eine bestimmte Dauer ausgelegte Vertiefung erworbener oder noch zu erwerbender Kenntnisse in praktischer Anwendung", 
+      "description": "Eine auf eine bestimmte Dauer ausgelegte Vertiefung erworbener oder noch zu erwerbender Kenntnisse in praktischer Anwendung", 
       "labels": [
         "P", 
         "r", 
@@ -7872,7 +7886,7 @@
       "wikipedia_title": "RAG Deutsche Steinkohle AG"
     }, 
     {
-      "description": "public policies, including criminal laws and occupational safety and health regulations, that prohibit tobacco smoking in workplaces and other public spaces", 
+      "description": "Public policies, including criminal laws and occupational safety and health regulations, that prohibit tobacco smoking in workplaces and other public spaces", 
       "labels": [
         "Rauchverbot"
       ], 
@@ -7988,7 +8002,7 @@
       "wikidata_id": "Q204481"
     }, 
     {
-      "description": "financial tools of the European Union", 
+      "description": "Financial tools of the European Union", 
       "labels": [
         "Regionalpolitik der Europ\u00e4ischen Union"
       ], 
@@ -8019,7 +8033,7 @@
       "wikipedia_title": "Reichensteuer"
     }, 
     {
-      "description": "freedom of religion in Germany", 
+      "description": "Freedom of religion in Germany", 
       "slug": "religionsfreiheit-in-deutschland", 
       "theses": [
         "WOM-042-35", 
@@ -8096,7 +8110,7 @@
       "aliases": [
         "Resozialisation"
       ], 
-      "description": "process to make a person again a functional part of society", 
+      "description": "Process to make a person again a functional part of society", 
       "labels": [
         "Resozialisierung"
       ], 
@@ -8123,7 +8137,7 @@
       "wikipedia_title": "Resozialisierung als Vollzugsziel"
     }, 
     {
-      "description": "mitteleurop\u00e4ischer Fluss zur Nordsee", 
+      "description": "Mitteleurop\u00e4ischer Fluss zur Nordsee", 
       "labels": [
         "Rhein"
       ], 
@@ -8179,7 +8193,7 @@
         "Fernsehrat", 
         "H\u00f6rfunkrat"
       ], 
-      "description": "oberstes f\u00fcr die Programmkontrolle zust\u00e4ndige Aufsichtsgremium", 
+      "description": "Oberstes f\u00fcr die Programmkontrolle zust\u00e4ndige Aufsichtsgremium", 
       "labels": [
         "Rundfunkrat"
       ], 
@@ -8336,7 +8350,7 @@
       "wikipedia_title": "Bahn (Verkehr)"
     }, 
     {
-      "description": "any lightweight covering for the head or face or both", 
+      "description": "Any lightweight covering for the head or face or both", 
       "labels": [
         "Schleier"
       ], 
@@ -8373,7 +8387,7 @@
       "wikipedia_title": "Schleierfahndung"
     }, 
     {
-      "description": "theatre and opera company in Rendsburg, serving several touring venues in the state of Schleswig-Holstein, Germany", 
+      "description": "Theatre and opera company in Rendsburg, serving several touring venues in the state of Schleswig-Holstein, Germany", 
       "labels": [
         "Schleswig-Holsteinisches Landestheater und Sinfonieorchester"
       ], 
@@ -8387,7 +8401,7 @@
       "wikipedia_title": "Schleswig-Holsteinisches Landestheater und Sinfonieorchester"
     }, 
     {
-      "description": "beschreibt die erfolgreiche Beendigung einer Schullaufbahn", 
+      "description": "Beschreibt die erfolgreiche Beendigung einer Schullaufbahn", 
       "slug": "schulabschluss", 
       "theses": [
         "WOM-039-30", 
@@ -8605,7 +8619,7 @@
       "wikipedia_title": "Schulpflicht (Deutschland)"
     }, 
     {
-      "description": "meal provided to students at school", 
+      "description": "Meal provided to students at school", 
       "slug": "schulspeisung", 
       "theses": [
         "WOM-038-09", 
@@ -8632,7 +8646,7 @@
       "wikipedia_title": "Schulsprengel"
     }, 
     {
-      "description": "beschreibt das Schulsystem in der Bundesrepublik Deutschland", 
+      "description": "Beschreibt das Schulsystem in der Bundesrepublik Deutschland", 
       "slug": "schulsystem-in-deutschland", 
       "theses": [
         "WOM-041-14", 
@@ -8664,7 +8678,7 @@
       "wikidata_id": "Q2251494"
     }, 
     {
-      "description": "absichtliche vorzeitige Beendigung einer Schwangerschaft", 
+      "description": "Absichtliche vorzeitige Beendigung einer Schwangerschaft", 
       "slug": "schwangerschaftsabbruch", 
       "theses": [
         "WOM-033-25", 
@@ -8687,7 +8701,7 @@
         "Arzneimittelzuzahlung", 
         "Heilmittelzuzahlung"
       ], 
-      "description": "amount of expenses that must be paid out of pocket before an insurer will pay any expenses", 
+      "description": "Amount of expenses that must be paid out of pocket before an insurer will pay any expenses", 
       "labels": [
         "Selbstbeteiligung"
       ], 
@@ -8750,7 +8764,7 @@
         "Solarenergieanlage", 
         "Solarpark"
       ], 
-      "description": "technische Anlage zur Umwandlung von Sonnenenergie in eine andere Energieform", 
+      "description": "Technische Anlage zur Umwandlung von Sonnenenergie in eine andere Energieform", 
       "labels": [
         "Solaranlage"
       ], 
@@ -8785,7 +8799,7 @@
       "wikipedia_title": "Solidarit\u00e4tszuschlag"
     }, 
     {
-      "description": "staatlich gef\u00f6rderter Wohnungsbau", 
+      "description": "Staatlich gef\u00f6rderter Wohnungsbau", 
       "labels": [
         "sozialer Wohnungsbau"
       ], 
@@ -8811,7 +8825,7 @@
       "wikidata_id": "Q6532502"
     }, 
     {
-      "description": "dient der Sicherung oder Verwirklichung der Grundbed\u00fcrfnisse des menschlichen Lebens", 
+      "description": "Dient der Sicherung oder Verwirklichung der Grundbed\u00fcrfnisse des menschlichen Lebens", 
       "labels": [
         "Sozialleistung"
       ], 
@@ -8870,7 +8884,7 @@
         "5 Prozent H\u00fcrde", 
         "F\u00fcnf-Prozent-Klausel"
       ], 
-      "description": "clause requiring a minimum number of votes for a proposal to pass", 
+      "description": "Clause requiring a minimum number of votes for a proposal to pass", 
       "labels": [
         "Sperrklausel"
       ], 
@@ -8918,7 +8932,7 @@
         "Soziosponsoring", 
         "Sponsor"
       ], 
-      "description": "commercial supporter of an event, activity, or person", 
+      "description": "Commercial supporter of an event, activity, or person", 
       "labels": [
         "Sponsoring"
       ], 
@@ -8949,7 +8963,7 @@
         "Leibeserziehung", 
         "Schulturnen"
       ], 
-      "description": "educational course related to the physique of the human body", 
+      "description": "Educational course related to the physique of the human body", 
       "labels": [
         "Sportunterricht"
       ], 
@@ -9174,7 +9188,7 @@
       "wikipedia_title": "Sterbehilfe"
     }, 
     {
-      "description": "\u00f6ffentlich-rechtliche Abgabe von Geld", 
+      "description": "\u00d6ffentlich-rechtliche Abgabe von Geld", 
       "labels": [
         "Steuer"
       ], 
@@ -9284,7 +9298,7 @@
         "Stipendien", 
         "Grundstipendium"
       ], 
-      "description": "finanzielle Unterst\u00fctzung f\u00fcr K\u00fcnstler, Sportler, Sch\u00fcler, Studenten oder Jungwissenschaftler", 
+      "description": "Finanzielle Unterst\u00fctzung f\u00fcr K\u00fcnstler, Sportler, Sch\u00fcler, Studenten oder Jungwissenschaftler", 
       "labels": [
         "Stipendium"
       ], 
@@ -9301,7 +9315,7 @@
       "aliases": [
         "Strafunm\u00fcndigkeit"
       ], 
-      "description": "legal defence arguing that defendant has not reached age of criminal responsibility", 
+      "description": "Legal defence arguing that defendant has not reached age of criminal responsibility", 
       "labels": [
         "Strafm\u00fcndigkeit"
       ], 
@@ -9336,7 +9350,7 @@
         "Stra\u00dfenbahnverkehr", 
         "Tramverkehr"
       ], 
-      "description": "schienengebundenes Transportmittel im Stadtverkehr des \u00f6ffentlichen Personennahverkehrs", 
+      "description": "Schienengebundenes Transportmittel im Stadtverkehr des \u00f6ffentlichen Personennahverkehrs", 
       "labels": [
         "Stra\u00dfenbahn"
       ], 
@@ -9350,7 +9364,7 @@
       "wikipedia_title": "Stra\u00dfenbahn"
     }, 
     {
-      "description": "zeigt Stra\u00dfenname einer Stra\u00dfe an", 
+      "description": "Zeigt Stra\u00dfenname einer Stra\u00dfe an", 
       "slug": "strassenschild", 
       "theses": [
         "WOM-037-36"
@@ -9451,7 +9465,7 @@
       "wikipedia_title": "Studentenwohnheim"
     }, 
     {
-      "description": "a sum of money charged for teaching or instruction by a school, college, or university", 
+      "description": "A sum of money charged for teaching or instruction by a school, college, or university", 
       "slug": "studiengebuhr", 
       "theses": [
         "WOM-034-19", 
@@ -9509,7 +9523,7 @@
       "wikidata_id": "Q193219"
     }, 
     {
-      "description": "befristete Untersagung des Tanzes in der \u00d6ffentlichkeit", 
+      "description": "Befristete Untersagung des Tanzes in der \u00d6ffentlichkeit", 
       "labels": [
         "Tanzverbot"
       ], 
@@ -9594,7 +9608,7 @@
       "wikipedia_title": "Tempo-30-Zone"
     }, 
     {
-      "description": "activity to defend against or prevent terrorist actions", 
+      "description": "Activity to defend against or prevent terrorist actions", 
       "slug": "terrorismusbekampfung", 
       "theses": [
         "WOM-042-00", 
@@ -9769,7 +9783,7 @@
       "wikipedia_title": "Transatlantisches Freihandelsabkommen"
     }, 
     {
-      "description": "transportation networks within the European Union", 
+      "description": "Transportation networks within the European Union", 
       "labels": [
         "Transeurop\u00e4ische Netze"
       ], 
@@ -9783,7 +9797,7 @@
       "wikipedia_title": "Transeurop\u00e4ische Netze"
     }, 
     {
-      "description": "offene Kommunikation zwischen politischen Akteuren", 
+      "description": "Offene Kommunikation zwischen politischen Akteuren", 
       "labels": [
         "Transparenz"
       ], 
@@ -9834,7 +9848,7 @@
         "Tunnelbauwerk", 
         "Unterflurtrasse"
       ], 
-      "description": "k\u00fcnstliche Passage, die Berge, Gew\u00e4sser oder andere Hindernisse unterquert", 
+      "description": "K\u00fcnstliche Passage, die Berge, Gew\u00e4sser oder andere Hindernisse unterquert", 
       "labels": [
         "Tunnel"
       ], 
@@ -9934,7 +9948,7 @@
       "aliases": [
         "tax residence"
       ], 
-      "description": "taxpayer's location for tax responsibility purposes", 
+      "description": "Taxpayer's location for tax responsibility purposes", 
       "labels": [
         "Unbeschr\u00e4nkte und beschr\u00e4nkte Steuerpflicht"
       ], 
@@ -10191,7 +10205,7 @@
       "wikidata_id": "Q30347736"
     }, 
     {
-      "description": "process of taking a private industry or private assets into public ownership by a national government or state", 
+      "description": "Process of taking a private industry or private assets into public ownership by a national government or state", 
       "slug": "verstaatlichung", 
       "theses": [
         "WOM-042-15", 
@@ -10204,7 +10218,7 @@
       "wikidata_id": "Q178564"
     }, 
     {
-      "description": "the amount of financial resources dedicated by a nation to raising and maintaining an armed forces", 
+      "description": "The amount of financial resources dedicated by a nation to raising and maintaining an armed forces", 
       "labels": [
         "Verteidigungsetat"
       ], 
@@ -10260,7 +10274,7 @@
         "Vivantes Netzwerk f\u00fcr Gesundheit GmbH", 
         "Vivantes Netzwerk f\u00fcr Gesundheit"
       ], 
-      "description": "business", 
+      "description": "Business", 
       "labels": [
         "Vivantes"
       ], 
@@ -10274,7 +10288,7 @@
       "wikipedia_title": "Vivantes"
     }, 
     {
-      "description": "eine tief greifende Kommunikation zwischen verschiedenen Bev\u00f6lkerungsgruppen", 
+      "description": "Eine tief greifende Kommunikation zwischen verschiedenen Bev\u00f6lkerungsgruppen", 
       "slug": "volkerverstandigung", 
       "theses": [
         "WOM-041-26", 
@@ -10372,7 +10386,7 @@
         "Gesetz \u00fcber die \u00dcberf\u00fchrung der Anteilsrechte an der Volkswagenwerk Gesellschaft mit beschr\u00e4nkter Haftung in private Hand", 
         "VWGmbH\u00dcG"
       ], 
-      "description": "federal act/law", 
+      "description": "Federal act/law", 
       "labels": [
         "VW-Gesetz"
       ], 
@@ -10415,7 +10429,7 @@
       "wikipedia_title": "Waffenexport"
     }, 
     {
-      "description": "laws or policies that regulate the manufacture, sale, transfer, possession, modification, or use of firearms", 
+      "description": "Laws or policies that regulate the manufacture, sale, transfer, possession, modification, or use of firearms", 
       "labels": [
         "Waffenkontrolle"
       ], 
@@ -10429,7 +10443,7 @@
       "wikipedia_title": "Waffenkontrolle (Recht)"
     }, 
     {
-      "description": "ein Bestandteil der Demokratie, ein Recht der Staatsb\u00fcrger, ihre Vertreter zu w\u00e4hlen", 
+      "description": "Ein Bestandteil der Demokratie, ein Recht der Staatsb\u00fcrger, ihre Vertreter zu w\u00e4hlen", 
       "slug": "wahlrecht", 
       "theses": [
         "WOM-041-27", 
@@ -10469,7 +10483,7 @@
       "aliases": [
         "Forst"
       ], 
-      "description": "aus B\u00e4umen bestehende Pflanzenformation", 
+      "description": "Aus B\u00e4umen bestehende Pflanzenformation", 
       "labels": [
         "Wald"
       ], 
@@ -10490,7 +10504,7 @@
         "Fassadend\u00e4mmung", 
         "W\u00e4rmeisolation"
       ], 
-      "description": "wird benutzt um den Heizw\u00e4rmebedarf von Geb\u00e4uden zu minimieren", 
+      "description": "Wird benutzt um den Heizw\u00e4rmebedarf von Geb\u00e4uden zu minimieren", 
       "labels": [
         "W\u00e4rmed\u00e4mmung"
       ], 
@@ -10690,7 +10704,7 @@
       "wikipedia_title": "Wolf"
     }, 
     {
-      "description": "projektierte Eisenbahn-Neubaustrecke", 
+      "description": "Projektierte Eisenbahn-Neubaustrecke", 
       "slug": "y-trasse-hamburg-bremen-hannover", 
       "theses": [
         "WOM-024-07"
@@ -10756,7 +10770,7 @@
         "Circumcision", 
         "m\u00e4nnliche Beschneidung"
       ], 
-      "description": "teilweise oder vollst\u00e4ndige Entfernung der m\u00e4nnlichen Vorhaut", 
+      "description": "Teilweise oder vollst\u00e4ndige Entfernung der m\u00e4nnlichen Vorhaut", 
       "labels": [
         "Zirkumzision"
       ], 
@@ -10773,7 +10787,7 @@
       "aliases": [
         "Wanderzirkus"
       ], 
-      "description": "umherziehendes Unternehmen mit Schaustellern, meist im Zelt", 
+      "description": "Umherziehendes Unternehmen mit Schaustellern, meist im Zelt", 
       "labels": [
         "Zirkus"
       ], 
@@ -10787,7 +10801,7 @@
       "wikipedia_title": "Zirkus"
     }, 
     {
-      "description": "eine Selbstverpflichtung von wissenschaftlichen Einrichtungen wie Universit\u00e4ten, ausschlie\u00dflich f\u00fcr zivile Zwecke zu forschen", 
+      "description": "Eine Selbstverpflichtung von wissenschaftlichen Einrichtungen wie Universit\u00e4ten, ausschlie\u00dflich f\u00fcr zivile Zwecke zu forschen", 
       "slug": "zivilklausel", 
       "theses": [
         "WOM-038-31", 
@@ -10854,6 +10868,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "30.18796s"
+    "render_time": "29.83376s"
   }
 }
