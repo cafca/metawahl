@@ -1,12 +1,7 @@
 import React from 'react';
 import {
   Container,
-  Divider,
-  Grid,
-  Header,
-  Image,
-  List,
-  Segment
+  Header
 } from 'semantic-ui-react'
 
 export const LegalView = () => {
@@ -19,16 +14,19 @@ export const LegalView = () => {
     <p>
         Per Email erreichbar unter: <strong><a href="mailto:metawahl@vincentahrend.com">metawahl@vincentahrend.com</a></strong>
     </p>
+    <p>
+        Oder per Telegram Messenger: <strong><a href="https://telegram.me/ululu">@ululu</a></strong>
+    </p>
     <p>Wir weisen darauf hin, dass die  internetbasierte Daten&#xFC;bertragung Sicherheitsl&#xFC;cken aufweist, ein l&#xFC;ckenloser  Schutz vor Zugriffen durch Dritte somit unm&#xF6;glich ist.</p>
     <h4>Serverdaten</h4>
     <p>Aus technischen Gr&#xFC;nden werden u.a. folgende Daten, die Ihr Internet-Browser an  uns bzw. an unseren Webspace-Provider  &#xFC;bermittelt, erfasst (sogenannte Serverlogfiles):</p>
     <ul>
-        <li>- Browsertyp und -version </li>
-        <li>- verwendetes Betriebssystem </li>
-        <li>- Webseite, von der aus Sie uns besuchen (Referrer URL) </li>
-        <li>- Webseite, die Sie besuchen </li>
-        <li>- Datum und Uhrzeit Ihres Zugriffs </li>
-        <li>- Ihre Internet Protokoll (IP)-Adresse. </li>
+        <li>Browsertyp und -version </li>
+        <li>verwendetes Betriebssystem </li>
+        <li>Webseite, von der aus Sie uns besuchen (Referrer URL) </li>
+        <li>Webseite, die Sie besuchen </li>
+        <li>Datum und Uhrzeit Ihres Zugriffs </li>
+        <li>Ihre Internet Protokoll (IP)-Adresse. </li>
     </ul>
     <p>Diese anonymen Daten werden getrennt von Ihren eventuell angegebenen personenbezogenen  Daten gespeichert und lassen so keine R&#xFC;ckschl&#xFC;sse auf eine bestimmte Person  zu. Sie werden zu statistischen Zwecken ausgewertet, um unseren  Internetauftritt und unsere Angebote optimieren zu k&#xF6;nnen. </p>
     <h4>Kommentarm&#xF6;glichkeit</h4>
@@ -36,7 +34,15 @@ export const LegalView = () => {
     <h3>Auskunft/Widerruf/L&#xF6;schung</h3>
     <p>Sie k&#xF6;nnen  sich aufgrund des Bundesdatenschutzgesetzes bei Fragen zur Erhebung, Verarbeitung  oder Nutzung Ihrer personenbezogenen Daten und deren Berichtigung, Sperrung,  L&#xF6;schung oder einem Widerruf einer erteilten Einwilligung unentgeltlich an uns  wenden. Wir weisen darauf hin, dass Ihnen ein Recht auf Berichtigung falscher  Daten oder L&#xF6;schung personenbezogener Daten zusteht, sollte diesem Anspruch  keine gesetzliche Aufbewahrungspflicht entgegenstehen.</p>
     <p>
-        <a target="_blank" href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerkl&#xE4;rung</a> der <a target="_blank" href="https://www.ratgeberrecht.eu/">Anwaltskanzlei Wei&#xDF; &amp; Partner</a>
+        <a
+        target="_blank"
+        href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html"
+        rel="noopener noreferrer">
+          Muster-Datenschutzerkl&#xE4;rung
+        </a> der
+        <a target="_blank" href="https://www.ratgeberrecht.eu/" rel="noopener noreferrer">
+          Anwaltskanzlei Wei&#xDF; &amp; Partner
+        </a>
     </p>
 </Container>;
 }
