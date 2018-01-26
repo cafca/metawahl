@@ -17,53 +17,44 @@ const Footer = () => (<Segment
       style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
     >
       <Container textAlign='center'>
-        <Grid divided inverted stackable>
+        <Grid divided inverted stackable columns={3}>
           <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Group 1' />
+            <Grid.Column textAlign='left'>
+              <Header inverted as='h4' content='Bundesländer' />
               <List link inverted>
-                <List.Item as='a'>Link One</List.Item>
-                <List.Item as='a'>Link Two</List.Item>
-                <List.Item as='a'>Link Three</List.Item>
-                <List.Item as='a'>Link Four</List.Item>
+                <List.Item as='a'>Berlin</List.Item>
+                <List.Item as='a'>Brandenburg</List.Item>
+                <List.Item as='a'>Sachsen</List.Item>
+                <List.Item as='a'>Sachsen-Anhalt</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Group 2' />
+            <Grid.Column textAlign='left'>
+              <Header inverted as='h4' content='Letzte Wahlen' />
               <List link inverted>
-                <List.Item as='a'>Link One</List.Item>
-                <List.Item as='a'>Link Two</List.Item>
-                <List.Item as='a'>Link Three</List.Item>
-                <List.Item as='a'>Link Four</List.Item>
+                <List.Item as='a'>Landtagswahl Schleswig-Holstein 2017</List.Item>
+                <List.Item as='a'>Landtagswahl Schleswig-Holstein 2017</List.Item>
+                <List.Item as='a'>Landtagswahl Schleswig-Holstein 2017</List.Item>
+                <List.Item as='a'>Landtagswahl Schleswig-Holstein 2017</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Group 3' />
-              <List link inverted>
-                <List.Item as='a'>Link One</List.Item>
-                <List.Item as='a'>Link Two</List.Item>
-                <List.Item as='a'>Link Three</List.Item>
-                <List.Item as='a'>Link Four</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Footer Header' />
-              <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            <Grid.Column textAlign='left'>
+              <Header inverted as='h4' content='Über Metawahl' />
+              <p>Metawahl – Was haben wir eigentlich gewählt?</p>
+              <p>Gefördert vom Bundesministerium für Bildung und Forschung</p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
 
         <Divider inverted section />
-        <Image
+{/*        <Image
           centered
           size='mini'
           src='/logo.png'
-        />
+        />*/}
         <List horizontal inverted divided link>
           <List.Item as='a' href='#'>Site Map</List.Item>
-          <List.Item as='a' href='#'>Contact Us</List.Item>
-          <List.Item as='a' href='#'>Terms and Conditions</List.Item>
-          <List.Item as='a' href='#'>Privacy Policy</List.Item>
+          <List.Item as='a' href='mailto:metawahl@vincentahrend.com'>Kontakt</List.Item>
+          <List.Item as='a' href='/legal#privacy'>Datenschutzerklärung</List.Item>
         </List>
       </Container>
 </Segment>

@@ -12,6 +12,7 @@ import OccasionList from './OccasionList';
 import Occasion from './Occasion';
 import CategoriesList from './CategoriesList';
 import Category from './Category';
+import LegalView from './LegalView';
 import TagList from './TagList';
 import TagView from './TagView';
 import Territory from './Territory';
@@ -114,6 +115,10 @@ class App extends Component<Props, State> {
 
               <Route path="/tags/:tag/:page/" render={props => (
                 <TagView {...props} />
+              )} />
+
+              <Route path="/legal" render={props => (
+                <LegalView {...props} />
               )} />
             </Container>
             <Footer />
