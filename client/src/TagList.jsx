@@ -130,8 +130,11 @@ export default class TagList extends Component<RouteProps, State> {
         kannst du hier die Wandlung politischer Positionen über die Grenzen einer
         einzelnen Wahl hinweg nachvollziehen.</p>
 
-        <p> Fast jedes dieser Themen ist direkt einem Artikel auf Wikipedia
-        zugeordnet. So kannst du direkt nachlesen, was genau der Unterschied
+        <p>Durch Klick auf einen Eintrag der Liste unten gelangst du zu einer
+        zeitlich sortierten Auflistung der dazugehörigen Thesen aus allen Wahl-o-Maten.</p>
+
+        <p> Fast jedes dieser Themen ist dabei einem Artikel auf Wikipedia
+        zugeordnet. So kannst du gleich nachlesen, was genau der Unterschied
         zwischen <a href="/tags/fluchtling">Flüchtlingen</a> und <a href="/tags/asylbewerber">Asylbewerbern</a> ist,
         was mit <a href="/tags/informationelle-selbstbestimmung">informationeller Selbstbestimmung</a> gemeint
         ist und was der <a href="/tag/verfassungsschutz">Verfassungsschutz</a> eigentlich
