@@ -7,7 +7,15 @@ import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle, CATEGORY_COLORS } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
-import { Button, Icon, Header, Label, Breadcrumb, Loader } from 'semantic-ui-react';
+import {
+  Breadcrumb,
+  Button,
+  Grid,
+  Header,
+  Icon,
+  Label,
+  Loader
+} from 'semantic-ui-react';
 
 type State = {
   categories: Array<CategoryType>
@@ -86,8 +94,21 @@ export default class CategoriesList extends Component<RouteProps, State> {
 
         <Loader active={categories.length === 0} />
 
+        <Grid stackable columns={2} className="categoryGrid">
+          <Grid.Column>
+            <ul>
+              {categories.slice(0, parseInt(categories.length / 2, 10))}
+            </ul>
+          </Grid.Column>
+          <Grid.Column>
+            <ul>
+              {categories.slice(parseInt(categories.length / 2, 10))}
+            </ul>
+          </Grid.Column>
+        </Grid>
+
         <ul style={{listStyle: "none"}}>
-          {categories}
+
         </ul>
       </div>;
   }
