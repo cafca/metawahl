@@ -36,7 +36,7 @@ export default class TagList extends Component<RouteProps, State> {
       showSingleTags: false,
       tags: savedTags != null ? JSON.parse(savedTags) : [],
       tagsState: savedTags != null ? "success" : "loading",
-      sortBy: "name"
+      sortBy: "count"
     }
   }
 
@@ -122,9 +122,20 @@ export default class TagList extends Component<RouteProps, State> {
         <Header as='h1'>
           <Icon name="hashtag" />
           <Header.Content>
-            Tags
+            Themen
           </Header.Content>
         </Header>
+
+        <p>Über die Zuordnung zu {this.state.tags.length} verschiedenen Themen
+        kannst du hier die Wandlung politischer Positionen über die Grenzen einer
+        einzelnen Wahl hinweg nachvollziehen.</p>
+
+        <p> Fast jedes dieser Themen ist direkt einem Artikel auf Wikipedia
+        zugeordnet. So kannst du direkt nachlesen, was genau der Unterschied
+        zwischen <a href="/tags/fluchtling">Flüchtlingen</a> und <a href="/tags/asylbewerber">Asylbewerbern</a> ist,
+        was mit <a href="/tags/informationelle-selbstbestimmung">informationeller Selbstbestimmung</a> gemeint
+        ist und was der <a href="/tag/verfassungsschutz">Verfassungsschutz</a> eigentlich
+        für Aufgaben hat.</p>
 
         <Menu attached="top" tabular>
           <Menu.Item

@@ -17,7 +17,7 @@ const HeaderMenu = () => (
       </Menu.Item>
       <Menu.Item as={Link} to='/'>Wahlen</Menu.Item>
       <Menu.Item as={Link} to='/bereiche/'>Bereiche</Menu.Item>
-      <Menu.Item as={Link} to='/tags/'>Tags</Menu.Item>
+      <Menu.Item as={Link} to='/tags/'>Themen</Menu.Item>
     </Container>
 </Menu>
 );

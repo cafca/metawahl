@@ -80,16 +80,15 @@ export default class CategoriesList extends Component<RouteProps, State> {
         </Button>
 
         <Breadcrumb>
-          <Breadcrumb.Section href="/bereiche/">Themenbereiche</Breadcrumb.Section>
+          <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>
         </Breadcrumb>
 
         <Header as='h1'>
-          Themenbereiche
+          Bereiche
         </Header>
 
         <p>Hier finden sich die Thesen aus allen Wahl-o-Maten, sortiert nach
-        dem Themenbereich der Bundesregierung, dem sie am ehesten zuzuordnen
-        sind.</p>
+        dem ihnen naheliegendsten Arbeitsbereich der Bundesregierung.</p>
 
 
         <Loader active={categories.length === 0} />
@@ -100,6 +99,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
               {categories.slice(0, parseInt(categories.length / 2, 10))}
             </ul>
           </Grid.Column>
+
           <Grid.Column>
             <ul>
               {categories.slice(parseInt(categories.length / 2, 10))}
