@@ -8,7 +8,7 @@ Als Mitwirkende an diesem Projekt möchten wir ein ziviles und rücksichtsvolles
 
 Nicht akzeptiert werden:
 
-* **AD HOMINEM**: Persönliche Angriffe jeder Art
+* **PERSÖNLICHE ANGRIFFE**: Angriffe, die sich gegen eine Person, und nicht deren Meinung oder Argument richten
 * **DOXING**: Das Veröffentlichen privater oder identifizierender Informationen Anderer ohne ausdrückliche Erlaubnis
 * **BELÄSTIGUNG**: Sowohl öffentliche als auch private Belästigung, insbesondere sexueller Natur
 * **TROLLEN**: Absichtlich provozierende Äußerungen
@@ -23,7 +23,7 @@ Formulierung ebenso effektiv geäußert werden kann
 
 ## Unsere Verantwortlichkeiten
 
-Die Projektverantwortlichen sind verantwortlich dafür, die Standards für einen akzeptables Umgang unter Mitwirkenden klarzustellen und es wird von ihnen erwartet, dass sie als Reaktion auf Verstöße gegen die Standards passende und faire berichtigende Maßnahmen ergreifen.
+Die Projektverantwortlichen sind verantwortlich dafür, die Standards für einen akzeptables Umgang unter Mitwirkenden klarzustellen und es wird von ihnen erwartet, dass sie als Reaktion auf Verstöße gegen die Standards passende und faire, berichtigende Maßnahmen ergreifen.
 
 Ebenso liegt es in der Verantwortung der Projektleitung, diese Maßnahmen auf das mindeste notwendige Maß zu beschränken und ohne anderweitige Hinweise von gutem Willen auszugehen. Insbesondere wenn dabei öffentlich gehandelt wird, beeinträchtigt jede Maßnahme die Projektarbeit und lenkt von dieser ab.
 
@@ -37,7 +37,7 @@ Dieser Verhaltenskodex gilt sowohl für die Arbeit an dem Projekt selbst, als au
 
 Fälle von AD HOMINEM, DOXING, BELÄSTIGUNG und TROLLEN sollen dem Projektteam möglichst zeitnah unter metawahl@vincentahrend.com gemeldet werden. Alle Beschwerden werden geprüft und den Umständen entsprechend angemessen beantwortet. Das Projektteam schützt hierbei nach bestem Können die Identität von Personen, die Vorfälle melden, solange diese hierbei nicht selbst gegen die in diesem Kodex definierten Standards verstoßen.
 
-Projektverantwortliche, welche den Verhaltenskodex nicht befolgen, oder nicht nach bestem Wissen und Glauben für dessen Einhaltung sorgen, können sich vorübergehenden oder dauerhaften Auswirkungen gegenübersehen, die durch andere Mitglieder der Projektleitung bestimmt wurden.
+Projektverantwortliche, welche den Verhaltenskodex nicht befolgen, oder nicht nach bestem Wissen und Gewissen für dessen Einhaltung sorgen, können sich vorübergehenden oder dauerhaften Auswirkungen gegenübersehen, die durch andere Mitglieder der Projektleitung bestimmt wurden.
 
 ## Bezug
 
