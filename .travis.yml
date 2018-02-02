@@ -6,6 +6,9 @@ matrix:
       before_script:
         - cd api-server/
 
+      before_install:
+        - cd api-server/
+
       install:
         - pip install -r requirements.txt
 
@@ -18,25 +21,16 @@ matrix:
 
     - language: node_js
       node_js:
-        - "node"
+        - 8
+        - 9
 
       before_script:
         - cd client/
 
-      sudo: false
-      dist: trusty
-
-      addons:
-        chrome: stable
-
       cache:
         directories:
-          - $HOME/.npm
+          - node_modules
 
-      env:
-        global:
-          # See https://git.io/vdao3 for details.
-          - JOBS=1
-
-      before_install:
-        - npm config set spin false
+      script:
+        - npm run build
+        - npm test
