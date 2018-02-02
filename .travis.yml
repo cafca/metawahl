@@ -11,7 +11,7 @@ matrix:
         - pip install -r requirements.txt
 
       env:
-        METAWAHL_CONF=prod.conf.py
+        METAWAHL_CONFIG=prod.conf.py
         ADMIN_KEY=asdfyooo
 
       before_script:
