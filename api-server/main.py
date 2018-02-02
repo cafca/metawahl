@@ -186,7 +186,7 @@ def create_app(config=None):
             if request.method == "POST":
                 data = request.get_json()
 
-                if (data.get('admin_key', '') == app.config.get('ADMIN_KEY')):
+                if data is not None and (data.get('admin_key', '') == app.config.get('ADMIN_KEY')):
                     for thesis_id in data.get("add", []):
                         logger.info("Adding {} to {}".format(
                             category, thesis_id))
@@ -309,7 +309,7 @@ def create_app(config=None):
         if thesis is None:
             abort(404)
 
-        if data.get('admin_key', '') != app.config.get('ADMIN_KEY'):
+        if data is None or data.get('admin_key', '') != app.config.get('ADMIN_KEY'):
             logger.warning("Invalid admin key")
             error = "Invalid admin key"
         else:

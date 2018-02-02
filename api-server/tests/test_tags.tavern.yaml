@@ -48,17 +48,3 @@ stages:
       method: GET
     response:
       status_code: 404
-      headers:
-        content-type: application/json
-
-stages:
-  - name: Make sure that changing tags without a valid admin key returns error message
-    request:
-      url: http://localhost:9000/api/v1/tags/schule
-      method: POST
-    response:
-      status_code: 200
-      body:
-        error: "Invalid admin password"
-      headers:
-        content-type: application/json

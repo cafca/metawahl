@@ -17,8 +17,6 @@ stages:
       method: GET
     response:
       status_code: 404
-      headers:
-        content-type: application/json
 
 stages:
   - name: Make sure that changing thesis tags without a valid admin key returns error message
@@ -39,5 +37,3 @@ stages:
       method: POST
     response:
       status_code: 404
-      headers:
-        content-type: application/json
