@@ -1,4 +1,4 @@
-# Metawahl
+# Metawahl [![Build Status](https://travis-ci.org/ciex/metawahl.svg?branch=master)](https://travis-ci.org/ciex/metawahl)
 
 Metawahl schafft einen interaktiven Zugang zum Wandel der politischen Landschaft 
 in Deutschland über eine Aufbereitung der vielen hundert Thesen, die im Rahmen 
