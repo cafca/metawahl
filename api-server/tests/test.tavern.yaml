@@ -1,0 +1,9 @@
+test_name: occasions endpoints
+
+stages:
+  - name: Make sure that occasions are returned
+    request:
+      url: http://localhost:9000/api/v1/occasions/
+      method: GET
+    response:
+      status_code: 200
