@@ -20,6 +20,7 @@ from pprint import pformat
 
 logfile = os.getenv("METAWAHL_API_LOGFILE", "../metawahl-api.log")
 logger = setup_logger(logfile=logfile, level=logging.DEBUG)
+setup_logger(name="werkzeug", color=False)
 
 API_NAME = "Metawahl API"
 API_VERSION = "v1"

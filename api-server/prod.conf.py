@@ -9,6 +9,8 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_RECORD_QUERIES = False
 
+METAWAHL_API_LOGFILE="/var/log/metawahl/flask.log"
+
 if SECRET_KEY == "server secret":
     print('Set server secret key environment variable METAWAHL_SECRET!')
 
