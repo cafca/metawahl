@@ -14,8 +14,13 @@ matrix:
         METAWAHL_CONF=prod.conf.py
         ADMIN_KEY=asdfyooo
 
+      before_script:
+        - psql -c 'create database metawahl;' -U postgres
+        - python models.py --force
+        - python bootstrap_db.py
+
       script:
-        - pytest
+        - ./travis_tavern.sh
 
     - language: node_js
       node_js:
