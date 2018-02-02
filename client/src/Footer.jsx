@@ -6,7 +6,6 @@ import {
   Divider,
   Grid,
   Header,
-  Image,
   List,
   Segment
 } from 'semantic-ui-react'
@@ -46,11 +45,6 @@ const Footer = () => (<Segment
         </Grid>
 
         <Divider inverted section />
-{/*        <Image
-          centered
-          size='mini'
-          src='/logo.png'
-        />*/}
         <List horizontal inverted divided link>
           <List.Item as='a' href='#'>Site Map</List.Item>
           <List.Item as='a' href='mailto:metawahl@vincentahrend.com'>Kontakt</List.Item>
