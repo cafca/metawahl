@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+/api-server/.cache/
+/api-server/*.log
 
 # production
 /build

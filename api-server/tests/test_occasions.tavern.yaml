@@ -1,0 +1,36 @@
+test_name: occasions endpoint
+
+stages:
+  - name: Make sure that occasions list is returned
+    request:
+      url: http://localhost:9000/api/v1/occasions/
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that occasions list including thesis data is returned
+    request:
+      url: http://localhost:9000/api/v1/occasions/?thesis_data=1
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that specific occasion is returned
+    request:
+      url: http://localhost:9000/api/v1/occasions/1
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that unknown occasion gives 404
+    request:
+      url: http://localhost:9000/api/v1/occasions/999
+      method: GET
+    response:
+      status_code: 404
