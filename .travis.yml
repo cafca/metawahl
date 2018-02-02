@@ -1,22 +1,42 @@
----
-language: node_js
-node_js:
-  - "6"
+matrix:
+  include:
+    - language: python
+      python: 3.6
 
-sudo: false
-dist: trusty
+      before_script:
+        - cd api-server/
 
-addons:
-  chrome: stable
+      install:
+        - pip install -r requirements.txt
 
-cache:
-  directories:
-    - $HOME/.npm
+      script:
+        - pytest
 
-env:
-  global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
+      env:
+        METAWAHL_CONF=prod.conf.py
+        ADMIN_KEY=asdfyooo
 
-before_install:
-  - npm config set spin false
+    - language: node_js
+      node_js:
+        - "node"
+
+      before_script:
+        - cd client/
+
+      sudo: false
+      dist: trusty
+
+      addons:
+        chrome: stable
+
+      cache:
+        directories:
+          - $HOME/.npm
+
+      env:
+        global:
+          # See https://git.io/vdao3 for details.
+          - JOBS=1
+
+      before_install:
+        - npm config set spin false
