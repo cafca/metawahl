@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Metawahl Force Graph</title>
+    <style>
+
+.link {
+  stroke: #2e34a3;
+  stroke-opacity: 0.3;
+}
+
+.node circle {
+  fill: #ccc;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  display: none;
+  font: 12px sans-serif;
+  pointer-events: none;
+}
+
+.classA {
+  display: inline !important;
+}
+
+.node:hover text {
+  display: inline;
+}
+
+</style>
+</head>
+<body>
+    <h1>Metawahl Wahlkampfthemen Force Graph</h1>
+    <p>Knoten hovern um label zu sehen, anklicken zum fixieren, ziehen zum ... auseinanderziehen?</p>
+    <script src="./cola.js"></script>
+    <script src="./d3.min.js"></script>
+<script>
+    var width = 1200,
+        height = 600;
+
+    var cola = cola.d3adaptor(d3)
+        .avoidOverlaps(true)
+        .convergenceThreshold(0.001)
+        .size([width, height]);
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    d3.json("data.json", function (error, graph) {
+
+        var pageBounds = { x: 0, y: 0, width: 1200, height: 600 },
+        page = svg.append('rect').attr('id', 'page').attr(pageBounds),
+        nodeRadius = 5,
+        realGraphNodes = graph.nodes.slice(0),
+        topLeft = { x: pageBounds.x, y: pageBounds.y, fixed: true },
+        tlIndex = graph.nodes.push(topLeft) - 1,
+        bottomRight = { x: pageBounds.x + pageBounds.width, y: pageBounds.y + pageBounds.height, fixed: true },
+        brIndex = graph.nodes.push(bottomRight) - 1,
+        constraints = [];
+
+        for (var i = 0; i < realGraphNodes.length; i++) {
+            constraints.push({ axis: 'x', type: 'separation', left: tlIndex, right: i, gap: nodeRadius });
+            constraints.push({ axis: 'y', type: 'separation', left: tlIndex, right: i, gap: nodeRadius });
+            constraints.push({ axis: 'x', type: 'separation', left: i, right: brIndex, gap: nodeRadius });
+            constraints.push({ axis: 'y', type: 'separation', left: i, right: brIndex, gap: nodeRadius });
+        }
+
+        cola
+            .nodes(graph.nodes)
+            .links(graph.links)
+            .constraints(constraints)
+            .symmetricDiffLinkLengths(8)
+            .handleDisconnected(true)
+            .start(15, 20, 30);
+
+        var link = svg.selectAll(".link")
+            .data(graph.links)
+            .enter().append("line")
+            .attr("class", "link")
+            .style("stroke-width", function (d) { return Math.sqrt(d.value) / 2.0; });
+
+        var node = svg.selectAll(".node")
+            .data(realGraphNodes)
+            .enter().append("g")
+            .attr("class", "node")
+            .call(cola.drag);
+
+        var circle = node.append("circle")
+            .attr("r", function(d) { return d.value + 1; })
+            .style("fill", function (d) { return d.group === 1 ? "#eb376e" : null; })
+            .on("click", function (d) {
+                d.fixed = true;
+            })
+
+          var label = node.append("text")
+            .attr("dy", ".35em")
+            .attr("class", function(d) { return d.value > 5 ? "classA" : "classB"})
+            .text(function(d) { return d.name; });
+
+        cola.on("tick", function () {
+
+            link.attr("x1", function (d) { return d.source.x; })
+                .attr("y1", function (d) { return d.source.y; })
+                .attr("x2", function (d) { return d.target.x; })
+                .attr("y2", function (d) { return d.target.y; });
+
+            circle.attr("cx", function (d) { return d.x; })
+                .attr("cy", function (d) { return d.y; });
+
+            label
+                .attr("x", function(d) { return d.x + 15; })
+                .attr("y", function(d) { return d.y; });
+        });
+    });
+
+</script>
+    <p>
+    <p>Made with <a href="http://marvl.infotech.monash.edu/webcola/">webcola</a></p>
+</body>
+</html>

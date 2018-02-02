@@ -9,7 +9,7 @@ import logging
 import time
 import json
 
-from collections import defaultdict
+from collections import defaultdict, Counter, OrderedDict
 from flask import Flask, jsonify, request, send_file, g, make_response, abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
@@ -17,6 +17,7 @@ from sqlalchemy.exc import OperationalError
 from flask_cors import CORS
 from logger import setup_logger
 from pprint import pformat
+from math import sqrt
 
 logfile = os.getenv("METAWAHL_API_LOGFILE", "../metawahl-api.log")
 logger = setup_logger(logfile=logfile, level=logging.DEBUG)
@@ -244,6 +245,77 @@ def create_app(config=None):
             }
 
         return json_response(rv, filename=filename)
+
+
+    @app.route(API_ROOT + '/graph-tags')
+    def graphtags():
+        from models import Thesis, Tag, Category
+
+        results = db.session.query(Thesis).all()
+
+        results = db.session.query(Tag) \
+            .join(Tag.theses) \
+            .filter(Tag.title != "Laufzeit") \
+            .group_by(Tag.title) \
+            .order_by(Tag.title) \
+            .all()
+
+        # nodes
+        tags = OrderedDict()
+        for tag in results:
+            if len(tag.theses) > 1:
+                tags[tag.title] = tag
+
+        cat_names = [c.name for c in db.session.query(Category).all()]
+
+        # edges
+        edges = defaultdict(list)
+        cat_edges = defaultdict(list)
+
+        for tag in tags.values():
+            i = list(list(tags.keys())).index(tag.title)
+            for thesis in tag.theses:
+                for cat in thesis.categories:
+                    try:
+                        cat_edges[cat_names.index(cat.name) + len(tags)] += [list(tags.keys()).index(t.title) for t in thesis.tags]
+                    except Exception as e:
+                        logger.warning("No index: {}".format(e))
+
+                for rtag in thesis.tags:
+                    if rtag.title != tag.title:
+                        try:
+                            ri = list(tags.keys()).index(rtag.title)
+                            edges[min(i, ri)].append(max(i, ri))
+                        except Exception as e:
+                            logger.warning("No index: {}".format(e))
+
+        links = list()
+        for source in edges.keys():
+            counter = Counter(edges[source])
+            for target in set(edges[source]):
+                links.append({
+                    "source": source,
+                    "target": target,
+                    "value": counter[target]
+                    })
+
+        for source in cat_edges.keys():
+            counter = Counter(cat_edges[source])
+            for target in set(cat_edges[source]):
+                links.append({
+                    "source": source,
+                    "target": target,
+                    "value": counter[target]
+                    })
+
+        nodes = [{"name": n.title, "group": 1, "value": sqrt(len(n.theses))} for n in tags.values()]
+
+        nodes += [{"name": n, "group": 2, 'value': 7} for n in cat_names]
+
+        return json_response({
+            "nodes": nodes,
+            "links": links
+        })
 
     @app.route(API_ROOT + "/tags/<string:tag_title>",
         methods=["GET", "DELETE"])
