@@ -1,0 +1,64 @@
+test_name: categories endpoint
+
+stages:
+  - name: Make sure that categories list is returned
+    request:
+      url: http://localhost:9000/api/v1/categories/
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+stages:
+  - name: Make sure that categories json download is returned
+    request:
+      url: http://localhost:9000/api/v1/categories.json
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: text/json
+        content-disposition: 'attachment; filename=categories.json'
+
+stages:
+  - name: Make sure that a specific category is returned
+    request:
+      url: http://localhost:9000/api/v1/categories/recht
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+stages:
+  - name: Make sure that a specific category that does not exist gives a 404
+    request:
+      url: http://localhost:9000/api/v1/categories/schmu
+      method: GET
+    response:
+      status_code: 404
+      headers:
+        content-type: application/json
+
+stages:
+  - name: Make sure that the list of uncategorized topics is returned
+    request:
+      url: http://localhost:9000/api/v1/categories/_uncategorized
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+stages:
+  - name: Make sure that changing categories without a valid admin key returns error message
+    request:
+      url: http://localhost:9000/api/v1/categories/recht
+      method: POST
+    response:
+      status_code: 200
+      body:
+        error: "Invalid admin password"
+      headers:
+        content-type: application/json
