@@ -3,9 +3,6 @@ matrix:
     - language: python
       python: 3.6
 
-      before_script:
-        - cd api-server/
-
       before_install:
         - cd api-server/
 
@@ -24,12 +21,12 @@ matrix:
         - 8
         - 9
 
-      before_script:
+      before_install:
         - cd client/
 
       cache:
         directories:
-          - node_modules
+          - "node_modules"
 
       script:
         - npm run build
