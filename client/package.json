@@ -1,8 +1,8 @@
 {
   "name": "metawahl",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
-  "homepage": "http://demo.vincentahrend.com/",
+  "homepage": "https://metawahl.de/",
   "dependencies": {
     "lodash": "^4.17.4",
     "react": "^16.0.0",
