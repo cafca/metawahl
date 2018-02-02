@@ -1,7 +1,10 @@
 matrix:
   include:
     - language: python
-      python: 3.6
+      python: 
+        - 3.6
+        - 3.4
+        
       cache: pip
 
       before_install:
@@ -11,8 +14,7 @@ matrix:
         - pip install -r requirements.txt
 
       env:
-        METAWAHL_CONFIG=prod.conf.py
-        ADMIN_KEY=asdfyooo
+        METAWAHL_CONFIG=test.conf.py
 
       before_script:
         - psql -c 'create database metawahl;' -U postgres
