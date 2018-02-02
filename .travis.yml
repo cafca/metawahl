@@ -2,9 +2,9 @@ matrix:
   include:
     - language: python
       python: 
-        - 3.6
-        - 3.4
-        
+        - "3.6"
+        - "3.4"
+
       cache: pip
 
       before_install:
@@ -12,14 +12,12 @@ matrix:
 
       install:
         - pip install -r requirements.txt
-
-      env:
-        METAWAHL_CONFIG=test.conf.py
-
-      before_script:
         - psql -c 'create database metawahl;' -U postgres
         - python models.py --force
         - python bootstrap_db.py
+
+      env:
+        METAWAHL_CONFIG=test.conf.py
 
       script:
         - ./travis_tavern.sh
