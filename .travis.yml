@@ -2,6 +2,7 @@ matrix:
   include:
     - language: python
       python: 3.6
+      cache: pip
 
       before_install:
         - cd api-server/
@@ -9,12 +10,12 @@ matrix:
       install:
         - pip install -r requirements.txt
 
-      script:
-        - pytest
-
       env:
         METAWAHL_CONF=prod.conf.py
         ADMIN_KEY=asdfyooo
+
+      script:
+        - pytest
 
     - language: node_js
       node_js:
