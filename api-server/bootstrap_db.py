@@ -79,7 +79,7 @@ def load_data_file(fp, index=False):
         with open(fp) as f:
             rv = json.load(f)
     except FileNotFoundError:
-        logger.error("File {} is missing".format(fp))
+        logger.warning("File {} is missing".format(fp))
     else:
         if index:
             # Instead of returning a list, assign each item in rv to
