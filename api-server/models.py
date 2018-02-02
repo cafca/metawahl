@@ -5,6 +5,7 @@ Metawahl Flask-SQLAlchemy models
 """
 import json
 import datetime
+import sys
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
@@ -420,7 +421,9 @@ if __name__ == '__main__':
     from main import create_app
     app = create_app()
 
-    if input("Reset database? [y/N]") == "y":
+    arg_force = "--force" in sys.argv
+
+    if arg_force or input("Reset database? [y/N]") == "y":
         with app.app_context():
             logger.info("Drop and recreate...")
             db.drop_all(app=app)
