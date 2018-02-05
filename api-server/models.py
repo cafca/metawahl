@@ -117,7 +117,6 @@ class ThesisReport(db.Model):
 
     def to_dict(self):
         return {
-            "date": self.date.isoformat(),
             "text": self.text,
             "thesis": self.thesis_id,
             "uuid": self.uuid
@@ -143,17 +142,22 @@ class Objection(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "date": self.date.isoformat(),
             "source": self.source,
             "thesis": self.thesis_id,
             "uuid": self.uuid,
-            "votes": [{date: v.date.isoformat(), value: v.value, uuid: v.uuid}
+            "votes": [{"date": v.date.isoformat(), "value": v.value, "uuid": v.uuid}
                 for v in self.votes]
         }
 
-    def vote(self, value):
-        self.vote_count += 1
-        return ObjectionVote(value=value, objection=self)
+    def vote(self, uuid, value):
+        if self.vote_count is None:
+            self.vote_count = 1
+        else:
+            self.vote_count = self.vote_count + 1 \
+                if value else self.vote_count - 1
+        return ObjectionVote(value=value, uuid=uuid, objection=self)
 
 
 class ObjectionVote(db.Model):

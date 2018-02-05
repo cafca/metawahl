@@ -1,0 +1,120 @@
+test_name: react endpoint
+
+stages:
+  - name: Make sure that GET requests are disabled
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: GET
+    response:
+      status_code: 405
+      headers:
+        content-type: text/html
+
+  - name: Make sure that invalid reaction types are not handled
+    request:
+      url: http://localhost:9000/api/v1/react/schmu
+      method: POST
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "Unknown reaction kind: schmu"
+
+  - name: Make sure that thesis reports are handled
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        uuid: test-uuid
+        text: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that thesis reports missing thesis id return an error
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: POST
+      json:
+        uuid: test-uuid
+        text: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error saving your report."
+
+  - name: Make sure that thesis reports missing uuid return an error
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        text: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error saving your report."
+        
+  - name: Make sure that new objections are handled
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        uuid: test-uuid
+        source: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      save:
+        body:
+          objection_id: data.id
+
+  - name: Make sure that objections missing thesis id return an error
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        uuid: test-uuid
+        source: test-source
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error saving your reaction."
+
+  - name: Make sure that objections missing uuid return an error
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        source: test-source
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error saving your reaction."
+        
+  - name: Make sure that votes on objections are handled (id saved from above)
+    request:
+      url: http://localhost:9000/api/v1/react/objection-vote
+      method: POST
+      json:
+        objection_id: {objection_id}
+        uuid: test-uuid
+        value: true
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json

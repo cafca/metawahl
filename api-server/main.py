@@ -13,7 +13,7 @@ from collections import defaultdict
 from flask import Flask, jsonify, request, send_file, g, make_response, abort
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
-from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import SQLAlchemyError
 from flask_cors import CORS
 from logger import setup_logger
 from pprint import pformat
@@ -82,7 +82,7 @@ def create_app(config=None):
 
         try:
             occasions = Occasion.query.all()
-        except OperationalError as e:
+        except SQLAlchemyError as e:
             logger.error(e)
             return json_response({"error": "Server Error"})
 
@@ -137,13 +137,20 @@ def create_app(config=None):
 
     @app.route(API_ROOT + "/react/<string:kind>", methods=["POST"])
     def react(kind: str):
-        """Save a user submitted reaction."""
-        from models import ThesisReport
+        """Save a user submitted reaction.
+        
+        Kind may be one of:
+        - "thesis-report": to report a thesis for wrong data
+        - "objection": to hand in an objection 
+        - "objection-vote": to vote on an existing objection. Requires 
+            objection_id key in payload.
+        """
+        from models import Thesis, ThesisReport, Objection
         rv = {}
 
         data = request.get_json()
 
-        if (kind == "thesis-report"):
+        if kind == "thesis-report":
             report = ThesisReport(
                 uuid=data.get('uuid'),
                 text=data.get('text'),
@@ -153,15 +160,65 @@ def create_app(config=None):
             try:
                 db.session.add(report)
                 db.session.commit()
-            except OperationalError as e:
+            except SQLAlchemyError as e:
                 logger.error(e)
-                rv["error"] = "There was a server error saving your reaction."
+                rv["error"] = "There was a server error saving your report."
             else:
                 logger.warning("Received {}: {}".format(report, report.text))
                 db.session.expire(report)
                 rv["data"] = report.to_dict()
+
+        elif kind == "objection":
+            thesis_id = data.get('thesis_id')
+
+            if thesis_id is not None:
+                thesis = db.session.query(Thesis).get(data.get('thesis_id'))
+            else:
+                logger.warning("No thesis instance was found for this request")
+                thesis = None  # let it fail
+
+            objection = Objection(
+                uuid=data.get('uuid'),
+                source=data.get('source'),
+                thesis=thesis
+            )
+
+            objection.vote(data.get('uuid'), True)
+
+            try:
+                db.session.add(objection)
+                db.session.commit()
+            except SQLAlchemyError as e:
+                logger.error(e)
+                rv["error"] = "There was a server error saving your reaction."
+            else:
+                logger.debug("Received {}: {}".format(objection, objection.source))
+                db.session.expire(objection)
+                rv["data"] = objection.to_dict()
+
+        elif kind == 'objection-vote':
+            objection_id = data.get('objection_id')
+
+            if objection_id is None:
+                objection = db.session.query(Objection).get(data.get('objection_id'))
+                vote = objection.vote(data.get('uuid'), data.get('value'))
+            else:
+                logger.warning("No vote instance was found for this request")
+                vote = None  # let it fail
+
+            try:
+                db.session.add(vote)
+                db.session.commit()
+            except SQLAlchemyError as e:
+                logger.error(e)
+                rv["error"] = "There was a server error saving your vote."
+            else:
+                logger.debug("Received {}".format(vote))
+                db.session.expire(vote)
+                rv["data"] = vote.to_dict()
         else:
             logger.error("Unknown reaction kind: {}".format(kind))
+            rv["error"] = "Unknown reaction kind: {}".format(kind)
 
         return json_response(rv)
 
