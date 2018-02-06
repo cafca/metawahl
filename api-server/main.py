@@ -145,8 +145,9 @@ def create_app(config=None):
         - "objection-vote": to vote on an existing objection. Requires 
             objection_id key in payload.
         """
-        from models import Thesis, ThesisReport, Objection
+        from models import Thesis, ThesisReport, Objection, ObjectionVote
         rv = {}
+        error = False
 
         data = request.get_json()
 
@@ -162,7 +163,7 @@ def create_app(config=None):
                 db.session.commit()
             except SQLAlchemyError as e:
                 logger.error(e)
-                rv["error"] = "There was a server error saving your report."
+                error = True
             else:
                 logger.warning("Received {}: {}".format(report, report.text))
                 db.session.expire(report)
@@ -190,7 +191,7 @@ def create_app(config=None):
                 db.session.commit()
             except SQLAlchemyError as e:
                 logger.error(e)
-                rv["error"] = "There was a server error saving your reaction."
+                error = True
             else:
                 logger.debug("Received {}: {}".format(objection, objection.source))
                 db.session.expire(objection)
@@ -198,27 +199,63 @@ def create_app(config=None):
 
         elif kind == 'objection-vote':
             objection_id = data.get('objection_id')
+            value = data.get('value', True)
+            uuid = data.get('uuid')
+            vote = None
+            rv = {}
 
-            if objection_id is None:
-                objection = db.session.query(Objection).get(data.get('objection_id'))
-                vote = objection.vote(data.get('uuid'), data.get('value'))
+            if objection_id is None or uuid is None:
+                logger.warning("Objection vote with objection id {} \
+                    and uuid {} is missing data.".format(objection_id, uuid))
+                error = True
             else:
-                logger.warning("No vote instance was found for this request")
-                vote = None  # let it fail
+                objection = db.session.query(Objection).get(objection_id)
 
-            try:
-                db.session.add(vote)
-                db.session.commit()
-            except SQLAlchemyError as e:
-                logger.error(e)
-                rv["error"] = "There was a server error saving your vote."
-            else:
-                logger.debug("Received {}".format(vote))
-                db.session.expire(vote)
-                rv["data"] = vote.to_dict()
+                if objection is None:
+                    logger.warning("Vote for missing objection {}".format(
+                        objection_id))
+                    error = True
+                elif value is True:
+                    vote = ObjectionVote(value=True, 
+                        uuid=uuid, objection=objection)
+                    objection.vote_count += 1
+                    db.session.add(vote)
+                    db.session.add(objection)
+                elif value is False:
+                    vote = db.session.query(ObjectionVote) \
+                        .filter_by(uuid=uuid) \
+                        .filter_by(objection=objection) \
+                        .first()
+
+                    if vote is not None:
+                        db.session.delete(vote)
+                        objection.vote_count -= 1
+                        db.session.add(objection)
+                    else:
+                        logger.warning("Received request to delete missing" +
+                            " vote by '{}' for {}".format(uuid, objection))
+                        error = True
+
+            if error is False:
+                try:
+                    db.session.commit()
+                except SQLAlchemyError as e:
+                    logger.error(e)
+                    error = True
+                else:
+                    if value is True:
+                        logger.debug("Received {}".format(vote))
+                        db.session.expire(vote)
+                        rv["data"] = vote.to_dict()
+                    else:
+                        logger.debug("Removed vote")
+                        rv["data"] = None
         else:
             logger.error("Unknown reaction kind: {}".format(kind))
-            rv["error"] = "Unknown reaction kind: {}".format(kind)
+            error = True
+
+        if error is True:
+            rv["error"] = "There was a server error."
 
         return json_response(rv)
 

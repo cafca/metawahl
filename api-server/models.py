@@ -147,17 +147,31 @@ class Objection(db.Model):
             "source": self.source,
             "thesis": self.thesis_id,
             "uuid": self.uuid,
-            "votes": [{"date": v.date.isoformat(), "value": v.value, "uuid": v.uuid}
-                for v in self.votes]
+            "votes": [v.to_dict() for v in self.votes]
         }
 
     def vote(self, uuid, value):
+        vote = db.session.query(ObjectionVote) \
+            .filter_by(uuid=uuid) \
+            .filter_by(objection_id=self.id)
+
+        if vote is not None:
+            if value is True:
+                vote.value = True
+            else:
+                db.session.delete(vote)
+        else:
+            # value can only be set to False after it was True,
+            # otherwise, negative votes would be possible
+            vote = ObjectionVote(value=True, uuid=uuid, objection=self)
+
         if self.vote_count is None:
             self.vote_count = 1
         else:
-            self.vote_count = self.vote_count + 1 \
-                if value else self.vote_count - 1
-        return ObjectionVote(value=value, uuid=uuid, objection=self)
+            self.vote_count = self.vote_count + 1 if value is True \
+                else self.vote_count - 1
+
+        return vote
 
 
 class ObjectionVote(db.Model):
@@ -177,6 +191,15 @@ class ObjectionVote(db.Model):
     def __repr__(self):
         return "<Vote {}>".format(self.id) if self.reported_for is None \
             else "<ObjectionReport {}/{}>".format(self.objection_id, self.id)
+
+    def to_dict(self):
+        """Return a dictionary representation of this vote for json enc."""
+        return {
+            "date": self.date.isoformat(), 
+            "value": self.value, 
+            "uuid": self.uuid,
+            "objection": self.objection_id
+        }
 
 
 class Occasion(db.Model):
