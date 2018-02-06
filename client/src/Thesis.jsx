@@ -3,10 +3,11 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 import {
   Button,
+  Comment,
   Dropdown,
-  Form,
   Header,
   Icon,
   Loader,
@@ -22,6 +23,7 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 import PositionChart from './PositionChart';
+import ObjectionForm from './ObjectionForm';
 
 import {
   adminKey,
@@ -32,6 +34,7 @@ import {
   } from './Config';
 
 import type {
+  ObjectionType,
   OccasionType,
   PositionType,
   RouteProps,
@@ -41,7 +44,7 @@ import type {
 
 import type { WikidataType } from './WikidataTagger';
 
-const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
+const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
     <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
       <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "#666"}}>
@@ -84,7 +87,8 @@ type State = {
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
   reported: boolean,
-  reactionFormOpen: false
+  objectionFormOpen: false,
+  objections: Array<ObjectionType>
 };
 
 type Props = RouteProps & ThesisType & {
@@ -106,7 +110,8 @@ export default class Thesis extends Component<Props, State> {
       contraPositions: [],
       voterOpinion: 0,
       reported: false,
-      reactionFormOpen: false
+      objectionFormOpen: false,
+      objections: this.props.objections
     }
   }
 
@@ -140,6 +145,15 @@ export default class Thesis extends Component<Props, State> {
     this.sendCategoryChanges(category, true);
     const categories = this.state.categories.filter(c => c !== category);
     this.setState({categories});
+  }
+
+  handleNewObjection(objection: ObjectionType) {
+    const objections1 = this.state.objections.slice();
+    objections1.push(objection);
+    this.setState({
+      objectionFormOpen: false,
+      objections: objections1
+    });
   }
 
   handleReport() {
@@ -313,6 +327,28 @@ export default class Thesis extends Component<Props, State> {
         remove={this.handleTagRemove}
       />);
 
+    const objectionElems = this.state.objections
+      .sort((obj1, obj2) => {
+        if (obj1.vote_count === obj2.vote_count) {
+          return Moment(obj1.date).diff(obj2.date);
+        } else {
+          return obj1.vote_count > obj2.vote_count ? -1 : 1;
+        }
+      })
+      .map(objection => <Comment>
+        <Comment.Content>
+          <Comment.Metadata>
+            <div>{Moment(objection.date + " Z").fromNow()}</div>
+          </Comment.Metadata>
+          <Comment.Text>
+            <a href={objection.url}>{objection.url}</a>
+          </Comment.Text>
+          <Comment.Actions>
+            <Comment.Action>Reply</Comment.Action>
+          </Comment.Actions>
+        </Comment.Content>
+      </Comment>);
+
     return <div style={{marginBottom: "2em"}}>
       <Header attached="top" size="huge">
         { this.props.linkOccasion &&
@@ -367,8 +403,8 @@ export default class Thesis extends Component<Props, State> {
           header={this.state.voterOpinion !== 0 ? "Einspruch erheben" : null}
           wide
           trigger={
-              <Button as='span' basic compact disabled={this.state.reactionFormOpen}
-                onClick={() => this.setState({reactionFormOpen: true})} style={{marginTop: -2}}>
+              <Button as='span' basic compact disabled={this.state.objectionFormOpen}
+                onClick={() => this.setState({objectionFormOpen: true})} style={{marginTop: -2}}>
                 <Icon name='bullhorn' /> {this.state.voterOpinion === -1
                     ? "Wurde trotzdem umgesetzt!"
                     : this.state.voterOpinion === 1
@@ -377,34 +413,19 @@ export default class Thesis extends Component<Props, State> {
               </Button>
           } />
 
-        {this.state.reactionFormOpen &&
-          <Segment raised color='blue'>
-            <h3>Einwand einreichen</h3>
-            <p>Weißt du mehr darüber, wie nach der Wahl mit diesem Thema
-              umgegangen wurde? Hat die gewählte Regierung sogar entgegen der 
-              Position gehandelt, die sie in diesem Wahl-o-Maten vertreten hat?
-            </p>
-            <p>
-              Dann kannst du hier eine Quelle einreichen, über die sich andere
-              Besucher dieser Seite darüber informieren können. Dazu kopierst
-              du einfach die Webadresse der Quelle hierher und klickst auf 
-              abschicken. Danke!
-            </p>
-            <Form onSubmit={this.handleObjection}>
-              <Form.Input 
-                label='Link zur Quelle' 
-                placeholder="https://internet.com/informationen/"
-                type='text' />
-              <Form.Group>
-              <Form.Button primary inline>Abschicken</Form.Button>
-              <Form.Button inline onClick={() => this.setState({reactionFormOpen: false})}>
-                Abbrechen
-              </Form.Button>
-              </Form.Group>
-            </Form>
-          </Segment>
+        {this.state.objectionFormOpen &&
+          <ObjectionForm
+            thesis_id={this.props.id}
+            handleSuccess={this.handleNewObjection}
+            handleCancel={() => this.setState({objectionFormOpen: false})} />
         }
       </Segment>
+
+      {objectionElems.length > 0 &&
+        <Segment attached={true} className="objectionList">
+          {objectionElems}
+        </Segment>
+      }
 
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
         <div className="tagContainer">

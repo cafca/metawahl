@@ -26,7 +26,8 @@ export type ThesisType = {
   categories: Array<string>,
   tags: Array<TagType>,
   occasion_id: number,
-  positions: Array<PositionType>
+  positions: Array<PositionType>,
+  objections: Array<ObjectionType>
 };
 
 export type ResultsType = {
@@ -49,6 +50,23 @@ export type OccasionType = {
   title: string,
   wikidata_id: ?string,
   wikipedia_title: ?string
+};
+
+export type ObjectionType = {
+  id: string,
+  url: string,
+  uuid: string,
+  thesis_id: string,
+  votes: Array<ObjectionVoteType>,
+  vote_count: number,
+  date?: string
+};
+
+export type ObjectionVoteType = {
+  uuid: string,
+  value: boolean,
+  objection_id: string,
+  date?: string
 };
 
 export type OccasionListType = {
