@@ -138,11 +138,11 @@ def create_app(config=None):
     @app.route(API_ROOT + "/react/<string:kind>", methods=["POST"])
     def react(kind: str):
         """Save a user submitted reaction.
-        
+
         Kind may be one of:
         - "thesis-report": to report a thesis for wrong data
-        - "objection": to hand in an objection 
-        - "objection-vote": to vote on an existing objection. Requires 
+        - "objection": to hand in an objection
+        - "objection-vote": to vote on an existing objection. Requires
             objection_id key in payload.
         """
         from models import Thesis, ThesisReport, Objection, ObjectionVote
@@ -171,31 +171,40 @@ def create_app(config=None):
 
         elif kind == "objection":
             thesis_id = data.get('thesis_id')
+            uuid = data.get('uuid')
+            url = data.get('url')
 
-            if thesis_id is not None:
-                thesis = db.session.query(Thesis).get(data.get('thesis_id'))
-            else:
-                logger.warning("No thesis instance was found for this request")
-                thesis = None  # let it fail
+            error = uuid is None \
+                or thesis_id is None \
+                or url is None \
+                or len(url) == 0
 
-            objection = Objection(
-                uuid=data.get('uuid'),
-                source=data.get('source'),
-                thesis=thesis
-            )
+            if error is False:
+                thesis = db.session.query(Thesis).get(thesis_id)
 
-            objection.vote(data.get('uuid'), True)
+                if thesis is None:
+                    logger.warning("No thesis instance was found for this request")
+                    error = True
 
-            try:
-                db.session.add(objection)
-                db.session.commit()
-            except SQLAlchemyError as e:
-                logger.error(e)
-                error = True
-            else:
-                logger.debug("Received {}: {}".format(objection, objection.source))
-                db.session.expire(objection)
-                rv["data"] = objection.to_dict()
+            if error is False:
+                objection = Objection(
+                    uuid=uuid,
+                    url=url,
+                    thesis=thesis
+                )
+                vote = objection.vote(data.get('uuid'), True)
+
+                try:
+                    db.session.add(objection)
+                    db.session.add(vote)
+                    db.session.commit()
+                except SQLAlchemyError as e:
+                    logger.error(e)
+                    error = True
+                else:
+                    logger.debug("Received {}: {}".format(objection, objection.url))
+                    db.session.expire(objection)
+                    rv["data"] = objection.to_dict()
 
         elif kind == 'objection-vote':
             objection_id = data.get('objection_id')
@@ -216,7 +225,7 @@ def create_app(config=None):
                         objection_id))
                     error = True
                 elif value is True:
-                    vote = ObjectionVote(value=True, 
+                    vote = ObjectionVote(value=True,
                         uuid=uuid, objection=objection)
                     objection.vote_count += 1
                     db.session.add(vote)

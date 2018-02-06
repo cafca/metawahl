@@ -61,7 +61,7 @@ stages:
         content-type: application/json
       body:
         error: "There was a server error."
-        
+
   - name: Make sure that new objections are handled
     request:
       url: http://localhost:9000/api/v1/react/objection
@@ -69,7 +69,7 @@ stages:
       json:
         thesis_id: WOM-001-01
         uuid: test-uuid
-        source: test-text
+        url: test-text
     response:
       status_code: 200
       headers:
@@ -84,7 +84,7 @@ stages:
       method: POST
       json:
         uuid: test-uuid
-        source: test-source
+        url: test-url
     response:
       status_code: 200
       headers:
@@ -98,14 +98,14 @@ stages:
       method: POST
       json:
         thesis_id: WOM-001-01
-        source: test-source
+        url: test-url
     response:
       status_code: 200
       headers:
         content-type: application/json
       body:
         error: "There was a server error."
-        
+
   - name: Make sure that votes on objections are handled (id saved from above)
     request:
       url: http://localhost:9000/api/v1/react/objection-vote
@@ -118,7 +118,7 @@ stages:
       status_code: 200
       headers:
         content-type: application/json
-        
+
   - name: Make sure that votes on objections are taken back (id saved from above)
     request:
       url: http://localhost:9000/api/v1/react/objection-vote
@@ -131,7 +131,7 @@ stages:
       status_code: 200
       headers:
         content-type: application/json
-        
+
   - name: Test objection vote error handling when deleting votes twice
     request:
       url: http://localhost:9000/api/v1/react/objection-vote
@@ -144,7 +144,7 @@ stages:
       status_code: 200
       headers:
         content-type: application/json
-        
+
   - name: Test objection vote error handling for non-existing objections
     request:
       url: http://localhost:9000/api/v1/react/objection-vote
