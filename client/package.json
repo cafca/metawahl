@@ -5,6 +5,7 @@
   "homepage": "https://metawahl.de/",
   "dependencies": {
     "lodash": "^4.17.4",
+    "moment": "^2.20.1",
     "react": "^16.0.0",
     "react-autobind": "^1.0.6",
     "react-dom": "^16.0.0",
@@ -23,6 +24,7 @@
     "flow": "flow"
   },
   "devDependencies": {
+    "eslint-plugin-flowtype": "^2.42.0",
     "flow-bin": "^0.60.1",
     "iflow-react-router": "^1.2.1"
   }
