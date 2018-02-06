@@ -111,7 +111,8 @@ export default class TagView extends Component<RouteProps, State> {
           data={relatedTags[i].tag}
           detail={relatedTags[i].count}
           key={"Tag-" + relatedTags[i].tag}
-        />);
+        />)
+      .slice(0, 10);
 
     return <div>
       <Loader active={this.state.tagState === "loading"} />
