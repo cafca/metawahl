@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {
   Button,
   Dropdown,
+  Form,
   Header,
   Icon,
   Loader,
@@ -82,7 +83,8 @@ type State = {
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
-  reported: boolean
+  reported: boolean,
+  reactionFormOpen: false
 };
 
 type Props = RouteProps & ThesisType & {
@@ -103,7 +105,8 @@ export default class Thesis extends Component<Props, State> {
       neutralPositions: [],
       contraPositions: [],
       voterOpinion: 0,
-      reported: false
+      reported: false,
+      reactionFormOpen: false
     }
   }
 
@@ -364,15 +367,43 @@ export default class Thesis extends Component<Props, State> {
           header={this.state.voterOpinion !== 0 ? "Einspruch erheben" : null}
           wide
           trigger={
-            <Button as='span' basic compact disabled={true}
-              onClick={this.handleComment} style={{marginTop: -2}}>
-              <Icon name='bullhorn' /> {this.state.voterOpinion === -1
-                  ? "Wurde trotzdem umgesetzt!"
-                  : this.state.voterOpinion === 1
-                    ? "Wurde nie umgesetzt!"
-                    : "Wurde dies umgesetzt?"}
-            </Button>
+              <Button as='span' basic compact disabled={this.state.reactionFormOpen}
+                onClick={() => this.setState({reactionFormOpen: true})} style={{marginTop: -2}}>
+                <Icon name='bullhorn' /> {this.state.voterOpinion === -1
+                    ? "Wurde trotzdem umgesetzt!"
+                    : this.state.voterOpinion === 1
+                      ? "Wurde nie umgesetzt!"
+                      : "Wurde dies umgesetzt?"}
+              </Button>
           } />
+
+        {this.state.reactionFormOpen &&
+          <Segment raised color='blue'>
+            <h3>Einwand einreichen</h3>
+            <p>Weißt du mehr darüber, wie nach der Wahl mit diesem Thema
+              umgegangen wurde? Hat die gewählte Regierung sogar entgegen der 
+              Position gehandelt, die sie in diesem Wahl-o-Maten vertreten hat?
+            </p>
+            <p>
+              Dann kannst du hier eine Quelle einreichen, über die sich andere
+              Besucher dieser Seite darüber informieren können. Dazu kopierst
+              du einfach die Webadresse der Quelle hierher und klickst auf 
+              abschicken. Danke!
+            </p>
+            <Form onSubmit={this.handleObjection}>
+              <Form.Input 
+                label='Link zur Quelle' 
+                placeholder="https://internet.com/informationen/"
+                type='text' />
+              <Form.Group>
+              <Form.Button primary inline>Abschicken</Form.Button>
+              <Form.Button inline onClick={() => this.setState({reactionFormOpen: false})}>
+                Abbrechen
+              </Form.Button>
+              </Form.Group>
+            </Form>
+          </Segment>
+        }
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
