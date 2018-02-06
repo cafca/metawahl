@@ -19,6 +19,23 @@ export type TagType = {
   related_tags?: { count: number, tag: TagType }
 };
 
+export type ObjectionVoteType = {
+  uuid: string,
+  value: boolean,
+  objection_id: string,
+  date?: string
+};
+
+export type ObjectionType = {
+  id: string,
+  url: string,
+  uuid: string,
+  thesis_id: string,
+  votes: Array<ObjectionVoteType>,
+  vote_count: number,
+  date?: string
+};
+
 export type ThesisType = {
   id: string,
   text: string,
@@ -50,23 +67,6 @@ export type OccasionType = {
   title: string,
   wikidata_id: ?string,
   wikipedia_title: ?string
-};
-
-export type ObjectionType = {
-  id: string,
-  url: string,
-  uuid: string,
-  thesis_id: string,
-  votes: Array<ObjectionVoteType>,
-  vote_count: number,
-  date?: string
-};
-
-export type ObjectionVoteType = {
-  uuid: string,
-  value: boolean,
-  objection_id: string,
-  date?: string
 };
 
 export type OccasionListType = {
