@@ -129,7 +129,7 @@ class Objection(db.Model):
     uuid = db.Column(db.String(36), nullable=False)
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
-    source = db.Column(db.Text, nullable=False)
+    url = db.Column(db.Text, nullable=False)
     vote_count = db.Column(db.Integer, default=1)
 
     thesis_id = db.Column(db.String(10),
@@ -144,19 +144,21 @@ class Objection(db.Model):
         return {
             "id": self.id,
             "date": self.date.isoformat(),
-            "source": self.source,
-            "thesis": self.thesis_id,
+            "url": self.url,
+            "thesis_id": self.thesis_id,
             "uuid": self.uuid,
-            "votes": [v.to_dict() for v in self.votes]
+            "votes": [v.to_dict() for v in self.votes],
+            "vote_count": self.vote_count
         }
 
     def vote(self, uuid, value):
         vote = db.session.query(ObjectionVote) \
             .filter_by(uuid=uuid) \
-            .filter_by(objection_id=self.id)
+            .filter_by(objection_id=self.id) \
+            .first()
 
         if vote is not None:
-            if value is True:
+            if value is True and vote.value is not True:
                 vote.value = True
             else:
                 db.session.delete(vote)
@@ -186,7 +188,7 @@ class ObjectionVote(db.Model):
     objection_id = db.Column(db.Integer(),
         db.ForeignKey('objection.id'), nullable=False)
     objection = db.relationship('Objection',
-        backref=db.backref('votes', lazy=True))
+        backref=db.backref('votes', lazy=False))
 
     def __repr__(self):
         return "<Vote {}>".format(self.id) if self.reported_for is None \
@@ -195,10 +197,10 @@ class ObjectionVote(db.Model):
     def to_dict(self):
         """Return a dictionary representation of this vote for json enc."""
         return {
-            "date": self.date.isoformat(), 
-            "value": self.value, 
+            "date": self.date.isoformat(),
+            "value": self.value,
             "uuid": self.uuid,
-            "objection": self.objection_id
+            "objection_id": self.objection_id
         }
 
 
@@ -435,7 +437,8 @@ class Thesis(db.Model):
             "categories": [category.slug for category in self.categories],
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
-            "occasion_id": self.occasion_id
+            "occasion_id": self.occasion_id,
+            "objections": [obj.to_dict() for obj in self.objections]
         }
 
         if self.text is not None:
