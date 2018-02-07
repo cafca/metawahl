@@ -4,11 +4,12 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import {
   Button,
+  Icon,
   Input,
   Message,
   Segment
 } from 'semantic-ui-react';
-import { makeJSONRequest, API_ROOT } from './Config';
+import { makeJSONRequest, API_ROOT, OBJECTION_NAMES, COLOR_PALETTE } from './Config';
 import { loadFromCache } from './App';
 
 import type { ObjectionType } from './Types';
@@ -16,7 +17,8 @@ import type { ObjectionType } from './Types';
 type Props = {
   thesis_id: string,
   handleSuccess: ObjectionType => any,
-  handleCancel: () => any
+  handleCancel: () => any,
+  voterOpinion: number
 };
 
 type State = {
@@ -78,33 +80,38 @@ export default class ObjectionForm extends React.Component<Props, State> {
   }
 
   render() {
-    return <Segment raised color='blue' className="objectionForm" loading={this.state.loading}>
+    const outerStyle = {
+      margin: "2rem auto",
+      borderColor: COLOR_PALETTE[0] +  " !important"
+    };
+
+    return <Segment raised color='blue' className="objectionForm"
+      loading={this.state.loading} style={outerStyle}>
       <h3>Im Nachhinein</h3>
 
       <i
         onClick={this.props.handleCancel}
         aria-hidden="true"
-        class="close icon closeIcon"></i>
+        className="close icon closeIcon"></i>
 
       <p>Weißt du mehr darüber, wie nach der Wahl mit diesem Thema
-        umgegangen wurde? Hat die gewählte Regierung sogar entgegen der
-        Position gehandelt, die sie in diesem Wahl-o-Maten vertreten hat?
+        umgegangen wurde? Hat die eingesetzte Regierung so gehandelt, wie
+        hier der Großteil der Wähler mit ihrer Stimme verlangt hat?
       </p>
       <p>
         Dann kannst du hier eine Quelle einreichen, über die sich andere
         Besucher dieser Seite darüber informieren können.
       </p>
 
-      <p>
-        <Input
-          fluid
-          label='Link zur Quelle'
-          name='url'
-          value={this.state.url}
-          onChange={(e, { value }) => this.setState({url: value, error: null})}
-          placeholder="https://internet.com/informationen/"
-          type='text' />
-      </p>
+      <Input
+        fluid
+        label='Link zur Quelle'
+        name='url'
+        value={this.state.url}
+        onChange={(e, { value }) => this.setState({url: value, error: null})}
+        placeholder="https://internet.com/informationen/"
+        style={{marginBottom: "1rem"}}
+        type='text' />
 
       {this.state.error !== null && this.state.error.length > 0 &&
         <Message negative>
@@ -113,11 +120,18 @@ export default class ObjectionForm extends React.Component<Props, State> {
       }
 
       <Button.Group disabled={this.state.url.length === 0}>
-        <Button positive onClick={() => this.handleSubmit(1)}>Eingehalten!</Button>
-        <Button color='yellow' onClick={() => this.handleSubmit(0)}>Naja</Button>
-        <Button negative onClick={() => this.handleSubmit(-1)}>Einwand!</Button>
-      </Button.Group>
+        <Button icon positive={this.props.voterOpinion !== 0} onClick={() => this.handleSubmit(1)}>
+          <Icon name='smile' /> {OBJECTION_NAMES[this.props.voterOpinion][2]}
+        </Button>
 
+        <Button icon color={this.props.voterOpinion === 0 ? null : 'yellow'} onClick={() => this.handleSubmit(0)}>
+          <Icon name='meh' /> {OBJECTION_NAMES[this.props.voterOpinion][1]}
+        </Button>
+
+        <Button icon negative={this.props.voterOpinion !== 0} onClick={() => this.handleSubmit(-1)}>
+          <Icon name='frown' /> {OBJECTION_NAMES[this.props.voterOpinion][0]}
+        </Button>
+      </Button.Group>
     </Segment>
   }
 }
