@@ -21,11 +21,9 @@ const Tag = ({ data, remove, detail }: Props) => {
     style={{
       marginRight: ".4em",
       marginBottom: ".4em",
-      borderColor: "#2e34a3",
-      color: "#2e34a3"
     }}
   >
-    {data.title}
+    # {data.title}
     { detail != null &&
       <Label.Detail style={{color: "#686CB2"}} as='span'>
         {detail}
