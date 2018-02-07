@@ -137,7 +137,7 @@ export default class TagList extends Component<RouteProps, State> {
         zugeordnet. So kannst du gleich nachlesen, was genau der Unterschied
         zwischen <a href="/tags/fluchtling">Flüchtlingen</a> und <a href="/tags/asylbewerber">Asylbewerbern</a> ist,
         was mit <a href="/tags/informationelle-selbstbestimmung">informationeller Selbstbestimmung</a> gemeint
-        ist und was der <a href="/tag/verfassungsschutz">Verfassungsschutz</a> eigentlich
+        ist und was der <a href="/tags/verfassungsschutz">Verfassungsschutz</a> eigentlich
         für Aufgaben hat.</p>
 
         <Menu attached="top" tabular>

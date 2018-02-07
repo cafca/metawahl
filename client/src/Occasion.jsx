@@ -5,6 +5,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
 import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
+import Moment from 'moment';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
@@ -85,7 +86,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         { this.state.occasion == null
           ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
           : <Breadcrumb.Section active>
-              {new Date(this.state.occasion.date).getFullYear()}
+              {Moment(this.state.occasion.date).year()}
             </Breadcrumb.Section>
         }
       </Breadcrumb>

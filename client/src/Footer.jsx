@@ -38,7 +38,7 @@ const Footer = () => (<Segment
             </Grid.Column>
             <Grid.Column textAlign='left'>
               <Header inverted as='h4' content='Über Metawahl' />
-              <p>Metawahl – Was haben wir eigentlich gewählt?</p>
+              <p>Metawahl – Was haben wir da eigentlich gewählt?</p>
               <p>Gefördert vom Bundesministerium für Bildung und Forschung</p>
             </Grid.Column>
           </Grid.Row>
