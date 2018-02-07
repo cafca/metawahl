@@ -42,3 +42,14 @@
   margin-top: 0;
   margin-bottom: 0;
 }
+
+.closeIcon {
+    cursor: pointer;
+    position: absolute;
+    margin: 0;
+    top: .78575em;
+    right: .5em;
+    opacity: .7;
+    -webkit-transition: opacity .1s ease;
+    transition: opacity .1s ease;
+}

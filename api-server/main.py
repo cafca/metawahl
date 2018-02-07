@@ -173,11 +173,13 @@ def create_app(config=None):
             thesis_id = data.get('thesis_id')
             uuid = data.get('uuid')
             url = data.get('url')
+            rating = data.get('rating')
 
             error = uuid is None \
                 or thesis_id is None \
                 or url is None \
-                or len(url) == 0
+                or len(url) == 0 \
+                or not rating in [-1, 0, 1]
 
             if error is False:
                 thesis = db.session.query(Thesis).get(thesis_id)
@@ -198,7 +200,8 @@ def create_app(config=None):
                 objection = Objection(
                     uuid=uuid,
                     url=url,
-                    thesis=thesis
+                    thesis=thesis,
+                    rating=rating
                 )
                 vote = objection.vote(data.get('uuid'), True)
 

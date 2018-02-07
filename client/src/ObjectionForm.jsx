@@ -4,7 +4,7 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import {
   Button,
-  Form,
+  Input,
   Message,
   Segment
 } from 'semantic-ui-react';
@@ -50,16 +50,17 @@ export default class ObjectionForm extends React.Component<Props, State> {
     this.setState({ url: value, error: error });
   }
 
-  handleSubmit(e: SyntheticInputEvent<HTMLInputElement>) {
-    e.preventDefault();
-
+  handleSubmit(rating: number) {
     const uuid = loadFromCache('uuid');
     const endpoint = API_ROOT + "/react/objection";
 
-    if (this.state.error == null) {
+    if (this.state.url.length === 0) {
+      this.setState({error: "Bitte kopiere erst den Link zu deiner Quelle in das Eingabefeld oben."});
+    } else if (this.state.error == null) {
       this.setState({ loading: true });
       const data = {
         uuid,
+        rating,
         url: this.state.url,
         thesis_id: this.props.thesis_id
       };
@@ -77,38 +78,46 @@ export default class ObjectionForm extends React.Component<Props, State> {
   }
 
   render() {
-    return <Segment raised color='blue' className="objectionForm">
-      <h3>Einwand einreichen</h3>
+    return <Segment raised color='blue' className="objectionForm" loading={this.state.loading}>
+      <h3>Im Nachhinein</h3>
+
+      <i
+        onClick={this.props.handleCancel}
+        aria-hidden="true"
+        class="close icon closeIcon"></i>
+
       <p>Weißt du mehr darüber, wie nach der Wahl mit diesem Thema
         umgegangen wurde? Hat die gewählte Regierung sogar entgegen der
         Position gehandelt, die sie in diesem Wahl-o-Maten vertreten hat?
       </p>
       <p>
         Dann kannst du hier eine Quelle einreichen, über die sich andere
-        Besucher dieser Seite darüber informieren können. Dazu kopierst
-        du einfach die Webadresse der Quelle hierher und klickst auf
-        abschicken. Danke!
+        Besucher dieser Seite darüber informieren können.
       </p>
+
+      <p>
+        <Input
+          fluid
+          label='Link zur Quelle'
+          name='url'
+          value={this.state.url}
+          onChange={(e, { value }) => this.setState({url: value, error: null})}
+          placeholder="https://internet.com/informationen/"
+          type='text' />
+      </p>
+
       {this.state.error !== null && this.state.error.length > 0 &&
         <Message negative>
           <p>{this.state.error}</p>
         </Message>
       }
-      <Form onSubmit={this.handleSubmit} loading={this.state.loading}>
-        <Form.Input
-          label='Link zur Quelle'
-          name='url'
-          value={this.state.value}
-          onChange={(e, { value }) => this.setState({url: value, error: null})}
-          placeholder="https://internet.com/informationen/"
-          type='text' />
-        <Form.Group>
-          <Form.Button primary disabled={this.state.url.length === 0}>Abschicken</Form.Button>
-          <Button onClick={this.props.handleCancel}>
-            Abbrechen
-          </Button>
-        </Form.Group>
-      </Form>
+
+      <Button.Group disabled={this.state.url.length === 0}>
+        <Button positive onClick={() => this.handleSubmit(1)}>Eingehalten!</Button>
+        <Button color='yellow' onClick={() => this.handleSubmit(0)}>Naja</Button>
+        <Button negative onClick={() => this.handleSubmit(-1)}>Einwand!</Button>
+      </Button.Group>
+
     </Segment>
   }
 }

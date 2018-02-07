@@ -21,6 +21,10 @@ categories = db.Table('categories',
         primary_key=True)
 )
 
+def dt_string(dt):
+    """Return iso string representation of a datetime including tz."""
+    return dt.strftime("%Y-%m-%d %H:%M:%S Z")
+
 
 class Category(db.Model):
     """Represent one of the 27 categories."""
@@ -130,6 +134,7 @@ class Objection(db.Model):
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
     url = db.Column(db.Text, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
@@ -137,7 +142,7 @@ class Objection(db.Model):
         backref=db.backref('objections', lazy=False))
 
     def __repr__(self):
-        return "<Objection {} / {}>".format(self.thesis_id, self.date.isoformat())
+        return "<Objection {} / {}>".format(self.thesis_id, dt_string(self.date))
 
     @property
     def vote_count(self):
@@ -146,7 +151,8 @@ class Objection(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "date": self.date.isoformat(),
+            "date": dt_string(self.date),
+            "rating": self.rating,
             "url": self.url,
             "thesis_id": self.thesis_id,
             "uuid": self.uuid,
@@ -194,7 +200,7 @@ class ObjectionVote(db.Model):
     def to_dict(self):
         """Return a dictionary representation of this vote for json enc."""
         return {
-            "date": self.date.isoformat(),
+            "date": dt_string(self.date),
             "value": self.value,
             "uuid": self.uuid,
             "objection_id": self.objection_id
@@ -217,7 +223,7 @@ class Occasion(db.Model):
     def to_dict(self, thesis_data=False):
         rv = {
             "id": self.id,
-            "date": self.date.isoformat(),
+            "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
             "territory": self.territory,

@@ -338,7 +338,7 @@ export default class Thesis extends Component<Props, State> {
       .map(objection => <Comment>
         <Comment.Content>
           <Comment.Metadata>
-            <div>{Moment(objection.date + " Z").fromNow()}</div>
+            <div>{Moment(objection.date).fromNow()}</div>
           </Comment.Metadata>
           <Comment.Text>
             <a href={objection.url}>{objection.url}</a>
@@ -399,17 +399,12 @@ export default class Thesis extends Component<Props, State> {
         />
 
         <Popup
-          content={this.state.voterOpinion !== 0 ? "Wurde das Anliegen dieser These nicht so umgesetzt, wie es hier angekündigt wurde?" : "Hast du Informationen zu einer geplanten oder erfolgten Umsetzung dieser These?"}
-          header={this.state.voterOpinion !== 0 ? "Einspruch erheben" : null}
+          content={"Hast du Informationen zu einer geplanten oder erfolgten Umsetzung dieser These?"}
           wide
           trigger={
-              <Button as='span' basic compact disabled={this.state.objectionFormOpen}
+              <Button as='span' compact disabled={this.state.objectionFormOpen}
                 onClick={() => this.setState({objectionFormOpen: true})} style={{marginTop: -2}}>
-                <Icon name='bullhorn' /> {this.state.voterOpinion === -1
-                    ? "Wurde trotzdem umgesetzt!"
-                    : this.state.voterOpinion === 1
-                      ? "Wurde nie umgesetzt!"
-                      : "Wurde dies umgesetzt?"}
+                <Icon name='bullhorn' /> Und was ist passiert?
               </Button>
           } />
 
