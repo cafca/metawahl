@@ -235,7 +235,6 @@ def create_app(config=None):
                 elif value is True:
                     vote = ObjectionVote(value=True,
                         uuid=uuid, objection=objection)
-                    objection.vote_count += 1
                     db.session.add(vote)
                     db.session.add(objection)
                 elif value is False:
@@ -246,7 +245,6 @@ def create_app(config=None):
 
                     if vote is not None:
                         db.session.delete(vote)
-                        objection.vote_count -= 1
                         db.session.add(objection)
                     else:
                         logger.warning("Received request to delete missing" +

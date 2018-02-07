@@ -130,7 +130,6 @@ class Objection(db.Model):
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
     url = db.Column(db.Text, nullable=False)
-    vote_count = db.Column(db.Integer, default=1)
 
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
@@ -139,6 +138,10 @@ class Objection(db.Model):
 
     def __repr__(self):
         return "<Objection {} / {}>".format(self.thesis_id, self.date.isoformat())
+
+    @property
+    def vote_count(self):
+        return len(list(self.votes))
 
     def to_dict(self):
         return {
@@ -166,12 +169,6 @@ class Objection(db.Model):
             # value can only be set to False after it was True,
             # otherwise, negative votes would be possible
             vote = ObjectionVote(value=True, uuid=uuid, objection=self)
-
-        if self.vote_count is None:
-            self.vote_count = 1
-        else:
-            self.vote_count = self.vote_count + 1 if value is True \
-                else self.vote_count - 1
 
         return vote
 
