@@ -65,7 +65,8 @@ OCCASION_IDS = {
 INVALID_POSITION_TEXTS = [
     '"Die SPD Bayern verweist für ausführlichere Begründungen auf ihr Regierungsprogramm unter www.bayernspd.de"',
     'Die Begründung der Partei zu ihrem Abstimmverhalten wird nachgereicht, da noch nicht alle Begründungen vorliegen.',
-    'Zu dieser These hat die Partei keine Begründung vorgelegt.'
+    'Zu dieser These hat die Partei keine Begründung vorgelegt.',
+    'Es liegt keine Begründung zur Position dieser Partei vor.'
 ]
 
 party_instances = defaultdict(Party)

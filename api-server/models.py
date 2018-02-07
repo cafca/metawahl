@@ -21,6 +21,10 @@ categories = db.Table('categories',
         primary_key=True)
 )
 
+def dt_string(dt):
+    """Return iso string representation of a datetime including tz."""
+    return dt.strftime("%Y-%m-%d %H:%M:%S Z")
+
 
 class Category(db.Model):
     """Represent one of the 27 categories."""
@@ -117,7 +121,6 @@ class ThesisReport(db.Model):
 
     def to_dict(self):
         return {
-            "date": self.date.isoformat(),
             "text": self.text,
             "thesis": self.thesis_id,
             "uuid": self.uuid
@@ -130,8 +133,8 @@ class Objection(db.Model):
     uuid = db.Column(db.String(36), nullable=False)
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
-    source = db.Column(db.Text, nullable=False)
-    vote_count = db.Column(db.Integer, default=1)
+    url = db.Column(db.Text, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
@@ -139,21 +142,41 @@ class Objection(db.Model):
         backref=db.backref('objections', lazy=False))
 
     def __repr__(self):
-        return "<Objection {} / {}>".format(self.thesis_id, self.date.isoformat())
+        return "<Objection {} / {}>".format(self.thesis_id, dt_string(self.date))
+
+    @property
+    def vote_count(self):
+        return len(list(self.votes))
 
     def to_dict(self):
         return {
-            "date": self.date.isoformat(),
-            "source": self.source,
-            "thesis": self.thesis_id,
+            "id": self.id,
+            "date": dt_string(self.date),
+            "rating": self.rating,
+            "url": self.url,
+            "thesis_id": self.thesis_id,
             "uuid": self.uuid,
-            "votes": [{date: v.date.isoformat(), value: v.value, uuid: v.uuid}
-                for v in self.votes]
+            "votes": [v.to_dict() for v in self.votes],
+            "vote_count": self.vote_count
         }
 
-    def vote(self, value):
-        self.vote_count += 1
-        return ObjectionVote(value=value, objection=self)
+    def vote(self, uuid, value):
+        vote = db.session.query(ObjectionVote) \
+            .filter_by(uuid=uuid) \
+            .filter_by(objection_id=self.id) \
+            .first()
+
+        if vote is not None:
+            if value is True and vote.value is not True:
+                vote.value = True
+            else:
+                db.session.delete(vote)
+        else:
+            # value can only be set to False after it was True,
+            # otherwise, negative votes would be possible
+            vote = ObjectionVote(value=True, uuid=uuid, objection=self)
+
+        return vote
 
 
 class ObjectionVote(db.Model):
@@ -168,11 +191,20 @@ class ObjectionVote(db.Model):
     objection_id = db.Column(db.Integer(),
         db.ForeignKey('objection.id'), nullable=False)
     objection = db.relationship('Objection',
-        backref=db.backref('votes', lazy=True))
+        backref=db.backref('votes', lazy=False))
 
     def __repr__(self):
         return "<Vote {}>".format(self.id) if self.reported_for is None \
             else "<ObjectionReport {}/{}>".format(self.objection_id, self.id)
+
+    def to_dict(self):
+        """Return a dictionary representation of this vote for json enc."""
+        return {
+            "date": dt_string(self.date),
+            "value": self.value,
+            "uuid": self.uuid,
+            "objection_id": self.objection_id
+        }
 
 
 class Occasion(db.Model):
@@ -191,7 +223,7 @@ class Occasion(db.Model):
     def to_dict(self, thesis_data=False):
         rv = {
             "id": self.id,
-            "date": self.date.isoformat(),
+            "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
             "territory": self.territory,
@@ -408,7 +440,8 @@ class Thesis(db.Model):
             "categories": [category.slug for category in self.categories],
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
-            "occasion_id": self.occasion_id
+            "occasion_id": self.occasion_id,
+            "objections": [obj.to_dict() for obj in self.objections]
         }
 
         if self.text is not None:

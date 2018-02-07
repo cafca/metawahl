@@ -1,0 +1,175 @@
+test_name: react endpoint
+
+stages:
+  - name: Make sure that GET requests are disabled
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: GET
+    response:
+      status_code: 405
+      headers:
+        content-type: text/html
+
+  - name: Make sure that invalid reaction types are not handled
+    request:
+      url: http://localhost:9000/api/v1/react/schmu
+      method: POST
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error."
+
+  - name: Make sure that thesis reports are handled
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        uuid: test-uuid
+        text: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that thesis reports missing thesis id return an error
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: POST
+      json:
+        uuid: test-uuid
+        text: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error."
+
+  - name: Make sure that thesis reports missing uuid return an error
+    request:
+      url: http://localhost:9000/api/v1/react/thesis-report
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        text: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error."
+
+  - name: Make sure that new objections are handled
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        uuid: test-uuid
+        url: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      save:
+        body:
+          objection_id: data.id
+
+  - name: Make sure that duplicate objections are handled
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        uuid: test-uuid
+        url: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "Diesen Link gibt es leider schon."
+
+
+  - name: Make sure that objections missing thesis id return an error
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        uuid: test-uuid
+        url: test-url
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error."
+
+  - name: Make sure that objections missing uuid return an error
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        url: test-url
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error."
+
+  - name: Make sure that votes on objections are handled (id saved from above)
+    request:
+      url: http://localhost:9000/api/v1/react/objection-vote
+      method: POST
+      json:
+        objection_id: "{objection_id}"
+        uuid: test-uuid
+        value: true
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that votes on objections are taken back (id saved from above)
+    request:
+      url: http://localhost:9000/api/v1/react/objection-vote
+      method: POST
+      json:
+        objection_id: "{objection_id}"
+        uuid: test-uuid
+        value: false
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Test objection vote error handling when deleting votes twice
+    request:
+      url: http://localhost:9000/api/v1/react/objection-vote
+      method: POST
+      json:
+        objection_id: "{objection_id}"
+        uuid: test-uuid
+        value: false
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Test objection vote error handling for non-existing objections
+    request:
+      url: http://localhost:9000/api/v1/react/objection-vote
+      method: POST
+      json:
+        objection_id: -1
+        uuid: test-uuid
+        value: true
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json

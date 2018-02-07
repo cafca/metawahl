@@ -2,38 +2,30 @@ matrix:
   include:
     - language: python
       python: 3.6
+
+      env: METAWAHL_CONFIG=test.conf.py
       cache: pip
 
-      before_install:
-        - cd api-server/
-
+      before_install: cd api-server/
       install:
         - pip install -r requirements.txt
-
-      env:
-        METAWAHL_CONFIG=prod.conf.py
-        ADMIN_KEY=asdfyooo
-
-      before_script:
         - psql -c 'create database metawahl;' -U postgres
         - python models.py --force
         - python bootstrap_db.py
 
-      script:
-        - ./travis_tavern.sh
+      script: ./travis_tavern.sh
 
     - language: node_js
       node_js:
         - 8
         - 9
 
-      before_install:
-        - cd client/
-
-      cache:
-        directories:
-          - "node_modules"
+      before_install: cd client/
 
       script:
         - npm run build
         - npm test
+
+      cache:
+        directories:
+          - "node_modules"

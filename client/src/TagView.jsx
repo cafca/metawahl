@@ -110,8 +110,9 @@ export default class TagView extends Component<RouteProps, State> {
         <Tag
           data={relatedTags[i].tag}
           detail={relatedTags[i].count}
-          key={"Tag-" + relatedTags[i].tag}
-        />);
+          key={"RelTag-" + relatedTags[i].tag.title}
+        />)
+      .slice(0, 10);
 
     return <div>
       <Loader active={this.state.tagState === "loading"} />
@@ -170,7 +171,7 @@ export default class TagView extends Component<RouteProps, State> {
 
       { this.state.theses.length > 0 &&
         <div>
-          <h2>Alle {this.state.theses.length} Thesen zum Thema {this.state.tag.title}</h2>
+          <h2>Alle {this.state.theses.length} Thesen zum Thema {this.state.tag && this.state.tag.title}</h2>
           {theses}
 
           <Pagination

@@ -86,6 +86,12 @@ export const CATEGORY_NAMES = {
 export const categoryOptions = Object.keys(CATEGORY_NAMES).map(
   slug => ({key: slug, value: slug, text: CATEGORY_NAMES[slug]}));
 
+export const OBJECTION_NAMES = {
+  "-1": ["Trotzdem umgesetzt", "Naja", "Alles beim Alten"],
+  "0": ["Nicht umgesetzt", "Naja", "Umgesetzt"],
+  "1": ["Nicht umgesetzt", "Naja", "Umgesetzt"]
+};
+
 // Cosmetic
 
 export const PAGE_TITLE = "Metawahl ";
@@ -102,7 +108,7 @@ export const THESES_PER_PAGE = 5;
 
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#dcbc37,a56072,82e8b3,796da0
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#f1376c,2d339f
-const COLOR_PALETTE = ["#f1376c", "#eb376e", "#e63770", "#e03773", "#db3775", "#d53777", "#cf3779", "#ca377b", "#c4377d", "#be377f", "#b83781", "#b23783", "#ac3785", "#a63687", "#a03689", "#99368b", "#93368d", "#8c368f", "#853691", "#7e3693", "#773595", "#6f3597", "#673599", "#5e359b", "#55359d", "#4a349f", "#3e34a1", "#2e34a3"];
+export const COLOR_PALETTE = ["#f1376c", "#eb376e", "#e63770", "#e03773", "#db3775", "#d53777", "#cf3779", "#ca377b", "#c4377d", "#be377f", "#b83781", "#b23783", "#ac3785", "#a63687", "#a03689", "#99368b", "#93368d", "#8c368f", "#853691", "#7e3693", "#773595", "#6f3597", "#673599", "#5e359b", "#55359d", "#4a349f", "#3e34a1", "#2e34a3"];
 
 // Assign a color to each category
 export const CATEGORY_COLORS = Object.keys(CATEGORY_NAMES)
@@ -110,3 +116,9 @@ export const CATEGORY_COLORS = Object.keys(CATEGORY_NAMES)
     prev[cur] = COLOR_PALETTE[i % COLOR_PALETTE.length];
     return prev;
   }, {});
+
+export const OPINION_COLORS = {
+  "-1": COLOR_PALETTE[0],
+  "0": COLOR_PALETTE[parseInt(COLOR_PALETTE.length / 2.0, 10)],
+  "1": COLOR_PALETTE[COLOR_PALETTE.length - 1]
+}

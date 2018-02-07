@@ -3,11 +3,15 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
+import 'moment/locale/de';
 import {
   Button,
+  Comment,
   Dropdown,
   Header,
   Icon,
+  Label,
   Loader,
   Menu,
   Message,
@@ -21,16 +25,21 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 import PositionChart from './PositionChart';
+import ObjectionForm from './ObjectionForm';
 
 import {
   adminKey,
   API_ROOT,
   categoryOptions,
+  COLOR_PALETTE,
   IS_ADMIN,
-  makeJSONRequest
+  makeJSONRequest,
+  OBJECTION_NAMES,
+  OPINION_COLORS
   } from './Config';
 
 import type {
+  ObjectionType,
   OccasionType,
   PositionType,
   RouteProps,
@@ -40,38 +49,40 @@ import type {
 
 import type { WikidataType } from './WikidataTagger';
 
-const OccasionSubtitle = ({ occasion } : { occasion?: OccasionType }) =>
+Moment.locale('de');
+
+const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
     <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
-      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "#666"}}>
+      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
         {occasion.title}
       </Link>
     </p>;
 
-  const valueNames = {
-    "-1": "Contra",
-    "0": "Neutral",
-    "1": "Pro"
-  };
+const valueNames = {
+  "-1": "Contra",
+  "0": "Neutral",
+  "1": "Pro"
+};
 
-  const voterOpinionTitles = {
-    "-1": "dagegen",
-    "0": "neutral",
-    "1": "dafür"
-  };
+const voterOpinionTitles = {
+  "-1": "dagegen",
+  "0": "neutral",
+  "1": "dafür"
+};
 
-  const voterOpinionNames = {
-    "-1": "frown",
-    "0": "meh",
-    "1": "smile"
-  };
+const voterOpinionNames = {
+  "-1": "frown",
+  "0": "meh",
+  "1": "smile"
+};
 
-  const voterOpinionIntro = {
-    "-1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
-    "0": `Es ging weder eine Mehrheit der Zweitstimmen an Parteien, die sich für diese These ausgesprochen haben,
-      noch ging eine Mehrheit an Parteien, die sich gegen diese These ausgesprochen haben.`,
-    "1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich für diese These ausgesprochen haben."
-  };
+const voterOpinionIntro = {
+  "-1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
+  "0": `Es ging weder eine Mehrheit der Zweitstimmen an Parteien, die sich für diese These ausgesprochen haben,
+    noch ging eine Mehrheit an Parteien, die sich gegen diese These ausgesprochen haben.`,
+  "1": "Die Mehrheit der Zweitstimmen ging an Parteien, die sich für diese These ausgesprochen haben."
+};
 
 type State = {
   openText: ?PositionType,
@@ -82,7 +93,10 @@ type State = {
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
-  reported: boolean
+  voterRatio: number,
+  reported: boolean,
+  objectionFormOpen: false,
+  objections: Array<ObjectionType>
 };
 
 type Props = RouteProps & ThesisType & {
@@ -103,7 +117,10 @@ export default class Thesis extends Component<Props, State> {
       neutralPositions: [],
       contraPositions: [],
       voterOpinion: 0,
-      reported: false
+      voterRatio: 0.5,
+      reported: false,
+      objectionFormOpen: false,
+      objections: this.props.objections
     }
   }
 
@@ -137,6 +154,15 @@ export default class Thesis extends Component<Props, State> {
     this.sendCategoryChanges(category, true);
     const categories = this.state.categories.filter(c => c !== category);
     this.setState({categories});
+  }
+
+  handleNewObjection(objection: ObjectionType) {
+    const objections1 = this.state.objections.slice();
+    objections1.push(objection);
+    this.setState({
+      objectionFormOpen: false,
+      objections: objections1
+    });
   }
 
   handleReport() {
@@ -284,15 +310,20 @@ export default class Thesis extends Component<Props, State> {
 
     let voterOpinion;
 
-    if (this.state.proPositions.reduce(countVotes, 0.0) > 50.0) {
+    const countPro = this.state.proPositions.reduce(countVotes, 0.0);
+    const countContra = this.state.contraPositions.reduce(countVotes, 0.0);
+
+    if (countPro > 50.0) {
       voterOpinion = 1;
-    } else if (this.state.contraPositions.reduce(countVotes, 0.0) < 50.0) {
+    } else if (countContra < 50.0) {
       voterOpinion = 0;
     } else {
       voterOpinion = -1;
     }
 
-    this.setState({voterOpinion});
+    const voterRatio = countPro / (countPro + countContra);
+
+    this.setState({voterOpinion, voterRatio});
   }
 
   render() {
@@ -310,8 +341,38 @@ export default class Thesis extends Component<Props, State> {
         remove={this.handleTagRemove}
       />);
 
+    const objectionElems = this.state.objections
+      .sort((obj1, obj2) => {
+        if (obj1.vote_count === obj2.vote_count) {
+          return Moment(obj1.date).diff(obj2.date);
+        } else {
+          return obj1.vote_count > obj2.vote_count ? -1 : 1;
+        }
+      })
+      .map(objection => {
+        return <Comment key={"objection-" + objection.id}>
+        <Comment.Content>
+          <Comment.Author style={{display: 'inline-block'}}>
+            <Label as='span' circular empty style={{backgroundColor: OPINION_COLORS[objection.rating.toString()]}} /> {OBJECTION_NAMES[this.state.voterOpinion][objection.rating + 1]}
+          </Comment.Author>
+          <Comment.Metadata>
+              <span>Quelle eingereicht {Moment(objection.date).fromNow()} — </span>
+              {Moment(this.props.occasion.date).toNow(true)} nach der Wahl
+          </Comment.Metadata>
+          <Comment.Text>
+            <a href={objection.url} target="_blank">{objection.url}</a>
+          </Comment.Text>
+        </Comment.Content>
+      </Comment>;
+      });
+
+    const voterOpinionColor = COLOR_PALETTE[
+      parseInt(Object.keys(COLOR_PALETTE).length * this.state.voterRatio, 10)
+    ];
+
     return <div style={{marginBottom: "2em"}}>
-      <Header attached="top" size="huge">
+      <Header as='h2' inverted attached="top" size="huge"
+        style={{backgroundColor: voterOpinionColor}}>
         { this.props.linkOccasion &&
           <OccasionSubtitle occasion={this.props.occasion} />
         }
@@ -326,6 +387,20 @@ export default class Thesis extends Component<Props, State> {
       </Header>
 
       <Segment id={this.props.id} attached>
+        <Header size='medium' style={{marginTop: "1rem"}}>
+          <Icon name={voterOpinionNames[this.state.voterOpinion]} />
+          <Header.Content>
+            {`Mehrheit ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
+            <Header.Subheader>
+            {voterOpinionIntro[this.state.voterOpinion]}
+            </Header.Subheader>
+          </Header.Content>
+        </Header>
+
+        <Header sub style={{color: "rgba(0,0,0,.65)"}}>
+          Parteipositionen und jeweilige Stimmanteile
+        </Header>
+
         <PositionChart
           positions={this.props.positions}
           results={this.props.occasion.results}
@@ -341,38 +416,63 @@ export default class Thesis extends Component<Props, State> {
               ${valueNames[this.state.openText.value]}`
             } />
         }
-      </Segment>
 
-      <Segment attached>
-        <Popup
-          basic
-          on='hover'
-          content={voterOpinionIntro[this.state.voterOpinion]}
-          offset={20}
-          trigger={
-            <span style={{marginRight: "1em"}}>
-              <Icon
-              size='big'
-              name={voterOpinionNames[this.state.voterOpinion]}
-              /> {`Mehrheit ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
-            </span>
+        {objectionElems.length === 0 && this.state.objectionFormOpen === false &&
+          <Popup
+            wide
+            header="Im Nachhinein"
+            content={"Hast du Informationen zur Umsetzung dieser These?"}
+            trigger={
+                <Button
+                  basic
+                  icon
+                  as='span'
+                  labelPosition='left'
+                  disabled={this.state.objectionFormOpen}
+                  onClick={() => this.setState({objectionFormOpen: true})}
+                  style={{marginTop: "1rem", color: "#333"}}>
+                  <Icon name='bullhorn' /> Und, was ist seit dem passiert?
+                </Button>
+            } />
           }
-        />
 
-        <Popup
-          content={this.state.voterOpinion !== 0 ? "Wurde das Anliegen dieser These nicht so umgesetzt, wie es hier angekündigt wurde?" : "Hast du Informationen zu einer geplanten oder erfolgten Umsetzung dieser These?"}
-          header={this.state.voterOpinion !== 0 ? "Einspruch erheben" : null}
-          wide
-          trigger={
-            <Button as='span' basic compact disabled={true}
-              onClick={this.handleComment} style={{marginTop: -2}}>
-              <Icon name='bullhorn' /> {this.state.voterOpinion === -1
-                  ? "Wurde trotzdem umgesetzt!"
-                  : this.state.voterOpinion === 1
-                    ? "Wurde nie umgesetzt!"
-                    : "Wurde dies umgesetzt?"}
-            </Button>
-          } />
+        {objectionElems.length > 0 &&
+          <div className="objections">
+            <Header size='large' dividing style={{marginTop: "2rem"}}>
+              Im Nachhinein
+            </Header>
+
+            <Comment.Group>
+              {objectionElems}
+            </Comment.Group>
+
+            {this.state.objectionFormOpen === false &&
+              <Popup
+                wide
+                header={"Quelle hinzufügen"}
+                content={"Weißt du noch mehr zu einer geplanten oder erfolgten Umsetzung dieser These?"}
+                trigger={
+                    <Button
+                      basic
+                      icon
+                      as='span'
+                      labelPosition='left'
+                      onClick={() => this.setState({objectionFormOpen: true})}
+                      style={{color: "#333"}}>
+                      <Icon name='bullhorn' /> Weißt du noch mehr zur Umsetzung?
+                    </Button>
+                } />
+              }
+          </div>
+        }
+
+        {this.state.objectionFormOpen &&
+          <ObjectionForm
+            thesis_id={this.props.id}
+            voterOpinion={this.state.voterOpinion}
+            handleSuccess={this.handleNewObjection}
+            handleCancel={() => this.setState({objectionFormOpen: false})} />
+        }
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
@@ -384,7 +484,7 @@ export default class Thesis extends Component<Props, State> {
               trigger={
                 <Button basic compact floated='right' icon disabled={this.state.reported}
                   onClick={this.handleReport} style={{marginTop: -2}}>
-                  <Icon name='warning circle' />
+                  <Icon name='warning circle' /> Melden
                 </Button>
               } />
 
