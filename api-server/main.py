@@ -186,6 +186,14 @@ def create_app(config=None):
                     logger.warning("No thesis instance was found for this request")
                     error = True
 
+                # check this url doesn't exist already
+                def isDuplicateLink(objection):
+                    return objection.url == url
+
+                if len(list(filter(isDuplicateLink, thesis.objections))) > 0:
+                    error = True
+                    rv["error"] = "Diesen Link gibt es hier leider schon."
+
             if error is False:
                 objection = Objection(
                     uuid=uuid,
@@ -264,7 +272,8 @@ def create_app(config=None):
             error = True
 
         if error is True:
-            rv["error"] = "There was a server error."
+            if rv.get("error", None) is None:
+                rv["error"] = "There was a server error."
 
         return json_response(rv)
 

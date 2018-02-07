@@ -78,6 +78,22 @@ stages:
         body:
           objection_id: data.id
 
+  - name: Make sure that duplicate objections are handled
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        uuid: test-uuid
+        url: test-text
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "Diesen Link gibt es leider schon."
+
+
   - name: Make sure that objections missing thesis id return an error
     request:
       url: http://localhost:9000/api/v1/react/objection

@@ -22,7 +22,7 @@ type Props = {
 type State = {
   error: ?string,
   loading: boolean,
-  url: ?string
+  url: string
 }
 
 type APIResponseType = {
@@ -37,7 +37,7 @@ export default class ObjectionForm extends React.Component<Props, State> {
     this.state = {
       error: null,
       loading: false,
-      url: null
+      url: ""
     };
   }
 
@@ -50,9 +50,12 @@ export default class ObjectionForm extends React.Component<Props, State> {
     this.setState({ url: value, error: error });
   }
 
-  handleSubmit() {
+  handleSubmit(e: SyntheticInputEvent<HTMLInputElement>) {
+    e.preventDefault();
+
     const uuid = loadFromCache('uuid');
     const endpoint = API_ROOT + "/react/objection";
+
     if (this.state.error == null) {
       this.setState({ loading: true });
       const data = {
@@ -95,11 +98,12 @@ export default class ObjectionForm extends React.Component<Props, State> {
         <Form.Input
           label='Link zur Quelle'
           name='url'
-          onChange={this.handleChange}
+          value={this.state.value}
+          onChange={(e, { value }) => this.setState({url: value, error: null})}
           placeholder="https://internet.com/informationen/"
           type='text' />
         <Form.Group>
-          <Form.Button primary>Abschicken</Form.Button>
+          <Form.Button primary disabled={this.state.url.length === 0}>Abschicken</Form.Button>
           <Button onClick={this.props.handleCancel}>
             Abbrechen
           </Button>
