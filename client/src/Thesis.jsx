@@ -478,13 +478,13 @@ export default class Thesis extends Component<Props, State> {
       <Segment attached={IS_ADMIN ? true : 'bottom'}>
         <div className="tagContainer">
             <Popup
-              content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du helfen, indem du mit diesem Button darauf hinweist. Danke!"
+              content="Hast du einen Fehler in den Daten zu diesem Eintrag entdeckt oder möchtest uns auf etwas hinweisen? Wir freuen uns über Feedback."
               header="Fehler melden"
               wide
               trigger={
                 <Button basic compact floated='right' icon disabled={this.state.reported}
                   onClick={this.handleReport} style={{marginTop: -2}}>
-                  <Icon name='warning circle' /> Melden
+                  <Icon name='warning circle' /> Fehler
                 </Button>
               } />
 
