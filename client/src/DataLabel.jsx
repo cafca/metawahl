@@ -4,7 +4,8 @@ import React from 'react';
 import {
   Header,
   Icon,
-  Label
+  Label,
+  Responsive
 } from 'semantic-ui-react';
 
 type WikidataProps = {
@@ -16,7 +17,8 @@ export const WikidataLabel = ({ wikidata_id, url } : WikidataProps) => {
   return wikidata_id == null ? null :
     <Header floated='right' style={{marginRight: "-10.5px"}}>
       <Label as='a' basic image href={url} >
-        <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" /> {wikidata_id}
+        <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" />
+        <Responsive minWidth='768' as='span'>{wikidata_id}</Responsive>
       </Label>
     </Header>
 }
@@ -43,7 +45,8 @@ export const WikipediaLabel = ({ wikipedia_title, wikipedia_url, style } : Wikip
     <Header floated='right' style={style}>
       <Label as='a' basic image
         href={href} >
-        <Icon name="wikipedia" /> {title}
+        <Icon name="wikipedia" />
+        <Responsive minWidth='768' as='span'> {title}</Responsive>
       </Label>
     </Header>
 }
