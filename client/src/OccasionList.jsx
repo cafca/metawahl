@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Header, Icon } from 'semantic-ui-react';
+import { Segment, Header, Icon, Message } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
 import { loadFromCache, saveToCache } from './App';
@@ -74,10 +74,13 @@ export default class OccasionList extends Component<RouteProps, State> {
         <Header as='h1'>
           <Icon  name='university' />
           <Header.Content>
-            Metawahl
+            Metawahl Beta
             <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland und fordern kritische Retrospektive.</Header.Subheader>
           </Header.Content>
         </Header>
+        <Message warning>
+          Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich. Dies ist eine Vorabversion.
+        </Message>
         <h2>Wahlen</h2>
         <div>
           {occasions}
