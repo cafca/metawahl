@@ -475,7 +475,7 @@ export default class Thesis extends Component<Props, State> {
         }
       </Segment>
 
-      <Segment attached={IS_ADMIN ? true : 'bottom'}>
+      <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
         <div className="tagContainer">
             <Popup
               content="Hast du einen Fehler in den Daten zu diesem Eintrag entdeckt oder möchtest uns auf etwas hinweisen? Wir freuen uns über Feedback."
