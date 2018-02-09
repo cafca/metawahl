@@ -3,6 +3,8 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 
+import { OPINION_COLORS } from './Config';
+
 import type { PositionType, ResultType } from './Types';
 
 import './PositionChart.css';
@@ -25,6 +27,8 @@ type State = {
 };
 
 export default class PositionChart extends React.Component<Props, State> {
+  svg: HTMLElement;
+
   constructor(props: Props) {
     super(props);
     autoBind(this);
@@ -66,41 +70,51 @@ export default class PositionChart extends React.Component<Props, State> {
         return a.party > b.party ? 1 : -1;
       }
     }
-    this.setState({positions: this.props.positions.sort(sortPositions)});
+    this.setState({positions: this.props.positions
+      .filter(pos => this.props.results[pos.party] && this.props.results[pos.party]["pct"])
+      .sort(sortPositions)});
   }
 
   render() {
     const t = this;
 
-    // Place rectangles from left to right, counting the used space
-    // for absolute positioning
-    let usedPct = 0.0;
+    const gapWidth = 1;
+    let usablePixels = this.svg && this.svg.clientWidth
+      - (gapWidth * this.state.positions.length)
+      + gapWidth;
 
-    const Rect = ({party, value, toggleOpen}: {toggleOpen: () => any, ...PositionType}) => {
-      const result = t.props.results[party] && t.props.results[party]["pct"];
-      if (result == null) { console.log("No vote count for " + party); return null;}
-      usedPct += result || 0;
+    let usedPixels = 0;
 
+    const Rect = ({index, party, value, toggleOpen}: {toggleOpen: () => any, index: number, ...PositionType}) => {
       // Changing SVG classnames with react is buggy, therefore this inline
       // style for a hover effect
-      const style = t.state.hovered === party ? {
-        fillOpacity: 0.45
-      } : null;
+      const baseStyle = {
+        fill: OPINION_COLORS[value],
+        fillOpacity: 1.0
+      };
 
-      return <rect
+      const style = t.state.hovered === party ? Object.assign(baseStyle, {
+        fillOpacity: 0.45
+      }) : baseStyle;
+
+      const width = Math.round(t.props.results[party]["pct"] * usablePixels / 100.0);
+      usedPixels += width + gapWidth;
+
+      return usablePixels == null ? null :  <rect
         className={"rect rect-" + valueNames[value.toString()]}
         height="100%"
         onClick={() => toggleOpen()}
         onMouseOver={() => this.handleHover(party)}
         onMouseOut={() => {this.handleHover(undefined)}}
         style={style}
-        width={"" + result + "%" || 0}
-        x={(usedPct - result).toString() + "%"}
+        width={width}
+        x={(usedPixels - width - (index === 0 ? gapWidth : 0)).toString() + "px"}
       ></rect>;
     };
 
     const rectangles = this.state.positions.map(
-      pos => <Rect
+      (pos, i) => <Rect
+        index={i}
         toggleOpen={() => t.props.toggleOpen(pos)}
         key={"rect-" + pos.party} {...pos} />
     );
@@ -113,12 +127,13 @@ export default class PositionChart extends React.Component<Props, State> {
         onMouseOut={() => this.handleHover(undefined)}
         onClick={() => this.props.toggleOpen(pos)}
         style={t.state.hovered === pos.party ? {
-          backgroundColor: "black", color: "white"
+          backgroundColor: OPINION_COLORS[pos.value], color: "white"
         } : null}
       >{pos.party}</span>);
 
     return <div>
-      <svg role="img" width="100%" height="21" className="positionChart">
+      <svg role="img" width="100%" height="21" className="positionChart"
+        ref={ref => this.svg = ref} >
          <g className="bar">
           {rectangles}
         </g>

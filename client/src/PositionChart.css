@@ -4,27 +4,16 @@
   background-color: white;
 }
 
-.rect:hovered {
-  fill-opacity: 0.8;
-}
-
-.rect-pro {
-  fill: #00f7d2;
-}
-.rect-neutral {
-  fill: rgb(200, 200, 200);
-}
-.rect-contra {
-  fill: #ffac82;
-}
-
 .partyNames {
   line-height: 1.2;
+  margin-left: -0.2em;
 }
 
 .partyNames span {
-  padding: 0 0.3em;
+  padding: 2px 0.3em;
   font-size: 0.9em;
+  line-height: 1.1rem;
+  display: inline-block;
 }
 
 .partyNames span:hover {

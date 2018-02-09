@@ -92,7 +92,7 @@ export default class ObjectionForm extends React.Component<Props, State> {
       contraButtonStyle = { color: "white", backgroundColor: OPINION_COLORS[-1] };
     }
 
-    return <Segment raised color='blue' className="objectionForm"
+    return <Segment raised color='grey' className="objectionForm"
       loading={this.state.loading} style={outerStyle}>
       <h3>Umsetzung</h3>
 

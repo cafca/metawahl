@@ -122,8 +122,8 @@ export const THESES_PER_PAGE = 5;
 
 // Frankreich
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#ff7f7f,5c8aad
-// export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(148, 148, 148)", "#928aa2", "#5e8bae"];
-export const COLOR_PALETTE = ["#ffac82", "#ebc170", "rgb(148, 148, 148)", "#8ce999", "#00f7d2"]
+export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(180, 180, 180)", "#928aa2", "#5e8bae"];
+// export const COLOR_PALETTE = ["#ffac82", "#ebc170", "rgb(148, 148, 148)", "#8ce999", "#00f7d2"]
 
 
 // Assign a color to each category
