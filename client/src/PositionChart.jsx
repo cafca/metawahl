@@ -3,7 +3,7 @@
 import React from 'react';
 import autoBind from 'react-autobind';
 
-import { PositionType, ResultType } from './Types';
+import type { PositionType, ResultType } from './Types';
 
 import './PositionChart.css';
 
@@ -12,8 +12,6 @@ const valueNames = {
   "0": "neutral",
   "-1": "contra"
 };
-
-const accentColor = "#2185d0";
 
 type Props = {
   positions: Array<PositionType>,
@@ -78,14 +76,17 @@ export default class PositionChart extends React.Component<Props, State> {
     // for absolute positioning
     let usedPct = 0.0;
 
-    const Rect = ({party, value, toggleOpen}) => {
+    const Rect = ({party, value, toggleOpen}: {toggleOpen: () => any, ...PositionType}) => {
       const result = t.props.results[party] && t.props.results[party]["pct"];
       if (result == null) { console.log("No vote count for " + party); return null;}
       usedPct += result || 0;
 
       // Changing SVG classnames with react is buggy, therefore this inline
       // style for a hover effect
-      const style = t.state.hovered === party ? {fill: accentColor} : null;
+      const style = t.state.hovered === party ? {
+        fillOpacity: 0.45
+      } : null;
+
       return <rect
         className={"rect rect-" + valueNames[value.toString()]}
         height="100%"
@@ -106,16 +107,18 @@ export default class PositionChart extends React.Component<Props, State> {
 
     const partyNames = this.state.positions && this.state.positions.slice()
       .sort((a, b) => a.party > b.party ? 1 : -1)
-      .map(pos => <span
+      .map((pos: PositionType) => <span
         key={"label-" + pos.party}
         onMouseOver={() => this.handleHover(pos.party)}
         onMouseOut={() => this.handleHover(undefined)}
         onClick={() => this.props.toggleOpen(pos)}
-        style={t.state.hovered === pos.party ? {backgroundColor: "black", color: "white"} : null}
+        style={t.state.hovered === pos.party ? {
+          backgroundColor: "black", color: "white"
+        } : null}
       >{pos.party}</span>);
 
     return <div>
-      <svg role="img" width="100%" height="40" className="positionChart">
+      <svg role="img" width="100%" height="21" className="positionChart">
          <g className="bar">
           {rectangles}
         </g>

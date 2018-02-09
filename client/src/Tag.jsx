@@ -4,28 +4,39 @@ import React from 'react';
 import { Label, Icon, Popup } from 'semantic-ui-react';
 import type { TagType } from './Types';
 
-import { IS_ADMIN } from './Config';
+import { IS_ADMIN, COLOR_PALETTE } from './Config';
 
 type Props = {
+  active: ?boolean,
   data: TagType,
   remove?: (string) => mixed,
-  detail?: string | number
+  detail?: string | number,
+  onClick: ?() => any
 };
 
-const Tag = ({ data, remove, detail }: Props) => {
+const Tag = ({ active, data, remove, detail, onClick }: Props) => {
   const labelElem = <Label
     basic
     key={data.wikidata_id}
     as='a'
-    href={"/tags/" + data.slug}
-    style={{
+    href={onClick == null ? "/tags/" + data.slug : null}
+    onClick={onClick}
+    style={active
+    ? {
+      backgroundColor: COLOR_PALETTE[COLOR_PALETTE.length - 1],
+      borderColor: COLOR_PALETTE[COLOR_PALETTE.length - 1],
+      color: "white",
+      marginRight: ".4em",
+      marginBottom: ".4em",
+    }
+    : {
       marginRight: ".4em",
       marginBottom: ".4em",
     }}
   >
     # {data.title}
     { detail != null &&
-      <Label.Detail style={{color: "#686CB2"}} as='span'>
+      <Label.Detail as='span'>
         {detail}
       </Label.Detail>
     }
