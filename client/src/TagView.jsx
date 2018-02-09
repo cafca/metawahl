@@ -6,7 +6,9 @@ import './App.css';
 import {
   Header,
   Icon,
+  Label,
   Loader,
+  Menu,
   Pagination,
   Segment
 } from 'semantic-ui-react';
@@ -25,7 +27,8 @@ type State = {
   page: number,
   tag: ?TagType,
   tagState: ErrorState,
-  theses: Array<ThesisType>
+  theses: Array<ThesisType>,
+  filter: Array<string>
 };
 
 export default class TagView extends Component<RouteProps, State> {
@@ -41,12 +44,24 @@ export default class TagView extends Component<RouteProps, State> {
       page: parseInt(this.props.match.params.page, 10) || 1,
       tag: null,
       tagState: "loading",
-      theses: []
+      theses: [],
+      filter: []
     }
   }
 
   componentDidMount() {
     this.loadTag();
+  }
+
+  handleFilter(tag: TagType) {
+    const filter = this.state.filter.slice();
+    const i = filter.indexOf(tag.title)
+    if (i > -1) {
+      filter.splice(i, 1);
+    } else {
+      filter.push(tag.title);
+    }
+    this.setState({filter});
   }
 
   handlePaginationChange(
@@ -107,11 +122,9 @@ export default class TagView extends Component<RouteProps, State> {
     const relatedTagsElems = Object.keys(relatedTags)
       .sort((a, b) => relatedTags[b].count - relatedTags[a].count)
       .map(i =>
-        <Tag
-          data={relatedTags[i].tag}
-          detail={relatedTags[i].count}
-          key={"RelTag-" + relatedTags[i].tag.title}
-        />)
+        <a className="item" onClick={() => this.handleFilter(relatedTags[i].tag)}>
+          <Label size="mini">{relatedTags[i].count}</Label> {relatedTags[i].tag.title}
+        </a>)
       .slice(0, 10);
 
     return <div>
@@ -143,20 +156,11 @@ export default class TagView extends Component<RouteProps, State> {
         {this.state.tagState === "error" && <h2>There was an error loading this page.</h2>}
       </Header>
 
-      { this.state.tag != null &&
+      { this.state.tag != null && this.state.tag.aliases != null && this.state.tag.aliases.length > 0 &&
         <Segment>
-          { this.state.tag.aliases != null && this.state.tag.aliases.length > 0 &&
             <div>
               Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}
             </div>
-          }
-
-          {relatedTagsElems.length > 0 &&
-            <div>
-              <p>Verwandte Tags:</p>
-              <p>{relatedTagsElems}</p>
-            </div>
-          }
         </Segment>
       }
 
@@ -167,6 +171,33 @@ export default class TagView extends Component<RouteProps, State> {
           setLoading={(isLoading) => this.setState({loading: isLoading})}
           refresh={() => this.loadTag()}
         />
+      }
+
+      {relatedTagsElems.length > 0 && false &&
+        <div>
+          <div class="ui menu">
+            <a class="browse item active">
+              Filter
+              <i class="dropdown icon"></i>
+            </a>
+          </div>
+          <div class="ui fluid popup bottom left transition hidden">
+            <div className="ui two column equal height divided grid" style={{marginBottom: "1em"}}>
+              <div className="column">
+                <h4 class="ui header dash_header">Filter</h4>
+                <div class="ui link list">
+                  {relatedTagsElems.slice(0, parseInt(relatedTagsElems.length / 2))}
+                </div>
+              </div>
+              <div className="column">
+                <h4 class="ui header dash_header">&nbsp;</h4>
+                <div class="ui link list">
+                  {relatedTagsElems.slice(parseInt(relatedTagsElems.length / 2))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       }
 
       { this.state.theses.length > 0 &&
