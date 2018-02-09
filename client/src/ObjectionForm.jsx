@@ -94,7 +94,7 @@ export default class ObjectionForm extends React.Component<Props, State> {
 
     return <Segment raised color='blue' className="objectionForm"
       loading={this.state.loading} style={outerStyle}>
-      <h3>Im Nachhinein</h3>
+      <h3>Umsetzung</h3>
 
       <i
         onClick={this.props.handleCancel}
