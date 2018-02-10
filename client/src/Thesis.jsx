@@ -11,6 +11,7 @@ import {
   Dropdown,
   Header,
   Icon,
+  Image,
   Label,
   Loader,
   Menu,
@@ -358,7 +359,14 @@ export default class Thesis extends Component<Props, State> {
       <Header as='h2' inverted attached="top" size="huge"
         style={{backgroundColor: voterOpinionColor}}>
         { this.props.linkOccasion &&
+          <div>
+          <Image
+            floated='right'
+            style={{height: "3em"}}
+            src={`/img/map-${this.props.occasion.territory}.svg`}
+            alt='Karte Bundesrepublik Deutschland' /> {' '}
           <OccasionSubtitle occasion={this.props.occasion} />
+          </div>
         }
 
         {this.props.text}
