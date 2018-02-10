@@ -116,7 +116,7 @@ export default class Thesis extends Component<Props, State> {
       categories: nextProps.categories
     });
 
-    if (nextProps.results !== this.props.results) {
+    if (Object.is(nextProps.occasion.results, this.props.occasion.results) === false) {
       this.sortPositions();
       this.updateVoterOpinion();
     }
