@@ -1,12 +1,15 @@
 import React from 'react';
 import {
   Container,
-  Header
+  Header,
+  Image
 } from 'semantic-ui-react'
 
 export const LegalView = () => {
   return <Container>
-    <Header content="Datenschutzerkl&#xE4;rung"/>
+    <Header as='h1' content="Impressum" />
+    <Image src='/img/impressum.png' alt='Kontaktdaten des Herausgebers' />
+    <a href="#privacy"><Header as='h2' content="Datenschutzerkl&#xE4;rung" /></a>
     <p>Die Nutzung unserer Seite ist ohne eine Angabe von personenbezogenen Daten m&#xF6;glich. F&#xFC;r die Nutzung einzelner  Services unserer Seite k&#xF6;nnen sich hierf&#xFC;r abweichende Regelungen ergeben, die in diesem Falle nachstehend gesondert erl&#xE4;utert werden. Ihre personenbezogenen  Daten (z.B. Name, Anschrift, E-Mail, Telefonnummer, u.&#xE4;.) werden von uns nur  gem&#xE4;&#xDF; den Bestimmungen des deutschen Datenschutzrechts verarbeitet. Daten sind dann  personenbezogen, wenn sie eindeutig einer bestimmten nat&#xFC;rlichen Person  zugeordnet werden k&#xF6;nnen. Die rechtlichen Grundlagen des Datenschutzes finden  Sie im Bundesdatenschutzgesetz (BDSG) und dem Telemediengesetz (TMG). Nachstehende  Regelungen informieren Sie insoweit &#xFC;ber die Art, den Umfang und Zweck der  Erhebung, die Nutzung und die Verarbeitung von personenbezogenen Daten durch  den Anbieter</p>
     <p>
         <img src="/img/contact.png" alt="Kontaktdaten des Betreibers dieser Webseite" />
@@ -44,6 +47,9 @@ export const LegalView = () => {
           Anwaltskanzlei Wei&#xDF; &amp; Partner
         </a>
     </p>
+    <Header as='h2' content='Quellenangaben' />
+      <p>SVG Deutschlandkarte lizensiert unter <a href="https://creativecommons.org/licenses/by-sa/2.0/de/deed.en" target="_blank">Creative Commons Attribution-Share Alike 2.0 Germany</a> und basierend auf Roman Poulvas, David Liuzzo (Karte Bundesrepublik Deutschland.svg) [CC BY-SA 2.0 de (https://creativecommons.org/licenses/by-sa/2.0/de/deed.en)], via Wikimedia Commons</p>
+      <p>SVG Europakarte lizensiert unter Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:European_Union_map.svg" target="_blank">Wikimedia Commons</a>.</p>
 </Container>;
 }
 

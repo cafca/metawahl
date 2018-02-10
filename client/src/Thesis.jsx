@@ -54,11 +54,22 @@ Moment.locale('de');
 
 const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
-    <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
-      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
-        {occasion.title}
-      </Link>
-    </p>;
+    <span>
+      <Image
+        floated='right'
+        style={{height: "3em"}}
+        src={`/img/map-${occasion.territory}.svg`}
+        title={occasion.territory === 'europa'
+          ? 'SVG Europakarte lizensiert unter Public Domain, via Wikimedia Commons (Link siehe Impressum)'
+          : 'SVG Deutschlandkarte lizensiert unter Creative Commons Attribution-Share Alike 2.0 Germany und basierend auf Roman Poulvas, David Liuzzo (Karte Bundesrepublik Deutschland.svg), via Wikimedia Commons (Siehe Link im Impressum).'
+        }
+        alt='Karte Bundesrepublik Deutschland' /> {' '}
+      <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
+        <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
+          {occasion.title}
+        </Link>
+      </p>
+    </span>;
 
 const valueNames = {
   "-1": "Contra",
@@ -363,14 +374,7 @@ export default class Thesis extends Component<Props, State> {
         }}>
 
         { this.props.linkOccasion &&
-          <div>
-          <Image
-            floated='right'
-            style={{height: "3em"}}
-            src={`/img/map-${this.props.occasion.territory}.svg`}
-            alt='Karte Bundesrepublik Deutschland' /> {' '}
           <OccasionSubtitle occasion={this.props.occasion} />
-          </div>
         }
 
         {this.props.text}
