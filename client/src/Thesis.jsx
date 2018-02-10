@@ -65,25 +65,6 @@ const valueNames = {
   "1": "Pro"
 };
 
-const voterOpinionTitles = {
-  "-1": "dagegen",
-  "0": "neutral",
-  "1": "dafür"
-};
-
-const voterOpinionNames = {
-  "-1": "frown",
-  "0": "meh",
-  "1": "smile"
-};
-
-const voterOpinionIntro = {
-  "-1": "Die Mehrheit der Stimmen ging an Parteien, die sich gegen diese These ausgesprochen haben.",
-  "0": `Es ging weder eine Mehrheit der Stimmen an Parteien, die sich für diese These ausgesprochen haben,
-    noch an Parteien, die sich gegen diese These ausgesprochen haben.`,
-  "1": "Die Mehrheit der Stimmen ging an Parteien, die sich für diese These ausgesprochen haben."
-};
-
 type State = {
   openText: ?PositionType,
   tags: Array<TagType>,
