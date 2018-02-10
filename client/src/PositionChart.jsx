@@ -108,7 +108,7 @@ export default class PositionChart extends React.Component<Props, State> {
         onMouseOut={() => {this.handleHover(undefined)}}
         style={style}
         width={width}
-        x={(usedPixels - width - (index === 0 ? gapWidth : 0)).toString() + "px"}
+        x={(usedPixels - width - gapWidth).toString() + "px"}
       ></rect>;
     };
 
