@@ -357,7 +357,11 @@ export default class Thesis extends Component<Props, State> {
 
     return <div style={{marginBottom: "2em"}}>
       <Header as='h2' inverted attached="top" size="huge"
-        style={{backgroundColor: voterOpinionColor}}>
+        style={{
+          backgroundColor: voterOpinionColor,
+          minHeight: this.props.linkOccasion ? "4em" : null
+        }}>
+
         { this.props.linkOccasion &&
           <div>
           <Image
