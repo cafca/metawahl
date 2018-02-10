@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { API_ROOT, setTitle, CATEGORY_COLORS } from './Config';
+import { API_ROOT, setTitle } from './Config';
 import { RouteProps, CategoryType } from './Types';
 import { loadFromCache, saveToCache } from './App';
 import {
@@ -59,11 +59,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
       .sort(sortCategories)
       .map(category => (
         <li key={category.slug}>
-          <Label circular style={{
-            backgroundColor: CATEGORY_COLORS[category.slug],
-            borderColor: CATEGORY_COLORS[category.slug],
-            color: "#fff",
-            marginLeft: -35}}>
+          <Label circular>
             {category.theses.length}
           </Label>
           <Link to={`/bereiche/${category.slug}/`}>{category.name}</Link>
@@ -95,21 +91,17 @@ export default class CategoriesList extends Component<RouteProps, State> {
 
         <Grid stackable columns={2} className="categoryGrid">
           <Grid.Column>
-            <ul>
+            <ul style={{listStyle: "none"}}>
               {categories.slice(0, parseInt(categories.length / 2, 10))}
             </ul>
           </Grid.Column>
 
           <Grid.Column>
-            <ul>
+            <ul style={{listStyle: "none"}}>
               {categories.slice(parseInt(categories.length / 2, 10))}
             </ul>
           </Grid.Column>
         </Grid>
-
-        <ul style={{listStyle: "none"}}>
-
-        </ul>
       </div>;
   }
 }
