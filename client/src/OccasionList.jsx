@@ -78,9 +78,6 @@ export default class OccasionList extends Component<RouteProps, State> {
             <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland und fordern kritische Retrospektive.</Header.Subheader>
           </Header.Content>
         </Header>
-        <Message warning>
-          Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich. Dies ist eine Vorabversion.
-        </Message>
         <h2>Wahlen</h2>
         <div>
           {occasions}
