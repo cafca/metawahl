@@ -11,6 +11,7 @@ import {
   Dropdown,
   Header,
   Icon,
+  Image,
   Label,
   Loader,
   Menu,
@@ -115,7 +116,7 @@ export default class Thesis extends Component<Props, State> {
       categories: nextProps.categories
     });
 
-    if (nextProps.results !== this.props.results) {
+    if (Object.is(nextProps.occasion.results, this.props.occasion.results) === false) {
       this.sortPositions();
       this.updateVoterOpinion();
     }
@@ -356,9 +357,20 @@ export default class Thesis extends Component<Props, State> {
 
     return <div style={{marginBottom: "2em"}}>
       <Header as='h2' inverted attached="top" size="huge"
-        style={{backgroundColor: voterOpinionColor}}>
+        style={{
+          backgroundColor: voterOpinionColor,
+          minHeight: this.props.linkOccasion ? "4em" : null
+        }}>
+
         { this.props.linkOccasion &&
+          <div>
+          <Image
+            floated='right'
+            style={{height: "3em"}}
+            src={`/img/map-${this.props.occasion.territory}.svg`}
+            alt='Karte Bundesrepublik Deutschland' /> {' '}
           <OccasionSubtitle occasion={this.props.occasion} />
+          </div>
         }
 
         {this.props.text}

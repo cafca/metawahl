@@ -96,7 +96,7 @@ export default class TagView extends Component<RouteProps, State> {
       .slice(startPos, endPos)
       .map((thesis, i) =>
         <Thesis
-          key={"Thesis-" + i}
+          key={"Thesis-" + thesis.id}
           occasion={this.state.occasions[thesis.occasion_id]}
           linkOccasion={true}
           {...thesis}
