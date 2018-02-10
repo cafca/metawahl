@@ -362,6 +362,9 @@ export default class Thesis extends Component<Props, State> {
           <Comment.Text>
             <a href={objection.url} target="_blank">{objection.url}</a>
           </Comment.Text>
+          <Comment.Actions>
+            <Comment.Action>Problematische Quelle melden</Comment.Action>
+          </Comment.Actions>
         </Comment.Content>
       </Comment>;
       });
@@ -387,18 +390,8 @@ export default class Thesis extends Component<Props, State> {
       </Header>
 
       <Segment id={this.props.id} attached>
-        <Header size='medium' style={{marginTop: "1rem"}}>
-          <Icon name={voterOpinionNames[this.state.voterOpinion]} />
-          <Header.Content>
-            {`Mehrheit ${voterOpinionTitles[this.state.voterOpinion].toLowerCase()}`}
-            <Header.Subheader>
-            {voterOpinionIntro[this.state.voterOpinion]}
-            </Header.Subheader>
-          </Header.Content>
-        </Header>
-
         <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-          Parteipositionen und jeweilige Stimmanteile
+          Stimmverteilung
         </Header>
 
         <PositionChart
@@ -438,8 +431,8 @@ export default class Thesis extends Component<Props, State> {
 
         {objectionElems.length > 0 &&
           <div className="objections">
-            <Header size='large' dividing style={{marginTop: "2rem"}}>
-              Im Nachhinein
+            <Header as='h3' dividing style={{marginTop: "2rem"}}>
+              Umsetzung
             </Header>
 
             <Comment.Group>
@@ -477,16 +470,6 @@ export default class Thesis extends Component<Props, State> {
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
         <div className="tagContainer">
-            <Popup
-              content="Hast du einen Fehler in den Daten zu diesem Eintrag entdeckt oder möchtest uns auf etwas hinweisen? Wir freuen uns über Feedback."
-              header="Fehler melden"
-              wide
-              trigger={
-                <Button basic compact floated='right' icon disabled={this.state.reported}
-                  onClick={this.handleReport} style={{marginTop: -2}}>
-                  <Icon name='warning circle' /> Fehler
-                </Button>
-              } />
 
             { categoryElems }
             { tagElems }

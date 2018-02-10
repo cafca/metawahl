@@ -7,11 +7,11 @@ import type { TagType } from './Types';
 import { IS_ADMIN, COLOR_PALETTE } from './Config';
 
 type Props = {
-  active: ?boolean,
+  active?: boolean,
   data: TagType,
   remove?: (string) => mixed,
   detail?: string | number,
-  onClick: ?() => any
+  onClick?: () => any
 };
 
 const Tag = ({ active, data, remove, detail, onClick }: Props) => {
