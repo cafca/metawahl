@@ -9,7 +9,7 @@ import {
   Message,
   Segment
 } from 'semantic-ui-react';
-import { makeJSONRequest, API_ROOT, OBJECTION_NAMES, COLOR_PALETTE } from './Config';
+import { makeJSONRequest, API_ROOT, OBJECTION_NAMES, COLOR_PALETTE, OPINION_COLORS } from './Config';
 import { loadFromCache } from './App';
 
 import type { ObjectionType } from './Types';
@@ -85,9 +85,16 @@ export default class ObjectionForm extends React.Component<Props, State> {
       borderColor: COLOR_PALETTE[0] +  " !important"
     };
 
-    return <Segment raised color='blue' className="objectionForm"
+    let proButtonStyle,  neutralButtonStyle, contraButtonStyle;
+    if (this.props.voterOpinion !== null) {
+      proButtonStyle = { color: "white", backgroundColor: OPINION_COLORS[1] };
+      neutralButtonStyle = { color: "white", backgroundColor: OPINION_COLORS[0] };
+      contraButtonStyle = { color: "white", backgroundColor: OPINION_COLORS[-1] };
+    }
+
+    return <Segment raised color='grey' className="objectionForm"
       loading={this.state.loading} style={outerStyle}>
-      <h3>Im Nachhinein</h3>
+      <h3>Umsetzung</h3>
 
       <i
         onClick={this.props.handleCancel}
@@ -119,17 +126,20 @@ export default class ObjectionForm extends React.Component<Props, State> {
         </Message>
       }
 
-      <Button.Group disabled={this.state.url.length === 0}>
-        <Button icon positive={this.props.voterOpinion !== 0} onClick={() => this.handleSubmit(1)}>
-          <Icon name='smile' /> {OBJECTION_NAMES[this.props.voterOpinion][2]}
+      <Button.Group fluid disabled={this.state.url.length === 0}>
+        <Button animated='vertical' icon style={proButtonStyle} onClick={() => this.handleSubmit(1)}>
+          <Button.Content hidden><Icon name='arrow right' /> Speichern</Button.Content>
+          <Button.Content visible>{OBJECTION_NAMES[this.props.voterOpinion][2]}</Button.Content>
         </Button>
 
-        <Button icon color={this.props.voterOpinion === 0 ? null : 'yellow'} onClick={() => this.handleSubmit(0)}>
-          <Icon name='meh' /> {OBJECTION_NAMES[this.props.voterOpinion][1]}
+        <Button animated='vertical' icon style={neutralButtonStyle} onClick={() => this.handleSubmit(0)}>
+          <Button.Content hidden><Icon name='arrow right' /> Speichern</Button.Content>
+          <Button.Content visible>{OBJECTION_NAMES[this.props.voterOpinion][1]}</Button.Content>
         </Button>
 
-        <Button icon negative={this.props.voterOpinion !== 0} onClick={() => this.handleSubmit(-1)}>
-          <Icon name='frown' /> {OBJECTION_NAMES[this.props.voterOpinion][0]}
+        <Button animated='vertical' icon style={contraButtonStyle} onClick={() => this.handleSubmit(-1)}>
+          <Button.Content hidden><Icon name='arrow right' /> Speichern</Button.Content>
+          <Button.Content visible>{OBJECTION_NAMES[this.props.voterOpinion][0]}</Button.Content>
         </Button>
       </Button.Group>
     </Segment>

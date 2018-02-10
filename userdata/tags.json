@@ -497,18 +497,30 @@
       "wikidata_id": "Q628569"
     }, 
     {
+      "aliases": [
+        "Registrierte Arbeitslosigkeit", 
+        "Langzeitarbeitslosigkeit", 
+        "Arbeitslos", 
+        "Massenarbeitslosigkeit", 
+        "Konjunkturelle Arbeitslosigkeit"
+      ], 
       "description": "Fehlen bezahlter Besch\u00e4ftigungsm\u00f6glichkeiten f\u00fcr potenzielle Erwerbspersonen", 
+      "labels": [
+        "Arbeitslosigkeit"
+      ], 
       "slug": "arbeitslosigkeit", 
       "theses": [
         "WOM-033-12", 
         "WOM-017-35", 
         "WOM-011-24", 
         "WOM-003-15", 
-        "WOM-002-01"
+        "WOM-002-01", 
+        "WOM-001-11"
       ], 
       "title": "Arbeitslosigkeit", 
       "url": "http://www.wikidata.org/entity/Q41171", 
-      "wikidata_id": "Q41171"
+      "wikidata_id": "Q41171", 
+      "wikipedia_title": "Arbeitslosigkeit"
     }, 
     {
       "aliases": [
@@ -3152,6 +3164,19 @@
       "url": "http://www.wikidata.org/entity/Q6055890", 
       "wikidata_id": "Q6055890", 
       "wikipedia_title": "Finanzierung"
+    }, 
+    {
+      "labels": [
+        "Finanztransaktionssteuer"
+      ], 
+      "slug": "finanztransaktionssteuer", 
+      "theses": [
+        "WOM-030-09"
+      ], 
+      "title": "Finanztransaktionssteuer", 
+      "url": "http://www.wikidata.org/entity/Q1328471", 
+      "wikidata_id": "Q1328471", 
+      "wikipedia_title": "Finanztransaktionssteuer"
     }, 
     {
       "labels": [
@@ -9142,6 +9167,25 @@
     }, 
     {
       "aliases": [
+        "Standards"
+      ], 
+      "description": "einheitliche oder vereinheitlichte Art und Weise, etwas herzustellen oder durchzuf\u00fchren", 
+      "labels": [
+        "Standard"
+      ], 
+      "slug": "standard", 
+      "theses": [
+        "WOM-016-16", 
+        "WOM-016-05", 
+        "WOM-001-19"
+      ], 
+      "title": "Standard", 
+      "url": "http://www.wikidata.org/entity/Q317623", 
+      "wikidata_id": "Q317623", 
+      "wikipedia_title": "Standard"
+    }, 
+    {
+      "aliases": [
         "Q2360193"
       ], 
       "labels": [
@@ -9970,6 +10014,24 @@
       "title": "UNESCO-Welterbe", 
       "url": "http://www.wikidata.org/entity/Q9259", 
       "wikidata_id": "Q9259"
+    }, 
+    {
+      "aliases": [
+        "USEUCOM", 
+        "EUCOM", 
+        "US European Command"
+      ], 
+      "labels": [
+        "United States European Command"
+      ], 
+      "slug": "united-states-european-command", 
+      "theses": [
+        "WOM-016-28"
+      ], 
+      "title": "United States European Command", 
+      "url": "http://www.wikidata.org/entity/Q510610", 
+      "wikidata_id": "Q510610", 
+      "wikipedia_title": "United States European Command"
     }, 
     {
       "aliases": [
@@ -10868,6 +10930,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "29.83376s"
+    "render_time": "40.90859s"
   }
 }

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom'
-import { Container } from 'semantic-ui-react'
+import { Container, Message } from 'semantic-ui-react'
 
 import HeaderMenu from './HeaderMenu';
 import Footer from './Footer';
@@ -80,7 +80,12 @@ class App extends Component<Props, State> {
         <ScrollToTop>
           <div className="App">
             <HeaderMenu />
-            <Container text style={{ marginTop: '60px' }}>
+            <Container text id="outerContainer">
+
+        <Message warning>
+          Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich.
+          Diese Vorabversion kann inhaltliche und technische Fehler beinhalten.
+        </Message>
               <Route exact path="/" render={props => (
                 <OccasionList {...props} />
               )} />

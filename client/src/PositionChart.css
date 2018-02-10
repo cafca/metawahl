@@ -1,37 +1,19 @@
 .positionChart {
-  border: 1px solid #999;
   margin: 0.3em 0;
   cursor: pointer;
-  background: repeating-linear-gradient(
-    -55deg,
-    #222,
-    #222 5px,
-    #444 5px,
-    #444 10px
-  );
-}
-
-.rect .hovered {
-  fill: #2185d0;
-}
-
-.rect-pro {
-  fill: white;
-}
-.rect-neutral {
-  fill: gray;
-}
-.rect-contra {
-  fill: black;
+  background-color: white;
 }
 
 .partyNames {
   line-height: 1.2;
+  margin-left: -0.2em;
 }
 
 .partyNames span {
-  padding: 0 0.3em;
+  padding: 2px 0.3em;
   font-size: 0.9em;
+  line-height: 1.1rem;
+  display: inline-block;
 }
 
 .partyNames span:hover {

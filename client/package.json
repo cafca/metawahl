@@ -1,6 +1,6 @@
 {
   "name": "metawahl",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "private": true,
   "homepage": "https://metawahl.de/",
   "dependencies": {
@@ -27,5 +27,10 @@
     "eslint-plugin-flowtype": "^2.42.0",
     "flow-bin": "^0.60.1",
     "iflow-react-router": "^1.2.1"
+  },
+  "theme": {
+    "config": {
+      
+    }
   }
 }

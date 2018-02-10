@@ -53,3 +53,8 @@
     -webkit-transition: opacity .1s ease;
     transition: opacity .1s ease;
 }
+
+#outerContainer.ui.text.container {
+  max-width: 800px !important;
+  margin-top: 60px;
+};

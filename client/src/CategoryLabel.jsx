@@ -17,9 +17,7 @@ const CategoryLabel = ({ slug, remove }: Props) => {
     style={{
       marginRight: ".4em",
       marginBottom: ".4em",
-      backgroundColor: CATEGORY_COLORS[slug],
       borderColor: CATEGORY_COLORS[slug],
-      color: '#fff'
     }}
   >
     {CATEGORY_NAMES[slug]}
