@@ -15,6 +15,42 @@ const valueNames = {
   "-1": "contra"
 };
 
+// Gap between colored rectangles
+const gapWidth = 1;
+
+type RectProps = {
+  toggleOpen: () => any,
+  handleHover: (party: ?string) => any,
+  hovered: boolean,
+  width: number,
+  xPos: number,
+  ...PositionType
+};
+
+const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: RectProps) => {
+  // Changing SVG classnames with react is buggy, therefore this inline
+  // style for a hover effect
+  const baseStyle = {
+    fill: OPINION_COLORS[value],
+    fillOpacity: 1.0
+  };
+
+  const style = hovered ? Object.assign(baseStyle, {
+    fillOpacity: 0.45
+  }) : baseStyle;
+
+  return <rect
+    className={"rect rect-" + valueNames[value.toString()]}
+    height="100%"
+    onClick={() => toggleOpen()}
+    onMouseOver={() => handleHover(party)}
+    onMouseOut={() => handleHover(undefined)}
+    style={style}
+    width={width}
+    x={xPos.toString() + "px"}
+  ></rect>;
+};
+
 type Props = {
   positions: Array<PositionType>,
   results: ResultType,
@@ -27,7 +63,7 @@ type State = {
 };
 
 export default class PositionChart extends React.Component<Props, State> {
-  svg: HTMLElement;
+  svg: SVGSVGElement;
 
   constructor(props: Props) {
     super(props);
@@ -66,7 +102,7 @@ export default class PositionChart extends React.Component<Props, State> {
             return res[a.party]["votes"] > res[b.party]["votes"] ? -1 : 1;
           }
         }
-        // Sort by name otherwise
+        // Sort by name if all else is equal
         return a.party > b.party ? 1 : -1;
       }
     }
@@ -76,48 +112,25 @@ export default class PositionChart extends React.Component<Props, State> {
   }
 
   render() {
-    const t = this;
-
-    const gapWidth = 1;
     let usablePixels = this.svg && this.svg.clientWidth
-      - (gapWidth * this.state.positions.length)
-      + gapWidth;
+      - (gapWidth * (this.state.positions.length - 1));
 
     let usedPixels = 0;
 
-    const Rect = ({index, party, value, toggleOpen}: {toggleOpen: () => any, index: number, ...PositionType}) => {
-      // Changing SVG classnames with react is buggy, therefore this inline
-      // style for a hover effect
-      const baseStyle = {
-        fill: OPINION_COLORS[value],
-        fillOpacity: 1.0
-      };
-
-      const style = t.state.hovered === party ? Object.assign(baseStyle, {
-        fillOpacity: 0.45
-      }) : baseStyle;
-
-      const width = Math.round(t.props.results[party]["pct"] * usablePixels / 100.0);
+    const rectangles = this.state.positions.map(pos => {
+      const width = Math.round(this.props.results[pos.party]["pct"]
+        * usablePixels / 100.0);
       usedPixels += width + gapWidth;
 
-      return usablePixels == null ? null :  <rect
-        className={"rect rect-" + valueNames[value.toString()]}
-        height="100%"
-        onClick={() => toggleOpen()}
-        onMouseOver={() => this.handleHover(party)}
-        onMouseOut={() => {this.handleHover(undefined)}}
-        style={style}
+      return usablePixels == null ? null : <Rect
+        key={"rect-" + pos.party}
+        hovered={this.state.hovered === pos.party}
+        handleHover={this.handleHover}
         width={width}
-        x={(usedPixels - width - gapWidth).toString() + "px"}
-      ></rect>;
-    };
-
-    const rectangles = this.state.positions.map(
-      (pos, i) => <Rect
-        index={i}
-        toggleOpen={() => t.props.toggleOpen(pos)}
-        key={"rect-" + pos.party} {...pos} />
-    );
+        xPos={usedPixels - width - gapWidth}
+        toggleOpen={() => this.props.toggleOpen(pos)}
+        {...pos} />
+    });
 
     const partyNames = this.state.positions && this.state.positions.slice()
       .sort((a, b) => a.party > b.party ? 1 : -1)
@@ -126,8 +139,9 @@ export default class PositionChart extends React.Component<Props, State> {
         onMouseOver={() => this.handleHover(pos.party)}
         onMouseOut={() => this.handleHover(undefined)}
         onClick={() => this.props.toggleOpen(pos)}
-        style={t.state.hovered === pos.party ? {
-          backgroundColor: OPINION_COLORS[pos.value], color: "white"
+        style={this.state.hovered === pos.party ? {
+          backgroundColor: OPINION_COLORS[pos.value],
+          color: "white"
         } : null}
       >{pos.party}</span>);
 
