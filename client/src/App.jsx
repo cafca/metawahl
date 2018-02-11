@@ -82,10 +82,11 @@ class App extends Component<Props, State> {
             <HeaderMenu />
             <Container text id="outerContainer">
 
-        <Message warning>
-          Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich.
-          Diese Vorabversion kann inhaltliche und technische Fehler beinhalten.
-        </Message>
+            <Message warning>
+              Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich.
+              Diese Vorabversion kann inhaltliche und technische Fehler beinhalten.
+            </Message>
+
               <Route exact path="/" render={props => (
                 <OccasionList {...props} />
               )} />
