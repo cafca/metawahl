@@ -246,7 +246,8 @@ class Occasion(db.Model):
                 "votes": r.votes,
                 "pct": r.pct
             }
-
+            if r.party_repr != r.party_name:
+                rv[r.party_name]["name"] = r.party_repr
         return rv
 
 
@@ -306,6 +307,11 @@ class Result(db.Model):
     is_mandated = db.Column(db.Boolean, default=False)
     source = db.Column(db.String(256), nullable=True)
 
+    # Is there a position for this result in the corresponding wom?
+    wom = db.Column(db.Boolean, default=True)
+
+    # How the name of the party was written for this election
+    party_repr = db.Column(db.String(256), nullable=False)
     party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
         nullable=False)
     party = db.relationship('Party', backref=db.backref('results',
