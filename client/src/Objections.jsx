@@ -37,11 +37,10 @@ export default class Objections extends React.Component<Props, State> {
   }
 
   handleNewObjection(objection: ObjectionType) {
-    const objections1 = this.state.objections.slice();
-    objections1.push(objection);
+    // Add new objections to the displayed list
     this.setState({
       objectionFormOpen: false,
-      objections: objections1
+      objections: this.state.objections.concat([ objection ])
     });
   }
 
