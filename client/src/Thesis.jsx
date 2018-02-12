@@ -75,6 +75,8 @@ const valueNames = {
 };
 
 type State = {
+  ratioPro: number,
+  ratioContra: number,
   openText: ?PositionType,
   tags: Array<TagType>,
   categories: Array<string>,
@@ -83,7 +85,6 @@ type State = {
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
-  voterRatio: number,
   reported: boolean
 };
 
@@ -105,7 +106,8 @@ export default class Thesis extends Component<Props, State> {
       neutralPositions: [],
       contraPositions: [],
       voterOpinion: 0,
-      voterRatio: 0.5,
+      ratioPro: 0.5,
+      ratioContra: 0.5,
       reported: false
     }
   }
@@ -127,6 +129,7 @@ export default class Thesis extends Component<Props, State> {
   }
 
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
+    // Avoid duplicates
     if (this.state.categories.indexOf(value) > -1) return;
 
     this.sendCategoryChanges(value, false);
@@ -229,7 +232,7 @@ export default class Thesis extends Component<Props, State> {
       });
   }
 
-  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType>, admin_key?: string }) {
+  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType>, admin_key?: ?string }) {
     this.setState({ loading: true });
 
     const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
@@ -287,20 +290,20 @@ export default class Thesis extends Component<Props, State> {
 
     let voterOpinion;
 
-    const countPro = this.state.proPositions.reduce(countVotes, 0.0);
-    const countContra = this.state.contraPositions.reduce(countVotes, 0.0);
+    const ratioPro = this.state.proPositions.reduce(countVotes, 0.0);
+    const ratioContra = this.state.contraPositions.reduce(countVotes, 0.0);
 
-    if (countPro > 50.0) {
+    if (ratioPro > 50.0) {
       voterOpinion = 1;
-    } else if (countContra < 50.0) {
+    } else if (ratioContra < 50.0) {
       voterOpinion = 0;
     } else {
       voterOpinion = -1;
     }
 
-    const voterRatio = countPro / (countPro + countContra);
+    const voterRatio = ratioPro / (ratioPro + ratioContra);
 
-    this.setState({voterOpinion, voterRatio});
+    this.setState({voterOpinion, ratioPro, ratioContra});
   }
 
   render() {
@@ -317,10 +320,15 @@ export default class Thesis extends Component<Props, State> {
         key={"Tag-" + tag.title}
         remove={this.handleTagRemove}
       />);
+    let voterOpinionColor;
 
-    const voterOpinionColor = COLOR_PALETTE[
-      parseInt(COLOR_PALETTE.length * this.state.voterRatio, 10)
-    ];
+    if (this.state.voterOpinion === 0) {
+      voterOpinionColor = COLOR_PALETTE[2]
+    } else {
+      voterOpinionColor = this.state.voterOpinion === -1
+        ? COLOR_PALETTE[this.state.ratioContra > 66 ? 0 : 1]
+        : COLOR_PALETTE[this.state.ratioPro > 66 ? 4 : 3];
+    }
 
     return <div style={{marginBottom: "2em"}}>
       <Header as='h2' inverted attached="top" size="huge"
@@ -333,13 +341,23 @@ export default class Thesis extends Component<Props, State> {
           <OccasionSubtitle occasion={this.props.occasion} />
         }
 
-        {this.props.text}
 
-        {(this.props.title != null && this.props.title.length > 0) &&
+
+        { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
           <Header.Subheader>
             {this.props.title}
           </Header.Subheader>
         }
+
+        {this.props.text}
+
+        <Header.Subheader>
+        {this.state.voterOpinion === 0 ? " Keine Nehrheit dafür oder dagegen"
+          : this.state.voterOpinion === 1
+            ? ` ${Math.round(this.state.ratioPro)} von 100 Stimmen wählen Parteien, die diese These unterstützen`
+            : ` ${Math.round(this.state.ratioContra)} von 100 Stimmen wählen Parteien, die diese These ablehnen`
+        }
+        </Header.Subheader>
       </Header>
 
       <Segment id={this.props.id} attached>
@@ -373,7 +391,6 @@ export default class Thesis extends Component<Props, State> {
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
         <div className="tagContainer">
-
             { categoryElems }
             { tagElems }
             <br />
@@ -381,6 +398,7 @@ export default class Thesis extends Component<Props, State> {
             { categoryElems.length === 0 && IS_ADMIN && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
+
       { IS_ADMIN &&
         <Menu attached='bottom'>
           <Dropdown
