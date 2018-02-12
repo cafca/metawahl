@@ -246,8 +246,12 @@ class Occasion(db.Model):
                 "votes": r.votes,
                 "pct": r.pct
             }
+
             if r.party_repr != r.party_name:
                 rv[r.party_name]["name"] = r.party_repr
+
+            if r.wom is False:
+                rv[r.party_name]["missing"] = True
         return rv
 
 

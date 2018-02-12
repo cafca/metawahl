@@ -5,17 +5,12 @@ import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
 import 'moment/locale/de';
 import {
-  Button,
-  Comment,
   Dropdown,
   Header,
-  Icon,
   Image,
-  Label,
   Loader,
   Menu,
   Message,
-  Popup,
   Segment
 } from 'semantic-ui-react';
 
@@ -34,12 +29,9 @@ import {
   COLOR_PALETTE,
   IS_ADMIN,
   makeJSONRequest,
-  OBJECTION_NAMES,
-  OPINION_COLORS
   } from './Config';
 
 import type {
-  ObjectionType,
   OccasionType,
   PositionType,
   RouteProps,
@@ -74,10 +66,14 @@ const valueNames = {
   "1": "Pro"
 };
 
+type OpenTextType = PositionType & {
+  header?: string
+};
+
 type State = {
   ratioPro: number,
   ratioContra: number,
-  openText: ?PositionType,
+  openText: ?OpenTextType,
   tags: Array<TagType>,
   categories: Array<string>,
   loading: boolean,
@@ -201,13 +197,28 @@ export default class Thesis extends Component<Props, State> {
   }
 
   toggleOpen(position: PositionType) {
-    if (position.text == null || position.text.length === 0) {
-      this.setState({ openText: Object.assign({}, position, {
+    let openText: OpenTextType;
+    if (position.value === "missing") {
+      openText = Object.assign({}, position, {
+        text: "Diese Partei war im Wahl-o-Mat zu dieser Wahl nicht vertreten."
+      });
+    } else if (position.text == null || position.text.length === 0) {
+      openText = Object.assign({}, position, {
         text: "Es liegt keine Begründung zur Position dieser Partei vor."
-      })});
+      });
     } else {
-      this.setState({ openText: position });
+      openText = position;
     }
+
+    const name = this.props.occasion.results[openText.party]["name"]
+      || openText.party;
+    const result = (this.props.occasion.results[openText.party]["pct"]
+      || "<0,1") + "%";
+    const posName = Object.keys(valueNames).indexOf(openText.value.toString()) > -1
+      ? " — " + valueNames[openText.value] : '' ;
+    openText["header"] = `${name} — ${result}${posName}`;
+
+    this.setState({openText});
   }
 
   sendCategoryChanges(categoryName: string, remove: boolean) {
@@ -216,7 +227,14 @@ export default class Thesis extends Component<Props, State> {
     this.setState({loading: true});
 
     const endpoint = `${API_ROOT}/categories/${categoryName}`;
-    const data = remove === true
+
+    type RequestType = {
+      admin_key?: ?string,
+      remove?: Array<string>,
+      add?: Array<string>
+    };
+
+    const data: RequestType = remove === true
       ? {"remove": [this.props.id]}
       : {"add": [this.props.id]};
 
@@ -301,8 +319,6 @@ export default class Thesis extends Component<Props, State> {
       voterOpinion = -1;
     }
 
-    const voterRatio = ratioPro / (ratioPro + ratioContra);
-
     this.setState({voterOpinion, ratioPro, ratioContra});
   }
 
@@ -341,9 +357,7 @@ export default class Thesis extends Component<Props, State> {
           <OccasionSubtitle occasion={this.props.occasion} />
         }
 
-
-
-        { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
+        { this.props.linkOccasion === false && (this.props.title != null && this.props.title.length > 0) &&
           <Header.Subheader>
             {this.props.title}
           </Header.Subheader>
@@ -374,11 +388,7 @@ export default class Thesis extends Component<Props, State> {
           <Message
             content={this.state.openText.text}
             floating
-            header={
-              `${this.state.openText.party} -
-              ${this.props.occasion.results[this.state.openText.party]["pct"]}% -
-              ${valueNames[this.state.openText.value]}`
-            } />
+            header={this.state.openText.header} />
         }
 
         <Objections

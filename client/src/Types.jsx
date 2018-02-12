@@ -1,10 +1,11 @@
 export const ErrorState = "loading" | "success" | "error";
 
 export type PositionType = {
-  value: -1 | 0 | 1,
+  value: -1 | 0 | 1 | "missing",
   party: string,
   text?: string,
-  pct?: number
+  pct?: number,
+  missing?: boolean
 };
 
 export type TagType = {

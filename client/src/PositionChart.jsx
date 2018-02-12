@@ -58,7 +58,7 @@ type Props = {
 };
 
 type State = {
-  positions: Array<PositionType>,
+  parties: Array<PositionType>,
   hovered?: string
 };
 
@@ -69,7 +69,7 @@ export default class PositionChart extends React.Component<Props, State> {
     super(props);
     autoBind(this);
     this.state = {
-      positions: []
+      parties: []
     }
   }
 
@@ -88,9 +88,11 @@ export default class PositionChart extends React.Component<Props, State> {
   sortPositions() {
     const res = this.props.results;
     const sortPositions = (a, b) => {
-      // First sort into pro, neutral, contra
+      // First sort into pro, neutral, contra and missing
       if (a.value !== b.value) {
-        return a.value < b.value ? 1 : -1;
+        return a.value === "missing" ? 1
+          : b.value === "missing" ? -1
+            : a.value < b.value ? 1 : -1;
       } else {
         // Then sort descending by vote count
         if (res != null) {
@@ -106,44 +108,46 @@ export default class PositionChart extends React.Component<Props, State> {
         return a.party > b.party ? 1 : -1;
       }
     }
-    this.setState({positions: this.props.positions
-      .filter(pos => this.props.results[pos.party] && this.props.results[pos.party]["pct"])
+    this.setState({parties: Object.keys(this.props.results)
+      .map(party =>
+        this.props.positions.filter(pos => pos.party === party).shift()
+          || { party, value: 'missing' })
       .sort(sortPositions)});
   }
 
   render() {
     let usablePixels = this.svg && this.svg.clientWidth
-      - (gapWidth * (this.state.positions.length - 1));
+      - (gapWidth * (this.state.parties.length - 1));
 
     let usedPixels = 0;
 
-    const rectangles = this.state.positions.map(pos => {
-      const width = Math.round(this.props.results[pos.party]["pct"]
+    const rectangles = this.state.parties.map(party => {
+      const width = Math.round(this.props.results[party.party]["pct"]
         * usablePixels / 100.0);
       usedPixels += width + gapWidth;
 
       return usablePixels == null ? null : <Rect
-        key={"rect-" + pos.party}
-        hovered={this.state.hovered === pos.party}
+        key={"rect-" + party.party}
+        hovered={this.state.hovered === party.party}
         handleHover={this.handleHover}
         width={width}
         xPos={usedPixels - width - gapWidth}
-        toggleOpen={() => this.props.toggleOpen(pos)}
-        {...pos} />
+        toggleOpen={() => this.props.toggleOpen(party)}
+        {...party} />
     });
 
-    const partyNames = this.state.positions && this.state.positions.slice()
+    const partyNames = this.state.parties && this.state.parties.slice()
       .sort((a, b) => a.party > b.party ? 1 : -1)
-      .map((pos: PositionType) => <span
-        key={"label-" + pos.party}
-        onMouseOver={() => this.handleHover(pos.party)}
+      .map((party: PositionType) => <span
+        key={"label-" + party.party}
+        onMouseOver={() => this.handleHover(party.party)}
         onMouseOut={() => this.handleHover(undefined)}
-        onClick={() => this.props.toggleOpen(pos)}
-        style={this.state.hovered === pos.party ? {
-          backgroundColor: OPINION_COLORS[pos.value],
+        onClick={() => this.props.toggleOpen(party)}
+        style={this.state.hovered === party.party ? {
+          backgroundColor: OPINION_COLORS[party.value],
           color: "white"
         } : null}
-      >{pos.party}</span>);
+      >{ this.props.results[party.party]["name"] || party.party}</span>);
 
     return <div>
       <svg role="img" width="100%" height="21" className="positionChart"
