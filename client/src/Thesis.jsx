@@ -32,6 +32,7 @@ import {
   } from './Config';
 
 import type {
+  MergedPartyDataType,
   OccasionType,
   PositionType,
   RouteProps,
@@ -77,6 +78,7 @@ type State = {
   tags: Array<TagType>,
   categories: Array<string>,
   loading: boolean,
+  parties: Array<MergedPartyDataType>,
   proPositions: Array<PositionType>,
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
@@ -98,6 +100,7 @@ export default class Thesis extends Component<Props, State> {
       tags: this.props.tags,
       categories: this.props.categories,
       loading: false,
+      parties: [],
       proPositions: [],
       neutralPositions: [],
       contraPositions: [],
@@ -109,7 +112,7 @@ export default class Thesis extends Component<Props, State> {
   }
 
   componentWillMount() {
-    this.sortPositions();
+    this.mergePartyData();
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -119,8 +122,7 @@ export default class Thesis extends Component<Props, State> {
     });
 
     if (Object.is(nextProps.occasion.results, this.props.occasion.results) === false) {
-      this.sortPositions();
-      this.updateVoterOpinion();
+      this.mergePartyData();
     }
   }
 
@@ -267,7 +269,8 @@ export default class Thesis extends Component<Props, State> {
       });
   }
 
-  sortPositions() {
+  mergePartyData() {
+    // Merge party positions with election results
     const res = this.props.occasion.results;
     const sortPositions = (a, b) => {
       if (res != null) {
@@ -284,32 +287,32 @@ export default class Thesis extends Component<Props, State> {
       return a.party > b.party ? 1 : -1;
     }
 
-    const positions = Object.keys(this.props.occasion.results)
+    const parties = Object.keys(res)
       .map(party => {
-        const linked_position = this.props.occasion.results[party]["linked_position"] || party;
+        const linked_position = res[party]["linked_position"] || party;
         const rv = Object.assign({},
-          this.props.occasion.results[party],
-          this.props.positions
-            .filter(pos => pos.party === linked_position || pos.party === party).shift()
-            || { value: 'missing' },
+          res[party],
+          this.props.positions.filter(pos =>
+              pos.party === linked_position || pos.party === party
+            ).shift() || { value: 'missing' },
           { party }
         );
         return rv;
       })
 
-    let proPositions = positions
+    let proPositions = parties
       .filter(p => p.value === 1)
       .sort(sortPositions)
 
-    let neutralPositions = positions
+    let neutralPositions = parties
       .filter(p => p.value === 0)
       .sort(sortPositions)
 
-    let contraPositions = positions
+    let contraPositions = parties
       .filter(p => p.value === -1)
       .sort(sortPositions)
 
-    this.setState({proPositions, neutralPositions, contraPositions},
+    this.setState({parties, proPositions, neutralPositions, contraPositions},
       this.updateVoterOpinion);
   }
 
@@ -393,8 +396,7 @@ export default class Thesis extends Component<Props, State> {
         </Header>
 
         <PositionChart
-          positions={this.props.positions}
-          results={this.props.occasion.results}
+          parties={this.state.parties}
           toggleOpen={this.toggleOpen} />
 
         { this.state.openText != null &&

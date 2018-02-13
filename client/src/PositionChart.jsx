@@ -5,7 +5,7 @@ import autoBind from 'react-autobind';
 
 import { OPINION_COLORS } from './Config';
 
-import type { PositionType, ResultType } from './Types';
+import type { MergedPartyDataType } from './Types';
 
 import './PositionChart.css';
 
@@ -24,7 +24,7 @@ type RectProps = {
   hovered: boolean,
   width: number,
   xPos: number,
-  ...PositionType
+  ...MergedPartyDataType
 };
 
 const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: RectProps) => {
@@ -52,24 +52,26 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: Rec
 };
 
 type Props = {
-  positions: Array<PositionType>,
-  results: ResultType,
+  parties: MergedPartyDataType,
   toggleOpen: (party: string) => any
 };
 
 type State = {
   parties: Array<PositionType>,
-  hovered?: string
+  hovered: ?string,
+  width: number
 };
 
 export default class PositionChart extends React.Component<Props, State> {
-  svg: SVGSVGElement;
+  svg = null;
 
   constructor(props: Props) {
     super(props);
     autoBind(this);
     this.state = {
-      parties: []
+      parties: [],
+      hovered: null,
+      width: 0
     }
   }
 
@@ -77,91 +79,107 @@ export default class PositionChart extends React.Component<Props, State> {
     this.sortPositions();
   }
 
-  handleHover(party?: string) {
-    if (this.state.hovered !== party) {
-      this.setState({
-        hovered: party
-      });
+  componentDidMount() {
+    this.measureSVGWidth();
+  }
+
+  componentDidUpdate() {
+    this.measureSVGWidth();
+  }
+
+  handleHover(party: ?string) {
+    if ( this.state.hovered !== party) {
+      this.setState({ hovered: party });
     }
   }
 
+  handleRef(ref) {
+    this.svg = ref;
+  }
+
+  measureSVGWidth() {
+    if (this.svg != null) {
+      const { width } = this.svg.getBoundingClientRect();
+      this.setState({ width });
+    }
+  }
+
+  shouldComponentUpdate(nextProps: Props, nextState: State) {
+    return (
+      this.state.width !== nextState.width ||
+      this.state.hovered !== nextState.hovered
+    );
+  }
+
   sortPositions() {
-    const res = this.props.results;
     const sortPositions = (a, b) => {
       // First sort into pro, neutral, contra and missing
       if (a.value !== b.value) {
-        return a.value === "missing" ? 1
-          : b.value === "missing" ? -1
+        return a.value === "missing" ? 1 : b.value === "missing" ? -1
             : a.value < b.value ? 1 : -1;
       } else {
-        // Then sort descending by vote count
-        if (res != null) {
-          // Sort last if vote count unknown
-          if (res[a.party] == null) return 1;
-          if (res[b.party] == null) return -1;
+        // Sort last if vote count unknown
+        if (a.votes == null) return 1;
+        if (b.votes == null) return -1;
 
-          if (res[a.party]["votes"] !== res[b.party]["votes"]) {
-            return res[a.party]["votes"] > res[b.party]["votes"] ? -1 : 1;
-          }
+        // Then sort descending by vote count
+        if (a.votes !== b.votes) {
+          return a.votes > b.votes ? -1 : 1;
         }
+
         // Sort by name if all else is equal
         return a.party > b.party ? 1 : -1;
       }
     }
 
     // Merge election results with WoM positions
-    this.setState({parties: Object.keys(this.props.results)
-      .map(party => {
-        const linked_position = this.props.results[party]["linked_position"] || party;
-        const rv = Object.assign({},
-          this.props.results[party],
-          this.props.positions
-            .filter(pos => pos.party === linked_position || pos.party === party).shift()
-            || { party, value: 'missing' },
-          { party }
-        );
-        return rv;
-      })
-      .sort(sortPositions)});
+    this.props.parties && this.setState({
+      parties: this.props.parties.sort(sortPositions)
+    });
   }
 
   render() {
-    let usablePixels = this.svg && this.svg.clientWidth
-      - (gapWidth * (this.state.parties.length - 1));
+    let rectangles = [];
+    const combinedGapWidth = gapWidth * (this.state.parties.length - 1);
+    const usablePixels = this.state.width - combinedGapWidth;
 
-    let usedPixels = 0;
+    if (usablePixels == null) {
+      console.log("SVG Dimensions not detected");
+    } else {
+      console.log("Rerender with svg dimensions");
+      let usedPixels = 0;
 
-    const rectangles = this.state.parties.map(party => {
-      const width = Math.round(party["pct"]
-        * usablePixels / 100.0);
-      usedPixels += width + gapWidth;
+      rectangles = this.state.parties.map((data: MergedPartyDataType) => {
+        const width = Math.round(data.pct * usablePixels / 100.0);
+        usedPixels += width + gapWidth;
 
-      return usablePixels == null ? null : <Rect
-        key={"rect-" + party.party}
-        hovered={this.state.hovered === party.party}
-        handleHover={this.handleHover}
-        width={width}
-        xPos={usedPixels - width - gapWidth}
-        toggleOpen={() => this.props.toggleOpen(party)}
-        {...party} />
-    });
+        return <Rect
+          key={"rect-" + data.party}
+          hovered={this.state.hovered === data.party}
+          handleHover={this.handleHover}
+          width={width}
+          xPos={usedPixels - width - gapWidth}
+          toggleOpen={() => this.props.toggleOpen(data)}
+          {...data} />
+      });
+    }
 
     const partyNames = this.state.parties && this.state.parties.slice()
       .sort((a, b) => a.party > b.party ? 1 : -1)
-      .map((party: PositionType) => <span
-        key={"label-" + party.party}
-        onMouseOver={() => this.handleHover(party.party)}
-        onMouseOut={() => this.handleHover(undefined)}
-        onClick={() => this.props.toggleOpen(party)}
-        style={this.state.hovered === party.party ? {
-          backgroundColor: OPINION_COLORS[party.value],
+      .map((data: MergedPartyDataType) => <span
+        key={"label-" + data.party}
+        onMouseOver={() => this.handleHover(data.party)}
+        onMouseOut={() => this.handleHover(null)}
+        onClick={() => this.props.toggleOpen(data)}
+        style={this.state.hovered === data.party ? {
+          backgroundColor: OPINION_COLORS[data.value],
           color: "white"
         } : null}
-      >{ party["name"] || party.party}</span>);
+      >{ data.party }</span>);
 
     return <div>
-      <svg role="img" width="100%" height="21" className="positionChart"
-        ref={ref => this.svg = ref} >
+      <svg width="100%" height="21" className="positionChart"
+        ref={this.handleRef} >
          <g className="bar">
           {rectangles}
         </g>
