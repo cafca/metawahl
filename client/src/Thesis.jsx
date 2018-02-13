@@ -3,20 +3,14 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
-import Moment from 'moment';
 import 'moment/locale/de';
 import {
-  Button,
-  Comment,
   Dropdown,
   Header,
-  Icon,
   Image,
-  Label,
   Loader,
   Menu,
   Message,
-  Popup,
   Segment
 } from 'semantic-ui-react';
 
@@ -26,7 +20,7 @@ import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 import PositionChart from './PositionChart';
-import ObjectionForm from './ObjectionForm';
+import Objections from './Objections';
 
 import {
   adminKey,
@@ -35,12 +29,9 @@ import {
   COLOR_PALETTE,
   IS_ADMIN,
   makeJSONRequest,
-  OBJECTION_NAMES,
-  OPINION_COLORS
   } from './Config';
 
 import type {
-  ObjectionType,
   OccasionType,
   PositionType,
   RouteProps,
@@ -50,15 +41,24 @@ import type {
 
 import type { WikidataType } from './WikidataTagger';
 
-Moment.locale('de');
-
 const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
-    <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
-      <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
-        {occasion.title}
-      </Link>
-    </p>;
+    <span>
+      <Image
+        floated='right'
+        style={{height: "3em"}}
+        src={`/img/map-${occasion.territory}.svg`}
+        title={occasion.territory === 'europa'
+          ? 'SVG Europakarte lizensiert unter Public Domain, via Wikimedia Commons (Link siehe Impressum)'
+          : 'SVG Deutschlandkarte lizensiert unter Creative Commons Attribution-Share Alike 2.0 Germany und basierend auf Roman Poulvas, David Liuzzo (Karte Bundesrepublik Deutschland.svg), via Wikimedia Commons (Siehe Link im Impressum).'
+        }
+        alt='Karte Bundesrepublik Deutschland' /> {' '}
+      <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
+        <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
+          {occasion.title}
+        </Link>
+      </p>
+    </span>;
 
 const valueNames = {
   "-1": "Contra",
@@ -66,8 +66,14 @@ const valueNames = {
   "1": "Pro"
 };
 
+type OpenTextType = PositionType & {
+  header?: string
+};
+
 type State = {
-  openText: ?PositionType,
+  ratioPro: number,
+  ratioContra: number,
+  openText: ?OpenTextType,
   tags: Array<TagType>,
   categories: Array<string>,
   loading: boolean,
@@ -75,10 +81,7 @@ type State = {
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
-  voterRatio: number,
-  reported: boolean,
-  objectionFormOpen: false,
-  objections: Array<ObjectionType>
+  reported: boolean
 };
 
 type Props = RouteProps & ThesisType & {
@@ -99,10 +102,9 @@ export default class Thesis extends Component<Props, State> {
       neutralPositions: [],
       contraPositions: [],
       voterOpinion: 0,
-      voterRatio: 0.5,
-      reported: false,
-      objectionFormOpen: false,
-      objections: this.props.objections
+      ratioPro: 0.5,
+      ratioContra: 0.5,
+      reported: false
     }
   }
 
@@ -123,6 +125,7 @@ export default class Thesis extends Component<Props, State> {
   }
 
   handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
+    // Avoid duplicates
     if (this.state.categories.indexOf(value) > -1) return;
 
     this.sendCategoryChanges(value, false);
@@ -136,15 +139,6 @@ export default class Thesis extends Component<Props, State> {
     this.sendCategoryChanges(category, true);
     const categories = this.state.categories.filter(c => c !== category);
     this.setState({categories});
-  }
-
-  handleNewObjection(objection: ObjectionType) {
-    const objections1 = this.state.objections.slice();
-    objections1.push(objection);
-    this.setState({
-      objectionFormOpen: false,
-      objections: objections1
-    });
   }
 
   handleReport() {
@@ -203,13 +197,28 @@ export default class Thesis extends Component<Props, State> {
   }
 
   toggleOpen(position: PositionType) {
-    if (position.text == null || position.text.length === 0) {
-      this.setState({ openText: Object.assign({}, position, {
+    let openText: OpenTextType;
+    if (position.value === "missing") {
+      openText = Object.assign({}, position, {
+        text: "Diese Partei war im Wahl-o-Mat zu dieser Wahl nicht vertreten."
+      });
+    } else if (position.text == null || position.text.length === 0) {
+      openText = Object.assign({}, position, {
         text: "Es liegt keine Begründung zur Position dieser Partei vor."
-      })});
+      });
     } else {
-      this.setState({ openText: position });
+      openText = position;
     }
+
+    const name = this.props.occasion.results[openText.party]["name"]
+      || openText.party;
+    const result = (this.props.occasion.results[openText.party]["pct"]
+      || "<0,1") + "%";
+    const posName = Object.keys(valueNames).indexOf(openText.value.toString()) > -1
+      ? " — " + valueNames[openText.value] : '' ;
+    openText["header"] = `${name} — ${result}${posName}`;
+
+    this.setState({openText});
   }
 
   sendCategoryChanges(categoryName: string, remove: boolean) {
@@ -218,7 +227,14 @@ export default class Thesis extends Component<Props, State> {
     this.setState({loading: true});
 
     const endpoint = `${API_ROOT}/categories/${categoryName}`;
-    const data = remove === true
+
+    type RequestType = {
+      admin_key?: ?string,
+      remove?: Array<string>,
+      add?: Array<string>
+    };
+
+    const data: RequestType = remove === true
       ? {"remove": [this.props.id]}
       : {"add": [this.props.id]};
 
@@ -234,7 +250,7 @@ export default class Thesis extends Component<Props, State> {
       });
   }
 
-  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType>, admin_key?: string }) {
+  sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType>, admin_key?: ?string }) {
     this.setState({ loading: true });
 
     const endpoint = `${API_ROOT}/thesis/${this.props.id}/tags/`;
@@ -292,20 +308,18 @@ export default class Thesis extends Component<Props, State> {
 
     let voterOpinion;
 
-    const countPro = this.state.proPositions.reduce(countVotes, 0.0);
-    const countContra = this.state.contraPositions.reduce(countVotes, 0.0);
+    const ratioPro = this.state.proPositions.reduce(countVotes, 0.0);
+    const ratioContra = this.state.contraPositions.reduce(countVotes, 0.0);
 
-    if (countPro > 50.0) {
+    if (ratioPro > 50.0) {
       voterOpinion = 1;
-    } else if (countContra < 50.0) {
+    } else if (ratioContra < 50.0) {
       voterOpinion = 0;
     } else {
       voterOpinion = -1;
     }
 
-    const voterRatio = countPro / (countPro + countContra);
-
-    this.setState({voterOpinion, voterRatio});
+    this.setState({voterOpinion, ratioPro, ratioContra});
   }
 
   render() {
@@ -322,38 +336,15 @@ export default class Thesis extends Component<Props, State> {
         key={"Tag-" + tag.title}
         remove={this.handleTagRemove}
       />);
+    let voterOpinionColor;
 
-    const objectionElems = this.state.objections
-      .sort((obj1, obj2) => {
-        if (obj1.vote_count === obj2.vote_count) {
-          return Moment(obj1.date).diff(obj2.date);
-        } else {
-          return obj1.vote_count > obj2.vote_count ? -1 : 1;
-        }
-      })
-      .map(objection => {
-        return <Comment key={"objection-" + objection.id}>
-        <Comment.Content>
-          <Comment.Author style={{display: 'inline-block'}}>
-            <Label as='span' circular empty style={{backgroundColor: OPINION_COLORS[objection.rating.toString()]}} /> {OBJECTION_NAMES[this.state.voterOpinion][objection.rating + 1]}
-          </Comment.Author>
-          <Comment.Metadata>
-              <span>Quelle eingereicht {Moment(objection.date).fromNow()} — </span>
-              {Moment(this.props.occasion.date).toNow(true)} nach der Wahl
-          </Comment.Metadata>
-          <Comment.Text>
-            <a href={objection.url} target="_blank">{objection.url}</a>
-          </Comment.Text>
-          <Comment.Actions>
-            <Comment.Action>Problematische Quelle melden</Comment.Action>
-          </Comment.Actions>
-        </Comment.Content>
-      </Comment>;
-      });
-
-    const voterOpinionColor = COLOR_PALETTE[
-      parseInt(Object.keys(COLOR_PALETTE).length * this.state.voterRatio, 10)
-    ];
+    if (this.state.voterOpinion === 0) {
+      voterOpinionColor = COLOR_PALETTE[2]
+    } else {
+      voterOpinionColor = this.state.voterOpinion === -1
+        ? COLOR_PALETTE[this.state.ratioContra > 66 ? 0 : 1]
+        : COLOR_PALETTE[this.state.ratioPro > 66 ? 4 : 3];
+    }
 
     return <div style={{marginBottom: "2em"}}>
       <Header as='h2' inverted attached="top" size="huge"
@@ -363,23 +354,24 @@ export default class Thesis extends Component<Props, State> {
         }}>
 
         { this.props.linkOccasion &&
-          <div>
-          <Image
-            floated='right'
-            style={{height: "3em"}}
-            src={`/img/map-${this.props.occasion.territory}.svg`}
-            alt='Karte Bundesrepublik Deutschland' /> {' '}
           <OccasionSubtitle occasion={this.props.occasion} />
-          </div>
         }
 
-        {this.props.text}
-
-        {(this.props.title != null && this.props.title.length > 0) &&
+        { this.props.linkOccasion === false && (this.props.title != null && this.props.title.length > 0) &&
           <Header.Subheader>
             {this.props.title}
           </Header.Subheader>
         }
+
+        {this.props.text}
+
+        <Header.Subheader>
+        {this.state.voterOpinion === 0 ? " Keine Nehrheit dafür oder dagegen"
+          : this.state.voterOpinion === 1
+            ? ` ${Math.round(this.state.ratioPro)} von 100 Stimmen wählen Parteien, die diese These unterstützen`
+            : ` ${Math.round(this.state.ratioContra)} von 100 Stimmen wählen Parteien, die diese These ablehnen`
+        }
+        </Header.Subheader>
       </Header>
 
       <Segment id={this.props.id} attached>
@@ -392,78 +384,23 @@ export default class Thesis extends Component<Props, State> {
           results={this.props.occasion.results}
           toggleOpen={this.toggleOpen} />
 
-        { this.state.openText !== null &&
+        { this.state.openText != null &&
           <Message
             content={this.state.openText.text}
             floating
-            header={
-              `${this.state.openText.party} -
-              ${this.props.occasion.results[this.state.openText.party]["pct"]}% -
-              ${valueNames[this.state.openText.value]}`
-            } />
+            header={this.state.openText.header} />
         }
 
-        {objectionElems.length === 0 && this.state.objectionFormOpen === false &&
-          <Popup
-            wide
-            header="Im Nachhinein"
-            content={"Hast du Informationen zur Umsetzung dieser These?"}
-            trigger={
-                <Button
-                  basic
-                  icon
-                  as='span'
-                  labelPosition='left'
-                  disabled={this.state.objectionFormOpen}
-                  onClick={() => this.setState({objectionFormOpen: true})}
-                  style={{marginTop: "1rem", color: "#333"}}>
-                  <Icon name='bullhorn' /> Und, was ist seit dem passiert?
-                </Button>
-            } />
-          }
-
-        {objectionElems.length > 0 &&
-          <div className="objections">
-            <Header as='h3' dividing style={{marginTop: "2rem"}}>
-              Umsetzung
-            </Header>
-
-            <Comment.Group>
-              {objectionElems}
-            </Comment.Group>
-
-            {this.state.objectionFormOpen === false &&
-              <Popup
-                wide
-                header={"Quelle hinzufügen"}
-                content={"Weißt du noch mehr zu einer geplanten oder erfolgten Umsetzung dieser These?"}
-                trigger={
-                    <Button
-                      basic
-                      icon
-                      as='span'
-                      labelPosition='left'
-                      onClick={() => this.setState({objectionFormOpen: true})}
-                      style={{color: "#333"}}>
-                      <Icon name='bullhorn' /> Weißt du noch mehr zur Umsetzung?
-                    </Button>
-                } />
-              }
-          </div>
-        }
-
-        {this.state.objectionFormOpen &&
-          <ObjectionForm
-            thesis_id={this.props.id}
-            voterOpinion={this.state.voterOpinion}
-            handleSuccess={this.handleNewObjection}
-            handleCancel={() => this.setState({objectionFormOpen: false})} />
-        }
+        <Objections
+          id={this.props.id}
+          objections={this.props.objections}
+          occasionDate={this.props.occasion.date}
+          voterOpinion={this.state.voterOpinion}
+        />
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
         <div className="tagContainer">
-
             { categoryElems }
             { tagElems }
             <br />
@@ -471,6 +408,7 @@ export default class Thesis extends Component<Props, State> {
             { categoryElems.length === 0 && IS_ADMIN && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
+
       { IS_ADMIN &&
         <Menu attached='bottom'>
           <Dropdown

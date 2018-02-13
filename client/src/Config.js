@@ -122,7 +122,15 @@ export const THESES_PER_PAGE = 5;
 
 // Frankreich
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#ff7f7f,5c8aad
-export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(180, 180, 180)", "#928aa2", "#5e8bae"];
+// export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(180, 180, 180)", "#928aa2", "#5e8bae"];
+export const COLOR_PALETTE = [
+  "rgb(234,108,110)",
+  "rgba(234,108,110,0.75)",
+  "rgb(169,124,144)",
+  "rgba(61,133,179,0.75)",
+  "rgb(61,133,179)"
+];
+
 // export const COLOR_PALETTE = ["#ffac82", "#ebc170", "rgb(148, 148, 148)", "#8ce999", "#00f7d2"]
 
 
@@ -136,5 +144,6 @@ export const CATEGORY_COLORS = Object.keys(CATEGORY_NAMES)
 export const OPINION_COLORS = {
   "-1": COLOR_PALETTE[0],
   "0": COLOR_PALETTE[parseInt(COLOR_PALETTE.length / 2.0, 10)],
-  "1": COLOR_PALETTE[COLOR_PALETTE.length - 1]
+  "1": COLOR_PALETTE[COLOR_PALETTE.length - 1],
+  "missing": "rgb(140, 140, 140)"
 }

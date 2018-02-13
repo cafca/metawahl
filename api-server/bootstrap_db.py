@@ -361,6 +361,8 @@ def load_results():
             if o["territory"].lower().startswith(occ.territory.lower()[:2])
                 and dateutil.parser.parse(o["date"]).date() == dt]
 
+        matched_results = set()
+
         if len(occ_results) == 0:
             logger.error("Didn't find results for {}".format(occ))
         else:
@@ -368,21 +370,64 @@ def load_results():
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
                 options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
-                matches = [result for name, result in res["results"].items() if name.lower() in options]
+                matches = [(name, result) for name, result in res["results"].items() if name.lower() in options]
 
-                if len(matches) == 0:
-                    if p.name == "DIE LINKE":
-                        import pdb; pdb.set_trace()
-                    logger.warning("No vote count for {} in {}".format(p, occ))
+                if len(matches) > 0:
+                    for match in matches:
+                        if match[0].lower() != p.name.lower():
+                            logger.warning("Assigned WOM text from {} to election result of {} in {}".format(
+                                p, match[0], res["title"]
+                            ))
+                        matched_results.add(match[0])
+                        yield Result(
+                            occasion=occ,
+                            party=p,
+                            party_repr=match[0],
+                            votes=match[1]["votes"],
+                            pct=match[1]["pct"],
+                            source=res["url"]
+                        )
                 else:
-                    match = matches[0]
-                    yield Result(
-                        occasion=occ,
-                        party=p,
-                        votes=match["votes"],
-                        pct=match["pct"],
-                        source=res["url"]
+                    logger.error("No vote count for {} in {}".format(p, occ))
+
+            # Add results missing in Wahl-o-Mat
+            for p_name, match in res["results"].items():
+                if p_name in list(matched_results):
+                    continue
+
+                # Try and assign a unified party instance to this election
+                # result to merge parties that have changed their name over
+                # time
+
+                party = None
+                if p_name in party_instances.keys():
+                    party = party_instances[p_name]
+                else:
+                    for (name, subs) in substitutions.items():
+                        if p_name in subs:
+                            if name in party_instances.keys():
+                                party = party_instances[name]
+                                logger.info(
+                                    "Linked party {} to election result of '{}' in {}".format(
+                                        party, p_name, res["title"])
+                                )
+                            break
+
+                if party is None:
+                    party = Party(
+                        name=p_name
                     )
+                    party_instances[p_name] = party
+
+                yield Result(
+                    occasion=occ,
+                    party_repr=p_name,
+                    party=party,
+                    votes=match["votes"],
+                    pct=match["pct"],
+                    source=res["url"],
+                    wom=False
+                )
 
 
 if __name__ == '__main__':
