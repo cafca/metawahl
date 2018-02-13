@@ -57,13 +57,14 @@ type Props = {
 };
 
 type State = {
-  parties: Array<PositionType>,
+  parties: Array<MergedPartyDataType>,
   hovered: ?string,
   width: number
 };
 
 export default class PositionChart extends React.Component<Props, State> {
   svg = null;
+  measuringTimeout = null;
 
   constructor(props: Props) {
     super(props);
@@ -81,10 +82,15 @@ export default class PositionChart extends React.Component<Props, State> {
 
   componentDidMount() {
     this.measureSVGWidth();
+    window.addEventListener('resize', this.waitAndMeasureSVGWidth);
   }
 
   componentDidUpdate() {
-    this.measureSVGWidth();
+    this.waitAndMeasureSVGWidth();
+  }
+
+  componentWillUnMount() {
+    if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
   }
 
   handleHover(party: ?string) {
@@ -93,8 +99,13 @@ export default class PositionChart extends React.Component<Props, State> {
     }
   }
 
-  handleRef(ref) {
+  handleRef(ref: ?SVGSVGElement) {
     this.svg = ref;
+  }
+
+  waitAndMeasureSVGWidth() {
+    if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
+    this.measuringTimeout = setTimeout(this.measureSVGWidth, 500);
   }
 
   measureSVGWidth() {
