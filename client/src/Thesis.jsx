@@ -284,15 +284,28 @@ export default class Thesis extends Component<Props, State> {
       return a.party > b.party ? 1 : -1;
     }
 
-    let proPositions = this.props.positions
+    const positions = Object.keys(this.props.occasion.results)
+      .map(party => {
+        const linked_position = this.props.occasion.results[party]["linked_position"] || party;
+        const rv = Object.assign({},
+          this.props.occasion.results[party],
+          this.props.positions
+            .filter(pos => pos.party === linked_position || pos.party === party).shift()
+            || { value: 'missing' },
+          { party }
+        );
+        return rv;
+      })
+
+    let proPositions = positions
       .filter(p => p.value === 1)
       .sort(sortPositions)
 
-    let neutralPositions = this.props.positions
+    let neutralPositions = positions
       .filter(p => p.value === 0)
       .sort(sortPositions)
 
-    let contraPositions = this.props.positions
+    let contraPositions = positions
       .filter(p => p.value === -1)
       .sort(sortPositions)
 
