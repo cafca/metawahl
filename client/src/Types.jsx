@@ -90,6 +90,8 @@ export type CategoryType = {
 };
 
 export type RouteProps = {
-  load: (string) => mixed,
-  save: (string, string) => mixed
+  isLoading: boolean,
+  occasions: OccasionListType,
+  categories: Array<CategoryType>,
+  tags: Array<TagType>
 };

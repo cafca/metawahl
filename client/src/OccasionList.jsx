@@ -6,48 +6,30 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import { Segment, Header, Icon } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
-import { loadFromCache, saveToCache } from './App';
+import { setTitle, TERRITORY_NAMES } from './Config';
 import { OccasionListType, RouteProps } from './Types';
 
 type State = {
-  occasions: ?OccasionListType
+  occasions: OccasionListType
 };
 
 export default class OccasionList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.state = { occasions: null };
+    this.state = {
+      occasions: this.props.occasions
+    };
   }
 
   componentDidMount() {
-    const savedOccasions = loadFromCache('occasions');
-    if (savedOccasions != null) this.setState(
-      { occasions: JSON.parse(savedOccasions)});
-    this.loadOccasions();
     setTitle();
   }
 
-  loadOccasions(): void {
-    fetch(`${API_ROOT}/occasions/`)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          occasions: response.data
-        });
-        saveToCache('occasions', JSON.stringify(response.data));
-      })
-      .catch((error: Error) => {
-        // https://github.com/facebookincubator/create-react-app/issues/3482
-        if (process.env.NODE_ENV !== 'test') {
-          console.log(error.message)
-          this.setState({
-            occasions: []
-          });
-        }
-      }
-    );
+  componentWillReceiveProps(nextProps: RouteProps) {
+    this.setState({
+      occasions: nextProps.occasions
+    });
   }
 
   render() {
