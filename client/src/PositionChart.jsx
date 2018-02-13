@@ -108,10 +108,20 @@ export default class PositionChart extends React.Component<Props, State> {
         return a.party > b.party ? 1 : -1;
       }
     }
+
+    // Merge election results with WoM positions
     this.setState({parties: Object.keys(this.props.results)
-      .map(party =>
-        this.props.positions.filter(pos => pos.party === party).shift()
-          || { party, value: 'missing' })
+      .map(party => {
+        const linked_position = this.props.results[party]["linked_position"] || party;
+        const rv = Object.assign({},
+          this.props.results[party],
+          this.props.positions
+            .filter(pos => pos.party === linked_position || pos.party === party).shift()
+            || { party, value: 'missing' },
+          { party }
+        );
+        return rv;
+      })
       .sort(sortPositions)});
   }
 
@@ -122,7 +132,7 @@ export default class PositionChart extends React.Component<Props, State> {
     let usedPixels = 0;
 
     const rectangles = this.state.parties.map(party => {
-      const width = Math.round(this.props.results[party.party]["pct"]
+      const width = Math.round(party["pct"]
         * usablePixels / 100.0);
       usedPixels += width + gapWidth;
 
@@ -147,7 +157,7 @@ export default class PositionChart extends React.Component<Props, State> {
           backgroundColor: OPINION_COLORS[party.value],
           color: "white"
         } : null}
-      >{ this.props.results[party.party]["name"] || party.party}</span>);
+      >{ party["name"] || party.party}</span>);
 
     return <div>
       <svg role="img" width="100%" height="21" className="positionChart"

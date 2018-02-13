@@ -373,20 +373,20 @@ def load_results():
                 matches = [(name, result) for name, result in res["results"].items() if name.lower() in options]
 
                 if len(matches) > 0:
-                    if matches[0][0].lower() != p.name.lower():
-                        logger.warning("Substituted {} for {} in {}".format(
-                            p, matches[0][0], res["title"]
-                        ))
-                    matched_results.add(matches[0][0])
-                    match = matches[0][1]
-                    yield Result(
-                        occasion=occ,
-                        party=p,
-                        party_repr=matches[0][0],
-                        votes=match["votes"],
-                        pct=match["pct"],
-                        source=res["url"]
-                    )
+                    for match in matches:
+                        if match[0].lower() != p.name.lower():
+                            logger.warning("Assigned WOM text from {} to election result of {} in {}".format(
+                                p, match[0], res["title"]
+                            ))
+                        matched_results.add(match[0])
+                        yield Result(
+                            occasion=occ,
+                            party=p,
+                            party_repr=match[0],
+                            votes=match[1]["votes"],
+                            pct=match[1]["pct"],
+                            source=res["url"]
+                        )
                 else:
                     logger.error("No vote count for {} in {}".format(p, occ))
 
@@ -408,7 +408,7 @@ def load_results():
                             if name in party_instances.keys():
                                 party = party_instances[name]
                                 logger.info(
-                                    "Substituted {} for '{}' in {}".format(
+                                    "Linked party {} to election result of '{}' in {}".format(
                                         party, p_name, res["title"])
                                 )
                             break

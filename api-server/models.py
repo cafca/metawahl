@@ -226,6 +226,7 @@ class Occasion(db.Model):
             "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
+            "results_sources": list(set([r.source for r in self.results])),
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
@@ -242,16 +243,16 @@ class Occasion(db.Model):
     def result_dict(self):
         rv = dict()
         for r in self.results:
-            rv[r.party_name] = {
+            rv[r.party_repr] = {
                 "votes": r.votes,
                 "pct": r.pct
             }
 
             if r.party_repr != r.party_name:
-                rv[r.party_name]["name"] = r.party_repr
+                rv[r.party_repr]["linked_position"] = r.party_name
 
             if r.wom is False:
-                rv[r.party_name]["missing"] = True
+                rv[r.party_repr]["missing"] = True
         return rv
 
 
