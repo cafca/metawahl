@@ -49,6 +49,20 @@ export default class TagView extends Component<RouteProps, State> {
     this.loadTag();
   }
 
+  componentWillReceiveProps(nextProps: RouteProps) {
+    const slug = nextProps.match.params.tag;
+    if(slug !== this.slug) {
+      this.slug = slug;
+      this.setState({
+        loading: true,
+        page: parseInt(this.props.match.params.page, 10) || 1,
+        tag: null,
+        tagState: "loading",
+        theses: []
+      }, () => this.loadTag());
+    }
+  }
+
   handlePaginationChange(
     e: SyntheticInputEvent<HTMLInputElement>,
     { activePage }: { activePage: number }

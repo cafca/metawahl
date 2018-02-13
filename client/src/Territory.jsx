@@ -25,32 +25,49 @@ export default class Territory extends Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    const savedOccasions = loadFromCache('occasions');
-    if (savedOccasions != null) this.setState(
-      { occasions: JSON.parse(savedOccasions)});
     this.loadOccasions();
-    setTitle();
+    this.setTitle();
+  }
+
+  componentWillReceiveProps(nextProps: RouteProps) {
+    const slug = nextProps.match.params.territory;
+    if(slug !== this.slug) {
+      this.slug = slug;
+      this.setState({ occasions: null }, () => this.loadOccasions());
+      this.setTitle();
+    }
   }
 
   loadOccasions(): void {
-    fetch(`${API_ROOT}/occasions/`)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          occasions: response.data
-        });
-        saveToCache('occasions', JSON.stringify(response.data));
-      })
-      .catch((error: Error) => {
-        // https://github.com/facebookincubator/create-react-app/issues/3482
-        if (process.env.NODE_ENV !== 'test') {
-          console.log(error.message)
+    const savedOccasions = loadFromCache('occasions');
+    if (savedOccasions != null) {
+      this.setState(
+        { occasions: JSON.parse(savedOccasions) }
+      );
+    } else {
+      fetch(`${API_ROOT}/occasions/`)
+        .then(response => response.json())
+        .then(response => {
           this.setState({
-            occasions: []
+            occasions: response.data
           });
+          saveToCache('occasions', JSON.stringify(response.data));
+        })
+        .catch((error: Error) => {
+          // https://github.com/facebookincubator/create-react-app/issues/3482
+          if (process.env.NODE_ENV !== 'test') {
+            console.log(error.message)
+            this.setState({
+              occasions: []
+            });
+          }
         }
-      }
-    );
+      );
+    }
+  }
+
+  setTitle() {
+    setTitle(TERRITORY_NAMES[this.slug]);
   }
 
   render() {
