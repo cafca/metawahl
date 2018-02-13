@@ -143,10 +143,7 @@ export default class PositionChart extends React.Component<Props, State> {
     const combinedGapWidth = gapWidth * (this.state.parties.length - 1);
     const usablePixels = this.state.width - combinedGapWidth;
 
-    if (usablePixels == null) {
-      console.log("SVG Dimensions not detected");
-    } else {
-      console.log("Rerender with svg dimensions");
+    if (usablePixels != null && usablePixels > 0) {
       let usedPixels = 0;
 
       rectangles = this.state.parties.map((data: MergedPartyDataType) => {
@@ -179,7 +176,7 @@ export default class PositionChart extends React.Component<Props, State> {
 
     return <div>
       <svg width="100%" height="21" className="positionChart"
-        ref={this.handleRef} >
+        ref={this.handleRef} shapeRendering="crispEdges">
          <g className="bar">
           {rectangles}
         </g>
