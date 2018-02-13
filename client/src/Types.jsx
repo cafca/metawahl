@@ -58,6 +58,9 @@ export type ResultsType = {
   }
 };
 
+export type MergedPartyDataType =
+  PositionType & ResultsType & { party: string } ;
+
 export type OccasionType = {
   id: number,
   date: string,
