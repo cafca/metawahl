@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Container, Dropdown, Menu, Responsive, Icon } from 'semantic-ui-react'
+import { Container, Dropdown, Menu, Responsive } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import Search from './Search';
 
