@@ -9,6 +9,8 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_RECORD_QUERIES = False
 
+CACHE_TYPE = "memcached"
+
 METAWAHL_API_LOGFILE="/var/log/metawahl/flask.log"
 
 if SECRET_KEY == "server secret":
