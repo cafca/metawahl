@@ -87,7 +87,7 @@ class TagViewMenu extends Component<Props, State> {
         this.props.refresh();
       })
       .catch((error:ErrorState) => {
-        console.log(error);
+        console.log("Error changing category: " + error);
         this.props.refresh();
       });
   }
@@ -119,6 +119,8 @@ class TagViewMenu extends Component<Props, State> {
         `${API_ROOT}/thesis/${thesis.id}/tags/`,
         makeJSONRequest(data)
       )
+      .catch((error: Error) =>
+        console.log("Error changing tag: " + error.message))
     );
 
     Promise.all(requests)
@@ -153,8 +155,7 @@ class TagViewMenu extends Component<Props, State> {
         this.props.history.push("/tags/?removed=" + slug);
       })
       .catch(error => {
-        // TODO: Show error message
-        console.log(error);
+        console.log("Error removing tag: " + error);
       })
   }
 

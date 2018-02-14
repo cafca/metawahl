@@ -76,6 +76,8 @@ export default class ObjectionForm extends React.Component<Props, State> {
             this.setState({ loading: false });
           }
         })
+        .catch((error: Error) =>
+          console.log("Error submitting objection: " + error.message))
     }
   }
 

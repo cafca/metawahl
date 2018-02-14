@@ -1,9 +1,9 @@
 // @flow
 
+import 'moment/locale/de';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
-import 'moment/locale/de';
 import {
   Dropdown,
   Header,
@@ -162,7 +162,7 @@ export default class Thesis extends Component<Props, State> {
         })
         .catch(error => {
           this.setState({reported: false});
-          console.log(error);
+          console.log("Error handling report: " + error);
         })
     } else {
       // TODO: Handle no cookies allowed
@@ -248,7 +248,7 @@ export default class Thesis extends Component<Props, State> {
         console.log(response);
       })
       .catch((error:Error) => {
-        console.log(error);
+        console.log("Error changing category: " + error.message);
       });
   }
 
@@ -266,7 +266,9 @@ export default class Thesis extends Component<Props, State> {
           loading: false,
           tags: response.data.tags
         });
-      });
+      })
+      .catch((error: Error) =>
+        console.log("Error changing tag: " + error.message));
   }
 
   mergePartyData() {

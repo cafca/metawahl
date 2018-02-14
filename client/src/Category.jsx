@@ -84,8 +84,9 @@ export default class Category extends React.Component<RouteProps, State> {
           category: response.data
         });
         response.data && setTitle("- " + response.data.name);
-      });
-      // TODO: Catch error
+      })
+      .catch((error: Error) =>
+        console.log("Error fetching base data: " + error.message))
   }
 
   render() {

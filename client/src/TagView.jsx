@@ -94,7 +94,7 @@ export default class TagView extends Component<RouteProps, State> {
       .catch((error: Error) => {
         // https://github.com/facebookincubator/create-react-app/issues/3482
         if (process.env.NODE_ENV !== 'test') {
-          console.log(error.message)
+          console.log("Error decoding tag data: " + error.message);
           this.setState({
             loading: false,
             theses: [],
@@ -106,7 +106,7 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   setTitle() {
-    this.tag != null && setTitle('# ' + this.tag.title)
+    this.state.tag != null && setTitle('# ' + this.state.tag.title)
   }
 
   render() {

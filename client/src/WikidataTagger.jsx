@@ -163,7 +163,9 @@ class WikidataTagger extends React.Component<Props, State> {
         this.props.onSelection(result);
         this.setState({query: '', results: [], isLoading: false});
         this.addToCached(result);
-      });
+      })
+      .catch((error: Error) =>
+        console.log("Error fetching wikidata entities: " + error.message));
 
   }
 
