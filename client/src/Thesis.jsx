@@ -5,17 +5,20 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
 import {
+  Button,
   Dropdown,
   Header,
+  Icon,
   Image,
   Loader,
   Menu,
   Message,
+  Popup,
   Segment
 } from 'semantic-ui-react';
 
 import './App.css';
-import { loadFromCache } from './App';
+import { loadFromCache, errorHandler } from './App';
 import WikidataTagger from './WikidataTagger';
 import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
@@ -32,6 +35,7 @@ import {
   } from './Config';
 
 import type {
+  ErrorType,
   MergedPartyDataType,
   OccasionType,
   PositionType,
@@ -83,7 +87,8 @@ type State = {
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
-  reported: boolean
+  reported: ?boolean,
+  reportingError?: string
 };
 
 type Props = RouteProps & ThesisType & {
@@ -92,6 +97,8 @@ type Props = RouteProps & ThesisType & {
 };
 
 export default class Thesis extends Component<Props, State> {
+  handleError: ErrorType => any;
+
   constructor(props: Props) {
     super(props);
     autoBind(this);
@@ -107,8 +114,10 @@ export default class Thesis extends Component<Props, State> {
       voterOpinion: 0,
       ratioPro: 0.5,
       ratioContra: 0.5,
-      reported: false
+      reported: null
     }
+
+    this.handleError = errorHandler.bind(this);
   }
 
   componentWillMount() {
@@ -153,15 +162,18 @@ export default class Thesis extends Component<Props, State> {
         thesis_id: this.props.id
       };
 
-      this.setState({reported: true});
+      this.setState({reported: false});
 
       fetch(`${API_ROOT}/react/thesis-report`, makeJSONRequest(data))
         .then(resp => resp.json())
         .then(resp => {
-          // TODO: Show success
+          this.setState({
+            reported: this.handleError(resp) ? null : true
+          });
         })
         .catch(error => {
-          this.setState({reported: false});
+          this.handleError(error);
+          this.setState({reported: null});
           console.log("Error handling report: " + error);
         })
     } else {
@@ -418,11 +430,48 @@ export default class Thesis extends Component<Props, State> {
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
         <div className="tagContainer">
-            { categoryElems }
-            { tagElems }
-            <br />
-            { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
-            { categoryElems.length === 0 && IS_ADMIN && " Noch keine Kategorie gewählt. "}
+          { this.state.reportingError != null &&
+            <Message negative
+              header='Fehler beim melden des Beitrags'
+              content={this.state.reportingError + 'Schreib uns doch eine email an hallo@metawahl.de, dann kümmern wir uns darum. Danke!'} />
+          }
+          { this.state.reported === true &&
+            <Message positive>
+              <Message.Header>
+                Meldung abgeschickt
+              </Message.Header>
+              <Message.Content>
+                <p>Wir werden uns diesen Eintrag
+                genauer anschauen, wenn mehrere Leute diesen Fehler melden.</p>
+                <p>Handelt es sich um einen besonders groben Schnitzer, kannst
+                du uns sehr helfen, indem du eine Email
+                an <a href='mailto:metawahl@vincentahrend.com'>
+                metawahl@vincentahrend.com</a> schreibst
+                und kurz erzählst, was hier falsch ist.</p>
+                <p>Im <Link to='legal'>Impressum</Link> findest du auch noch
+                weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
+              </Message.Content>
+            </Message>
+          }
+          <Popup
+            content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
+            header="Fehler melden"
+            trigger={
+              <Button basic compact circular icon floated='right'
+                loading={this.state.reported === false}
+                disabled={this.state.reported === true}
+                onClick={this.handleReport}
+                style={{marginTop: -2}}
+              >
+                <Icon name='warning circle' />
+              </Button>
+            }
+          />
+          { categoryElems }
+          { tagElems }
+          <br />
+          { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
+          { categoryElems.length === 0 && IS_ADMIN && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
 

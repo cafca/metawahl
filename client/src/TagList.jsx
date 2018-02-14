@@ -63,7 +63,7 @@ export default class TagList extends Component<RouteProps, State> {
     const tagElems = this.props.tags
       .filter(t => this.state.showSingleTags === true ? true : t.thesis_count > 1)
       .sort(this.state.sortBy === "name" ? sortByName : sortByThesisCount)
-      .map((tag, i) => <Item key={"Tag-" + i} href={'/tags/' + tag.slug}>
+      .map((tag, i) => <Item key={"Tag-" + i} href={'/tags/' + tag.slug + '/'}>
         <Item.Content>
           <Item.Header>
             {tag.title}

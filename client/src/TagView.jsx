@@ -12,12 +12,15 @@ import {
 } from 'semantic-ui-react';
 
 import { API_ROOT, setTitle, IS_ADMIN, THESES_PER_PAGE } from './Config';
+import { errorHandler } from './App';
 import Thesis from './Thesis';
 import Tag from './Tag';
 import TagViewMenu from './TagViewMenu';
-import {WikidataLabel, WikipediaLabel} from './DataLabel';
+import { WikidataLabel, WikipediaLabel } from './DataLabel';
 
-import type { TagType, ThesisType, OccasionType, RouteProps } from './Types';
+import type {
+  ErrorType, TagType, ThesisType, OccasionType, RouteProps
+} from './Types';
 
 type State = {
   occasions: { [occasionNum: number]: OccasionType},
@@ -29,6 +32,8 @@ type State = {
 };
 
 export default class TagView extends Component<RouteProps, State> {
+  handleError: ErrorType => any;
+
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
@@ -40,6 +45,8 @@ export default class TagView extends Component<RouteProps, State> {
       occasions: {},
       theses: []
     }
+
+    this.handleError = errorHandler.bind(this);
   }
 
   componentDidMount() {
@@ -83,12 +90,17 @@ export default class TagView extends Component<RouteProps, State> {
     fetch(`${API_ROOT}/tags/${this.state.slug}`)
       .then(response => response.json())
       .then(response => {
-        this.setState({
-          tag: response.data,
-          theses: response.theses,
-          occasions: response.occasions,
-          loading: false
-        });
+        debugger;
+        if (!this.handleError(response)) {
+          this.setState({
+            tag: response.data,
+            theses: response.theses,
+            occasions: response.occasions,
+            loading: false
+          });
+        } else {
+          this.setState({ loading: false})
+        }
         setTitle();
       })
       .catch((error: Error) => {

@@ -118,7 +118,7 @@ def create_app(config=None):
                     tb)
 
         return json_response(
-            {"error": "AAAHH! Serverfehler. Rute ist gezückt, werde Computer strafen."},
+            {"error": "AAAHH! Serverfehler. Rute ist gezückt, Computer wird bestraft."},
             status=500
         )
 
@@ -131,7 +131,6 @@ def create_app(config=None):
     def baseData():
         """Return base data set required by the web client."""
         from models import Category, Occasion, Tag, Thesis
-
         rv = {
             "data": dict()
         }

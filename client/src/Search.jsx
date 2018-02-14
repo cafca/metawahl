@@ -56,6 +56,8 @@ type SearchProps = {
   history: {  // React Router history object
     push: string => any
   },
+  className?: string,
+  large?: boolean,
   isLoading: boolean,
   occasions: OccasionListType,
   categories: Array<CategoryType>,
@@ -113,7 +115,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
         ? '/bereiche/'
         : '/tags/';
 
-    this.props.history.push(baseUrl + result.slug);
+    this.props.history.push(baseUrl + result.slug + '/');
     this.reset();
   }
 
@@ -209,43 +211,46 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     const resultClassName = "results transition" +
       (this.state.query.length === 0 ? "" : " visible");
 
-    return <div className="ui right small inverted menu">
-      <div className="ui small item category search right aligned">
-        <div className="ui icon input">
-          <input className="prompt" type="text" placeholder="Alles ist möglich..."
-            onChange={this.handleSearchChange} value={this.state.query}
-            style={{borderRadius: 4}}></input>
-          <i className="search icon"></i>
-        </div>
-        <div className={resultClassName} style={{fontSize: "1.2em"}}>
-          {territoryResults.length > 0 &&
-            <div className="category">
-              <div className="name">Parlamente</div>
-              {territoryResults}
-            </div>
-          }
+    let className = "ui category search "
+    if (this.props.className != null) className += this.props.className;
 
-          {categoryResults.length > 0 &&
-            <div className="category">
-              <div className="name">Bereiche</div>
-              {categoryResults}
-            </div>
-          }
+    return <div className={className} >
+      <div className="ui icon input">
+        <input className="prompt" type="text" placeholder="Alles ist möglich..."
+          onChange={this.handleSearchChange} value={this.state.query}
+          style={{borderRadius: 4}}></input>
+        <i className="search icon"></i>
+      </div>
+      <div className={resultClassName}
+        style={this.props.large ? {fontSize: "1.2em"} : null}>
 
-          {tagResults.length > 0 &&
-            <div className="category">
-              <div className="name">Themen</div>
-              {tagResults}
-            </div>
-          }
+        {territoryResults.length > 0 &&
+          <div className="category">
+            <div className="name">Parlamente</div>
+            {territoryResults}
+          </div>
+        }
 
-          { tagResults.length + territoryResults.length + categoryResults.length === 0 &&
-            <div className="message empty">
-              <div className="header">Keine Suchergebnisse</div>
-              <div className="description">Leider wurden keine Themen oder Parlamente zu deiner Anfrage gefunden</div>
-            </div>
-          }
-        </div>
+        {categoryResults.length > 0 &&
+          <div className="category">
+            <div className="name">Bereiche</div>
+            {categoryResults}
+          </div>
+        }
+
+        {tagResults.length > 0 &&
+          <div className="category">
+            <div className="name">Themen</div>
+            {tagResults}
+          </div>
+        }
+
+        { tagResults.length + territoryResults.length + categoryResults.length === 0 &&
+          <div className="message empty">
+            <div className="header">Keine Suchergebnisse</div>
+            <div className="description">Leider wurden keine Themen oder Parlamente zu deiner Anfrage gefunden</div>
+          </div>
+        }
       </div>
     </div>
   }

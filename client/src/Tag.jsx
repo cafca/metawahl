@@ -19,7 +19,7 @@ const Tag = ({ active, data, remove, detail, onClick }: Props) => {
     basic
     key={data.wikidata_id}
     as='a'
-    href={onClick == null ? "/tags/" + data.slug : null}
+    href={onClick == null ? "/tags/" + data.slug + '/' : null}
     onClick={onClick}
     style={active
     ? {

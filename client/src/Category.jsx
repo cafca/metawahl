@@ -2,15 +2,20 @@
 
 import React from 'react';
 import autoBind from 'react-autobind';
+
 import './App.css';
 import Thesis from './Thesis';
 import Tag from './Tag';
+import { errorHandler } from './App';
 import { API_ROOT, setTitle, THESES_PER_PAGE } from './Config';
-import { Header, Loader, Breadcrumb, Pagination, Segment } from 'semantic-ui-react';
+import {
+  Breadcrumb, Header, Loader, Message, Pagination, Segment
+} from 'semantic-ui-react';
 
-import type { RouteProps, CategoryType } from './Types';
+import type { RouteProps, CategoryType, ErrorType } from './Types';
 
 type State = {
+  error?: ?string,
   category: CategoryType,
   page: number,
   slug: string,
@@ -18,6 +23,8 @@ type State = {
 };
 
 export default class Category extends React.Component<RouteProps, State> {
+  handleError: ErrorType => any;
+
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
@@ -27,6 +34,8 @@ export default class Category extends React.Component<RouteProps, State> {
       slug: props.match.params.category,
       isLoading: true
     };
+
+    this.handleError = errorHandler.bind(this);
   }
 
   componentDidMount() {
@@ -70,8 +79,7 @@ export default class Category extends React.Component<RouteProps, State> {
     e: SyntheticInputEvent<HTMLInputElement>,
     { activePage }: { activePage: number }
   ) {
-    this.props.history.push(
-      "/bereiche/" + this.state.slug + "/" + activePage);
+    this.props.history.push(`/bereiche/${this.state.slug}/${activePage}/`);
   }
 
   loadCategory() {
@@ -79,14 +87,15 @@ export default class Category extends React.Component<RouteProps, State> {
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
+        if (!this.handleError(response)) {
+          response.data && setTitle("- " + response.data.name);
+        }
         this.setState({
           isLoading: false,
           category: response.data
         });
-        response.data && setTitle("- " + response.data.name);
       })
-      .catch((error: Error) =>
-        console.log("Error fetching base data: " + error.message))
+      .catch(this.handleError);
   }
 
   render() {
@@ -98,7 +107,9 @@ export default class Category extends React.Component<RouteProps, State> {
       cat.theses && cat.theses.length
     );
 
-    const thesesElems = this.state.isLoading ? [] : cat.theses
+    const isComplete = this.state.isLoading === false && this.state.error == null;
+
+    const thesesElems = isComplete === false ? [] : cat.theses
         .sort((t1, t2) => t2.occasion_id - t1.occasion_id)
         .slice(startPos, endPos)
         .map(thesis => <Thesis
@@ -109,7 +120,8 @@ export default class Category extends React.Component<RouteProps, State> {
         );
 
 
-    const relatedTags = this.state.isLoading === false && Object.keys(cat.related_tags)
+    const relatedTags = isComplete && cat.related_tags != null &&
+      Object.keys(cat.related_tags)
       .sort((a, b) => cat.related_tags[b].count - cat.related_tags[a].count)
       .map(title =>
         <Tag
@@ -122,28 +134,37 @@ export default class Category extends React.Component<RouteProps, State> {
       <Breadcrumb>
         <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />
-        { cat.name
-          ? <Breadcrumb.Section active>
+        { this.state.isLoading
+          ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+          : <Breadcrumb.Section active>
               {cat.name}
             </Breadcrumb.Section>
-          : <Breadcrumb.Section>Loading...</Breadcrumb.Section>
         }
       </Breadcrumb>
       <Header as='h1'>
         { cat.name }
       </Header>
-      <Segment>
-        <p>Themen in diesem Bereich:</p>
-        <p>
-          {relatedTags}
-        </p>
-      </Segment>
+
+      { relatedTags != null && relatedTags.length > 0 &&
+        <Segment>
+          <p>Themen in diesem Bereich:</p>
+          <p>
+            {relatedTags}
+          </p>
+        </Segment>
+      }
+
       <div className="theses">
         <Loader active={this.state.isLoading} inline='centered' />
+
+        { this.state.error != null &&
+          <Message negative header='Upsi' content={this.state.error} />
+        }
 
         { this.state.isLoading === false && thesesElems.length === 0 &&
           <p>In diesem Bereich gibt es noch keine Thesen.</p>
         }
+
         { thesesElems.length > 0 &&
           <Header size='medium'>
             Thesen {startPos + 1} bis {endPos} von {cat.theses.length}:
