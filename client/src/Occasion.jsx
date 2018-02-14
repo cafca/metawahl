@@ -67,7 +67,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         if (cb != null) cb(response.data);
       })
       .catch((error: Error) => {
-        console.log(error.message);
+        console.log("Error fetching occasion data: " + error.message)
         this.setState({
           isLoading: false,
           occasion: this.getCachedOccasion(),

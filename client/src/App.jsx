@@ -23,27 +23,43 @@ import type { OccasionListType, TagType, CategoryType } from './Types';
 
 export const loadFromCache = (key: string) => {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
+  let localStorage = document.defaultView.localStorage;
+
+  if (localStorage == null) {
+    localStorage = {};
+  }
 
   let rv = null;
-  try {
-    rv = localStorage.getItem(key);
-  } catch(e) {
-    console.log("Error loading from local storage. " + e);
+  if (typeof localStorage.getItem === 'function') {
+    try {
+      rv = localStorage.getItem(key);
+    } catch(e) {
+      console.log("Error loading from local storage. " + e);
+    }
+  } else {
+    rv = localStorage[key];
   }
   return rv;
 }
 
 export const saveToCache = (key: string, json: string) => {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
+  let localStorage = document.defaultView.localStorage;
+
+  if (localStorage == null) {
+    localStorage = {};
+  }
 
   if (json == null || json === "undefined" || json === "") {
     console.log("Error: Tried saving undefined variable to local storage.")
-  } else {
+  } else if (typeof localStorage.setItem === 'function') {
     try {
       localStorage.setItem(key, json);
     } catch(e) {
       console.log("Error saving to local storage. " + e)
     }
+  } else {
+    localStorage[key] = json;
   }
 }
 

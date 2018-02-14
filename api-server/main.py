@@ -8,7 +8,10 @@ import sys
 import logging
 import time
 import json
+import traceback
 
+from datetime import datetime
+from logging.handlers import RotatingFileHandler
 from collections import defaultdict
 from flask import Flask, jsonify, request, send_file, g, make_response, abort
 from flask_caching import Cache
@@ -38,7 +41,7 @@ def log_request_info(name, request):
         logger.info("Data: {}".format(pformat(jsond)))
 
 
-def json_response(data, filename=None):
+def json_response(data, filename=None, status=200):
     data["meta"] = {
         "api": API_FULL_NAME,
         "render_time": g.request_time(),
@@ -47,6 +50,8 @@ for licensing information"
     }
 
     rv = jsonify(data)
+    rv.cache_control.max_age = 300
+    rv.status_code = status
 
     if filename is not None:
         rv.headers['Content-Type'] = 'text/json'
@@ -72,12 +77,54 @@ def create_app(config=None):
 
     CORS(app)
 
+    handler = RotatingFileHandler(
+        app.config.get("METAWAHL_API_LOGFILE", None) or "../flask_api.log",
+        backupCount=3)
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.DEBUG)
+
     @app.before_request
     def before_request():
         # Measure request timing
         # https://gist.github.com/lost-theory/4521102
         g.request_start_time = time.time()
         g.request_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
+
+    @app.after_request
+    def after_request(response):
+        # This IF avoids the duplication of registry in the log,
+        # since that 500 is already logged via @app.errorhandler.
+        if response.status_code != 500:
+            ts = datetime.utcnow().strftime('[%Y-%b-%d %H:%M]')
+            logger.debug('%s %s %s %s %s %s',
+                        ts,
+                        request.remote_addr,
+                        request.method,
+                        request.scheme,
+                        request.full_path,
+                        response.status)
+        return response
+
+    @app.errorhandler(Exception)
+    def exceptions(e):
+        ts = datetime.utcnow().strftime('[%Y-%b-%d %H:%M]')
+        tb = traceback.format_exc()
+        logger.error('%s %s %s %s %s 5xx INTERNAL SERVER ERROR\n%s',
+                    ts,
+                    request.remote_addr,
+                    request.method,
+                    request.scheme,
+                    request.full_path,
+                    tb)
+
+        return json_response(
+            {"error": "AAAHH! Serverfehler. Rute ist gezückt, werde Computer strafen."},
+            status=500
+        )
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return json_response({"error": "Ressource not found"}, status=404)
 
     @app.route(API_ROOT + "/base", methods=["GET"])
     @cache.cached(timeout=50)
@@ -157,7 +204,7 @@ def create_app(config=None):
         occasion = Occasion.query.get(wom_id)
 
         if occasion is None:
-            abort(404)
+            return json_response({"error": "Occasion not found"}, status=404)
 
         rv = {
             "data": occasion.to_dict(),
@@ -347,12 +394,17 @@ def create_app(config=None):
                 .first()
 
             if category is None:
-                abort(404)
+                return json_response(
+                    {"error": "Category not found"}, status=404)
 
             if request.method == "POST":
                 data = request.get_json()
 
-                if data is not None and (data.get('admin_key', '') == app.config.get('ADMIN_KEY')):
+                isValidAdmin = data is not None \
+                    and (data.get('admin_key', '') \
+                        == app.config.get('ADMIN_KEY'))
+
+                if isValidAdmin:
                     for thesis_id in data.get("add", []):
                         logger.info("Adding {} to {}".format(
                             category, thesis_id))
@@ -415,6 +467,7 @@ def create_app(config=None):
 
     @app.route(API_ROOT + "/tags/<string:tag_title>",
         methods=["GET", "DELETE"])
+    @cache.cached(timeout=50)
     def tag(tag_title: str):
         """Return metadata for all theses in a category."""
         from models import Tag
@@ -426,7 +479,7 @@ def create_app(config=None):
             .first()
 
         if tag is None:
-            abort(404)
+            return json_response({"error": "Tag not found"}, status=404)
 
         if request.method == "DELETE":
             admin_key = request.get_json().get('admin_key', '')
@@ -456,7 +509,7 @@ def create_app(config=None):
         thesis = Thesis.query.get(thesis_id)
 
         if thesis is None:
-            abort(404)
+            return json_response({"error": "Thesis not found"}, status=404)
 
         rv = {
             "data": thesis.to_dict()
@@ -474,7 +527,7 @@ def create_app(config=None):
         error = None
 
         if thesis is None:
-            abort(404)
+            return json_response({"error": "Thesis not found"}, status=404)
 
         if data is None or data.get('admin_key', '') != app.config.get('ADMIN_KEY'):
             logger.warning("Invalid admin key")
