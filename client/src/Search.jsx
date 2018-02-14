@@ -17,7 +17,8 @@ const baseSearchOptions = {
 };
 
 const tagSearchOptions = Object.assign({}, baseSearchOptions, {
-  distance: 30,
+  distance: 300,
+  tokenize: true,
   minMatchCharLength: 3,
   includeScore: true,
   keys: [
@@ -148,14 +149,12 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     if ((query.length >= 3 || tagResults.length === 0)) {
       tagResults = this.tagSearch
         .search(query)
-        .slice(0,50)
-        .sort((a, b) =>
-          a.score / (2 * a.thesis_count) < b.score / (2 * b.thesis_count)
-            ? -1 : 1
-        ).map(res => res.item);
+        .map(res => Object.assign(res.item, { score: res.score }));
+
+      tagResults.sort((a, b) =>
+        -1 * (a.thesis_count / a.score - b.thesis_count / b.score)
+      )
     }
-
-
 
     this.setState({
       isLoading: false,
@@ -189,7 +188,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     );
 
     const tagResults = this.state.tagResults.map(res =>
-      <a className="result" key={"result-" + res.slug}
+      <span className="result" key={"result-" + res.slug}
         onClick={() => this.handleResultSelect(res)}>
 
         <div className="content">
@@ -204,7 +203,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
           }
         </div>
 
-      </a>
+      </span>
     );
 
     const resultClassName = "results transition" +
