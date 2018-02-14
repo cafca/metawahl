@@ -120,7 +120,7 @@ class App extends Component<Props, State> {
       <BrowserRouter>
         <ScrollToTop>
           <div className="App">
-            <HeaderMenu />
+            <HeaderMenu {...context} />
 
             <Container text id="outerContainer">
               <Message warning>

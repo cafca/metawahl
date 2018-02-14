@@ -5,10 +5,9 @@ import autoBind from 'react-autobind';
 import { withRouter } from 'react-router-dom'
 import Fuse from 'fuse.js';
 
-import { loadFromCache } from './App';
 import { TERRITORY_NAMES } from './Config';
 
-import type { TagType } from './Types';
+import type { TagType, OccasionListType, CategoryType } from './Types';
 
 const baseSearchOptions = {
   threshold: 0.2,
@@ -42,7 +41,11 @@ const territoryList = Object.keys(TERRITORY_NAMES).map(k => ({
 type SearchProps = {
   history: {  // React Router history object
     push: string => any
-  }
+  },
+  isLoading: boolean,
+  occasions: OccasionListType,
+  categories: Array<CategoryType>,
+  tags: Array<TagType>
 };
 
 type SearchState = {
@@ -55,9 +58,8 @@ type SearchState = {
 class SearchComponent extends React.Component<SearchProps, SearchState> {
   tagSearch;
   territorySearch;
-  savedTags: Array<TagType>;
 
-  constructor() {
+  constructor(props: SearchProps) {
     super();
     autoBind(this);
     this.state = {
@@ -66,14 +68,22 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       tagResults: [],
       territoryResults: []
     };
-    const savedTagsJSON = loadFromCache('tags');
-    this.savedTags = savedTagsJSON != null ? JSON.parse(savedTagsJSON) : [];
 
     this.tagSearch = new Fuse(
-      this.savedTags, tagSearchOptions);
+      props.tags, tagSearchOptions);
 
     this.territorySearch = new Fuse(
       territoryList, territorySearchOptions);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isLoading && nextProps.isLoading === false) {
+      this.tagSearch = new Fuse(
+        nextProps.tags, tagSearchOptions);
+
+      if (this.state.query.length > 0)
+        this.updateSearchResults(this.state.query);
+    }
   }
 
   handleResultSelect(result) {
@@ -85,28 +95,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
   handleSearchChange(e) {
     const value = e.target.value;
     if ( value.length === 0) return this.reset();
-
-    this.setState({ isLoading: true, query: value });
-
-    const territoryResults = this.territorySearch.search(value);
-
-    let tagResults = [];
-    if (value.length < 3) {
-      const valueLower = value.toLowerCase();
-      tagResults = this.savedTags.filter(
-        t => t.title && t.title.toLowerCase().startsWith(valueLower)
-      );
-    }
-
-    if ((value.length >= 3 || tagResults.length === 0)) {
-      tagResults = this.tagSearch.search(value);
-    }
-
-    this.setState({
-      isLoading: false,
-      tagResults: tagResults.slice(0, 10),
-      territoryResults: territoryResults.slice(0, 3)
-    });
+    this.updateSearchResults(value);
   }
 
   reset() {
@@ -115,6 +104,30 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       tagResults: [],
       territoryResults: [],
       query: ""
+    });
+  }
+
+  updateSearchResults(query) {
+    this.setState({ isLoading: true, query });
+
+    const territoryResults = this.territorySearch.search(query);
+
+    let tagResults = [];
+    if (query.length < 3) {
+      const valueLower = query.toLowerCase();
+      tagResults = this.props.tags.filter(
+        t => t.title && t.title.toLowerCase().startsWith(valueLower)
+      );
+    }
+
+    if ((query.length >= 3 || tagResults.length === 0)) {
+      tagResults = this.tagSearch.search(query);
+    }
+
+    this.setState({
+      isLoading: false,
+      tagResults: tagResults.slice(0, 10),
+      territoryResults: territoryResults.slice(0, 3)
     });
   }
 
@@ -144,9 +157,8 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       </a>
     );
 
-    const resultClassName = "results transition" + (
-      tagResults.length === 0 && territoryResults.length === 0
-        ? "" : " visible");
+    const resultClassName = "results transition" +
+      (this.state.query.length === 0 ? "" : " visible");
 
     return <div className="ui right small inverted menu">
       <div className="ui small item category search right aligned">
@@ -166,6 +178,13 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
             <div className="category">
               <div className="name">Themen</div>
               {tagResults}
+            </div>
+          }
+
+          { tagResults.length + territoryResults.length === 0 &&
+            <div className="message empty">
+              <div className="header">Keine Suchergebnisse</div>
+              <div className="description">Leider wurden keine Themen oder Parlamente zu deiner Anfrage gefunden</div>
             </div>
           }
         </div>

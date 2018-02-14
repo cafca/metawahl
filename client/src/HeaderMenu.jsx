@@ -6,7 +6,7 @@ import { Container, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import Search from './Search';
 
-const HeaderMenu = () => (
+const HeaderMenu = (context: {}) => (
   <Menu fixed='top' inverted>
     <Container>
       <Menu.Item as={Link} to="/" header>
@@ -15,7 +15,7 @@ const HeaderMenu = () => (
       <Menu.Item as={Link} to='/'>Wahlen</Menu.Item>
       <Menu.Item as={Link} to='/bereiche/'>Bereiche</Menu.Item>
       <Menu.Item as={Link} to='/tags/'>Themen</Menu.Item>
-      <Search />
+      <Search {...context} />
     </Container>
 </Menu>
 );
