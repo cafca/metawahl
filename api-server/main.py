@@ -11,6 +11,7 @@ import json
 
 from collections import defaultdict
 from flask import Flask, jsonify, request, send_file, g, make_response, abort
+from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from sqlalchemy.exc import SQLAlchemyError
@@ -66,6 +67,9 @@ def create_app(config=None):
 
     db.init_app(app)
 
+    cache = Cache(config=app.config)
+    cache.init_app(app)
+
     CORS(app)
 
     @app.before_request
@@ -76,6 +80,7 @@ def create_app(config=None):
         g.request_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
 
     @app.route(API_ROOT + "/base", methods=["GET"])
+    @cache.cached(timeout=50)
     def baseData():
         """Return base data set required by the web client."""
         from models import Category, Occasion, Tag, Thesis
@@ -165,6 +170,7 @@ def create_app(config=None):
     @app.route(API_ROOT + "/categories.json",
         defaults={'filename': "categories.json", 'thesis_ids': True})
     @app.route(API_ROOT + "/categories/", methods=["GET"])
+    @cache.cached(timeout=50)
     def categories(filename=None, thesis_ids=False):
         """Return list of all categories."""
         from models import Category
@@ -377,6 +383,7 @@ def create_app(config=None):
     @app.route(API_ROOT + "/tags.json",
         methods=["GET"], defaults={'filename': 'tags.json'})
     @app.route(API_ROOT + "/tags/", methods=["GET"])
+    @cache.cached(timeout=50)
     def tags(filename=None):
         """Return list of all categories."""
         from models import Tag, Thesis
