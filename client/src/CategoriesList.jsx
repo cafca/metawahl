@@ -66,7 +66,7 @@ export default class CategoriesList extends Component<RouteProps> {
         </Header>
 
         <p>Hier finden sich die Thesen aus allen Wahl-o-Maten, sortiert nach
-        dem ihnen naheliegendsten Arbeitsbereich der Bundesregierung.</p>
+        dem ihnen nächstliegenden Arbeitsbereich des Bundestages.</p>
 
 
         <Loader active={categories.length === 0} />
