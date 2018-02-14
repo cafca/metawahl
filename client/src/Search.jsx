@@ -214,7 +214,8 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       <div className="ui small item category search right aligned">
         <div className="ui icon input">
           <input className="prompt" type="text" placeholder="Alles ist möglich..."
-            onChange={this.handleSearchChange} value={this.state.query}></input>
+            onChange={this.handleSearchChange} value={this.state.query}
+            style={{borderRadius: 4}}></input>
           <i className="search icon"></i>
         </div>
         <div className={resultClassName} style={{fontSize: "1.2em"}}>
