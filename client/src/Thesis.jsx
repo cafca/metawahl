@@ -384,8 +384,8 @@ export default class Thesis extends Component<Props, State> {
         <Header.Subheader>
         {this.state.voterOpinion === 0 ? " Keine Nehrheit dafür oder dagegen"
           : this.state.voterOpinion === 1
-            ? ` ${Math.round(this.state.ratioPro)} von 100 Stimmen wählen Parteien, die diese These unterstützen`
-            : ` ${Math.round(this.state.ratioContra)} von 100 Stimmen wählen Parteien, die diese These ablehnen`
+            ? ` Befürwortende Parteien bekamen ${Math.round(this.state.ratioPro)} von 100 Stimmen`
+            : ` Ablehnende Parteien bekamen ${Math.round(this.state.ratioContra)} von 100 Stimmen`
         }
         </Header.Subheader>
       </Header>
