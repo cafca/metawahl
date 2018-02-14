@@ -17,12 +17,13 @@ const baseSearchOptions = {
 };
 
 const tagSearchOptions = Object.assign({}, baseSearchOptions, {
-  distance: 100,
+  distance: 30,
   minMatchCharLength: 3,
+  includeScore: true,
   keys: [
-    { name: "title", weight: 0.5 },
-    { name: "description", weight: 0.2 },
-    { name: "aliases", weight: 0.3 }
+    { name: "title", weight: 1 },
+    { name: "description", weight: 0.03 },
+    { name: "aliases", weight: 0.1 }
   ]
 });
 
@@ -141,12 +142,20 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       const valueLower = query.toLowerCase();
       tagResults = this.props.tags.filter(
         t => t.title && t.title.toLowerCase().startsWith(valueLower)
-      );
+      ).sort((a, b) => a.thesis_count > b.thesis_count ? -1 : 1);
     }
 
     if ((query.length >= 3 || tagResults.length === 0)) {
-      tagResults = this.tagSearch.search(query);
+      tagResults = this.tagSearch
+        .search(query)
+        .slice(0,50)
+        .sort((a, b) =>
+          a.score / (2 * a.thesis_count) < b.score / (2 * b.thesis_count)
+            ? -1 : 1
+        ).map(res => res.item);
     }
+
+
 
     this.setState({
       isLoading: false,
@@ -184,7 +193,12 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
         onClick={() => this.handleResultSelect(res)}>
 
         <div className="content">
-          <div className='title'>{res.title}</div>
+          <div className='title'>
+            {res.title}
+            <span style={{color: "rgba(0, 0, 0, 0.4)"}}>
+              &nbsp; {res.thesis_count}
+            </span>
+          </div>
           { res.description &&
             <div className='description'>{res.description}</div>
           }
@@ -199,7 +213,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     return <div className="ui right small inverted menu">
       <div className="ui small item category search right aligned">
         <div className="ui icon input">
-          <input className="prompt" type="text" placeholder="Suche Themen..."
+          <input className="prompt" type="text" placeholder="Alles ist möglich..."
             onChange={this.handleSearchChange} value={this.state.query}></input>
           <i className="search icon"></i>
         </div>
