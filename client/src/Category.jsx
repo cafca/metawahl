@@ -23,7 +23,7 @@ export default class Category extends React.Component<RouteProps, State> {
     autoBind(this);
     this.state = {
       category: this.getCachedCategory(props.match.params.category),
-      page: this.props.match.params.page || 1,
+      page: parseInt(props.match.params.page, 10) || 1,
       slug: props.match.params.category,
       isLoading: true
     };
@@ -34,7 +34,7 @@ export default class Category extends React.Component<RouteProps, State> {
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
-    const newPage = nextProps.match.params.page;
+    const newPage = parseInt(nextProps.match.params.page, 10) || 1;
     const newSlug = nextProps.match.params.category;
 
     if (newSlug !== this.state.slug) {
