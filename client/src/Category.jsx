@@ -70,12 +70,11 @@ export default class Category extends React.Component<RouteProps, State> {
     e: SyntheticInputEvent<HTMLInputElement>,
     { activePage }: { activePage: number }
   ) {
-    this.props.history.push(
-      "/bereiche/" + this.state.slug + "/" + activePage);
+    this.props.history.push(`/bereiche/${this.state.slug}/${activePage}/`);
   }
 
   loadCategory() {
-    const endpoint = `${API_ROOT}/categories/${this.state.slug}`;
+    const endpoint = `${API_ROOT}/categories/${this.state.slug}/`;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
