@@ -163,15 +163,15 @@ def create_app(config=None):
         return json_response(rv)
 
     @app.route(API_ROOT + "/categories.json",
-        defaults={'filename': "categories.json"})
+        defaults={'filename': "categories.json", 'thesis_ids': True})
     @app.route(API_ROOT + "/categories/", methods=["GET"])
-    def categories(filename=None):
+    def categories(filename=None, thesis_ids=False):
         """Return list of all categories."""
         from models import Category
 
         categories = Category.query.order_by(Category.slug).all()
         rv = {
-            "data": [category.to_dict()
+            "data": [category.to_dict(thesis_ids=thesis_ids)
                 for category in categories]
         }
 

@@ -64,7 +64,7 @@ class Category(db.Model):
 
         return rv
 
-    def to_dict(self, thesis_data=False, include_related_tags=False):
+    def to_dict(self, thesis_data=False, thesis_ids=False, include_related_tags=False):
         rv = {
             "name": self.name,
             "slug": self.slug
@@ -74,8 +74,9 @@ class Category(db.Model):
             rv["theses"] = [thesis.to_dict() for thesis in self.theses]
             rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
                 for thesis in self.theses}
-        else:
-            rv["theses"] = [thesis.id for thesis in self.theses]
+
+        if thesis_ids:
+            rv["thesis_ids"] = [thesis.id for thesis in self.theses]
 
         if include_related_tags:
             rv["related_tags"] = self.related_tags

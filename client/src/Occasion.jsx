@@ -4,16 +4,16 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
-import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
+import { Breadcrumb, Header, Loader } from 'semantic-ui-react';
 import Moment from 'moment';
 
 import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
-import { RouteProps, ThesisType, OccasionType, ErrorState } from './Types';
+import { RouteProps, ThesisType, OccasionType } from './Types';
 import { WikidataLabel, WikipediaLabel } from './DataLabel.jsx'
 
 type State = {
+  isLoading: boolean,
   occasion: ?OccasionType,
-  occasionState: ErrorState,
   theses: Array<ThesisType>
 };
 
@@ -27,15 +27,22 @@ export default class Occasion extends React.Component<RouteProps, State> {
     this.occasionNum = parseInt(this.props.match.params.occasionNum, 10);
     this.territory = this.props.match.params.territory;
     this.state =  {
-      occasion: null,
-      occasionState: "loading",
+      isLoading: true,
+      occasion: this.getCachedOccasion(),
       theses: []
     }
   }
 
   componentDidMount() {
-    this.loadOccasion(
-      occasion => occasion != null && setTitle("- " + occasion.title));
+    this.setTitle();
+    this.loadOccasion();
+  }
+
+  getCachedOccasion() {
+    return this.props.occasions[this.territory] == null ? null :
+      this.props.occasions[this.territory]
+      .filter(occ => occ.id === this.occasionNum)
+      .shift();
   }
 
   extractThesisID(thesisID: string) {
@@ -53,6 +60,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .then(response => response.json())
       .then(response => {
         this.setState({
+          isLoading: false,
           occasion: response.data,
           theses: response.theses
         })
@@ -61,14 +69,21 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .catch((error: Error) => {
         console.log(error.message);
         this.setState({
-          occasion: null,
-          occasionState: "error"
+          isLoading: false,
+          occasion: this.getCachedOccasion(),
+          theses: []
         })
       })
   }
 
+  setTitle() {
+    if (this.state.occasion != null) setTitle("- " + this.state.occasion.title);
+  }
+
   render() {
-    const thesesElems = this.state.theses.sort((a, b) => a.id > b.id ? 1 : -1).map(
+    const thesesElems = this.state.theses
+    .sort((a, b) => a.id > b.id ? 1 : -1)
+    .map(
       (t, i) => <Thesis
         key={t.id}
         occasion={this.state.occasion}
@@ -99,11 +114,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
           : this.state.occasion.title}
       </Header>
 
-      {this.state.occasion == null &&
-      <Segment loading style={{ minHeight: 100 }}></Segment>
-      }
+      <Loader active={this.state.isLoading} />
 
-      {this.state.occasion != null &&
+      {this.state.isLoading === false &&
       <div className="theses">
         {thesesElems}
       </div>

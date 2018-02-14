@@ -65,7 +65,7 @@ class App extends Component<Props, State> {
     const tagsJSON = loadFromCache('tags');
 
     this.state = {
-      isLoading: categoriesJSON != null && occasionsJSON != null && tagsJSON != null,
+      isLoading: categoriesJSON == null || occasionsJSON == null || tagsJSON == null,
       categories: categoriesJSON != null ? JSON.parse(categoriesJSON) : [],
       occasions: occasionsJSON != null ? JSON.parse(occasionsJSON) : {},
       tags: tagsJSON != null ? JSON.parse(tagsJSON) : []
@@ -96,6 +96,7 @@ class App extends Component<Props, State> {
           categories: response.data.categories,
           isLoading: false
         });
+
         saveToCache('occasions', JSON.stringify(response.data.occasions));
         saveToCache('tags', JSON.stringify(response.data.tags));
         saveToCache('categories', JSON.stringify(response.data.categories));
@@ -143,11 +144,7 @@ class App extends Component<Props, State> {
                 <CategoriesList {...props} {...context} />
               )} />
 
-              <Route exact path="/bereiche/:category/" render={props => (
-                <Category {...props} {...context} />
-              )} />
-
-              <Route path="/bereiche/:category/:page/" render={props => (
+              <Route path="/bereiche/:category/:page?/" render={props => (
                 <Category {...props} {...context} />
               )} />
 
@@ -155,11 +152,7 @@ class App extends Component<Props, State> {
                 <TagList {...props} {...context} />
               )} />
 
-              <Route exact path="/tags/:tag/" render={props => (
-                <TagView {...props} {...context} />
-              )} />
-
-              <Route path="/tags/:tag/:page/" render={props => (
+              <Route path="/tags/:tag/:page?/" render={props => (
                 <TagView {...props} {...context} />
               )} />
 

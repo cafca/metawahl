@@ -28,7 +28,7 @@ const tagSearchOptions = Object.assign({}, baseSearchOptions, {
 });
 
 const territorySearchOptions = Object.assign({}, baseSearchOptions, {
-  distance: 10,
+  distance: 30,
   minMatchCharLength: 2,
   keys: ['title']
 });

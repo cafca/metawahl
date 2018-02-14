@@ -5,8 +5,7 @@ import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
 import { API_ROOT, setTitle } from './Config';
-import { RouteProps, CategoryType } from './Types';
-import { loadFromCache, saveToCache } from './App';
+import { RouteProps } from './Types';
 import {
   Breadcrumb,
   Button,
@@ -17,35 +16,15 @@ import {
   Loader
 } from 'semantic-ui-react';
 
-type State = {
-  categories: Array<CategoryType>
-};
 
-export default class CategoriesList extends Component<RouteProps, State> {
+export default class CategoriesList extends Component<RouteProps> {
   constructor(props: RouteProps) {
     super(props);
-    const savedCategories = loadFromCache('categorylist');
-    this.state = {
-      categories: savedCategories != null ? JSON.parse(savedCategories) : []
-    }
     autoBind(this);
   }
 
   componentDidMount() {
-    this.loadCategories();
     setTitle('Bereiche');
-  }
-
-  loadCategories() {
-    const endpoint = `${API_ROOT}/categories/`;
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(response => {
-        this.setState({
-          categories: response.data
-        });
-        saveToCache('categorylist', JSON.stringify(response.data));
-      });
   }
 
   render() {
@@ -55,7 +34,8 @@ export default class CategoriesList extends Component<RouteProps, State> {
         : catA.slug < catB.slug ? -1 : 1;
     };
 
-    const categories = this.state.categories
+    const categories = this.props.categories.length === 0 ? [] :
+      this.props.categories
       .sort(sortCategories)
       .map(category => (
         <li key={category.slug}>
@@ -66,7 +46,7 @@ export default class CategoriesList extends Component<RouteProps, State> {
         </li>
       ));
 
-    return this.props.categoriesState === "loading" ? <h2>Loading categories...</h2> :
+    return this.props.categories.length === 0 ? <h2>Lade Themenbereiche...</h2> :
       <div className="categories">
         <Button icon as='a' color='blue' basic floated="right"
           href={API_ROOT + '/categories.json?include_tag_ids=1'}

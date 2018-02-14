@@ -6,31 +6,50 @@ import './App.css';
 import Thesis from './Thesis';
 import Tag from './Tag';
 import { API_ROOT, setTitle, THESES_PER_PAGE } from './Config';
-import { loadFromCache } from './App';
 import { Header, Loader, Breadcrumb, Pagination, Segment } from 'semantic-ui-react';
 
 import type { RouteProps, CategoryType } from './Types';
 
-type State = (CategoryType & { occasions: {}, page: number }) | {page: number};
+type State = {
+  category: CategoryType,
+  page: number,
+  slug: string,
+  isLoading: boolean
+};
 
 export default class Category extends React.Component<RouteProps, State> {
-  categorySlug : string;
-
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.categorySlug = props.match.params.category;
     this.state = {
-      page: this.props.match.params.page || 1
+      category: this.getCachedCategory(props.match.params.category),
+      page: this.props.match.params.page || 1,
+      slug: props.match.params.category,
+      isLoading: true
     };
   }
 
   componentDidMount() {
-    const savedCategories = loadFromCache('categorylist');
-    if (savedCategories != null) this.setState(
-      JSON.parse(savedCategories).filter(c => c.slug === this.categorySlug)[0]
-    );
     this.loadCategory();
+  }
+
+  componentWillReceiveProps(nextProps: RouteProps) {
+    const newPage = nextProps.match.params.page;
+    const newSlug = nextProps.match.params.category;
+
+    if (newSlug !== this.state.slug) {
+      this.setState({
+        category: this.getCachedCategory(newSlug),
+        page: newPage,
+        slug: newSlug,
+        isLoading: true
+      }, this.loadCategory);
+
+    } else if (newPage !== this.state.page) {
+      this.setState({
+        page: newPage
+      });
+    }
   }
 
   extractThesisID(thesisID: string) {
@@ -42,51 +61,59 @@ export default class Category extends React.Component<RouteProps, State> {
     }
   }
 
+  getCachedCategory(slugP?: string) {
+    const slug = slugP || this.state.slug;
+    return this.props.categories.filter(cat => cat.slug === slug).shift();
+  }
+
   handlePaginationChange(
     e: SyntheticInputEvent<HTMLInputElement>,
     { activePage }: { activePage: number }
   ) {
-    this.setState({ page: activePage });
     this.props.history.push(
-      "/bereiche/" + this.props.match.params.category + "/" + activePage);
+      "/bereiche/" + this.state.slug + "/" + activePage);
   }
 
   loadCategory() {
-    const endpoint = `${API_ROOT}/categories/${this.categorySlug}`;
+    const endpoint = `${API_ROOT}/categories/${this.state.slug}`;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
-        this.setState(response.data);
+        this.setState({
+          isLoading: false,
+          category: response.data
+        });
         response.data && setTitle("- " + response.data.name);
       });
+      // TODO: Catch error
   }
 
   render() {
-    const isCategoryFullyLoaded = Array.isArray(this.state.theses)
-      && ( this.state.theses.length === 0
-        || typeof this.state.theses[0] !== "string");
+    const cat = this.state.category || {};
 
     const startPos = (this.state.page - 1) * THESES_PER_PAGE;
-    const endPos = startPos + THESES_PER_PAGE;
+    const endPos = Math.min(
+      startPos + THESES_PER_PAGE,
+      cat.theses && cat.theses.length
+    );
 
-    const thesesElems = isCategoryFullyLoaded
-      ? this.state.theses
+    const thesesElems = this.state.isLoading ? [] : cat.theses
         .sort((t1, t2) => t2.occasion_id - t1.occasion_id)
         .slice(startPos, endPos)
         .map(thesis => <Thesis
           key={thesis.id}
-          occasion={this.state.occasions[thesis.occasion_id]}
+          occasion={cat.occasions[thesis.occasion_id]}
           linkOccasion={true}
           {...thesis} />
-        )
-      : null;
+        );
 
-    const relatedTags = this.state.related_tags && Object.keys(this.state.related_tags)
-      .sort((a, b) => this.state.related_tags[b].count - this.state.related_tags[a].count)
+
+    const relatedTags = this.state.isLoading === false && Object.keys(cat.related_tags)
+      .sort((a, b) => cat.related_tags[b].count - cat.related_tags[a].count)
       .map(title =>
         <Tag
-          data={this.state.related_tags[title].tag}
-          detail={this.state.related_tags[title].count}
+          data={cat.related_tags[title].tag}
+          detail={cat.related_tags[title].count}
           key={"Tag-" + title}
         />);
 
@@ -94,15 +121,15 @@ export default class Category extends React.Component<RouteProps, State> {
       <Breadcrumb>
         <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />
-        { this.state.name
+        { cat.name
           ? <Breadcrumb.Section active>
-              {this.state.name}
+              {cat.name}
             </Breadcrumb.Section>
           : <Breadcrumb.Section>Loading...</Breadcrumb.Section>
         }
       </Breadcrumb>
       <Header as='h1'>
-        { this.state.name }
+        { cat.name }
       </Header>
       <Segment>
         <p>Themen in diesem Bereich:</p>
@@ -111,17 +138,26 @@ export default class Category extends React.Component<RouteProps, State> {
         </p>
       </Segment>
       <div className="theses">
-        <Loader active={isCategoryFullyLoaded === false} inline='centered' />
-        { thesesElems && thesesElems.length === 0 && <p>In diesem Bereich gibt es noch keine Thesen.</p> }
+        <Loader active={this.state.isLoading} inline='centered' />
+
+        { this.state.isLoading === false && thesesElems.length === 0 &&
+          <p>In diesem Bereich gibt es noch keine Thesen.</p>
+        }
+        { thesesElems.length > 0 &&
+          <Header size='medium'>
+            Thesen {startPos + 1} bis {endPos} von {cat.theses.length}:
+          </Header>
+        }
+
         {thesesElems}
 
-        { thesesElems && thesesElems.length > 0 &&
+        { thesesElems.length > 0 &&
           <Pagination
             activePage={this.state.page}
             onPageChange={this.handlePaginationChange}
             prevItem={null}
             nextItem={null}
-            totalPages={Math.ceil(this.state.theses.length / THESES_PER_PAGE)}
+            totalPages={Math.ceil(cat.theses.length / THESES_PER_PAGE)}
           />
         }
       </div>
