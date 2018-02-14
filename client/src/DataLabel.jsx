@@ -46,7 +46,7 @@ export const WikipediaLabel = ({ wikipedia_title, wikipedia_url, style } : Wikip
       <Label as='a' basic image
         href={href} >
         <Icon name="wikipedia" />
-        <Responsive minWidth='768' as='span'> {title}</Responsive>
+        <Responsive minWidth='768' as='span'> {decodeURIComponent(title)}</Responsive>
       </Label>
     </Header>
 }
