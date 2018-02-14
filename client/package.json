@@ -1,9 +1,10 @@
 {
   "name": "metawahl",
-  "version": "0.10.7",
+  "version": "0.11.0",
   "private": true,
   "homepage": "https://metawahl.de/",
   "dependencies": {
+    "fuse.js": "^3.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "react": "^16.0.0",
