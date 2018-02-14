@@ -40,9 +40,11 @@ export default class CategoriesList extends Component<RouteProps> {
       .map(category => (
         <li key={category.slug}>
           { category.theses != null &&
-            <Label circular>
-              {category.theses.length}
-            </Label>
+            <span style={{width: "2.5em", display: "inline-block"}}>
+              <Label circular>
+                {category.theses.length}
+              </Label>
+            </span>
           }
           <Link to={`/bereiche/${category.slug}/`}>{category.name}</Link>
         </li>
@@ -68,18 +70,17 @@ export default class CategoriesList extends Component<RouteProps> {
         <p>Hier finden sich die Thesen aus allen Wahl-o-Maten, sortiert nach
         dem ihnen nächstliegenden Arbeitsbereich des Bundestages.</p>
 
-
         <Loader active={categories.length === 0} />
 
         <Grid stackable columns={2} className="categoryGrid">
           <Grid.Column>
-            <ul style={{listStyle: "none"}}>
+            <ul style={{listStyle: "none", paddingLeft: "1em"}}>
               {categories.slice(0, parseInt(categories.length / 2, 10))}
             </ul>
           </Grid.Column>
 
           <Grid.Column>
-            <ul style={{listStyle: "none"}}>
+            <ul style={{listStyle: "none", paddingLeft: "1em"}}>
               {categories.slice(parseInt(categories.length / 2, 10))}
             </ul>
           </Grid.Column>
