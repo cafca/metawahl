@@ -72,13 +72,6 @@ def create_app(config=None):
 
     CORS(app)
 
-    if debug is False
-        # In production mode, add log handler
-        handler = logging.FileHandler(
-            app.config.get("METAWAHL_API_LOGFILE", None) or "../flask.log")
-        app.logger.addHandler(handler)
-        app.logger.setLevel(logging.DEBUG)
-
     @app.before_request
     def before_request():
         # Measure request timing

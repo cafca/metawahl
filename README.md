@@ -16,7 +16,7 @@ Website https://metawahl.de.
 
 ## Server
 
-Der Server wurde mithilfe von Flask (Python) entwickelt und bietet eine JSON
+Der Server wurde als Flask app (Python) entwickelt und bietet eine JSON
 API, die vom Client angesprochen wird um Daten abzurufen und Nutzereingaben 
 zu speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api-server`.
 
@@ -36,6 +36,7 @@ erstellen. Hierbei unbedingt die letzte Zeile ent-kommentieren und ein SECRET ei
 4. Systemd Unit File erstellen um uWSGI automatisch zu starten
 5. Nginx konfigurieren, so dass Anfragen an die entsprechende Domain an den 
 Metawahl-Socket weitergeleitet werden.
+6. Memcached installieren (unter Ubuntu: `libmemcached-dev` und `zlib1g-dev` )
 
 Eine ausführliche Anleitung hierzu findet sich zum Beispiel auf:
 
