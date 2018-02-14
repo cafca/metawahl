@@ -20,7 +20,9 @@ import Territory from './Territory';
 import ScrollToTop from './ScrollToTop';
 import NotFound from './NotFound';
 
-import type { OccasionListType, TagType, CategoryType } from './Types';
+import type {
+  OccasionListType, TagType, CategoryType, ErrorType
+} from './Types';
 
 export const loadFromCache = (key: string) => {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;
@@ -64,7 +66,19 @@ export const saveToCache = (key: string, json: string) => {
   }
 }
 
+export function errorHandler(error: ErrorType, target?: string) {
+  if (error.message != null) console.log(error.message);
+  if (error.error != null && error.error.length > 0) {
+    console.log(error.error);
+    this.setState({ [target || "error"]: error.error });
+    return true
+  } else {
+    return false;
+  }
+};
+
 type State = {
+  error?: ?string,
   isLoading: boolean,
   occasions: OccasionListType,
   tags: Array<TagType>,
@@ -74,6 +88,8 @@ type State = {
 type Props = {};
 
 class App extends Component<Props, State> {
+  handleError: ErrorType => any;
+
   constructor(props: {}) {
     super(props);
 
@@ -88,6 +104,7 @@ class App extends Component<Props, State> {
       tags: tagsJSON != null ? JSON.parse(tagsJSON) : []
     }
     autoBind(this);
+    this.handleError = errorHandler.bind(this);
   }
 
   componentDidMount() {
@@ -107,16 +124,22 @@ class App extends Component<Props, State> {
     fetch(`${API_ROOT}/base`)
       .then(response => response.json())
       .then(response => {
-        this.setState({
-          occasions: response.data.occasions,
-          tags: response.data.tags,
-          categories: response.data.categories,
-          isLoading: false
-        });
+        if (!this.handleError(response)) {
+          this.setState({
+            occasions: response.data.occasions,
+            tags: response.data.tags,
+            categories: response.data.categories,
+            isLoading: false
+          });
 
-        saveToCache('occasions', JSON.stringify(response.data.occasions));
-        saveToCache('tags', JSON.stringify(response.data.tags));
-        saveToCache('categories', JSON.stringify(response.data.categories));
+          saveToCache('occasions', JSON.stringify(response.data.occasions));
+          saveToCache('tags', JSON.stringify(response.data.tags));
+          saveToCache('categories', JSON.stringify(response.data.categories));
+        } else {
+          this.setState({
+            isLoading: false
+          });
+        }
       })
       .catch((error: Error) => {
         // https://github.com/facebookincubator/create-react-app/issues/3482
@@ -145,6 +168,10 @@ class App extends Component<Props, State> {
                   Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich.
                   Diese Vorabversion kann inhaltliche und technische Fehler beinhalten.
                 </Message>
+              }
+
+              { this.state.error != null &&
+                <Message negative header="Upsi" content={this.state.error} />
               }
 
               <Switch>

@@ -95,3 +95,7 @@ export type RouteProps = {
   categories: Array<CategoryType>,
   tags: Array<TagType>
 };
+
+export type ErrorType = Error | {
+  error?: string
+};

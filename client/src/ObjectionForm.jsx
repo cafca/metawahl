@@ -10,9 +10,9 @@ import {
   Segment
 } from 'semantic-ui-react';
 import { makeJSONRequest, API_ROOT, OBJECTION_NAMES, COLOR_PALETTE, OPINION_COLORS } from './Config';
-import { loadFromCache } from './App';
+import { loadFromCache, errorHandler } from './App';
 
-import type { ObjectionType } from './Types';
+import type { ObjectionType, ErrorType } from './Types';
 
 type Props = {
   thesis_id: string,
@@ -22,7 +22,7 @@ type Props = {
 };
 
 type State = {
-  error: ?string,
+  error?: ?string,
   loading: boolean,
   url: string
 }
@@ -33,14 +33,16 @@ type APIResponseType = {
 };
 
 export default class ObjectionForm extends React.Component<Props, State> {
+  handleError: ErrorType => any;
+
   constructor(props: Props) {
     super(props);
     autoBind(this);
     this.state = {
-      error: null,
       loading: false,
       url: ""
     };
+    this.handleError = errorHandler.bind(this);
   }
 
   handleChange(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
@@ -69,12 +71,10 @@ export default class ObjectionForm extends React.Component<Props, State> {
       fetch(endpoint, makeJSONRequest(data))
         .then(resp => resp.json())
         .then((resp: APIResponseType) => {
-          if (resp.error != null && resp.error.length > 0) {
-            this.setState({ error: resp.error, loading: false });
-          } else {
+          if (!this.handleError(resp)) {
             this.props.handleSuccess(resp.data);
-            this.setState({ loading: false });
           }
+          this.setState({ loading: false });
         })
         .catch((error: Error) =>
           console.log("Error submitting objection: " + error.message))
@@ -122,7 +122,7 @@ export default class ObjectionForm extends React.Component<Props, State> {
         style={{marginBottom: "1rem"}}
         type='text' />
 
-      {this.state.error !== null && this.state.error.length > 0 &&
+      {this.state.error != null &&
         <Message negative>
           <p>{this.state.error}</p>
         </Message>
