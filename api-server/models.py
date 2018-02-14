@@ -52,7 +52,11 @@ class Category(db.Model):
                 tags[tag.title] = tag
 
         num_related_tags = 10
-        cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+        try:
+            cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+        except IndexError:
+            logger.info("Cutoff set to 0 for category {}".format(self))
+            cutoff = 0
 
         rv = dict()
         for tag in tag_counts.keys():
