@@ -107,9 +107,9 @@ export default class Category extends React.Component<RouteProps, State> {
       cat.theses && cat.theses.length
     );
 
-    const isComplete = this.state.isLoading == false && this.state.error == null;
+    const isComplete = this.state.isLoading === false && this.state.error == null;
 
-    const thesesElems = isComplete == false ? [] : cat.theses
+    const thesesElems = isComplete === false ? [] : cat.theses
         .sort((t1, t2) => t2.occasion_id - t1.occasion_id)
         .slice(startPos, endPos)
         .map(thesis => <Thesis
