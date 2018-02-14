@@ -70,6 +70,7 @@ stages:
         thesis_id: WOM-001-01
         uuid: test-uuid
         url: test-text
+        rating: 1
     response:
       status_code: 200
       headers:
@@ -86,12 +87,13 @@ stages:
         thesis_id: WOM-001-01
         uuid: test-uuid
         url: test-text
+        rating: 1
     response:
       status_code: 200
       headers:
         content-type: application/json
       body:
-        error: "Diesen Link gibt es leider schon."
+        error: "Diesen Link gibt es hier leider schon."
 
 
   - name: Make sure that objections missing thesis id return an error
@@ -101,6 +103,7 @@ stages:
       json:
         uuid: test-uuid
         url: test-url
+        rating: 1
     response:
       status_code: 200
       headers:
@@ -115,6 +118,22 @@ stages:
       json:
         thesis_id: WOM-001-01
         url: test-url
+        rating: 1
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        error: "There was a server error."
+
+  - name: Make sure that objections missing rating return an error
+    request:
+      url: http://localhost:9000/api/v1/react/objection
+      method: POST
+      json:
+        thesis_id: WOM-001-01
+        url: test-url
+        uuid: test-uuid
     response:
       status_code: 200
       headers:
