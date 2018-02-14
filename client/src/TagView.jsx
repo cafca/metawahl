@@ -49,9 +49,9 @@ export default class TagView extends Component<RouteProps, State> {
 
   componentWillReceiveProps(nextProps: RouteProps) {
     const slug = nextProps.match.params.tag;
-    const page = parseInt(nextProps.match.params.page, 10);
+    const page = parseInt(nextProps.match.params.page, 10) || 1;
 
-    if(slug !== this.state.slug) {
+    if (slug !== this.state.slug) {
       this.setState({
         loading: true,
         page: page || 1,
