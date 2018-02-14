@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Container, Message } from 'semantic-ui-react'
 
 import './App.css';
@@ -18,6 +18,7 @@ import TagList from './TagList';
 import TagView from './TagView';
 import Territory from './Territory';
 import ScrollToTop from './ScrollToTop';
+import NotFound from './NotFound';
 
 import type { OccasionListType, TagType, CategoryType } from './Types';
 
@@ -144,37 +145,41 @@ class App extends Component<Props, State> {
                 Diese Vorabversion kann inhaltliche und technische Fehler beinhalten.
               </Message>
 
-              <Route exact path="/" render={props => (
-                <OccasionList {...props} {...context} />
-              )} />
+              <Switch>
+                <Route exact path="/" render={props => (
+                  <OccasionList {...props} {...context} />
+                )} />
 
-              <Route exact path="/wahlen/:territory/" render={props => (
-                <Territory {...props} {...context} />
-              )} />
+                <Route exact path="/wahlen/:territory/" render={props => (
+                  <Territory {...props} {...context} />
+                )} />
 
-              <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
-                <Occasion {...props} {...context} />
-              )} />
+                <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
+                  <Occasion {...props} {...context} />
+                )} />
 
-              <Route exact path="/bereiche/" render={props => (
-                <CategoriesList {...props} {...context} />
-              )} />
+                <Route exact path="/bereiche/" render={props => (
+                  <CategoriesList {...props} {...context} />
+                )} />
 
-              <Route path="/bereiche/:category/:page?/" render={props => (
-                <Category {...props} {...context} />
-              )} />
+                <Route path="/bereiche/:category/:page?/" render={props => (
+                  <Category {...props} {...context} />
+                )} />
 
-              <Route exact path="/tags/" render={props => (
-                <TagList {...props} {...context} />
-              )} />
+                <Route exact path="/tags/" render={props => (
+                  <TagList {...props} {...context} />
+                )} />
 
-              <Route path="/tags/:tag/:page?/" render={props => (
-                <TagView {...props} {...context} />
-              )} />
+                <Route path="/tags/:tag/:page?/" render={props => (
+                  <TagView {...props} {...context} />
+                )} />
 
-              <Route path="/legal" render={props => (
-                <LegalView {...props} {...context} />
-              )} />
+                <Route path="/legal/" render={props => (
+                  <LegalView {...props} {...context} />
+                )} />
+
+                <Route render={props => <NotFound {...props} {...context} />}/>
+              </Switch>
             </Container>
             <Footer />
           </div>

@@ -17,7 +17,9 @@ const HeaderMenu = (context: {}) => (
           <Menu.Item as={Link} to='/'>Wahlen</Menu.Item>
           <Menu.Item as={Link} to='/bereiche/'>Bereiche</Menu.Item>
           <Menu.Item as={Link} to='/tags/'>Themen</Menu.Item>
-          <Search {...context} />
+          <div className="ui right small inverted menu">
+            <Search {...context} large className="small right aligned item" />
+          </div>
         </Container>
       </Menu>
     </Responsive>
