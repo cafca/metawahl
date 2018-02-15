@@ -222,25 +222,25 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
         <i className="search icon"></i>
       </div>
       <div className={resultClassName}
-        style={this.props.large ? {fontSize: "1.2em"} : null}>
+        style={this.props.large ? {fontSize: 14} : null}>
 
         {territoryResults.length > 0 &&
           <div className="category">
-            <div className="name">Parlamente</div>
+            <div className="name" style={{marginTop: 7}}>Parlamente</div>
             {territoryResults}
           </div>
         }
 
         {categoryResults.length > 0 &&
           <div className="category">
-            <div className="name">Bereiche</div>
+            <div className="name" style={{marginTop: 7}}>Bereiche</div>
             {categoryResults}
           </div>
         }
 
         {tagResults.length > 0 &&
           <div className="category">
-            <div className="name">Themen</div>
+            <div className="name" style={{marginTop: 7}}>Themen</div>
             {tagResults}
           </div>
         }
