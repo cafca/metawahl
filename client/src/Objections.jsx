@@ -4,13 +4,14 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import Moment from 'moment';
 import {
-  Button, Comment, Header, Icon, Label, Popup
+  Button, Comment, Header, Icon, Label, Message, Popup
 } from 'semantic-ui-react';
 
-import { OBJECTION_NAMES, OPINION_COLORS } from './Config';
+import { errorHandler, loadFromCache } from './App';
+import { API_ROOT, makeJSONRequest, OBJECTION_NAMES, OPINION_COLORS } from './Config';
 import ObjectionForm from './ObjectionForm';
 
-import type { ObjectionType } from './Types';
+import type { ObjectionType, ErrorType } from './Types';
 
 Moment.locale('de');
 
@@ -23,25 +24,52 @@ type Props = {
 
 type State = {
   objectionFormOpen: boolean,
-  objections: Array<ObjectionType>
+  objections: Array<ObjectionType>,
+  error?: ?string,
+  reported: ?string
 };
 
 export default class Objections extends React.Component<Props, State> {
+  handleError: ErrorType => any;
+
   constructor(props: Props) {
     super(props);
     autoBind(this);
     this.state = {
       objections: props.objections,
-      objectionFormOpen: false
+      objectionFormOpen: false,
+      reported: null
     }
+
+    this.handleError = errorHandler.bind(this);
   }
 
   handleNewObjection(objection: ObjectionType) {
     // Add new objections to the displayed list
-    this.setState({
-      objectionFormOpen: false,
-      objections: this.state.objections.concat([ objection ])
-    });
+    if (objection != null) {
+      this.setState({
+        objectionFormOpen: false,
+        objections: this.state.objections.concat([ objection ])
+      });
+    }
+  }
+
+  handleObjectionVote(objection: ObjectionType, value: boolean) {
+    const endpoint = `${API_ROOT}/react/objection-vote`;
+    const data = {
+      objection_id: objection.id,
+      value,
+      uuid: loadFromCache('uuid')
+    };
+    fetch(endpoint, makeJSONRequest(data))
+      .then(resp => resp.json)
+      .then(resp => {
+        if(!this.handleError(resp)) {
+          this.setState({
+            reported: objection.id
+          });
+        }
+      }).catch(this.handleError);
   }
 
   render() {
@@ -54,20 +82,51 @@ export default class Objections extends React.Component<Props, State> {
         }
       })
       .map(objection => {
+        const a = document.createElement('a');
+        a.href = objection.url;
+        let host = a.hostname;
+
+        if (host.startsWith("www.")) host = host.slice(4)
+
+        const sendReport = () => this.state.reported !== objection.id
+          && this.handleObjectionVote(objection, true)
+
         return <Comment key={"objection-" + objection.id}>
         <Comment.Content>
-          <Comment.Author style={{display: 'inline-block'}}>
-            <Label as='span' circular empty style={{backgroundColor: OPINION_COLORS[objection.rating.toString()]}} /> {OBJECTION_NAMES[this.props.voterOpinion][objection.rating + 1]}
+          <Comment.Author style={{
+            display: 'inline-block',
+            color: '#fcfcfc',
+            padding: "2px 0.3em",
+            marginBottom: "0.1em",
+            fontSize: "0.9em",
+            backgroundColor: OPINION_COLORS[objection.rating.toString()]
+            }}>
+            {/* <Label as='span' circular empty style={{}} />  */}
+            {OBJECTION_NAMES[this.props.voterOpinion][objection.rating + 1]}
           </Comment.Author>
-          <Comment.Metadata>
-              <span>Quelle eingereicht {Moment(objection.date).fromNow()} — </span>
+          <Comment.Metadata style={{display: "inline"}}>
+              Eingereicht {Moment(objection.date).fromNow()} –
               {Moment(this.props.occasionDate).toNow(true)} nach der Wahl
           </Comment.Metadata>
           <Comment.Text>
-            <a href={objection.url} target="_blank">{objection.url}</a>
+            <div><a href={objection.url} target="_blank">
+              {objection.title || objection.url}
+            </a></div>
+            <div style={{color: "rgb(180, 180, 180)"}}>{host}</div>
           </Comment.Text>
           <Comment.Actions>
-            <Comment.Action>Problematische Quelle melden</Comment.Action>
+            <Comment.Action active={this.state.reported === objection.id}
+              onClick={sendReport} >
+
+              <Icon name='warning sign' /> Melden
+              { this.state.reported === objection.id &&
+                <span style={{marginLeft: 5}}>
+                  <Icon name='check' color='green' /> Danke für den Hinweis!
+                    Wir werden diese Quelle und ihre Bewertung auf ihre
+                    Sachlichkeit prüfen.
+                </span>
+              }
+            </Comment.Action>
           </Comment.Actions>
         </Comment.Content>
       </Comment>;
@@ -95,11 +154,11 @@ export default class Objections extends React.Component<Props, State> {
 
       {objectionElems.length > 0 &&
         <div className="objections">
-          <Header as='h3' dividing style={{marginTop: "2rem"}}>
+          <Header as='h3' dividing style={{marginTop: "1rem", marginBottom: 10}}>
             Umsetzung
           </Header>
 
-          <Comment.Group>
+          <Comment.Group style={{marginTop: 0}}>
             {objectionElems}
           </Comment.Group>
 
@@ -129,6 +188,10 @@ export default class Objections extends React.Component<Props, State> {
           voterOpinion={this.props.voterOpinion}
           handleSuccess={this.handleNewObjection}
           handleCancel={() => this.setState({objectionFormOpen: false})} />
+      }
+
+      { this.state.error != null &&
+        <Message negative content={this.state.error} />
       }
     </div>
   }

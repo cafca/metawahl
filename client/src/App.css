@@ -66,3 +66,11 @@
   max-width: 800px !important;
   padding-top: 2em;
 };
+
+.ui.comments .comment .actions {
+  visibility: hidden;
+}
+
+.ui.comments .comment:hover .actions {
+  visibility: visible;
+}

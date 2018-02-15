@@ -143,6 +143,7 @@ class Objection(db.Model):
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
     url = db.Column(db.Text, nullable=False)
+    title = db.Column(db.String(255))
     rating = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
@@ -158,16 +159,19 @@ class Objection(db.Model):
         return len(list(self.votes))
 
     def to_dict(self):
-        return {
+        rv = {
             "id": self.id,
             "date": dt_string(self.date),
             "rating": self.rating,
             "url": self.url,
             "thesis_id": self.thesis_id,
+            "title": self.title,
             "uuid": self.uuid,
             "votes": [v.to_dict() for v in self.votes],
             "vote_count": self.vote_count
         }
+        logger.info(rv)
+        return rv
 
     def vote(self, uuid, value):
         vote = db.session.query(ObjectionVote) \

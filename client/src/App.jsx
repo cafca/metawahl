@@ -68,10 +68,20 @@ export const saveToCache = (key: string, json: string) => {
 }
 
 export function errorHandler(error: ErrorType, target?: string) {
-  if (error.message != null) console.log(error.message);
-  if (error.error != null && error.error.length > 0) {
-    console.log(error.error);
-    this.setState({ [target || "error"]: error.error });
+  let errorMessage = null;
+
+  // Error error
+  if (error.message != null) errorMessage = error.message;
+
+  // API error
+  if (error.error != null && error.error.length > 0) errorMessage = error.error;
+
+  if (errorMessage === "Failed to fetch")
+    errorMessage = "Keine Verbindung zum Metawahl-Server";
+
+  if (errorMessage != null) {
+    console.log(errorMessage);
+    this.setState({ [target || "error"]: errorMessage });
     return true
   } else {
     return false;

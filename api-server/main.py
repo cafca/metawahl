@@ -291,9 +291,27 @@ def create_app(config=None):
                     rv["error"] = "Diesen Link gibt es hier leider schon."
 
             if error is False:
+                import lxml.html
+                try:
+                    site_content = lxml.html.parse(url)
+                except Exception:
+                    error = True
+                    rv["error"] = "Link konnte nicht geladen werden"
+                    logger.warning("Could not load objection link: '{}'" \
+                        .format(url))
+                else:
+                    title = site_content.find(".//title").text
+                    if (not isinstance(title, str) or len(title) == 0):
+                        logger.warning(
+                            "Could not find title tag in objection link: '{}'" \
+                                .format(url))
+                        title = None
+
+            if error is False:
                 objection = Objection(
                     uuid=uuid,
                     url=url,
+                    title=title,
                     thesis=thesis,
                     rating=rating
                 )
