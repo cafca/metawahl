@@ -160,12 +160,14 @@ def create_app(config=None):
 
         # Categories
 
-        categories = db.session.query(Category) \
+        categoryItems = db.session.query(Category, func.count(Thesis.id)) \
+            .join(Category.theses) \
+            .group_by(Category.name) \
             .order_by(Category.slug) \
             .all()
 
-        rv["data"]["categories"] = [category.to_dict()
-            for category in categories]
+        rv["data"]["categories"] = [item[0].to_dict(thesis_count=item[1])
+                for item in categoryItems]
 
         uncategorized = Category.uncategorized()
         if len(uncategorized["theses"]) > 0:
@@ -213,26 +215,19 @@ def create_app(config=None):
 
         return json_response(rv)
 
-    @app.route(API_ROOT + "/categories.json",
-        defaults={'filename': "categories.json", 'thesis_ids': True})
-    @app.route(API_ROOT + "/categories/", methods=["GET"])
+    @app.route(API_ROOT + "/categories.json", methods=["GET"])
     @cache.cached(timeout=50)
-    def categories(filename=None, thesis_ids=False):
+    def categories():
         """Return list of all categories."""
         from models import Category
 
         categories = Category.query.order_by(Category.slug).all()
         rv = {
-            "data": [category.to_dict(thesis_ids=thesis_ids)
+            "data": [category.to_dict(thesis_ids=True)
                 for category in categories]
         }
 
-        if filename is None:
-            uncategorized = Category.uncategorized()
-            if len(uncategorized["theses"]) > 0:
-                rv["data"].append(uncategorized)
-
-        return json_response(rv, filename=filename)
+        return json_response(rv, filename="categories.json")
 
     @app.route(API_ROOT + "/react/<string:kind>", methods=["POST"])
     def react(kind: str):

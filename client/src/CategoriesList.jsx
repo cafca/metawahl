@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import './App.css';
 import { Link } from 'react-router-dom';
+
+import './App.css';
 import { API_ROOT, setTitle } from './Config';
 import { RouteProps } from './Types';
 import {
@@ -39,13 +40,12 @@ export default class CategoriesList extends Component<RouteProps> {
       .sort(sortCategories)
       .map(category => (
         <li key={category.slug}>
-          { category.theses != null &&
-            <span style={{width: "2.5em", display: "inline-block"}}>
-              <Label circular>
-                {category.theses.length}
-              </Label>
-            </span>
-          }
+          <span style={{width: "2.5em", display: "inline-block"}}>
+            <Label circular>
+              {category.thesis_count}
+            </Label>
+          </span>
+
           <Link to={`/bereiche/${category.slug}/`}>{category.name}</Link>
         </li>
       ));

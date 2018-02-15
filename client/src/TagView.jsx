@@ -90,7 +90,6 @@ export default class TagView extends Component<RouteProps, State> {
     fetch(`${API_ROOT}/tags/${this.state.slug}`)
       .then(response => response.json())
       .then(response => {
-        debugger;
         if (!this.handleError(response)) {
           this.setState({
             tag: response.data,
