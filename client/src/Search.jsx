@@ -113,7 +113,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       ? '/wahlen/'
       : result.kind === 'category'
         ? '/bereiche/'
-        : '/tags/';
+        : '/themen/';
 
     this.props.history.push(baseUrl + result.slug + '/');
     this.reset();
@@ -196,7 +196,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
         <div className="content">
           <div className='title'>
             {res.title}
-            <span style={{color: "rgba(0, 0, 0, 0.4)"}}>
+            <span style={{color: "rgba(0, 0, 0, 0.3)", float: "right"}}>
               &nbsp; {res.thesis_count}
             </span>
           </div>
@@ -222,25 +222,25 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
         <i className="search icon"></i>
       </div>
       <div className={resultClassName}
-        style={this.props.large ? {fontSize: "1.2em"} : null}>
+        style={this.props.large ? {fontSize: 14} : null}>
 
         {territoryResults.length > 0 &&
           <div className="category">
-            <div className="name">Parlamente</div>
+            <div className="name" style={{marginTop: 7}}>Parlamente</div>
             {territoryResults}
           </div>
         }
 
         {categoryResults.length > 0 &&
           <div className="category">
-            <div className="name">Bereiche</div>
+            <div className="name" style={{marginTop: 7}}>Bereiche</div>
             {categoryResults}
           </div>
         }
 
         {tagResults.length > 0 &&
           <div className="category">
-            <div className="name">Themen</div>
+            <div className="name" style={{marginTop: 7}}>Themen</div>
             {tagResults}
           </div>
         }

@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Header, Icon } from 'semantic-ui-react';
+import { Segment, Header } from 'semantic-ui-react';
 
-import { setTitle, TERRITORY_NAMES } from './Config';
+import { TERRITORY_NAMES } from './Config';
 import { OccasionListType, RouteProps } from './Types';
+import SEO from './SEO';
 
 type State = {
   occasions: OccasionListType
@@ -20,10 +21,6 @@ export default class OccasionList extends Component<RouteProps, State> {
     this.state = {
       occasions: this.props.occasions
     };
-  }
-
-  componentDidMount() {
-    setTitle();
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
@@ -53,15 +50,15 @@ export default class OccasionList extends Component<RouteProps, State> {
       });
 
     return <div className="occasionList">
+        <SEO title='Metawahl: Alle Wahlen und Parlamente im Überblick'
+          description='Fragen und Antworten aus jedem Wahl-o-Mat der letzten 16 Jahre' />
         <Header as='h1'>
-          <Icon  name='university' />
-          <Header.Content>
-            Metawahl Beta
-            <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland und fordern kritische Retrospektive.</Header.Subheader>
-          </Header.Content>
+          Alle Parlamente und Wahlen
+          <Header.Subheader>
+            Bundestags-, Landtags- und Europawahlen in der Übersicht
+          </Header.Subheader>
         </Header>
-        <h2>Wahlen</h2>
-        <div>
+        <div style={{paddingTop: "2em"}}>
           {occasions}
         </div>
       </div>;

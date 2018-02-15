@@ -86,7 +86,8 @@ export type CategoryType = {
   name: string,
   slug: string,
   related_tags?: { count: number, tag: TagType },
-  theses?: Array<ThesisType> | Array<string>
+  theses?: Array<ThesisType> | Array<string>,
+  thesis_count?: number
 };
 
 export type RouteProps = {

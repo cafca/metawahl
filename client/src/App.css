@@ -1,3 +1,11 @@
+.App {
+  background-color: #fcfcfc;
+}
+
+.ui.segment {
+  background-color: #fcfcfc;
+}
+
 .theses li {
   margin-bottom: 5em;
   list-style-type: none;
@@ -56,5 +64,5 @@
 
 #outerContainer.ui.text.container {
   max-width: 800px !important;
-  margin-top: 60px;
+  padding-top: 2em;
 };

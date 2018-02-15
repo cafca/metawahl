@@ -8,6 +8,10 @@ export const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'devel
   ? "http://localhost:9000/api/v1"
   : "https://api.metawahl.de/api/v1";
 
+export const SITE_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+  ? "http://localhost:3000"
+  : "https://metawahl.de"
+
 // Tools
 
 export const adminKey = () => {
@@ -93,16 +97,6 @@ export const OBJECTION_NAMES = {
 };
 
 // Cosmetic
-
-export const PAGE_TITLE = "Metawahl ";
-
-export const setTitle = (title?:string) => {
-  if (title != null) {
-    document.title = PAGE_TITLE + title;
-  } else {
-    document.title = PAGE_TITLE;
-  }
-}
 
 export const THESES_PER_PAGE = 20;
 

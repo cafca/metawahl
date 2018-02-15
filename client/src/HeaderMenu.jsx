@@ -9,30 +9,30 @@ import Search from './Search';
 const HeaderMenu = (context: {}) => (
   <div>
     <Responsive minWidth={451}>
-      <Menu fixed='top' inverted>
+      <Menu>
         <Container>
           <Menu.Item as={Link} to="/" header>
             Metawahl
           </Menu.Item>
           <Menu.Item as={Link} to='/'>Wahlen</Menu.Item>
           <Menu.Item as={Link} to='/bereiche/'>Bereiche</Menu.Item>
-          <Menu.Item as={Link} to='/tags/'>Themen</Menu.Item>
-          <div className="ui right small inverted menu">
+          <Menu.Item as={Link} to='/themen/'>Themen</Menu.Item>
+
             <Search {...context} large className="small right aligned item" />
-          </div>
+
         </Container>
       </Menu>
     </Responsive>
     <Responsive maxWidth={450}>
-      <Menu inverted fluid>
+      <Menu fluid>
         <Dropdown item text='Metawahl'>
-          <Dropdown.Menu>
+          <Dropdown.Menu fluid>
             <Dropdown.Item as={Link} to="/">Wahlen</Dropdown.Item>
             <Dropdown.Item as={Link} to="/bereiche/">Bereiche</Dropdown.Item>
-            <Dropdown.Item as={Link} to="/tags/">Themen</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/themen/">Themen</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <Search {...context} />
+        <Search {...context} large className="small right aligned item" />
       </Menu>
     </Responsive>
   </div>

@@ -4,10 +4,12 @@ import React from 'react';
 import autoBind from 'react-autobind';
 
 import './App.css';
+import { API_ROOT, THESES_PER_PAGE } from './Config';
 import Thesis from './Thesis';
 import Tag from './Tag';
 import { errorHandler } from './App';
-import { API_ROOT, setTitle, THESES_PER_PAGE } from './Config';
+import SEO from './SEO';
+
 import {
   Breadcrumb, Header, Loader, Message, Pagination, Segment
 } from 'semantic-ui-react';
@@ -87,9 +89,7 @@ export default class Category extends React.Component<RouteProps, State> {
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
-        if (!this.handleError(response)) {
-          response.data && setTitle("- " + response.data.name);
-        }
+        this.handleError(response)
         this.setState({
           isLoading: false,
           category: response.data
@@ -131,6 +131,10 @@ export default class Category extends React.Component<RouteProps, State> {
         />);
 
     return <div className="category">
+      <SEO title={this.props.category.name}
+        description={'Alle Wahlkampfthemen aus dem Bereich '
+        + this.props.category.name} />
+
       <Breadcrumb>
         <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />

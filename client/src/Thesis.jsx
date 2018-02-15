@@ -448,7 +448,7 @@ export default class Thesis extends Component<Props, State> {
                 an <a href='mailto:metawahl@vincentahrend.com'>
                 metawahl@vincentahrend.com</a> schreibst
                 und kurz erzählst, was hier falsch ist.</p>
-                <p>Im <Link to='legal'>Impressum</Link> findest du auch noch
+                <p>Im <Link to='/legal'>Impressum</Link> findest du auch noch
                 weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
               </Message.Content>
             </Message>
