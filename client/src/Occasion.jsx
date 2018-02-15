@@ -87,9 +87,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
     );
 
     return <div className="occasion">
-      <SEO
-        title={'Metawahl: ' + this.state.occasion.title}
-        description='Wahl-o-Mat im Nachhinein: Was habend die Parteien versprochen und was haben sie umgesetzt?' />
+      <SEO title={'Metawahl: '
+        + (this.state.occasion ? this.state.occasion.title : "")} />
 
       <Breadcrumb>
         <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>

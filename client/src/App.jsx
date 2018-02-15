@@ -163,7 +163,7 @@ class App extends Component<Props, State> {
           <div className="App">
             <SEO
               title='Metawahl'
-              description='Welche Politik haben wir eigentlich mit unserer Stimme gewählt – und haben wir sie auch bekommen?'
+              description='Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie bekommen?'
             />
             <HeaderMenu {...context} />
 
