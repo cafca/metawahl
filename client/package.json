@@ -1,6 +1,6 @@
 {
   "name": "metawahl",
-  "version": "0.13",
+  "version": "0.13.0",
   "private": true,
   "homepage": "https://metawahl.de/",
   "dependencies": {
