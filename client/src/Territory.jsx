@@ -46,8 +46,7 @@ export default class Territory extends Component<RouteProps, State> {
 
     return <div className="occasionList">
       <SEO
-        title={'Metawahl: Alle Wahlthemen in ' + territoryName}
-        description='Wahl-o-Mat Versprechen und ihre Umsetzung' />
+        title={'Metawahl: Alle Wahlthemen in ' + territoryName} />
 
         <Breadcrumb>
           <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>

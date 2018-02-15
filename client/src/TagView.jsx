@@ -147,8 +147,7 @@ export default class TagView extends Component<RouteProps, State> {
 
     return <div>
       <SEO
-        title={'Metawahl: Wahlthema ' + this.state.tag.title}
-        description='Was haben die Parteien im Wahl-o-Mat versprochen und was haben sie gehalten?' />
+        title={'Metawahl: Wahlthema ' + this.state.tag.title} />
       <Loader active={this.state.tag == null} />
 
       {this.state.tag != null && this.state.tag.wikidata_id != null &&

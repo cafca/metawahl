@@ -131,9 +131,7 @@ export default class Category extends React.Component<RouteProps, State> {
         />);
 
     return <div className="category">
-      <SEO title={this.props.category.name}
-        description={'Alle Wahlkampfthemen aus dem Bereich '
-        + this.props.category.name} />
+      <SEO title={'Metawahl: ' + this.state.category.name} />
 
       <Breadcrumb>
         <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>

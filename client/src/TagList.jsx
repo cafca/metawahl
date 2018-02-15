@@ -78,8 +78,7 @@ export default class TagList extends Component<RouteProps, State> {
 
     return <div className="tagList">
       <SEO
-        title='Metawahl: Alle Wahlthemen in Deutschland seit 2002'
-        description='Fragen und Antworten aus dem Wahl-o-Mat im Nachhinein. Was wurde versprochen und was wurde gehalten?' />
+        title='Metawahl: Alle Wahlthemen in Deutschland seit 2002' />
 
         <Header as='h1'>
           <Icon name="hashtag" />
