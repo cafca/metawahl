@@ -7,6 +7,7 @@ import {
   Header,
   Icon,
   Loader,
+  Message,
   Pagination,
   Segment
 } from 'semantic-ui-react';
@@ -90,18 +91,16 @@ export default class TagView extends Component<RouteProps, State> {
     fetch(`${API_ROOT}/tags/${this.state.slug}`)
       .then(response => response.json())
       .then(response => {
-        if (!this.handleError(response)) {
-          this.setState({
-            tag: response.data,
-            theses: response.theses,
-            occasions: response.occasions,
-            loading: false
-          });
-        } else {
-          this.setState({ loading: false})
-        }
+        this.handleError(response);
+        this.setState({
+          tag: response.data,
+          theses: response.theses,
+          occasions: response.occasions,
+          loading: false
+        });
       })
       .catch((error: Error) => {
+        this.handleError(error);
         // https://github.com/facebookincubator/create-react-app/issues/3482
         if (process.env.NODE_ENV !== 'test') {
           console.log("Error decoding tag data: " + error.message);
@@ -189,6 +188,10 @@ export default class TagView extends Component<RouteProps, State> {
             </div>
           }
         </Segment>
+      }
+
+      { this.state.error != null &&
+        <Message negative content={this.state.error} />
       }
 
       { IS_ADMIN &&
