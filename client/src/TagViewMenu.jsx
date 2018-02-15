@@ -152,7 +152,7 @@ class TagViewMenu extends Component<Props, State> {
     fetch(endpoint, requestData)
       .then(response => {
         console.log(response);
-        this.props.history.push("/tags/?removed=" + slug);
+        this.props.history.push("/themen/?removed=" + slug);
       })
       .catch(error => {
         console.log("Error removing tag: " + error);

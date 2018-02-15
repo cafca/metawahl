@@ -113,7 +113,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       ? '/wahlen/'
       : result.kind === 'category'
         ? '/bereiche/'
-        : '/tags/';
+        : '/themen/';
 
     this.props.history.push(baseUrl + result.slug + '/');
     this.reset();
@@ -196,7 +196,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
         <div className="content">
           <div className='title'>
             {res.title}
-            <span style={{color: "rgba(0, 0, 0, 0.4)"}}>
+            <span style={{color: "rgba(0, 0, 0, 0.3)", float: "right"}}>
               &nbsp; {res.thesis_count}
             </span>
           </div>

@@ -83,7 +83,7 @@ export default class TagView extends Component<RouteProps, State> {
     e: SyntheticInputEvent<HTMLInputElement>,
     { activePage }: { activePage: number }
   ) {
-    this.props.history.push("/tags/" + this.state.slug + "/" + activePage);
+    this.props.history.push("/themen/" + this.state.slug + "/" + activePage);
   }
 
   loadTag(): void {

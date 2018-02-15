@@ -195,11 +195,11 @@ class App extends Component<Props, State> {
                   <Category {...props} {...context} />
                 )} />
 
-                <Route exact path="/tags/" render={props => (
+                <Route exact path="/themen/" render={props => (
                   <TagList {...props} {...context} />
                 )} />
 
-                <Route path="/tags/:tag/:page?/" render={props => (
+                <Route path="/themen/:tag/:page?/" render={props => (
                   <TagView {...props} {...context} />
                 )} />
 

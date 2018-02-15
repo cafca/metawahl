@@ -54,14 +54,12 @@ export default class OccasionList extends Component<RouteProps, State> {
 
     return <div className="occasionList">
         <Header as='h1'>
-          <Icon  name='university' />
-          <Header.Content>
-            Metawahl Beta
-            <Header.Subheader>Der Wahl-o-Mat im Nachhinein: 16 Jahre Wahlkampfthemen zeigen die Entwicklung der politischen Landschaft in Deutschland und fordern kritische Retrospektive.</Header.Subheader>
-          </Header.Content>
+          Alle Parlamente und Wahlen
+          <Header.Subheader>
+            Bundestags-, Landtags- und Europawahlen in der Übersicht
+          </Header.Subheader>
         </Header>
-        <h2>Wahlen</h2>
-        <div>
+        <div style={{paddingTop: "2em"}}>
           {occasions}
         </div>
       </div>;
