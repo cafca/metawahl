@@ -4,23 +4,26 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import './App.css';
 import Thesis from './Thesis';
-import { Breadcrumb, Header, Loader } from 'semantic-ui-react';
+import { Breadcrumb, Header, Loader, Message } from 'semantic-ui-react';
 import Moment from 'moment';
 
+import { errorHandler } from './App';
 import { API_ROOT, TERRITORY_NAMES } from './Config';
-import { RouteProps, ThesisType, OccasionType } from './Types';
+import { ErrorType, RouteProps, ThesisType, OccasionType } from './Types';
 import { WikidataLabel, WikipediaLabel } from './DataLabel.jsx'
 import SEO from './SEO';
 
 type State = {
   isLoading: boolean,
   occasion: ?OccasionType,
-  theses: Array<ThesisType>
+  theses: Array<ThesisType>,
+  error?: ?string
 };
 
 export default class Occasion extends React.Component<RouteProps, State> {
   territory: string;
   occasionNum: number;
+  handleError: ErrorType => any;
 
   constructor(props: RouteProps) {
     super(props);
@@ -32,6 +35,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
       occasion: this.getCachedOccasion(),
       theses: []
     }
+
+    this.handleError = errorHandler.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +64,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
+        this.handleError(response);
         this.setState({
           isLoading: false,
           occasion: response.data,
@@ -67,6 +73,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         if (cb != null) cb(response.data);
       })
       .catch((error: Error) => {
+        this.handleError(error);
         console.log("Error fetching occasion data: " + error.message)
         this.setState({
           isLoading: false,
@@ -112,6 +119,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
         { this.state.occasion == null ? " "
           : this.state.occasion.title}
       </Header>
+
+      { this.state.error != null &&
+        <Message negative content={this.state.error} />
+      }
 
       <Loader active={this.state.isLoading} />
 

@@ -30,6 +30,7 @@ export type ObjectionVoteType = {
 export type ObjectionType = {
   id: string,
   url: string,
+  title: string,
   uuid: string,
   thesis_id: string,
   votes: Array<ObjectionVoteType>,
