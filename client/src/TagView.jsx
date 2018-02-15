@@ -11,12 +11,13 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle, IS_ADMIN, THESES_PER_PAGE } from './Config';
+import { API_ROOT, IS_ADMIN, THESES_PER_PAGE } from './Config';
 import { errorHandler } from './App';
 import Thesis from './Thesis';
 import Tag from './Tag';
 import TagViewMenu from './TagViewMenu';
 import { WikidataLabel, WikipediaLabel } from './DataLabel';
+import SEO from './SEO';
 
 import type {
   ErrorType, TagType, ThesisType, OccasionType, RouteProps
@@ -27,7 +28,7 @@ type State = {
   loading: boolean,
   page: number,
   slug: string,
-  tag: ?TagType,
+  tag: TagType,
   theses: Array<ThesisType>
 };
 
@@ -51,7 +52,6 @@ export default class TagView extends Component<RouteProps, State> {
 
   componentDidMount() {
     this.loadTag();
-    this.setTitle();
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
@@ -100,7 +100,6 @@ export default class TagView extends Component<RouteProps, State> {
         } else {
           this.setState({ loading: false})
         }
-        setTitle();
       })
       .catch((error: Error) => {
         // https://github.com/facebookincubator/create-react-app/issues/3482
@@ -114,10 +113,6 @@ export default class TagView extends Component<RouteProps, State> {
         }
       }
     );
-  }
-
-  setTitle() {
-    this.state.tag != null && setTitle('# ' + this.state.tag.title)
   }
 
   render() {
@@ -151,6 +146,9 @@ export default class TagView extends Component<RouteProps, State> {
       .slice(0, 10);
 
     return <div>
+      <SEO
+        title={'Metawahl: Wahlthema ' + this.state.tag.title}
+        description='Was haben die Parteien im Wahl-o-Mat versprochen und was haben sie gehalten?' />
       <Loader active={this.state.tag == null} />
 
       {this.state.tag != null && this.state.tag.wikidata_id != null &&

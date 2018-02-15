@@ -5,19 +5,15 @@ import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
 
 import './App.css';
-import { API_ROOT, setTitle } from './Config';
 import { RouteProps } from './Types';
-import { Container, Breadcrumb, Button, Grid, Header, Icon, Label, Loader } from 'semantic-ui-react';
+import { Container, Grid, Header, Label, Loader } from 'semantic-ui-react';
+import SEO from './SEO';
 
 
 export default class CategoriesList extends Component<RouteProps> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-  }
-
-  componentDidMount() {
-    setTitle('Bereiche');
   }
 
   render() {
@@ -42,8 +38,14 @@ export default class CategoriesList extends Component<RouteProps> {
         </li>
       ));
 
-    return this.props.categories.length === 0 ? <h2>Lade Themenbereiche...</h2> :
-      <Container className="categories">
+    return <div>
+      <SEO title='Metawahl: Politik und Wahlkampf in Deutschland nach Themenbereichen'
+        description='Die Thesen aus allen Wahl-o-Maten, sortiert nach
+            dem ihnen nächstliegenden Themenbereich' />
+
+      { this.props.categories.length === 0
+      ? <h2>Lade Themenbereiche...</h2>
+      : <Container className="categories">
         <Header as='h1' style={{paddingBottom: "1em"}}>
           Themenbereiche
           <Header.Subheader>
@@ -67,8 +69,8 @@ export default class CategoriesList extends Component<RouteProps> {
             </ul>
           </Grid.Column>
         </Grid>
-
-      </Container>;
+      </Container>
+    }</div>;
   }
 }
 

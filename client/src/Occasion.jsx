@@ -7,9 +7,10 @@ import Thesis from './Thesis';
 import { Breadcrumb, Header, Loader } from 'semantic-ui-react';
 import Moment from 'moment';
 
-import { API_ROOT, setTitle, TERRITORY_NAMES } from './Config';
+import { API_ROOT, TERRITORY_NAMES } from './Config';
 import { RouteProps, ThesisType, OccasionType } from './Types';
 import { WikidataLabel, WikipediaLabel } from './DataLabel.jsx'
+import SEO from './SEO';
 
 type State = {
   isLoading: boolean,
@@ -34,7 +35,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    this.setTitle();
     this.loadOccasion();
   }
 
@@ -76,10 +76,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
       })
   }
 
-  setTitle() {
-    if (this.state.occasion != null) setTitle("- " + this.state.occasion.title);
-  }
-
   render() {
     const thesesElems = this.state.theses
     .sort((a, b) => a.id > b.id ? 1 : -1)
@@ -91,6 +87,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
     );
 
     return <div className="occasion">
+      <SEO
+        title={'Metawahl: ' + this.state.occasion.title}
+        description='Wahl-o-Mat im Nachhinein: Was habend die Parteien versprochen und was haben sie umgesetzt?' />
+
       <Breadcrumb>
         <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />

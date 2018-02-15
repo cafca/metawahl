@@ -4,9 +4,12 @@ import {
   Header,
   Image
 } from 'semantic-ui-react'
+import SEO from './SEO';
 
 export const LegalView = () => {
   return <Container>
+    <SEO title='Impressum und Datenschutzerklärung' />
+
     <Header as='h1' content="Impressum" />
     <Image src='/img/impressum.png' alt='Kontaktdaten des Herausgebers' />
     <a href="#privacy"><Header as='h2' content="Datenschutzerkl&#xE4;rung" /></a>

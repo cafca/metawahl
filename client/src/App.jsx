@@ -19,6 +19,7 @@ import TagView from './TagView';
 import Territory from './Territory';
 import ScrollToTop from './ScrollToTop';
 import NotFound from './NotFound';
+import SEO from './SEO';
 
 import type {
   OccasionListType, TagType, CategoryType, ErrorType
@@ -160,6 +161,10 @@ class App extends Component<Props, State> {
       <BrowserRouter>
         <ScrollToTop>
           <div className="App">
+            <SEO
+              title='Metawahl'
+              description='Welche Politik haben wir eigentlich mit unserer Stimme gewählt – und haben wir sie auch bekommen?'
+            />
             <HeaderMenu {...context} />
 
             <Container text id="outerContainer">

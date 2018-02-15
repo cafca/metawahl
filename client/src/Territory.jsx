@@ -6,7 +6,9 @@ import './App.css';
 import { Link } from 'react-router-dom';
 import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
 
-import { setTitle, TERRITORY_NAMES } from './Config';
+import { TERRITORY_NAMES } from './Config';
+import SEO from './SEO';
+
 import { RouteProps } from './Types';
 
 type State = {
@@ -22,19 +24,11 @@ export default class Territory extends Component<RouteProps, State> {
     };
   }
 
-  componentDidMount() {
-    this.setTitle();
-  }
-
   componentWillReceiveProps(nextProps: RouteProps) {
     const slug = nextProps.match.params.territory;
     if(slug !== this.state.slug) {
-      this.setState({ slug }, this.setTitle);
+      this.setState({ slug });
     }
-  }
-
-  setTitle() {
-    setTitle(TERRITORY_NAMES[this.state.slug]);
   }
 
   render() {
@@ -51,6 +45,10 @@ export default class Territory extends Component<RouteProps, State> {
       );
 
     return <div className="occasionList">
+      <SEO
+        title={'Metawahl: Alle Wahlthemen in ' + territoryName}
+        description='Wahl-o-Mat Versprechen und ihre Umsetzung' />
+
         <Breadcrumb>
           <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
           <Breadcrumb.Divider icon='right angle' />

@@ -14,8 +14,9 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-import { API_ROOT, setTitle } from './Config';
+import { API_ROOT } from './Config';
 import type { RouteProps } from './Types';
+import SEO from './SEO';
 
 type sorting = "count" | "name";
 
@@ -32,10 +33,6 @@ export default class TagList extends Component<RouteProps, State> {
       showSingleTags: false,
       sortBy: "count"
     }
-  }
-
-  componentDidMount() {
-    setTitle('Tags');
   }
 
   sortBy(method: sorting) {
@@ -80,6 +77,9 @@ export default class TagList extends Component<RouteProps, State> {
       </Item>);
 
     return <div className="tagList">
+      <SEO
+        title='Metawahl: Alle Wahlthemen in Deutschland seit 2002'
+        description='Fragen und Antworten aus dem Wahl-o-Mat im Nachhinein. Was wurde versprochen und was wurde gehalten?' />
 
         <Header as='h1'>
           <Icon name="hashtag" />
