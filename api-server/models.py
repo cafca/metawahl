@@ -170,7 +170,6 @@ class Objection(db.Model):
             "votes": [v.to_dict() for v in self.votes],
             "vote_count": self.vote_count
         }
-        logger.info(rv)
         return rv
 
     def vote(self, uuid, value):

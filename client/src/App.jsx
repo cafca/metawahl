@@ -173,7 +173,7 @@ class App extends Component<Props, State> {
           <div className="App">
             <SEO
               title='Metawahl'
-              description='Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie bekommen?'
+              description='Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?'
             />
             <HeaderMenu {...context} />
 
@@ -225,7 +225,7 @@ class App extends Component<Props, State> {
                 <Route render={props => <NotFound {...props} {...context} />}/>
               </Switch>
             </Container>
-            <Footer />
+            <Footer {...context} />
           </div>
         </ScrollToTop>
       </BrowserRouter>
