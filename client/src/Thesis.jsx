@@ -14,6 +14,7 @@ import {
   Menu,
   Message,
   Popup,
+  Responsive,
   Segment
 } from 'semantic-ui-react';
 
@@ -453,20 +454,34 @@ export default class Thesis extends Component<Props, State> {
               </Message.Content>
             </Message>
           }
+
+          <Responsive minWidth={600}>
           <Popup
             content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
             header="Fehler melden"
             trigger={
-              <Button basic compact circular icon floated='right'
+              <Button basic compact bordered icon floated='right'
                 loading={this.state.reported === false}
                 disabled={this.state.reported === true}
                 onClick={this.handleReport}
                 style={{marginTop: -2}}
               >
-                <Icon name='warning circle' />
+                <Icon name='warning circle' /> Melden
               </Button>
             }
           />
+          </Responsive>
+          <Responsive maxWidth={600}>
+              <Button basic compact bordered icon floated='right'
+                loading={this.state.reported === false}
+                disabled={this.state.reported === true}
+                onClick={this.handleReport}
+                style={{marginTop: -2}}
+              >
+                <Icon name='warning circle' /> Melden
+              </Button>
+          </Responsive>
+
           { categoryElems }
           { tagElems }
           <br />

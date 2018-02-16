@@ -128,7 +128,7 @@ export default class ObjectionForm extends React.Component<Props, State> {
         </Message>
       }
 
-      <Button.Group fluid disabled={this.state.url.length === 0}>
+      <Button.Group fluid className="stackable" disabled={this.state.url.length === 0}>
         <Button animated='vertical' icon style={proButtonStyle} onClick={() => this.handleSubmit(1)}>
           <Button.Content hidden><Icon name='arrow right' /> Speichern</Button.Content>
           <Button.Content visible>{OBJECTION_NAMES[this.props.voterOpinion][2]}</Button.Content>

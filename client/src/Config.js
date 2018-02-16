@@ -91,9 +91,9 @@ export const categoryOptions = Object.keys(CATEGORY_NAMES).map(
   slug => ({key: slug, value: slug, text: CATEGORY_NAMES[slug]}));
 
 export const OBJECTION_NAMES = {
-  "-1": ["Trotzdem realisiert", "Neutral", "Alles beim Alten"],
-  "0": ["Nicht realisiert", "Neutral", "Realisiert"],
-  "1": ["Nicht realisiert", "Neutral", "Realisiert"]
+  "-1": ["Trotzdem umgesetzt", "Neutral", "Nicht umgesetzt"],
+  "0": ["Nicht umgesetzt", "Neutral", "Umgesetzt"],
+  "1": ["Nicht umgesetzt", "Neutral", "Umgesetzt"]
 };
 
 // Cosmetic

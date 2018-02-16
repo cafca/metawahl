@@ -8,7 +8,7 @@ import Search from './Search';
 
 const HeaderMenu = (context: {}) => (
   <div>
-    <Responsive minWidth={451}>
+    <Responsive minWidth={600}>
       <Menu>
         <Container>
           <Menu.Item as={Link} to="/" header>
@@ -23,7 +23,7 @@ const HeaderMenu = (context: {}) => (
         </Container>
       </Menu>
     </Responsive>
-    <Responsive maxWidth={450}>
+    <Responsive maxWidth={600}>
       <Menu fluid>
         <Dropdown item text='Metawahl'>
           <Dropdown.Menu fluid>
