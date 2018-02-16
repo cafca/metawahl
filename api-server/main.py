@@ -8,7 +8,9 @@ import sys
 import logging
 import time
 import json
+import requests
 import traceback
+import lxml.html
 
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
@@ -291,14 +293,32 @@ def create_app(config=None):
                     rv["error"] = "Diesen Link gibt es hier leider schon."
 
             if error is False:
-                import lxml.html
                 try:
-                    site_content = lxml.html.parse(url)
-                except Exception:
+                    link_resp = requests.get(url)
+                except Exception as e:
                     error = True
                     rv["error"] = "Link konnte nicht geladen werden"
-                    logger.warning("Could not load objection link: '{}'" \
-                        .format(url))
+
+            if error is False:
+                if not link_resp.headers.get('Content-type', '') \
+                    .startswith('text/html'):
+                    error = True
+                    rv["error"] = "Im Moment können leider nur Webseiten als Quelle angegeben werden"
+
+            if error is False:
+                try:
+                    # Try finding end of head to avoid having to parse
+                    # entire site contents
+                    posEnd = link_resp.content.find(b'</head>')
+                    if posEnd > -1:
+                        posEnd = posEnd + len(b'</head>')
+                        site_content = lxml.html.fromstring(
+                            link_resp.content[:posEnd])
+                    else:
+                        site_content = lxml.html.fromstring(link_resp.content)
+                except Exception as e:
+                    logger.warning(
+                        "Error finding title tag for '{}'".format(url))
                 else:
                     title = site_content.find(".//title").text
                     if (not isinstance(title, str) or len(title) == 0):
@@ -374,7 +394,7 @@ def create_app(config=None):
                     error = True
                 else:
                     if value is True:
-                        logger.debug("Received {}".format(vote))
+                        logger.warning("Quelle {} gemeldet".format(objection))
                         db.session.expire(vote)
                         rv["data"] = vote.to_dict()
                     else:

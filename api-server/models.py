@@ -152,7 +152,7 @@ class Objection(db.Model):
         backref=db.backref('objections', lazy=False))
 
     def __repr__(self):
-        return "<Objection {} / {}>".format(self.thesis_id, dt_string(self.date))
+        return "<Objection {} / {}>".format(self.thesis_id, self.url)
 
     @property
     def vote_count(self):
