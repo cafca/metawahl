@@ -10,6 +10,7 @@ SQLALCHEMY_ECHO = False
 SQLALCHEMY_RECORD_QUERIES = False
 
 CACHE_TYPE = "memcached"
+CACHE_DEFAULT_TIMEOUT = 24 * 60 * 60
 
 METAWAHL_API_LOGFILE="/var/log/metawahl/flask.log"
 

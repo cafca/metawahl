@@ -18,6 +18,7 @@ from collections import defaultdict
 from flask import Flask, jsonify, request, send_file, g, make_response, abort
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
+from functools import wraps
 from sqlalchemy import func
 from sqlalchemy.exc import SQLAlchemyError
 from flask_cors import CORS
@@ -61,6 +62,20 @@ for licensing information"
             'attachment; filename={}'.format(filename)
 
     return rv
+
+def is_cache_filler():
+    return request.args.get('force_cache_miss') is not None
+
+def cache_filler(cache):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if is_cache_filler():
+                logger.debug('Forced cache miss for {}'.format(request.path))
+                cache.delete("view/{}".format(request.path))
+            return f(*args, **kwargs)
+        return decorated_function
+    return decorator
 
 
 def create_app(config=None):
@@ -129,10 +144,15 @@ def create_app(config=None):
         return json_response({"error": "Ressource not found"}, status=404)
 
     @app.route(API_ROOT + "/base", methods=["GET"])
-    @cache.cached(timeout=50)
+    @cache_filler(cache)
+    @cache.cached()
     def baseData():
         """Return base data set required by the web client."""
         from models import Category, Occasion, Tag, Thesis
+
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
+
         rv = {
             "data": dict()
         }
@@ -178,9 +198,14 @@ def create_app(config=None):
         return json_response(rv)
 
     @app.route(API_ROOT + "/occasions/", methods=["GET"])
+    @cache_filler(cache)
+    @cache.cached()
     def occasions():
         """Return a list of all occasions."""
         from models import Occasion
+
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         try:
             occasions = Occasion.query.all()
@@ -198,11 +223,14 @@ def create_app(config=None):
         return json_response(rv)
 
     @app.route(API_ROOT + "/occasions/<int:wom_id>", methods=["GET"])
+    @cache_filler(cache)
+    @cache.cached()
     def occasion(wom_id: int):
         """Return metadata for an occasion and all theses therein."""
         from models import Occasion
 
-        log_request_info("Occasion", request)
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         occasion = Occasion.query.get(wom_id)
 
@@ -218,10 +246,14 @@ def create_app(config=None):
         return json_response(rv)
 
     @app.route(API_ROOT + "/categories.json", methods=["GET"])
-    @cache.cached(timeout=50)
+    @cache_filler(cache)
+    @cache.cached()
     def categories():
         """Return list of all categories."""
         from models import Category
+
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         categories = Category.query.order_by(Category.slug).all()
         rv = {
@@ -335,17 +367,35 @@ def create_app(config=None):
                     thesis=thesis,
                     rating=rating
                 )
-                vote = objection.vote(data.get('uuid'), True)
+
+                # Delete cached view functions for related thesis
+                delete_caches = []
+                delete_caches.append(
+                    'view/{}/occasions/{}'.format(API_ROOT, thesis.occasion.id)
+                )
+
+                for cat in thesis.categories:
+                    delete_caches.append(
+                        'view/{}/categories/{}'.format(API_ROOT, cat.slug)
+                    )
+
+                for tag in thesis.tags:
+                    delete_caches.append(
+                        'view/{}/tags/{}'.format(API_ROOT, tag.slug)
+                    )
+
+                for key in delete_caches:
+                    logger.debug("Deleting cache for {}".format(key))
+                    cache.delete(key)
 
                 try:
                     db.session.add(objection)
-                    db.session.add(vote)
                     db.session.commit()
                 except SQLAlchemyError as e:
                     logger.error(e)
                     error = True
                 else:
-                    logger.debug("Received {}: {}".format(objection, objection.url))
+                    logger.info("Received {}: {}".format(objection, objection.url))
                     db.session.expire(objection)
                     rv["data"] = objection.to_dict()
 
@@ -398,7 +448,7 @@ def create_app(config=None):
                         db.session.expire(vote)
                         rv["data"] = vote.to_dict()
                     else:
-                        logger.debug("Removed vote")
+                        logger.info("Removed vote")
                         rv["data"] = None
         else:
             logger.error("Unknown reaction kind: {}".format(kind))
@@ -412,9 +462,14 @@ def create_app(config=None):
 
     @app.route(API_ROOT + "/categories/<string:category>",
         methods=["GET", "POST"])
+    @cache_filler(cache)
+    @cache.cached()
     def category(category: str):
         """Return metadata for all theses in a category."""
         from models import Category, Thesis
+
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         error = None
 
@@ -467,10 +522,14 @@ def create_app(config=None):
     @app.route(API_ROOT + "/tags.json",
         methods=["GET"], defaults={'filename': 'tags.json'})
     @app.route(API_ROOT + "/tags/", methods=["GET"])
-    @cache.cached(timeout=50)
+    @cache_filler(cache)
+    @cache.cached()
     def tags(filename=None):
         """Return list of all categories."""
         from models import Tag, Thesis
+
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         if request.args.get("include_theses_ids", False):
             results = db.session.query(Tag) \
@@ -499,12 +558,14 @@ def create_app(config=None):
 
     @app.route(API_ROOT + "/tags/<string:tag_title>",
         methods=["GET", "DELETE"])
-    @cache.cached(timeout=50)
+    @cache_filler(cache)
+    @cache.cached()
     def tag(tag_title: str):
         """Return metadata for all theses in a category."""
         from models import Tag
 
-        log_request_info("Tag", request)
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         tag = db.session.query(Tag) \
             .filter(Tag.slug == tag_title) \
@@ -533,10 +594,14 @@ def create_app(config=None):
 
     @app.route(
         API_ROOT + "/thesis/<string:thesis_id>", methods=["GET"])
+    @cache_filler(cache)
+    @cache.cached()
     def thesis(thesis_id: str):
         """Return metadata for a specific thesis."""
         from models import Thesis
-        log_request_info("Thesis", request)
+
+        if not is_cache_filler():
+            logger.info("Cache miss for {}".format(request.path))
 
         thesis = Thesis.query.get(thesis_id)
 
