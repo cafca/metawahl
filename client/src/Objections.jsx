@@ -4,7 +4,7 @@ import React from 'react';
 import autoBind from 'react-autobind';
 import Moment from 'moment';
 import {
-  Button, Comment, Header, Icon, Label, Message, Popup
+  Button, Comment, Header, Icon, Message, Popup
 } from 'semantic-ui-react';
 
 import { errorHandler, loadFromCache } from './App';
