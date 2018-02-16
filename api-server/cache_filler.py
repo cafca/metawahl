@@ -39,7 +39,7 @@ def gen_urls():
 
     # categories
 
-    urls.append(url('/categories'))
+    urls.append(url('/categories.json'))
     urls.append(url('/categories/_uncategorized'))
 
     categories = Category.query.all()
@@ -48,6 +48,7 @@ def gen_urls():
 
     # tags
 
+    urls.append(url('/tags.json'))
     urls.append(url('/tags'))
 
     tags = Tag.query.all()
