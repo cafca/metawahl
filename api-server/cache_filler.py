@@ -13,7 +13,7 @@ from logger import setup_logger
 from main import API_ROOT
 from models import Occasion, Category, Tag
 
-logger = setup_logger(logfile="cache_filler.log", level=logging.DEBUG)
+logger = setup_logger(logfile="/var/log/metawahl/cache_filler.log", level=logging.DEBUG)
 
 def gen_urls():
     """Generate URLs for all cached API URLs."""
