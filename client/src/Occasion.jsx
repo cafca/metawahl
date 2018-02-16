@@ -93,7 +93,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         {...t} />
     );
 
-    return <div className="occasion">
+    return <div className="occasion" style={{minHeight: 350}} >
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title : "")} />
 

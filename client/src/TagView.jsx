@@ -144,7 +144,7 @@ export default class TagView extends Component<RouteProps, State> {
         />)
       .slice(0, 10);
 
-    return <div>
+    return <div style={{minHeight: 350}} >
       <SEO
         title={'Metawahl: Wahlthema ' + this.state.tag.title} />
       <Loader active={this.state.tag == null} />
