@@ -30,7 +30,8 @@
     "eslint-plugin-flowtype": "^2.42.0",
     "flow-bin": "^0.60.1",
     "iflow-react-router": "^1.2.1",
-    "react-snap": "^1.11.3"
+    "react-snap": "^1.11.3",
+    "svg-react-loader": "^0.4.5"
   },
   "reactSnap": {
     "cacheAjaxRequests": true,

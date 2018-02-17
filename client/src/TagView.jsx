@@ -144,9 +144,12 @@ export default class TagView extends Component<RouteProps, State> {
         />)
       .slice(0, 10);
 
+    const pageTitle = this.state.tag != null && this.state.tag.title != null ?
+      this.state.tag.title : null;
+
     return <div style={{minHeight: 350}} >
       <SEO
-        title={'Metawahl: Wahlthema ' + this.state.tag.title} />
+        title={'Metawahl: Wahlthema ' + pageTitle} />
       <Loader active={this.state.tag == null} />
 
       {this.state.tag != null && this.state.tag.wikidata_id != null &&

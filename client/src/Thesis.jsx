@@ -9,7 +9,6 @@ import {
   Dropdown,
   Header,
   Icon,
-  Image,
   Loader,
   Menu,
   Message,
@@ -25,6 +24,7 @@ import Tag from './Tag';
 import CategoryLabel from './CategoryLabel';
 import PositionChart from './PositionChart';
 import Objections from './Objections';
+import Map from './Map/';
 
 import {
   adminKey,
@@ -50,15 +50,11 @@ import type { WikidataType } from './WikidataTagger';
 const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
     <span>
-      <Image
-        floated='right'
-        style={{height: "3em"}}
-        src={`/img/map-${occasion.territory}.svg`}
-        title={occasion.territory === 'europa'
-          ? 'SVG Europakarte lizensiert unter Public Domain, via Wikimedia Commons (Link siehe Impressum)'
-          : 'SVG Deutschlandkarte lizensiert unter Creative Commons Attribution-Share Alike 2.0 Germany und basierend auf Roman Poulvas, David Liuzzo (Karte Bundesrepublik Deutschland.svg), via Wikimedia Commons (Siehe Link im Impressum).'
-        }
-        alt='Karte Bundesrepublik Deutschland' /> {' '}
+      <Map
+        territory={occasion.territory}
+        inverted={true}
+        style={{height: "3em", float: 'right'}}
+      /> {' '}
       <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
         <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
           {occasion.title}

@@ -2,13 +2,18 @@
 
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
+import moment from 'moment';
+
 import './App.css';
 import { Link } from 'react-router-dom';
-import { Segment, Header } from 'semantic-ui-react';
+import { Grid, Header, List, Responsive } from 'semantic-ui-react';
 
 import { TERRITORY_NAMES } from './Config';
 import { OccasionListType, RouteProps } from './Types';
+import Map from './Map/';
 import SEO from './SEO';
+
+moment.locale('de');
 
 type State = {
   occasions: OccasionListType
@@ -30,24 +35,48 @@ export default class OccasionList extends Component<RouteProps, State> {
   }
 
   render() {
-    const occasions = this.state.occasions != null && Object.keys(this.state.occasions)
-      .sort()
-      .map(territory => {
-        const occasions = this.state.occasions[territory]
-          .sort((a, b) => a.date > b.date)
-          .map(occasion => <Segment key={occasion.id}>
-            <Link to={`/wahlen/${occasion.territory}/${occasion.id}/`}>
-              {occasion.title}
-            </Link>
-          </Segment>);
+    const occasionElem = territory => {
+      const occasions = this.state.occasions[territory]
+        .sort((a, b) => a.date > b.date)
+        .map(occasion => <List.Item key={occasion.id} as='a'
+            href={`/wahlen/${occasion.territory}/${occasion.id}/`}
+            className='occasionListItem'>
+          <List.Header as='h3'>{moment(occasion.date).year()}</List.Header>
+          <span style={{color: 'rgb(140, 140, 140)'}}>
+            {occasion.title.slice(0, occasion.title.indexOf(' '))} vom {moment(occasion.date).format('LL')}
+          </span>
+        </List.Item>);
 
-        return <div className="territory" key={territory}>
-          <h2><Link to={"/wahlen/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link></h2>
-          <Segment.Group>
-            {occasions}
-          </Segment.Group>
-        </div>;
-      });
+      return <div className="ui container" key={territory} style={{marginTop: "4em"}}>
+        <Header dividing as='h2' style={{marginBottom: "1em"}}>
+          <Link to={"/wahlen/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link>
+        </Header>
+        <Grid columns='2'>
+          <Responsive minWidth={601} className='four wide column'>
+            <Map territory={territory} style={{height: "10em"}} />
+          </Responsive>
+          <Responsive maxWidth={600} className='six wide column'>
+              <Map territory={territory} style={{height: "10em"}} />
+          </Responsive>
+          <Grid.Column>
+            <List relaxed='very'>
+              {occasions}
+            </List>
+          </Grid.Column>
+        </Grid>
+      </div>;
+    };
+
+    // Sort German and European elections first
+    const occasionElems = [];
+    if (this.state.occasions != null) {
+      occasionElems.push(occasionElem('deutschland'))
+      occasionElems.push(occasionElem('europa'))
+
+      Object.keys(this.state.occasions)
+        .filter(o => o !== 'deutschland' && o !== 'europa')
+        .map(o => occasionElems.push(occasionElem(o)));
+    }
 
     return <div className="occasionList">
         <SEO title='Metawahl: Alle Wahlen und Parlamente im Überblick' />
@@ -57,9 +86,7 @@ export default class OccasionList extends Component<RouteProps, State> {
             Bundestags-, Landtags- und Europawahlen in der Übersicht
           </Header.Subheader>
         </Header>
-        <div style={{paddingTop: "2em"}}>
-          {occasions}
-        </div>
+        {occasionElems}
       </div>;
   }
 };

@@ -6,7 +6,7 @@ import { Container, Dropdown, Menu, Responsive } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import Search from './Search';
 
-const HeaderMenu = (context: {}) => (
+const HeaderMenu = (props: {}) => (
   <div>
     <Responsive minWidth={600}>
       <Menu>
@@ -14,11 +14,20 @@ const HeaderMenu = (context: {}) => (
           <Menu.Item as={Link} to="/" header>
             Metawahl
           </Menu.Item>
-          <Menu.Item as={Link} to='/'>Wahlen</Menu.Item>
-          <Menu.Item as={Link} to='/bereiche/'>Bereiche</Menu.Item>
-          <Menu.Item as={Link} to='/themen/'>Themen</Menu.Item>
+          <Menu.Item
+            active={props.match.params.area === 'wahlen'} as={Link} to='/'>
+              Wahlen
+          </Menu.Item>
+          <Menu.Item
+            active={props.match.params.area === 'bereiche'} as={Link} to='/bereiche/'>
+                Bereiche
+          </Menu.Item>
+          <Menu.Item
+            active={props.match.params.area === 'themen'} as={Link} to='/themen/'>
+                Themen
+          </Menu.Item>
 
-            <Search {...context} large className="small right aligned item" />
+            <Search {...props} large className="small right aligned item" />
 
         </Container>
       </Menu>
@@ -26,13 +35,13 @@ const HeaderMenu = (context: {}) => (
     <Responsive maxWidth={600}>
       <Menu fluid>
         <Dropdown item text='Metawahl'>
-          <Dropdown.Menu fluid>
+          <Dropdown.Menu>
             <Dropdown.Item as={Link} to="/">Wahlen</Dropdown.Item>
             <Dropdown.Item as={Link} to="/bereiche/">Bereiche</Dropdown.Item>
             <Dropdown.Item as={Link} to="/themen/">Themen</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <Search {...context} large className="small right aligned item" />
+        <Search {...props} large className="small right aligned item" />
       </Menu>
     </Responsive>
   </div>

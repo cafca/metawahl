@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {
   Container,
   Divider,
@@ -16,7 +17,7 @@ import { TERRITORY_NAMES } from './Config';
 const Footer = (props: RouteProps) => {
 
   const territorries = Object.keys(props.occasions).map(o =>
-    <List.Item as='a' key={'footer-link-' + o} to={`/wahlen/${o}/`}>{TERRITORY_NAMES[o]}</List.Item>
+    <List.Item as='a' key={'footer-link-' + o} href={`/wahlen/${o}/`}>{TERRITORY_NAMES[o]}</List.Item>
   );
 
   const recentElections = Object.keys(props.occasions)
@@ -25,7 +26,7 @@ const Footer = (props: RouteProps) => {
     .sort((a, b) => {return a.date < b.date ? 1 : -1})
     .slice(0, territorries.length)
     .map(o => <List.Item key={'footer-link-' + o.id} as='a'
-      to={'/wahlen/' + o.territory + '/' + o.id}>
+      href={'/wahlen/' + o.territory + '/' + o.id}>
       {o.title}
     </List.Item>);
 
@@ -47,13 +48,13 @@ const Footer = (props: RouteProps) => {
               {recentElections}
             </List>
           </Grid.Column>
-          <Grid.Column textAlign='left'>
+          <Grid.Column textAlign='left' className='ui inverted link list'>
             <Header inverted as='h4' content='Über Metawahl' />
             <p>Der Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?</p>
-            <p>Ein Projekt von <a href="http://vincentahrend.com/">Vincent Ahrend</a>.</p>
+            <p>Ein Projekt von <Link className="item" to="http://vincentahrend.com/">Vincent Ahrend</Link></p>
             <p>Gefördert von: <br />
-              <a href="https://www.bmbf.de/">Bundesministerium für Bildung und Forschung</a> <br />
-              <a href="https://prototypefund.de/">Prototype Fund</a>
+              <Link className='item' to="https://www.bmbf.de/">Bundesministerium für Bildung und Forschung</Link> <br />
+              <Link className='item' to="https://prototypefund.de/">Prototype Fund</Link>
             </p>
           </Grid.Column>
         </Grid.Row>

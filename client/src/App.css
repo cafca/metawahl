@@ -2,6 +2,15 @@
   background-color: #fcfcfc;
 }
 
+a {
+  /* Make this !important until the weird Semantic UI LESS compiler setup is integrated with CRA without ejecting... */
+  color: #333;
+}
+
+a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .content .header {
+  color: #111;
+}
+
 .ui.segment {
   background-color: #fcfcfc;
 }
@@ -88,4 +97,13 @@
   .ui.stackable.buttons > .button{
     width: 100%;
   }
+}
+
+/* Hover effect for items in occasion list view */
+.occasionList .list > .occasionListItem {
+  border-left: 5px solid #fafafa;
+  padding-left: 5px;
+}
+.occasionList .occasionListItem:hover {
+  border-color: rgb(220, 220, 220)
 }

@@ -175,7 +175,7 @@ class App extends Component<Props, State> {
               title='Metawahl'
               description='Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?'
             />
-            <HeaderMenu {...context} />
+            <Route path='/:area?' render={props => <HeaderMenu {...props} {...context} />} />
 
             <Container text id="outerContainer">
               { !process.env.NODE_ENV && process.env.NODE_ENV !== 'development' &&
