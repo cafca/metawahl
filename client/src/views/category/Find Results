@@ -1,0 +1,106 @@
+Searching 10 files for "'/config/'"
+
+/Users/pv/projects/metawahl/src/client/src/views/category/index.jsx:
+    5  
+    6  import '/index.css';
+    7: import { API_ROOT, THESES_PER_PAGE } from '/config/';
+    8  import Thesis from '../../components/thesis/';
+    9  import Tag from '../../components/tag';
+
+/Users/pv/projects/metawahl/src/client/src/views/occasion/index.jsx:
+    9  import Thesis from '../../components/thesis/';
+   10  import Errorhandler from '/utils/errorHandler';
+   11: import { API_ROOT, TERRITORY_NAMES } from '/config/';
+   12  import { ErrorType, RouteProps, ThesisType, OccasionType } from '/types/';
+   13  import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
+
+/Users/pv/projects/metawahl/src/client/src/views/occasionList/index.jsx:
+    9  import { Grid, Header, List, Responsive } from 'semantic-ui-react';
+   10  
+   11: import { TERRITORY_NAMES } from '/config/';
+   12  import { OccasionListType, RouteProps } from '/types/';
+   13  import MapComponent from '../../components/map/';
+
+/Users/pv/projects/metawahl/src/client/src/views/tag/index.jsx:
+   13  } from 'semantic-ui-react';
+   14  
+   15: import { API_ROOT, IS_ADMIN, THESES_PER_PAGE } from '/config/';
+   16  import Errorhandler from '/utils/errorHandler';
+   17  import Thesis from '../../components/thesis/';
+
+/Users/pv/projects/metawahl/src/client/src/views/tag/menu.jsx:
+   20    makeJSONRequest,
+   21    adminKey
+   22: } from '/config/';
+   23  import WikidataTagger from '../../components/wikidataTagger/';
+   24  
+
+/Users/pv/projects/metawahl/src/client/src/views/tagList/index.jsx:
+   15  } from 'semantic-ui-react';
+   16  
+   17: import { API_ROOT } from '/config/';
+   18  import type { RouteProps } from '/types/';
+   19  import SEO from '../../components/seo/';
+
+/Users/pv/projects/metawahl/src/client/src/views/territory/index.jsx:
+    7  import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
+    8  
+    9: import { TERRITORY_NAMES } from '/config/';
+   10  import SEO from '../../components/seo/';
+   11  
+
+7 matches across 7 files
+
+
+Searching 10 files for "'/index.css'"
+
+/Users/pv/projects/metawahl/src/client/src/views/category/index.jsx:
+    4  import autoBind from 'react-autobind';
+    5  
+    6: import '/index.css';
+    7  import { API_ROOT, THESES_PER_PAGE } from '../../config/';
+    8  import Thesis from '../../components/thesis/';
+
+/Users/pv/projects/metawahl/src/client/src/views/categoryList/index.jsx:
+    5  import { Link } from 'react-router-dom';
+    6  
+    7: import '/index.css';
+    8  import { RouteProps } from '../../types/';
+    9  import { Container, Grid, Header, Label, Loader } from 'semantic-ui-react';
+
+/Users/pv/projects/metawahl/src/client/src/views/occasionList/index.jsx:
+    5  import moment from 'moment';
+    6  
+    7: import '/index.css';
+    8  import { Link } from 'react-router-dom';
+    9  import { Grid, Header, List, Responsive } from 'semantic-ui-react';
+
+/Users/pv/projects/metawahl/src/client/src/views/tag/index.jsx:
+    3  import React, { Component } from 'react';
+    4  import autoBind from 'react-autobind';
+    5: import '/index.css';
+    6  import {
+    7    Header,
+
+/Users/pv/projects/metawahl/src/client/src/views/tag/menu.jsx:
+    4  import { withRouter } from 'react-router'
+    5  import autoBind from 'react-autobind';
+    6: import '/index.css';
+    7  import {
+    8    Dropdown,
+
+/Users/pv/projects/metawahl/src/client/src/views/tagList/index.jsx:
+    3  import React, { Component } from 'react';
+    4  import autoBind from 'react-autobind';
+    5: import '/index.css';
+    6  import {
+    7    Checkbox,
+
+/Users/pv/projects/metawahl/src/client/src/views/territory/index.jsx:
+    3  import React, { Component } from 'react';
+    4  import autoBind from 'react-autobind';
+    5: import '/index.css';
+    6  import { Link } from 'react-router-dom';
+    7  import { Segment, Breadcrumb, Header } from 'semantic-ui-react';
+
+7 matches across 7 files
