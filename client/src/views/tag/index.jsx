@@ -33,7 +33,7 @@ type State = {
   loading: boolean,
   page: number,
   slug: string,
-  filter: Array<string>,
+  tagFilter: ?string,
   tag: TagType,
   theses: Array<ThesisType>
 };
@@ -51,7 +51,7 @@ export default class TagView extends Component<RouteProps, State> {
       tag: this.getCachedTag(),
       occasions: {},
       theses: [],
-      filter: []
+      tagFilter: null
     }
 
     this.handleError = Errorhandler.bind(this);
@@ -59,17 +59,6 @@ export default class TagView extends Component<RouteProps, State> {
 
   componentDidMount() {
     this.loadTag();
-  }
-
-  handleFilter(tag: TagType) {
-    const filter = this.state.filter.slice();
-    const i = filter.indexOf(tag.title)
-    if (i > -1) {
-      filter.splice(i, 1);
-    } else {
-      filter.push(tag.title);
-    }
-    this.setState({filter});
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
@@ -105,7 +94,7 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   loadTag(): void {
-    fetch(`${API_ROOT}/tags/${this.state.slug}`)
+    fetch(API_ROOT + "/tags/" + this.state.slug)
       .then(response => response.json())
       .then(response => {
         this.handleError(response);
@@ -132,14 +121,25 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   render() {
+
+    const theses = this.state.loading === false && this.state.theses
+      .filter(thesis => {
+        if (this.state.tagFilter != null && this.state.tagFilter.length > 0) {
+          return thesis.tags
+            .filter(t => t.title === this.state.tagFilter).length > 0;
+        } else {
+          return true;
+        }
+      })
+      .sort((t1, t2) => t2.occasion_id - t1.occasion_id);
+
     const startPos = (this.state.page - 1) * THESES_PER_PAGE;
     const endPos = Math.min(
       startPos + THESES_PER_PAGE,
-      this.state.theses.length
+      theses.length
     );
 
-    const theses = this.state.loading === false && this.state.theses
-      .sort((t1, t2) => t2.occasion_id - t1.occasion_id)
+    const thesesElems = this.state.loading  ? null : theses
       .slice(startPos, endPos)
       .map((thesis, i) =>
         <Thesis
@@ -153,6 +153,12 @@ export default class TagView extends Component<RouteProps, State> {
     const relatedTags = (this.state.tag && this.state.tag.related_tags) || {};
     const filterOptions = Object.keys(relatedTags)
       .sort((a, b) => relatedTags[b].count - relatedTags[a].count)
+      .map(i => ({
+        key: i,
+        text: relatedTags[i].tag.title,
+        count: relatedTags[i].count,
+        value: i
+      }));
 
     const pageTitle = this.state.tag != null && this.state.tag.title != null ?
       this.state.tag.title : null;
@@ -196,9 +202,9 @@ export default class TagView extends Component<RouteProps, State> {
 
       <Menu>
         <Menu.Item header content='Filter' />
-        <Dropdown className='link item' placeholder='Thema' multiple selection value={this.state.filter}>
-          {filterOptions}
-        </Dropdown>
+        <Dropdown className='link item' placeholder='Thema' selection
+          value={this.state.filter} style={{border: "none"}}
+          options={filterOptions} onChange={(e, data) => this.setState({tagFilter: data.value})} />
       </Menu>
 
       { IS_ADMIN &&
@@ -216,17 +222,17 @@ export default class TagView extends Component<RouteProps, State> {
 
       <Loader active={this.state.loading} />
 
-      { this.state.theses.length > 0 &&
+      { theses.length > 0 &&
         <div>
-          <h2>Thesen {startPos + 1} bis {endPos} von insgesamt {this.state.theses.length}</h2>
-          {theses}
+          <h2>Thesen {startPos + 1} bis {endPos} von insgesamt {theses.length}</h2>
+          {thesesElems}
 
           <Pagination
             activePage={this.state.page}
             onPageChange={this.handlePaginationChange}
             prevItem={null}
             nextItem={null}
-            totalPages={Math.ceil(this.state.theses.length / THESES_PER_PAGE)}
+            totalPages={Math.ceil(theses.length / THESES_PER_PAGE)}
           />
         </div>
       }
