@@ -131,18 +131,19 @@ export default class Category extends React.Component<RouteProps, State> {
         />);
 
     return <div className="category">
-      <SEO title={'Metawahl: ' + this.state.category.name} />
+      <SEO
+        title={'Metawahl: ' + this.state.category.name}
+        canonical={'/bereiche/' + this.slug + '/'}
+      />
 
       <Breadcrumb>
         <Breadcrumb.Section href="/bereiche/">Bereiche</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />
-        { this.state.isLoading
-          ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-          : <Breadcrumb.Section active>
-              {cat.name}
-            </Breadcrumb.Section>
-        }
+        <Breadcrumb.Section active>
+          {cat.name}
+        </Breadcrumb.Section>
       </Breadcrumb>
+
       <Header as='h1'>
         { cat.name }
       </Header>

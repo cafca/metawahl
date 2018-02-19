@@ -58,7 +58,7 @@ export default class OccasionList extends Component<RouteProps, State> {
           <Responsive maxWidth={600} className='six wide column'>
             <MapComponent territory={territory} style={{height: "10em"}} />
           </Responsive>
-          <Grid.Column>
+          <Grid.Column width='10'>
             <List relaxed='very'>
               {occasions}
             </List>

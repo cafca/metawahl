@@ -150,7 +150,9 @@ export default class TagView extends Component<RouteProps, State> {
 
     return <div style={{minHeight: 350}} >
       <SEO
-        title={'Metawahl: Wahlthema ' + pageTitle} />
+        title={'Metawahl: Wahlthema ' + pageTitle}
+        canonical={'/themen/' + this.slug + '/'} />
+
       <Loader active={this.state.tag == null} />
 
       {this.state.tag != null && this.state.tag.wikidata_id != null &&
