@@ -133,7 +133,7 @@ class ThesisReport(db.Model):
             "text": self.text,
             "thesis": self.thesis_id,
             "uuid": self.uuid,
-            "date": dt_parse(self.date)
+            "date": dt_string(self.date)
         }
 
 
