@@ -15,7 +15,7 @@ import lxml.html
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 from collections import defaultdict
-from flask import Flask, jsonify, request, send_file, g, make_response, abort
+from flask import Flask, jsonify, request, send_file, g, make_response, abort, Response
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -33,6 +33,8 @@ API_NAME = "Metawahl API"
 API_VERSION = "v1"
 API_FULL_NAME = "{name} {version}".format(name=API_NAME, version=API_VERSION)
 API_ROOT = "/api/{}".format(API_VERSION)
+
+SITE_ROOT = "https://metawahl.de"
 
 db = SQLAlchemy()
 
@@ -142,6 +144,40 @@ def create_app(config=None):
     @app.errorhandler(404)
     def page_not_found(e):
         return json_response({"error": "Ressource not found"}, status=404)
+
+    @app.route('/sitemap.xml', methods=["GET"])
+    def sitemap():
+        from models import Category, Occasion, Tag
+
+        def generate():
+            app = create_app()
+            with app.app_context():
+                yield SITE_ROOT
+
+                # Occasions
+                yield '{}/wahlen/\n'.format(SITE_ROOT)
+                terr = None
+                for occ in db.session.query(Occasion).order_by(Occasion.territory).all():
+                    if occ.territory != terr:
+                        yield '{}/wahlen/{}/\n'.format(SITE_ROOT, occ.territory)
+                    yield '{}/wahlen/{}/{}/\n'.format(SITE_ROOT, occ.territory, occ.id)
+                    terr = occ.territory
+
+
+                # Categories
+                yield '{}/bereiche/\n'.format(SITE_ROOT)
+                for cat in db.session.query(Category).order_by(Category.slug).all():
+                    yield '{}/bereiche/{}/\n'.format(SITE_ROOT, cat.slug)
+
+                # Topics
+                yield '{}/themen/\n'.format(SITE_ROOT)
+                for tag in db.session.query(Tag).order_by(Tag.slug).all():
+                    yield '{}/themen/{}/\n'.format(SITE_ROOT, tag.slug)
+
+                # Other
+                yield '{}/legal/\n'.format(SITE_ROOT)
+
+        return Response(generate(), mimetype='text/plain')
 
     @app.route(API_ROOT + "/base", methods=["GET"])
     @cache_filler(cache)
@@ -531,7 +567,7 @@ def create_app(config=None):
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
 
-        if request.args.get("include_theses_ids", False):
+        if request.args.get("include_theses_ids", False) or filename != None:
             results = db.session.query(Tag) \
                 .join(Tag.theses) \
                 .group_by(Tag.title) \

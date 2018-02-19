@@ -10,7 +10,7 @@ import dateutil.parser
 from collections import defaultdict
 from datetime import datetime
 from models import Occasion, Thesis, Position, Party, Tag, Category, Result, \
-    ThesisReport
+    ThesisReport, Objection
 from main import logger, create_app, db
 
 API_VERSION = "Metawahl API v1"
@@ -287,6 +287,36 @@ def load_reports():
         yield report
 
 
+def load_objections():
+    """Load user submitted objections from json file."""
+    try:
+        with open("../userdata/objections.json") as f:
+            objection_export = json.load(f)
+    except FileNotFoundError:
+        logger.warning("File ../userdata/thesis_objections.json not found - " +
+            "objections were not imported")
+        return
+
+    assert objection_export["meta"]["api"] == API_VERSION
+    logger.info("Adding {} objections...".format(len(objection_export["data"])))
+
+    for objection_data in objection_export["data"]:
+        date = dateutil.parser.parse(objection_data.get('date'))
+        try:
+            objection = Objection(
+                uuid=objection_data.get('uuid'),
+                date=date,
+                url=objection_data.get('url'),
+                title=objection_data.get('title', None),
+                rating=objection_data.get('rating'),
+                thesis=Thesis.query.get(objection_data.get('thesis'))
+            )
+        except (KeyError, TypeError) as e:
+            logger.error("Error importing objection: {}".format(e))
+
+        yield objection
+
+
 def load_wahlergebnisse():
     """Load Wahlergebnisse from wahlergebnisse submodule."""
 
@@ -448,6 +478,9 @@ if __name__ == '__main__':
 
         for report in load_reports():
             db.session.add(report)
+
+        for objection in load_objections():
+            db.session.add(objection)
 
         logger.info("Committing session to disk...")
         db.session.commit()

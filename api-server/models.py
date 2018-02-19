@@ -84,7 +84,7 @@ class Category(db.Model):
             rv["thesis_count"] = thesis_count
 
         if thesis_ids:
-            rv["thesis_ids"] = [thesis.id for thesis in self.theses]
+            rv["theses"] = [thesis.id for thesis in self.theses]
 
         if include_related_tags:
             rv["related_tags"] = self.related_tags
@@ -132,7 +132,8 @@ class ThesisReport(db.Model):
         return {
             "text": self.text,
             "thesis": self.thesis_id,
-            "uuid": self.uuid
+            "uuid": self.uuid,
+            "date": dt_parse(self.date)
         }
 
 
@@ -164,7 +165,7 @@ class Objection(db.Model):
             "date": dt_string(self.date),
             "rating": self.rating,
             "url": self.url,
-            "thesis_id": self.thesis_id,
+            "thesis": self.thesis_id,
             "title": self.title,
             "uuid": self.uuid,
             "votes": [v.to_dict() for v in self.votes],
