@@ -23,7 +23,9 @@
   "pro Deutschland": [
     "PRODE"
   ],
-  "Tierschutzpartei": [],
+  "Tierschutzpartei": [
+    "Die Tierschutzpartei"
+  ],
   "FDP": [],
   "NPD": [],
   "PIRATEN": [
@@ -57,10 +59,11 @@
   ],
   "CDU/CSU": [
     "Union",
-    "CDU"
+    "CDU",
+    "CSU"
   ],
   "PARTEI DER VERNUNFT": [],
-  "Partei der Nichtwähler": [],
+  "Partei der Nichtwähler": ["Nichtwähler"],
   "FREIE WÄHLER": [
     "FW"
   ],
@@ -76,7 +79,9 @@
   "RENTNER": [
     "Rentner "
   ],
-  "Bündnis 21/RRP": [],
+  "Bündnis 21/RRP": [
+    "Bündnis 21 / RRP"
+  ],
   "CDU / CSU": [
     "CDU",
     "Union"
@@ -111,6 +116,7 @@
   ],
   "Tierschutzallianz": [],
   "B*": [
+    "B",
     "Bergpartei"
   ],
   "BGE": [],
@@ -147,9 +153,7 @@
   "Die Linke": [
     "Linke"
   ],
-  "CSU": [
-    "CDU"
-  ],
+  "CSU": [],
   "FW FREIE WÄHLER": [
     "FW"
   ],
@@ -172,7 +176,9 @@
     "FW"
   ],
   "BVB / FREIE WÄHLER": [
-    "FW"
+    "FW",
+    "BVB/Freie Wähler",
+    "BVB/FW"
   ],
   "GRÜNE/B 90": [
     "Grüne"
@@ -201,8 +207,12 @@
   "AD-Demokraten NRW": [],
   "AUFBRUCH C": [],
   "DBD": [],
-  "DIE EINHEIT": [],
-  "III. Weg": [],
+  "DIE EINHEIT": [
+    "Einheit"
+  ],
+  "III. Weg": [
+    "IIIWEG"
+  ],
   "DIREKTE DEMOKRATIE": [
     "Direkte"
   ],

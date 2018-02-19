@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "api": "Metawahl API v1",
+    "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information"
+  },
+  "data": [
+    {
+      "id": 1,
+      "thesis": "WOM-032-00",
+      "title": "Olympiabewerbung: Hamburger sagen Nein zu Olympia |\u00a0ZEIT ONLINE",
+      "date": "2018-02-16 11:34:31 Z",
+      "uuid": "1a36e562-f536-429c-b585-ca53084b3f06",
+      "votes": [],
+      "vote_count": 0,
+      "rating": -1,
+      "url": "http://www.zeit.de/politik/2015-11/olympia-bewerbung-hamburg-referendum"
+    },
+    {
+      "id": 2,
+      "thesis": "WOM-038-00",
+      "title": "Airbnb: Berlin will Homesharing erlauben |\u00a0ZEIT ONLINE",
+      "date": "2018-02-16 14:23:57 Z",
+      "uuid": "1a36e562-f536-429c-b585-ca53084b3f06",
+      "votes": [],
+      "vote_count": 0,
+      "rating": 1,
+      "url": "http://www.zeit.de/wirtschaft/unternehmen/2017-12/airbnb-home-sharing-berlin-vermietung-mietwohungen-ferienwohnungen"
+    },
+    {
+      "id": 3,
+      "thesis": "WOM-038-01",
+      "title": "Fakten - Berlin.de",
+      "date": "2018-02-16 14:25:47 Z",
+      "uuid": "1a36e562-f536-429c-b585-ca53084b3f06",
+      "votes": [],
+      "vote_count": 0,
+      "rating": 1,
+      "url": "https://www.berlin.de/fluechtlinge/infos-zu-fluechtlingen/fakten/artikel.436797.php"
+    },
+    {
+      "id": 4,
+      "thesis": "WOM-038-02",
+      "title": "Viele Berliner \u00abSp\u00e4tis\u00bb m\u00fcssen sonntags schlie\u00dfen - Berlin.de",
+      "date": "2018-02-16 14:27:52 Z",
+      "uuid": "1a36e562-f536-429c-b585-ca53084b3f06",
+      "votes": [],
+      "vote_count": 0,
+      "rating": -1,
+      "url": "https://www.berlin.de/special/shopping/archiv/2588264-2175268-viele-berliner-spaetis-muessen-sonntags-.html"
+    },
+    {
+      "id": 5,
+      "thesis": "WOM-038-03",
+      "title": "Nach Volksentscheid: So geht es mit dem Flughafen Tegel weiter \u2013  B.Z. Berlin",
+      "date": "2018-02-16 14:28:28 Z",
+      "uuid": "1a36e562-f536-429c-b585-ca53084b3f06",
+      "votes": [],
+      "vote_count": 0,
+      "rating": 0,
+      "url": "https://www.bz-berlin.de/berlin/reinickendorf/nach-volksentscheid-so-geht-es-mit-dem-flughafen-tegel-weiter"
+    },
+    {
+      "id": 6,
+      "thesis": "WOM-024-03",
+      "title": "Debatte um Ehrenrunde: Niedersachsen will Sitzenbleiben abschaffen - SPIEGEL ONLINE",
+      "date": "2018-02-16 14:47:28 Z",
+      "uuid": "1a36e562-f536-429c-b585-ca53084b3f06",
+      "votes": [],
+      "vote_count": 0,
+      "rating": -1,
+      "url": "http://www.spiegel.de/lebenundlernen/schule/debatte-um-ehrenrunde-niedersachsen-will-sitzenbleiben-abschaffen-a-884013.html"
+    }
+  ]
+}

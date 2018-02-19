@@ -15,17 +15,17 @@ matrix:
 
       script: ./travis_tavern.sh
 
-    - language: node_js
-      node_js:
-        - 8
-        - 9
+    # - language: node_js
+    #   node_js:
+    #     - 8
+    #     - 9
 
-      before_install: cd client/
+    #   before_install: cd client/
 
-      script:
-        - npm run build
-        - npm test
+    #   script:
+    #     - npm run build
+    #     - npm test
 
-      cache:
-        directories:
-          - "node_modules"
+    #   cache:
+    #     directories:
+    #       - "node_modules"

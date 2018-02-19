@@ -1,14 +1,16 @@
 {
   "name": "metawahl",
-  "version": "0.9.1",
+  "version": "0.14.0",
   "private": true,
   "homepage": "https://metawahl.de/",
   "dependencies": {
+    "fuse.js": "^3.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "react": "^16.0.0",
     "react-autobind": "^1.0.6",
     "react-dom": "^16.0.0",
+    "react-helmet": "^5.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
@@ -19,6 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "snap": "react-snap",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow"
@@ -26,6 +29,14 @@
   "devDependencies": {
     "eslint-plugin-flowtype": "^2.42.0",
     "flow-bin": "^0.60.1",
-    "iflow-react-router": "^1.2.1"
+    "iflow-react-router": "^1.2.1",
+    "react-snap": "^1.11.3",
+    "svg-react-loader": "^0.4.5"
+  },
+  "reactSnap": {
+    "cacheAjaxRequests": true,
+    "minifyHtml": {
+      "sortClassName": false
+    }
   }
 }

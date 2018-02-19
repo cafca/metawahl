@@ -52,7 +52,11 @@ class Category(db.Model):
                 tags[tag.title] = tag
 
         num_related_tags = 10
-        cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+        try:
+            cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+        except IndexError:
+            logger.info("Cutoff set to 0 for category {}".format(self))
+            cutoff = 0
 
         rv = dict()
         for tag in tag_counts.keys():
@@ -64,7 +68,8 @@ class Category(db.Model):
 
         return rv
 
-    def to_dict(self, thesis_data=False, include_related_tags=False):
+    def to_dict(self, thesis_data=False, thesis_ids=False,
+            include_related_tags=False, thesis_count=None):
         rv = {
             "name": self.name,
             "slug": self.slug
@@ -74,7 +79,11 @@ class Category(db.Model):
             rv["theses"] = [thesis.to_dict() for thesis in self.theses]
             rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
                 for thesis in self.theses}
-        else:
+
+        if thesis_count is not None:
+            rv["thesis_count"] = thesis_count
+
+        if thesis_ids:
             rv["theses"] = [thesis.id for thesis in self.theses]
 
         if include_related_tags:
@@ -123,7 +132,8 @@ class ThesisReport(db.Model):
         return {
             "text": self.text,
             "thesis": self.thesis_id,
-            "uuid": self.uuid
+            "uuid": self.uuid,
+            "date": dt_parse(self.date)
         }
 
 
@@ -134,6 +144,7 @@ class Objection(db.Model):
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
     url = db.Column(db.Text, nullable=False)
+    title = db.Column(db.String(255))
     rating = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
@@ -142,23 +153,25 @@ class Objection(db.Model):
         backref=db.backref('objections', lazy=False))
 
     def __repr__(self):
-        return "<Objection {} / {}>".format(self.thesis_id, dt_string(self.date))
+        return "<Objection {} / {}>".format(self.thesis_id, self.url)
 
     @property
     def vote_count(self):
         return len(list(self.votes))
 
     def to_dict(self):
-        return {
+        rv = {
             "id": self.id,
             "date": dt_string(self.date),
             "rating": self.rating,
             "url": self.url,
-            "thesis_id": self.thesis_id,
+            "thesis": self.thesis_id,
+            "title": self.title,
             "uuid": self.uuid,
             "votes": [v.to_dict() for v in self.votes],
             "vote_count": self.vote_count
         }
+        return rv
 
     def vote(self, uuid, value):
         vote = db.session.query(ObjectionVote) \
@@ -226,6 +239,7 @@ class Occasion(db.Model):
             "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
+            "results_sources": list(set([r.source for r in self.results])),
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
@@ -242,11 +256,16 @@ class Occasion(db.Model):
     def result_dict(self):
         rv = dict()
         for r in self.results:
-            rv[r.party_name] = {
+            rv[r.party_repr] = {
                 "votes": r.votes,
                 "pct": r.pct
             }
 
+            if r.party_repr != r.party_name:
+                rv[r.party_repr]["linked_position"] = r.party_name
+
+            if r.wom is False:
+                rv[r.party_repr]["missing"] = True
         return rv
 
 
@@ -306,6 +325,11 @@ class Result(db.Model):
     is_mandated = db.Column(db.Boolean, default=False)
     source = db.Column(db.String(256), nullable=True)
 
+    # Is there a position for this result in the corresponding wom?
+    wom = db.Column(db.Boolean, default=True)
+
+    # How the name of the party was written for this election
+    party_repr = db.Column(db.String(256), nullable=False)
     party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
         nullable=False)
     party = db.relationship('Party', backref=db.backref('results',

@@ -1,10 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import { hydrate, render } from 'react-dom';
 import 'semantic-ui-css/semantic.min.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
+import './index.css';
+import App from './app/';
+import registerServiceWorker from './utils/registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
+
+if (rootElement.hasChildNodes()) {
+  hydrate(<App />, rootElement);
+} else {
+  render(<App />, rootElement);
+}
+
 registerServiceWorker();
