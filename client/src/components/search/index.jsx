@@ -40,18 +40,6 @@ const territoryList = Object.keys(TERRITORY_NAMES).map(k => ({
   'kind': 'territory'
 }));
 
-const categorySearchOptions = Object.assign({}, baseSearchOptions, {
-  distance: 30,
-  minMatchCharLength: 2,
-  keys: ['title']
-});
-
-const categoryList = Object.keys(CATEGORY_NAMES).map(k => ({
-  'title': CATEGORY_NAMES[k],
-  'slug': k,
-  'kind': 'category'
-}));
-
 type SearchProps = {
   history: {  // React Router history object
     push: string => any
@@ -60,7 +48,6 @@ type SearchProps = {
   large?: boolean,
   isLoading: boolean,
   occasions: OccasionListType,
-  categories: Array<CategoryType>,
   tags: Array<TagType>
 };
 
@@ -68,14 +55,12 @@ type SearchState = {
   isLoading: boolean,
   query: string,
   tagResults: Array<TagType>,
-  territoryResults: Array<{[string]: string}>,
-  categoryResults: Array<{[string]: string}>
+  territoryResults: Array<{[string]: string}>
 }
 
 class SearchComponent extends React.Component<SearchProps, SearchState> {
   tagSearch;
   territorySearch;
-  categorySearch;
 
   constructor(props: SearchProps) {
     super();
@@ -84,8 +69,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       isLoading: false,
       query: "",
       tagResults: [],
-      territoryResults: [],
-      categoryResults: []
+      territoryResults: []
     };
 
     this.tagSearch = new Fuse(
@@ -93,9 +77,6 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
 
     this.territorySearch = new Fuse(
       territoryList, territorySearchOptions);
-
-    this.categorySearch = new Fuse(
-      categoryList, categorySearchOptions);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -111,9 +92,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
   handleResultSelect(result) {
     const baseUrl = result.kind === 'territory'
       ? '/wahlen/'
-      : result.kind === 'category'
-        ? '/bereiche/'
-        : '/themen/';
+      : '/themen/';
 
     this.props.history.push(baseUrl + result.slug + '/');
     this.reset();
@@ -138,7 +117,6 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     this.setState({ isLoading: true, query });
 
     const territoryResults = this.territorySearch.search(query);
-    const categoryResults = this.categorySearch.search(query);
 
     let tagResults = [];
     if (query.length < 3) {
@@ -161,25 +139,13 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     this.setState({
       isLoading: false,
       tagResults: tagResults.slice(0, 10),
-      territoryResults: territoryResults.slice(0, 3),
-      categoryResults: categoryResults.slice(0, 3)
+      territoryResults: territoryResults.slice(0, 3)
     });
   }
 
   render() {
     const territoryResults = this.state.territoryResults.map(res =>
       <a className="result" key={"result-territory-" + res.slug}
-        onClick={() => this.handleResultSelect(res)}>
-
-        <div className="content">
-          <div className='title'>{res.title}</div>
-        </div>
-
-      </a>
-    );
-
-    const categoryResults = this.state.categoryResults.map(res =>
-      <a className="result" key={"result-category-" + res.slug}
         onClick={() => this.handleResultSelect(res)}>
 
         <div className="content">
@@ -231,13 +197,6 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
           </div>
         }
 
-        {categoryResults.length > 0 &&
-          <div className="category">
-            <div className="name" style={{marginTop: 7}}>Bereiche</div>
-            {categoryResults}
-          </div>
-        }
-
         {tagResults.length > 0 &&
           <div className="category">
             <div className="name" style={{marginTop: 7}}>Themen</div>
@@ -245,7 +204,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
           </div>
         }
 
-        { tagResults.length + territoryResults.length + categoryResults.length === 0 &&
+        { tagResults.length + territoryResults.length === 0 &&
           <div className="message empty">
             <div className="header">Keine Suchergebnisse</div>
             <div className="description">Leider wurden keine Themen oder Parlamente zu deiner Anfrage gefunden</div>

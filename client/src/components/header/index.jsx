@@ -19,10 +19,6 @@ const HeaderMenu = (props: {}) => (
               Wahlen
           </Menu.Item>
           <Menu.Item
-            active={props.match.params.area === 'bereiche'} as={Link} to='/bereiche/'>
-                Bereiche
-          </Menu.Item>
-          <Menu.Item
             active={props.match.params.area === 'themen'} as={Link} to='/themen/'>
                 Themen
           </Menu.Item>

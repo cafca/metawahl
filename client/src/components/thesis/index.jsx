@@ -77,7 +77,6 @@ type State = {
   ratioContra: number,
   openText: ?OpenTextType,
   tags: Array<TagType>,
-  categories: Array<string>,
   loading: boolean,
   parties: Array<MergedPartyDataType>,
   proPositions: Array<PositionType>,
@@ -102,7 +101,6 @@ export default class Thesis extends Component<Props, State> {
     this.state = {
       openText: null,
       tags: this.props.tags,
-      categories: this.props.categories,
       loading: false,
       parties: [],
       proPositions: [],
@@ -123,30 +121,12 @@ export default class Thesis extends Component<Props, State> {
 
   componentWillReceiveProps(nextProps: Props) {
     this.setState({
-      tags: nextProps.tags,
-      categories: nextProps.categories
+      tags: nextProps.tags
     });
 
     if (Object.is(nextProps.occasion.results, this.props.occasion.results) === false) {
       this.mergePartyData();
     }
-  }
-
-  handleCategory(e: SyntheticInputEvent<HTMLInputElement>, { value }: { value: string }) {
-    // Avoid duplicates
-    if (this.state.categories.indexOf(value) > -1) return;
-
-    this.sendCategoryChanges(value, false);
-
-    this.setState(prevState => ({
-      categories: prevState.categories.concat([ value ])
-    }));
-  }
-
-  handleCategoryRemove(category: string) {
-    this.sendCategoryChanges(category, true);
-    const categories = this.state.categories.filter(c => c !== category);
-    this.setState({categories});
   }
 
   handleReport() {
@@ -230,35 +210,6 @@ export default class Thesis extends Component<Props, State> {
     openText["header"] = `${name} — ${result}${posName}`;
 
     this.setState({openText});
-  }
-
-  sendCategoryChanges(categoryName: string, remove: boolean) {
-    if (categoryName == null) return;
-
-    this.setState({loading: true});
-
-    const endpoint = `${API_ROOT}/categories/${categoryName}`;
-
-    type RequestType = {
-      admin_key?: ?string,
-      remove?: Array<string>,
-      add?: Array<string>
-    };
-
-    const data: RequestType = remove === true
-      ? {"remove": [this.props.id]}
-      : {"add": [this.props.id]};
-
-    data["admin_key"] = adminKey();
-
-    fetch(endpoint, makeJSONRequest(data))
-      .then(response => response.json())
-      .then(response => {
-        console.log(response);
-      })
-      .catch((error:Error) => {
-        console.log("Error changing category: " + error.message);
-      });
   }
 
   sendTagChanges(data: { remove: ?Array<string>, add: ?Array<TagType>, admin_key?: ?string }) {
@@ -350,13 +301,6 @@ export default class Thesis extends Component<Props, State> {
   }
 
   render() {
-    const categoryElems = this.state.categories.sort().map(slug =>
-      <CategoryLabel
-        slug={slug}
-        key={"CategoryLabel-" + slug}
-        remove={this.handleCategoryRemove}
-      />);
-
     const tagElems = this.state.tags.sort().map(tag =>
       <Tag
         data={tag}
@@ -478,11 +422,9 @@ export default class Thesis extends Component<Props, State> {
               </Button>
           </Responsive>
 
-          { categoryElems }
           { tagElems }
           <br />
           { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
-          { categoryElems.length === 0 && IS_ADMIN && " Noch keine Kategorie gewählt. "}
         </div>
       </Segment>
 
