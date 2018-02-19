@@ -11,7 +11,8 @@ import Deutschland from '-!svg-react-loader!./Deutschland.svg'; // eslint-disabl
 import Europa from '-!svg-react-loader!./Europa.svg'; // eslint-disable-line import/no-webpack-loader-syntax
 
 type MapProps = {
-  territory: string
+  territory: string,
+  style?: {}
 };
 
 const noteEurope = `SVG Europakarte lizensiert unter Public Domain, via
@@ -33,11 +34,11 @@ const Map = (props: MapProps) => props.territory === 'europa'
   ? <Europa
   alt={altText(props)}
   title={noteEurope}
-  {...props} />
+  style={props.style} />
   : <Deutschland
   className={(props.inverted ? 'inverted ' : ' ') + 'territory-' + props.territory}
   title={noteGerman}
   alt={altText(props)}
-  {...props} />;
+  style={props.style} />;
 
 export default Map;
