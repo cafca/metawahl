@@ -567,7 +567,7 @@ def create_app(config=None):
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
 
-        if request.args.get("include_theses_ids", False):
+        if request.args.get("include_theses_ids", False) or filename != None:
             results = db.session.query(Tag) \
                 .join(Tag.theses) \
                 .group_by(Tag.title) \
