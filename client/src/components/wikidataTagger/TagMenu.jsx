@@ -206,9 +206,12 @@ class TagMenu extends Component<Props, State> {
         </Modal.Actions>
       </Modal>
 
-      <Menu.Item onClick={() => {this.setState({tagRemoveOpen: true})}} style={{color: "#999"}}>
-        <Icon name="trash outline" /> Tag löschen
-      </Menu.Item>
+      { this.props.tag != null &&
+        <Menu.Item onClick={() => {this.setState({tagRemoveOpen: true})}}
+            style={{color: "#999"}}>
+          <Icon name="trash outline" /> Tag löschen
+        </Menu.Item>
+      }
 
       <Confirm
         open={this.state.tagRemoveOpen}

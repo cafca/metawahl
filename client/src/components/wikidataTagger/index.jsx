@@ -31,7 +31,8 @@ export type WikidataType = {
 
 type Props = {
   onSelection: (WikidataType) => mixed,
-  text?: string
+  text?: string,
+  style?: {}
 };
 
 type State = {
@@ -201,7 +202,7 @@ class WikidataTagger extends React.Component<Props, State> {
   }
 
   loadExistingTags() {
-    const cachedJSON = loadFromCache('taglist');
+    const cachedJSON = loadFromCache('tags');
     if (cachedJSON != null) {
       this.setState({
         existingTags: JSON.parse(cachedJSON).map(t => t.wikidata_id)
@@ -211,7 +212,7 @@ class WikidataTagger extends React.Component<Props, State> {
 
   render() {
     const style = {border: "none"};
-    return <Menu.Menu>
+    return <Menu.Menu style={this.props.style} >
       <Search
         className="searchNoBorder"
         icon="hashtag"

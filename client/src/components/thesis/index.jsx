@@ -10,7 +10,6 @@ import {
   Header,
   Icon,
   Loader,
-  Menu,
   Message,
   Popup,
   Responsive,
@@ -457,7 +456,7 @@ export default class Thesis extends Component<Props, State> {
             content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
             header="Fehler melden"
             trigger={
-              <Button basic compact bordered icon floated='right'
+              <Button basic compact icon floated='right'
                 loading={this.state.reported === false}
                 disabled={this.state.reported === true}
                 onClick={this.handleReport}
@@ -469,7 +468,7 @@ export default class Thesis extends Component<Props, State> {
           />
           </Responsive>
           <Responsive maxWidth={600}>
-              <Button basic compact bordered icon floated='right'
+              <Button basic compact icon floated='right'
                 loading={this.state.reported === false}
                 disabled={this.state.reported === true}
                 onClick={this.handleReport}
@@ -488,27 +487,22 @@ export default class Thesis extends Component<Props, State> {
       </Segment>
 
       { IS_ADMIN &&
-        <Menu attached='bottom'>
-          <Dropdown
-            item
-            placeholder='Bereiche wählen'
-            style={{border: "none"}}
-            search
-            selection
-            selectOnNavigation={false}
-            selectOnBlur={false}
-            onChange={this.handleCategory}
-            options={categoryOptions}
-            value={null}
-          />
-          <Menu.Menu
-            position='right'
-            style={{borderLeft: "1px solid #ccc"}}
-          >
-            <WikidataTagger onSelection={this.handleTag} />
-            { this.state.loading && <Loader />}
-          </Menu.Menu>
-        </Menu>
+        <Segment attached='bottom' secondary>
+            <Dropdown
+              item
+              placeholder='Bereiche wählen'
+              style={{border: "none"}}
+              search
+              selection
+              selectOnNavigation={false}
+              selectOnBlur={false}
+              onChange={this.handleCategory}
+              options={categoryOptions}
+              value={null}
+            />
+              <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
+              { this.state.loading && <Loader />}
+        </Segment>
       }
     </div>
   }

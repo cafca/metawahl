@@ -40,7 +40,7 @@ const Tag = ({ active, data, remove, detail, onClick }: Props) => {
         {detail}
       </Label.Detail>
     }
-    { IS_ADMIN && remove !== null &&
+    { IS_ADMIN && remove != null &&
       <Label.Detail as='span'>
         <Icon name="delete"
         onClick={e => {

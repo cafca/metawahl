@@ -18,8 +18,7 @@ import Thesis from '../../components/thesis/';
 import Tag from '../../components/tag/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel';
 import SEO from '../../components/seo/';
-
-import TagMenu from './menu';
+import TagMenu from '../../components/wikidataTagger/TagMenu';
 
 import type {
   ErrorType, TagType, ThesisType, OccasionType, RouteProps

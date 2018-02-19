@@ -4,11 +4,12 @@ import React from 'react';
 import autoBind from 'react-autobind';
 
 import '../../index.css';
-import { API_ROOT, THESES_PER_PAGE } from '../../config/';
+import { API_ROOT, THESES_PER_PAGE, IS_ADMIN } from '../../config/';
 import Thesis from '../../components/thesis/';
 import Tag from '../../components/tag';
 import SEO from '../../components/seo/';
 import Errorhandler from '../../utils/errorHandler';
+import TagMenu from '../../components/wikidataTagger/TagMenu';
 
 import {
   Breadcrumb, Header, Loader, Message, Pagination, Segment
@@ -155,6 +156,14 @@ export default class Category extends React.Component<RouteProps, State> {
             {relatedTags}
           </p>
         </Segment>
+      }
+
+      { IS_ADMIN &&
+        <TagMenu
+          theses={cat.theses}
+          setLoading={(isLoading) => this.setState({isLoading})}
+          refresh={() => this.loadCategory()}
+        />
       }
 
       <div className="theses">
