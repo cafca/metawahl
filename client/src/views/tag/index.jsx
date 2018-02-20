@@ -196,18 +196,20 @@ export default class TagView extends Component<RouteProps, State> {
         }
       </Header>
 
-      <Menu stackable>
-        <Menu.Item header content='Filter' />
-        <Dropdown className='link item' placeholder='Thema' selection scrolling
-          value={this.state.tagFilter} style={{border: "none"}}
-          selectOnBlur={false} closeOnBlur={true}
-          options={filterOptions} onChange={(e, data) => this.setState({tagFilter: data.value})} />
-        { this.state.tagFilter != null &&
-          <Menu.Item onClick={() => this.setState({tagFilter: null})}>
-            <Icon name='close' /> Filter entfernen
-          </Menu.Item>
-        }
-      </Menu>
+      { filterOptions.length > 0 &&
+        <Menu stackable>
+          <Menu.Item header content='Filter' />
+          <Dropdown className='link item' placeholder='Thema' selection scrolling
+            value={this.state.tagFilter} style={{border: "none"}}
+            selectOnBlur={false} closeOnBlur={true}
+            options={filterOptions} onChange={(e, data) => this.setState({tagFilter: data.value})} />
+          { this.state.tagFilter != null &&
+            <Menu.Item onClick={() => this.setState({tagFilter: null})}>
+              <Icon name='close' /> Filter entfernen
+            </Menu.Item>
+          }
+        </Menu>
+      }
 
       { IS_ADMIN &&
         <TagMenu
