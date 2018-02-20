@@ -50,11 +50,13 @@ const Footer = (props: RouteProps) => {
           <Grid.Column textAlign='left' className='ui inverted link list'>
             <Header inverted as='h4' content='Über Metawahl' />
             <p>Der Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?</p>
-            <p>Ein Projekt von <Link className="item" to="http://vincentahrend.com/">Vincent Ahrend</Link></p>
+            <p>Ein Projekt von <a className="item" href="http://vincentahrend.com/">Vincent Ahrend</a></p>
+            <p>Mit freundlicher Unterstützung von Hanno »friesenkiwi«</p>
             <p>Gefördert von: <br />
               <Link className='item' to="https://www.bmbf.de/">Bundesministerium für Bildung und Forschung</Link> <br />
               <Link className='item' to="https://prototypefund.de/">Prototype Fund</Link>
             </p>
+            <p>Quellcode verfügbar auf <a className='item' href="https://github.com/ciex/metawahl">Github</a></p>
           </Grid.Column>
         </Grid.Row>
       </Grid>

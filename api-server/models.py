@@ -51,7 +51,7 @@ class Category(db.Model):
                 tag_counts[tag.title] += 1
                 tags[tag.title] = tag
 
-        num_related_tags = 10
+        num_related_tags = 15
         try:
             cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
         except IndexError:
@@ -412,7 +412,7 @@ class Tag(db.Model):
                     tag_counts[tag.title] += 1
                     tags[tag.title] = tag
 
-        num_related_tags = 10
+        num_related_tags = 15
         try:
             # Determine the amount of tags where n=num_related_tags theses have
             # more related tags

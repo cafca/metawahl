@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import '../../index.css';
 import {
-  Container,
   Dropdown,
   Header,
   Icon,
@@ -150,10 +149,10 @@ export default class TagView extends Component<RouteProps, State> {
     const relatedTags = (this.state.tag && this.state.tag.related_tags) || {};
     const filterOptions = Object.keys(relatedTags)
       .sort((a, b) => relatedTags[b].count - relatedTags[a].count)
+      .filter(i => relatedTags[i].count < this.state.theses.length)
       .map(i => ({
         key: i,
-        text: relatedTags[i].tag.title,
-        count: relatedTags[i].count,
+        text: relatedTags[i].tag.title + ' (' + relatedTags[i].count + ')',
         value: i
       }));
 
@@ -182,27 +181,33 @@ export default class TagView extends Component<RouteProps, State> {
               {this.state.tag.title}
               {/* <Loader active={this.state.loading} inline={true} size="small"
                 style={{marginLeft: "1em", marginBottom: "0.2em"}} /> */}
-              {this.state.tag.description != null &&
+              { (this.state.tag.description != null || this.state.tag.aliases != null) &&
                 <Header.Subheader>
-                  {this.state.tag.description} <br />
+                  { this.state.tag.description }
+                  { this.state.tag.description != null && this.state.tag.aliases != null && <br /> }
+                  { this.state.tag.aliases != null &&
+                    <span>Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}</span>
+                  }
                 </Header.Subheader>
               }
           </Header.Content>
         }
       </Header>
 
-      { this.state.tag != null && this.state.tag.aliases != null &&
-      <Container text>
-        Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}
-      </Container>
+      { filterOptions.length > 0 &&
+        <Menu stackable>
+          <Menu.Item header content='Filter' />
+          <Dropdown className='link item' placeholder='Thema' selection scrolling
+            value={this.state.tagFilter} style={{border: "none"}}
+            selectOnBlur={false} closeOnBlur={true}
+            options={filterOptions} onChange={(e, data) => this.setState({tagFilter: data.value})} />
+          { this.state.tagFilter != null &&
+            <Menu.Item onClick={() => this.setState({tagFilter: null})}>
+              <Icon name='close' /> Filter entfernen
+            </Menu.Item>
+          }
+        </Menu>
       }
-
-      <Menu>
-        <Menu.Item header content='Filter' />
-        <Dropdown className='link item' placeholder='Thema' selection
-          value={this.state.filter} style={{border: "none"}}
-          options={filterOptions} onChange={(e, data) => this.setState({tagFilter: data.value})} />
-      </Menu>
 
       { IS_ADMIN &&
         <TagMenu
@@ -221,7 +226,18 @@ export default class TagView extends Component<RouteProps, State> {
 
       { theses.length > 0 &&
         <div>
-          <h2>Thesen {startPos + 1} bis {endPos} von insgesamt {theses.length}</h2>
+          { theses.length > THESES_PER_PAGE &&
+            <h2 style={{float: "right"}}>Seite {this.state.page}</h2>
+          }
+
+          { this.state.tagFilter == null &&
+            <h2>{theses.length} Thesen zu #{this.state.tag.title}</h2>
+          }
+
+          { this.state.tagFilter != null &&
+            <h2>{theses.length} These{theses.length !== 1 && 'n'} zu #{this.state.tag.title} und #{this.state.tagFilter}</h2>
+          }
+
           {thesesElems}
 
           <Pagination

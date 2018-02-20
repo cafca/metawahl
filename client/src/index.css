@@ -1,7 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+}
+
+h1 {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
 
 .App {
@@ -77,7 +82,7 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
     transition: opacity .1s ease;
 }
 
-#outerContainer.ui.text.container {
+#outerContainer.ui.container {
   max-width: 800px !important;
   padding-top: 2em;
 };

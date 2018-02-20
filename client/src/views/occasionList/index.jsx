@@ -48,15 +48,15 @@ export default class OccasionList extends Component<RouteProps, State> {
         </List.Item>);
 
       return <div className="ui container" key={territory} style={{marginTop: "4em"}}>
-        <Header dividing as='h2' style={{marginBottom: "1em"}}>
+        <Header dividing as='h1' style={{marginBottom: "1em"}}>
           <Link to={"/wahlen/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link>
         </Header>
         <Grid columns='2'>
           <Responsive minWidth={601} className='four wide column'>
-            <MapComponent territory={territory} style={{height: "10em"}} />
+            <MapComponent territory={territory} style={{maxHeight: "10em"}} />
           </Responsive>
           <Responsive maxWidth={600} className='six wide column'>
-            <MapComponent territory={territory} style={{height: "10em"}} />
+            <MapComponent territory={territory} style={{maxHeight: "10em"}} />
           </Responsive>
           <Grid.Column width='10'>
             <List relaxed='very'>
