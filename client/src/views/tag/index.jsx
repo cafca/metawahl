@@ -182,20 +182,18 @@ export default class TagView extends Component<RouteProps, State> {
               {this.state.tag.title}
               {/* <Loader active={this.state.loading} inline={true} size="small"
                 style={{marginLeft: "1em", marginBottom: "0.2em"}} /> */}
-              {this.state.tag.description != null &&
+              { (this.state.tag.description != null || this.state.tag.aliases != null) &&
                 <Header.Subheader>
-                  {this.state.tag.description} <br />
+                  { this.state.tag.description }
+                  { this.state.tag.description != null && this.state.tag.aliases != null && <br /> }
+                  { this.state.tag.aliases != null &&
+                    <span>Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}</span>
+                  }
                 </Header.Subheader>
               }
           </Header.Content>
         }
       </Header>
-
-      { this.state.tag != null && this.state.tag.aliases != null &&
-      <Container text>
-        Auch: {this.state.tag.aliases.map(a => <span key={`alias-${a}`}>{a}, </span>)}
-      </Container>
-      }
 
       <Menu>
         <Menu.Item header content='Filter' />
