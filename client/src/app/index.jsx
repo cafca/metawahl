@@ -157,7 +157,7 @@ class App extends Component<Props, State> {
             />
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
-            <Container text id="outerContainer">
+            <Container id="outerContainer">
               { !process.env.NODE_ENV && process.env.NODE_ENV !== 'development' &&
                 <Message warning>
                   Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich.
