@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import '../../index.css';
 import {
-  Button,
-  Container,
   Dropdown,
   Header,
   Icon,
