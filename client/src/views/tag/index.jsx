@@ -30,6 +30,7 @@ type State = {
   page: number,
   slug: string,
   tagFilter: ?string,
+  invertFilter: boolean,
   tag: TagType,
   theses: Array<ThesisType>
 };
@@ -47,7 +48,8 @@ export default class TagView extends Component<RouteProps, State> {
       tag: this.getCachedTag(),
       occasions: {},
       theses: [],
-      tagFilter: null
+      tagFilter: null,
+      invertFilter: false
     }
 
     this.handleError = Errorhandler.bind(this);
@@ -117,12 +119,14 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   render() {
-
     const theses = this.state.loading === false && this.state.theses
       .filter(thesis => {
         if (this.state.tagFilter != null && this.state.tagFilter.length > 0) {
-          return thesis.tags
-            .filter(t => t.title === this.state.tagFilter).length > 0;
+          return this.state.invertFilter === false
+            ? thesis.tags.filter(
+              t => t.title === this.state.tagFilter).length > 0
+            : thesis.tags.filter(
+              t => t.title === this.state.tagFilter).length === 0
         } else {
           return true;
         }
@@ -197,15 +201,24 @@ export default class TagView extends Component<RouteProps, State> {
       { filterOptions.length > 0 &&
         <Menu stackable>
           <Menu.Item header content='Filter' />
-          <Dropdown className='link item' placeholder='Thema' selection scrolling
-            value={this.state.tagFilter} style={{border: "none"}}
+          <Dropdown className='link item' placeholder='Zeige nur...' selection
+            scrolling value={this.state.tagFilter} style={{border: "none"}}
             selectOnBlur={false} closeOnBlur={true}
-            options={filterOptions} onChange={(e, data) => this.setState({tagFilter: data.value})} />
-          { this.state.tagFilter != null &&
-            <Menu.Item onClick={() => this.setState({tagFilter: null})}>
-              <Icon name='close' /> Filter entfernen
-            </Menu.Item>
-          }
+            options={filterOptions}
+            onChange={(e, data) => this.setState({tagFilter: data.value})} />
+            { this.state.tagFilter != null &&
+              <Menu.Item
+                active={this.state.invertFilter}
+                onClick={() => this.setState({invertFilter: !this.state.invertFilter})}>
+                <Icon name='undo' /> Filter umkehren
+              </Menu.Item>
+            }
+            { this.state.tagFilter != null &&
+              <Menu.Item onClick={() => this.setState(
+                  {tagFilter: null, invertFilter: false })}>
+                <Icon name='close' /> Zurücksetzen
+              </Menu.Item>
+            }
         </Menu>
       }
 
@@ -235,7 +248,11 @@ export default class TagView extends Component<RouteProps, State> {
           }
 
           { this.state.tagFilter != null &&
-            <h2>{theses.length} These{theses.length !== 1 && 'n'} zu #{this.state.tag.title} und #{this.state.tagFilter}</h2>
+            <h2>{theses.length} These{theses.length !== 1 && 'n'} {' '}
+              zu #{this.state.tag.title} und {' '}
+              {this.state.invertFilter && <em>nicht </em>}
+              #{this.state.tagFilter}
+            </h2>
           }
 
           {thesesElems}
