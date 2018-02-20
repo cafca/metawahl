@@ -18,7 +18,7 @@ export const WikidataLabel = ({ wikidata_id, url } : WikidataProps) => {
     <Header floated='right' style={{marginRight: "-10.5px"}}>
       <Label as='a' basic image href={url} >
         <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" />
-        <Responsive minWidth='768' as='span'>{wikidata_id}</Responsive>
+        <Responsive minWidth='768' as='span'>Wikidata</Responsive>
       </Label>
     </Header>
 }
