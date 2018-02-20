@@ -5,9 +5,9 @@ import autoBind from 'react-autobind';
 import { withRouter } from 'react-router-dom'
 import Fuse from 'fuse.js';
 
-import { TERRITORY_NAMES, CATEGORY_NAMES } from '../../config/';
+import { TERRITORY_NAMES } from '../../config/';
 
-import type { TagType, OccasionListType, CategoryType } from '../../types/';
+import type { TagType, OccasionListType } from '../../types/';
 
 const baseSearchOptions = {
   threshold: 0.2,

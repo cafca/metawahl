@@ -107,7 +107,7 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 
 /* Hover effect for items in occasion list view */
 .occasionList .list > .occasionListItem {
-  border-left: 5px solid #fafafa;
+  border-left: 5px solid #fcfcfc;
   padding-left: 5px;
 }
 .occasionList .occasionListItem:hover {
