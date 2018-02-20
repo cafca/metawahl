@@ -8,18 +8,15 @@ import {
   Dropdown,
   Header,
   Icon,
-  Label,
   Loader,
   Menu,
   Message,
-  Pagination,
-  Segment
+  Pagination
 } from 'semantic-ui-react';
 
 import { API_ROOT, IS_ADMIN, THESES_PER_PAGE } from '../../config/';
 import Errorhandler from '../../utils/errorHandler';
 import Thesis from '../../components/thesis/';
-import Tag from '../../components/tag/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel';
 import SEO from '../../components/seo/';
 import TagMenu from '../../components/wikidataTagger/TagMenu';

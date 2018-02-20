@@ -20,7 +20,6 @@ import '../../index.css';
 import { loadFromCache } from '../../app/';
 import WikidataTagger from '../wikidataTagger/';
 import Tag from '../tag/';
-import CategoryLabel from '../label/CategoryLabel';
 import PositionChart from '../positionChart/';
 import Objections from '../objections/';
 import Map from '../map/';
@@ -53,9 +52,9 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
       <Map
         territory={occasion.territory}
         inverted={true}
-        style={{height: "3em", float: 'right'}}
+        style={{height: "3em", float: 'right', paddingLeft: ".5em"}}
       /> {' '}
-      <p style={{fontVariant: "all-small-caps", marginBottom: 0, fontSize: "0.9em"}}>
+      <p style={{fontVariant: "all-small-caps", marginBottom: ".3em", fontSize: "0.9em", lineHeight: "1em"}}>
         <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
           {occasion.title}
         </Link>
@@ -329,7 +328,7 @@ export default class Thesis extends Component<Props, State> {
         }
 
         { this.props.linkOccasion === false && (this.props.title != null && this.props.title.length > 0) &&
-          <Header.Subheader>
+          <Header.Subheader style={{marginTop: "0.3em"}}>
             {this.props.title}
           </Header.Subheader>
         }
@@ -339,8 +338,8 @@ export default class Thesis extends Component<Props, State> {
         <Header.Subheader>
         {this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
           : this.state.voterOpinion === 1
-            ? ` Wir Wähler haben befürwortenden Parteien ${Math.round(this.state.ratioPro)} von 100 Stimmen gegeben`
-            : ` Wir Wähler haben ablehnenden Parteien ${Math.round(this.state.ratioContra)} von 100 Stimmen gegeben`
+            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern haben befürwortenden Parteien ihre Stimme gegeben`
+            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern haben ablehnenden Parteien ihre Stimme gegeben`
         }
         </Header.Subheader>
       </Header>

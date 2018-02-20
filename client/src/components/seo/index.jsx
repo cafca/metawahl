@@ -9,7 +9,7 @@ const locales = {
 const Meta = (data) => {
   const lang = data.lang || "de"
   const title = data.title
-  const description = data.description
+  const description = data.description || 'Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?'
   const image = data.image !== undefined && `${SITE_ROOT}${data.image}`
   const canonical = data.canonical !== undefined && `${SITE_ROOT}${data.canonical}`
   const type = data.type === undefined ? "article" : "website"
@@ -25,7 +25,7 @@ const Meta = (data) => {
       { image ? <link rel="image_src" href={ image } /> : null }
       { image ? <meta itemprop="image" content={ image } /> : null }
 
-      <meta property="og:site_name" content="..." />
+      <meta property="og:site_name" content="Metawahl" />
       <meta property="og:title" content={ title } />
       { description ? <meta property="og:description" content={ description } /> : null }
       { canonical ? <meta property="og:url" content={ canonical } /> : null }
@@ -34,7 +34,7 @@ const Meta = (data) => {
       { image ? <meta property="og:image" content={ image } /> : null }
       { width ? <meta property="og:image:width" content={ width } /> : null }
       { height ? <meta property="og:image:height" content={ height } /> : null }
-      <meta property="fb:pages" content="..." />
+      {/* <meta property="fb:pages" content="..." /> */}
 
       {/* change type of twitter if there is no image? */}
       <meta name="twitter:card" content="summary_large_image" />
