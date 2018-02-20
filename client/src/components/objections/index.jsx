@@ -98,8 +98,7 @@ export default class Objections extends React.Component<Props, State> {
             display: 'inline-block',
             color: '#fcfcfc',
             padding: "2px 0.3em",
-            marginBottom: "0.1em",
-            fontSize: "0.9em",
+            marginBottom: "2px",
             backgroundColor: OPINION_COLORS[objection.rating.toString()]
             }}>
             {/* <Label as='span' circular empty style={{}} />  */}

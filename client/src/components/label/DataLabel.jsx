@@ -16,7 +16,7 @@ type WikidataProps = {
 export const WikidataLabel = ({ wikidata_id, url } : WikidataProps) => {
   return wikidata_id == null ? null :
     <Header floated='right' style={{marginRight: "-10.5px"}}>
-      <Label as='a' basic image href={url} >
+      <Label as='a' basic image href={url} className='wikidataLabel'>
         <img src="/img/Wikidata-logo.svg" alt="Wikidata logo" />
         <Responsive minWidth='768' as='span'>Wikidata</Responsive>
       </Label>

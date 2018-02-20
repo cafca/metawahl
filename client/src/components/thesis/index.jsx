@@ -54,7 +54,10 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
         inverted={true}
         style={{height: "3em", float: 'right', paddingLeft: ".5em"}}
       /> {' '}
-      <p style={{fontVariant: "all-small-caps", marginBottom: ".3em", fontSize: "0.9em", lineHeight: "1em"}}>
+      <p style={{
+        fontVariant: "all-small-caps",
+        marginBottom: 2,
+        lineHeight: "1em"}}>
         <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
           {occasion.title}
         </Link>
