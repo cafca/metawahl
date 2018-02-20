@@ -328,7 +328,7 @@ export default class Thesis extends Component<Props, State> {
         }
 
         { this.props.linkOccasion === false && (this.props.title != null && this.props.title.length > 0) &&
-          <Header.Subheader style={{marginTop: "0.3em">
+          <Header.Subheader style={{marginTop: "0.3em"}}>
             {this.props.title}
           </Header.Subheader>
         }
