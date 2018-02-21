@@ -21,6 +21,16 @@ categories = db.Table('categories',
         primary_key=True)
 )
 
+# Try and use these only for logging and debugging. Exact language for
+# reactions is defined in frontend code
+REACTION_NAMES = {
+    0: "Glücklich",
+    1: "Amüsiert",
+    2: "Na und",
+    3: "Beunruhigt",
+    4: "Verärgert"
+}
+
 def dt_string(dt):
     """Return iso string representation of a datetime including tz."""
     return dt.strftime("%Y-%m-%d %H:%M:%S Z")
@@ -137,87 +147,30 @@ class ThesisReport(db.Model):
         }
 
 
-class Objection(db.Model):
-    """Represent an objection."""
+class Reaction(db.Model):
+    """Represent a reaction."""
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(36), nullable=False)
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
-    url = db.Column(db.Text, nullable=False)
-    title = db.Column(db.String(255))
-    rating = db.Column(db.Integer, nullable=False)
+    kind = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
     thesis = db.relationship('Thesis',
-        backref=db.backref('objections', lazy=False))
+        backref=db.backref('reactions', lazy=True))
 
     def __repr__(self):
-        return "<Objection {} / {}>".format(self.thesis_id, self.url)
-
-    @property
-    def vote_count(self):
-        return len(list(self.votes))
+        return "<Reaction {} / {}>".format(self.thesis_id, REACTION_NAMES[self.kind])
 
     def to_dict(self):
         rv = {
-            "id": self.id,
             "date": dt_string(self.date),
-            "rating": self.rating,
-            "url": self.url,
+            "kind": self.kind,
             "thesis": self.thesis_id,
-            "title": self.title,
-            "uuid": self.uuid,
-            "votes": [v.to_dict() for v in self.votes],
-            "vote_count": self.vote_count
+            "uuid": self.uuid
         }
         return rv
-
-    def vote(self, uuid, value):
-        vote = db.session.query(ObjectionVote) \
-            .filter_by(uuid=uuid) \
-            .filter_by(objection_id=self.id) \
-            .first()
-
-        if vote is not None:
-            if value is True and vote.value is not True:
-                vote.value = True
-            else:
-                db.session.delete(vote)
-        else:
-            # value can only be set to False after it was True,
-            # otherwise, negative votes would be possible
-            vote = ObjectionVote(value=True, uuid=uuid, objection=self)
-
-        return vote
-
-
-class ObjectionVote(db.Model):
-    """Represent a vote or report on an objection."""
-    id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(db.String(36), nullable=False)
-    date = db.Column(db.DateTime,
-        nullable=False, default=datetime.datetime.utcnow)
-    value = db.Column(db.Boolean, nullable=False)
-    reported_for = db.Column(db.Text)
-
-    objection_id = db.Column(db.Integer(),
-        db.ForeignKey('objection.id'), nullable=False)
-    objection = db.relationship('Objection',
-        backref=db.backref('votes', lazy=False))
-
-    def __repr__(self):
-        return "<Vote {}>".format(self.id) if self.reported_for is None \
-            else "<ObjectionReport {}/{}>".format(self.objection_id, self.id)
-
-    def to_dict(self):
-        """Return a dictionary representation of this vote for json enc."""
-        return {
-            "date": dt_string(self.date),
-            "value": self.value,
-            "uuid": self.uuid,
-            "objection_id": self.objection_id
-        }
 
 
 class Occasion(db.Model):
@@ -465,12 +418,19 @@ class Thesis(db.Model):
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
             "occasion_id": self.occasion_id,
-            "objections": [obj.to_dict() for obj in self.objections]
+            "reactions": self.reactions_dict()
         }
 
         if self.text is not None:
             rv["text"] = self.text
 
+        return rv
+
+    def reactions_dict(self):
+        """Make a tally of all reactions"""
+        rv = defaultdict(int)
+        for reaction in self.reactions:
+            rv[reaction.kind] += 1
         return rv
 
 
