@@ -13,7 +13,7 @@ import {
   Pagination
 } from 'semantic-ui-react';
 
-import { API_ROOT, IS_ADMIN, THESES_PER_PAGE } from '../../config/';
+import { API_ROOT, IS_ADMIN, THESES_PER_PAGE, TERRITORY_NAMES } from '../../config/';
 import Errorhandler from '../../utils/errorHandler';
 import Thesis from '../../components/thesis/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel';
@@ -30,6 +30,8 @@ type State = {
   page: number,
   slug: string,
   tagFilter: ?string,
+  territoryFilter: ?string,
+  territoryCounts: {},
   invertFilter: boolean,
   tag: TagType,
   theses: Array<ThesisType>
@@ -49,6 +51,8 @@ export default class TagView extends Component<RouteProps, State> {
       occasions: {},
       theses: [],
       tagFilter: null,
+      territoryFilter: null,
+      territoryCounts: {},
       invertFilter: false
     }
 
@@ -101,7 +105,7 @@ export default class TagView extends Component<RouteProps, State> {
           theses: response.theses,
           occasions: response.occasions,
           loading: false
-        });
+        }, this.updateTerritoryCounts);
       })
       .catch((error: Error) => {
         this.handleError(error);
@@ -118,19 +122,32 @@ export default class TagView extends Component<RouteProps, State> {
     );
   }
 
+  updateTerritoryCounts() {
+    const territoryCounts = Object.assign({}, TERRITORY_NAMES);
+    Object.keys(territoryCounts)
+      .forEach(k => territoryCounts[k] = 0);
+    this.state.theses
+      .map(t => this.state.occasions[t.occasion_id].territory)
+      .forEach(k => territoryCounts[k] += 1);
+    this.setState({ territoryCounts });
+  }
+
   render() {
     const theses = this.state.loading === false && this.state.theses
-      .filter(thesis => {
-        if (this.state.tagFilter != null && this.state.tagFilter.length > 0) {
-          return this.state.invertFilter === false
-            ? thesis.tags.filter(
-              t => t.title === this.state.tagFilter).length > 0
-            : thesis.tags.filter(
-              t => t.title === this.state.tagFilter).length === 0
-        } else {
-          return true;
-        }
-      })
+      .filter(thesis => this.state.tagFilter == null ? true :
+        this.state.invertFilter === false
+          ? thesis.tags.filter(
+            t => t.title === this.state.tagFilter).length > 0
+          : thesis.tags.filter(
+            t => t.title === this.state.tagFilter).length === 0
+      )
+      .filter(thesis => this.state.territoryFilter == null ? true :
+        this.state.invertFilter === false
+          ? this.state.occasions[thesis.occasion_id].territory
+            === this.state.territoryFilter
+          : this.state.occasions[thesis.occasion_id].territory
+            !== this.state.territoryFilter
+      )
       .sort((t1, t2) => t2.occasion_id - t1.occasion_id);
 
     const startPos = (this.state.page - 1) * THESES_PER_PAGE;
@@ -151,13 +168,20 @@ export default class TagView extends Component<RouteProps, State> {
       );
 
     const relatedTags = (this.state.tag && this.state.tag.related_tags) || {};
-    const filterOptions = Object.keys(relatedTags)
+    const tagFilterOptions = Object.keys(relatedTags)
       .sort((a, b) => relatedTags[b].count - relatedTags[a].count)
       .filter(i => relatedTags[i].count < this.state.theses.length)
       .map(i => ({
         key: i,
         text: relatedTags[i].tag.title + ' (' + relatedTags[i].count + ')',
         value: i
+      }));
+
+    const territoryFilterOptions = Object.keys(this.state.territoryCounts)
+      .map(k => ({
+        key: k,
+        text: TERRITORY_NAMES[k] + ' (' + this.state.territoryCounts[k] + ')',
+        value: k
       }));
 
     const pageTitle = this.state.tag != null && this.state.tag.title != null ?
@@ -198,24 +222,29 @@ export default class TagView extends Component<RouteProps, State> {
         }
       </Header>
 
-      { filterOptions.length > 0 &&
+      { (tagFilterOptions.length + Object.keys(territoryFilterOptions).length) > 0 &&
         <Menu stackable>
           <Menu.Item header content='Filter' />
-          <Dropdown className='link item' placeholder='Zeige nur...' selection
+          <Dropdown className='link item' placeholder='Nur mit Thema...' selection
             scrolling value={this.state.tagFilter} style={{border: "none"}}
             selectOnBlur={false} closeOnBlur={true}
-            options={filterOptions}
+            options={tagFilterOptions}
             onChange={(e, data) => this.setState({tagFilter: data.value})} />
-            { this.state.tagFilter != null &&
+          <Dropdown className='link item' placeholder='Nur Gebiet...' selection
+            scrolling value={this.state.territoryFilter} style={{border: "none"}}
+            selectOnBlur={false} closeOnBlur={true}
+            options={territoryFilterOptions}
+            onChange={(e, data) => this.setState({territoryFilter: data.value})} />
+            { (this.state.tagFilter != null || this.state.territoryFilter != null) &&
               <Menu.Item
                 active={this.state.invertFilter}
                 onClick={() => this.setState({invertFilter: !this.state.invertFilter})}>
                 <Icon name='undo' /> Filter umkehren
               </Menu.Item>
             }
-            { this.state.tagFilter != null &&
+            { (this.state.tagFilter != null || this.state.territoryFilter != null) &&
               <Menu.Item onClick={() => this.setState(
-                  {tagFilter: null, invertFilter: false })}>
+                  {tagFilter: null, territoryFilter: null, invertFilter: false })}>
                 <Icon name='close' /> Zurücksetzen
               </Menu.Item>
             }
@@ -242,18 +271,23 @@ export default class TagView extends Component<RouteProps, State> {
           { theses.length > THESES_PER_PAGE &&
             <h2 style={{float: "right"}}>Seite {this.state.page}</h2>
           }
-
-          { this.state.tagFilter == null &&
-            <h2>{theses.length} Thesen zu #{this.state.tag.title}</h2>
-          }
-
-          { this.state.tagFilter != null &&
-            <h2>{theses.length} These{theses.length !== 1 && 'n'} {' '}
-              zu #{this.state.tag.title} und {' '}
-              {this.state.invertFilter && <em>nicht </em>}
-              #{this.state.tagFilter}
-            </h2>
-          }
+          <h2>
+            {theses.length} These{theses.length !== 1 && 'n'} {' '}
+            zu #{this.state.tag.title}
+            { this.state.tagFilter != null &&
+              <span> und {this.state.invertFilter && <em>nicht </em>}
+              #{this.state.tagFilter}</span>
+            }
+            { this.state.territoryFilter != null &&
+              <span>
+                { this.state.invertFilter === true
+                  ? ' außerhalb von Wahlen für '
+                  : ' in Wahlen für '
+                }
+                {TERRITORY_NAMES[this.state.territoryFilter]}
+              </span>
+            }
+          </h2>
 
           {thesesElems}
 
