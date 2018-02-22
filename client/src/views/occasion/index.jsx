@@ -90,6 +90,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       (t, i) => <Thesis
         key={t.id}
         occasion={this.state.occasion}
+        showHints={i === 0}
         {...t} />
     );
 

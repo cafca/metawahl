@@ -91,7 +91,8 @@ type State = {
 
 type Props = RouteProps & ThesisType & {
   occasion?: OccasionType,
-  linkOccasion?: boolean
+  linkOccasion?: boolean,
+  showHints?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -361,6 +362,12 @@ export default class Thesis extends Component<Props, State> {
             content={this.state.openText.text}
             floating
             header={this.state.openText.header} />
+        }
+
+        { this.props.showHints === true && this.state.openText == null &&
+          <p style={{marginTop: "1rem"}}>
+            <Icon name='info' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen.
+          </p>
         }
 
         <Objections

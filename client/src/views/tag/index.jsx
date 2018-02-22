@@ -163,6 +163,7 @@ export default class TagView extends Component<RouteProps, State> {
           key={"Thesis-" + thesis.id}
           occasion={this.state.occasions[thesis.occasion_id]}
           linkOccasion={true}
+          showHints={i === 0}
           {...thesis}
         />
       );
