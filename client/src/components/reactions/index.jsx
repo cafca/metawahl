@@ -7,8 +7,6 @@ import { ReactionsTallyType } from '../../types/';
 import { loadFromCache, saveToCache } from '../../app/';
 import ErrorHandler from '../../utils/errorHandler';
 
-import './Reactions.css';
-
 type Props = {
   id: string,
   reactions: ReactionsTallyType,
