@@ -366,7 +366,7 @@ export default class Thesis extends Component<Props, State> {
 
         { this.props.showHints === true && this.state.openText == null &&
           <p style={{marginTop: "1rem"}}>
-            <Icon name='info' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen.
+            <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen.
           </p>
         }
 
