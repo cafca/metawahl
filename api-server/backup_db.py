@@ -6,7 +6,7 @@ Backup non-public and user-generated data to JSON
 import json
 import os
 
-from models import ThesisReport, Objection
+from models import ThesisReport, Reaction
 from main import logger, create_app, db, API_FULL_NAME
 
 DATADIR = os.path.join("..", "userdata")
@@ -38,13 +38,13 @@ def gen_thesis_reports():
         .all()
 
 
-def gen_objections():
-    """Backup objections and their votes."""
-    logger.info("Backing up objections...")
+def gen_reactions():
+    """Backup reactions and their votes."""
+    logger.info("Backing up reactions...")
 
     return db.session \
-        .query(Objection) \
-        .order_by(Objection.date) \
+        .query(Reaction) \
+        .order_by(Reaction.date) \
         .all()
 
 
@@ -52,6 +52,6 @@ if __name__ == '__main__':
     app = create_app()
     with app.app_context():
         backup_data(gen_thesis_reports(), "thesis_reports.json")
-        backup_data(gen_objections(), "objections.json")
+        backup_data(gen_reactions(), "reactions.json")
 
         logger.info("Done")

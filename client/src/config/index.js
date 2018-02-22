@@ -96,6 +96,14 @@ export const OBJECTION_NAMES = {
   "1": ["Nicht umgesetzt", "Neutral", "Umgesetzt"]
 };
 
+export const REACTION_NAMES = {
+  0: "Glücklich",
+  1: "Erleichert",
+  2: "Gleichgültig",
+  3: "Beunruhigt",
+  4: "Wütend"
+};
+
 // Cosmetic
 
 export const THESES_PER_PAGE = 20;
@@ -114,7 +122,7 @@ export const THESES_PER_PAGE = 20;
 // export const COLOR_PALETTE = ["#ffa8b1", "#e9aebc", "#d2b4c7", "#b7b8d3", "#97bdde", "#6dc1ea", "#00c4f5"];
 // export const COLOR_PALETTE = [ "#ffa8b1",  "#deb1c2",  "rgb(184, 184, 184)",  "#84bfe4",  "#00c4f5"];
 
-// Frankreich
+// Frankreich lol
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#ff7f7f,5c8aad
 // export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(180, 180, 180)", "#928aa2", "#5e8bae"];
 export const COLOR_PALETTE = [

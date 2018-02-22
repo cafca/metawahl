@@ -299,23 +299,21 @@ def create_app(config=None):
 
         return json_response(rv, filename="categories.json")
 
-    @app.route(API_ROOT + "/react/<string:kind>", methods=["POST"])
-    def react(kind: str):
+    @app.route(API_ROOT + "/react/<string:endpoint>", methods=["POST"])
+    def react(endpoint: str):
         """Save a user submitted reaction.
 
         Kind may be one of:
         - "thesis-report": to report a thesis for wrong data
-        - "objection": to hand in an objection
-        - "objection-vote": to vote on an existing objection. Requires
-            objection_id key in payload.
+        - "reaction": to rate emotional feedback
         """
-        from models import Thesis, ThesisReport, Objection, ObjectionVote
+        from models import Thesis, ThesisReport, Reaction, REACTION_NAMES
         rv = {}
         error = False
 
         data = request.get_json()
 
-        if kind == "thesis-report":
+        if endpoint == "thesis-report":
             report = ThesisReport(
                 uuid=data.get('uuid'),
                 text=data.get('text'),
@@ -333,161 +331,58 @@ def create_app(config=None):
                 db.session.expire(report)
                 rv["data"] = report.to_dict()
 
-        elif kind == "objection":
+        elif endpoint == "reaction":
             thesis_id = data.get('thesis_id')
             uuid = data.get('uuid')
-            url = data.get('url')
-            rating = data.get('rating')
+            kind = int(data.get('kind'))
+            reaction = None
 
             error = uuid is None \
                 or thesis_id is None \
-                or url is None \
-                or len(url) == 0 \
-                or not rating in [-1, 0, 1]
+                or not kind in REACTION_NAMES.keys()
+
+            if error is True:
+                logger.error("Request missing parameters")
 
             if error is False:
-                thesis = db.session.query(Thesis).get(thesis_id)
+                reaction = db.session.query(Reaction) \
+                    .filter(Reaction.uuid == uuid) \
+                    .filter(Reaction.thesis_id == thesis_id).first()
 
-                if thesis is None:
-                    logger.warning("No thesis instance was found for this request")
-                    error = True
-
-                # check this url doesn't exist already
-                def isDuplicateLink(objection):
-                    return objection.url == url
-
-                if len(list(filter(isDuplicateLink, thesis.objections))) > 0:
-                    error = True
-                    rv["error"] = "Diesen Link gibt es hier leider schon."
-
-            if error is False:
-                try:
-                    link_resp = requests.get(url)
-                except Exception as e:
-                    error = True
-                    rv["error"] = "Link konnte nicht geladen werden"
-
-            if error is False:
-                if not link_resp.headers.get('Content-type', '') \
-                    .startswith('text/html'):
-                    error = True
-                    rv["error"] = "Im Moment können leider nur Webseiten als Quelle angegeben werden"
-
-            if error is False:
-                try:
-                    # Try finding end of head to avoid having to parse
-                    # entire site contents
-                    posEnd = link_resp.content.find(b'</head>')
-                    if posEnd > -1:
-                        posEnd = posEnd + len(b'</head>')
-                        site_content = lxml.html.fromstring(
-                            link_resp.content[:posEnd])
-                    else:
-                        site_content = lxml.html.fromstring(link_resp.content)
-                except Exception as e:
-                    logger.warning(
-                        "Error finding title tag for '{}'".format(url))
+                if reaction is not None:
+                    logger.info('Changing reaction from {} to {}'.format(
+                        REACTION_NAMES[reaction.kind], REACTION_NAMES[kind]))
+                    reaction.kind = kind
                 else:
-                    title = site_content.find(".//title").text
-                    if (not isinstance(title, str) or len(title) == 0):
-                        logger.warning(
-                            "Could not find title tag in objection link: '{}'" \
-                                .format(url))
-                        title = None
+                    thesis = db.session.query(Thesis).get(thesis_id)
 
-            if error is False:
-                objection = Objection(
-                    uuid=uuid,
-                    url=url,
-                    title=title,
-                    thesis=thesis,
-                    rating=rating
-                )
-
-                # Delete cached view functions for related thesis
-                delete_caches = []
-                delete_caches.append(
-                    'view/{}/occasions/{}'.format(API_ROOT, thesis.occasion.id)
-                )
-
-                for cat in thesis.categories:
-                    delete_caches.append(
-                        'view/{}/categories/{}'.format(API_ROOT, cat.slug)
-                    )
-
-                for tag in thesis.tags:
-                    delete_caches.append(
-                        'view/{}/tags/{}'.format(API_ROOT, tag.slug)
-                    )
-
-                for key in delete_caches:
-                    logger.debug("Deleting cache for {}".format(key))
-                    cache.delete(key)
-
-                try:
-                    db.session.add(objection)
-                    db.session.commit()
-                except SQLAlchemyError as e:
-                    logger.error(e)
-                    error = True
-                else:
-                    logger.info("Received {}: {}".format(objection, objection.url))
-                    db.session.expire(objection)
-                    rv["data"] = objection.to_dict()
-
-        elif kind == 'objection-vote':
-            objection_id = data.get('objection_id')
-            value = data.get('value', True)
-            uuid = data.get('uuid')
-            vote = None
-            rv = {}
-
-            if objection_id is None or uuid is None:
-                logger.warning("Objection vote with objection id {} \
-                    and uuid {} is missing data.".format(objection_id, uuid))
-                error = True
-            else:
-                objection = db.session.query(Objection).get(objection_id)
-
-                if objection is None:
-                    logger.warning("Vote for missing objection {}".format(
-                        objection_id))
-                    error = True
-                elif value is True:
-                    vote = ObjectionVote(value=True,
-                        uuid=uuid, objection=objection)
-                    db.session.add(vote)
-                    db.session.add(objection)
-                elif value is False:
-                    vote = db.session.query(ObjectionVote) \
-                        .filter_by(uuid=uuid) \
-                        .filter_by(objection=objection) \
-                        .first()
-
-                    if vote is not None:
-                        db.session.delete(vote)
-                        db.session.add(objection)
-                    else:
-                        logger.warning("Received request to delete missing" +
-                            " vote by '{}' for {}".format(uuid, objection))
+                    if thesis is None:
+                        logger.warning("No thesis instance was found for this request")
                         error = True
 
-            if error is False:
-                try:
-                    db.session.commit()
-                except SQLAlchemyError as e:
-                    logger.error(e)
-                    error = True
-                else:
-                    if value is True:
-                        logger.warning("Quelle {} gemeldet".format(objection))
-                        db.session.expire(vote)
-                        rv["data"] = vote.to_dict()
+                    if error is False:
+                        reaction = Reaction(
+                            uuid=uuid,
+                            thesis=thesis,
+                            kind=kind
+                        )
+
+                if error is False:
+                    try:
+                        db.session.add(reaction)
+                        db.session.commit()
+                    except SQLAlchemyError as e:
+                        logger.error(e)
+                        error = True
                     else:
-                        logger.info("Removed vote")
-                        rv["data"] = None
+                        logger.info("Stored {}".format(reaction))
+
+                        # Delete cached user ratings endpoint
+                        cache.delete('views/{}/reactions/{}'.format(API_ROOT, uuid))
+
+                        rv['data'] = reaction.thesis.reactions_dict()
         else:
-            logger.error("Unknown reaction kind: {}".format(kind))
+            logger.error("Unknown reaction endpoint: {}".format(kind))
             error = True
 
         if error is True:
