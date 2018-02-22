@@ -15,7 +15,7 @@ const HeaderMenu = (props: {}) => (
             Metawahl
           </Menu.Item>
           <Menu.Item
-            active={props.match.params.area === 'wahlen'} as={Link} to='/'>
+            active={props.match.params.area === 'wahlen'} as={Link} to='/wahlen/'>
               Wahlen
           </Menu.Item>
           <Menu.Item
@@ -23,7 +23,7 @@ const HeaderMenu = (props: {}) => (
                 Themen
           </Menu.Item>
 
-            <Search {...props} large className="small right aligned item" />
+          <Search {...props} large className="small item" />
 
         </Container>
       </Menu>
