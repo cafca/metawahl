@@ -10,6 +10,7 @@ import Header from '../components/header/';
 import Footer from '../components/footer/';
 import SEO from '../components/seo/';
 import { API_ROOT } from '../config/';
+import Landing from  '../views/landing';
 import OccasionList from '../views/occasionList/';
 import Occasion from '../views/occasion/';
 import CategoriesList from '../views/categoryList/';
@@ -153,7 +154,7 @@ class App extends Component<Props, State> {
           <div className="App">
             <SEO
               title='Metawahl'
-              description='Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?'
+              description='Was für eine Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?'
             />
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
@@ -170,7 +171,11 @@ class App extends Component<Props, State> {
               }
 
               <Switch>
-                <Route exact path="/" render={props => (
+                <Route exact path='/' render={props => (
+                  <Landing {...props} {...context} />
+                )} />
+
+                <Route exact path="/wahlen/" render={props => (
                   <OccasionList {...props} {...context} />
                 )} />
 

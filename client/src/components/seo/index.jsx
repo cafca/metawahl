@@ -9,7 +9,7 @@ const locales = {
 const Meta = (data) => {
   const lang = data.lang || "de"
   const title = data.title
-  const description = data.description || 'Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?'
+  const description = data.description || 'Welche Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?'
   const image = data.image !== undefined && `${SITE_ROOT}${data.image}`
   const canonical = data.canonical !== undefined && `${SITE_ROOT}${data.canonical}`
   const type = data.type === undefined ? "article" : "website"

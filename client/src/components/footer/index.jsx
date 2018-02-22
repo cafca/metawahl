@@ -49,7 +49,7 @@ const Footer = (props: RouteProps) => {
           </Grid.Column>
           <Grid.Column textAlign='left' className='ui inverted link list'>
             <Header inverted as='h4' content='Über Metawahl' />
-            <p>Der Wahl-o-Mat im Nachhinein: Was für eine Politik haben wir gewählt – und haben wir sie auch bekommen?</p>
+            <p>Welche Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?</p>
             <p>Ein Projekt von <a className="item" href="http://vincentahrend.com/">Vincent Ahrend</a></p>
             <p>
               Mit freundlicher Unterstützung von <a className='item' href="https://denk-nach-mcfly.de">Hanno »friesenkiwi«</a> und <a className='item' href="https://github.com/gockelhahn/qual-o-mat-data">Felix Bolte »gockelhahn«</a> bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.

@@ -99,7 +99,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         + (this.state.occasion ? this.state.occasion.title : "")} />
 
       <Breadcrumb>
-        <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
+        <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />
         <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
           {TERRITORY_NAMES[this.territory]}

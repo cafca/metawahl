@@ -49,7 +49,7 @@ export default class Territory extends Component<RouteProps, State> {
         title={'Metawahl: Alle Wahlthemen in ' + territoryName} />
 
         <Breadcrumb>
-          <Breadcrumb.Section href="/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
           <Breadcrumb.Divider icon='right angle' />
           <Breadcrumb.Section href={`/wahlen/${this.state.slug}/`}>
             {territoryName}
