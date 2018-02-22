@@ -66,11 +66,11 @@ class Reactions extends React.Component<Props, State> {
       </Button>
     );
 
-    return <div>
-      <Header as='h3' style={{marginTop: '1rem', marginBottom: 10, color: "rgb(140, 140, 140)"}}>
+    return <div style={{marginBottom: 10, marginTop: "1rem"}}>
+      <Header as='h3' style={{marginTop: '1rem', marginBottom: 10, color: "rgb(60, 60, 60)"}}>
         Deine Reaktion?
       </Header>
-      <Button.Group basic className='stackable'>
+      <Button.Group basic fluid className='stackable'>
         {buttons}
       </Button.Group>
       { this.state.error != null &&
