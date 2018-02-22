@@ -367,6 +367,10 @@ export default class Thesis extends Component<Props, State> {
           id={this.props.id}
           reactions={this.props.reactions}
         />
+
+        { this.state.error != null &&
+          <Message negative content={this.state.error} />
+        }
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
