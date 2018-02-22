@@ -84,7 +84,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const thesesElems = this.state.theses
+    const thesesElems = this.state.isLoading || this.state.error ? [] : this.state.theses
     .sort((a, b) => a.id > b.id ? 1 : -1)
     .map(
       (t, i) => <Thesis
