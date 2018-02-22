@@ -102,8 +102,8 @@ export default class TagView extends Component<RouteProps, State> {
         this.handleError(response);
         this.setState({
           tag: response.data,
-          theses: response.theses,
-          occasions: response.occasions,
+          theses: response.theses || [],
+          occasions: response.occasions || {},
           loading: false
         }, this.updateTerritoryCounts);
       })
@@ -133,7 +133,7 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   render() {
-    const theses = this.state.loading === false && this.state.theses
+    const theses = this.state.loading || this.state.error ? [] : this.state.theses
       .filter(thesis => this.state.tagFilter == null ? true :
         this.state.invertFilter === false
           ? thesis.tags.filter(
@@ -156,7 +156,7 @@ export default class TagView extends Component<RouteProps, State> {
       theses.length
     );
 
-    const thesesElems = this.state.loading  ? null : theses
+    const thesesElems = this.state.loading || this.state.error  ? null : theses
       .slice(startPos, endPos)
       .map((thesis, i) =>
         <Thesis
