@@ -56,8 +56,9 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
       /> {' '}
       <p style={{
         fontVariant: "all-small-caps",
-        marginBottom: 2,
-        lineHeight: "1em"}}>
+        marginBottom: ".3rem",
+        lineHeight: "1em"
+        }}>
         <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
           {occasion.title}
         </Link>
@@ -324,7 +325,8 @@ export default class Thesis extends Component<Props, State> {
       <Header as='h2' inverted attached="top" size="huge"
         style={{
           backgroundColor: voterOpinionColor,
-          minHeight: this.props.linkOccasion ? "4em" : null
+          minHeight: this.props.linkOccasion ? "4em" : null,
+          fontSize: "1.7rem"
         }}>
 
         { this.props.linkOccasion &&
@@ -339,11 +341,11 @@ export default class Thesis extends Component<Props, State> {
 
         {this.props.text}
 
-        <Header.Subheader>
+        <Header.Subheader style={{marginTop: "0.3em"}}>
         {this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
           : this.state.voterOpinion === 1
-            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern haben ihre Stimme befürwortenden Parteien gegeben`
-            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern haben ihre Stimme ablehnenden Parteien gegeben`
+            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern gaben ihre Stimme Parteien, die dafür waren`
+            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern gaben ihre Stimme Parteien, die dagegen waren`
         }
         </Header.Subheader>
       </Header>

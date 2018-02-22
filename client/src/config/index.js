@@ -100,7 +100,7 @@ export const REACTION_NAMES = {
   0: "Glücklich",
   1: "Erleichert",
   2: "Gleichgültig",
-  3: "Beunruhigt",
+  3: "Enttäuscht",
   4: "Wütend"
 };
 

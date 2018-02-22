@@ -60,7 +60,7 @@ class Reactions extends React.Component<Props, State> {
     const buttons = Object.keys(REACTION_NAMES).map(k =>
       <Button basic onClick={() => this.handleClick(parseInt(k, 10))} key={k}
           className={this.state.submitted === parseInt(k, 10) ? 'active' : null}>
-        {this.state.reactions[k]} {REACTION_NAMES[k]}
+        <strong>{this.state.reactions[k]}</strong> {REACTION_NAMES[k]}
       </Button>
     );
 
