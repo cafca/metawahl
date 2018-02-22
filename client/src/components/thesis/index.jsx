@@ -21,7 +21,7 @@ import { loadFromCache } from '../../app/';
 import WikidataTagger from '../wikidataTagger/';
 import Tag from '../tag/';
 import PositionChart from '../positionChart/';
-import Objections from '../objections/';
+import Reactions from '../reactions/';
 import Map from '../map/';
 import ErrorHandler from '../../utils/errorHandler';
 
@@ -363,11 +363,9 @@ export default class Thesis extends Component<Props, State> {
             header={this.state.openText.header} />
         }
 
-        <Objections
+        <Reactions
           id={this.props.id}
-          objections={this.props.objections}
-          occasionDate={this.props.occasion.date}
-          voterOpinion={this.state.voterOpinion}
+          reactions={this.props.reactions}
         />
       </Segment>
 

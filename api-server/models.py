@@ -9,7 +9,7 @@ import sys
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func, desc
+from sqlalchemy import func, desc, UniqueConstraint
 from slugify import slugify
 from collections import defaultdict
 
@@ -25,7 +25,7 @@ categories = db.Table('categories',
 # reactions is defined in frontend code
 REACTION_NAMES = {
     0: "Glücklich",
-    1: "Amüsiert",
+    1: "Erleichtert",
     2: "Na und",
     3: "Beunruhigt",
     4: "Verärgert"
@@ -159,6 +159,10 @@ class Reaction(db.Model):
         db.ForeignKey('thesis.id'), nullable=False)
     thesis = db.relationship('Thesis',
         backref=db.backref('reactions', lazy=True))
+
+    __table_args__ = (
+        UniqueConstraint('uuid', 'thesis_id', name='u_rctn'),
+    )
 
     def __repr__(self):
         return "<Reaction {} / {}>".format(self.thesis_id, REACTION_NAMES[self.kind])

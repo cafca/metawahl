@@ -68,7 +68,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         this.setState({
           isLoading: false,
           occasion: response.data,
-          theses: response.theses
+          theses: response.theses || []
         })
         if (cb != null) cb(response.data);
       })

@@ -20,23 +20,15 @@ export type TagType = {
   related_tags?: { count: number, tag: TagType }
 };
 
-export type ObjectionVoteType = {
-  uuid: string,
-  value: boolean,
-  objection_id: string,
-  date?: string
-};
+export type ReactionsTallyType = {
+  [kind: number]: number
+}
 
-export type ObjectionType = {
-  id: string,
-  url: string,
-  title: string,
-  uuid: string,
-  thesis_id: string,
-  votes: Array<ObjectionVoteType>,
-  vote_count: number,
-  date?: string
-};
+export type ReactionType = {
+  thesis: string,
+  kind: number,
+  date?: string,
+}
 
 export type ThesisType = {
   id: string,
@@ -46,7 +38,7 @@ export type ThesisType = {
   tags: Array<TagType>,
   occasion_id: number,
   positions: Array<PositionType>,
-  objections: Array<ObjectionType>
+  reactions: ReactionsTallyType
 };
 
 export type ResultsType = {

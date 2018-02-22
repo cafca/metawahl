@@ -299,8 +299,8 @@ def create_app(config=None):
 
         return json_response(rv, filename="categories.json")
 
-    @app.route(API_ROOT + "/react/<string:kind>", methods=["POST"])
-    def react(kind: str):
+    @app.route(API_ROOT + "/react/<string:endpoint>", methods=["POST"])
+    def react(endpoint: str):
         """Save a user submitted reaction.
 
         Kind may be one of:
@@ -313,7 +313,7 @@ def create_app(config=None):
 
         data = request.get_json()
 
-        if kind == "thesis-report":
+        if endpoint == "thesis-report":
             report = ThesisReport(
                 uuid=data.get('uuid'),
                 text=data.get('text'),
@@ -331,40 +331,56 @@ def create_app(config=None):
                 db.session.expire(report)
                 rv["data"] = report.to_dict()
 
-        elif kind == "reaction":
+        elif endpoint == "reaction":
             thesis_id = data.get('thesis_id')
             uuid = data.get('uuid')
-            kind = data.get('kind')
+            kind = int(data.get('kind'))
+            reaction = None
 
             error = uuid is None \
                 or thesis_id is None \
                 or not kind in REACTION_NAMES.keys()
 
-            if error is False:
-                thesis = db.session.query(Thesis).get(thesis_id)
-
-                if thesis is None:
-                    logger.warning("No thesis instance was found for this request")
-                    error = True
+            if error is True:
+                logger.error("Request missing parameters")
 
             if error is False:
-                reaction = Reaction(
-                    uuid=uuid,
-                    thesis=thesis,
-                    kind=kind
-                )
+                reaction = db.session.query(Reaction) \
+                    .filter(Reaction.uuid == uuid) \
+                    .filter(Reaction.thesis_id == thesis_id).first()
 
-                # Delete cached user ratings endpoint
-                cache.delete('views/{}/reactions/{}'.format(API_ROOT, uuid))
-
-                try:
-                    db.session.add(reaction)
-                    db.session.commit()
-                except SQLAlchemyError as e:
-                    logger.error(e)
-                    error = True
+                if reaction is not None:
+                    logger.info('Changing reaction from {} to {}'.format(
+                        REACTION_NAMES[reaction.kind], REACTION_NAMES[kind]))
+                    reaction.kind = kind
                 else:
-                    logger.info("Received {}".format(reaction)
+                    thesis = db.session.query(Thesis).get(thesis_id)
+
+                    if thesis is None:
+                        logger.warning("No thesis instance was found for this request")
+                        error = True
+
+                    if error is False:
+                        reaction = Reaction(
+                            uuid=uuid,
+                            thesis=thesis,
+                            kind=kind
+                        )
+
+                if error is False:
+                    try:
+                        db.session.add(reaction)
+                        db.session.commit()
+                    except SQLAlchemyError as e:
+                        logger.error(e)
+                        error = True
+                    else:
+                        logger.info("Stored {}".format(reaction))
+
+                        # Delete cached user ratings endpoint
+                        cache.delete('views/{}/reactions/{}'.format(API_ROOT, uuid))
+
+                        rv['data'] = reaction.thesis.reactions_dict()
         else:
             logger.error("Unknown reaction endpoint: {}".format(kind))
             error = True
