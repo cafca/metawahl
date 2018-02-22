@@ -36,7 +36,7 @@ const Footer = (props: RouteProps) => {
       <Grid divided inverted stackable columns={3}>
         <Grid.Row>
           <Grid.Column textAlign='left'>
-            <Header inverted as='h4' content='Parlamente' />
+            <Header inverted as='h4' content='Gebiete' />
             <List link inverted>
               {territorries}
             </List>

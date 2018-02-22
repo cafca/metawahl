@@ -79,7 +79,7 @@ export default class OccasionList extends Component<RouteProps, State> {
     }
 
     return <div className="occasionList">
-        <SEO title='Metawahl: Alle Wahlen und Parlamente im Überblick' />
+        <SEO title='Metawahl: Alle Wahlen im Überblick' />
         <Header as='h1'>
           Alle Wahlen und Parlamente
           <Header.Subheader>

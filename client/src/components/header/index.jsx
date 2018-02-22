@@ -23,7 +23,7 @@ const HeaderMenu = (props: {}) => (
                 Themen
           </Menu.Item>
 
-          <Search {...props} large className="small item" />
+          <Search {...props} large className="small right aligned item" />
 
         </Container>
       </Menu>

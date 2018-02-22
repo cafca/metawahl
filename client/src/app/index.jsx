@@ -158,58 +158,52 @@ class App extends Component<Props, State> {
             />
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
-            <Container id="outerContainer">
-              { !process.env.NODE_ENV && process.env.NODE_ENV !== 'development' &&
-                <Message warning>
-                  Metawahl wird erst am 28. Februar 2018 offiziell veröffentlich.
-                  Diese Vorabversion kann inhaltliche und technische Fehler beinhalten.
-                </Message>
-              }
+            <Route exact path='/' render={props => (
+              <Landing {...props} {...context} />
+            )} />
 
-              { this.state.error != null &&
-                <Message negative header="Upsi" content={this.state.error} />
-              }
+            <Route path='/:something'>
+              <Container id="outerContainer">
+                <Switch>
+                  { this.state.error != null &&
+                    <Message negative header="Upsi" content={this.state.error} />
+                  }
+                  <Route exact path="/wahlen/" render={props => (
+                    <OccasionList {...props} {...context} />
+                  )} />
 
-              <Switch>
-                <Route exact path='/' render={props => (
-                  <Landing {...props} {...context} />
-                )} />
+                  <Route exact path="/wahlen/:territory/" render={props => (
+                    <Territory {...props} {...context} />
+                  )} />
 
-                <Route exact path="/wahlen/" render={props => (
-                  <OccasionList {...props} {...context} />
-                )} />
+                  <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
+                    <Occasion {...props} {...context} />
+                  )} />
 
-                <Route exact path="/wahlen/:territory/" render={props => (
-                  <Territory {...props} {...context} />
-                )} />
+                  <Route exact path="/bereiche/" render={props => (
+                    <CategoriesList {...props} {...context} />
+                  )} />
 
-                <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
-                  <Occasion {...props} {...context} />
-                )} />
+                  <Route path="/bereiche/:category/:page?/" render={props => (
+                    <Category {...props} {...context} />
+                  )} />
 
-                <Route exact path="/bereiche/" render={props => (
-                  <CategoriesList {...props} {...context} />
-                )} />
+                  <Route exact path="/themen/" render={props => (
+                    <TagList {...props} {...context} />
+                  )} />
 
-                <Route path="/bereiche/:category/:page?/" render={props => (
-                  <Category {...props} {...context} />
-                )} />
+                  <Route path="/themen/:tag/:page?/" render={props => (
+                    <TagView {...props} {...context} />
+                  )} />
 
-                <Route exact path="/themen/" render={props => (
-                  <TagList {...props} {...context} />
-                )} />
+                  <Route path="/legal/" render={props => (
+                    <LegalView {...props} {...context} />
+                  )} />
 
-                <Route path="/themen/:tag/:page?/" render={props => (
-                  <TagView {...props} {...context} />
-                )} />
-
-                <Route path="/legal/" render={props => (
-                  <LegalView {...props} {...context} />
-                )} />
-
-                <Route render={props => <NotFound {...props} {...context} />}/>
-              </Switch>
-            </Container>
+                  <Route render={props => <NotFound {...props} {...context} />}/>
+                </Switch>
+              </Container>
+            </Route>
             <Footer {...context} />
           </div>
         </ScrollToTop>
