@@ -37,7 +37,7 @@ export default class OccasionList extends Component<RouteProps, State> {
   render() {
     const occasionElem = territory => {
       const occasions = this.state.occasions[territory] != null && this.state.occasions[territory]
-        .sort((a, b) => a.date > b.date)
+        .sort((a, b) => a.date < b.date)
         .map(occasion => <List.Item key={occasion.id} as='a'
             href={`/wahlen/${occasion.territory}/${occasion.id}/`}
             className='occasionListItem'>
