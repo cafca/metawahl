@@ -14,6 +14,9 @@ import {
 import type { RouteProps } from '../../types/';
 import { TERRITORY_NAMES } from '../../config/';
 
+import BMBF from '-!svg-react-loader!./logo-bmbf.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+import OKFN from '-!svg-react-loader!./logo-okfn.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+
 const Footer = (props: RouteProps) => {
   const territorries = Object.keys(props.occasions).map(o =>
     <List.Item as='a' key={'footer-link-' + o} href={`/wahlen/${o}/`}>{TERRITORY_NAMES[o]}</List.Item>
@@ -41,24 +44,30 @@ const Footer = (props: RouteProps) => {
               {territorries}
             </List>
           </Grid.Column>
+          <Grid.Column textAlign='left' className='ui inverted link list' >
+            <Header inverted as='h4' content='Über Metawahl' />
+            <p>Was wir gewählt haben, als wir Parteien unsere Stimme gaben</p>
+            <p>Ein Projekt von <a className="item" href="http://vincentahrend.com/">Vincent Ahrend</a></p>
+            <p>
+              Mit Unterstützung von <a className='item' href="https://denk-nach-mcfly.de">Hanno »friesenkiwi«</a> und <a className='item' href="https://github.com/gockelhahn/qual-o-mat-data">Felix Bolte »gockelhahn«</a> bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.
+            </p>
+            <p>Mit dem Metawahl-Logo und gestalterischer Unterstützung von <a className='item' href="http://linastindt.de">Lina Stindt</a>.</p>
+
+            <p style={{margin: "2em auto"}}>Vollständiger Quellcode verfügbar auf <a className='item' href="https://github.com/ciex/metawahl">Github</a></p>
+
+            <p>
+              Ein <a className='item' href="https://prototypefund.de/">Prototype Fund</a> Projekt
+            </p>
+            <p>
+              <a href='https://bmbf.de/'><BMBF style={{filter: "invert(100%) grayscale(100%)"}}/></a>
+              <a href='https://okfn.de/'><OKFN style={{filter: "invert(100%)"}} /></a>
+            </p>
+          </Grid.Column>
           <Grid.Column textAlign='left'>
             <Header inverted as='h4' content='Letzte Wahlen' />
             <List link inverted>
               {recentElections}
             </List>
-          </Grid.Column>
-          <Grid.Column textAlign='left' className='ui inverted link list'>
-            <Header inverted as='h4' content='Über Metawahl' />
-            <p>Welche Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?</p>
-            <p>Ein Projekt von <a className="item" href="http://vincentahrend.com/">Vincent Ahrend</a></p>
-            <p>
-              Mit freundlicher Unterstützung von <a className='item' href="https://denk-nach-mcfly.de">Hanno »friesenkiwi«</a> und <a className='item' href="https://github.com/gockelhahn/qual-o-mat-data">Felix Bolte »gockelhahn«</a> bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.
-            </p>
-            <p>Gefördert von: <br />
-              <Link className='item' to="https://www.bmbf.de/">Bundesministerium für Bildung und Forschung</Link> <br />
-              <Link className='item' to="https://prototypefund.de/">Prototype Fund</Link>
-            </p>
-            <p>Vollständiger Quellcode verfügbar auf <a className='item' href="https://github.com/ciex/metawahl">Github</a></p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
