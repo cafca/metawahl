@@ -326,19 +326,23 @@ export default class Thesis extends Component<Props, State> {
     }
 
     // Collect sources
-    let sources = this.props.occasion == null ? [] : [
-      <a href={this.props.occasion.source}>
-        Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
-      </a>
-    ];
+    let sources = [];
+    if (this.props.occasion != null ) {
+      sources.push(<span><a href={this.props.occasion.source}>
+          Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+        </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
+          qual-o-mat-data
+        </a></span>)
 
-    this.props.occasion && this.props.occasion.results_sources &&
-      this.props.occasion.results_sources.forEach(url =>
-        sources.push(
-          <span>, <a href={url}>Wahldaten: wahl.tagesschau.de</a></span>
+      if (this.props.occasion.results_sources) {
+        this.props.occasion.results_sources.forEach(url =>
+          sources.push(<span>,
+            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>
+          )
+        );
+      }
+    }
 
-      )
-    );
 
 
     return <div style={{marginBottom: "2em"}}>
@@ -370,7 +374,7 @@ export default class Thesis extends Component<Props, State> {
         </Header.Subheader>
       </Header>
 
-      <Segment id={this.props.id} attached>
+      <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
         <Header sub style={{color: "rgba(0,0,0,.65)"}}>
           Stimmverteilung
         </Header>
@@ -402,11 +406,13 @@ export default class Thesis extends Component<Props, State> {
         { this.state.error != null &&
           <Message negative content={this.state.error} />
         }
+
         <p
           className='sources'
           onClick={() => this.setState({showSources: true})}>
           Quellen{ this.state.showSources && <span>: {sources}</span> }
         </p>
+
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
