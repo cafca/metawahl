@@ -33,12 +33,12 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-          Metawahl verbindet Wahlergebnisse aus den letzten 16 Jahren mit über 21.000 Parteipositionen aus dem
+          Metawahl verbindet Wahlergebnisse der letzten 16 Jahre mit über 21.000 Parteipositionen aus dem
           Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit der Wähler für eine Idee gestimmt – oder dagegen?
         </p>
         <p>
-          Hierbei werden Entwicklungen deutlich wie bei der Frage nach der Aufnahme von Asylsuchenden zwischen
-          der Bundestagswahl 2013 und 2017. Vor der Flüchtlingskrise war die Wahl neutral, jetzt gibt es eine knappe
+          Hierdurch werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
+          den Bundestagswahlen 2013 und 2017. Vor der Flüchtlingskrise war das Ergebnis neutral, jetzt gibt es eine knappe
           Mehrheit <em>gegen</em> eine Obergrenze:
         </p>
       </Container>
