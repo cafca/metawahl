@@ -66,7 +66,7 @@ class Reactions extends React.Component<Props, State> {
 
     return <div style={{marginBottom: 10, marginTop: "1rem"}}>
       <Header as='h3' style={{marginTop: '1rem', marginBottom: 10, color: "rgb(60, 60, 60)"}}>
-        Deine Reaktion?
+        Deine Reaktion
       </Header>
       <Button.Group basic fluid className='stackable'>
         {buttons}
