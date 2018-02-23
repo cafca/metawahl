@@ -306,7 +306,7 @@ def load_reactions():
             reaction = Reaction(
                 uuid=reaction_data.get('uuid'),
                 date=date,
-                rating=reaction_data.get('kind'),
+                kind=reaction_data.get('kind'),
                 thesis=Thesis.query.get(reaction_data.get('thesis'))
             )
         except (KeyError, TypeError) as e:
