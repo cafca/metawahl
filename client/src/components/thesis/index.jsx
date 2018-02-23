@@ -46,6 +46,8 @@ import type {
 
 import type { WikidataType } from '../wikidataTagger/';
 
+import './Thesis.css';
+
 const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
     <span>
@@ -87,7 +89,8 @@ type State = {
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
   reported: ?boolean,
-  reportingError?: string
+  reportingError?: string,
+  showSources: boolean
 };
 
 type Props = RouteProps & ThesisType & {
@@ -113,7 +116,8 @@ export default class Thesis extends Component<Props, State> {
       voterOpinion: 0,
       ratioPro: 0.5,
       ratioContra: 0.5,
-      reported: null
+      reported: null,
+      showSources: false
     }
 
     this.handleError = ErrorHandler.bind(this);
@@ -321,6 +325,22 @@ export default class Thesis extends Component<Props, State> {
         : COLOR_PALETTE[this.state.ratioPro > 66 ? 4 : 3];
     }
 
+    // Collect sources
+    let sources = this.props.occasion == null ? [] : [
+      <a href={this.props.occasion.source}>
+        Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+      </a>
+    ];
+
+    this.props.occasion && this.props.occasion.results_sources &&
+      this.props.occasion.results_sources.forEach(url =>
+        sources.push(
+          <span>, <a href={url}>Wahldaten: wahl.tagesschau.de</a></span>
+
+      )
+    );
+
+
     return <div style={{marginBottom: "2em"}}>
       <Header as='h2' inverted attached="top" size="huge"
         style={{
@@ -382,6 +402,11 @@ export default class Thesis extends Component<Props, State> {
         { this.state.error != null &&
           <Message negative content={this.state.error} />
         }
+        <p
+          className='sources'
+          onClick={() => this.setState({showSources: true})}>
+          Quellen{ this.state.showSources && <span>: {sources}</span> }
+        </p>
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
