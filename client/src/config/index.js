@@ -127,9 +127,7 @@ export const THESES_PER_PAGE = 20;
 // export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(180, 180, 180)", "#928aa2", "#5e8bae"];
 export const COLOR_PALETTE = [
   "rgb(234,108,110)",
-  "rgba(234,108,110,0.75)",
   "rgb(169,124,144)",
-  "rgba(61,133,179,0.75)",
   "rgb(61,133,179)"
 ];
 

@@ -318,11 +318,11 @@ export default class Thesis extends Component<Props, State> {
     let voterOpinionColor;
 
     if (this.state.voterOpinion === 0) {
-      voterOpinionColor = COLOR_PALETTE[2]
+      voterOpinionColor = COLOR_PALETTE[1]
     } else {
       voterOpinionColor = this.state.voterOpinion === -1
-        ? COLOR_PALETTE[this.state.ratioContra > 66 ? 0 : 1]
-        : COLOR_PALETTE[this.state.ratioPro > 66 ? 4 : 3];
+        ? COLOR_PALETTE[0]
+        : COLOR_PALETTE[2];
     }
 
     // Collect sources
