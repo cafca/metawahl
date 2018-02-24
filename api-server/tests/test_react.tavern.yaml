@@ -62,48 +62,46 @@ stages:
       body:
         error: "There was a server error."
 
-  - name: Make sure that new objections are handled
+  - name: Make sure that new reactions are handled
     request:
-      url: http://localhost:9000/api/v1/react/objection
+      url: http://localhost:9000/api/v1/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
         uuid: test-uuid
-        url: https://metawahl.de
-        rating: 1
+        kind: 1
     response:
       status_code: 200
       headers:
         content-type: application/json
       save:
         body:
-          objection_id: data.id
+          reaction_count: data
 
-  - name: Make sure that duplicate objections are handled
+  - name: Make sure that duplicate reactions are handled
     request:
-      url: http://localhost:9000/api/v1/react/objection
+      url: http://localhost:9000/api/v1/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
         uuid: test-uuid
-        url: https://metawahl.de
-        rating: 1
+        kind: 1
     response:
       status_code: 200
       headers:
         content-type: application/json
       body:
-        error: "Diesen Link gibt es hier leider schon."
+        data:
+          "1": 1
 
 
-  - name: Make sure that objections missing thesis id return an error
+  - name: Make sure that reactions missing thesis id return an error
     request:
-      url: http://localhost:9000/api/v1/react/objection
+      url: http://localhost:9000/api/v1/react/reaction
       method: POST
       json:
         uuid: test-uuid
-        url: https://metawahl.de?1
-        rating: 1
+        kind: 1
     response:
       status_code: 200
       headers:
@@ -111,14 +109,13 @@ stages:
       body:
         error: "There was a server error."
 
-  - name: Make sure that objections missing uuid return an error
+  - name: Make sure that reactions missing uuid return an error
     request:
-      url: http://localhost:9000/api/v1/react/objection
+      url: http://localhost:9000/api/v1/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
-        url: https://metawahl.de?2
-        rating: 1
+        kind: 1
     response:
       status_code: 200
       headers:
@@ -126,13 +123,12 @@ stages:
       body:
         error: "There was a server error."
 
-  - name: Make sure that objections missing rating return an error
+  - name: Make sure that reactions missing rating return an error
     request:
-      url: http://localhost:9000/api/v1/react/objection
+      url: http://localhost:9000/api/v1/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
-        url: https://metawahl.de?3
         uuid: test-uuid
     response:
       status_code: 200
@@ -140,55 +136,3 @@ stages:
         content-type: application/json
       body:
         error: "There was a server error."
-
-  - name: Make sure that votes on objections are handled (id saved from above)
-    request:
-      url: http://localhost:9000/api/v1/react/objection-vote
-      method: POST
-      json:
-        objection_id: "{objection_id}"
-        uuid: test-uuid
-        value: true
-    response:
-      status_code: 200
-      headers:
-        content-type: application/json
-
-  - name: Make sure that votes on objections are taken back (id saved from above)
-    request:
-      url: http://localhost:9000/api/v1/react/objection-vote
-      method: POST
-      json:
-        objection_id: "{objection_id}"
-        uuid: test-uuid
-        value: false
-    response:
-      status_code: 200
-      headers:
-        content-type: application/json
-
-  - name: Test objection vote error handling when deleting votes twice
-    request:
-      url: http://localhost:9000/api/v1/react/objection-vote
-      method: POST
-      json:
-        objection_id: "{objection_id}"
-        uuid: test-uuid
-        value: false
-    response:
-      status_code: 200
-      headers:
-        content-type: application/json
-
-  - name: Test objection vote error handling for non-existing objections
-    request:
-      url: http://localhost:9000/api/v1/react/objection-vote
-      method: POST
-      json:
-        objection_id: -1
-        uuid: test-uuid
-        value: true
-    response:
-      status_code: 200
-      headers:
-        content-type: application/json

@@ -334,7 +334,7 @@ def create_app(config=None):
         elif endpoint == "reaction":
             thesis_id = data.get('thesis_id')
             uuid = data.get('uuid')
-            kind = int(data.get('kind'))
+            kind = int(data.get('kind', -1))
             reaction = None
 
             error = uuid is None \
