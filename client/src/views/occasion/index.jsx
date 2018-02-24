@@ -12,6 +12,7 @@ import { API_ROOT, TERRITORY_NAMES } from '../../config/';
 import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
 import SEO from '../../components/seo/';
+import Legend from '../../components/legend/';
 
 type State = {
   isLoading: boolean,
@@ -121,6 +122,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
           : this.state.occasion.title}
       </Header>
 
+      <Legend />
+
       { this.state.error != null &&
         <Message negative content={this.state.error} />
       }
@@ -128,7 +131,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       <Loader active={this.state.isLoading} />
 
       {this.state.isLoading === false &&
-      <div className="theses">
+      <div className="theses" style={{marginTop: "2em"}}>
         {thesesElems}
       </div>
       }

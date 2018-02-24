@@ -19,6 +19,7 @@ import Thesis from '../../components/thesis/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel';
 import SEO from '../../components/seo/';
 import TagMenu from '../../components/wikidataTagger/TagMenu';
+import Legend from '../../components/legend/';
 
 import type {
   ErrorType, TagType, ThesisType, OccasionType, RouteProps
@@ -269,10 +270,11 @@ export default class TagView extends Component<RouteProps, State> {
       <Loader active={this.state.loading} />
 
       { theses.length > 0 &&
-        <div>
+        <div style={{marginTop: "3em"}}>
           { theses.length > THESES_PER_PAGE &&
             <h2 style={{float: "right"}}>Seite {this.state.page}</h2>
           }
+
           <h2>
             {theses.length} These{theses.length !== 1 && 'n'} {' '}
             zu #{this.state.tag.title}
@@ -290,6 +292,8 @@ export default class TagView extends Component<RouteProps, State> {
               </span>
             }
           </h2>
+
+          <Legend />
 
           {thesesElems}
 
