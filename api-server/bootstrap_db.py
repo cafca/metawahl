@@ -10,7 +10,7 @@ import dateutil.parser
 from collections import defaultdict
 from datetime import datetime
 from models import Occasion, Thesis, Position, Party, Tag, Category, Result, \
-    ThesisReport, Objection
+    ThesisReport, Reaction
 from main import logger, create_app, db
 
 API_VERSION = "Metawahl API v1"
@@ -287,34 +287,32 @@ def load_reports():
         yield report
 
 
-def load_objections():
-    """Load user submitted objections from json file."""
+def load_reactions():
+    """Load user submitted reactions from json file."""
     try:
-        with open("../userdata/objections.json") as f:
-            objection_export = json.load(f)
+        with open("../userdata/reactions.json") as f:
+            reaction_export = json.load(f)
     except FileNotFoundError:
-        logger.warning("File ../userdata/thesis_objections.json not found - " +
-            "objections were not imported")
+        logger.warning("File ../userdata/reactions.json not found - " +
+            "reactions were not imported")
         return
 
-    assert objection_export["meta"]["api"] == API_VERSION
-    logger.info("Adding {} objections...".format(len(objection_export["data"])))
+    assert reaction_export["meta"]["api"] == API_VERSION
+    logger.info("Adding {} reactions...".format(len(reaction_export["data"])))
 
-    for objection_data in objection_export["data"]:
-        date = dateutil.parser.parse(objection_data.get('date'))
+    for reaction_data in reaction_export["data"]:
+        date = dateutil.parser.parse(reaction_data.get('date'))
         try:
-            objection = Objection(
-                uuid=objection_data.get('uuid'),
+            reaction = Reaction(
+                uuid=reaction_data.get('uuid'),
                 date=date,
-                url=objection_data.get('url'),
-                title=objection_data.get('title', None),
-                rating=objection_data.get('rating'),
-                thesis=Thesis.query.get(objection_data.get('thesis'))
+                kind=reaction_data.get('kind'),
+                thesis=Thesis.query.get(reaction_data.get('thesis'))
             )
         except (KeyError, TypeError) as e:
-            logger.error("Error importing objection: {}".format(e))
+            logger.error("Error importing reaction: {}".format(e))
 
-        yield objection
+        yield reaction
 
 
 def load_wahlergebnisse():
@@ -377,8 +375,8 @@ def make_substitutions():
 
 
 def load_results():
-    """Match voting records to the existing occasion datasets."""
-    logger.info("Matching voting results...")
+    """Match election records to the existing occasion datasets."""
+    logger.info("Matching election results...")
 
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
         result_data = json.load(f)
@@ -479,8 +477,8 @@ if __name__ == '__main__':
         for report in load_reports():
             db.session.add(report)
 
-        for objection in load_objections():
-            db.session.add(objection)
+        for reaction in load_reactions():
+            db.session.add(reaction)
 
         logger.info("Committing session to disk...")
         db.session.commit()

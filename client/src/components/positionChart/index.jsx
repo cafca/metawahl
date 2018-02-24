@@ -179,6 +179,7 @@ export default class PositionChart extends React.Component<Props, State> {
         onMouseOver={() => this.handleHover(data.party)}
         onMouseOut={() => this.handleHover(null)}
         onClick={() => this.props.toggleOpen(data)}
+        className={data.text == null ? "noText" : null}
         style={this.state.hovered === data.party ? {
           backgroundColor: OPINION_COLORS[data.value],
           color: "white"

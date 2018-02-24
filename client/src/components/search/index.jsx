@@ -192,7 +192,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
 
         {territoryResults.length > 0 &&
           <div className="category">
-            <div className="name" style={{marginTop: 7}}>Parlamente</div>
+            <div className="name" style={{marginTop: 7}}>Gebiete</div>
             {territoryResults}
           </div>
         }

@@ -21,7 +21,7 @@ import { loadFromCache } from '../../app/';
 import WikidataTagger from '../wikidataTagger/';
 import Tag from '../tag/';
 import PositionChart from '../positionChart/';
-import Objections from '../objections/';
+import Reactions from '../reactions/';
 import Map from '../map/';
 import ErrorHandler from '../../utils/errorHandler';
 
@@ -46,6 +46,8 @@ import type {
 
 import type { WikidataType } from '../wikidataTagger/';
 
+import './Thesis.css';
+
 const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
   occasion != null &&
     <span>
@@ -54,7 +56,11 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
         inverted={true}
         style={{height: "3em", float: 'right', paddingLeft: ".5em"}}
       /> {' '}
-      <p style={{fontVariant: "all-small-caps", marginBottom: ".3em", fontSize: "0.9em", lineHeight: "1em"}}>
+      <p style={{
+        fontVariant: "all-small-caps",
+        marginBottom: ".3rem",
+        lineHeight: "1em"
+        }}>
         <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
           {occasion.title}
         </Link>
@@ -83,12 +89,14 @@ type State = {
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
   reported: ?boolean,
-  reportingError?: string
+  reportingError?: string,
+  showSources: boolean
 };
 
 type Props = RouteProps & ThesisType & {
   occasion?: OccasionType,
-  linkOccasion?: boolean
+  linkOccasion?: boolean,
+  showHints?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -108,7 +116,8 @@ export default class Thesis extends Component<Props, State> {
       voterOpinion: 0,
       ratioPro: 0.5,
       ratioContra: 0.5,
-      reported: null
+      reported: null,
+      showSources: false
     }
 
     this.handleError = ErrorHandler.bind(this);
@@ -309,18 +318,39 @@ export default class Thesis extends Component<Props, State> {
     let voterOpinionColor;
 
     if (this.state.voterOpinion === 0) {
-      voterOpinionColor = COLOR_PALETTE[2]
+      voterOpinionColor = COLOR_PALETTE[1]
     } else {
       voterOpinionColor = this.state.voterOpinion === -1
-        ? COLOR_PALETTE[this.state.ratioContra > 66 ? 0 : 1]
-        : COLOR_PALETTE[this.state.ratioPro > 66 ? 4 : 3];
+        ? COLOR_PALETTE[0]
+        : COLOR_PALETTE[2];
     }
+
+    // Collect sources
+    let sources = [];
+    if (this.props.occasion != null ) {
+      sources.push(<span><a href={this.props.occasion.source}>
+          Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+        </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
+          qual-o-mat-data
+        </a></span>)
+
+      if (this.props.occasion.results_sources) {
+        this.props.occasion.results_sources.forEach(url =>
+          sources.push(<span>,
+            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>
+          )
+        );
+      }
+    }
+
+
 
     return <div style={{marginBottom: "2em"}}>
       <Header as='h2' inverted attached="top" size="huge"
         style={{
           backgroundColor: voterOpinionColor,
-          minHeight: this.props.linkOccasion ? "4em" : null
+          minHeight: this.props.linkOccasion ? "4em" : null,
+          fontSize: "1.7rem"
         }}>
 
         { this.props.linkOccasion &&
@@ -335,16 +365,16 @@ export default class Thesis extends Component<Props, State> {
 
         {this.props.text}
 
-        <Header.Subheader>
+        <Header.Subheader style={{marginTop: "0.3em"}}>
         {this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
           : this.state.voterOpinion === 1
-            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern haben ihre Stimme befürwortenden Parteien gegeben`
-            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern haben ihre Stimme ablehnenden Parteien gegeben`
+            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern gaben ihre Stimme Parteien, die dafür waren`
+            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern gaben ihre Stimme Parteien, die dagegen waren`
         }
         </Header.Subheader>
       </Header>
 
-      <Segment id={this.props.id} attached>
+      <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
         <Header sub style={{color: "rgba(0,0,0,.65)"}}>
           Stimmverteilung
         </Header>
@@ -360,12 +390,29 @@ export default class Thesis extends Component<Props, State> {
             header={this.state.openText.header} />
         }
 
-        <Objections
+        { this.props.showHints === true && this.state.openText == null &&
+          <Message style={{marginTop: "1rem"}}>
+            <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Wenn Parteinamen
+            hellgrau sind, so haben diese keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
+            vertreten.
+          </Message>
+        }
+
+        <Reactions
           id={this.props.id}
-          objections={this.props.objections}
-          occasionDate={this.props.occasion.date}
-          voterOpinion={this.state.voterOpinion}
+          reactions={this.props.reactions}
         />
+
+        { this.state.error != null &&
+          <Message negative content={this.state.error} />
+        }
+
+        <p
+          className='sources'
+          onClick={() => this.setState({showSources: true})}>
+          Quellen{ this.state.showSources && <span>: {sources}</span> }
+        </p>
+
       </Segment>
 
       <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>

@@ -5,6 +5,7 @@ import './Map.css';
 import { TERRITORY_NAMES } from "../../config/";
 
 // TODO: Wait for this PR to be released, then remove the custom loader
+// (also in footer)
 // https://github.com/facebook/create-react-app/pull/3718
 
 import Deutschland from '-!svg-react-loader!./Deutschland.svg'; // eslint-disable-line import/no-webpack-loader-syntax
