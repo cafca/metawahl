@@ -35,17 +35,21 @@ export default class OccasionList extends Component<RouteProps, State> {
   }
 
   render() {
+    let occasionCount = 0;
+
     const occasionElem = territory => {
       const occasions = this.state.occasions[territory] != null && this.state.occasions[territory]
         .sort((a, b) => a.date < b.date)
-        .map(occasion => <List.Item key={occasion.id} as='a'
+        .map(occasion => {
+          occasionCount += 1;
+          return <List.Item key={occasion.id} as='a'
             href={`/wahlen/${occasion.territory}/${occasion.id}/`}
             className='occasionListItem'>
           <List.Header as='h3'>{moment(occasion.date).year()}</List.Header>
           <span style={{color: 'rgb(140, 140, 140)'}}>
             {occasion.title.slice(0, occasion.title.indexOf(' '))} vom {moment(occasion.date).format('LL')}
           </span>
-        </List.Item>);
+        </List.Item>});
 
       return <div className="ui container" key={territory} style={{marginTop: "4em"}}>
         <Header dividing as='h1' style={{marginBottom: "1em"}}>
@@ -81,7 +85,7 @@ export default class OccasionList extends Component<RouteProps, State> {
     return <div className="occasionList">
         <SEO title='Metawahl: Alle Wahlen im Überblick' />
         <Header as='h1'>
-          Alle Wahlen und Parlamente
+          Alle {occasionCount} Wahlen
           <Header.Subheader>
             Bundestags-, Landtags- und Europawahlen in der Übersicht
           </Header.Subheader>
