@@ -229,8 +229,9 @@ export default class TagView extends Component<RouteProps, State> {
           <Dropdown className='link item' placeholder='Nur mit Thema...' selection
             scrolling value={this.state.tagFilter} style={{border: "none"}}
             selectOnBlur={false} closeOnBlur={true}
-            options={tagFilterOptions}
+            options={tagFilterOptions} disabled={tagFilterOptions.length === 0}
             onChange={(e, data) => this.setState({tagFilter: data.value})} />
+
           <Dropdown className='link item' placeholder='Nur Gebiet...' selection
             scrolling value={this.state.territoryFilter} style={{border: "none"}}
             selectOnBlur={false} closeOnBlur={true}
