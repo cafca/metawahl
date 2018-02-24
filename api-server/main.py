@@ -382,7 +382,7 @@ def create_app(config=None):
 
                         rv['data'] = reaction.thesis.reactions_dict()
         else:
-            logger.error("Unknown reaction endpoint: {}".format(kind))
+            logger.error("Unknown reaction endpoint: {}".format(endpoint))
             error = True
 
         if error is True:
