@@ -3,5 +3,13 @@
 }
 
 .suggestions a:hover .suggestionText {
-  border-bottom: 1px solid #333;
+  text-decoration: underline;
+}
+
+.st5:hover {
+  fill: rgb(42, 64, 101);
+}
+
+.st2:hover {
+  fill: rgb(213, 0, 28);
 }
