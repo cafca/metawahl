@@ -20,6 +20,7 @@ import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel'
 import SEO from '../../components/seo/';
 import TagMenu from '../../components/wikidataTagger/TagMenu';
 import Legend from '../../components/legend/';
+import Tag from '../../components/tag/';
 
 import type {
   ErrorType, TagType, ThesisType, OccasionType, RouteProps
@@ -169,13 +170,20 @@ export default class TagView extends Component<RouteProps, State> {
         />
       );
 
-    const relatedTags = (this.state.tag && this.state.tag.related_tags) || {};
-    const tagFilterOptions = Object.keys(relatedTags)
-      .sort((a, b) => relatedTags[b].count - relatedTags[a].count)
-      .filter(i => relatedTags[i].count < this.state.theses.length)
+    const parentTags = this.state.tag && this.state.tag.related_tags &&
+      Object.keys(this.state.tag.related_tags.parents)
+        .map(k => <Tag data={this.state.tag.related_tags.parents[k].tag} />);
+
+    let linkedTags = {};
+    if (this.state.tag && this.state.tag.related_tags) {
+      linkedTags = this.state.tag.related_tags.linked;
+    }
+
+    const tagFilterOptions = Object.keys(linkedTags)
+      .sort((a, b) => linkedTags[b].count - linkedTags[a].count)
       .map(i => ({
         key: i,
-        text: relatedTags[i].tag.title + ' (' + relatedTags[i].count + ')',
+        text: linkedTags[i].tag.title + ' (' + linkedTags[i].count + ')',
         value: i
       }));
 
@@ -223,6 +231,15 @@ export default class TagView extends Component<RouteProps, State> {
           </Header.Content>
         }
       </Header>
+
+      { parentTags && parentTags.length > 0 &&
+        <h3>Themenbereich{ parentTags.length > 1 && 'e' }: {parentTags} </h3>
+      }
+
+      {/* { tagFilterOptions.length > 0 && this.state.tagFilter == null && <Message>
+        <Icon name='info circle' /> Benutze den Themenfilter um immer wieder auftauchende Fragen in diesem
+        Thema zu entdecken.
+      </Message> } */}
 
       { (tagFilterOptions.length + Object.keys(territoryFilterOptions).length) > 0 &&
         <Menu stackable>
