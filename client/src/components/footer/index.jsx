@@ -38,9 +38,9 @@ const Footer = (props: RouteProps) => {
       <Grid divided inverted stackable columns={3}>
         <Grid.Row>
           <Grid.Column textAlign='left'>
-            <Header inverted as='h4' content='Gebiete' />
+            <Header inverted as='h4' content='Letzte Wahlen' />
             <List link inverted>
-              {territorries}
+              {recentElections}
             </List>
           </Grid.Column>
           <Grid.Column textAlign='left' className='ui inverted link list' >
@@ -51,6 +51,12 @@ const Footer = (props: RouteProps) => {
               Mit Unterstützung von <a className='item' href="https://denk-nach-mcfly.de">Hanno »friesenkiwi«</a> und <a className='item' href="https://github.com/gockelhahn/qual-o-mat-data">Felix Bolte »gockelhahn«</a> bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.
             </p>
             <p>Mit dem Metawahl-Logo und gestalterischer Unterstützung von <a className='item' href="http://linastindt.de">Lina Stindt</a>.</p>
+            <p>
+              Alle Fragen und Antworten aus dem Wahl-o-Mat © Bundeszentrale für politische Bildung. Auch wenn diese
+              Daten hier ohne jegliche inhaltliche Modifikationen abgebildet werden sollen, kann es aus technischen
+              Gründen zu Übertragunsfehlern gekommen sein. Solche bitten wir <a className='item' href='mailto:metawahl@vincentahrend.com'>
+              per Email</a> zu melden.
+            </p>
 
             <p style={{margin: "2em auto"}}>Vollständiger Quellcode verfügbar auf <a className='item' href="https://github.com/ciex/metawahl">Github</a></p>
 
@@ -63,9 +69,9 @@ const Footer = (props: RouteProps) => {
             </p>
           </Grid.Column>
           <Grid.Column textAlign='left'>
-            <Header inverted as='h4' content='Letzte Wahlen' />
+            <Header inverted as='h4' content='Gebiete' />
             <List link inverted>
-              {recentElections}
+              {territorries}
             </List>
           </Grid.Column>
         </Grid.Row>
@@ -73,7 +79,7 @@ const Footer = (props: RouteProps) => {
 
       <Divider inverted section />
       <List horizontal inverted divided link>
-        <List.Item as='a' href='#'>Site Map</List.Item>
+        {/* <List.Item as='a' href='#'>Site Map</List.Item> */}
         <List.Item as='a' href='mailto:metawahl@vincentahrend.com'>metawahl@vincentahrend.com</List.Item>
         <List.Item as='a' href='/legal'>Impressum</List.Item>
         <List.Item as='a' href='/legal#privacy'>Datenschutzerklärung</List.Item>
