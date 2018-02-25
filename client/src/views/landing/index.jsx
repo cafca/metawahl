@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Header, Grid, List, Segment } from 'semantic-ui-react';
-
+import {
+  Container, Grid, Header, Icon, List, Segment
+} from 'semantic-ui-react';
 
 import { RouteProps } from '../../types/';
 import { TERRITORY_NAMES } from '../../config/';
@@ -50,16 +51,16 @@ class LandingView extends React.Component<RouteProps> {
 
       <Grid stackable columns='2' style={{margin: "3em 1em"}}>
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(169, 124, 144)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
+          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(160, 160, 160)", fontSize: "1.7rem"}}>
+            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
             Deutschland soll mehr Flüchtlinge aufnehmen
             <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>Keine Mehrheit dafür oder dagegen</div>
           </Segment>
         </Grid.Column>
 
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(234, 108, 110)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
+          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(213, 0, 28)", fontSize: "1.7rem"}}>
+            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
             Für die Aufnahme von neuen Asylsuchenden soll eine jährliche Obergrenze gelten.
             <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>53 von 100 Wählern gaben ihre Stimme Parteien, die gegen eine Obergrenze sind.</div>
           </Segment>
@@ -72,25 +73,31 @@ class LandingView extends React.Component<RouteProps> {
         </Header>
 
         <p>
-          <Link to="/wahlen/deutschland/42/" style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
-            Alle Fragen aus der <strong>Bundestagswahl 2017</strong>
+          <Link to="/wahlen/deutschland/42/">
+            <Icon name='caret right' /> Alle Fragen aus der <strong>Bundestagswahl 2017</strong>
           </Link>
         </p>
 
         <p>
-          <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/" style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
-            10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong>
+          <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
+            <Icon name='caret right' /> 10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong>
           </Link>
         </p>
 
         <p>
-          <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/' style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
-            5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong>
+          <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/'>
+            <Icon name='caret right' /> 5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong>
+          </Link>
+        </p>
+
+        <p>
+          <Link to='/themen/'>
+            <Icon name='caret right' /> Stöbere durch fast 600 weitere Themen
           </Link>
         </p>
 
         <p style={{marginTop: "2em"}}>
-          <Link style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}} to='/themen/'>Stöbere durch fast 600 weitere Themen</Link>, oder lies mehr darüber wie Metawahl funktioniert:
+          Oder lies mehr darüber wie Metawahl funktioniert:
         </p>
       </Container>
 

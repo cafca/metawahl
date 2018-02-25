@@ -126,9 +126,9 @@ export const THESES_PER_PAGE = 20;
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#ff7f7f,5c8aad
 // export const COLOR_PALETTE = ["#ff7f7f", "#de858b", "rgb(180, 180, 180)", "#928aa2", "#5e8bae"];
 export const COLOR_PALETTE = [
-  "rgb(234,108,110)",
-  "rgb(169,124,144)",
-  "rgb(61,133,179)"
+  "rgb(213, 0, 28)",
+  "rgb(180,180,180)",
+  "rgb(42, 64, 101)"
 ];
 
 // export const COLOR_PALETTE = ["#ffac82", "#ebc170", "rgb(148, 148, 148)", "#8ce999", "#00f7d2"]
@@ -145,5 +145,5 @@ export const OPINION_COLORS = {
   "-1": COLOR_PALETTE[0],
   "0": COLOR_PALETTE[parseInt(COLOR_PALETTE.length / 2.0, 10)],
   "1": COLOR_PALETTE[COLOR_PALETTE.length - 1],
-  "missing": "rgb(140, 140, 140)"
+  "missing": "rgb(80, 80, 80)"
 }

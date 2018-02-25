@@ -13,9 +13,9 @@ h1 {
   background-color: #fcfcfc;
 }
 
-a {
+a:not(.item) {
   /* Make this !important until the weird Semantic UI LESS compiler setup is integrated with CRA without ejecting... */
-  color: #333;
+  color: #333 !important;
 }
 
 a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .content .header {
@@ -122,3 +122,4 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 /* Display Wikidata Logo monochrome unless hovered */
 .wikidataLabel { filter: grayscale(100%) }
 .wikidataLabel:hover { filter: initial }
+
