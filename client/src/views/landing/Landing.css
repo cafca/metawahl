@@ -1,3 +1,7 @@
 .logo {
   max-height: 5em;
 }
+
+.suggestions a:hover .suggestionText {
+  border-bottom: 1px solid #333;
+}

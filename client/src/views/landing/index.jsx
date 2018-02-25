@@ -67,32 +67,83 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
-      <Container text style={{margin: "5em auto 7em"}}>
+            {/* <Grid stackable columns='4' style={{margin: "5em auto 7em"}}>
+        <Grid.Row>
+          <Grid.Column as='h2'>
+          Lies jetzt
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+        <Link to="/wahlen/deutschland/42/">
+            <Header as='h3'>
+              <Header.Subheader>
+                Alle Fragen aus der
+              </Header.Subheader>
+              Bundestagswahl 2017
+            </Header>
+        </Link>
+          </Grid.Column>
+          <Grid.Column>
+        <Link to="/wahlen/deutschland/42/">
+            <Header as='h3'>
+              <Header.Subheader>
+                10 Thesen zu
+              </Header.Subheader>
+              #Abitur nach der 12. Jahrgangsstufe
+            </Header>
+        </Link>
+          </Grid.Column>
+          <Grid.Column>
+        <Link to="/wahlen/deutschland/42/">
+            <Header as='h3'>
+              <Header.Subheader>
+                5 Thesen zu
+              </Header.Subheader>
+              #Beitrittsverhandlungen der Türkei mit der Europäischen Union
+            </Header>
+        </Link>
+          </Grid.Column>
+          <Grid.Column>
+        <Link to="/themen/">
+            <Header as='h3'>
+              Stöbere durch fast 600 weitere Themen
+            </Header>
+        </Link>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid> */}
+
+      <Container text style={{margin: "5em auto 7em"}} className='suggestions'>
         <Header size='medium' style={{marginBottom: "1.5em"}}>
           Schau dir jetzt an
         </Header>
 
         <p>
           <Link to="/wahlen/deutschland/42/">
-            <Icon name='caret right' /> Alle Fragen aus der <strong>Bundestagswahl 2017</strong>
+            <Icon name='caret right' />
+            <span className='suggestionText'>Alle Fragen aus der <strong>Bundestagswahl 2017</strong></span>
           </Link>
         </p>
 
         <p>
           <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
-            <Icon name='caret right' /> 10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong>
+            <Icon name='caret right' />
+            <span className='suggestionText'>10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong></span>
           </Link>
         </p>
 
         <p>
           <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/'>
-            <Icon name='caret right' /> 5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong>
+            <Icon name='caret right' />
+            <span className='suggestionText'>5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong></span>
           </Link>
         </p>
 
         <p>
           <Link to='/themen/'>
-            <Icon name='caret right' /> Stöbere durch fast 600 weitere Themen
+            <Icon name='caret right' />
+            <span className='suggestionText'>Stöbere durch fast 600 weitere Themen</span>
           </Link>
         </p>
 
