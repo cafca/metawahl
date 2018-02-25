@@ -3,63 +3,60 @@
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:rgb(61,133,179);}
-	.st1{fill:rgb(234,108,110);}
-	.st2{fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#333333;stroke-width:3;stroke-miterlimit:10;}
+	.st0{fill:none;}
+	.st1{fill:#CCCCCC;}
+	.st2{fill:#CCCCCC;stroke:#F2F2F2;stroke-miterlimit:10;}
+	.st3{fill:#F2F2F2;}
+	.st4{fill:#999999;}
+	.st5{fill:#999999;stroke:#F2F2F2;stroke-miterlimit:10;}
 </style>
-<path class="st0" d="M250.9,162.1v322.9c0,0.3-0.3,0.5-0.6,0.4l-39.7-17.1c-0.1-0.1-0.2-0.2-0.2-0.4l0-65.9l-0.1-156.9
-	c0-0.4-0.5-0.6-0.7-0.2l-65.6,100.2c-0.2,0.3-0.6,0.2-0.7,0L85.7,222.7c-0.2-0.4-0.8-0.3-0.8,0.2v191.8c0,0.3-0.3,0.5-0.6,0.4
-	l-27.8-11.8c-0.1-0.1-0.2-0.2-0.2-0.4V140.6c0-0.2,0.2-0.4,0.4-0.4l27.9,3.1c0.1,0,0.3,0.1,0.3,0.2l58.1,119.7
-	c0.1,0.3,0.5,0.3,0.7,0L210,157.4c0.1-0.1,0.2-0.2,0.4-0.2l40.1,4.4C250.7,161.7,250.9,161.9,250.9,162.1z"/>
-<path class="st1" d="M445.6,140.1V403l-28.7,12.2l-58.4-89.2l-66.8,142.2c0,0.1-0.1,0.2-0.2,0.2l-40.6,17.2V161.7l40.7-4.5v224.4
-	l66.5-137.1c0.1-0.3,0.5-0.3,0.7,0l58.1,92.7V143.3L445.6,140.1z"/>
-<line class="st2" x1="401.9" y1="21.8" x2="401.8" y2="21.8"/>
+<path class="st0" d="M150.5,238.1L150.5,238.1L150.5,238.1L150.5,238.1z M150.5,307.4L150.5,307.4L150.5,307.4L150.5,307.4z
+	 M130.5,157.3L130.5,157.3L130.5,157.3L130.5,157.3z M110.5,168.8L110.5,168.8L110.5,168.8L110.5,168.8z"/>
+<g>
+	<polygon class="st1" points="230.5,261.2 230.5,261.2 210.5,272.7 210.5,272.7 210.5,249.6 210.5,249.6 	"/>
+	<polygon class="st1" points="210.5,272.7 210.5,272.7 190.5,284.3 190.5,284.3 190.5,261.2 190.5,261.2 	"/>
+	<polygon class="st2" points="370.5,249.6 370.5,295.8 350.5,307.4 350.5,261.2 	"/>
+	<polygon class="st2" points="290.5,295.8 290.5,342 270.5,353.6 270.5,353.6 270.5,307.4 270.5,307.4 	"/>
+	<polygon class="st2" points="390.5,122.6 390.5,307.4 370.5,318.9 370.5,134.2 	"/>
+	<polygon class="st1" points="150.5,215 150.5,307.4 130.5,318.9 130.5,203.5 130.5,203.5 	"/>
+	<polygon class="st1" points="190.5,191.9 190.5,215 170.5,226.5 170.5,226.5 170.5,203.5 170.5,203.5 	"/>
+	<polygon class="st1" points="170.5,157.3 170.5,180.4 150.5,191.9 150.5,191.9 150.5,168.8 150.5,168.8 	"/>
+	<polygon class="st2" points="310.5,261.2 310.5,307.4 290.5,318.9 290.5,272.7 290.5,272.7 	"/>
+	<polygon class="st2" points="330.5,226.5 330.5,272.7 310.5,284.3 310.5,238.1 	"/>
+	<polygon class="st2" points="350.5,238.1 350.5,284.3 330.5,295.8 330.5,249.6 	"/>
+	<polygon class="st2" points="270.5,191.9 270.5,376.7 250.5,388.2 250.5,203.5 	"/>
+	<polygon class="st1" points="150.5,122.6 150.5,145.7 130.5,157.3 130.5,157.3 130.5,134.2 	"/>
+</g>
 <g>
 	<g>
-
-			<image style="overflow:visible;" width="84" height="111" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABvCAYAAABy1uevAAAACXBIWXMAAAsSAAALEgHS3X78AAAA
-GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABGBJREFUeNrsnWly00AQhf2oORQp
-yOrYTuC8EC9xNgInAK7zcFUSSBHZmqV7Frm7Kj8iSzPTX7/uGY2lBCOzN/bz9y+GnE8+nY7Nj2vF
-wZdB57DYvqgBNDS6rVkfbFdLdDMieZJSh7okzA3dwdziGJBCGRwNBhz1bcTV72AJZVaU8vIKla0H
-7PpNcMiudHiZuSRoVyQ30tdT2JnMMB5FqtkVylG+EJaYHxUUyuL5zYJUXQ7BUFh5evMKK1RoA/fc
-bSm0v7KJi4U1rGDZmELr3yMoMSkllyvKNaVURl3GXB+cGvMqlHkiwco2BTIqlB7KrGRmaW/ZJFtn
-OeSU93WPrEtZ9dZQdjjL2hO1coXKqK/NmV6phqJZINuyDq8PoCP2UE35FmFuGzPefsruyw/eH6DY
-pFQFM8j744bGM4iZwljL3cv3GkRI6MQXlSgUIe1klDrknHRF8zFA3Qj3ukiZEgX6/ccjtTZ7OdrH
-/dBBP3dXAGhJFSGjJtBx5MOHjxiUQulLlelR445GxYA+Pj4wH1FshfWSJdDohxlT3nuVAwkpMkyI
-0Es56NVQz+rDHHUD8k3uGO3h4RFEgT58u6ffev55aw/ayV+umDvZfEdPyYa4v+roUAKot3sNLlQZ
-Rjw5+e7v7+qkBDnh/V/P8Orio6MTCCuUTSqLW9GyN1K7Jowkhd7d3TKbwBT2RrrAIKCv4+NTCNdQ
-5hMYU/Od/v0yPoJOMsJIlmFNc//uNk5OziAK9PZ2zS0vqSj7DUGACIszNBXKQgpMTot+J/oezzo9
-HUMU6M3Ntd9GMkO0go7L4/uI2uEXEIBLDiykhEfZ9mLKAOMCnxST9XrFuAYRBAHSchIK1NnZOTLe
-egq8rOB9dvxbw1CkH3Tl+nrJ/uZSlyzIrjpfG48nvT16K/R6A1NcNRFtQKQ7vXLhn/KkvuowyhKy
-4J34zenj8ynEgK5WC2o7IH8ni6TSEDsUp92B+qaJz4gTB38+mUE+5SsxVhm8gGtWywXFe23IJgHq
-9FQoAz9GHVJhmcC73eqcs4qk5C4qUl9fy4BvrIZS/7pXm8uT6QxiQOPUORSjvEJzPNjd11fJ+W4y
-vYAY0KWgOlno2lLBcH63mZG3jizneUowppHq7AS6XFzF/10bSniO+mXY1ixPgVPjd5NS1PkGaLc6
-92CWFvT63cjsnzpnlxBNeWl5Yg+D8hfoYn5Fsbfg9G5Cqw+e83afQm5VskyCQrorzPISDz+EvDSL
-6IBRU6GL+deKZnemncuAIEE15fdws+P58OzikxhaWzZJK3S+SfdCm9sDXTax6zWY+GLf2rpUMt13
-1FCd/yWhEShUp9DSk0PM+ha7L4dH8xgGUKFA9OwycRtVZFqHDnJ5xDL3wnu9bLq4/AwDWrkZUANq
-QA2omQE1oAbUzIAaUANqZkANqAE1oGYG1IAaUDMDakANqJkBNaBtW/D30vOrL4N5qVbje/lsz1rV
-GIimgdYYhL0Dqh0EDaB/BBgAUUq72sY8jwoAAAAASUVORK5CYII=" transform="matrix(1 0 0 1 214 16)">
-		</image>
+		<polygon class="st3" points="310.5,261.2 310.5,261.2 290.5,272.7 290.5,272.7 270.5,261.2 290.5,249.6 		"/>
 	</g>
-	<g>
-		<g>
-			<path class="st3" d="M274.7,57.3c-0.4,16.7-11.2,33.4-23.8,38.2c-12.3,4.7-21.3-0.3-20.1-11.9c1.2-11.6,11.6-29.8,23.2-39.5
-				C265.8,34.1,275.1,40.6,274.7,57.3z"/>
-		</g>
-	</g>
-	<g>
-		<path class="st1" d="M258.5,110.6c-0.3,0.6-0.6,1.1-1,1.6c-0.3-3.1-0.7-6.1-1.1-9.1c-1.5-9.3-3.3-18.2-5.2-26.8
-			c-6.1,8.2-12.1,14.9-17.6,19.1c-2.5,1.9-4.9,3.3-7.2,4c-0.4-0.6-0.8-1.2-1.2-1.7c2.3-0.7,4.8-2.1,7.4-4
-			c5.7-4.3,11.9-11.3,18.1-19.8c-2-9-4-17.5-5.9-25.3c-0.7-3.1-1.4-6-2.1-8.9c0.6-0.5,1.2-1.1,1.7-1.6c0.7,2.9,1.4,5.9,2.1,9
-			c1.8,7.7,3.8,16,5.7,24.7c5.4-7.6,10.7-16.2,15.3-25.1c1.6-3,3.1-6,4.5-9.1c0.3,0.7,0.7,1.5,1,2.3c-1.3,2.7-2.7,5.5-4.1,8.2
-			c-4.9,9.2-10.6,18.2-16.2,26.1c0,0,0,0,0,0c2.2,11.5,4.2,23.7,5.6,36.3C258.5,110.5,258.5,110.6,258.5,110.6z"/>
-		<path class="st4" d="M258.5,110.6c-0.3,0.6-0.6,1.1-1,1.6c-0.3-3.1-0.7-6.1-1.1-9.1c-1.5-9.3-3.3-18.2-5.2-26.8
-			c-6.1,8.2-12.1,14.9-17.6,19.1c-2.5,1.9-4.9,3.3-7.2,4c-0.4-0.6-0.8-1.2-1.2-1.7c2.3-0.7,4.8-2.1,7.4-4
-			c5.7-4.3,11.9-11.3,18.1-19.8c-2-9-4-17.5-5.9-25.3c-0.7-3.1-1.4-6-2.1-8.9c0.6-0.5,1.2-1.1,1.7-1.6c0.7,2.9,1.4,5.9,2.1,9
-			c1.8,7.7,3.8,16,5.7,24.7c5.4-7.6,10.7-16.2,15.3-25.1c1.6-3,3.1-6,4.5-9.1c0.3,0.7,0.7,1.5,1,2.3c-1.3,2.7-2.7,5.5-4.1,8.2
-			c-4.9,9.2-10.6,18.2-16.2,26.1c0,0,0,0,0,0c2.2,11.5,4.2,23.7,5.6,36.3C258.5,110.5,258.5,110.6,258.5,110.6z"/>
-	</g>
+	<polygon class="st3" points="290.5,295.8 290.5,295.8 270.5,307.4 270.5,307.4 270.5,284.3 270.5,284.3 	"/>
+	<polygon class="st3" points="350.5,238.1 350.5,238.1 330.5,249.6 330.5,226.5 	"/>
+	<polygon class="st3" points="370.5,249.6 350.5,261.2 350.5,238.1 350.5,238.1 	"/>
+	<polygon class="st3" points="190.5,215 190.5,238.1 170.5,226.5 	"/>
+	<polygon class="st3" points="210.5,203.5 210.5,226.5 190.5,215 	"/>
+	<polygon class="st3" points="230.5,191.9 230.5,215 210.5,203.5 	"/>
+	<polygon class="st3" points="390.5,122.6 390.5,122.6 370.5,134.2 350.5,122.6 350.5,122.6 370.5,111.1 	"/>
+	<polygon class="st3" points="170.5,157.3 170.5,157.3 150.5,168.8 150.5,168.8 130.5,157.3 150.5,145.7 150.5,145.7 	"/>
+	<polygon class="st3" points="150.5,122.6 130.5,134.2 110.5,122.6 130.5,111.1 130.5,111.1 	"/>
+	<polygon class="st3" points="330.5,226.5 330.5,226.5 310.5,238.1 290.5,226.5 310.5,215 	"/>
+	<polygon class="st3" points="190.5,191.9 190.5,191.9 170.5,203.5 170.5,203.5 150.5,191.9 170.5,180.4 170.5,180.4 	"/>
+	<polygon class="st3" points="270.5,191.9 270.5,191.9 250.5,203.5 230.5,191.9 250.5,180.4 250.5,180.4 	"/>
+</g>
+<g>
+	<polygon class="st4" points="330.5,272.7 330.5,295.8 310.5,284.3 	"/>
+	<polygon class="st4" points="350.5,284.3 350.5,307.4 330.5,295.8 330.5,295.8 	"/>
+	<polygon class="st4" points="370.5,295.8 370.5,318.9 350.5,307.4 	"/>
+	<polygon class="st4" points="370.5,134.2 370.5,249.6 350.5,238.1 350.5,238.1 350.5,122.6 	"/>
+	<polygon class="st4" points="290.5,272.7 290.5,295.8 270.5,284.3 270.5,284.3 270.5,261.2 	"/>
+	<polygon class="st5" points="130.5,134.2 130.5,318.9 110.5,307.4 110.5,168.8 110.5,168.8 110.5,168.8 110.5,122.6 	"/>
+	<polygon class="st4" points="310.5,238.1 310.5,261.2 290.5,249.6 290.5,226.5 	"/>
+	<polygon class="st5" points="210.5,226.5 210.5,272.7 190.5,261.2 190.5,261.2 190.5,215 190.5,215 	"/>
+	<polygon class="st5" points="230.5,215 230.5,261.2 210.5,249.6 210.5,249.6 210.5,203.5 210.5,203.5 	"/>
+	<polygon class="st5" points="190.5,238.1 190.5,284.3 170.5,272.7 170.5,272.7 170.5,226.5 170.5,226.5 	"/>
+	<polygon class="st5" points="170.5,203.5 170.5,249.6 150.5,238.1 150.5,238.1 150.5,191.9 150.5,191.9 	"/>
+	<polygon class="st5" points="150.5,168.8 150.5,215 130.5,203.5 130.5,203.5 130.5,157.3 130.5,157.3 	"/>
+	<polygon class="st5" points="250.5,203.5 250.5,388.2 230.5,376.7 230.5,191.9 230.5,191.9 	"/>
 </g>
 </svg>

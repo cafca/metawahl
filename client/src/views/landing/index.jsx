@@ -25,7 +25,7 @@ class LandingView extends React.Component<RouteProps> {
     return <Container>
       <Container textAlign='center' style={{margin: "4em auto 7em"}}>
         <h1 className="ui header" style={{fontSize: "4rem"}}>
-          <Logo className='logo' />
+          <Logo className='logo' style={{marginBottom: "-1em"}}/>
           Metawahl
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
             Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
