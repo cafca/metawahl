@@ -9,7 +9,7 @@ import './Legend.css';
 
 const Legend = () => <Table collapsing compact className='legend'>
     <Table.Row>
-      <Table.Cell>
+      <Table.Cell style={{fontWeight: 'normal'}}>
         <div className='square' style={{backgroundColor: COLOR_PALETTE[2]}}>&nbsp;</div> Zustimmung
       </Table.Cell>
       <Table.Cell>
