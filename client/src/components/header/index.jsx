@@ -6,8 +6,6 @@ import { Container, Dropdown, Menu, Responsive } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import Search from '../search/';
 
-import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
-
 const HeaderMenu = (props: {}) => (
   <div>
     <Responsive minWidth={600}>

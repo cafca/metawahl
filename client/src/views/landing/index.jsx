@@ -9,6 +9,10 @@ import { RouteProps } from '../../types/';
 import { TERRITORY_NAMES } from '../../config/';
 import Map from '../../components/map/';
 
+import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+
+import './Landing.css';
+
 class LandingView extends React.Component<RouteProps> {
   render() {
     const territorries = Object.keys(TERRITORY_NAMES)
@@ -20,6 +24,7 @@ class LandingView extends React.Component<RouteProps> {
     return <Container>
       <Container textAlign='center' style={{margin: "4em auto 7em"}}>
         <h1 className="ui header" style={{fontSize: "4rem"}}>
+          <Logo className='logo' />
           Metawahl
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
             Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
@@ -37,7 +42,7 @@ class LandingView extends React.Component<RouteProps> {
           Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit der Wähler für eine Idee gestimmt – oder dagegen?
         </p>
         <p>
-          Hierdurch werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
+          Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
           den Bundestagswahlen 2013 und 2017. Vor der Flüchtlingskrise war das Ergebnis neutral, jetzt gibt es eine knappe
           Mehrheit <em>gegen</em> eine Obergrenze:
         </p>
