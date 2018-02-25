@@ -73,7 +73,7 @@ def cache_filler(cache):
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if is_cache_filler():
-                logger.debug('Forced cache miss for {}'.format(request.path))
+                logger.debug('Forcing cache miss for {}'.format(request.path))
                 cache.delete("view/{}".format(request.path))
             return f(*args, **kwargs)
         return decorated_function
