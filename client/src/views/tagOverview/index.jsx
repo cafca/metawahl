@@ -9,11 +9,9 @@ import {
   Icon,
   List,
   Loader,
-  Reveal,
   Grid
 } from 'semantic-ui-react';
 
-import { API_ROOT } from '../../config/';
 import type { RouteProps } from '../../types/';
 import SEO from '../../components/seo/';
 
@@ -54,9 +52,11 @@ export default class TagList extends Component<RouteProps> {
           <Header as='h1' className='ellipsis'>
             <a href={'/themen/' + tag.slug + '/'}>{tag.title}</a>
           </Header>
-            <div className='visible'>
-                <p className='thesesCount' style={{fontFamily: "Roboto"}}>{tag.thesis_count}</p>
-            </div>
+            <a href={'/themen/' + tag.slug + '/'}>
+              <div className='visible'>
+                  <p className='thesesCount' style={{fontFamily: "Roboto"}}>{tag.thesis_count}</p>
+              </div>
+            </a>
             <div className='hidden'>
                 <List>
                   {relatedTags}
@@ -67,28 +67,36 @@ export default class TagList extends Component<RouteProps> {
         }
       );
 
-      {/* TODO: Loading state this.props.isLoading */}
-
     return <Container className="tagList" style={{marginTop: "4em"}}>
       <SEO
         title='Metawahl: Alle Wahlthemen in Deutschland seit 2002' />
           <Loader active={this.props.isLoading} inline='centered' />
 
       <Grid relaxed divided doubling stackable columns={4}>
-        <Grid.Column style={{width: "50%"}}>
-          <Header as='h1' className='hyphenate'>Themenbereiche</Header>
-          <p>Alle Thesen auf Metawahl sind mindestens einem von 600 Themen zugeordnet. Dadurch kannst du dir die Thesen
-            zu jedem Thema übersichtlich auf einer Seite anschauen.
-          </p>
+        <Grid.Row>
+          <Grid.Column className="headerCount">
+            <div className='headerCountInner'>
+              <div>600+</div>
+              Themen
+            </div>
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <p>
+              Über die Zuordnung zu über 600 Themen kannst du hier entdecken, wie sich politische Positionen von Wählern – oder auch Parteien – über Zeit geändert haben, und wie sie sich zwischen den verschiedenen Gebieten, in denen gewählt wird, unterscheiden.
+            </p>
+            <p>
+              Auf dieser Seite findest du einen Überblick der größten Themenbereiche. Hinter jedem von ihnen verstecken sich viele weitere Unterthemen. Jedes Thema ist dabei einem Eintrag auf Wikidata zugeordnet – einer Sammlung strukturierter Daten, die mit Wikipedia verknüpft ist.
+            </p>
 
-          <p>
-            Die Themenzuordnung ist ein laufender Prozess. Wenn du eine Idee für eine Ergänzung hast, kannst du
-            bei jeder These unten rechts auf »melden« klicken, wir freuen uns über Vorschläge.
-          </p>
-          <p>
-            <Icon name='caret right' /> <a href="/themenliste/">Alle 599 Thesen als Liste zeigen</a>
-          </p>
-        </Grid.Column>
+            <p>
+              Die Themenzuordnung ist ein laufender Prozess. Wenn du eine Idee für eine Ergänzung hast, kannst du
+              bei jeder These unten rechts auf »melden« klicken, wir freuen uns über Vorschläge.
+            </p>
+            <p>
+              <Icon name='caret right' /> <a href="/themenliste/">Alle Themen als Liste zeigen</a>
+            </p>
+          </Grid.Column>
+        </Grid.Row>
         {tagElems}
       </Grid>
     </Container>;

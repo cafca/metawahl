@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import '../../index.css';
 import {
+  Container,
   Dropdown,
   Header,
   Icon,
@@ -198,7 +199,7 @@ export default class TagView extends Component<RouteProps, State> {
     const pageTitle = this.state.tag != null && this.state.tag.title != null ?
       this.state.tag.title : null;
 
-    return <div style={{minHeight: 350}} >
+    return <Container id="outerContainer" style={{minHeight: 350}} >
       <SEO
         title={'Metawahl: Wahlthema ' + pageTitle}
         canonical={'/themen/' + this.slug + '/'} />
@@ -326,6 +327,6 @@ export default class TagView extends Component<RouteProps, State> {
           />
         </div>
       }
-    </div>;
+    </Container>;
   }
 };

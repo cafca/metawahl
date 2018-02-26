@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import '../../index.css';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, Grid, Header, List, Responsive } from 'semantic-ui-react';
+import { Breadcrumb, Container, Grid, Header, List, Responsive } from 'semantic-ui-react';
 import moment from 'moment';
 
 import { TERRITORY_NAMES } from '../../config/';
@@ -48,7 +48,7 @@ export default class Territory extends Component<RouteProps, State> {
             </span>
           </List.Item>);
 
-    return <div className="occasionList">
+    return <Container id="outerContainer">
       <SEO
         title={'Metawahl: Alle Wahlthemen in ' + territoryName} />
 
@@ -79,6 +79,6 @@ export default class Territory extends Component<RouteProps, State> {
           </List>
         </Grid.Column>
       </Grid>
-    </div>
+    </Container>
   }
 };

@@ -7,12 +7,16 @@ import {
 import SEO from '../../components/seo/';
 
 export const LegalView = () => {
-  return <Container>
+  return <Container text style={{marginTop: "4em"}}>
     <SEO title='Impressum und Datenschutzerklärung' />
 
-    <Header as='h1' content="Impressum" />
+    <Header as='h1' content="Impressum"/>
+
     <Image src='/img/impressum.png' alt='Kontaktdaten des Herausgebers' />
-    <a href="#privacy"><Header as='h2' content="Datenschutzerkl&#xE4;rung" /></a>
+
+    <Header dividing as='h2'><a id="privacy" alt='Datenschutzerklärung'>Datenschutzerkl&#xE4;rung</a></Header>
+
+
     <p>Die Nutzung unserer Seite ist ohne eine Angabe von personenbezogenen Daten m&#xF6;glich. F&#xFC;r die Nutzung einzelner  Services unserer Seite k&#xF6;nnen sich hierf&#xFC;r abweichende Regelungen ergeben, die in diesem Falle nachstehend gesondert erl&#xE4;utert werden. Ihre personenbezogenen  Daten (z.B. Name, Anschrift, E-Mail, Telefonnummer, u.&#xE4;.) werden von uns nur  gem&#xE4;&#xDF; den Bestimmungen des deutschen Datenschutzrechts verarbeitet. Daten sind dann  personenbezogen, wenn sie eindeutig einer bestimmten nat&#xFC;rlichen Person  zugeordnet werden k&#xF6;nnen. Die rechtlichen Grundlagen des Datenschutzes finden  Sie im Bundesdatenschutzgesetz (BDSG) und dem Telemediengesetz (TMG). Nachstehende  Regelungen informieren Sie insoweit &#xFC;ber die Art, den Umfang und Zweck der  Erhebung, die Nutzung und die Verarbeitung von personenbezogenen Daten durch  den Anbieter</p>
     <p>
         <img src="/img/contact.png" alt="Kontaktdaten des Betreibers dieser Webseite" />

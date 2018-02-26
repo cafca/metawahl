@@ -2,7 +2,7 @@
 
 import React from 'react';
 import autoBind from 'react-autobind';
-import { Breadcrumb, Header, Loader, Message } from 'semantic-ui-react';
+import { Breadcrumb, Container, Header, Loader, Message } from 'semantic-ui-react';
 import Moment from 'moment';
 
 import '../../index.css';
@@ -95,7 +95,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         {...t} />
     );
 
-    return <div className="occasion" style={{minHeight: 350}} >
+    return <Container id="outerContainer" style={{minHeight: 350}} >
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title : "")} />
 
@@ -135,6 +135,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
         {thesesElems}
       </div>
       }
-    </div>;
+    </Container>;
   }
 }

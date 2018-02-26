@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import '../../index.css';
 import { Link } from 'react-router-dom';
-import { Grid, Header, List, Responsive } from 'semantic-ui-react';
+import { Container, Grid, Header, List, Responsive } from 'semantic-ui-react';
 
 import { TERRITORY_NAMES } from '../../config/';
 import { OccasionListType, RouteProps } from '../../types/';
@@ -82,15 +82,15 @@ export default class OccasionList extends Component<RouteProps, State> {
         .map(o => occasionElems.push(occasionElem(o)));
     }
 
-    return <div className="occasionList">
-        <SEO title='Metawahl: Alle Wahlen im Überblick' />
-        <Header as='h1'>
-          Alle {occasionCount} Wahlen
-          <Header.Subheader>
-            Bundestags-, Landtags- und Europawahlen in der Übersicht
-          </Header.Subheader>
-        </Header>
-        {occasionElems}
-      </div>;
+    return <Container id="outerContainer">
+      <SEO title='Metawahl: Alle Wahlen im Überblick' />
+      <Header as='h1'>
+        Alle {occasionCount} Wahlen
+        <Header.Subheader>
+          Bundestags-, Landtags- und Europawahlen in der Übersicht
+        </Header.Subheader>
+      </Header>
+      {occasionElems}
+    </Container>;
   }
 };

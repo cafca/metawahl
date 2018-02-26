@@ -5,7 +5,7 @@ import autoBind from 'react-autobind';
 import '../../index.css';
 import {
   Checkbox,
-  Button,
+  Container,
   Header,
   Icon,
   Item,
@@ -14,7 +14,6 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-import { API_ROOT } from '../../config/';
 import type { RouteProps } from '../../types/';
 import SEO from '../../components/seo/';
 
@@ -76,47 +75,45 @@ export default class TagList extends Component<RouteProps, State> {
         </Item.Content>
       </Item>);
 
-    return <div className="tagList">
+    return <Container id="outerContainer">
       <SEO
         title='Metawahl: Alle Wahlthemen in Deutschland seit 2002' />
 
-        <Header as='h1'>
-          <Icon name="hashtag" />
-          <Header.Content>
-            Alle Themen
-          </Header.Content>
-        </Header>
+      <Header as='h1'>
+        <Icon name="hashtag" />
+        <Header.Content>
+          Alle Themen
+        </Header.Content>
+      </Header>
 
+      <Menu attached="top" pointing>
+        <Menu.Item
+          name="alphabetisch"
+          active={this.state.sortBy === "name"}
+          onClick={() => this.sortBy("name")} />
+        <Menu.Item
+          name="nach Anzahl Thesen"
+          active={this.state.sortBy === "count"}
+          onClick={() => this.sortBy("count")} />
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Checkbox
+              label="Zeige Tags mit nur einer These"
+              onChange={this.toggleSingleTags}
+              toggle
+              />
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
 
-
-        <Menu attached="top" pointing>
-          <Menu.Item
-            name="alphabetisch"
-            active={this.state.sortBy === "name"}
-            onClick={() => this.sortBy("name")} />
-          <Menu.Item
-            name="nach Anzahl Thesen"
-            active={this.state.sortBy === "count"}
-            onClick={() => this.sortBy("count")} />
-          <Menu.Menu position='right'>
-            <Menu.Item>
-              <Checkbox
-                label="Zeige Tags mit nur einer These"
-                onChange={this.toggleSingleTags}
-                toggle
-                />
-            </Menu.Item>
-          </Menu.Menu>
-        </Menu>
-
-        <Segment attached="bottom">
-          <Loader active={this.props.isLoading} inline='centered' />
-          { tagElems.length > 0 &&
-              <Item.Group link className="divided">
-                {tagElems}
-              </Item.Group>
-          }
-        </Segment>
-      </div>;
+      <Segment attached="bottom">
+        <Loader active={this.props.isLoading} inline='centered' />
+        { tagElems.length > 0 &&
+            <Item.Group link className="divided">
+              {tagElems}
+            </Item.Group>
+        }
+      </Segment>
+    </Container>;
   }
 };

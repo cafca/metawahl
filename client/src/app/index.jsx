@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Container, Message } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react'
 
 import '../index.css';
 import Header from '../components/header/';
@@ -13,8 +13,6 @@ import { API_ROOT } from '../config/';
 import Landing from  '../views/landing';
 import OccasionList from '../views/occasionList/';
 import Occasion from '../views/occasion/';
-import CategoriesList from '../views/categoryList/';
-import Category from '../views/category/';
 import NotFound from '../views/notFound/';
 import LegalView from '../views/legal';
 import TagList from '../views/tagList/';
@@ -158,57 +156,46 @@ class App extends Component<Props, State> {
             />
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
-            <Route exact path='/' render={props => (
-              <Landing {...props} {...context} />
-            )} />
+            { this.state.error != null &&
+              <Message negative header="Upsi" content={this.state.error} />
+            }
 
+            <Switch>
+              <Route exact path='/' render={props => (
+                <Landing {...props} {...context} />
+              )} />
 
-            <Route exact path="/themen/" render={props => (
-              <TagOverview {...props} {...context} />
-            )} />
+              <Route exact path="/wahlen/" render={props => (
+                <OccasionList {...props} {...context} />
+              )} />
 
-            <Route path='/:something'>
-              <Container id="outerContainer">
-                <Switch>
-                  { this.state.error != null &&
-                    <Message negative header="Upsi" content={this.state.error} />
-                  }
-                  <Route exact path="/wahlen/" render={props => (
-                    <OccasionList {...props} {...context} />
-                  )} />
+              <Route exact path="/wahlen/:territory/" render={props => (
+                <Territory {...props} {...context} />
+              )} />
 
-                  <Route exact path="/wahlen/:territory/" render={props => (
-                    <Territory {...props} {...context} />
-                  )} />
+              <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
+                <Occasion {...props} {...context} />
+              )} />
 
-                  <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
-                    <Occasion {...props} {...context} />
-                  )} />
+              <Route exact path="/themen/" render={props => (
+                <TagOverview {...props} {...context} />
+              )} />
 
-                  <Route exact path="/bereiche/" render={props => (
-                    <CategoriesList {...props} {...context} />
-                  )} />
+              <Route exact path="/themenliste/" render={props => (
+                <TagList {...props} {...context} />
+              )} />
 
-                  <Route path="/bereiche/:category/:page?/" render={props => (
-                    <Category {...props} {...context} />
-                  )} />
+              <Route path="/themen/:tag/:page?/" render={props => (
+                <TagView {...props} {...context} />
+              )} />
 
-                  <Route exact path="/themenliste/" render={props => (
-                    <TagList {...props} {...context} />
-                  )} />
+              <Route path="/legal/" render={props => (
+                <LegalView {...props} {...context} />
+              )} />
 
-                  <Route path="/themen/:tag/:page?/" render={props => (
-                    <TagView {...props} {...context} />
-                  )} />
+              <Route render={props => <NotFound {...props} {...context} />}/>
+            </Switch>
 
-                  <Route path="/legal/" render={props => (
-                    <LegalView {...props} {...context} />
-                  )} />
-
-                  <Route render={props => <NotFound {...props} {...context} />}/>
-                </Switch>
-              </Container>
-            </Route>
             <Footer {...context} />
           </div>
         </ScrollToTop>
