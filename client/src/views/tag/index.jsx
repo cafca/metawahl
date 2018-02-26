@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
+import moment from 'moment';
 import '../../index.css';
 import {
   Container,
@@ -136,6 +137,12 @@ export default class TagView extends Component<RouteProps, State> {
   }
 
   render() {
+    const occasionDateById = Object.keys(this.props.occasions)
+      // Collect all occasions into one array
+      .reduce((acc, cur) => acc.concat(this.props.occasions[cur]), [])
+      // Extract date into an object keyed by occasion id
+      .reduce((acc, cur) => { acc[cur.id] = cur.date; return acc; }, {});
+
     const theses = this.state.loading || this.state.error ? [] : this.state.theses
       .filter(thesis => this.state.tagFilter == null ? true :
         this.state.invertFilter === false
@@ -151,7 +158,9 @@ export default class TagView extends Component<RouteProps, State> {
           : this.state.occasions[thesis.occasion_id].territory
             !== this.state.territoryFilter
       )
-      .sort((t1, t2) => t2.occasion_id - t1.occasion_id);
+      .sort((t1, t2) => moment(occasionDateById[t2.occasion_id]).isBefore(
+        moment(occasionDateById[t1.occasion_id])
+      ) ? -1 : 1);
 
     const startPos = (this.state.page - 1) * THESES_PER_PAGE;
     const endPos = Math.min(
