@@ -147,7 +147,7 @@ def create_app(config=None):
 
     @app.route('/sitemap.xml', methods=["GET"])
     def sitemap():
-        from models import Category, Occasion, Tag
+        from models import Occasion, Tag
 
         def generate():
             app = create_app()
@@ -162,12 +162,6 @@ def create_app(config=None):
                         yield '{}/wahlen/{}/\n'.format(SITE_ROOT, occ.territory)
                     yield '{}/wahlen/{}/{}/\n'.format(SITE_ROOT, occ.territory, occ.id)
                     terr = occ.territory
-
-
-                # Categories
-                yield '{}/bereiche/\n'.format(SITE_ROOT)
-                for cat in db.session.query(Category).order_by(Category.slug).all():
-                    yield '{}/bereiche/{}/\n'.format(SITE_ROOT, cat.slug)
 
                 # Topics
                 yield '{}/themen/\n'.format(SITE_ROOT)
@@ -184,7 +178,7 @@ def create_app(config=None):
     @cache.cached()
     def baseData():
         """Return base data set required by the web client."""
-        from models import Category, Occasion, Tag, Thesis
+        from models import Occasion, Tag, Thesis
 
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
@@ -216,21 +210,6 @@ def create_app(config=None):
         rv["data"]["tags"] = [
             item[0].to_dict(thesis_count=item[1], query_root_status=True, include_related_tags=True)
                 for item in tagItems]
-
-        # Categories
-
-        categoryItems = db.session.query(Category, func.count(Thesis.id)) \
-            .join(Category.theses) \
-            .group_by(Category.name) \
-            .order_by(Category.slug) \
-            .all()
-
-        rv["data"]["categories"] = [item[0].to_dict(thesis_count=item[1])
-                for item in categoryItems]
-
-        uncategorized = Category.uncategorized()
-        if len(uncategorized["theses"]) > 0:
-            rv["data"]["categories"].append(uncategorized)
 
         return json_response(rv)
 
@@ -282,23 +261,6 @@ def create_app(config=None):
 
         return json_response(rv)
 
-    @app.route(API_ROOT + "/categories.json", methods=["GET"])
-    @cache_filler(cache)
-    @cache.cached()
-    def categories():
-        """Return list of all categories."""
-        from models import Category
-
-        if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
-
-        categories = Category.query.order_by(Category.slug).all()
-        rv = {
-            "data": [category.to_dict(thesis_ids=True)
-                for category in categories]
-        }
-
-        return json_response(rv, filename="categories.json")
 
     @app.route(API_ROOT + "/react/<string:endpoint>", methods=["POST"])
     def react(endpoint: str):
@@ -392,64 +354,6 @@ def create_app(config=None):
 
         return json_response(rv)
 
-    @app.route(API_ROOT + "/categories/<string:category>",
-        methods=["GET", "POST"])
-    @cache_filler(cache)
-    @cache.cached()
-    def category(category: str):
-        """Return metadata for all theses in a category."""
-        from models import Category, Thesis
-
-        if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
-
-        error = None
-
-        if category == "_uncategorized":
-            rv = {"data": Category.uncategorized(thesis_data=True)}
-        else:
-            category = db.session.query(Category) \
-                .filter(Category.slug == category) \
-                .first()
-
-            if category is None:
-                return json_response(
-                    {"error": "Category not found"}, status=404)
-
-            if request.method == "POST":
-                data = request.get_json()
-
-                isValidAdmin = data is not None \
-                    and (data.get('admin_key', '') \
-                        == app.config.get('ADMIN_KEY'))
-
-                if isValidAdmin:
-                    for thesis_id in data.get("add", []):
-                        logger.info("Adding {} to {}".format(
-                            category, thesis_id))
-                        thesis = db.session.query(Thesis).get(thesis_id)
-                        category.theses.append(thesis)
-
-                    for thesis_id in data.get("remove", []):
-                        logger.info("Removing {} from {}".format(
-                            category, thesis_id))
-                        thesis = db.session.query(Thesis).get(thesis_id)
-                        category.theses = [thesis for thesis in category.theses
-                            if thesis.id != thesis_id]
-
-                    db.session.add(category)
-                    db.session.commit()
-                else:
-                    logger.warning("Invalid admin password")
-                    error = "Invalid admin password"
-
-            rv = {
-                "data": category.to_dict(
-                    thesis_data=True, include_related_tags=True),
-                "error": error
-            }
-
-        return json_response(rv)
 
     @app.route(API_ROOT + "/tags.json",
         methods=["GET"], defaults={'filename': 'tags.json'})
@@ -457,7 +361,7 @@ def create_app(config=None):
     @cache_filler(cache)
     @cache.cached()
     def tags(filename=None):
-        """Return list of all categories."""
+        """Return list of all tags."""
         from models import Tag, Thesis
 
         if not is_cache_filler():
@@ -493,7 +397,7 @@ def create_app(config=None):
     @cache_filler(cache)
     @cache.cached()
     def tag(tag_title: str):
-        """Return metadata for all theses in a category."""
+        """Return data for all theses in a tag."""
         from models import Tag
 
         if not is_cache_filler():

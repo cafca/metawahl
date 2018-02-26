@@ -9,7 +9,7 @@ import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
-from models import Occasion, Thesis, Position, Party, Tag, Category, Result, \
+from models import Occasion, Thesis, Position, Party, Tag, Result, \
     ThesisReport, Reaction
 from main import logger, create_app, db
 
@@ -236,32 +236,6 @@ def load_tags():
         yield tag
 
 
-def load_categories():
-    """Load categories from exported categories.json."""
-    try:
-        with open("../userdata/categories.json") as f:
-            categories_export = json.load(f)
-    except FileNotFoundError:
-        logger.warning("File ../userdata/categories.json not found - " +
-            "categories were not imported")
-        return
-
-    assert categories_export["meta"]["api"] == API_VERSION
-    logger.info("Adding {} categories...".format(len(categories_export["data"])))
-
-    # TODO: Update existing categories
-
-    for category_data in categories_export["data"]:
-        category = Category(
-            name=category_data["name"],
-        )
-
-        for thesis_id in category_data["theses"]:
-            category.theses.append(Thesis.query.get(thesis_id))
-
-        yield category
-
-
 def load_reports():
     """Load user submitted reports from json file."""
     try:
@@ -470,9 +444,6 @@ if __name__ == '__main__':
 
         for tag in load_tags():
             db.session.add(tag)
-
-        # for category in load_categories():
-        #     db.session.add(category)
 
         for report in load_reports():
             db.session.add(report)

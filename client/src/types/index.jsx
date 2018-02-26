@@ -44,7 +44,6 @@ export type ThesisType = {
   id: string,
   text: string,
   title: ?string,
-  categories: Array<string>,
   tags: Array<TagType>,
   occasion_id: number,
   positions: Array<PositionType>,
@@ -88,7 +87,6 @@ export type PartyType = {
 export type RouteProps = {
   isLoading: boolean,
   occasions: OccasionListType,
-  categories: Array<CategoryType>,
   tags: Array<TagType>
 };
 

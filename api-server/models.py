@@ -14,13 +14,6 @@ from slugify import slugify
 from collections import defaultdict
 
 
-categories = db.Table('categories',
-    db.Column('category_name', db.String(64), db.ForeignKey('category.name'),
-        primary_key=True),
-    db.Column('thesis_id', db.String(10), db.ForeignKey('thesis.id'),
-        primary_key=True)
-)
-
 # Try and use these only for logging and debugging. Exact language for
 # reactions is defined in frontend code
 REACTION_NAMES = {
@@ -34,92 +27,6 @@ REACTION_NAMES = {
 def dt_string(dt):
     """Return iso string representation of a datetime including tz."""
     return dt.strftime("%Y-%m-%d %H:%M:%S Z")
-
-
-class Category(db.Model):
-    """Represent one of the 27 categories."""
-    name = db.Column(db.String(64), primary_key=True)
-    slug = db.Column(db.String(64), unique=True)
-
-    def __repr__(self):
-        return "<Category {}>".format(self.name)
-
-    def __init__(self, name):
-        self.name = name
-        self.make_slug()
-
-    def make_slug(self):
-        self.slug = slugify(self.name)
-
-    @property
-    def related_tags(self):
-        tag_counts = defaultdict(int)
-        tags = dict()
-
-        for thesis in self.theses:
-            for tag in thesis.tags:
-                tag_counts[tag.title] += 1
-                tags[tag.title] = tag
-
-        num_related_tags = 15
-        try:
-            cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
-        except IndexError:
-            logger.info("Cutoff set to 0 for category {}".format(self))
-            cutoff = 0
-
-        rv = dict()
-        for tag in tag_counts.keys():
-            if tag_counts[tag] > cutoff:
-                rv[tag] = {
-                    "count": tag_counts[tag],
-                    "tag": tags[tag].to_dict()
-                }
-
-        return rv
-
-    def to_dict(self, thesis_data=False, thesis_ids=False,
-            include_related_tags=False, thesis_count=None):
-        rv = {
-            "name": self.name,
-            "slug": self.slug
-        }
-
-        if thesis_data:
-            rv["theses"] = [thesis.to_dict() for thesis in self.theses]
-            rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
-                for thesis in self.theses}
-
-        if thesis_count is not None:
-            rv["thesis_count"] = thesis_count
-
-        if thesis_ids:
-            rv["theses"] = [thesis.id for thesis in self.theses]
-
-        if include_related_tags:
-            rv["related_tags"] = self.related_tags
-
-        return rv
-
-    @classmethod
-    def uncategorized(cls, thesis_data=False):
-        rv = {
-            "name": "(Noch in keinem Themenbereich)",
-            "slug": "_uncategorized"
-        }
-
-        theses = db.session.query(Thesis) \
-            .filter(Thesis.categories == None) \
-            .order_by(Thesis.id)
-
-        if thesis_data:
-            rv["theses"] = [thesis.to_dict() for thesis in theses]
-            rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
-                for thesis in theses}
-        else:
-            rv["theses"] = [thesis.id for thesis in theses]
-
-        return rv
 
 
 class ThesisReport(db.Model):
@@ -435,13 +342,6 @@ class Thesis(db.Model):
         lazy=False,
         backref=db.backref('theses', order_by=desc(tags.c.thesis_id)))
 
-    categories = db.relationship('Category',
-        secondary=categories,
-        lazy=False,
-        backref=db.backref('theses',
-            order_by=desc(categories.c.thesis_id)),
-        order_by='Category.name')
-
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
 
@@ -449,7 +349,6 @@ class Thesis(db.Model):
         rv = {
             "id": self.id,
             "title": self.title,
-            "categories": [category.slug for category in self.categories],
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
             "occasion_id": self.occasion_id,

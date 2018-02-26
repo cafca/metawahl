@@ -10,7 +10,7 @@ import requests
 
 from logger import setup_logger
 from main import API_ROOT
-from models import Occasion, Category, Tag
+from models import Occasion, Tag
 
 logger = setup_logger(logfile="/var/log/metawahl/cache_filler.log", level=logging.DEBUG)
 
@@ -35,10 +35,6 @@ def gen_urls():
     occasions = Occasion.query.all()
     for occasion in occasions:
         urls.append(url('/occasions/{}').format(occasion.id))
-
-    # categories
-
-    urls.append(url('/categories.json'))
 
     # tags
 

@@ -87,7 +87,7 @@ export default class TagOverview extends Component<RouteProps> {
               Über die Zuordnung zu über 600 Themen kannst du hier entdecken, wie sich politische Positionen von Wählern – oder auch Parteien – über Zeit geändert haben, und wie sie sich zwischen den verschiedenen Gebieten, in denen gewählt wird, unterscheiden.
             </p>
             <p>
-              Auf dieser Seite findest du einen Überblick der größten Themenbereiche. Hinter jedem von ihnen verstecken sich viele weitere Unterthemen. Jedes Thema ist dabei einem Eintrag auf Wikidata zugeordnet – einer Sammlung strukturierter Daten, die mit Wikipedia verknüpft ist.
+              Auf dieser Seite findest du einen Überblick der Themenbereiche. Hinter jedem von ihnen verstecken sich viele weitere Unterthemen. Jedes Thema ist dabei einem Eintrag auf Wikidata zugeordnet – einer Sammlung strukturierter Daten, die mit Wikipedia verknüpft ist.
             </p>
 
             <p>

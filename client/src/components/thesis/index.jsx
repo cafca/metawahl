@@ -28,7 +28,6 @@ import ErrorHandler from '../../utils/errorHandler';
 import {
   adminKey,
   API_ROOT,
-  categoryOptions,
   COLOR_PALETTE,
   IS_ADMIN,
   makeJSONRequest,
@@ -476,20 +475,8 @@ export default class Thesis extends Component<Props, State> {
 
       { IS_ADMIN &&
         <Segment attached='bottom' secondary>
-            <Dropdown
-              item
-              placeholder='Bereiche wählen'
-              style={{border: "none"}}
-              search
-              selection
-              selectOnNavigation={false}
-              selectOnBlur={false}
-              onChange={this.handleCategory}
-              options={categoryOptions}
-              value={null}
-            />
-              <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
-              { this.state.loading && <Loader />}
+          <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
+          { this.state.loading && <Loader />}
         </Segment>
       }
     </div>
