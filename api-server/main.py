@@ -147,7 +147,7 @@ def create_app(config=None):
     def page_not_found(e):
         return json_response({"error": "Ressource not found"}, status=404)
 
-    @app.route('/sitemap.xml', methods=["GET"])
+    @app.route(API_ROOT + '/sitemap.xml', methods=["GET"])
     def sitemap():
         from models import Occasion, Tag
 
@@ -167,6 +167,7 @@ def create_app(config=None):
 
                 # Topics
                 yield '{}/themen/\n'.format(SITE_ROOT)
+                yield '{}/themenliste/\n'.format(SITE_ROOT)
                 for tag in db.session.query(Tag).order_by(Tag.slug).all():
                     yield '{}/themen/{}/\n'.format(SITE_ROOT, tag.slug)
 
