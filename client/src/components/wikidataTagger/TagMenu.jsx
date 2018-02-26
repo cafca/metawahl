@@ -5,7 +5,6 @@ import { withRouter } from 'react-router'
 import autoBind from 'react-autobind';
 import '../../index.css';
 import {
-  Dropdown,
   Icon,
   Menu,
   Modal,
@@ -20,7 +19,7 @@ import {
 } from '../../config/';
 import WikidataTagger from '../../components/wikidataTagger/';
 
-import type { TagType, ThesisType, ErrorState } from '../../types/';
+import type { TagType, ThesisType } from '../../types/';
 import type { WikidataType } from '../../components/wikidataTagger/';
 
 type Props = {

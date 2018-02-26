@@ -160,7 +160,7 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Row>
 
         <Grid.Column>
-          <Header size='medium' >Parteien wollen unterschiedliche Politik machen</Header>
+          <Header size='medium' >Parteien fordern unterschiedliche Politik</Header>
 
           <p>
             Bei Wahlen geben wir Parteien unsere Stimme, damit diese in unserem
