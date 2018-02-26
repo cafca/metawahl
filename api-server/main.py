@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 """
 Metawahl API
 
@@ -152,7 +154,7 @@ def create_app(config=None):
         def generate():
             app = create_app()
             with app.app_context():
-                yield SITE_ROOT
+                yield SITE_ROOT + '\n'
 
                 # Occasions
                 yield '{}/wahlen/\n'.format(SITE_ROOT)
