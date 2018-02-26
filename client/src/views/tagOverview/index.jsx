@@ -34,6 +34,7 @@ export default class TagList extends Component<RouteProps> {
     // Collect root tags first
     const rootTagNames = this.props.tags
       .filter(t => t.root === true)
+      .filter(t => t.thesis_count >= 10)
       .sort(sortByThesisCount);
 
     const tagElems = rootTagNames
