@@ -79,10 +79,11 @@ const Footer = (props: RouteProps) => {
 
       <Divider inverted section />
       <List horizontal inverted divided link>
-        {/* <List.Item as='a' href='#'>Site Map</List.Item> */}
+        <List.Item as='a' href='/sitemap'>Sitemap</List.Item>
         <List.Item as='a' href='mailto:metawahl@vincentahrend.com'>metawahl@vincentahrend.com</List.Item>
         <List.Item as='a' href='/legal'>Impressum</List.Item>
         <List.Item as='a' href='/legal#privacy'>Datenschutzerklärung</List.Item>
+
       </List>
     </Container>
   </Segment>
