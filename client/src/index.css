@@ -134,3 +134,9 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   -moz-hyphens: auto;
   hyphens: auto;
 }
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

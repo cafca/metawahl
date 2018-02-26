@@ -51,7 +51,7 @@ export default class TagList extends Component<RouteProps> {
               </List.Item>})
 
           return <Grid.Column key={i} className='revealMe'>
-          <Header as='h1' className='hyphenate'>
+          <Header as='h1' className='ellipsis'>
             <a href={'/themen/' + tag.slug + '/'}>{tag.title}</a>
           </Header>
             <div className='visible'>
@@ -74,7 +74,7 @@ export default class TagList extends Component<RouteProps> {
         title='Metawahl: Alle Wahlthemen in Deutschland seit 2002' />
           <Loader active={this.props.isLoading} inline='centered' />
 
-      <Grid relaxed doubling stackable columns={4}>
+      <Grid relaxed divided doubling stackable columns={4}>
         <Grid.Column style={{width: "50%"}}>
           <Header as='h1' className='hyphenate'>Themenbereiche</Header>
           <p>Alle Thesen auf Metawahl sind mindestens einem von 600 Themen zugeordnet. Dadurch kannst du dir die Thesen
