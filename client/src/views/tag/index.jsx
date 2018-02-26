@@ -172,7 +172,8 @@ export default class TagView extends Component<RouteProps, State> {
 
     const parentTags = this.state.tag && this.state.tag.related_tags &&
       Object.keys(this.state.tag.related_tags.parents)
-        .map(k => <Tag data={this.state.tag.related_tags.parents[k].tag} />);
+        .map(k =>
+          <Tag key={k} data={this.state.tag.related_tags.parents[k].tag} />);
 
     let linkedTags = {};
     if (this.state.tag && this.state.tag.related_tags) {
@@ -233,7 +234,7 @@ export default class TagView extends Component<RouteProps, State> {
       </Header>
 
       { parentTags && parentTags.length > 0 &&
-        <h3>Themenbereich{ parentTags.length > 1 && 'e' }: {parentTags} </h3>
+        <h3>{parentTags} </h3>
       }
 
       {/* { tagFilterOptions.length > 0 && this.state.tagFilter == null && <Message>
@@ -312,7 +313,9 @@ export default class TagView extends Component<RouteProps, State> {
 
           <Legend />
 
-          {thesesElems}
+          <div style={{marginTop: "1.5em"}}>
+            {thesesElems}
+          </div>
 
           <Pagination
             activePage={this.state.page}

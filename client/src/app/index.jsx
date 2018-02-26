@@ -18,6 +18,7 @@ import Category from '../views/category/';
 import NotFound from '../views/notFound/';
 import LegalView from '../views/legal';
 import TagList from '../views/tagList/';
+import TagOverview from '../views/tagOverview/';
 import TagView from '../views/tag/';
 import Territory from '../views/territory';
 import ScrollToTop from '../utils/ScrollToTop';
@@ -154,12 +155,16 @@ class App extends Component<Props, State> {
           <div className="App">
             <SEO
               title='Metawahl'
-              description='Was für eine Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?'
             />
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
             <Route exact path='/' render={props => (
               <Landing {...props} {...context} />
+            )} />
+
+
+            <Route exact path="/themen/" render={props => (
+              <TagOverview {...props} {...context} />
             )} />
 
             <Route path='/:something'>
@@ -188,7 +193,7 @@ class App extends Component<Props, State> {
                     <Category {...props} {...context} />
                   )} />
 
-                  <Route exact path="/themen/" render={props => (
+                  <Route exact path="/themenliste/" render={props => (
                     <TagList {...props} {...context} />
                   )} />
 

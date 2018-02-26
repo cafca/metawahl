@@ -325,7 +325,7 @@ class Tag(db.Model):
         self.slug = slugify(self.title)
 
     def to_dict(self, thesis_count=None, include_theses_ids=False,
-            include_related_tags=False):
+            include_related_tags=False, query_root_status=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -356,6 +356,9 @@ class Tag(db.Model):
 
         if include_related_tags:
             rv["related_tags"] = self.related_tags()
+
+        if query_root_status:
+            rv["root"] = self.is_root
 
         return rv
 
@@ -408,6 +411,12 @@ class Tag(db.Model):
                     }
 
             return rv
+
+    @property
+    def is_root(self):
+        """Return true if this tag has no parent tagas in its related tags."""
+        rl = self.related_tags()
+        return len(rl["parents"]) == 0
 
 
 class Thesis(db.Model):

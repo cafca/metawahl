@@ -1,0 +1,28 @@
+.revealMe .hidden {
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+  transition: visibility 0s, height 0s, opacity 0.25s linear;
+}
+
+.revealMe:hover .hidden {
+  visibility: visible;
+  opacity: 1;
+  height: 11em;
+}
+
+
+.revealMe .visible {
+  visibility: visible;
+  height: 11em;
+}
+
+.revealMe:hover .visible {
+  visibility: hidden;
+  height: 0;
+}
+
+
+.revealMe .thesesCount {
+  font-size: 92px;
+}

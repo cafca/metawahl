@@ -213,7 +213,8 @@ def create_app(config=None):
             .group_by(Tag.title) \
             .all()
 
-        rv["data"]["tags"] = [item[0].to_dict(thesis_count=item[1])
+        rv["data"]["tags"] = [
+            item[0].to_dict(thesis_count=item[1], query_root_status=True, include_related_tags=True)
                 for item in tagItems]
 
         # Categories

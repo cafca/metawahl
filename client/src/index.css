@@ -123,3 +123,14 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 .wikidataLabel { filter: grayscale(100%) }
 .wikidataLabel:hover { filter: initial }
 
+/* Add hyphens to long words
+  credit: https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/
+ */
+.hyphenate {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
