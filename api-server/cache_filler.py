@@ -6,7 +6,6 @@ Request all API pages to fill cache
 
 """
 import logging
-import asyncio
 import requests
 
 from logger import setup_logger
@@ -40,11 +39,6 @@ def gen_urls():
     # categories
 
     urls.append(url('/categories.json'))
-    urls.append(url('/categories/_uncategorized'))
-
-    categories = Category.query.all()
-    for category in categories:
-        urls.append(url('/categories/{}').format(category.slug))
 
     # tags
 
@@ -57,14 +51,17 @@ def gen_urls():
 
     return urls
 
-async def make_requests(urls):
+
+def make_requests(urls):
     """Fetch all URLs."""
 
-    loop = asyncio.get_event_loop()
     for url in urls:
-        future = loop.run_in_executor(None, requests.get, url)
-        resp = await future
-        logger.info("[{}] {} {}".format(resp.status_code, resp.elapsed.total_seconds(), url))
+        resp = requests.get(url)
+        logger.info("[{0}] {1:.2f}\t{2}k\t{3}".format(
+            resp.status_code,
+            resp.elapsed.total_seconds(),
+            int(len(resp.content) / 1024),
+            url))
 
 
 if __name__ == "__main__":
@@ -78,5 +75,4 @@ if __name__ == "__main__":
         logger.info("Collected {} URLs".format(len(urls)))
         logger.info("Sample:\n{}".format("\n - ".join(urls[:5])))
 
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(make_requests(urls))
+        make_requests(urls)

@@ -8,6 +8,13 @@ export type PositionType = {
   missing?: boolean
 };
 
+export type RelatedTag = {
+  // This is a Babel bug apparently
+  // // Related issue: https://github.com/babel/babel-eslint/pull/584
+  // eslint-disable-next-line no-use-before-define
+  [name: string]: { count: number, tag: TagType }
+};
+
 export type TagType = {
   title: string,
   slug: string,
@@ -17,7 +24,10 @@ export type TagType = {
   wikipedia_title?: string,
   labels?: Array<string>,
   aliases?: Array<string>,
-  related_tags?: { count: number, tag: TagType }
+  related_tags?: {
+    parents: RelatedTag,
+    linked: RelatedTag
+  }
 };
 
 export type ReactionsTallyType = {
@@ -73,14 +83,6 @@ export type OccasionListType = {
 export type PartyType = {
   longname: string,
   name: string
-};
-
-export type CategoryType = {
-  name: string,
-  slug: string,
-  related_tags?: { count: number, tag: TagType },
-  theses?: Array<ThesisType> | Array<string>,
-  thesis_count?: number
 };
 
 export type RouteProps = {

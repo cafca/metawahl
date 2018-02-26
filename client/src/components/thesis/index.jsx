@@ -61,7 +61,7 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
         marginBottom: ".3rem",
         lineHeight: "1em"
         }}>
-        <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} style={{color: "rgba(255,255,255,.8)"}}>
+        <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} className='item' style={{color: "rgba(255,255,255,.8)"}}>
           {occasion.title}
         </Link>
       </p>

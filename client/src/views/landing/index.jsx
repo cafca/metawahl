@@ -2,12 +2,17 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Header, Grid, List, Segment } from 'semantic-ui-react';
-
+import {
+  Container, Grid, Header, Icon, List, Segment
+} from 'semantic-ui-react';
 
 import { RouteProps } from '../../types/';
 import { TERRITORY_NAMES } from '../../config/';
 import Map from '../../components/map/';
+
+import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+
+import './Landing.css';
 
 class LandingView extends React.Component<RouteProps> {
   render() {
@@ -20,6 +25,7 @@ class LandingView extends React.Component<RouteProps> {
     return <Container>
       <Container textAlign='center' style={{margin: "4em auto 7em"}}>
         <h1 className="ui header" style={{fontSize: "4rem"}}>
+          <Logo className='logo' style={{marginBottom: "-1em"}}/>
           Metawahl
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
             Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
@@ -37,7 +43,7 @@ class LandingView extends React.Component<RouteProps> {
           Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit der Wähler für eine Idee gestimmt – oder dagegen?
         </p>
         <p>
-          Hierdurch werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
+          Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
           den Bundestagswahlen 2013 und 2017. Vor der Flüchtlingskrise war das Ergebnis neutral, jetzt gibt es eine knappe
           Mehrheit <em>gegen</em> eine Obergrenze:
         </p>
@@ -45,47 +51,104 @@ class LandingView extends React.Component<RouteProps> {
 
       <Grid stackable columns='2' style={{margin: "3em 1em"}}>
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(169, 124, 144)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
+          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(160, 160, 160)", fontSize: "1.7rem"}}>
+            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
             Deutschland soll mehr Flüchtlinge aufnehmen
             <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>Keine Mehrheit dafür oder dagegen</div>
           </Segment>
         </Grid.Column>
 
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(234, 108, 110)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
+          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(213, 0, 28)", fontSize: "1.7rem"}}>
+            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
             Für die Aufnahme von neuen Asylsuchenden soll eine jährliche Obergrenze gelten.
             <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>53 von 100 Wählern gaben ihre Stimme Parteien, die gegen eine Obergrenze sind.</div>
           </Segment>
         </Grid.Column>
       </Grid>
 
-      <Container text style={{margin: "5em auto 7em"}}>
+            {/* <Grid stackable columns='4' style={{margin: "5em auto 7em"}}>
+        <Grid.Row>
+          <Grid.Column as='h2'>
+          Lies jetzt
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+        <Link to="/wahlen/deutschland/42/">
+            <Header as='h3'>
+              <Header.Subheader>
+                Alle Fragen aus der
+              </Header.Subheader>
+              Bundestagswahl 2017
+            </Header>
+        </Link>
+          </Grid.Column>
+          <Grid.Column>
+        <Link to="/wahlen/deutschland/42/">
+            <Header as='h3'>
+              <Header.Subheader>
+                10 Thesen zu
+              </Header.Subheader>
+              #Abitur nach der 12. Jahrgangsstufe
+            </Header>
+        </Link>
+          </Grid.Column>
+          <Grid.Column>
+        <Link to="/wahlen/deutschland/42/">
+            <Header as='h3'>
+              <Header.Subheader>
+                5 Thesen zu
+              </Header.Subheader>
+              #Beitrittsverhandlungen der Türkei mit der Europäischen Union
+            </Header>
+        </Link>
+          </Grid.Column>
+          <Grid.Column>
+        <Link to="/themen/">
+            <Header as='h3'>
+              Stöbere durch fast 600 weitere Themen
+            </Header>
+        </Link>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid> */}
+
+      <Container text style={{margin: "5em auto 7em"}} className='suggestions'>
         <Header size='medium' style={{marginBottom: "1.5em"}}>
           Schau dir jetzt an
         </Header>
 
         <p>
-          <Link to="/wahlen/deutschland/42/" style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
-            Alle Fragen aus der <strong>Bundestagswahl 2017</strong>
+          <Link to="/wahlen/deutschland/42/">
+            <Icon name='caret right' />
+            <span className='suggestionText'>Alle Fragen aus der <strong>Bundestagswahl 2017</strong></span>
           </Link>
         </p>
 
         <p>
-          <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/" style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
-            10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong>
+          <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
+            <Icon name='caret right' />
+            <span className='suggestionText'>10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong></span>
           </Link>
         </p>
 
         <p>
-          <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/' style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
-            5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong>
+          <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/'>
+            <Icon name='caret right' />
+            <span className='suggestionText'>5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong></span>
+          </Link>
+        </p>
+
+        <p>
+          <Link to='/themen/'>
+            <Icon name='caret right' />
+            <span className='suggestionText'>Stöbere durch fast 600 weitere Themen</span>
           </Link>
         </p>
 
         <p style={{marginTop: "2em"}}>
-          <Link style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}} to='/themen/'>Stöbere durch fast 600 weitere Themen</Link>, oder lies mehr darüber wie Metawahl funktioniert:
+          Oder lies mehr darüber wie Metawahl funktioniert:
         </p>
       </Container>
 

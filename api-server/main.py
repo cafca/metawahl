@@ -73,7 +73,7 @@ def cache_filler(cache):
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if is_cache_filler():
-                logger.debug('Forced cache miss for {}'.format(request.path))
+                logger.debug('Forcing cache miss for {}'.format(request.path))
                 cache.delete("view/{}".format(request.path))
             return f(*args, **kwargs)
         return decorated_function
@@ -213,7 +213,8 @@ def create_app(config=None):
             .group_by(Tag.title) \
             .all()
 
-        rv["data"]["tags"] = [item[0].to_dict(thesis_count=item[1])
+        rv["data"]["tags"] = [
+            item[0].to_dict(thesis_count=item[1], query_root_status=True, include_related_tags=True)
                 for item in tagItems]
 
         # Categories

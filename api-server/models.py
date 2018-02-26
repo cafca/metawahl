@@ -325,7 +325,7 @@ class Tag(db.Model):
         self.slug = slugify(self.title)
 
     def to_dict(self, thesis_count=None, include_theses_ids=False,
-            include_related_tags=False):
+            include_related_tags=False, query_root_status=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -357,9 +357,22 @@ class Tag(db.Model):
         if include_related_tags:
             rv["related_tags"] = self.related_tags()
 
+        if query_root_status:
+            rv["root"] = self.is_root
+
         return rv
 
     def related_tags(self):
+        """Return a dictionary of related tags.
+
+        The return value distinguishes between parent tags, which are present
+        on more than 80% of this tag's theses and themselves have at least as
+        many theses as this tag does - and 'linked' tags, which are just tags
+        that are present on this tag's theses.
+
+        The number of returned tags in the 'linked' category is limited to ~15.
+        """
+
         tag_counts = defaultdict(int)
         tags = dict()
 
@@ -377,15 +390,33 @@ class Tag(db.Model):
         except IndexError:
             return {}
         else:
-            rv = dict()
+            rv = {
+                'parents': {},
+                'linked': {}
+            }
+
+            self_theses_count = len(self.theses)
+
             for tag in tag_counts.keys():
                 if tag_counts[tag] >= cutoff:
-                    rv[tag] = {
+                    if tag_counts[tag] >= (0.8 * self_theses_count) and \
+                            len(tags[tag].theses) >= self_theses_count:
+                        relation = 'parents'
+                    else:
+                        relation = 'linked'
+
+                    rv[relation][tag] = {
                         "count": tag_counts[tag],
                         "tag": tags[tag].to_dict()
                     }
 
             return rv
+
+    @property
+    def is_root(self):
+        """Return true if this tag has no parent tagas in its related tags."""
+        rl = self.related_tags()
+        return len(rl["parents"]) == 0
 
 
 class Thesis(db.Model):

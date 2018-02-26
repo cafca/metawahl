@@ -38,7 +38,7 @@ export default class CategoriesList extends Component<RouteProps> {
         </li>
       ));
 
-    return <div>
+    return <Container id="outerContainer">
       <SEO title='Metawahl: Politik und Wahlkampf in Deutschland nach Themenbereichen'
         description='Die Thesen aus allen Wahl-o-Maten, sortiert nach
             dem ihnen nächstliegenden Themenbereich' />
@@ -70,7 +70,7 @@ export default class CategoriesList extends Component<RouteProps> {
           </Grid.Column>
         </Grid>
       </Container>
-    }</div>;
+    }</Container>;
   }
 }
 

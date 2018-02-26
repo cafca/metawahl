@@ -1,5 +1,5 @@
-svg g { fill: rgb(61,133,179) }
-.inverted g { fill: white }
+svg g { fill: rgb(42,64,101) }
+.inverted g { fill: #fcfcfc }
 
 .territory-badenwuerttemberg #Baden__x26__Württemberg { fill: "#fafafa"; fill-opacity: 1.0 }
 .territory-bayern #Bayern { fill: "#fafafa"; fill-opacity: 1.0 }

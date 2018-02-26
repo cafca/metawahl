@@ -32,8 +32,8 @@ const HeaderMenu = (props: {}) => (
       <Menu fluid>
         <Dropdown item text='Metawahl'>
           <Dropdown.Menu>
-            <Dropdown.Item as={Link} to="/">Wahlen</Dropdown.Item>
-            <Dropdown.Item as={Link} to="/bereiche/">Bereiche</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/">Einführung</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/wahlen/">Wahlen</Dropdown.Item>
             <Dropdown.Item as={Link} to="/themen/">Themen</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
