@@ -471,8 +471,8 @@ if __name__ == '__main__':
         for tag in load_tags():
             db.session.add(tag)
 
-        for category in load_categories():
-            db.session.add(category)
+        # for category in load_categories():
+        #     db.session.add(category)
 
         for report in load_reports():
             db.session.add(report)
@@ -483,3 +483,4 @@ if __name__ == '__main__':
         logger.info("Committing session to disk...")
         db.session.commit()
         logger.info("Done")
+        logger.warning("Clear and refill caches!")
