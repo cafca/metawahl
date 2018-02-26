@@ -6,7 +6,6 @@ import autoBind from 'react-autobind';
 import { Link } from 'react-router-dom';
 import {
   Button,
-  Dropdown,
   Header,
   Icon,
   Loader,
