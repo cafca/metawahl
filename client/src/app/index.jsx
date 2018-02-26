@@ -23,7 +23,7 @@ import ScrollToTop from '../utils/ScrollToTop';
 import ErrorHandler from '../utils/errorHandler';
 
 import type {
-  OccasionListType, TagType, CategoryType, ErrorType
+  OccasionListType, TagType, ErrorType
 } from '../../types/';
 
 export const loadFromCache = (key: string) => {
@@ -72,8 +72,7 @@ type State = {
   error?: ?string,
   isLoading: boolean,
   occasions: OccasionListType,
-  tags: Array<TagType>,
-  categories: Array<CategoryType>
+  tags: Array<TagType>
 };
 
 type Props = {};
@@ -84,13 +83,11 @@ class App extends Component<Props, State> {
   constructor(props: {}) {
     super(props);
 
-    const categoriesJSON = loadFromCache('categories');
     const occasionsJSON = loadFromCache('occasions');
     const tagsJSON = loadFromCache('tags');
 
     this.state = {
-      isLoading: categoriesJSON == null || occasionsJSON == null || tagsJSON == null,
-      categories: categoriesJSON != null ? JSON.parse(categoriesJSON) : [],
+      isLoading: occasionsJSON == null || tagsJSON == null,
       occasions: occasionsJSON != null ? JSON.parse(occasionsJSON) : {},
       tags: tagsJSON != null ? JSON.parse(tagsJSON) : []
     }
@@ -119,13 +116,11 @@ class App extends Component<Props, State> {
           this.setState({
             occasions: response.data.occasions,
             tags: response.data.tags,
-            categories: response.data.categories,
             isLoading: false
           });
 
           saveToCache('occasions', JSON.stringify(response.data.occasions));
           saveToCache('tags', JSON.stringify(response.data.tags));
-          saveToCache('categories', JSON.stringify(response.data.categories));
         } else {
           this.setState({
             isLoading: false

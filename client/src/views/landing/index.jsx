@@ -26,13 +26,13 @@ class LandingView extends React.Component<RouteProps> {
       <Container textAlign='center' style={{margin: "4em auto 7em"}}>
         <h1 className="ui header" style={{fontSize: "4rem"}}>
           <Logo className='logo' style={{marginBottom: "-1em"}}/>
-          Metawahl
+          <div>Metawahl</div>
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
             Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
             gaben
           </div>
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
-            Von <a href="https://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
+            Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
           </div>
         </h1>
       </Container>

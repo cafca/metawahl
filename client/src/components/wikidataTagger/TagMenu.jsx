@@ -15,8 +15,6 @@ import {
 
 import {
   API_ROOT,
-  CATEGORY_NAMES,
-  categoryOptions,
   makeJSONRequest,
   adminKey
 } from '../../config/';
@@ -34,9 +32,7 @@ type Props = {
 };
 
 type State = {
-  confirmCategoryOpen: boolean,
   confirmTagOpen: boolean,
-  selectedCategory: ?string,
   selectedTag: ?WikidataType,
   tagRemoveOpen: boolean
 };
@@ -46,50 +42,10 @@ class TagMenu extends Component<Props, State> {
     super(props);
     autoBind(this);
     this.state = {
-      selectedCategory: null,
       selectedTag: null,
       confirmTagOpen: false,
-      confirmCategoryOpen: false,
       tagRemoveOpen: false
     }
-  }
-
-  handleCategorySelection(e: Event, { value }:{ value:string }) {
-    this.setState({
-      selectedCategory: value,
-      confirmCategoryOpen: true
-    });
-  }
-
-  handleCategoryChange(add: boolean) {
-    if (this.state.selectedCategory == null) return;
-
-    const endpoint = `${API_ROOT}/categories/${this.state.selectedCategory}`;
-    const data = {};
-    if (add === true) {
-      data["add"] = this.props.theses.map(t => t.id);
-    } else {
-      data["remove"] = this.props.theses.map(t => t.id);
-    }
-
-    data["admin_key"] = adminKey();
-
-    this.props.setLoading(true);
-    this.setState({
-      confirmCategoryOpen: false,
-      selectedCategory: null
-    });
-
-    fetch(endpoint, makeJSONRequest(data))
-      .then(response => response.json())
-      .then(response => {
-        console.log(response);
-        this.props.refresh();
-      })
-      .catch((error:ErrorState) => {
-        console.log("Error changing category: " + error);
-        this.props.refresh();
-      });
   }
 
   handleTagSelection(tagData: WikidataType) {
@@ -164,48 +120,7 @@ class TagMenu extends Component<Props, State> {
   }
 
   render() {
-    const categoryName = this.state.selectedCategory
-      ? CATEGORY_NAMES[this.state.selectedCategory]
-      : null;
-
     return <Menu>
-      <Dropdown
-        item
-        options={categoryOptions}
-        onChange={this.handleCategorySelection}
-        placeholder='Bereich für alle...'
-        search
-        selection
-        selectOnNavigation={false}
-        selectOnBlur={false}
-        style={{border: "none"}}
-        value={this.state.selectedCategory}
-      />
-
-      <Modal
-        closeIcon={true}
-        onClose={() => {this.setState({
-          confirmCategoryOpen: false,
-          selectedCategory: null
-        })}}
-        open={this.state.confirmCategoryOpen}
-      >
-        <Modal.Content>
-          <p>Möchtest du die Kategorie "{categoryName}" bei all diesen
-            Thesen hinzufügen oder entfernen?</p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button basic color="red"
-            onClick={() => this.handleCategoryChange(false)}>
-            <Icon name='remove' /> Entfernen
-          </Button>
-          <Button basic color="green"
-            onClick={() => this.handleCategoryChange(true)}>
-            <Icon name='checkmark' /> Hinzufügen
-          </Button>
-        </Modal.Actions>
-      </Modal>
-
       { this.props.tag != null &&
         <Menu.Item onClick={() => {this.setState({tagRemoveOpen: true})}}
             style={{color: "#999"}}>

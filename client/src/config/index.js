@@ -56,40 +56,6 @@ export const TERRITORY_NAMES = {
   "thueringen": "Thüringen"
 };
 
-export const CATEGORY_NAMES = {
-  "arbeit-und-beschaftigung": "Arbeit und Beschäftigung",
-  "auslanderpolitik-zuwanderung": "Ausländerpolitik, Zuwanderung",
-  "aussenpolitik-und-internationale-beziehungen": "Außenpolitik und internationale Beziehungen",
-  "aussenwirtschaft": "Außenwirtschaft",
-  "bildung-und-erziehung": "Bildung und Erziehung",
-  "bundestag": "Bundestag",
-  "energie": "Energie",
-  "entwicklungspolitik": "Entwicklungspolitik",
-  "europapolitik-und-europaische-union": "Europapolitik und Europäische Union",
-  "gesellschaftspolitik-soziale-gruppen": "Gesellschaftspolitik, soziale Gruppen",
-  "gesundheit": "Gesundheit",
-  "innere-sicherheit": "Innere Sicherheit",
-  "kultur": "Kultur",
-  "landwirtschaft-und-ernahrung": "Landwirtschaft und Ernährung",
-  "medien-kommunikation-und-informationstechnik": "Medien, Kommunikation und Informationstechnik",
-  "neue-bundeslander": "Neue Bundesländer",
-  "offentliche-finanzen-steuern-und-abgaben": "Öffentliche Finanzen, Steuern und Abgaben",
-  "politisches-leben-parteien": "Politisches Leben, Parteien",
-  "raumordnung-bau-und-wohnungswesen": "Raumordnung, Bau- und Wohnungswesen",
-  "recht": "Recht",
-  "soziale-sicherung": "Soziale Sicherung",
-  "sport-freizeit-und-tourismus": "Sport, Freizeit und Tourismus",
-  "staat-und-verwaltung": "Staat und Verwaltung",
-  "umwelt": "Umwelt",
-  "verkehr": "Verkehr",
-  "verteidigung": "Verteidigung",
-  "wirtschaft": "Wirtschaft",
-  "wissenschaft-forschung-und-technologie": "Wissenschaft, Forschung und Technologie"
-};
-
-export const categoryOptions = Object.keys(CATEGORY_NAMES).map(
-  slug => ({key: slug, value: slug, text: CATEGORY_NAMES[slug]}));
-
 export const OBJECTION_NAMES = {
   "-1": ["Trotzdem umgesetzt", "Neutral", "Nicht umgesetzt"],
   "0": ["Nicht umgesetzt", "Neutral", "Umgesetzt"],
@@ -133,13 +99,6 @@ export const COLOR_PALETTE = [
 
 // export const COLOR_PALETTE = ["#ffac82", "#ebc170", "rgb(148, 148, 148)", "#8ce999", "#00f7d2"]
 
-
-// Assign a color to each category
-export const CATEGORY_COLORS = Object.keys(CATEGORY_NAMES)
-  .reduce((prev, cur, i) => {
-    prev[cur] = COLOR_PALETTE[i % COLOR_PALETTE.length];
-    return prev;
-  }, {});
 
 export const OPINION_COLORS = {
   "-1": COLOR_PALETTE[0],

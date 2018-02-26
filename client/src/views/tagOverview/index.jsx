@@ -18,7 +18,7 @@ import SEO from '../../components/seo/';
 import './TagOverview.css';
 
 
-export default class TagList extends Component<RouteProps> {
+export default class TagOverview extends Component<RouteProps> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
@@ -39,43 +39,44 @@ export default class TagList extends Component<RouteProps> {
 
     const tagElems = rootTagNames
       .map((tag, i) => {
-          const relatedTags = tag.related_tags.linked &&
-            Object.keys(tag.related_tags.linked)
-              .filter(k => rootTagNames.filter(t => t.title === k).length === 0)
-              .map(k => Object.assign({}, tag.related_tags.linked[k].tag, { thesis_count: tag.related_tags.linked[k].count }))
-              .sort(sortByThesisCount).slice(0, 5)
-              .map((entry, j) => { return <List.Item key={i + '-' + j}>
-                <List.Icon name='hashtag' />
-                <List.Content><a href={'/themen/' + entry.slug + '/'}>{entry.title }</a></List.Content>
-              </List.Item>})
+        const relatedTags = tag.related_tags.linked &&
+          Object.keys(tag.related_tags.linked)
+            .filter(k => rootTagNames.filter(t => t.title === k).length === 0)
+            .map(k => Object.assign({}, tag.related_tags.linked[k].tag, { thesis_count: tag.related_tags.linked[k].count }))
+            .sort(sortByThesisCount)
+            .slice(0, 5)
+            .map((entry, j) => <List.Item key={i + '-' + j}>
+              <List.Icon name='hashtag' />
+              <List.Content><a href={'/themen/' + entry.slug + '/'}>{entry.title }</a></List.Content>
+            </List.Item>);
 
-          return <Grid.Column key={i} className='revealMe'>
+        return <Grid.Column key={i} className='revealMe'>
           <Header as='h1' className='ellipsis'>
             <a href={'/themen/' + tag.slug + '/'}>{tag.title}</a>
           </Header>
-            <a href={'/themen/' + tag.slug + '/'}>
-              <div className='visible'>
-                  <p className='thesesCount' style={{fontFamily: "Roboto"}}>{tag.thesis_count}</p>
-              </div>
-            </a>
-            <div className='hidden'>
-                <List>
-                  {relatedTags}
-                </List>
-                <a href={'/themen/' + tag.slug + '/'}><Icon name='caret right' / > {tag.thesis_count} Thesen anschauen</a>
+          <a href={'/themen/' + tag.slug + '/'}>
+            <div className='visible'>
+                <p className='thesesCount' style={{fontFamily: "Roboto"}}>{tag.thesis_count}</p>
             </div>
-          </Grid.Column>
-        }
-      );
+          </a>
+          <div className='hidden'>
+              <List>
+                {relatedTags}
+              </List>
+              <a href={'/themen/' + tag.slug + '/'}>
+                <Icon name='caret right' /> {tag.thesis_count} Thesen anschauen
+              </a>
+          </div>
+        </Grid.Column>;
+    });
 
     return <Container className="tagList" style={{marginTop: "4em"}}>
       <SEO
         title='Metawahl: Alle Wahlthemen in Deutschland seit 2002' />
-          <Loader active={this.props.isLoading} inline='centered' />
 
-      <Grid relaxed divided doubling stackable columns={4}>
+      <Grid relaxed divided doubling stackable padded columns={4}>
         <Grid.Row>
-          <Grid.Column className="headerCount">
+          <Grid.Column className="headerCount" width={4}>
             <div className='headerCountInner'>
               <div>600+</div>
               Themen
@@ -86,7 +87,7 @@ export default class TagList extends Component<RouteProps> {
               Über die Zuordnung zu über 600 Themen kannst du hier entdecken, wie sich politische Positionen von Wählern – oder auch Parteien – über Zeit geändert haben, und wie sie sich zwischen den verschiedenen Gebieten, in denen gewählt wird, unterscheiden.
             </p>
             <p>
-              Auf dieser Seite findest du einen Überblick der größten Themenbereiche. Hinter jedem von ihnen verstecken sich viele weitere Unterthemen. Jedes Thema ist dabei einem Eintrag auf Wikidata zugeordnet – einer Sammlung strukturierter Daten, die mit Wikipedia verknüpft ist.
+              Auf dieser Seite findest du einen Überblick der Themenbereiche. Hinter jedem von ihnen verstecken sich viele weitere Unterthemen. Jedes Thema ist dabei einem Eintrag auf Wikidata zugeordnet – einer Sammlung strukturierter Daten, die mit Wikipedia verknüpft ist.
             </p>
 
             <p>
@@ -98,6 +99,12 @@ export default class TagList extends Component<RouteProps> {
             </p>
           </Grid.Column>
         </Grid.Row>
+
+        { this.props.isLoading && <Grid.Row textAlign='center' style={{height: "10em"}}>
+            <Loader active={this.props.isLoading} />
+        </Grid.Row>
+        }
+
         {tagElems}
       </Grid>
     </Container>;

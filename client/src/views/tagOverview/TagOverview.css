@@ -1,11 +1,11 @@
 .headerCount {
-  font-size: 5.5em;
+  font-size: 4.5em;
   line-height: 1.2em;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-variant: all-small-caps;
   background-color: rgb(213, 0, 28);
   color: white;
-  min-height: 3em;
+  min-height: 210px;
 }
 
 .headerCountInner {
@@ -15,7 +15,7 @@
 }
 
 .headerCount div>div {
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 
 .revealMe .hidden {

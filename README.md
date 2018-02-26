@@ -3,7 +3,7 @@
 Metawahl verbindet Wahlergebnisse aus den letzten 16 Jahren mit über 21.000 Parteipositionen aus dem Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit für eine Idee gestimmt – oder dagegen?
 
 Dieses Repository enthält den Quellcode für Server und Client der dazugehörigen
-Website https://metawahl.de. 
+Website.
 
 ## Wie Metawahl funktioniert
 

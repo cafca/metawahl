@@ -4335,8 +4335,10 @@
         "WOM-024-30", 
         "WOM-022-04", 
         "WOM-021-18", 
+        "WOM-021-05", 
         "WOM-020-02", 
         "WOM-019-01", 
+        "WOM-018-30", 
         "WOM-014-30", 
         "WOM-012-09", 
         "WOM-004-26"
@@ -4722,6 +4724,7 @@
         "WOM-041-26", 
         "WOM-041-24", 
         "WOM-041-18", 
+        "WOM-040-34", 
         "WOM-040-28", 
         "WOM-040-18", 
         "WOM-040-17", 
@@ -4740,6 +4743,7 @@
         "WOM-037-35", 
         "WOM-037-33", 
         "WOM-037-22", 
+        "WOM-037-17", 
         "WOM-037-16", 
         "WOM-037-05", 
         "WOM-036-24", 
@@ -4769,8 +4773,10 @@
         "WOM-031-25", 
         "WOM-031-15", 
         "WOM-031-04", 
+        "WOM-030-24", 
         "WOM-030-15", 
         "WOM-030-12", 
+        "WOM-030-10", 
         "WOM-029-32", 
         "WOM-029-29", 
         "WOM-029-19", 
@@ -4827,6 +4833,7 @@
         "WOM-020-08", 
         "WOM-019-28", 
         "WOM-019-26", 
+        "WOM-019-18", 
         "WOM-019-13", 
         "WOM-019-10", 
         "WOM-019-07", 
@@ -4836,7 +4843,9 @@
         "WOM-018-07", 
         "WOM-018-02", 
         "WOM-017-26", 
+        "WOM-017-22", 
         "WOM-017-11", 
+        "WOM-016-33", 
         "WOM-016-04", 
         "WOM-015-33", 
         "WOM-015-19", 
@@ -4852,6 +4861,7 @@
         "WOM-012-27", 
         "WOM-012-23", 
         "WOM-012-16", 
+        "WOM-012-15", 
         "WOM-012-12", 
         "WOM-011-18", 
         "WOM-011-06", 
@@ -4867,6 +4877,8 @@
         "WOM-004-24", 
         "WOM-003-19", 
         "WOM-002-19", 
+        "WOM-001-05", 
+        "WOM-001-03", 
         "WOM-000-13"
       ], 
       "title": "Gesellschaftspolitik", 
@@ -7277,25 +7289,26 @@
       "wikidata_id": "Q1638361"
     }, 
     {
-      "aliases": [
-        "Lehrerin", 
-        "Lehrkraft", 
-        "Lehrk\u00f6rper"
-      ], 
       "description": "Person, die andere bei ihrer Bildung unterst\u00fctzt", 
-      "labels": [
-        "Lehrer"
-      ], 
       "slug": "lehrer", 
       "theses": [
+        "WOM-040-21", 
+        "WOM-038-27", 
+        "WOM-037-11", 
+        "WOM-027-07", 
+        "WOM-013-24", 
+        "WOM-010-08", 
         "WOM-008-23", 
+        "WOM-008-04", 
+        "WOM-005-22", 
         "WOM-005-06", 
-        "WOM-004-24"
+        "WOM-004-24", 
+        "WOM-004-17", 
+        "WOM-002-12"
       ], 
       "title": "Lehrer", 
       "url": "http://www.wikidata.org/entity/Q37226", 
-      "wikidata_id": "Q37226", 
-      "wikipedia_title": "Lehrer"
+      "wikidata_id": "Q37226"
     }, 
     {
       "labels": [
@@ -8472,13 +8485,16 @@
         "WOM-030-26", 
         "WOM-029-22", 
         "WOM-029-13", 
+        "WOM-028-09", 
         "WOM-027-07", 
         "WOM-026-19", 
         "WOM-025-28", 
+        "WOM-025-17", 
         "WOM-025-07", 
         "WOM-024-11", 
         "WOM-024-06", 
         "WOM-023-13", 
+        "WOM-023-10", 
         "WOM-022-29", 
         "WOM-022-19", 
         "WOM-021-32", 
@@ -8487,6 +8503,7 @@
         "WOM-020-31", 
         "WOM-020-16", 
         "WOM-019-36", 
+        "WOM-019-19", 
         "WOM-017-09", 
         "WOM-016-19", 
         "WOM-015-26", 
@@ -9167,24 +9184,17 @@
       "wikipedia_title": "Politisches System"
     }, 
     {
-      "aliases": [
-        "Polizeivollzugsdienst", 
-        "Polizeidienst", 
-        "Polizei"
-      ], 
       "description": "Exekutivorgan eines Staates", 
-      "labels": [
-        "Polizeibeh\u00f6rde"
-      ], 
       "slug": "polizeibehorde", 
       "theses": [
         "WOM-036-23", 
-        "WOM-019-31"
+        "WOM-019-31", 
+        "WOM-001-26", 
+        "WOM-001-24"
       ], 
       "title": "Polizeibeh\u00f6rde", 
       "url": "http://www.wikidata.org/entity/Q35535", 
-      "wikidata_id": "Q35535", 
-      "wikipedia_title": "Polizei"
+      "wikidata_id": "Q35535"
     }, 
     {
       "description": "Landespolizei des deutschen Bundeslandes Bremen", 
@@ -10276,24 +10286,6 @@
       "wikidata_id": "Q2259732"
     }, 
     {
-      "slug": "schullehrer-in-deutschland", 
-      "theses": [
-        "WOM-040-21", 
-        "WOM-038-27", 
-        "WOM-037-11", 
-        "WOM-027-07", 
-        "WOM-013-24", 
-        "WOM-010-08", 
-        "WOM-008-04", 
-        "WOM-005-22", 
-        "WOM-004-17", 
-        "WOM-002-12"
-      ], 
-      "title": "Schullehrer in Deutschland", 
-      "url": "http://www.wikidata.org/entity/Q27926592", 
-      "wikidata_id": "Q27926592"
-    }, 
-    {
       "labels": [
         "Schulpflicht"
       ], 
@@ -10581,14 +10573,7 @@
       "wikipedia_title": "Sozialleistung"
     }, 
     {
-      "aliases": [
-        "Sozialpolitiker", 
-        "Wohlfahrtspolitik"
-      ], 
       "description": "Bezeichnung f\u00fcr Ma\u00dfnahmen zur Verbesserung der wirtschaftlichen und sozialen Situation", 
-      "labels": [
-        "Sozialpolitik"
-      ], 
       "slug": "sozialpolitik", 
       "theses": [
         "WOM-042-33", 
@@ -10802,7 +10787,9 @@
         "WOM-010-25", 
         "WOM-010-12", 
         "WOM-010-11", 
+        "WOM-010-10", 
         "WOM-010-08", 
+        "WOM-009-23", 
         "WOM-009-18", 
         "WOM-009-10", 
         "WOM-009-00", 
@@ -10837,8 +10824,7 @@
       ], 
       "title": "Sozialpolitik", 
       "url": "http://www.wikidata.org/entity/Q828395", 
-      "wikidata_id": "Q828395", 
-      "wikipedia_title": "Sozialpolitik"
+      "wikidata_id": "Q828395"
     }, 
     {
       "slug": "sozialticket", 
@@ -11720,6 +11706,25 @@
       "url": "http://www.wikidata.org/entity/Q2415873", 
       "wikidata_id": "Q2415873", 
       "wikipedia_title": "Theater L\u00fcbeck"
+    }, 
+    {
+      "description": "Untergruppe aller Lebensformen", 
+      "slug": "tier", 
+      "theses": [
+        "WOM-041-32", 
+        "WOM-032-35", 
+        "WOM-031-36", 
+        "WOM-031-13", 
+        "WOM-028-37", 
+        "WOM-024-37", 
+        "WOM-021-02", 
+        "WOM-017-08", 
+        "WOM-010-23", 
+        "WOM-004-11"
+      ], 
+      "title": "Tier", 
+      "url": "http://www.wikidata.org/entity/Q729", 
+      "wikidata_id": "Q729"
     }, 
     {
       "aliases": [
@@ -12958,6 +12963,7 @@
         "WOM-037-07", 
         "WOM-033-11", 
         "WOM-032-17", 
+        "WOM-032-04", 
         "WOM-030-36", 
         "WOM-030-34", 
         "WOM-030-31", 
@@ -13275,6 +13281,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "31.28504s"
+    "render_time": "31.71232s"
   }
 }

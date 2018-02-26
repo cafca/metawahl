@@ -57,20 +57,6 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   margin-left: 0;
 }
 
-.ui.stackable.column.grid.categoryGrid {
-  margin-top: 25px !important;
-}
-
-.ui.stackable.column.grid.categoryGrid > .column {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-.ui.stackable.categoryGrid ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .closeIcon {
     cursor: pointer;
     position: absolute;
