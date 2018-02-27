@@ -7,6 +7,7 @@ Fetch updated content from Wikidata and Wikipedia
 import json
 import os
 import wikipedia
+import time
 
 from models import Tag
 from main import logger, create_app, db
@@ -17,7 +18,7 @@ NON_DESCRIPTIONS = [
     'Wikimedia-Liste'
 ]
 
-def update_tags():
+def update_tags(fast=False):
     logger.info("Updating all Wikidata content...")
 
     client = Client()
@@ -39,18 +40,21 @@ def update_tags():
         if description is None:
             description = wd.description.texts.get('en', None)
             if description is not None:
-                logger.debug("{} Fallback to English description: {}".format(ident, description))
+                logger.debug("{} Fallback to English description: {}".format(
+                    ident, description))
 
         # Capitalize first word in description
         if description is not None:
             description = description[0].title() + description[1:]
 
         if description in NON_DESCRIPTIONS :
-            logger.warning("{} Ignoring non-description '{}'".format(ident, description))
+            logger.warning("{} Ignoring non-description '{}'".format(
+                ident, description))
             description = None
 
         if (description != tag.description):
-            logger.info("{}  Description '{}' -> '{}'".format(ident, tag.description, description))
+            logger.info("{}  Description '{}' -> '{}'".format(
+                ident, tag.description, description))
             tag.description = description
 
         # Update linked Wikipedia page
@@ -59,7 +63,8 @@ def update_tags():
         if sitelinks is not None and not sitelinks == []:
             wp_info = sitelinks.get('dewiki', None)
             if isinstance(wp_info, list):
-                logger.info("{} Multiple WP entries: \n{}".format(ident, "\n  - ".join(wp_info)))
+                logger.info("{} Multiple WP entries: \n{}".format(
+                    ident, "\n  - ".join(wp_info)))
                 wp_info = wp_info[0]
 
             if wp_info is not None:
@@ -68,10 +73,14 @@ def update_tags():
                 logger.debug("{}  No entry in German wikipedia".format(ident))
 
         if tag.wikipedia_title != wp_title:
-            logger.info("{}  Wikipedia: '{}' -> '{}'".format(ident, tag.wikipedia_title, wp_title))
+            logger.info("{}  Wikipedia: '{}' -> '{}'".format(
+                ident, tag.wikipedia_title, wp_title))
             tag.wikipedia_title = wp_title
 
         db.session.add(tag)
+
+        if fast is not True:
+            time.sleep(1)
 
     logger.info("Committing changes to disk...")
     db.session.commit()
@@ -82,4 +91,9 @@ if __name__ == '__main__':
     with app.app_context():
         update_tags()
 
+    fast = "--fast" in sys.argv
+
+    with app.app_context():
+        # update_tags(fast=fast)
+        update_wikipedia_descriptions(fast=fast)
         logger.info("Done")
