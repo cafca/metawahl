@@ -28,6 +28,8 @@ import type {
   ErrorType, TagType, ThesisType, OccasionType, RouteProps
 } from '../../types/';
 
+import './TagView.css';
+
 type State = {
   occasions: { [occasionNum: number]: OccasionType},
   loading: boolean,
@@ -208,6 +210,18 @@ export default class TagView extends Component<RouteProps, State> {
     const pageTitle = this.state.tag != null && this.state.tag.title != null ?
       this.state.tag.title : null;
 
+    const wikipedia_summary = this.state.tag == null || this.state.tag.wikipedia_summary == null ? null : <div>
+      { this.state.tag.wikipedia_summary
+        .split('\n')
+        .map((p, i) =>
+          <p key={i}>{p}</p>
+        )
+      }
+      <p className='wikipediaSource'>
+        Diese Zusammenfassung basiert auf dem Artikel <a href={'https://de.wikipedia.org/wiki/' + this.state.tag.wikipedia_title}>{this.state.tag.wikipedia_title}</a> und steht unter der Lizenz <a href='http://creativecommons.org/licenses/by-sa/3.0/legalcode'>Creative Commons CC-BY-SA 3.0 Unported</a> (<a href='http://creativecommons.org/licenses/by-sa/3.0/deed.de'>Kurzfassung (de)</a>). In der Wikipedia ist eine <a href={'https://de.wikipedia.org/w/index.php?title=' + this.state.tag.wikipedia_title + '&action=history'}>Liste der Autoren</a> verfügbar.
+      </p>
+    </div>
+
     return <Container id="outerContainer" style={{minHeight: 350}} >
       <SEO
         title={'Metawahl: Wahlthema ' + pageTitle}
@@ -246,6 +260,8 @@ export default class TagView extends Component<RouteProps, State> {
       { parentTags && parentTags.length > 0 &&
         <h3>{parentTags} </h3>
       }
+
+      { wikipedia_summary }
 
       {/* { tagFilterOptions.length > 0 && this.state.tagFilter == null && <Message>
         <Icon name='info circle' /> Benutze den Themenfilter um immer wieder auftauchende Fragen in diesem

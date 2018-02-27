@@ -223,6 +223,7 @@ class Tag(db.Model):
     url = db.Column(db.Text)
     wikidata_id = db.Column(db.String(16))
     wikipedia_title = db.Column(db.String(256))
+    wikipedia_summary = db.Column(db.Text)
     image = db.Column(db.String(255))
 
     def __repr__(self):
@@ -232,7 +233,8 @@ class Tag(db.Model):
         self.slug = slugify(self.title)
 
     def to_dict(self, thesis_count=None, include_theses_ids=False,
-            include_related_tags=False, query_root_status=False):
+            include_related_tags=False, query_root_status=False,
+            include_wikipedia_summary=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -245,6 +247,9 @@ class Tag(db.Model):
 
         if self.wikipedia_title is not None:
             rv["wikipedia_title"] = self.wikipedia_title
+
+        if self.wikipedia_summary is not None and include_wikipedia_summary is True:
+            rv["wikipedia_summary"] = self.wikipedia_summary
 
         if self.aliases is not None and len(self.aliases) > 0:
             rv["aliases"] = self.aliases.split(';')

@@ -423,7 +423,8 @@ def create_app(config=None):
                 logger.warning("Invalid admin password")
 
         rv = {
-            "data": tag.to_dict(include_related_tags=True),
+            "data": tag.to_dict(
+                include_related_tags=True, include_wikipedia_summary=True),
             "theses": [thesis.to_dict() for thesis in tag.theses],
             "occasions": {thesis.occasion_id: thesis.occasion.to_dict()
                 for thesis in tag.theses}
