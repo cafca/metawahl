@@ -2082,6 +2082,47 @@
     }, 
     {
       "aliases": [
+        "BTU-Cottbus", 
+        "Uni Cottbus", 
+        "Technische Universit\u00e4t Cottbus", 
+        "Brandenburgische Technische Universit\u00e4t Cottbus", 
+        "BTU Cottbus", 
+        "TU Cottbus", 
+        "Universit\u00e4t Cottbus", 
+        "Hochschule f\u00fcr Bauwesen Cottbus"
+      ], 
+      "description": "Universit\u00e4t in Deutschland", 
+      "labels": [
+        "Brandenburgische Technische Universit\u00e4t"
+      ], 
+      "slug": "brandenburgische-technische-universitat", 
+      "theses": [
+        "WOM-031-34"
+      ], 
+      "title": "Brandenburgische Technische Universit\u00e4t", 
+      "url": "http://www.wikidata.org/entity/Q149433", 
+      "wikidata_id": "Q149433", 
+      "wikipedia_title": "Brandenburgische Technische Universit\u00e4t Cottbus"
+    }, 
+    {
+      "aliases": [
+        "TU Cottbus-Senftenberg"
+      ], 
+      "description": "Universit\u00e4t in Deutschland", 
+      "labels": [
+        "Brandenburgische Technische Universit\u00e4t Cottbus-Senftenberg"
+      ], 
+      "slug": "brandenburgische-technische-universitat-cottbus-senftenberg", 
+      "theses": [
+        "WOM-031-34"
+      ], 
+      "title": "Brandenburgische Technische Universit\u00e4t Cottbus-Senftenberg", 
+      "url": "http://www.wikidata.org/entity/Q14537515", 
+      "wikidata_id": "Q14537515", 
+      "wikipedia_title": "Brandenburgische Technische Universit\u00e4t Cottbus-Senftenberg"
+    }, 
+    {
+      "aliases": [
         "Brandeisen", 
         "Brandmal", 
         "Zuchtbrand", 
@@ -5112,6 +5153,23 @@
     }, 
     {
       "aliases": [
+        "Hellas"
+      ], 
+      "description": "Staat in S\u00fcdosteuropa", 
+      "labels": [
+        "Griechenland"
+      ], 
+      "slug": "griechenland", 
+      "theses": [
+        "WOM-042-07"
+      ], 
+      "title": "Griechenland", 
+      "url": "http://www.wikidata.org/entity/Q41", 
+      "wikidata_id": "Q41", 
+      "wikipedia_title": "Griechenland"
+    }, 
+    {
+      "aliases": [
         "Griechenlandkrise", 
         "griechische Finanzkrise", 
         "griechische Depression"
@@ -5609,6 +5667,26 @@
       "url": "http://www.wikidata.org/entity/Q21028957", 
       "wikidata_id": "Q21028957", 
       "wikipedia_title": "Hochschule"
+    }, 
+    {
+      "aliases": [
+        "FH Lausitz", 
+        "Fachhochschule Lausitz", 
+        "Gottlob-Schumann-Preis", 
+        "Lausitz University of Applied Sciences"
+      ], 
+      "description": "ehemalige Hochschule in Brandenburg", 
+      "labels": [
+        "Hochschule Lausitz"
+      ], 
+      "slug": "hochschule-lausitz", 
+      "theses": [
+        "WOM-031-34"
+      ], 
+      "title": "Hochschule Lausitz", 
+      "url": "http://www.wikidata.org/entity/Q1622120", 
+      "wikidata_id": "Q1622120", 
+      "wikipedia_title": "Hochschule Lausitz"
     }, 
     {
       "aliases": [
@@ -6435,16 +6513,24 @@
       "wikipedia_title": "Kinder- und Jugendhilfe in Deutschland"
     }, 
     {
+      "aliases": [
+        "Kinderbetreuungsfreibetrag"
+      ], 
+      "labels": [
+        "Kinderbetreuungskosten"
+      ], 
       "slug": "kinderbetreuungskosten", 
       "theses": [
         "WOM-041-03", 
         "WOM-040-30", 
         "WOM-039-02", 
         "WOM-038-20", 
+        "WOM-034-15", 
         "WOM-032-19", 
         "WOM-031-23", 
         "WOM-027-13", 
         "WOM-022-01", 
+        "WOM-020-04", 
         "WOM-014-01", 
         "WOM-013-05", 
         "WOM-011-20", 
@@ -8631,6 +8717,21 @@
       "wikipedia_title": "Pkw-Maut in Deutschland"
     }, 
     {
+      "description": "Staat in Mitteleuropa", 
+      "labels": [
+        "Polen"
+      ], 
+      "slug": "polen", 
+      "theses": [
+        "WOM-031-33", 
+        "WOM-028-34"
+      ], 
+      "title": "Polen", 
+      "url": "http://www.wikidata.org/entity/Q36", 
+      "wikidata_id": "Q36", 
+      "wikipedia_title": "Polen"
+    }, 
+    {
       "description": "Landespolizei des deutschen Bundeslandes Bremen", 
       "labels": [
         "Polizei Bremen"
@@ -9376,6 +9477,26 @@
       "wikipedia_title": "Rundfunkrat des Mitteldeutschen Rundfunks"
     }, 
     {
+      "aliases": [
+        "Russische F\u00f6deration", 
+        "Russl\u00e4ndische F\u00f6deration", 
+        "Ru\u00dfland", 
+        "Ru\u00dfl\u00e4ndische F\u00f6deration"
+      ], 
+      "description": "Staat in Osteuropa und Asien", 
+      "labels": [
+        "Russland"
+      ], 
+      "slug": "russland", 
+      "theses": [
+        "WOM-034-32"
+      ], 
+      "title": "Russland", 
+      "url": "http://www.wikidata.org/entity/Q159", 
+      "wikidata_id": "Q159", 
+      "wikipedia_title": "Russland"
+    }, 
+    {
       "description": "Teil des Nahverkehrssystems von Berlin, Deutschland", 
       "labels": [
         "S-Bahn Berlin"
@@ -9457,6 +9578,7 @@
         "WOM-038-35", 
         "WOM-036-16", 
         "WOM-035-33", 
+        "WOM-034-32", 
         "WOM-034-12", 
         "WOM-032-12", 
         "WOM-029-28", 
@@ -10545,6 +10667,7 @@
       ], 
       "slug": "standard", 
       "theses": [
+        "WOM-031-29", 
         "WOM-016-16", 
         "WOM-016-05", 
         "WOM-001-19"
@@ -11205,6 +11328,7 @@
       ], 
       "slug": "transatlantisches-freihandelsabkommen", 
       "theses": [
+        "WOM-039-28", 
         "WOM-035-15", 
         "WOM-030-18"
       ], 
@@ -11273,6 +11397,23 @@
       "url": "http://www.wikidata.org/entity/Q2456595", 
       "wikidata_id": "Q2456595", 
       "wikipedia_title": "Truppen\u00fcbungsplatz Senne"
+    }, 
+    {
+      "aliases": [
+        "Tschechische Republik"
+      ], 
+      "description": "Staat in Mitteleuropa", 
+      "labels": [
+        "Tschechien"
+      ], 
+      "slug": "tschechien", 
+      "theses": [
+        "WOM-028-34"
+      ], 
+      "title": "Tschechien", 
+      "url": "http://www.wikidata.org/entity/Q213", 
+      "wikidata_id": "Q213", 
+      "wikipedia_title": "Tschechien"
     }, 
     {
       "aliases": [
@@ -12338,9 +12479,12 @@
       "theses": [
         "WOM-041-20", 
         "WOM-040-33", 
+        "WOM-039-28", 
         "WOM-037-26", 
         "WOM-037-12", 
         "WOM-037-07", 
+        "WOM-035-15", 
+        "WOM-034-32", 
         "WOM-033-11", 
         "WOM-032-17", 
         "WOM-032-04", 
@@ -12349,6 +12493,7 @@
         "WOM-030-31", 
         "WOM-030-23", 
         "WOM-030-21", 
+        "WOM-030-18", 
         "WOM-030-17", 
         "WOM-030-09", 
         "WOM-024-19", 
@@ -12378,8 +12523,7 @@
       ], 
       "title": "Wirtschaftspolitik", 
       "url": "http://www.wikidata.org/entity/Q582577", 
-      "wikidata_id": "Q582577", 
-      "wikipedia_title": "Wirtschaftspolitik"
+      "wikidata_id": "Q582577"
     }, 
     {
       "slug": "wissenschaftspolitik", 
@@ -12892,26 +13036,6 @@
       "url": "http://www.wikidata.org/entity/Q17422", 
       "wikidata_id": "Q17422", 
       "wikipedia_title": "Gleichgeschlechtliche Ehe"
-    }, 
-    {
-      "aliases": [
-        "kostenlos", 
-        "frei", 
-        "kostenfrei"
-      ], 
-      "description": "Ohne Bezahlung erh\u00e4ltlich", 
-      "labels": [
-        "gratis"
-      ], 
-      "slug": "gratis", 
-      "theses": [
-        "WOM-034-15", 
-        "WOM-020-04"
-      ], 
-      "title": "gratis", 
-      "url": "http://www.wikidata.org/entity/Q1543615", 
-      "wikidata_id": "Q1543615", 
-      "wikipedia_title": "Gratis"
     }, 
     {
       "description": "Money paid relating to how well one works", 
@@ -13456,6 +13580,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "18.96280s"
+    "render_time": "18.75947s"
   }
 }
