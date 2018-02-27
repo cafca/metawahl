@@ -70,7 +70,6 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 
 #outerContainer.ui.container {
   max-width: 800px !important;
-  padding-top: 2em;
 };
 
 .ui.comments .comment .actions {
