@@ -96,15 +96,6 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   }
 }
 
-/* Hover effect for items in occasion list view */
-.occasionList .list > .occasionListItem {
-  border-left: 5px solid #fcfcfc;
-  padding-left: 5px;
-}
-.occasionList .occasionListItem:hover {
-  border-color: rgb(220, 220, 220)
-}
-
 /* Display Wikidata Logo monochrome unless hovered */
 .wikidataLabel { filter: grayscale(100%) }
 .wikidataLabel:hover { filter: initial }

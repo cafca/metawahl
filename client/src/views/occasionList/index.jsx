@@ -6,12 +6,14 @@ import moment from 'moment';
 
 import '../../index.css';
 import { Link } from 'react-router-dom';
-import { Container, Grid, Header, List, Responsive } from 'semantic-ui-react';
+import { Container, Grid, Header, List } from 'semantic-ui-react';
 
 import { TERRITORY_NAMES } from '../../config/';
 import { OccasionListType, RouteProps } from '../../types/';
 import MapComponent from '../../components/map/';
 import SEO from '../../components/seo/';
+
+import './OccasionList.css';
 
 moment.locale('de');
 
@@ -46,51 +48,52 @@ export default class OccasionList extends Component<RouteProps, State> {
             href={`/wahlen/${occasion.territory}/${occasion.id}/`}
             className='occasionListItem'>
           <List.Header as='h3'>{moment(occasion.date).year()}</List.Header>
-          <span style={{color: 'rgb(140, 140, 140)'}}>
+          <span>
             {occasion.title.slice(0, occasion.title.indexOf(' '))} vom {moment(occasion.date).format('LL')}
           </span>
         </List.Item>});
 
-      return <div className="ui container" key={territory} style={{marginTop: "4em"}}>
-        <Header dividing as='h1' style={{marginBottom: "1em"}}>
-          <Link to={"/wahlen/" + territory + "/"}>{TERRITORY_NAMES[territory]}</Link>
+      return <Grid.Column key={territory} className='territory'>
+        <MapComponent territory={territory} className='map' />
+        <Header dividing as='h1'>
+          <Link to={"/wahlen/" + territory + "/"}>
+            {TERRITORY_NAMES[territory]}
+          </Link>
         </Header>
-        <Grid columns='2'>
-          <Responsive minWidth={601} className='four wide column'>
-            <MapComponent territory={territory} style={{maxHeight: "10em"}} />
-          </Responsive>
-          <Responsive maxWidth={600} className='six wide column'>
-            <MapComponent territory={territory} style={{maxHeight: "10em"}} />
-          </Responsive>
-          <Grid.Column width='10'>
-            <List relaxed='very'>
-              {occasions}
-            </List>
-          </Grid.Column>
-        </Grid>
-      </div>;
+        <List relaxed>
+          {occasions}
+        </List>
+      </Grid.Column>;
     };
 
     // Sort German and European elections first
     const occasionElems = [];
     if (this.state.occasions != null) {
-      occasionElems.push(occasionElem('deutschland'))
-      occasionElems.push(occasionElem('europa'))
-
+      occasionElems.push(occasionElem('deutschland'));
+      occasionElems.push(occasionElem('europa'));
       Object.keys(this.state.occasions)
         .filter(o => o !== 'deutschland' && o !== 'europa')
-        .map(o => occasionElems.push(occasionElem(o)));
+        .forEach(o => occasionElems.push(occasionElem(o)));
     }
 
-    return <Container id="outerContainer">
+    return <Container>
       <SEO title='Metawahl: Alle Wahlen im Überblick' />
-      <Header as='h1'>
-        Alle {occasionCount} Wahlen
-        <Header.Subheader>
-          Bundestags-, Landtags- und Europawahlen in der Übersicht
-        </Header.Subheader>
-      </Header>
-      {occasionElems}
+      <Grid stackable columns={2} padded relaxed className='occasionList'>
+        <Grid.Row doubling>
+          <Grid.Column width={4} className='headerCount2'>
+            <div className='headerCountInner'><div>{occasionCount}</div> Wahlen</div>
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <h3>Bundestags-, Landtags- und Europawahlen in der Übersicht</h3>
+            <p>Diese Übersicht zeigt alle Wahlen, zu denen ein Wahl-o-Mat herausgegeben wurde. Das sind leider nicht alle Wahlen, seitdem dieses
+            Tool für die Bundestagswahl 2002 das erste Mal produziert wurde. Zu Wahlen
+            in Mecklenburg-Vorpommern und Thüringen gab es noch gar keine Ausgabe
+            und auch einzelne andere Wahlen, wie die Landtagswahl in Niedersachsen
+            2017, sind hier nicht vertreten.</p>
+          </Grid.Column>
+        </Grid.Row>
+        {occasionElems}
+      </Grid>
     </Container>;
   }
 };

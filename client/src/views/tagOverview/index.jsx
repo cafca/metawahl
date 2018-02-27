@@ -70,7 +70,7 @@ export default class TagOverview extends Component<RouteProps> {
         </Grid.Column>;
     });
 
-    return <Container className="tagList" style={{marginTop: "4em"}}>
+    return <Container className="tagList">
       <SEO
         title='Metawahl: Alle Wahlthemen in Deutschland seit 2002' />
 
