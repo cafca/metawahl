@@ -67,10 +67,12 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
-      <Grid stackable doubling columns='4' className='suggestions hyphenate' relaxed>
+      <Grid stackable celled relaxed doubling columns='4' className='suggestions hyphenate'>
         <Grid.Row>
-          <Grid.Column as='h2'>
-          <em>Lies jetzt</em>
+          <Grid.Column>
+            <h2>
+              <em>Lies jetzt</em>
+            </h2>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
