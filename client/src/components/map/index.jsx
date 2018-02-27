@@ -35,9 +35,10 @@ const Map = (props: MapProps) => props.territory === 'europa'
   ? <Europa
   alt={altText(props)}
   title={noteEurope}
-  style={props.style} />
+  style={props.style}
+  className='map' />
   : <Deutschland
-  className={(props.inverted ? 'inverted ' : ' ') + 'territory-' + props.territory}
+  className={(props.inverted ? 'inverted ' : ' ') + 'map territory-' + props.territory}
   title={noteGerman}
   alt={altText(props)}
   style={props.style} />;
