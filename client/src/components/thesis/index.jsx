@@ -334,9 +334,11 @@ export default class Thesis extends Component<Props, State> {
 
       if (this.props.occasion.results_sources) {
         this.props.occasion.results_sources.forEach(url =>
-          sources.push(<span>,
-            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>
-          )
+          url.indexOf('wahl.tagesschau.de') === -1
+            ? sources.push(<span>,
+              <a href={url}>Wahlergebnisse: Wikipedia</a></span>)
+            : sources.push(<span>,
+              <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
         );
       }
     }

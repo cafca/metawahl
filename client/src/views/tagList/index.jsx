@@ -95,24 +95,23 @@ export default class TagList extends Component<RouteProps, State> {
           name="nach Anzahl Thesen"
           active={this.state.sortBy === "count"}
           onClick={() => this.sortBy("count")} />
-        <Menu.Menu position='right'>
-          <Menu.Item>
-            <Checkbox
-              label="Zeige Tags mit nur einer These"
-              onChange={this.toggleSingleTags}
-              toggle
-              />
-          </Menu.Item>
-        </Menu.Menu>
       </Menu>
 
-      <Segment attached="bottom">
+      <Segment attached>
         <Loader active={this.props.isLoading} inline='centered' />
         { tagElems.length > 0 &&
             <Item.Group link className="divided">
               {tagElems}
             </Item.Group>
         }
+      </Segment>
+
+      <Segment attached='bottom'>
+        <Checkbox
+          label="Zeige auch Tags mit nur einer These"
+          onChange={this.toggleSingleTags}
+          toggle
+          />
       </Segment>
     </Container>;
   }

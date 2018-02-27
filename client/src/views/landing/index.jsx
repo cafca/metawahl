@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Grid, Header, Icon, List, Segment
+  Container, Grid, Header, List, Segment
 } from 'semantic-ui-react';
 
 import { RouteProps } from '../../types/';
@@ -23,7 +23,7 @@ class LandingView extends React.Component<RouteProps> {
       </List.Item>);
 
     return <Container>
-      <Container textAlign='center' style={{margin: "4em auto 7em"}}>
+      <Container textAlign='center' style={{margin: "4em auto 5em"}}>
         <h1 className="ui header" style={{fontSize: "4rem"}}>
           <Logo className='logo' style={{marginBottom: "-1em"}}/>
           <div>Metawahl</div>
@@ -49,7 +49,7 @@ class LandingView extends React.Component<RouteProps> {
         </p>
       </Container>
 
-      <Grid stackable columns='2' style={{margin: "3em 1em"}}>
+      <Grid stackable columns='2' style={{margin: "5em 1em"}}>
         <Grid.Column>
           <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(160, 160, 160)", fontSize: "1.7rem"}}>
             <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
@@ -67,90 +67,55 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
-            {/* <Grid stackable columns='4' style={{margin: "5em auto 7em"}}>
+      <Grid stackable doubling columns='4' className='suggestions hyphenate' relaxed>
         <Grid.Row>
           <Grid.Column as='h2'>
-          Lies jetzt
+          <em>Lies jetzt</em>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
-        <Link to="/wahlen/deutschland/42/">
-            <Header as='h3'>
-              <Header.Subheader>
-                Alle Fragen aus der
-              </Header.Subheader>
-              Bundestagswahl 2017
-            </Header>
-        </Link>
+            <Link to="/wahlen/deutschland/42/">
+                <Header as='h2'>
+                  <Header.Subheader>
+                    Alle Fragen aus der
+                  </Header.Subheader>
+                  Bundestagswahl 2017
+                </Header>
+            </Link>
           </Grid.Column>
           <Grid.Column>
-        <Link to="/wahlen/deutschland/42/">
-            <Header as='h3'>
-              <Header.Subheader>
-                10 Thesen zu
-              </Header.Subheader>
-              #Abitur nach der 12. Jahrgangsstufe
-            </Header>
-        </Link>
+            <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
+                <Header as='h2'>
+                  <Header.Subheader>
+                    10 Thesen zu
+                  </Header.Subheader>
+                  #Abitur nach der 12. Jahrgangsstufe
+                </Header>
+            </Link>
           </Grid.Column>
           <Grid.Column>
-        <Link to="/wahlen/deutschland/42/">
-            <Header as='h3'>
-              <Header.Subheader>
-                5 Thesen zu
-              </Header.Subheader>
-              #Beitrittsverhandlungen der Türkei mit der Europäischen Union
-            </Header>
-        </Link>
+            <Link to="/themen/soziale-sicherheit/">
+              <Header as='h2'>
+                <Header.Subheader>
+                  43 Thesen zu
+                </Header.Subheader>
+                #soziale Sicherheit
+              </Header>
+            </Link>
           </Grid.Column>
           <Grid.Column>
-        <Link to="/themen/">
-            <Header as='h3'>
-              Stöbere durch fast 600 weitere Themen
-            </Header>
-        </Link>
+            <Link to="/themen/">
+              <Header as='h2'>
+                <Header.Subheader>
+                oder stöbere in weiteren
+                </Header.Subheader>
+                600+ Themen
+              </Header>
+            </Link>
           </Grid.Column>
         </Grid.Row>
-      </Grid> */}
-
-      <Container text style={{margin: "5em auto 7em"}} className='suggestions'>
-        <Header size='medium' style={{marginBottom: "1.5em"}}>
-          Schau dir jetzt an
-        </Header>
-
-        <p>
-          <Link to="/wahlen/deutschland/42/">
-            <Icon name='caret right' />
-            <span className='suggestionText'>Alle Fragen aus der <strong>Bundestagswahl 2017</strong></span>
-          </Link>
-        </p>
-
-        <p>
-          <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
-            <Icon name='caret right' />
-            <span className='suggestionText'>10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong></span>
-          </Link>
-        </p>
-
-        <p>
-          <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/'>
-            <Icon name='caret right' />
-            <span className='suggestionText'>5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong></span>
-          </Link>
-        </p>
-
-        <p>
-          <Link to='/themen/'>
-            <Icon name='caret right' />
-            <span className='suggestionText'>Stöbere durch fast 600 weitere Themen</span>
-          </Link>
-        </p>
-
-        <p style={{marginTop: "2em"}}>
-          Oder lies mehr darüber wie Metawahl funktioniert:
-        </p>
-      </Container>
+      </Grid>
 
       <Grid stackable columns='3'>
         <Grid.Row>
@@ -169,7 +134,7 @@ class LandingView extends React.Component<RouteProps> {
           </p>
 
           <p>
-            Vieles sehen die Parteien auch gleich – aber in welchen Punkten unterscheiden sie sich eigentlich voneinander?
+            Vieles sehen die Parteien auch sehr ähnlich – aber in welchen Punkten unterscheiden sie sich eigentlich voneinander?
             Der Wahl-o-Mat der Bundeszentrale für politische Bildung ist enorm
             erfolgreich darin, uns zu zeigen, welche Fragen wir ihnen stellen
             können um sie klar voneinander zu trennen.

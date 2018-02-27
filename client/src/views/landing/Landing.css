@@ -13,3 +13,13 @@
 .st2:hover {
   fill: rgb(213, 0, 28);
 }
+
+.suggestions {
+  margin: 5em auto 5em !important;
+}
+
+.suggestions a > h2 {
+  height: 4em;
+}
+
+

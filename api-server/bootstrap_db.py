@@ -206,8 +206,6 @@ def load_tags():
     assert tag_export["meta"]["api"] == API_VERSION
     logger.info("Adding {} tags...".format(len(tag_export["data"])))
 
-    # TODO: Update existing tags
-
     for tag_data in tag_export["data"]:
         tag = Tag(
             title=tag_data["title"],

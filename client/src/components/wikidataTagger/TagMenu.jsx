@@ -84,7 +84,6 @@ class TagMenu extends Component<Props, State> {
         this.props.refresh();
       })
       .catch((error: Error) => {
-        // TODO: Error message
         console.log(error);
         this.props.refresh();
       });
