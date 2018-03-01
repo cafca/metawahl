@@ -27,7 +27,7 @@ const Footer = (props: RouteProps) => {
     .sort((a, b) => {return a.date < b.date ? 1 : -1})
     .slice(0, territorries.length)
     .map(o => <List.Item key={'footer-link-' + o.id} as='a'
-      href={'/wahlen/' + o.territory + '/' + o.id}>
+      href={'/wahlen/' + o.territory + '/' + o.id + "/"}>
       {o.title}
     </List.Item>);
 

@@ -31,7 +31,8 @@ import {
   COLOR_PALETTE,
   OPINION_COLORS,
   IS_ADMIN,
-  makeJSONRequest,
+  TERRITORY_NAMES,
+  makeJSONRequest
   } from '../../config/';
 
 import type {
@@ -370,6 +371,10 @@ export default class Thesis extends Component<Props, State> {
       "1": "dafür"
     }[this.state.voterOpinion];
 
+    const voterTerritoryName = this.props.occasion.territory === 'europa'
+      ? 'Deutschland'
+      : TERRITORY_NAMES[this.props.occasion.territory];
+
     return <div style={{marginBottom: "2em"}}>
       <Transition
         visible={this.props.quizMode && this.state.quizAnswer != null}
@@ -377,8 +382,8 @@ export default class Thesis extends Component<Props, State> {
         duration={500}>
         <Header as='h1' textAlign='center' onClick={this.props.scrollToNextQuestion} style={{cursor: "pointer"}}>
           { this.state.quizAnswer === this.state.voterOpinion
-            ? "🌞 Richtig! Deutschland stimmt " + voterOpinionName + "."
-            : "🌚 Leider falsch. Deutschland stimmt " + voterOpinionName + "."
+            ? "🌞 Richtig! " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+            : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
           }
           <Header.Subheader>
             <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
