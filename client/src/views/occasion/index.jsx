@@ -21,7 +21,7 @@ import Legend from '../../components/legend/';
 
 import './Occasion.css';
 
-const quizThesesCount = 1; // cutoff to limit quiz length
+const quizThesesCount = 20; // cutoff to limit quiz length
 
 type State = {
   isLoading: boolean,
