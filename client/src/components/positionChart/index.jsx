@@ -157,7 +157,7 @@ export default class PositionChart extends React.Component<Props, State> {
     if (usablePixels != null && usablePixels > 0) {
       let usedPixels = 0;
 
-      rectangles = this.state.parties.map((data: MergedPartyDataType) => {
+      rectangles = this.state.parties.filter(d => d.pct > 0.1).map((data: MergedPartyDataType) => {
         const width = Math.round(data.pct * usablePixels / 100.0);
         usedPixels += width + gapWidth;
 
@@ -186,17 +186,11 @@ export default class PositionChart extends React.Component<Props, State> {
         } : null}
       >{ data.party }</span>);
 
-    return <div>
-      <svg width="100%" height="21" className="positionChart"
+    return <svg width="70%" height="21" className="positionChart"
         ref={this.handleRef} shapeRendering="crispEdges">
          <g className="bar">
           {rectangles}
         </g>
       </svg>
-
-      <div className="partyNames">
-        {partyNames}
-      </div>
-    </div>
   }
 }

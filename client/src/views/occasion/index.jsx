@@ -61,7 +61,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   loadOccasion(cb?: OccasionType => mixed) {
-    const endpoint = `${API_ROOT}/occasions/${this.occasionNum}`;
+    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
@@ -85,17 +85,33 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   render() {
+    const occRes = this.state.occasion.results;
+    const getRatio = ({ title, positions }) => {
+      const countVotes = (prev, cur) =>
+        occRes[cur["party"]] == null
+          ? prev
+          : prev + occRes[cur["party"]]["pct"];
+
+      let voterOpinion;
+
+      const ratioPro = positions.filter(p => p.value === 1).reduce(countVotes, 0.0);
+      const ratioContra = positions.filter(p => p.value === -1).reduce(countVotes, 0.0);
+      console.log(title, positions)
+      return ratioPro;
+    }
+
+
     const thesesElems = this.state.isLoading || this.state.error ? [] : this.state.theses
-    .sort((a, b) => a.id > b.id ? 1 : -1)
+    .sort((a, b) => getRatio(a) < getRatio(b) ? -1 : 1)
     .map(
-      (t, i) => <Thesis
+      (t, i) => <span><Thesis
         key={t.id}
         occasion={this.state.occasion}
         showHints={i === 0}
-        {...t} />
+        {...t} /> {t.title}</span>
     );
 
-    return <Container id="outerContainer" style={{minHeight: 350}} >
+    return <Container style={{minHeight: 350}} >
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title : "")} />
 
