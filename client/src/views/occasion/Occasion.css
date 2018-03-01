@@ -1,0 +1,11 @@
+.quizLink {
+    margin-bottom: 1.5em;
+}
+
+.quizResult {
+  margin-top: 2em;
+}
+
+.quizResult .ui.a {
+  margin-bottom: 10px;
+}

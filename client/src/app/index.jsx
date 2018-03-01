@@ -149,6 +149,7 @@ class App extends Component<Props, State> {
             <SEO
               title='Metawahl'
             />
+
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
             { this.state.error != null &&
@@ -168,7 +169,7 @@ class App extends Component<Props, State> {
                 <Territory {...props} {...context} />
               )} />
 
-              <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
+              <Route exact path="/wahlen/:territory/:occasionNum/:displayMode?/" render={props => (
                 <Occasion {...props} {...context} />
               )} />
 
@@ -180,11 +181,11 @@ class App extends Component<Props, State> {
                 <TagList {...props} {...context} />
               )} />
 
-              <Route path="/themen/:tag/:page?/" render={props => (
+              <Route exact path="/themen/:tag/:page?/" render={props => (
                 <TagView {...props} {...context} />
               )} />
 
-              <Route path="/legal/" render={props => (
+              <Route exact path="/legal/" render={props => (
                 <LegalView {...props} {...context} />
               )} />
 
