@@ -203,8 +203,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
       </Header>
 
       <h3>
-        Haben mehr Deutsche die Parteien gewählt, die im Wahl-o-Mat für eine These waren - oder
-        die, die dagegen waren?
+        Haben mehr Wähler in {TERRITORY_NAMES[this.territory]} die Parteien gewählt, die im Wahl-o-Mat für eine These waren - oder
+        die Parteien, die dagegen waren?
       </h3>
 
       { this.state.quizMode === false &&
