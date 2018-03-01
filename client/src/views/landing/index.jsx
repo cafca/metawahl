@@ -87,12 +87,12 @@ class LandingView extends React.Component<RouteProps> {
             </Link>
           </Grid.Column>
           <Grid.Column>
-            <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
+            <Link to="/wahlen/deutschland/42/quiz/">
                 <Header as='h2'>
                   <Header.Subheader>
-                    10 Thesen zu
+                    Teste dein Wissen
                   </Header.Subheader>
-                  #Abitur nach der 12. Jahrgangsstufe
+                  Quiz zur Bundestagswahl 2017
                 </Header>
             </Link>
           </Grid.Column>

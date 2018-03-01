@@ -8,3 +8,14 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.quizButtons .ui.button {
+  min-height: 3em;
+  color: #eee;
+  font-size: 1.5rem;
+}
+
+.quizButtons .ui.button:hover {
+  opacity: 0.8;
+  color: #eee;
+}
