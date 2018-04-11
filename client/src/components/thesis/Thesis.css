@@ -8,3 +8,14 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.thesisTitleInsert {
+  position: absolute;
+  margin-right: 1em;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+}
+
+.thesis-line {
+  height: 50px;
+}

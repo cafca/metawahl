@@ -87,31 +87,42 @@ export default class Occasion extends React.Component<RouteProps, State> {
   render() {
     const occRes = this.state.occasion.results;
     const getRatio = ({ title, positions }) => {
-      const countVotes = (prev, cur) =>
-        occRes[cur["party"]] == null
-          ? prev
-          : prev + occRes[cur["party"]]["pct"];
+      // if (title === 'Bundeswehr im Inneren') debugger;
+      const countVotes = (prev, cur) => {
+        if (occRes[cur["party"]] == null) {
+          let multipleLinkedResults = Object.keys(occRes).filter(k => occRes[k].linked_position === cur["party"]);
+          return prev + multipleLinkedResults.map(k => occRes[k]['pct']).reduce((acc, cur) => acc + cur, 0.0);
+        } else {
+          return prev + occRes[cur["party"]]["pct"];
+        }
+      }
 
       let voterOpinion;
 
       const ratioPro = positions.filter(p => p.value === 1).reduce(countVotes, 0.0);
       const ratioContra = positions.filter(p => p.value === -1).reduce(countVotes, 0.0);
-      console.log(title, positions)
+      console.log(ratioPro, title, positions)
       return ratioPro;
     }
 
 
     const thesesElems = this.state.isLoading || this.state.error ? [] : this.state.theses
-    .sort((a, b) => getRatio(a) < getRatio(b) ? -1 : 1)
+    .sort((a, b) => getRatio(a) > getRatio(b) ? -1 : 1)
     .map(
-      (t, i) => <span><Thesis
-        key={t.id}
-        occasion={this.state.occasion}
-        showHints={i === 0}
-        {...t} /> {t.title}</span>
+      (t, i) => <div key={'thesis-line-' + i} className='thesis-line'>
+        <Thesis
+          key={t.id}
+          occasion={this.state.occasion}
+          showHints={i === 0}
+          {...t} />
+        <span className='thesisTitleInsert'><strong>{
+          getRatio(t) < 1 ? "<1" :
+            getRatio(t) > 99 ? ">99" :
+              Math.round(getRatio(t))}% für {t.title}:</strong> {t.text}</span>
+      </div>
     );
 
-    return <Container style={{minHeight: 350}} >
+    return <Container fluid={true} style={{minHeight: 350, padding: "1em"}} >
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title : "")} />
 
@@ -135,7 +146,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
       <Header as='h1'>
         { this.state.occasion == null ? " "
-          : this.state.occasion.title}
+          : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
+          <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
+            ging, die sich im Wahl-o-Mat für eine These ausgesprochen haben.
+          </Header.Subheader>
       </Header>
 
       <Legend />
@@ -147,7 +161,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       <Loader active={this.state.isLoading} />
 
       {this.state.isLoading === false &&
-      <div className="theses" style={{marginTop: "2em"}}>
+      <div className="theses">
         {thesesElems}
       </div>
       }

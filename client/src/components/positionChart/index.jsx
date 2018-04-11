@@ -161,7 +161,8 @@ export default class PositionChart extends React.Component<Props, State> {
         const width = Math.round(data.pct * usablePixels / 100.0);
         usedPixels += width + gapWidth;
 
-        return <Rect
+        return <g>
+          <Rect
           key={"rect-" + data.party}
           hovered={this.state.hovered === data.party}
           handleHover={this.handleHover}
@@ -169,6 +170,10 @@ export default class PositionChart extends React.Component<Props, State> {
           xPos={usedPixels - width - gapWidth}
           toggleOpen={() => this.props.toggleOpen(data)}
           {...data} />
+          { data.pct > 5 &&
+           <text x={usedPixels - width - gapWidth + 5} y={'60%'} width={width} style={{fill: 'white', opacity: 0.5}}>{data.party}</text>
+          }
+          </g>
       });
     }
 
@@ -186,7 +191,7 @@ export default class PositionChart extends React.Component<Props, State> {
         } : null}
       >{ data.party }</span>);
 
-    return <svg width="70%" height="21" className="positionChart"
+    return <svg width="65%" height="35" className="positionChart"
         ref={this.handleRef} shapeRendering="crispEdges">
          <g className="bar">
           {rectangles}
