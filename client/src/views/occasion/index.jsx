@@ -86,21 +86,28 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
   render() {
     const occRes = this.state.occasion.results;
+
+    // Determine the ratio of positive votes by summing up the vote results
+    // of all parties with positive answers
     const getRatio = ({ title, positions }) => {
-      // if (title === 'Bundeswehr im Inneren') debugger;
-      const countVotes = (prev, cur) => {
+      // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
+      // otherwise just return accumulator `acc` + result of party `cur`
+      const countVotes = (acc, cur) => {
         if (occRes[cur["party"]] == null) {
-          let multipleLinkedResults = Object.keys(occRes).filter(k => occRes[k].linked_position === cur["party"]);
-          return prev + multipleLinkedResults.map(k => occRes[k]['pct']).reduce((acc, cur) => acc + cur, 0.0);
+          let multipleLinkedResults = Object.keys(occRes)
+            .filter(k => occRes[k].linked_position === cur["party"]);
+          return acc + multipleLinkedResults
+            .map(k => occRes[k]['pct'])
+            .reduce((acc, cur) => acc + cur, 0.0);
         } else {
-          return prev + occRes[cur["party"]]["pct"];
+          return acc + occRes[cur["party"]]["pct"];
         }
       }
 
       let voterOpinion;
 
       const ratioPro = positions.filter(p => p.value === 1).reduce(countVotes, 0.0);
-      const ratioContra = positions.filter(p => p.value === -1).reduce(countVotes, 0.0);
+      // const ratioContra = positions.filter(p => p.value === -1).reduce(countVotes, 0.0);
       console.log(ratioPro, title, positions)
       return ratioPro;
     }
