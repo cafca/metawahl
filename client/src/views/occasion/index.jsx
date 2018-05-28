@@ -105,7 +105,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   loadOccasion(cb?: OccasionType => mixed) {
-    const endpoint = `${API_ROOT}/occasions/${this.occasionNum}`;
+    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
@@ -130,42 +130,93 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
   render() {
     let quizResult;
-    let thesesSelection;
+    let thesesElems;
+
+    const occRes = this.state.occasion.results;
+
+    // Determine the ratio of positive votes by summing up the vote results
+    // of all parties with positive answers
+    const getRatio = ({ title, positions }, reverse=false) => {
+      // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
+      // otherwise just return accumulator `acc` + result of party `cur`
+      const countVotes = (acc, cur) => {
+        if (occRes[cur["party"]] == null) {
+          let multipleLinkedResults = Object.keys(occRes)
+            .filter(k => occRes[k].linked_position === cur["party"]);
+          return acc + multipleLinkedResults
+            .map(k => occRes[k]['pct'])
+            .reduce((acc, cur) => acc + cur, 0.0);
+        } else {
+          return acc + occRes[cur["party"]]["pct"];
+        }
+      }
+
+      const ratio = positions.filter(p => reverse ? p.value === -1 : p.value === 1).reduce(countVotes, 0.0);
+
+      return ratio;
+    }
 
     if (this.state.isLoading || this.state.error) {
-      thesesSelection = [];
+      thesesElems = [];
 
     } else if (this.state.quizMode === true) {
-      thesesSelection = this.state.theses
+      let thesesSelection = this.state.theses
         .sort((a, b) => a.id > b.id ? 1 : -1)
+        .filter(thesis => {
+          const ratioPro = getRatio(thesis)
+          const ratioCon = getRatio(thesis, true)
+          const rv = ratioPro > 10 && ratioCon > 10 && (ratioPro > 50 || ratioCon >= 50)
+          return rv
+        })
         .slice(0, quizThesesCount);
+
+      console.log('total', thesesSelection.length)
 
       // Hide theses not answered, except for next question
       thesesSelection = thesesSelection
         .slice(0, this.state.quizAnswers.length + 1);
+
+      thesesElems = thesesSelection.map(
+          (t, i) => <Thesis
+            key={t.id}
+            occasion={this.state.occasion}
+            showHints={i === 0}
+            quizMode={this.state.quizMode}
+            scrollToNextQuestion={this.scrollToNextQuestion}
+            answer={(answer, correct) => this.handleQuizAnswer(i, answer, correct)}
+            ref={ref => this.thesisRefs[i] = ref}
+            {...t} />
+        );
 
       quizResult = this.state.quizAnswers
         .map(a => a === true ? 1 : 0)
         .reduce((acc, cur) => acc + cur, 0) / this.state.quizAnswers.length;
 
     } else {
-      thesesSelection = this.state.theses.sort((a, b) => a.id > b.id ? 1 : -1);
+      thesesElems = this.state.error != null ? [] : this.state.theses
+      .sort((a, b) => getRatio(a) > getRatio(b) ? -1 : 1)
+      .map((t, i) => {
+        const tRatio = getRatio(t);
+        return <div key={'thesis-compact-' + i} className='thesis-compact'>
+          <Thesis
+            key={t.id}
+            occasion={this.state.occasion}
+            compact={true}
+            {...t} />
+          <span className='thesisTitleInsert'>
+            <strong>
+              {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
+              &nbsp;von 100 wählen {t.title}:
+            </strong>
+            &nbsp;{t.text}
+          </span>
+        </div>
+      });
+      debugger;
     }
 
-    const thesesElems = thesesSelection
-      .map(
-        (t, i) => <Thesis
-          key={t.id}
-          occasion={this.state.occasion}
-          showHints={i === 0}
-          quizMode={this.state.quizMode}
-          scrollToNextQuestion={this.scrollToNextQuestion}
-          answer={(answer, correct) => this.handleQuizAnswer(i, answer, correct)}
-          ref={ref => this.thesisRefs[i] = ref}
-          {...t} />
-      );
 
-    return <Container id="outerContainer" style={{minHeight: 350}} >
+    return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em"}} >
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title + ' Quiz' : "Quiz")} />
 
@@ -197,34 +248,41 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
       <Header as='h1'>
         { this.state.occasion == null ? " "
-          : (this.state.quizMode === true ? "Teste dein Wissen: " : "")
-            + this.state.occasion.title}
+          : this.state.quizMode === true
+            ? "Teste dein Wissen: " + this.state.occasion.title
+            : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
+          { this.props.displayMode != 'quiz' &&
+            <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
+              ging, die sich im Wahl-o-Mat für eine These ausgesprochen haben.
+            </Header.Subheader>
+          }
       </Header>
 
-      <h3>
-        Haben mehr Wähler in {TERRITORY_NAMES[this.territory]} die Parteien gewählt, die im Wahl-o-Mat für eine These waren - oder
-        die Parteien, die dagegen waren?
-      </h3>
+      { this.props.displayMode === 'quiz' &&
+        <h3 style={{marginBottom: '4rem'}}>
+          Was hat die Mehrheit in {TERRITORY_NAMES[this.territory]} gewählt?
+        </h3>
+      }
 
-      { this.state.isLoading === false && this.state.quizMode === false &&
+      {/* { this.state.isLoading === false && this.state.quizMode === false &&
         <div className='quizLink'><Button size='huge' as='a'
           href={'/quiz/' + this.state.occasion.territory + '/' + this.state.occasion.id + '/'} className='ellipsis'>
           <span role='img' aria-label='Pokal'>🏆</span> Teste dein Wissen im Quiz zur Wahl
         </Button></div>
-      }
+      } */}
 
       { this.state.error != null &&
         <Message negative content={this.state.error} />
       }
 
-      <div style={{marginTop: "3em"}}>
-        <Legend />
-      </div>
+      { this.props.displayMode != 'quiz' &&
+          <Legend text='Partei war im Wahl-o-Mat:' />
+      }
 
       <Loader active={this.state.isLoading} />
 
       {this.state.isLoading === false &&
-      <div className="theses" style={{marginTop: "2em"}}>
+      <div className="theses">
         {thesesElems}
       </div>
       }

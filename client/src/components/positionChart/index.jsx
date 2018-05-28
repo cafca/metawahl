@@ -53,7 +53,8 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: Rec
 
 type Props = {
   parties: MergedPartyDataType,
-  toggleOpen: (party: string) => any
+  toggleOpen: (party: string) => any,
+  compact?: boolean // set to true to restrict width to 70% and hide party names
 };
 
 type State = {
@@ -157,11 +158,14 @@ export default class PositionChart extends React.Component<Props, State> {
     if (usablePixels != null && usablePixels > 0) {
       let usedPixels = 0;
 
-      rectangles = this.state.parties.map((data: MergedPartyDataType) => {
+      // Parties with less than 0.1 % of votes are not visible in the chart
+      // anyway
+      rectangles = this.state.parties.filter(d => d.pct > 0.1).map((data: MergedPartyDataType) => {
         const width = Math.round(data.pct * usablePixels / 100.0);
         usedPixels += width + gapWidth;
 
-        return <Rect
+        return <g>
+          <Rect
           key={"rect-" + data.party}
           hovered={this.state.hovered === data.party}
           handleHover={this.handleHover}
@@ -169,6 +173,15 @@ export default class PositionChart extends React.Component<Props, State> {
           xPos={usedPixels - width - gapWidth}
           toggleOpen={() => this.props.toggleOpen(data)}
           {...data} />
+            { data.pct > 5 && this.props.compact === true &&
+            <text
+              x={usedPixels - width - gapWidth + 5}
+              y={'60%'} width={width}
+              style={{fill: 'white', opacity: 0.7, fontSize: '0.9rem', cursor: 'pointer'}}>
+                {data.party}
+            </text>
+            }
+        </g>
       });
     }
 
@@ -186,17 +199,26 @@ export default class PositionChart extends React.Component<Props, State> {
         } : null}
       >{ data.party }</span>);
 
-    return <div>
-      <svg width="100%" height="21" className="positionChart"
-        ref={this.handleRef} shapeRendering="crispEdges">
+    const svgWidthString = this.props.compact === true ? "65%" : "100%"
+    const svgHeightString = this.props.compact === true ? "35" : "21"
+    const svgStyle = this.props.compact === true ? {} : {
+      margin: "0.3em 0"
+    }
+
+    return <span>
+      <svg width={svgWidthString} height={svgHeightString} className="positionChart"
+        ref={this.handleRef} shapeRendering="crispEdges" style={svgStyle}>
          <g className="bar">
           {rectangles}
         </g>
       </svg>
 
-      <div className="partyNames">
-        {partyNames}
-      </div>
-    </div>
+      { this.props.compact !== true &&
+        <div className="partyNames">
+          {partyNames}
+        </div>
+      }
+
+    </span>
   }
 }

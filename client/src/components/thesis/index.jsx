@@ -99,7 +99,8 @@ type Props = RouteProps & ThesisType & {
   occasion?: OccasionType,
   linkOccasion?: boolean,
   showHints?: boolean,
-  quizMode?: boolean
+  quizMode?: boolean,
+  compact?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -354,196 +355,204 @@ export default class Thesis extends Component<Props, State> {
       }
     }
 
-    const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
-      ? {
-        backgroundColor: voterOpinionColor,
-        minHeight: this.props.linkOccasion ? "4em" : null,
-        fontSize: "1.7rem"
-      } : {
-        fontSize: "1.7rem",
-        backgroundColor: "#333",
-        color: "#fcfcfc"
-      };
+    if (this.props.compact === true) {
+      return <PositionChart
+      parties={this.state.parties}
+      toggleOpen={this.toggleOpen}
+      compact={this.props.compact} />
+    } else {
 
-    const voterOpinionName = {
-      "-1": "dagegen",
-      "0": "neutral",
-      "1": "dafür"
-    }[this.state.voterOpinion];
+      const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
+        ? {
+          backgroundColor: voterOpinionColor,
+          minHeight: this.props.linkOccasion ? "4em" : null,
+          fontSize: "1.7rem"
+        } : {
+          fontSize: "1.7rem",
+          backgroundColor: "#333",
+          color: "#fcfcfc"
+        };
 
-    const voterTerritoryName = this.props.occasion.territory === 'europa'
-      ? 'Deutschland'
-      : TERRITORY_NAMES[this.props.occasion.territory];
+      const voterOpinionName = {
+        "-1": "dagegen",
+        "0": "neutral",
+        "1": "dafür"
+      }[this.state.voterOpinion];
 
-    return <div style={{marginBottom: "2em"}}>
-      <Transition
-        visible={this.props.quizMode && this.state.quizAnswer != null}
-        animation={this.state.quizAnswer === this.state.voterOpinion ? 'tada' : 'shake'}
-        duration={500}>
-        <Header as='h1' textAlign='center' onClick={this.props.scrollToNextQuestion} style={{cursor: "pointer"}}>
-          { this.state.quizAnswer === this.state.voterOpinion
-            ? "🌞 Richtig! " + voterTerritoryName + " stimmt " + voterOpinionName + "."
-            : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+      const voterTerritoryName = this.props.occasion.territory === 'europa'
+        ? 'Deutschland'
+        : TERRITORY_NAMES[this.props.occasion.territory];
+
+      return <div style={{marginBottom: "2em"}}>
+        <Transition
+          visible={this.props.quizMode === true && this.state.quizAnswer != null}
+          animation={this.state.quizAnswer === this.state.voterOpinion ? 'tada' : 'shake'}
+          duration={500}>
+          <Header as='h1' textAlign='center' onClick={this.props.scrollToNextQuestion} style={{cursor: "pointer"}}>
+            { this.state.quizAnswer === this.state.voterOpinion
+              ? "🌞 Richtig! " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+              : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+            }
+            <Header.Subheader>
+              <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
+            </Header.Subheader>
+          </Header>
+        </Transition>
+
+        <Header as='h2' inverted attached="top" size="huge"
+          style={headerStyle}>
+
+          { this.props.linkOccasion &&
+            <OccasionSubtitle occasion={this.props.occasion} />
           }
-          <Header.Subheader>
-            <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
+
+          {/* { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
+            <Header.Subheader style={{marginTop: "0.3em"}}>
+              {this.props.title}
+            </Header.Subheader>
+          } */}
+
+          {this.props.text}
+
+          <Header.Subheader style={{marginTop: "0.3em"}}>
+          { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
+            <span>
+              { this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
+                : this.state.voterOpinion === 1
+                  ? ` ${Math.round(this.state.ratioPro)} von 100 haben Parteien gewählt, die dafür waren`
+                  : ` ${Math.round(this.state.ratioContra)} von 100 haben Parteien gewählt, die dagegen waren`
+              }
+            </span>
+          }
           </Header.Subheader>
         </Header>
-      </Transition>
 
-      <Header as='h2' inverted attached="top" size="huge"
-        style={headerStyle}>
+        { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
+          <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
+            <Header sub style={{color: "rgba(0,0,0,.65)"}}>
+              Stimmverteilung
+            </Header>
 
-        { this.props.linkOccasion &&
-          <OccasionSubtitle occasion={this.props.occasion} />
-        }
+            <PositionChart
+              parties={this.state.parties}
+              toggleOpen={this.toggleOpen} />
 
-        {/* { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
-          <Header.Subheader style={{marginTop: "0.3em"}}>
-            {this.props.title}
-          </Header.Subheader>
-        } */}
-
-        {this.props.text}
-
-        <Header.Subheader style={{marginTop: "0.3em"}}>
-        { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
-          <span>
-            { this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
-              : this.state.voterOpinion === 1
-                ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern gaben ihre Stimme Parteien, die dafür waren`
-                : ` ${Math.round(this.state.ratioContra)} von 100 Wählern gaben ihre Stimme Parteien, die dagegen waren`
+            { this.state.openText != null &&
+              <Message
+                content={this.state.openText.text}
+                floating
+                header={this.state.openText.header} />
             }
-          </span>
-        }
-        </Header.Subheader>
-      </Header>
 
-      { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
-        <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
-          <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-            Stimmverteilung
-          </Header>
-
-          <PositionChart
-            parties={this.state.parties}
-            toggleOpen={this.toggleOpen} />
-
-          { this.state.openText != null &&
-            <Message
-              content={this.state.openText.text}
-              floating
-              header={this.state.openText.header} />
-          }
-
-          { this.props.showHints === true && this.state.openText == null &&
-            <Message style={{marginTop: "1rem"}}>
-              <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Wenn Parteinamen
-              hellgrau sind, so haben diese keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
-              vertreten.
-            </Message>
-          }
-
-          <Reactions
-            id={this.props.id}
-            reactions={this.props.reactions}
-          />
-
-          { this.state.error != null &&
-            <Message negative content={this.state.error} />
-          }
-
-          <p
-            className='sources'
-            onClick={() => this.setState({showSources: true})}>
-            Quellen{ this.state.showSources && <span>: {sources}</span> }
-          </p>
-
-        </Segment>
-
-        <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
-          <div className="tagContainer">
-            { this.state.reportingError != null &&
-              <Message negative
-                header='Fehler beim melden des Beitrags'
-                content={this.state.reportingError + 'Schreib uns doch eine email an hallo@metawahl.de, dann kümmern wir uns darum. Danke!'} />
-            }
-            { this.state.reported === true &&
-              <Message positive>
-                <Message.Header>
-                  Meldung abgeschickt
-                </Message.Header>
-                <Message.Content>
-                  <p>Wir werden uns diesen Eintrag
-                  genauer anschauen, wenn mehrere Leute diesen Fehler melden.</p>
-                  <p>Handelt es sich um einen besonders groben Schnitzer, kannst
-                  du uns sehr helfen, indem du eine Email
-                  an <a href='mailto:metawahl@vincentahrend.com'>
-                  metawahl@vincentahrend.com</a> schreibst
-                  und kurz erzählst, was hier falsch ist.</p>
-                  <p>Im <Link to='/legal'>Impressum</Link> findest du auch noch
-                  weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
-                </Message.Content>
+            { this.props.showHints === true && this.state.openText == null &&
+              <Message style={{marginTop: "1rem"}}>
+                <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Wenn Parteinamen
+                hellgrau sind, so haben diese keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
+                vertreten.
               </Message>
             }
 
-            <Responsive minWidth={600}>
-            <Popup
-              content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
-              header="Fehler melden"
-              trigger={
-                <Button basic compact icon floated='right'
-                  loading={this.state.reported === false}
-                  disabled={this.state.reported === true}
-                  onClick={this.handleReport}
-                  style={{marginTop: -2}}
-                >
-                  <Icon name='warning circle' /> Melden
-                </Button>
-              }
+            <Reactions
+              id={this.props.id}
+              reactions={this.props.reactions}
             />
-            </Responsive>
-            <Responsive maxWidth={600}>
-                <Button basic compact icon floated='right'
-                  loading={this.state.reported === false}
-                  disabled={this.state.reported === true}
-                  onClick={this.handleReport}
-                  style={{marginTop: -2}}
-                >
-                  <Icon name='warning circle' /> Melden
-                </Button>
-            </Responsive>
 
-            { tagElems }
-            <br />
-            { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
-          </div>
-        </Segment>
+            { this.state.error != null &&
+              <Message negative content={this.state.error} />
+            }
 
-        { IS_ADMIN &&
-          <Segment attached='bottom' secondary>
-            <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
-            { this.state.loading && <Loader />}
+            <p
+              className='sources'
+              onClick={() => this.setState({showSources: true})}>
+              Quellen{ this.state.showSources && <span>: {sources}</span> }
+            </p>
+
           </Segment>
+
+          <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
+            <div className="tagContainer">
+              { this.state.reportingError != null &&
+                <Message negative
+                  header='Fehler beim melden des Beitrags'
+                  content={this.state.reportingError + 'Schreib uns doch eine email an hallo@metawahl.de, dann kümmern wir uns darum. Danke!'} />
+              }
+              { this.state.reported === true &&
+                <Message positive>
+                  <Message.Header>
+                    Meldung abgeschickt
+                  </Message.Header>
+                  <Message.Content>
+                    <p>Wir werden uns diesen Eintrag
+                    genauer anschauen, wenn mehrere Leute diesen Fehler melden.</p>
+                    <p>Handelt es sich um einen besonders groben Schnitzer, kannst
+                    du uns sehr helfen, indem du eine Email
+                    an <a href='mailto:metawahl@vincentahrend.com'>
+                    metawahl@vincentahrend.com</a> schreibst
+                    und kurz erzählst, was hier falsch ist.</p>
+                    <p>Im <Link to='/legal'>Impressum</Link> findest du auch noch
+                    weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
+                  </Message.Content>
+                </Message>
+              }
+
+              <Responsive minWidth={600}>
+              <Popup
+                content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
+                header="Fehler melden"
+                trigger={
+                  <Button basic compact icon floated='right'
+                    loading={this.state.reported === false}
+                    disabled={this.state.reported === true}
+                    onClick={this.handleReport}
+                    style={{marginTop: -2}}
+                  >
+                    <Icon name='warning circle' /> Melden
+                  </Button>
+                }
+              />
+              </Responsive>
+              <Responsive maxWidth={600}>
+                  <Button basic compact icon floated='right'
+                    loading={this.state.reported === false}
+                    disabled={this.state.reported === true}
+                    onClick={this.handleReport}
+                    style={{marginTop: -2}}
+                  >
+                    <Icon name='warning circle' /> Melden
+                  </Button>
+              </Responsive>
+
+              { tagElems }
+              <br />
+              { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
+            </div>
+          </Segment>
+
+          { IS_ADMIN &&
+            <Segment attached='bottom' secondary>
+              <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
+              { this.state.loading && <Loader />}
+            </Segment>
+          }
+        </span> }
+
+        { this.props.quizMode === true && this.state.quizAnswer == null &&
+          <Button.Group fluid className='stackable quizButtons' attached='bottom'>
+            <Button onClick={() => this.handleAnswer(1)} style={{backgroundColor: OPINION_COLORS[1]}}>
+              Mehrheit dafür
+            </Button>
+
+            <Button onClick={() => this.handleAnswer(0)} style={{backgroundColor: OPINION_COLORS[0]}}>
+              Weder noch
+            </Button>
+
+            <Button onClick={() => this.handleAnswer(-1)} style={{backgroundColor: OPINION_COLORS[-1]}}>
+              Mehrheit dagegen
+            </Button>
+
+          </Button.Group>
         }
-      </span> }
-
-      { this.props.quizMode === true && this.state.quizAnswer == null &&
-        <Button.Group fluid className='stackable quizButtons' attached='bottom'>
-          <Button onClick={() => this.handleAnswer(1)} style={{backgroundColor: OPINION_COLORS[1]}}>
-            Mehrheit dafür
-          </Button>
-
-          <Button onClick={() => this.handleAnswer(0)} style={{backgroundColor: OPINION_COLORS[0]}}>
-            Weder noch
-          </Button>
-
-          <Button onClick={() => this.handleAnswer(-1)} style={{backgroundColor: OPINION_COLORS[-1]}}>
-            Mehrheit dagegen
-          </Button>
-
-        </Button.Group>
-      }
-    </div>
+      </div>
+    }
   }
 }

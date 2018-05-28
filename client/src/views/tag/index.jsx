@@ -321,7 +321,7 @@ export default class TagView extends Component<RouteProps, State> {
             }
           </h2>
 
-          <Legend />
+          <Legend text='Legende:' />
 
           <div style={{marginTop: "1.5em"}}>
             {thesesElems}
