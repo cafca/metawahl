@@ -108,7 +108,10 @@ Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
 
 # Lizenz
 
-Siehe die Datei `./LICENSE`.
+Copyright 2018 Vincent Ahrend
+
+Lizensiert unter der GNU AFFERO GENERAL PUBLIC LICENSE 3.0 (Text der Lizenz 
+in der Datei `./LICENSE`.)
 
 Gefördert vom Bundesministerium für Bildung und Forschung
 
