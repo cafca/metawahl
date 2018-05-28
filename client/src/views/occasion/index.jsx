@@ -121,11 +121,12 @@ export default class Occasion extends React.Component<RouteProps, State> {
           key={t.id}
           occasion={this.state.occasion}
           showHints={i === 0}
+          compact={true}
           {...t} />
         <span className='thesisTitleInsert'><strong>{
           getRatio(t) < 1 ? "<1" :
             getRatio(t) > 99 ? ">99" :
-              Math.round(getRatio(t))}% für {t.title}:</strong> {t.text}</span>
+              Math.round(getRatio(t))} von 100 für {t.title}:</strong> {t.text}</span>
       </div>
     );
 

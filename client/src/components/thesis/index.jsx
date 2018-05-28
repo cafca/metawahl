@@ -94,7 +94,8 @@ type State = {
 type Props = RouteProps & ThesisType & {
   occasion?: OccasionType,
   linkOccasion?: boolean,
-  showHints?: boolean
+  showHints?: boolean,
+  compact?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -343,10 +344,148 @@ export default class Thesis extends Component<Props, State> {
       }
     }
 
+    if (this.props.compact === true) {
+      return <PositionChart
+      parties={this.state.parties}
+      toggleOpen={this.toggleOpen}
+      compact={this.props.compact} />
+    } else {
+      return <div style={{marginBottom: "2em"}}>
+      <Header as='h2' inverted attached="top" size="huge"
+        style={{
+          backgroundColor: voterOpinionColor,
+          minHeight: this.props.linkOccasion ? "4em" : null,
+          fontSize: "1.7rem"
+        }}>
 
+        { this.props.linkOccasion &&
+          <OccasionSubtitle occasion={this.props.occasion} />
+        }
 
-    return <PositionChart
-    parties={this.state.parties}
-    toggleOpen={this.toggleOpen} />
+        { this.props.linkOccasion === false && (this.props.title != null && this.props.title.length > 0) &&
+          <Header.Subheader style={{marginTop: "0.3em"}}>
+            {this.props.title}
+          </Header.Subheader>
+        }
+
+        {this.props.text}
+
+        <Header.Subheader style={{marginTop: "0.3em"}}>
+        {this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
+          : this.state.voterOpinion === 1
+            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern gaben ihre Stimme Parteien, die dafür waren`
+            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern gaben ihre Stimme Parteien, die dagegen waren`
+        }
+        </Header.Subheader>
+      </Header>
+
+      <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
+        <Header sub style={{color: "rgba(0,0,0,.65)"}}>
+          Stimmverteilung
+        </Header>
+
+        <PositionChart
+          parties={this.state.parties}
+          toggleOpen={this.toggleOpen} />
+
+        { this.state.openText != null &&
+          <Message
+            content={this.state.openText.text}
+            floating
+            header={this.state.openText.header} />
+        }
+
+        { this.props.showHints === true && this.state.openText == null &&
+          <Message style={{marginTop: "1rem"}}>
+            <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Wenn Parteinamen
+            hellgrau sind, so haben diese keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
+            vertreten.
+          </Message>
+        }
+
+        <Reactions
+          id={this.props.id}
+          reactions={this.props.reactions}
+        />
+
+        { this.state.error != null &&
+          <Message negative content={this.state.error} />
+        }
+
+        <p
+          className='sources'
+          onClick={() => this.setState({showSources: true})}>
+          Quellen{ this.state.showSources && <span>: {sources}</span> }
+        </p>
+
+      </Segment>
+
+      <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
+        <div className="tagContainer">
+          { this.state.reportingError != null &&
+            <Message negative
+              header='Fehler beim melden des Beitrags'
+              content={this.state.reportingError + 'Schreib uns doch eine email an hallo@metawahl.de, dann kümmern wir uns darum. Danke!'} />
+          }
+          { this.state.reported === true &&
+            <Message positive>
+              <Message.Header>
+                Meldung abgeschickt
+              </Message.Header>
+              <Message.Content>
+                <p>Wir werden uns diesen Eintrag
+                genauer anschauen, wenn mehrere Leute diesen Fehler melden.</p>
+                <p>Handelt es sich um einen besonders groben Schnitzer, kannst
+                du uns sehr helfen, indem du eine Email
+                an <a href='mailto:metawahl@vincentahrend.com'>
+                metawahl@vincentahrend.com</a> schreibst
+                und kurz erzählst, was hier falsch ist.</p>
+                <p>Im <Link to='/legal'>Impressum</Link> findest du auch noch
+                weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
+              </Message.Content>
+            </Message>
+          }
+
+          <Responsive minWidth={600}>
+          <Popup
+            content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
+            header="Fehler melden"
+            trigger={
+              <Button basic compact icon floated='right'
+                loading={this.state.reported === false}
+                disabled={this.state.reported === true}
+                onClick={this.handleReport}
+                style={{marginTop: -2}}
+              >
+                <Icon name='warning circle' /> Melden
+              </Button>
+            }
+          />
+          </Responsive>
+          <Responsive maxWidth={600}>
+              <Button basic compact icon floated='right'
+                loading={this.state.reported === false}
+                disabled={this.state.reported === true}
+                onClick={this.handleReport}
+                style={{marginTop: -2}}
+              >
+                <Icon name='warning circle' /> Melden
+              </Button>
+          </Responsive>
+
+          { tagElems }
+          <br />
+          { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
+        </div>
+      </Segment>
+
+      { IS_ADMIN &&
+        <Segment attached='bottom' secondary>
+          <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
+          { this.state.loading && <Loader />}
+        </Segment>
+      }
+    </div>
+    }
   }
 }
