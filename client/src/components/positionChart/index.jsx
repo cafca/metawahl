@@ -177,7 +177,7 @@ export default class PositionChart extends React.Component<Props, State> {
             <text
               x={usedPixels - width - gapWidth + 5}
               y={'60%'} width={width}
-              style={{fill: 'white', opacity: 0.5}}>
+              style={{fill: 'white', opacity: 0.7, fontSize: '0.9rem', cursor: 'pointer'}}>
                 {data.party}
             </text>
             }
@@ -213,7 +213,7 @@ export default class PositionChart extends React.Component<Props, State> {
         </g>
       </svg>
 
-      { this.props.compact != true &&
+      { this.props.compact !== true &&
         <div className="partyNames">
           {partyNames}
         </div>

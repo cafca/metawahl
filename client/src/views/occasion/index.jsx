@@ -104,8 +104,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
         }
       }
 
-      let voterOpinion;
-
       const ratioPro = positions.filter(p => p.value === 1).reduce(countVotes, 0.0);
       // const ratioContra = positions.filter(p => p.value === -1).reduce(countVotes, 0.0);
       console.log(ratioPro, title, positions)
@@ -126,7 +124,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         <span className='thesisTitleInsert'><strong>{
           getRatio(t) < 1 ? "<1" :
             getRatio(t) > 99 ? ">99" :
-              Math.round(getRatio(t))} von 100 für {t.title}:</strong> {t.text}</span>
+              Math.round(getRatio(t))} von 100 pro {t.title}:</strong> {t.text}</span>
       </div>
     );
 
