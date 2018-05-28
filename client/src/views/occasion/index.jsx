@@ -47,7 +47,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       isLoading: true,
       occasion: this.getCachedOccasion(),
       theses: [],
-      quizMode: this.props.match.params.displayMode === "quiz" ? true : false,
+      quizMode: this.props.displayMode === "quiz" ? true : false,
       quizAnswers: [],
       linkCopied: false
     }
@@ -83,7 +83,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   handleQuizAnswer(thesisNum, answer, correct) {
-    debugger;
     const answerNode = ReactDOM.findDOMNode(this.thesisRefs[thesisNum]);
     window.scrollTo(0, answerNode.offsetTop - 35);
     this.setState({quizAnswers: this.state.quizAnswers.concat([correct])});
@@ -187,7 +186,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
         { this.state.quizMode === true && <span>
           <Breadcrumb.Divider icon='right angle' />
-          <Breadcrumb.Section active href={`/wahlen/${this.territory}/quiz/`}>
+          <Breadcrumb.Section active href={`/quiz/${this.territory}/${this.occasionNum}/`}>
             Quiz
           </Breadcrumb.Section>
         </span> }
@@ -207,9 +206,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
         die Parteien, die dagegen waren?
       </h3>
 
-      { this.state.quizMode === false &&
+      { this.state.isLoading === false && this.state.quizMode === false &&
         <div className='quizLink'><Button size='huge' as='a'
-          href={window.location + 'quiz/'} className='ellipsis'>
+          href={'/quiz/' + this.state.occasion.territory + '/' + this.state.occasion.id + '/'} className='ellipsis'>
           <span role='img' aria-label='Pokal'>🏆</span> Teste dein Wissen im Quiz zur Wahl
         </Button></div>
       }
@@ -251,7 +250,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
           </Header>
 
           <p>
-            Es gibt einen Quiz für jede Wahl, bei der es auch einen Wahl-o-Maten gab.</p>
+            Es gibt Quizze für Deutschland, die Europawahl und alle Bundesländer in denen es Wahl-o-Maten gab.</p>
 
           <p>
             <Link to='/wahlen/'><Icon name='caret right' /> Auf zum nächsten Quiz!</Link> <br />

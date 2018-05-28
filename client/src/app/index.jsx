@@ -169,8 +169,12 @@ class App extends Component<Props, State> {
                 <Territory {...props} {...context} />
               )} />
 
-              <Route exact path="/wahlen/:territory/:occasionNum/:displayMode?/" render={props => (
+              <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
                 <Occasion {...props} {...context} />
+              )} />
+
+              <Route exact path="/quiz/:territory/:occasionNum/" render={props => (
+                <Occasion displayMode='quiz' {...props} {...context} />
               )} />
 
               <Route exact path="/themen/" render={props => (

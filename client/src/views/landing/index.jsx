@@ -87,7 +87,7 @@ class LandingView extends React.Component<RouteProps> {
             </Link>
           </Grid.Column>
           <Grid.Column>
-            <Link to="/wahlen/deutschland/42/quiz/">
+            <Link to="/quiz/deutschland/42/">
                 <Header as='h2'>
                   <Header.Subheader>
                     Teste dein Wissen
