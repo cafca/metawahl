@@ -22,12 +22,11 @@ import { extractThesisID } from '../../utils/thesis';
 
 import './Occasion.css';
 
-const quizThesesCount = 20; // cutoff to limit quiz length
-
 type State = {
   isLoading: boolean,
   occasion: ?OccasionType,
   theses: Array<ThesisType>,
+  quizSelection: Array<ThesisType>,
   quizMode: boolean,
   quizAnswers: ?Array<number>,
   linkCopied: boolean,
@@ -48,6 +47,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       isLoading: true,
       occasion: this.getCachedOccasion(),
       theses: [],
+      quizSelection: [],
       quizMode: this.props.displayMode === "quiz" ? true : false,
       quizAnswers: [],
       linkCopied: false
@@ -56,8 +56,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
     this.handleError = Errorhandler.bind(this);
   }
 
-  componentDidMount(cb?: () => {}) {
-    this.loadOccasion(cb);
+  componentDidMount() {
+    this.loadOccasion();
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
@@ -83,6 +83,31 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .shift();
   }
 
+  getRatio({ title, positions }, reverse=false) {
+    // Determine the ratio of positive votes by summing up the vote results
+    // of all parties with positive answers
+    if (this.state.occasion === null) return null
+
+    const occRes = this.state.occasion.results;
+
+    // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
+    // otherwise just return accumulator `acc` + result of party `cur`
+    const countVotes = (acc, cur) => {
+      if (occRes[cur["party"]] == null) {
+        let multipleLinkedResults = Object.keys(occRes)
+          .filter(k => occRes[k].linked_position === cur["party"]);
+        return acc + multipleLinkedResults
+          .map(k => occRes[k]['pct'])
+          .reduce((acc, cur) => acc + cur, 0.0);
+      } else {
+        return acc + occRes[cur["party"]]["pct"];
+      }
+    }
+
+    const ratio = positions.filter(p => reverse ? p.value === -1 : p.value === 1).reduce(countVotes, 0.0);
+    return ratio;
+  }
+
   handleQuizAnswer(thesisNum, answer, correct) {
     const answerNode = ReactDOM.findDOMNode(this.thesisRefs[thesisNum]);
     window.scrollTo(0, answerNode.offsetTop - 35);
@@ -90,7 +115,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   scrollToNextQuestion() {
-    if (this.state.quizAnswers.length !== quizThesesCount) {
+    if (this.state.quizAnswers.length !== this.state.quizSelection.length) {
       const answerNode = ReactDOM.findDOMNode(this.thesisRefs[this.state.quizAnswers.length]);
       window.scrollTo(0, answerNode.offsetTop - 35);
     }
@@ -103,9 +128,11 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .then(response => {
         this.handleError(response);
         this.setState({
-          isLoading: false,
+          isLoading: this.state.quizMode === true,
           occasion: response.data,
           theses: response.theses || []
+        }, () => {
+          if (this.state.quizMode === true) this.selectQuizTheses()
         })
         if (cb != null) cb(response.data);
       })
@@ -120,56 +147,31 @@ export default class Occasion extends React.Component<RouteProps, State> {
       })
   }
 
+  selectQuizTheses() {
+    const quizSelection = this.state.theses
+      .sort((a, b) => a.id > b.id ? 1 : -1)
+      .filter(thesis => {
+        const ratioPro = this.getRatio(thesis)
+        const ratioCon = this.getRatio(thesis, true)
+        const rv = ratioPro > 10 && ratioCon > 10 && (ratioPro > 50 || ratioCon >= 50)
+        return rv
+      })
+      .slice(0, 20)
+    this.setState({ quizSelection, isLoading: false })
+  }
+
   render() {
     let quizResult;
     let thesesElems;
-    let occRes;
-
-    if (this.state.isLoading !== true) occRes = this.state.occasion.results;
-
-    // Determine the ratio of positive votes by summing up the vote results
-    // of all parties with positive answers
-    const getRatio = ({ title, positions }, reverse=false) => {
-      // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
-      // otherwise just return accumulator `acc` + result of party `cur`
-      const countVotes = (acc, cur) => {
-        if (occRes[cur["party"]] == null) {
-          let multipleLinkedResults = Object.keys(occRes)
-            .filter(k => occRes[k].linked_position === cur["party"]);
-          return acc + multipleLinkedResults
-            .map(k => occRes[k]['pct'])
-            .reduce((acc, cur) => acc + cur, 0.0);
-        } else {
-          return acc + occRes[cur["party"]]["pct"];
-        }
-      }
-
-      const ratio = positions.filter(p => reverse ? p.value === -1 : p.value === 1).reduce(countVotes, 0.0);
-
-      return ratio;
-    }
 
     if (this.state.isLoading || this.state.error) {
       thesesElems = [];
 
     } else if (this.state.quizMode === true) {
-      let thesesSelection = this.state.theses
-        .sort((a, b) => a.id > b.id ? 1 : -1)
-        .filter(thesis => {
-          const ratioPro = getRatio(thesis)
-          const ratioCon = getRatio(thesis, true)
-          const rv = ratioPro > 10 && ratioCon > 10 && (ratioPro > 50 || ratioCon >= 50)
-          return rv
-        })
-        .slice(0, quizThesesCount);
 
-      console.log('total', thesesSelection.length)
-
-      // Hide theses not answered, except for next question
-      thesesSelection = thesesSelection
-        .slice(0, this.state.quizAnswers.length + 1);
-
-      thesesElems = thesesSelection.map(
+      thesesElems = this.state.quizSelection
+        .slice(0, this.state.quizAnswers.length + 1)
+        .map(
           (t, i) => <Thesis
             key={t.id}
             occasion={this.state.occasion}
@@ -187,9 +189,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
     } else {
       thesesElems = this.state.error != null ? [] : this.state.theses
-      .sort((a, b) => getRatio(a) > getRatio(b) ? -1 : 1)
+      .sort((a, b) => this.getRatio(a) > this.getRatio(b) ? -1 : 1)
       .map((t, i) => {
-        const tRatio = getRatio(t);
+        const tRatio = this.getRatio(t);
         const tUrl = '/wahlen/'
           + this.territory + '/'
           + this.occasionNum + '/'
@@ -263,13 +265,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
         </h3>
       }
 
-      {/* { this.state.isLoading === false && this.state.quizMode === false &&
-        <div className='quizLink'><Button size='huge' as='a'
-          href={'/quiz/' + this.state.occasion.territory + '/' + this.state.occasion.id + '/'} className='ellipsis'>
-          <span role='img' aria-label='Pokal'>🏆</span> Teste dein Wissen im Quiz zur Wahl
-        </Button></div>
-      } */}
-
       { this.state.error != null &&
         <Message negative content={this.state.error} />
       }
@@ -286,16 +281,26 @@ export default class Occasion extends React.Component<RouteProps, State> {
       </div>
       }
 
-      { this.state.quizMode === true && this.state.quizAnswers.length < this.state.theses.length &&
-        <p>
-          { this.state.quizAnswers.length !== quizThesesCount &&
-            <span>Noch { quizThesesCount - this.state.quizAnswers.length } Thesen bis zum Ergebnis</span>
-          }
-          <Progress value={this.state.quizAnswers.length} total={quizThesesCount} success={this.state.quizAnswers.length === quizThesesCount && quizResult >= 0.5} />
-        </p>
+      { this.state.isLoading === false && this.state.quizMode === false &&
+        <div className='quizLink' style={{marginTop: "5rem", textAlign: 'center'}}>
+          <h1>Weißt du, was die Mehrheit gewählt hat?</h1>
+          <Button size='huge' as='a'
+            href={'/quiz/' + this.state.occasion.territory + '/' + this.state.occasion.id + '/'} className='ellipsis'>
+            <span role='img' aria-label='Pokal'>🏆</span> Teste dein Wissen im Quiz zur Wahl
+          </Button>
+        </div>
       }
 
-      { this.state.quizMode === true && this.state.quizAnswers.length === quizThesesCount &&
+      { this.state.quizMode === true && this.state.quizAnswers.length < this.state.theses.length &&
+        <div>
+          { this.state.quizAnswers.length !== this.state.quizSelection.length &&
+            <span>Noch { this.state.quizSelection.length - this.state.quizAnswers.length } Thesen bis zum Ergebnis</span>
+          }
+          <Progress value={this.state.quizAnswers.length} total={this.state.quizSelection.length} success={this.state.quizAnswers.length === this.state.quizSelection.length && quizResult >= 0.5} />
+        </div>
+      }
+
+      { this.state.quizMode === true && this.state.isLoading === false && this.state.quizAnswers.length === this.state.quizSelection.length &&
         <Segment size='large' raised className='quizResult'>
           <Header as='h1'>
             { quizResult >= 0.5 &&
@@ -317,9 +322,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
           <Button.Group className='stackable'>
           <Button as='a' href={'https://www.facebook.com/sharer/sharer.php?u=' + SITE_ROOT + this.props.location.pathname}
-             className='item' color='facebook'>Quiz auf Facebook teilen</Button>
+             className='item' color='facebook' rel='nofollow' _target='blank'>Quiz auf Facebook teilen</Button>
           <Button as='a' href={'https://twitter.com/home?status=' + SITE_ROOT + this.props.location.pathname}
-             className='item' color='twitter'>Quiz auf Twitter teilen</Button>
+             className='item' color='twitter' rel='nofollow' _target='blank'>Quiz auf Twitter teilen</Button>
           <CopyToClipboard text={SITE_ROOT + this.props.location.pathname}
             onCopy={() => this.setState({linkCopied: true})}>
             <Button onClick={this.onClick}><Icon name={this.state.linkCopied ? 'check' : 'linkify'} /> Link kopieren</Button>

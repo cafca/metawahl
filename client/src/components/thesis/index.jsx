@@ -542,10 +542,6 @@ export default class Thesis extends Component<Props, State> {
               Mehrheit dafür
             </Button>
 
-            <Button onClick={() => this.handleAnswer(0)} style={{backgroundColor: OPINION_COLORS[0]}}>
-              Weder noch
-            </Button>
-
             <Button onClick={() => this.handleAnswer(-1)} style={{backgroundColor: OPINION_COLORS[-1]}}>
               Mehrheit dagegen
             </Button>
