@@ -1,21 +1,15 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import autoBind from 'react-autobind';
-import {
-  Button, Breadcrumb, Container, Header, Loader, Message, Progress, Segment, Icon
-} from 'semantic-ui-react';
+import { Breadcrumb, Container, Message } from 'semantic-ui-react';
 import Moment from 'moment';
 
-import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from '../../config/';
+import { API_ROOT, TERRITORY_NAMES } from '../../config/';
 import SEO from '../../components/seo/';
 import ThesisComponent from '../../components/thesis/';
-import Occasion from '../occasion/';
 import Errorhandler from '../../utils/errorHandler';
-import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
-import { extractThesisID } from '../../utils/thesis';
+import { RouteProps, ThesisType, OccasionType } from '../../types/';
 
 type State = {
   isLoading: boolean,

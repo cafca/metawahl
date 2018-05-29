@@ -35,7 +35,7 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos, comp
     fillOpacity: 1.0
   };
 
-  const style = hovered && compact != true ? Object.assign(baseStyle, {
+  const style = hovered && compact !== true ? Object.assign(baseStyle, {
     fillOpacity: 0.45
   }) : baseStyle;
 

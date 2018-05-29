@@ -252,7 +252,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
           : this.state.quizMode === true
             ? "Teste dein Wissen: " + this.state.occasion.title
             : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
-          { this.props.displayMode != 'quiz' &&
+          { this.props.displayMode !== 'quiz' &&
             <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
               ging, die sich im Wahl-o-Mat für eine These ausgesprochen haben.
             </Header.Subheader>
@@ -269,7 +269,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         <Message negative content={this.state.error} />
       }
 
-      { this.props.displayMode != 'quiz' &&
+      { this.props.displayMode !== 'quiz' &&
           <Legend text='Partei war im Wahl-o-Mat:' />
       }
 
