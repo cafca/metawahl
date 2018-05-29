@@ -18,6 +18,7 @@ import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
 import SEO from '../../components/seo/';
 import Legend from '../../components/legend/';
+import { extractThesisID } from '../../utils/thesis';
 
 import './Occasion.css';
 
@@ -55,8 +56,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
     this.handleError = Errorhandler.bind(this);
   }
 
-  componentDidMount() {
-    this.loadOccasion();
+  componentDidMount(cb?: () => {}) {
+    this.loadOccasion(cb);
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
@@ -95,15 +96,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
     }
   }
 
-  extractThesisID(thesisID: string) {
-    const elems = thesisID.split("-");
-    return {
-      type: elems[0],
-      womID: parseInt(elems[1], 10),
-      thesisNUM: parseInt(elems[2], 10)
-    }
-  }
-
   loadOccasion(cb?: OccasionType => mixed) {
     const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
     fetch(endpoint)
@@ -131,8 +123,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
   render() {
     let quizResult;
     let thesesElems;
+    let occRes;
 
-    const occRes = this.state.occasion.results;
+    if (this.state.isLoading !== true) occRes = this.state.occasion.results;
 
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
@@ -197,26 +190,32 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .sort((a, b) => getRatio(a) > getRatio(b) ? -1 : 1)
       .map((t, i) => {
         const tRatio = getRatio(t);
+        const tUrl = '/wahlen/'
+          + this.territory + '/'
+          + this.occasionNum + '/'
+          + extractThesisID(t.id).thesisNUM + '/'
+
         return <div key={'thesis-compact-' + i} className='thesis-compact'>
-          <Thesis
-            key={t.id}
-            occasion={this.state.occasion}
-            compact={true}
-            {...t} />
-          <span className='thesisTitleInsert'>
-            <strong>
-              {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
-              &nbsp;von 100 wählen {t.title}:
-            </strong>
-            &nbsp;{t.text}
-          </span>
+          <a href={tUrl}>
+            <Thesis
+              key={t.id}
+              occasion={this.state.occasion}
+              compact={true}
+              {...t} />
+            <span className='thesisTitleInsert'>
+              <strong>
+                {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
+                &nbsp;von 100 wählen {t.title}:
+              </strong>
+              &nbsp;{t.text}
+            </span>
+          </a>
         </div>
       });
-      debugger;
     }
 
 
-    return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em"}} >
+    return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em 2em"}} >
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title + ' Quiz' : "Quiz")} />
 

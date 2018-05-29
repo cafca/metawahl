@@ -168,7 +168,7 @@ export default class TagView extends Component<RouteProps, State> {
       theses.length
     );
 
-    const thesesElems = this.state.loading || this.state.error  ? null : theses
+    const thesesElems = this.state.loading || this.state.error ? null : theses
       .slice(startPos, endPos)
       .map((thesis, i) =>
         <Thesis

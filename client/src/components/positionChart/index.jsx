@@ -27,7 +27,7 @@ type RectProps = {
   ...MergedPartyDataType
 };
 
-const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: RectProps) => {
+const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos, compact}: RectProps) => {
   // Changing SVG classnames with react is buggy, therefore this inline
   // style for a hover effect
   const baseStyle = {
@@ -35,7 +35,7 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: Rec
     fillOpacity: 1.0
   };
 
-  const style = hovered ? Object.assign(baseStyle, {
+  const style = hovered && compact != true ? Object.assign(baseStyle, {
     fillOpacity: 0.45
   }) : baseStyle;
 
@@ -164,14 +164,14 @@ export default class PositionChart extends React.Component<Props, State> {
         const width = Math.round(data.pct * usablePixels / 100.0);
         usedPixels += width + gapWidth;
 
-        return <g>
+        return <g key={"rect-" + data.party}>
           <Rect
-          key={"rect-" + data.party}
           hovered={this.state.hovered === data.party}
           handleHover={this.handleHover}
           width={width}
           xPos={usedPixels - width - gapWidth}
           toggleOpen={() => this.props.toggleOpen(data)}
+          compact={this.props.compact}
           {...data} />
             { data.pct > 5 && this.props.compact === true &&
             <text

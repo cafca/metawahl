@@ -18,6 +18,7 @@ import LegalView from '../views/legal';
 import TagList from '../views/tagList/';
 import TagOverview from '../views/tagOverview/';
 import TagView from '../views/tag/';
+import Thesis from '../views/thesis/';
 import Territory from '../views/territory';
 import ScrollToTop from '../utils/ScrollToTop';
 import ErrorHandler from '../utils/errorHandler';
@@ -175,6 +176,10 @@ class App extends Component<Props, State> {
 
               <Route exact path="/quiz/:territory/:occasionNum/" render={props => (
                 <Occasion displayMode='quiz' {...props} {...context} />
+              )} />
+
+              <Route exact path="/wahlen/:territory/:occasionNum/:thesisNum/" render={props => (
+                <Thesis {...props} {...context} />
               )} />
 
               <Route exact path="/themen/" render={props => (
