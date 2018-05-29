@@ -28,8 +28,7 @@ class LandingView extends React.Component<RouteProps> {
           <Logo className='logo' style={{marginBottom: "-1em"}}/>
           <div>Metawahl</div>
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
-            Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
-            gaben
+            Was Deutschland gewählt hat
           </div>
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
             Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
@@ -39,8 +38,8 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-          Metawahl verbindet Wahlergebnisse der letzten 16 Jahre mit über 21.000 Parteipositionen aus dem
-          Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit der Wähler für eine Idee gestimmt – oder dagegen?
+        Metawahl nutzt Stellungnahmen aus 43 Wahl-o-Maten um zu zeigen, welche Positionen von einer Mehrheit gewählt wurden — und wie sich
+        diese im Laufe der Zeit geändert haben.
         </p>
         <p>
           Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
