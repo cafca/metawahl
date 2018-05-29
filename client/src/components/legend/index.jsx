@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { Table } from 'semantic-ui-react';
-import { COLOR_PALETTE } from '../../config/';
+import { COLOR_PALETTE, OPINION_COLORS } from '../../config/';
 
 import './Legend.css';
 
@@ -23,6 +23,9 @@ const Legend = ({text}) => <Table collapsing compact className='legend'>
       </Table.Cell>
       <Table.Cell>
         <div className='square' style={{backgroundColor: COLOR_PALETTE[0]}}>&nbsp;</div> Dagegen
+      </Table.Cell>
+      <Table.Cell>
+        <div className='square' style={{backgroundColor: OPINION_COLORS['missing']}}>&nbsp;</div> Nicht vertreten
       </Table.Cell>
     </Table.Row>
   </Table.Body>
