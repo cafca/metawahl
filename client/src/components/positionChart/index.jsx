@@ -173,10 +173,10 @@ export default class PositionChart extends React.Component<Props, State> {
           toggleOpen={() => this.props.toggleOpen(data)}
           compact={this.props.compact}
           {...data} />
-            { data.pct > 5 && this.props.compact === true &&
+            { data.pct >= 5 &&
             <text
               x={usedPixels - width - gapWidth + 5}
-              y={'60%'} width={width}
+              y={'66%'} width={width}
               style={{fill: 'white', opacity: 0.7, fontSize: '0.9rem', cursor: 'pointer'}}>
                 {data.party}
             </text>
@@ -200,12 +200,12 @@ export default class PositionChart extends React.Component<Props, State> {
       >{ data.party }</span>);
 
     const svgWidthString = this.props.compact === true ? "65%" : "100%"
-    const svgHeightString = this.props.compact === true ? "35" : "21"
+    const svgHeightString = this.props.compact === true ? "35" : "28"
     const svgStyle = this.props.compact === true ? {} : {
       margin: "0.3em 0"
     }
 
-    return <span>
+    return <span className='positionChartContainer'>
       <svg width={svgWidthString} height={svgHeightString} className="positionChart"
         ref={this.handleRef} shapeRendering="crispEdges" style={svgStyle}>
          <g className="bar">
