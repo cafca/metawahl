@@ -28,8 +28,7 @@ class LandingView extends React.Component<RouteProps> {
           <Logo className='logo' style={{marginBottom: "-1em"}}/>
           <div>Metawahl</div>
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
-            Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
-            gaben
+            Was Deutschland gewählt hat
           </div>
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
             Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
@@ -39,8 +38,8 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-          Metawahl verbindet Wahlergebnisse der letzten 16 Jahre mit über 21.000 Parteipositionen aus dem
-          Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit der Wähler für eine Idee gestimmt – oder dagegen?
+        Metawahl nutzt Stellungnahmen aus 43 Wahl-o-Maten um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
+        dieses im Laufe der Zeit geändert hat.
         </p>
         <p>
           Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
@@ -62,7 +61,7 @@ class LandingView extends React.Component<RouteProps> {
           <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(213, 0, 28)", fontSize: "1.7rem"}}>
             <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
             Für die Aufnahme von neuen Asylsuchenden soll eine jährliche Obergrenze gelten.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>53 von 100 Wählern gaben ihre Stimme Parteien, die gegen eine Obergrenze sind.</div>
+            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>53 von 100 haben Parteien gewählt, die gegen eine Obergrenze sind.</div>
           </Segment>
         </Grid.Column>
       </Grid>
@@ -87,12 +86,12 @@ class LandingView extends React.Component<RouteProps> {
             </Link>
           </Grid.Column>
           <Grid.Column>
-            <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
+            <Link to="/quiz/deutschland/42/">
                 <Header as='h2'>
                   <Header.Subheader>
-                    10 Thesen zu
+                    Teste dein Wissen
                   </Header.Subheader>
-                  #Abitur nach der 12. Jahrgangsstufe
+                  Quiz zur Bundestagswahl 2017
                 </Header>
             </Link>
           </Grid.Column>
@@ -185,24 +184,6 @@ class LandingView extends React.Component<RouteProps> {
           </p>
         </Grid.Column>
       </Grid>
-
-      {/* <Grid stackable columns='2' style={{margin: "3em 1em"}}>
-        <Grid.Column streteched>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(61, 133, 179)", fontSize: "1.7rem", height: "100%"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.8)"}}>Bundestagswahl 2017</a></p>
-            Die Videoüberwachung im öffentlichen Raum soll ausgeweitet werden.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>68 von 100 Wählern haben ihre Stimme befürwortenden Parteien gegeben</div>
-          </Segment>
-        </Grid.Column>
-
-        <Grid.Column streteched>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(169, 124, 144)", fontSize: "1.7rem", height: "100%"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.8)"}}>Landtagswahl Nordrhein-Westfalen 2017</a></p>
-            Die Videoüberwachung auf Straßen und Plätzen soll ausgeweitet werden.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>Keine Mehrheit dafür oder dagegen</div>
-          </Segment>
-        </Grid.Column>
-      </Grid> */}
 
       <Header size='large' style={{margin: "4rem auto 1em"}}>
         <Link to='/wahlen' style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>

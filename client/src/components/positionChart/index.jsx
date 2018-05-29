@@ -27,7 +27,7 @@ type RectProps = {
   ...MergedPartyDataType
 };
 
-const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: RectProps) => {
+const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos, compact}: RectProps) => {
   // Changing SVG classnames with react is buggy, therefore this inline
   // style for a hover effect
   const baseStyle = {
@@ -35,7 +35,7 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: Rec
     fillOpacity: 1.0
   };
 
-  const style = hovered ? Object.assign(baseStyle, {
+  const style = hovered && compact !== true ? Object.assign(baseStyle, {
     fillOpacity: 0.45
   }) : baseStyle;
 
@@ -53,7 +53,8 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos}: Rec
 
 type Props = {
   parties: MergedPartyDataType,
-  toggleOpen: (party: string) => any
+  toggleOpen: (party: string) => any,
+  compact?: boolean // set to true to restrict width to 70% and hide party names
 };
 
 type State = {
@@ -157,18 +158,30 @@ export default class PositionChart extends React.Component<Props, State> {
     if (usablePixels != null && usablePixels > 0) {
       let usedPixels = 0;
 
-      rectangles = this.state.parties.map((data: MergedPartyDataType) => {
+      // Parties with less than 0.1 % of votes are not visible in the chart
+      // anyway
+      rectangles = this.state.parties.filter(d => d.pct > 0.1).map((data: MergedPartyDataType) => {
         const width = Math.round(data.pct * usablePixels / 100.0);
         usedPixels += width + gapWidth;
 
-        return <Rect
-          key={"rect-" + data.party}
+        return <g key={"rect-" + data.party}>
+          <Rect
           hovered={this.state.hovered === data.party}
           handleHover={this.handleHover}
           width={width}
           xPos={usedPixels - width - gapWidth}
           toggleOpen={() => this.props.toggleOpen(data)}
+          compact={this.props.compact}
           {...data} />
+            { data.pct >= 5 &&
+            <text
+              x={usedPixels - width - gapWidth + 5}
+              y={'66%'} width={width}
+              style={{fill: 'white', opacity: 0.7, fontSize: '0.9rem', cursor: 'pointer'}}>
+                {data.party}
+            </text>
+            }
+        </g>
       });
     }
 
@@ -186,17 +199,26 @@ export default class PositionChart extends React.Component<Props, State> {
         } : null}
       >{ data.party }</span>);
 
-    return <div>
-      <svg width="100%" height="21" className="positionChart"
-        ref={this.handleRef} shapeRendering="crispEdges">
+    const svgWidthString = this.props.compact === true ? "65%" : "100%"
+    const svgHeightString = this.props.compact === true ? "35" : "28"
+    const svgStyle = this.props.compact === true ? {} : {
+      margin: "0.3em 0"
+    }
+
+    return <span className='positionChartContainer'>
+      <svg width={svgWidthString} height={svgHeightString} className="positionChart"
+        ref={this.handleRef} shapeRendering="crispEdges" style={svgStyle}>
          <g className="bar">
           {rectangles}
         </g>
       </svg>
 
-      <div className="partyNames">
-        {partyNames}
-      </div>
-    </div>
+      { this.props.compact !== true &&
+        <div className="partyNames">
+          {partyNames}
+        </div>
+      }
+
+    </span>
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "metawahl",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "private": true,
   "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
@@ -8,8 +8,9 @@
     "fuse.js": "^3.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
-    "react": "^16.0.0",
+    "react": "^16.2.0",
     "react-autobind": "^1.0.6",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.2.0",
     "react-router": "^4.2.0",
