@@ -21,7 +21,6 @@ import { loadFromCache } from '../../app/';
 import WikidataTagger from '../wikidataTagger/';
 import Tag from '../tag/';
 import PositionChart from '../positionChart/';
-import Reactions from '../reactions/';
 import Map from '../map/';
 import ErrorHandler from '../../utils/errorHandler';
 
@@ -383,7 +382,9 @@ export default class Thesis extends Component<Props, State> {
         ? 'Deutschland'
         : TERRITORY_NAMES[this.props.occasion.territory];
 
-      return <div style={{marginBottom: "2em"}}>
+      const margin = this.props.quizMode ? "4em" : "2em"
+
+      return <div style={{marginBottom: margin}}>
         <Transition
           visible={this.props.quizMode === true && this.state.quizAnswer != null}
           animation={this.state.quizAnswer === this.state.voterOpinion ? 'tada' : 'shake'}
@@ -451,11 +452,6 @@ export default class Thesis extends Component<Props, State> {
                 vertreten.
               </Message>
             }
-
-            <Reactions
-              id={this.props.id}
-              reactions={this.props.reactions}
-            />
 
             { this.state.error != null &&
               <Message negative content={this.state.error} />
