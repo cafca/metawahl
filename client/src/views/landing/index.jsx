@@ -38,8 +38,8 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-        Metawahl nutzt Stellungnahmen aus 43 Wahl-o-Maten um zu zeigen, welche Positionen von einer Mehrheit gewählt wurden — und wie sich
-        diese im Laufe der Zeit geändert haben.
+        Metawahl nutzt Stellungnahmen aus 43 Wahl-o-Maten um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
+        dieses im Laufe der Zeit geändert hat.
         </p>
         <p>
           Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen

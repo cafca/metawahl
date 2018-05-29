@@ -447,8 +447,7 @@ export default class Thesis extends Component<Props, State> {
 
             { this.props.showHints === true && this.state.openText == null &&
               <Message style={{marginTop: "1rem"}}>
-                <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Wenn Parteinamen
-                hellgrau sind, so haben diese keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
+                <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
                 vertreten.
               </Message>
             }
