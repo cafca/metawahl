@@ -62,14 +62,14 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
-    if(nextProps.match.params.occasionNum !== this.occasionNum) {
+    if(nextProps.match.params.occasionNum !== this.occasionNum || nextProps.displayMode !== this.props.displayMode) {
       this.occasionNum = parseInt(nextProps.match.params.occasionNum, 10);
       this.territory = nextProps.match.params.territory;
       this.setState({
         isLoading: true,
         occasion: this.getCachedOccasion(),
         theses: [],
-        quizMode: nextProps.match.params.displayMode === "quiz" ? true : false,
+        quizMode: nextProps.displayMode === "quiz" ? true : false,
         quizAnswers: []
       });
       this.thesisRefs = {};
@@ -221,31 +221,28 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .filter(occ => occ.id !== this.occasionNum)
       .shift();
 
-    let suggestions;
-    if (this.state.isLoading === false) {
-      suggestions = [
-        {
-          subTitle: 'Teste dein Wissen',
-          title: 'Quiz zur ' + this.state.occasion.title,
-          href: '/quiz/deutschland/' + this.state.occasion.id + '/'
-        },
-        {
-          subTitle: 'Welche Politik wurde gewählt',
-          title: occ2.title,
-          href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
-        },
-        {
-          subTitle: 'Alle Wahlen in',
-          title: TERRITORY_NAMES[this.territory],
-          href: '/wahlen/' + this.territory + '/'
-        },
-        {
-          subTitle: 'Stöbere in',
-          title: '600+ Wahlkampfthemen',
-          href: '/themen/'
-        }
-      ]
-    }
+    const suggestions = [
+      {
+        subTitle: 'Teste dein Wissen',
+        title: 'Quiz zur ' + this.state.occasion.title,
+        href: '/quiz/' + this.territory + '/' + this.occasionNum + '/'
+      },
+      {
+        subTitle: 'Welche Politik wurde gewählt',
+        title: occ2.title,
+        href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
+      },
+      {
+        subTitle: 'Alle Wahlen in',
+        title: TERRITORY_NAMES[this.territory],
+        href: '/wahlen/' + this.territory + '/'
+      },
+      {
+        subTitle: 'Stöbere in',
+        title: '600+ Wahlkampfthemen',
+        href: '/themen/'
+      }
+    ]
 
     return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em 2em"}} >
       <SEO title={'Metawahl: '
@@ -305,16 +302,19 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
       <Loader active={this.state.isLoading} />
 
+      {/* Main content */}
       {this.state.isLoading === false &&
       <div className="theses">
         {thesesElems}
       </div>
       }
 
+      {/* Browsing suggestions */}
       { this.state.isLoading === false && this.state.quizMode === false &&
         <SuggestionsGrid title='Und jetzt:' sections={suggestions} />
       }
 
+      {/* Quiz progress indicator */}
       { this.state.quizMode === true && this.state.quizAnswers.length < this.state.theses.length &&
         <div>
           { this.state.quizAnswers.length !== this.state.quizSelection.length &&
@@ -324,6 +324,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         </div>
       }
 
+      {/* Quiz Result */}
       { this.state.quizMode === true && this.state.isLoading === false && this.state.quizAnswers.length === this.state.quizSelection.length &&
         <Segment size='large' raised className='quizResult'>
           <Header as='h1'>
