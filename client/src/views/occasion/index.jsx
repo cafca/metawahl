@@ -154,7 +154,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .filter(thesis => {
         const ratioPro = this.getRatio(thesis)
         const ratioCon = this.getRatio(thesis, true)
-        const rv = ratioPro > 10 && ratioCon > 10 && (ratioPro > 50 || ratioCon >= 50)
+        const rv = ratioPro > 15 && ratioCon > 15 && (ratioPro > 50 || ratioCon >= 50)
         return rv
       })
       .slice(0, 20)
@@ -337,13 +337,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
           </Header>
 
           <p>
-            Es gibt Quizze für Deutschland, die Europawahl und alle Bundesländer in denen die bpb einen Wahl-o-Mat herausgegeben hat.</p>
-
-          <p>
-            <Link to='/wahlen/'><Icon name='caret right' /> Auf zum nächsten Quiz!</Link> <br />
+            <Link to={'/wahlen/' + this.territory + '/' + this.occasionNum + '/'}><Icon name='caret right' /> Öffne die Übersichtsgrafik zur {this.state.occasion.title}</Link> <br />
+            <Link to={'/wahlen/'}><Icon name='caret right' /> Siehe alle Wahlen, zu denen es Quizzes gibt</Link> <br />
             <Link to='/'><Icon name='caret right' /> Finde heraus, worum es bei Metawahl geht</Link>
           </p>
-
 
           <Button.Group className='stackable'>
           <Button as='a' href={'https://www.facebook.com/sharer/sharer.php?u=' + SITE_ROOT + this.props.location.pathname}
