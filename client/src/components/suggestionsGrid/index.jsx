@@ -2,21 +2,19 @@
 
 import React from  'react'
 import { Link } from 'react-router-dom';
-import {
-  Container, Grid, Header, List, Segment
-} from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 
 import './styles.css'
-
-type Props = {
-  title: string,
-  sections: [SectionType]
-}
 
 type SectionType = {
   subTitle: string,
   title: string,
   href: string
+}
+
+type Props = {
+  title: string,
+  sections: [SectionType]
 }
 
 const SuggestionsGrid = ({title, sections}: Props) => {
