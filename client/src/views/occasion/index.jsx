@@ -221,28 +221,31 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .filter(occ => occ.id !== this.occasionNum)
       .shift();
 
-    const suggestions = [
-      {
-        subTitle: 'Welche Politik wurde gewählt',
-        title: occ2.title,
-        href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
-      },
-      {
-        subTitle: 'Teste dein Wissen',
-        title: 'Quiz zur ' + occ2.title,
-        href: '/quiz/deutschland/' + occ2.id + '/'
-      },
-      {
-        subTitle: 'Alle Wahlen in',
-        title: TERRITORY_NAMES[this.territory],
-        href: '/wahlen/' + this.territory + '/'
-      },
-      {
-        subTitle: 'Stöbere in',
-        title: '600+ Wahlkampfthemen',
-        href: '/themen/'
-      }
-    ]
+    let suggestions;
+    if (this.state.isLoading === false) {
+      suggestions = [
+        {
+          subTitle: 'Teste dein Wissen',
+          title: 'Quiz zur ' + this.state.occasion.title,
+          href: '/quiz/deutschland/' + this.state.occasion.id + '/'
+        },
+        {
+          subTitle: 'Welche Politik wurde gewählt',
+          title: occ2.title,
+          href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
+        },
+        {
+          subTitle: 'Alle Wahlen in',
+          title: TERRITORY_NAMES[this.territory],
+          href: '/wahlen/' + this.territory + '/'
+        },
+        {
+          subTitle: 'Stöbere in',
+          title: '600+ Wahlkampfthemen',
+          href: '/themen/'
+        }
+      ]
+    }
 
     return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em 2em"}} >
       <SEO title={'Metawahl: '
