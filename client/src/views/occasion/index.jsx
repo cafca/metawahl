@@ -17,6 +17,7 @@ import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from '../../config/';
 import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
 import SEO from '../../components/seo/';
+import SuggestionsGrid from '../../components/suggestionsGrid';
 import Legend from '../../components/legend/';
 import { extractThesisID } from '../../utils/thesis';
 
@@ -216,6 +217,32 @@ export default class Occasion extends React.Component<RouteProps, State> {
       });
     }
 
+    const occ2 = this.props.occasions[this.territory].reverse()
+      .filter(occ => occ.id !== this.occasionNum)
+      .shift();
+
+    const suggestions = [
+      {
+        subTitle: 'Welche Politik wurde gewählt',
+        title: occ2.title,
+        href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
+      },
+      {
+        subTitle: 'Teste dein Wissen',
+        title: 'Quiz zur ' + occ2.title,
+        href: '/quiz/deutschland/' + occ2.id + '/'
+      },
+      {
+        subTitle: 'Alle Wahlen in',
+        title: TERRITORY_NAMES[this.territory],
+        href: '/wahlen/' + this.territory + '/'
+      },
+      {
+        subTitle: 'Stöbere in',
+        title: '600+ Wahlkampfthemen',
+        href: '/themen/'
+      }
+    ]
 
     return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em 2em"}} >
       <SEO title={'Metawahl: '
@@ -282,13 +309,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       }
 
       { this.state.isLoading === false && this.state.quizMode === false &&
-        <div className='quizLink' style={{marginTop: "5rem", textAlign: 'center'}}>
-          <h1>Weißt du, was die Mehrheit gewählt hat?</h1>
-          <Button size='huge' as='a'
-            href={'/quiz/' + this.state.occasion.territory + '/' + this.state.occasion.id + '/'} className='ellipsis'>
-            <span role='img' aria-label='Pokal'>🏆</span> Teste dein Wissen im Quiz zur Wahl
-          </Button>
-        </div>
+        <SuggestionsGrid title='Und jetzt:' sections={suggestions} />
       }
 
       { this.state.quizMode === true && this.state.quizAnswers.length < this.state.theses.length &&

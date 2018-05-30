@@ -13,6 +13,7 @@ import Map from '../../components/map/';
 import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
 
 import './Landing.css';
+import SuggestionsGrid from '../../components/suggestionsGrid';
 
 class LandingView extends React.Component<RouteProps> {
   render() {
@@ -66,57 +67,28 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
-      <Grid stackable celled relaxed doubling columns='4' className='suggestions hyphenate'>
-        <Grid.Row>
-          <Grid.Column>
-            <h2>
-              <em>Lies jetzt</em>
-            </h2>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Link to="/wahlen/deutschland/42/">
-                <Header as='h2'>
-                  <Header.Subheader>
-                    Alle Fragen aus der
-                  </Header.Subheader>
-                  Bundestagswahl 2017
-                </Header>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to="/quiz/deutschland/42/">
-                <Header as='h2'>
-                  <Header.Subheader>
-                    Teste dein Wissen
-                  </Header.Subheader>
-                  Quiz zur Bundestagswahl 2017
-                </Header>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to="/themen/soziale-sicherheit/">
-              <Header as='h2'>
-                <Header.Subheader>
-                  43 Thesen zu
-                </Header.Subheader>
-                #soziale Sicherheit
-              </Header>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to="/themen/">
-              <Header as='h2'>
-                <Header.Subheader>
-                oder stöbere in weiteren
-                </Header.Subheader>
-                600+ Themen
-              </Header>
-            </Link>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <SuggestionsGrid title='Lies jetzt' sections={[
+        {
+          subTitle: 'Alle Fragen aus der',
+          title: 'Bundestagswahl 2017',
+          href: '/wahlen/deutschland/42/'
+        },
+        {
+          subTitle: 'Teste dein Wissen',
+          title: 'Quiz zur Bundestagswahl 2017',
+          href: '/quiz/deutschland/42/'
+        },
+        {
+          subTitle: '43 Thesen zu',
+          title: '#soziale Sicherheit',
+          href: '/themen/soziale-sicherheit/'
+        },
+        {
+          subTitle: 'oder stöbere in weiteren',
+          title: '600+ Themen',
+          href: '/themen/'
+        }
+      ]} />
 
       <Grid stackable columns='3'>
         <Grid.Row>
