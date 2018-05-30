@@ -17,6 +17,7 @@ import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from '../../config/';
 import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
 import SEO from '../../components/seo/';
+import SuggestionsGrid from '../../components/suggestionsGrid';
 import Legend from '../../components/legend/';
 import { extractThesisID } from '../../utils/thesis';
 
@@ -61,14 +62,14 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
-    if(nextProps.match.params.occasionNum !== this.occasionNum) {
+    if(nextProps.match.params.occasionNum !== this.occasionNum || nextProps.displayMode !== this.props.displayMode) {
       this.occasionNum = parseInt(nextProps.match.params.occasionNum, 10);
       this.territory = nextProps.match.params.territory;
       this.setState({
         isLoading: true,
         occasion: this.getCachedOccasion(),
         theses: [],
-        quizMode: nextProps.match.params.displayMode === "quiz" ? true : false,
+        quizMode: nextProps.displayMode === "quiz" ? true : false,
         quizAnswers: []
       });
       this.thesisRefs = {};
@@ -153,7 +154,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .filter(thesis => {
         const ratioPro = this.getRatio(thesis)
         const ratioCon = this.getRatio(thesis, true)
-        const rv = ratioPro > 10 && ratioCon > 10 && (ratioPro > 50 || ratioCon >= 50)
+        const rv = ratioPro > 15 && ratioCon > 15 && (ratioPro > 50 || ratioCon >= 50)
         return rv
       })
       .slice(0, 20)
@@ -216,6 +217,32 @@ export default class Occasion extends React.Component<RouteProps, State> {
       });
     }
 
+    const occ2 = this.props.occasions[this.territory].reverse()
+      .filter(occ => occ.id !== this.occasionNum)
+      .shift();
+
+    const suggestions = [
+      {
+        subTitle: 'Teste dein Wissen',
+        title: 'Quiz zur ' + this.state.occasion.title,
+        href: '/quiz/' + this.territory + '/' + this.occasionNum + '/'
+      },
+      {
+        subTitle: 'Welche Politik wurde gewählt',
+        title: occ2.title,
+        href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
+      },
+      {
+        subTitle: 'Alle Wahlen in',
+        title: TERRITORY_NAMES[this.territory],
+        href: '/wahlen/' + this.territory + '/'
+      },
+      {
+        subTitle: 'Stöbere in',
+        title: '600+ Wahlkampfthemen',
+        href: '/themen/'
+      }
+    ]
 
     return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em 2em"}} >
       <SEO title={'Metawahl: '
@@ -254,7 +281,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
             : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
           { this.props.displayMode !== 'quiz' &&
             <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
-              ging, die sich im Wahl-o-Mat für eine These ausgesprochen haben.
+              ging, die sich vor der Wahl für eine These ausgesprochen haben.
             </Header.Subheader>
           }
       </Header>
@@ -275,22 +302,19 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
       <Loader active={this.state.isLoading} />
 
+      {/* Main content */}
       {this.state.isLoading === false &&
       <div className="theses">
         {thesesElems}
       </div>
       }
 
+      {/* Browsing suggestions */}
       { this.state.isLoading === false && this.state.quizMode === false &&
-        <div className='quizLink' style={{marginTop: "5rem", textAlign: 'center'}}>
-          <h1>Weißt du, was die Mehrheit gewählt hat?</h1>
-          <Button size='huge' as='a'
-            href={'/quiz/' + this.state.occasion.territory + '/' + this.state.occasion.id + '/'} className='ellipsis'>
-            <span role='img' aria-label='Pokal'>🏆</span> Teste dein Wissen im Quiz zur Wahl
-          </Button>
-        </div>
+        <SuggestionsGrid title='Und jetzt:' sections={suggestions} />
       }
 
+      {/* Quiz progress indicator */}
       { this.state.quizMode === true && this.state.quizAnswers.length < this.state.theses.length &&
         <div>
           { this.state.quizAnswers.length !== this.state.quizSelection.length &&
@@ -300,6 +324,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         </div>
       }
 
+      {/* Quiz Result */}
       { this.state.quizMode === true && this.state.isLoading === false && this.state.quizAnswers.length === this.state.quizSelection.length &&
         <Segment size='large' raised className='quizResult'>
           <Header as='h1'>
@@ -312,13 +337,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
           </Header>
 
           <p>
-            Es gibt Quizze für Deutschland, die Europawahl und alle Bundesländer in denen es Wahl-o-Maten gab.</p>
-
-          <p>
-            <Link to='/wahlen/'><Icon name='caret right' /> Auf zum nächsten Quiz!</Link> <br />
+            <Link to={'/wahlen/' + this.territory + '/' + this.occasionNum + '/'}><Icon name='caret right' /> Öffne die Übersichtsgrafik zur {this.state.occasion.title}</Link> <br />
+            <Link to={'/wahlen/'}><Icon name='caret right' /> Siehe alle Wahlen, zu denen es Quizzes gibt</Link> <br />
             <Link to='/'><Icon name='caret right' /> Finde heraus, worum es bei Metawahl geht</Link>
           </p>
-
 
           <Button.Group className='stackable'>
           <Button as='a' href={'https://www.facebook.com/sharer/sharer.php?u=' + SITE_ROOT + this.props.location.pathname}

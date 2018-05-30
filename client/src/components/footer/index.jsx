@@ -45,7 +45,7 @@ const Footer = (props: RouteProps) => {
           </Grid.Column>
           <Grid.Column textAlign='left' className='ui inverted link list' >
             <Header inverted as='h4' content='Über Metawahl' />
-            <p>Was wir gewählt haben, als wir Parteien unsere Stimme gaben</p>
+            <p>Metawahl — Was haben wir gewählt?</p>
             <p>Ein Projekt von <a className="item" href="http://vincentahrend.com/">Vincent Ahrend</a></p>
             <p>
               Mit Unterstützung von <a className='item' href="https://denk-nach-mcfly.de">Hanno »friesenkiwi«</a> und <a className='item' href="https://github.com/gockelhahn/qual-o-mat-data">Felix Bolte »gockelhahn«</a> bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.

@@ -13,6 +13,7 @@ import Map from '../../components/map/';
 import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
 
 import './Landing.css';
+import SuggestionsGrid from '../../components/suggestionsGrid';
 
 class LandingView extends React.Component<RouteProps> {
   render() {
@@ -28,7 +29,7 @@ class LandingView extends React.Component<RouteProps> {
           <Logo className='logo' style={{marginBottom: "-1em"}}/>
           <div>Metawahl</div>
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
-            Was Deutschland gewählt hat
+            Was haben wir gewählt?
           </div>
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
             Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
@@ -38,7 +39,7 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-        Metawahl nutzt Stellungnahmen aus 43 Wahl-o-Maten um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
+        Metawahl nutzt Stellungnahmen der Parteien aus 43 Wahlen, um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
         dieses im Laufe der Zeit geändert hat.
         </p>
         <p>
@@ -66,57 +67,28 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
-      <Grid stackable celled relaxed doubling columns='4' className='suggestions hyphenate'>
-        <Grid.Row>
-          <Grid.Column>
-            <h2>
-              <em>Lies jetzt</em>
-            </h2>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Link to="/wahlen/deutschland/42/">
-                <Header as='h2'>
-                  <Header.Subheader>
-                    Alle Fragen aus der
-                  </Header.Subheader>
-                  Bundestagswahl 2017
-                </Header>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to="/quiz/deutschland/42/">
-                <Header as='h2'>
-                  <Header.Subheader>
-                    Teste dein Wissen
-                  </Header.Subheader>
-                  Quiz zur Bundestagswahl 2017
-                </Header>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to="/themen/soziale-sicherheit/">
-              <Header as='h2'>
-                <Header.Subheader>
-                  43 Thesen zu
-                </Header.Subheader>
-                #soziale Sicherheit
-              </Header>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to="/themen/">
-              <Header as='h2'>
-                <Header.Subheader>
-                oder stöbere in weiteren
-                </Header.Subheader>
-                600+ Themen
-              </Header>
-            </Link>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <SuggestionsGrid title='Lies jetzt' sections={[
+        {
+          subTitle: 'Alle Fragen aus der',
+          title: 'Bundestagswahl 2017',
+          href: '/wahlen/deutschland/42/'
+        },
+        {
+          subTitle: 'Teste dein Wissen',
+          title: 'Quiz zur Bundestagswahl 2017',
+          href: '/quiz/deutschland/42/'
+        },
+        {
+          subTitle: '43 Thesen zu',
+          title: '#soziale Sicherheit',
+          href: '/themen/soziale-sicherheit/'
+        },
+        {
+          subTitle: 'oder stöbere in weiteren',
+          title: '600+ Themen',
+          href: '/themen/'
+        }
+      ]} />
 
       <Grid stackable columns='3'>
         <Grid.Row>
@@ -138,7 +110,8 @@ class LandingView extends React.Component<RouteProps> {
             Vieles sehen die Parteien auch sehr ähnlich – aber in welchen Punkten unterscheiden sie sich eigentlich voneinander?
             Der Wahl-o-Mat der Bundeszentrale für politische Bildung ist enorm
             erfolgreich darin, uns zu zeigen, welche Fragen wir ihnen stellen
-            können um sie klar voneinander zu trennen.
+            können um sie klar voneinander zu trennen. Es stellt sich die Frage,
+            welche Antworten auf diese Fragen die Mehrheit gewählt hat.
           </p>
         </Grid.Column>
 

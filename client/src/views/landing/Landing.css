@@ -2,36 +2,12 @@
   max-height: 5em;
 }
 
-.suggestions a:hover .suggestionText {
-  text-decoration: underline;
-}
-
 .st5:hover {
   fill: rgb(42, 64, 101);
 }
 
 .st2:hover {
   fill: rgb(213, 0, 28);
-}
-
-.suggestions {
-  margin: 5em auto 5em !important;
-}
-
-@media only screen and (min-width: 768px) {
-  .suggestions a > h2 {
-    height: 5em;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .suggestions h2 {
-    padding-left: 20px !important;
-  }
-}
-
-.suggestions .column:hover {
-  background-color: #eee;
 }
 
 
