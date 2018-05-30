@@ -254,7 +254,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
             : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
           { this.props.displayMode !== 'quiz' &&
             <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
-              ging, die sich im Wahl-o-Mat für eine These ausgesprochen haben.
+              ging, die sich vor der Wahl für eine These ausgesprochen haben.
             </Header.Subheader>
           }
       </Header>
@@ -312,7 +312,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
           </Header>
 
           <p>
-            Es gibt Quizze für Deutschland, die Europawahl und alle Bundesländer in denen es Wahl-o-Maten gab.</p>
+            Es gibt Quizze für Deutschland, die Europawahl und alle Bundesländer in denen die bpb einen Wahl-o-Mat herausgegeben hat.</p>
 
           <p>
             <Link to='/wahlen/'><Icon name='caret right' /> Auf zum nächsten Quiz!</Link> <br />

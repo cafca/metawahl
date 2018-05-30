@@ -28,7 +28,7 @@ class LandingView extends React.Component<RouteProps> {
           <Logo className='logo' style={{marginBottom: "-1em"}}/>
           <div>Metawahl</div>
           <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
-            Was Deutschland gewählt hat
+            Was haben wir gewählt?
           </div>
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
             Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
@@ -38,7 +38,7 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-        Metawahl nutzt Stellungnahmen aus 43 Wahl-o-Maten um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
+        Metawahl nutzt Stellungnahmen der Parteien aus 43 Wahlen, um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
         dieses im Laufe der Zeit geändert hat.
         </p>
         <p>
@@ -138,7 +138,8 @@ class LandingView extends React.Component<RouteProps> {
             Vieles sehen die Parteien auch sehr ähnlich – aber in welchen Punkten unterscheiden sie sich eigentlich voneinander?
             Der Wahl-o-Mat der Bundeszentrale für politische Bildung ist enorm
             erfolgreich darin, uns zu zeigen, welche Fragen wir ihnen stellen
-            können um sie klar voneinander zu trennen.
+            können um sie klar voneinander zu trennen. Es stellt sich die Frage,
+            welche Antworten auf diese Fragen die Mehrheit gewählt hat.
           </p>
         </Grid.Column>
 
