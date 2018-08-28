@@ -127,15 +127,16 @@ export default class Occasion extends React.Component<RouteProps, State> {
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
-        this.handleError(response);
-        this.setState({
-          isLoading: this.state.quizMode === true,
-          occasion: response.data,
-          theses: response.theses || []
-        }, () => {
-          if (this.state.quizMode === true) this.selectQuizTheses()
-        })
-        if (cb != null) cb(response.data);
+        if (!this.handleError(response)) {
+          this.setState({
+            isLoading: this.state.quizMode === true,
+            occasion: response.data,
+            theses: response.theses || []
+          }, () => {
+            if (this.state.quizMode === true) this.selectQuizTheses()
+          })
+          if (cb != null) cb(response.data);
+        }
       })
       .catch((error: Error) => {
         this.handleError(error);
@@ -198,22 +199,22 @@ export default class Occasion extends React.Component<RouteProps, State> {
           + this.occasionNum + '/'
           + extractThesisID(t.id).thesisNUM + '/'
 
-        return <div key={'thesis-compact-' + i} className='thesis-compact'>
-          <a href={tUrl}>
-            <Thesis
-              key={t.id}
-              occasion={this.state.occasion}
-              compact={true}
-              {...t} />
-            <span className='thesisTitleInsert'>
-              <strong>
-                {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
-                &nbsp;von 100 wählen {t.title}:
-              </strong>
-              &nbsp;{t.text}
-            </span>
-          </a>
-        </div>
+      return <div key={'thesis-compact-' + i} className='thesis-compact'>
+        <a href={tUrl}>
+          <Thesis
+            key={t.id}
+            occasion={this.state.occasion}
+            compact={true}
+            {...t} />
+          <span className='thesisTitleInsert'>
+            <strong>
+              {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
+              &nbsp;von 100 wählen <em>{t.title}</em>:
+            </strong>
+            &nbsp;{t.text}
+          </span>
+        </a>
+      </div>
       });
     }
 
@@ -244,7 +245,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       }
     ]
 
-    return <Container fluid={this.props.displayMode !== 'quiz'} style={{minHeight: 350, padding: "1em 2em"}} >
+    return <Container fluid={this.props.displayMode !== 'quiz'} className='occasionContainer'>
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title + ' Quiz' : "Quiz")} />
 

@@ -358,7 +358,7 @@ export default class Thesis extends Component<Props, State> {
       return <PositionChart
       parties={this.state.parties}
       toggleOpen={this.toggleOpen}
-      compact={this.props.compact} />
+      compact={true} />
     } else {
 
       const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
