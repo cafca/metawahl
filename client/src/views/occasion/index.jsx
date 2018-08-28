@@ -127,15 +127,16 @@ export default class Occasion extends React.Component<RouteProps, State> {
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
-        this.handleError(response);
-        this.setState({
-          isLoading: this.state.quizMode === true,
-          occasion: response.data,
-          theses: response.theses || []
-        }, () => {
-          if (this.state.quizMode === true) this.selectQuizTheses()
-        })
-        if (cb != null) cb(response.data);
+        if (!this.handleError(response)) {
+          this.setState({
+            isLoading: this.state.quizMode === true,
+            occasion: response.data,
+            theses: response.theses || []
+          }, () => {
+            if (this.state.quizMode === true) this.selectQuizTheses()
+          })
+          if (cb != null) cb(response.data);
+        }
       })
       .catch((error: Error) => {
         this.handleError(error);
