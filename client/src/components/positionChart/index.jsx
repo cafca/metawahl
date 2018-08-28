@@ -106,7 +106,7 @@ export default class PositionChart extends React.Component<Props, State> {
 
   waitAndMeasureSVGWidth() {
     if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
-    this.measuringTimeout = setTimeout(this.measureSVGWidth, 500);
+    this.measuringTimeout = setTimeout(this.measureSVGWidth, 50);
   }
 
   measureSVGWidth() {
@@ -199,10 +199,23 @@ export default class PositionChart extends React.Component<Props, State> {
         } : null}
       >{ data.party }</span>);
 
-    const svgWidthString = this.props.compact === true ? "65%" : "100%"
-    const svgHeightString = this.props.compact === true ? "35" : "28"
-    const svgStyle = this.props.compact === true ? {} : {
-      margin: "0.3em 0"
+    // Responsive dimensions of SVG elem
+    let svgWidthString;
+    let svgHeightString;
+    let svgStyle = {};
+    if (this.props.compact) {
+      if (window.innerWidth <= 768) {
+        svgWidthString = "100%"
+      } else {
+        svgWidthString = "65%"
+      }
+      svgHeightString = "35"
+    } else {
+      svgWidthString = "100%"
+      svgHeightString = "28"
+      svgStyle = {
+        margin: "0.3em 0"
+      }
     }
 
     return <span className='positionChartContainer'>
