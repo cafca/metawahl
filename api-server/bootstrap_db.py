@@ -367,6 +367,12 @@ def load_results():
             logger.error("Didn't find results for {}".format(occ))
         else:
             res = occ_results[0]
+
+            if "preliminary" in res and res["preliminary"] == True:
+                logger.warning("Marking {} as preliminary".format(occ))
+                occ.preliminary = True
+                yield occ
+
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
                 options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
@@ -379,11 +385,12 @@ def load_results():
                                 p, match[0], res["title"]
                             ))
                         matched_results.add(match[0])
+                        votes = match[1]["votes"] if "votes" in match[1] else None
                         yield Result(
                             occasion=occ,
                             party=p,
                             party_repr=match[0],
-                            votes=match[1]["votes"],
+                            votes=votes,
                             pct=match[1]["pct"],
                             source=res["url"]
                         )

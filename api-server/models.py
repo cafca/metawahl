@@ -93,9 +93,11 @@ class Occasion(db.Model):
     wikidata_id = db.Column(db.String(16))
     wikipedia_title = db.Column(db.Text)
     source = db.Column(db.Text)
+    preliminary = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return "<Occasion {}: {}>".format(self.id, self.title)
+        prelim = " (preliminary)" if self.preliminary else ""
+        return "<Occasion {}: {}{}>".format(self.id, self.title, prelim)
 
     def to_dict(self, thesis_data=False):
         rv = {
@@ -103,6 +105,7 @@ class Occasion(db.Model):
             "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
+            "preliminary": self.preliminary,
             "results_sources": list(set([r.source for r in self.results])),
             "territory": self.territory,
             "title": self.title,
@@ -183,7 +186,7 @@ class Position(db.Model):
 class Result(db.Model):
     """Represent an official result from an election for a party."""
     id = db.Column(db.Integer, primary_key=True)
-    votes = db.Column(db.Integer, nullable=False)
+    votes = db.Column(db.Integer)
     pct = db.Column(db.Float, nullable=False)
     is_seated = db.Column(db.Boolean, default=False)
     is_mandated = db.Column(db.Boolean, default=False)
