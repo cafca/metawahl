@@ -218,9 +218,11 @@ export default class Occasion extends React.Component<RouteProps, State> {
       });
     }
 
-    const occ2 = this.props.occasions[this.territory].reverse()
+    let occ2 = this.props.occasions[this.territory].reverse()
       .filter(occ => occ.id !== this.occasionNum)
       .shift();
+
+    if (occ2 == null) occ2 = this.state.occasion
 
     const suggestions = [
       {
