@@ -228,7 +228,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
     if (occ2 == null) occ2 = this.state.occasion
 
     let suggestions = []
-    if (occ2 != null) {
+    if (occ2 != null && this.state.occasion != null) {
       suggestions = [
         {
           subTitle: 'Teste dein Wissen',
