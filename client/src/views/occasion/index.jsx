@@ -227,28 +227,31 @@ export default class Occasion extends React.Component<RouteProps, State> {
         .shift();
     if (occ2 == null) occ2 = this.state.occasion
 
-    const suggestions = [
-      {
-        subTitle: 'Teste dein Wissen',
-        title: 'Quiz zur ' + this.state.occasion.title,
-        href: '/quiz/' + this.territory + '/' + this.occasionNum + '/'
-      },
-      {
-        subTitle: 'Welche Politik wurde gewählt',
-        title: occ2.title,
-        href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
-      },
-      {
-        subTitle: 'Alle Wahlen in',
-        title: TERRITORY_NAMES[this.territory],
-        href: '/wahlen/' + this.territory + '/'
-      },
-      {
-        subTitle: 'Stöbere in',
-        title: '600+ Wahlkampfthemen',
-        href: '/themen/'
-      }
-    ]
+    let suggestions = []
+    if (occ2 != null) {
+      suggestions = [
+        {
+          subTitle: 'Teste dein Wissen',
+          title: 'Quiz zur ' + this.state.occasion.title,
+          href: '/quiz/' + this.territory + '/' + this.occasionNum + '/'
+        },
+        {
+          subTitle: 'Welche Politik wurde gewählt',
+          title: occ2.title,
+          href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
+        },
+        {
+          subTitle: 'Alle Wahlen in',
+          title: TERRITORY_NAMES[this.territory],
+          href: '/wahlen/' + this.territory + '/'
+        },
+        {
+          subTitle: 'Stöbere in',
+          title: '600+ Wahlkampfthemen',
+          href: '/themen/'
+        }
+      ]
+    }
 
     return <Container fluid={this.props.displayMode !== 'quiz'} className='occasionContainer'>
       <SEO title={'Metawahl: '
