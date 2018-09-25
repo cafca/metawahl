@@ -279,10 +279,15 @@ export default class Occasion extends React.Component<RouteProps, State> {
         { this.state.occasion == null ? " "
           : this.state.quizMode === true
             ? "Teste dein Wissen: " + this.state.occasion.title
-            : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
+            : this.state.occasion.preliminary
+              ? 'Welche Politik wird voraussichtlich bei der ' + this.state.occasion.title + ' gewählt?'
+              : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
           { this.props.displayMode !== 'quiz' &&
-            <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
-              ging, die sich vor der Wahl für eine These ausgesprochen haben.
+            <Header.Subheader>
+              { this.state.occasion.preliminary
+              ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich für die jeweiligen Thesen ausgesprochen haben"
+              : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."
+              }
             </Header.Subheader>
           }
       </Header>

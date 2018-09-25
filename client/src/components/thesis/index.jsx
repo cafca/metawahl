@@ -384,6 +384,21 @@ export default class Thesis extends Component<Props, State> {
 
       const margin = this.props.quizMode ? "4em" : "2em"
 
+      let subHeader = ""
+      if (this.state.voterOpinion === 0) {
+        subHeader = " Keine Mehrheit dafür oder dagegen"
+      } else if (this.state.voterOpinion === 1) {
+        subHeader = Math.round(this.state.ratioPro).toString()
+        subHeader += this.props.occasion.preliminary
+          ? " von 100 werden voraussichtlich Parteien wählen, die dafür sind"
+          : " von 100 haben Parteien gewählt, die dafür waren"
+      } else {
+        subHeader = Math.round(this.state.ratioContra).toString()
+        subHeader += this.props.occasion.preliminary
+          ? " von 100 werden voraussichtlich Parteien wählen, die dagegen sind"
+          : " von 100 haben Parteien gewählt, die dagegen waren"
+      }
+
       return <div style={{marginBottom: margin}}>
         <Transition
           visible={this.props.quizMode === true && this.state.quizAnswer != null}
@@ -417,13 +432,7 @@ export default class Thesis extends Component<Props, State> {
 
           <Header.Subheader style={{marginTop: "0.3em"}}>
           { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
-            <span>
-              { this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
-                : this.state.voterOpinion === 1
-                  ? ` ${Math.round(this.state.ratioPro)} von 100 haben Parteien gewählt, die dafür waren`
-                  : ` ${Math.round(this.state.ratioContra)} von 100 haben Parteien gewählt, die dagegen waren`
-              }
-            </span>
+            <span>{ subHeader }</span>
           }
           </Header.Subheader>
         </Header>
@@ -431,7 +440,7 @@ export default class Thesis extends Component<Props, State> {
         { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
           <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
             <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-              Stimmverteilung
+              Stimmverteilung { this.props.occasion.preliminary ? " (Prognose)" : ""}
             </Header>
 
             <PositionChart

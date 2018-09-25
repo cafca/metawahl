@@ -430,7 +430,7 @@ def load_results():
                     occasion=occ,
                     party_repr=p_name,
                     party=party,
-                    votes=match["votes"],
+                    votes=match["votes"] if "votes" in match else None,
                     pct=match["pct"],
                     source=res["url"],
                     wom=False

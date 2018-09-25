@@ -105,13 +105,15 @@ class Occasion(db.Model):
             "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
-            "preliminary": self.preliminary,
             "results_sources": list(set([r.source for r in self.results])),
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
             "wikipedia_title": self.wikipedia_title
         }
+
+        if self.preliminary:
+            rv["preliminary"] = True
 
         if thesis_data:
             rv["theses"] = dict()
