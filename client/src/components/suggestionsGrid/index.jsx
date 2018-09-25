@@ -18,8 +18,8 @@ type Props = {
 }
 
 const SuggestionsGrid = ({title, sections}: Props) => {
-  const cols = sections.map(sect =>
-    <Grid.Column>
+  const cols = sections.map((sect, i) =>
+    <Grid.Column key={'suggestion-grid-' + i}>
       <Link to={sect.href}>
           <Header as='h2'>
             <Header.Subheader>
