@@ -218,10 +218,13 @@ export default class Occasion extends React.Component<RouteProps, State> {
       });
     }
 
-    let occ2 = this.props.occasions[this.territory].reverse()
-      .filter(occ => occ.id !== this.occasionNum)
-      .shift();
-
+    // Select another occasion from the same territory for the
+    // suggestion box. Fallback to this one if it's the only one
+    let occ2 = this.props.occasions[this.territory] == null
+      ? null
+      : this.props.occasions[this.territory].reverse()
+        .filter(occ => occ.id !== this.occasionNum)
+        .shift();
     if (occ2 == null) occ2 = this.state.occasion
 
     const suggestions = [
