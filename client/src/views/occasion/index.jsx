@@ -259,7 +259,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         { this.state.occasion == null
           ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
           : <Breadcrumb.Section active={this.state.quizMode !== true}
-              href={this.state.quizMode === true && `/wahlen/${this.territory}/${this.occasionNum}/`}>
+              href={this.state.quizMode === true ? "#" : `/wahlen/${this.territory}/${this.occasionNum}/`}>
               {Moment(this.state.occasion.date).year()}
             </Breadcrumb.Section>
         }
