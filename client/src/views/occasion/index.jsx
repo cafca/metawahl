@@ -294,7 +294,12 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
       { this.props.displayMode === 'quiz' &&
         <h3 style={{marginBottom: '4rem'}}>
-          Was hat die Mehrheit in {TERRITORY_NAMES[this.territory]} gewählt?
+          {
+            this.state.occasion != null && this.state.occasion.preliminary
+              ? "Was wird die Mehrheit in " + TERRITORY_NAMES[this.territory] + " voraussichtlich wählen?"
+              : "Was hat die Mehrheit in " + TERRITORY_NAMES[this.territory] + " gewählt?"
+          }
+
         </h3>
       }
 

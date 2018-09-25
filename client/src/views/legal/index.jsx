@@ -57,6 +57,7 @@ export const LegalView = () => {
     <Header as='h2' content='Quellenangaben' />
       <p>SVG Deutschlandkarte lizensiert unter <a rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-sa/2.0/de/deed.en" target="_blank">Creative Commons Attribution-Share Alike 2.0 Germany</a> und basierend auf Roman Poulvas, David Liuzzo (Karte Bundesrepublik Deutschland.svg) [CC BY-SA 2.0 de (https://creativecommons.org/licenses/by-sa/2.0/de/deed.en)], via Wikimedia Commons</p>
       <p>SVG Europakarte lizensiert unter Public Domain, via <a rel="noopener noreferrer" href="https://commons.wikimedia.org/wiki/File:European_Union_map.svg" target="_blank">Wikimedia Commons</a>.</p>
+      <p>Wahlprognosen zur <a href="/wahlen/bayern/43">Landtagswahl Bayern 2018</a> von <a href="https://dawum.de/Bayern/">dawum.de</a> lizensiert unteer <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">CC-BY-NC-SA-4.0</a>.</p>
 </Container>;
 }
 

@@ -127,6 +127,28 @@ export default class Thesis extends Component<Props, State> {
     this.handleError = ErrorHandler.bind(this);
   }
 
+  collectSources() {
+    let sources = [];
+    if (this.props.occasion != null) {
+      sources.push(<span key='wom-source'><a href={this.props.occasion.source}>
+        Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+      </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
+          qual-o-mat-data
+        </a></span>);
+      if (this.props.occasion.results_sources) {
+        this.props.occasion.results_sources.forEach(url => url.indexOf('wahl.tagesschau.de') >= 0
+          ? sources.push(<span key='tagesschau-source'>,
+            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
+          : url.indexOf('wikipedia') >= 0
+            ? sources.push(<span key='wp-source'>,
+              <a href={url}>Wahlergebnisse: Wikipedia</a></span>)
+            : sources.push(<span key='dawum-source'>,
+              <a href={url}>Wahlprognose: dawum.de, lizensiert unter CC-BY-NC-SA-4.0</a></span>));
+      }
+    }
+    return sources;
+  }
+
   componentWillMount() {
     this.mergePartyData();
   }
@@ -335,24 +357,7 @@ export default class Thesis extends Component<Props, State> {
     }
 
     // Collect sources
-    let sources = [];
-    if (this.props.occasion != null ) {
-      sources.push(<span><a href={this.props.occasion.source}>
-          Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
-        </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
-          qual-o-mat-data
-        </a></span>)
-
-      if (this.props.occasion.results_sources) {
-        this.props.occasion.results_sources.forEach(url =>
-          url.indexOf('wahl.tagesschau.de') === -1
-            ? sources.push(<span>,
-              <a href={url}>Wahlergebnisse: Wikipedia</a></span>)
-            : sources.push(<span>,
-              <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
-        );
-      }
-    }
+    let sources = this.collectSources();
 
     if (this.props.compact === true) {
       return <PositionChart
