@@ -39,7 +39,7 @@ class LandingView extends React.Component<RouteProps> {
 
       <Container text>
         <p>
-        Metawahl nutzt Stellungnahmen der Parteien aus 43 Wahlen, um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
+        Metawahl nutzt Stellungnahmen der Parteien aus 44 Wahlen, um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
         dieses im Laufe der Zeit geändert hat.
         </p>
         <p>

@@ -81,7 +81,7 @@ export default class OccasionList extends Component<RouteProps, State> {
       <Grid stackable columns={2} padded relaxed className='occasionList'>
         <Grid.Row>
           <Grid.Column width={4} className='headerCount2'>
-            <div className='headerCountInner'><div>{occasionCount > 0 ? occasionCount : 43}</div> Wahlen</div>
+            <div className='headerCountInner'><div>{occasionCount > 0 ? occasionCount : 44}</div> Wahlen</div>
           </Grid.Column>
           <Grid.Column width={12}>
             <h3>Bundestags-, Landtags- und Europawahlen in der Übersicht</h3>

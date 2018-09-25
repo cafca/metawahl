@@ -17,49 +17,50 @@ API_VERSION = "Metawahl API v1"
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
 OCCASION_IDS = {
-    "2003/bayern": 0,
-    "2004/europa": 1,
-    "2004/sachsen": 2,
-    "2004/saarland": 3,
-    "2005/nordrheinwestfalen": 4,
-    "2005/schleswigholstein": 5,
-    "2005/deutschland": 6,
-    "2006/sachsenanhalt": 7,
-    "2006/rheinlandpfalz": 8,
-    "2006/berlin": 9,
-    "2006/badenwuerttemberg": 10,
-    "2008/niedersachsen": 11,
-    "2007/bremen": 12,
-    "2008/hamburg": 13,
-    "2011/hamburg": 14,
-    "2010/nordrheinwestfalen": 15,
-    "2009/europa": 16,
-    "2009/deutschland": 17,
-    "2011/bremen": 18,
-    "2011/rheinlandpfalz": 19,
-    "2012/saarland": 20,
-    "2011/berlin": 21,
-    "2012/schleswigholstein": 22,
-    "2012/nordrheinwestfalen": 23,
-    "2013/niedersachsen": 24,
-    "2011/badenwuerttemberg": 25,
-    "2013/bayern": 26,
-    "2014/thueringen": 27,
-    "2014/sachsen": 28,
-    "2013/deutschland": 29,
-    "2014/europa": 30,
-    "2014/brandenburg": 31,
-    "2015/hamburg": 32,
-    "2002/deutschland": 33,
-    "2016/sachsenanhalt": 34,
-    "2016/badenwuerttemberg": 35,
-    "2015/bremen": 36,
-    "2017/schleswigholstein": 37,
-    "2016/berlin": 38,
-    "2016/rheinlandpfalz": 39,
-    "2017/saarland": 40,
-    "2017/nordrheinwestfalen": 41,
-    "2017/deutschland": 42
+    "data/2003/bayern": 0,
+    "data/2004/europa": 1,
+    "data/2004/sachsen": 2,
+    "data/2004/saarland": 3,
+    "data/2005/nordrheinwestfalen": 4,
+    "data/2005/schleswigholstein": 5,
+    "data/2005/deutschland": 6,
+    "data/2006/sachsenanhalt": 7,
+    "data/2006/rheinlandpfalz": 8,
+    "data/2006/berlin": 9,
+    "data/2006/badenwuerttemberg": 10,
+    "data/2008/niedersachsen": 11,
+    "data/2007/bremen": 12,
+    "data/2008/hamburg": 13,
+    "data/2011/hamburg": 14,
+    "data/2010/nordrheinwestfalen": 15,
+    "data/2009/europa": 16,
+    "data/2009/deutschland": 17,
+    "data/2011/bremen": 18,
+    "data/2011/rheinlandpfalz": 19,
+    "data/2012/saarland": 20,
+    "data/2011/berlin": 21,
+    "data/2012/schleswigholstein": 22,
+    "data/2012/nordrheinwestfalen": 23,
+    "data/2013/niedersachsen": 24,
+    "data/2011/badenwuerttemberg": 25,
+    "data/2013/bayern": 26,
+    "data/2014/thueringen": 27,
+    "data/2014/sachsen": 28,
+    "data/2013/deutschland": 29,
+    "data/2014/europa": 30,
+    "data/2014/brandenburg": 31,
+    "data/2015/hamburg": 32,
+    "data/2002/deutschland": 33,
+    "data/2016/sachsenanhalt": 34,
+    "data/2016/badenwuerttemberg": 35,
+    "data/2015/bremen": 36,
+    "data/2017/schleswigholstein": 37,
+    "data/2016/berlin": 38,
+    "data/2016/rheinlandpfalz": 39,
+    "data/2017/saarland": 40,
+    "data/2017/nordrheinwestfalen": 41,
+    "data/2017/deutschland": 42,
+    "data/2018/bayern": 43
 }
 
 INVALID_POSITION_TEXTS = [
@@ -71,7 +72,6 @@ INVALID_POSITION_TEXTS = [
 
 party_instances = defaultdict(Party)
 tag_instances = defaultdict(Tag)
-
 
 def load_data_file(fp, index=False):
     """Load JSON encoded data from disk with option to index."""
@@ -98,11 +98,11 @@ def load_occasions():
         occasion_list = json.load(f)
 
     for occasion_dir in sorted(occasion_list):
-        # occasion_dir is like "2017/deutschland"
-        year, territory = occasion_dir.split("/")
+        # occasion_dir is like "data/2017/deutschland"
+        _, year, territory = occasion_dir.split("/")
 
         def path_for(fn):
-            return os.path.join(DATADIR, year, territory, fn)
+            return os.path.join(DATADIR, "data", year, territory, fn)
 
         dataset = {
             "comments": load_data_file(path_for("comment.json"), index=True),
@@ -367,6 +367,12 @@ def load_results():
             logger.error("Didn't find results for {}".format(occ))
         else:
             res = occ_results[0]
+
+            if "preliminary" in res and res["preliminary"] == True:
+                logger.warning("Marking {} as preliminary".format(occ))
+                occ.preliminary = True
+                yield occ
+
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
                 options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
@@ -379,11 +385,12 @@ def load_results():
                                 p, match[0], res["title"]
                             ))
                         matched_results.add(match[0])
+                        votes = match[1]["votes"] if "votes" in match[1] else None
                         yield Result(
                             occasion=occ,
                             party=p,
                             party_repr=match[0],
-                            votes=match[1]["votes"],
+                            votes=votes,
                             pct=match[1]["pct"],
                             source=res["url"]
                         )
@@ -423,7 +430,7 @@ def load_results():
                     occasion=occ,
                     party_repr=p_name,
                     party=party,
-                    votes=match["votes"],
+                    votes=match["votes"] if "votes" in match else None,
                     pct=match["pct"],
                     source=res["url"],
                     wom=False

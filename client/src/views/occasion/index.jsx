@@ -218,9 +218,11 @@ export default class Occasion extends React.Component<RouteProps, State> {
       });
     }
 
-    const occ2 = this.props.occasions[this.territory].reverse()
+    let occ2 = this.props.occasions[this.territory].reverse()
       .filter(occ => occ.id !== this.occasionNum)
       .shift();
+
+    if (occ2 == null) occ2 = this.state.occasion
 
     const suggestions = [
       {
@@ -259,7 +261,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
         { this.state.occasion == null
           ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
           : <Breadcrumb.Section active={this.state.quizMode !== true}
-              href={this.state.quizMode === true && `/wahlen/${this.territory}/${this.occasionNum}/`}>
+              href={this.state.quizMode === true ? "#" : `/wahlen/${this.territory}/${this.occasionNum}/`}>
               {Moment(this.state.occasion.date).year()}
             </Breadcrumb.Section>
         }
@@ -279,17 +281,27 @@ export default class Occasion extends React.Component<RouteProps, State> {
         { this.state.occasion == null ? " "
           : this.state.quizMode === true
             ? "Teste dein Wissen: " + this.state.occasion.title
-            : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
+            : this.state.occasion.preliminary
+              ? 'Welche Politik wird voraussichtlich bei der ' + this.state.occasion.title + ' gewählt?'
+              : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
           { this.props.displayMode !== 'quiz' &&
-            <Header.Subheader>Die Grafik zeigt, welcher Stimmanteil an Parteien
-              ging, die sich vor der Wahl für eine These ausgesprochen haben.
+            <Header.Subheader>
+              { this.state.occasion.preliminary
+              ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich für die jeweiligen Thesen ausgesprochen haben"
+              : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."
+              }
             </Header.Subheader>
           }
       </Header>
 
       { this.props.displayMode === 'quiz' &&
         <h3 style={{marginBottom: '4rem'}}>
-          Was hat die Mehrheit in {TERRITORY_NAMES[this.territory]} gewählt?
+          {
+            this.state.occasion != null && this.state.occasion.preliminary
+              ? "Was wird die Mehrheit in " + TERRITORY_NAMES[this.territory] + " voraussichtlich wählen?"
+              : "Was hat die Mehrheit in " + TERRITORY_NAMES[this.territory] + " gewählt?"
+          }
+
         </h3>
       }
 

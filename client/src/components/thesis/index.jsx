@@ -127,6 +127,28 @@ export default class Thesis extends Component<Props, State> {
     this.handleError = ErrorHandler.bind(this);
   }
 
+  collectSources() {
+    let sources = [];
+    if (this.props.occasion != null) {
+      sources.push(<span key='wom-source'><a href={this.props.occasion.source}>
+        Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+      </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
+          qual-o-mat-data
+        </a></span>);
+      if (this.props.occasion.results_sources) {
+        this.props.occasion.results_sources.forEach(url => url.indexOf('wahl.tagesschau.de') >= 0
+          ? sources.push(<span key='tagesschau-source'>,
+            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
+          : url.indexOf('wikipedia') >= 0
+            ? sources.push(<span key='wp-source'>,
+              <a href={url}>Wahlergebnisse: Wikipedia</a></span>)
+            : sources.push(<span key='dawum-source'>,
+              <a href={url}>Wahlprognose: dawum.de, lizensiert unter CC-BY-NC-SA-4.0</a></span>));
+      }
+    }
+    return sources;
+  }
+
   componentWillMount() {
     this.mergePartyData();
   }
@@ -335,24 +357,7 @@ export default class Thesis extends Component<Props, State> {
     }
 
     // Collect sources
-    let sources = [];
-    if (this.props.occasion != null ) {
-      sources.push(<span><a href={this.props.occasion.source}>
-          Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
-        </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
-          qual-o-mat-data
-        </a></span>)
-
-      if (this.props.occasion.results_sources) {
-        this.props.occasion.results_sources.forEach(url =>
-          url.indexOf('wahl.tagesschau.de') === -1
-            ? sources.push(<span>,
-              <a href={url}>Wahlergebnisse: Wikipedia</a></span>)
-            : sources.push(<span>,
-              <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
-        );
-      }
-    }
+    let sources = this.collectSources();
 
     if (this.props.compact === true) {
       return <PositionChart
@@ -383,6 +388,21 @@ export default class Thesis extends Component<Props, State> {
         : TERRITORY_NAMES[this.props.occasion.territory];
 
       const margin = this.props.quizMode ? "4em" : "2em"
+
+      let subHeader = ""
+      if (this.state.voterOpinion === 0) {
+        subHeader = " Keine Mehrheit dafür oder dagegen"
+      } else if (this.state.voterOpinion === 1) {
+        subHeader = Math.round(this.state.ratioPro).toString()
+        subHeader += this.props.occasion.preliminary
+          ? " von 100 werden voraussichtlich Parteien wählen, die dafür sind"
+          : " von 100 haben Parteien gewählt, die dafür waren"
+      } else {
+        subHeader = Math.round(this.state.ratioContra).toString()
+        subHeader += this.props.occasion.preliminary
+          ? " von 100 werden voraussichtlich Parteien wählen, die dagegen sind"
+          : " von 100 haben Parteien gewählt, die dagegen waren"
+      }
 
       return <div style={{marginBottom: margin}}>
         <Transition
@@ -417,13 +437,7 @@ export default class Thesis extends Component<Props, State> {
 
           <Header.Subheader style={{marginTop: "0.3em"}}>
           { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
-            <span>
-              { this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
-                : this.state.voterOpinion === 1
-                  ? ` ${Math.round(this.state.ratioPro)} von 100 haben Parteien gewählt, die dafür waren`
-                  : ` ${Math.round(this.state.ratioContra)} von 100 haben Parteien gewählt, die dagegen waren`
-              }
-            </span>
+            <span>{ subHeader }</span>
           }
           </Header.Subheader>
         </Header>
@@ -431,7 +445,7 @@ export default class Thesis extends Component<Props, State> {
         { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
           <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
             <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-              Stimmverteilung
+              Stimmverteilung { this.props.occasion.preliminary ? " (Prognose)" : ""}
             </Header>
 
             <PositionChart
