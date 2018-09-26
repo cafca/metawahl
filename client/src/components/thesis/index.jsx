@@ -10,8 +10,6 @@ import {
   Icon,
   Loader,
   Message,
-  Popup,
-  Responsive,
   Segment,
   Transition
 } from 'semantic-ui-react';
