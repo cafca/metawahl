@@ -461,7 +461,7 @@ export default class Thesis extends Component<Props, State> {
 
             { this.props.showHints === true && this.state.openText == null &&
               <Message style={{marginTop: "1rem"}}>
-                <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder wurden nicht von der Bundeszentrale für politische Bildung zu ihrer Position befragt.
+                <Icon name='info circle' /> Bewege deine Maus über die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder wurden nicht von der Bundeszentrale für politische Bildung zu ihrer Position befragt.
               </Message>
             }
 
