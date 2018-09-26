@@ -1,13 +1,13 @@
 // @flow
 
-import React from 'react';
-import autoBind from 'react-autobind';
+import React from "react";
+import autoBind from "react-autobind";
 
-import { OPINION_COLORS } from '../../config/';
+import { OPINION_COLORS } from "../../config/";
 
-import type { MergedPartyDataType } from '../../types/';
+import type { MergedPartyDataType } from "../../types/";
 
-import './PositionChart.css';
+import "./PositionChart.css";
 
 const valueNames = {
   "1": "pro",
@@ -27,7 +27,16 @@ type RectProps = {
   ...MergedPartyDataType
 };
 
-const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos, compact}: RectProps) => {
+const Rect = ({
+  party,
+  value,
+  toggleOpen,
+  handleHover,
+  hovered,
+  width,
+  xPos,
+  compact
+}: RectProps) => {
   // Changing SVG classnames with react is buggy, therefore this inline
   // style for a hover effect
   const baseStyle = {
@@ -35,20 +44,23 @@ const Rect = ({party, value, toggleOpen, handleHover, hovered, width, xPos, comp
     fillOpacity: 1.0
   };
 
-  const style = hovered && compact !== true ? Object.assign(baseStyle, {
-    fillOpacity: 0.45
-  }) : baseStyle;
+  const style =
+    hovered && compact !== true
+      ? Object.assign(baseStyle, { fillOpacity: 0.45 })
+      : baseStyle;
 
-  return <rect
-    className={"rect rect-" + valueNames[value.toString()]}
-    height="100%"
-    onClick={() => toggleOpen()}
-    onMouseOver={() => handleHover(party)}
-    onMouseOut={() => handleHover(undefined)}
-    style={style}
-    width={width}
-    x={xPos.toString() + "px"}
-  ></rect>;
+  return (
+    <rect
+      className={"rect rect-" + valueNames[value.toString()]}
+      height="100%"
+      onClick={() => toggleOpen()}
+      onMouseOver={() => handleHover(party)}
+      onMouseOut={() => handleHover(undefined)}
+      style={style}
+      width={width}
+      x={xPos.toString() + "px"}
+    />
+  );
 };
 
 type Props = {
@@ -74,7 +86,7 @@ export default class PositionChart extends React.Component<Props, State> {
       parties: [],
       hovered: null,
       width: 0
-    }
+    };
   }
 
   componentWillMount() {
@@ -83,7 +95,7 @@ export default class PositionChart extends React.Component<Props, State> {
 
   componentDidMount() {
     this.measureSVGWidth();
-    window.addEventListener('resize', this.waitAndMeasureSVGWidth);
+    window.addEventListener("resize", this.waitAndMeasureSVGWidth);
   }
 
   componentDidUpdate() {
@@ -94,9 +106,11 @@ export default class PositionChart extends React.Component<Props, State> {
     if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
   }
 
-  handleHover(party: ?string) {
-    if ( this.state.hovered !== party) {
+  handleHover(data: ?MergedPartyDataType) {
+    const party = data && data.party;
+    if (this.state.hovered !== party) {
       this.setState({ hovered: party });
+      if (party) this.props.toggleOpen(data);
     }
   }
 
@@ -107,6 +121,47 @@ export default class PositionChart extends React.Component<Props, State> {
   waitAndMeasureSVGWidth() {
     if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
     this.measuringTimeout = setTimeout(this.measureSVGWidth, 50);
+  }
+
+  makeRectangles(usablePixels, usedPixels) {
+    const rectangles = this.state.parties
+      .filter(d => d.pct > 0.1)
+      .map((data: MergedPartyDataType) => {
+        const width = Math.round((data.pct * usablePixels) / 100.0);
+        usedPixels += width + gapWidth;
+        return (
+          <g key={"rect-" + data.party}>
+            <Rect
+              hovered={this.state.hovered === data.party}
+              handleHover={() => this.handleHover(data)}
+              width={width}
+              xPos={usedPixels - width - gapWidth}
+              toggleOpen={() => this.props.toggleOpen(data)}
+              compact={this.props.compact}
+              {...data}
+            />
+            {data.pct >= 5 && (
+              <text
+                x={usedPixels - width - gapWidth + 5}
+                y={"66%"}
+                width={width}
+                onClick={() => this.props.toggleOpen(data)}
+                onMouseOver={() => this.handleHover(data)}
+                onMouseOut={() => this.handleHover(null)}
+                style={{
+                  fill: "white",
+                  opacity: 0.7,
+                  fontSize: "0.9rem",
+                  cursor: "pointer"
+                }}
+              >
+                {data.party}
+              </text>
+            )}
+          </g>
+        );
+      });
+    return { rectangles, usedPixels };
   }
 
   measureSVGWidth() {
@@ -127,8 +182,10 @@ export default class PositionChart extends React.Component<Props, State> {
     const sortPositions = (a, b) => {
       // First sort into pro, neutral, contra and missing
       if (a.value !== b.value) {
-        return a.value === "missing" ? 1 : b.value === "missing" ? -1
-            : a.value < b.value ? 1 : -1;
+        return a.value === "missing" ? 1
+          : b.value === "missing" ? -1
+            : a.value < b.value ? 1
+              : -1;
       } else {
         // Sort last if vote count unknown
         if (a.votes == null) return 1;
@@ -142,12 +199,34 @@ export default class PositionChart extends React.Component<Props, State> {
         // Sort by name if all else is equal
         return a.party > b.party ? 1 : -1;
       }
-    }
+    };
 
     // Merge election results with WoM positions
-    this.props.parties && this.setState({
-      parties: this.props.parties.sort(sortPositions)
-    });
+    this.props.parties &&
+      this.setState({
+        parties: this.props.parties.sort(sortPositions)
+      });
+  }
+
+  responsiveSVGStyle() {
+    let svgWidthString;
+    let svgHeightString;
+    let svgStyle = {};
+    if (this.props.compact) {
+      if (window.innerWidth <= 768) {
+        svgWidthString = "100%";
+      } else {
+        svgWidthString = "65%";
+      }
+      svgHeightString = "35";
+    } else {
+      svgWidthString = "100%";
+      svgHeightString = "28";
+      svgStyle = {
+        margin: "0.3em 0"
+      };
+    }
+    return { svgWidthString, svgHeightString, svgStyle };
   }
 
   render() {
@@ -160,78 +239,32 @@ export default class PositionChart extends React.Component<Props, State> {
 
       // Parties with less than 0.1 % of votes are not visible in the chart
       // anyway
-      rectangles = this.state.parties.filter(d => d.pct > 0.1).map((data: MergedPartyDataType) => {
-        const width = Math.round(data.pct * usablePixels / 100.0);
-        usedPixels += width + gapWidth;
-
-        return <g key={"rect-" + data.party}>
-          <Rect
-          hovered={this.state.hovered === data.party}
-          handleHover={this.handleHover}
-          width={width}
-          xPos={usedPixels - width - gapWidth}
-          toggleOpen={() => this.props.toggleOpen(data)}
-          compact={this.props.compact}
-          {...data} />
-            { data.pct >= 5 &&
-            <text
-              x={usedPixels - width - gapWidth + 5}
-              y={'66%'} width={width}
-              style={{fill: 'white', opacity: 0.7, fontSize: '0.9rem', cursor: 'pointer'}}>
-                {data.party}
-            </text>
-            }
-        </g>
-      });
+      ({ rectangles, usedPixels } = this.makeRectangles(
+        usablePixels,
+        usedPixels
+      ));
     }
-
-    const partyNames = this.state.parties && this.state.parties.slice()
-      .sort((a, b) => a.party > b.party ? 1 : -1)
-      .map((data: MergedPartyDataType) => <span
-        key={"label-" + data.party}
-        onMouseOver={() => this.handleHover(data.party)}
-        onMouseOut={() => this.handleHover(null)}
-        onClick={() => this.props.toggleOpen(data)}
-        className={data.text == null ? "noText" : null}
-        style={this.state.hovered === data.party ? {
-          backgroundColor: OPINION_COLORS[data.value],
-          color: "white"
-        } : null}
-      >{ data.party }</span>);
 
     // Responsive dimensions of SVG elem
-    let svgWidthString;
-    let svgHeightString;
-    let svgStyle = {};
-    if (this.props.compact) {
-      if (window.innerWidth <= 768) {
-        svgWidthString = "100%"
-      } else {
-        svgWidthString = "65%"
-      }
-      svgHeightString = "35"
-    } else {
-      svgWidthString = "100%"
-      svgHeightString = "28"
-      svgStyle = {
-        margin: "0.3em 0"
-      }
-    }
+    let {
+      svgWidthString,
+      svgHeightString,
+      svgStyle
+    } = this.responsiveSVGStyle();
 
-    return <span className='positionChartContainer'>
-      <svg width={svgWidthString} height={svgHeightString} className="positionChart"
-        ref={this.handleRef} shapeRendering="crispEdges" style={svgStyle}>
-         <g className="bar">
-          {rectangles}
-        </g>
-      </svg>
-
-      { this.props.compact !== true &&
-        <div className="partyNames">
-          {partyNames}
-        </div>
-      }
-
-    </span>
+    return (
+      <span className="positionChartContainer">
+        <svg
+          width={svgWidthString}
+          height={svgHeightString}
+          className="positionChart"
+          ref={this.handleRef}
+          shapeRendering="crispEdges"
+          style={svgStyle}
+        >
+          <g className="bar">{rectangles}</g>
+        </svg>
+      </span>
+    );
   }
 }
