@@ -395,13 +395,13 @@ export default class Thesis extends Component<Props, State> {
       } else if (this.state.voterOpinion === 1) {
         subHeader = Math.round(this.state.ratioPro).toString()
         subHeader += this.props.occasion.preliminary
-          ? " von 100 werden voraussichtlich Parteien wählen, die dafür sind"
-          : " von 100 haben Parteien gewählt, die dafür waren"
+          ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
+          : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
       } else {
         subHeader = Math.round(this.state.ratioContra).toString()
         subHeader += this.props.occasion.preliminary
-          ? " von 100 werden voraussichtlich Parteien wählen, die dagegen sind"
-          : " von 100 haben Parteien gewählt, die dagegen waren"
+          ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
+          : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
       }
 
       return <div style={{marginBottom: margin}}>
@@ -478,62 +478,9 @@ export default class Thesis extends Component<Props, State> {
           </Segment>
 
           <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
-            <div className="tagContainer">
-              { this.state.reportingError != null &&
-                <Message negative
-                  header='Fehler beim melden des Beitrags'
-                  content={this.state.reportingError + 'Schreib uns doch eine email an hallo@metawahl.de, dann kümmern wir uns darum. Danke!'} />
-              }
-              { this.state.reported === true &&
-                <Message positive>
-                  <Message.Header>
-                    Meldung abgeschickt
-                  </Message.Header>
-                  <Message.Content>
-                    <p>Wir werden uns diesen Eintrag
-                    genauer anschauen, wenn mehrere Leute diesen Fehler melden.</p>
-                    <p>Handelt es sich um einen besonders groben Schnitzer, kannst
-                    du uns sehr helfen, indem du eine Email
-                    an <a href='mailto:metawahl@vincentahrend.com'>
-                    metawahl@vincentahrend.com</a> schreibst
-                    und kurz erzählst, was hier falsch ist.</p>
-                    <p>Im <Link to='/legal'>Impressum</Link> findest du auch noch
-                    weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
-                  </Message.Content>
-                </Message>
-              }
-
-              <Responsive minWidth={600}>
-              <Popup
-                content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
-                header="Fehler melden"
-                trigger={
-                  <Button basic compact icon floated='right'
-                    loading={this.state.reported === false}
-                    disabled={this.state.reported === true}
-                    onClick={this.handleReport}
-                    style={{marginTop: -2}}
-                  >
-                    <Icon name='warning circle' /> Melden
-                  </Button>
-                }
-              />
-              </Responsive>
-              <Responsive maxWidth={600}>
-                  <Button basic compact icon floated='right'
-                    loading={this.state.reported === false}
-                    disabled={this.state.reported === true}
-                    onClick={this.handleReport}
-                    style={{marginTop: -2}}
-                  >
-                    <Icon name='warning circle' /> Melden
-                  </Button>
-              </Responsive>
-
-              { tagElems }
-              <br />
-              { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
-            </div>
+            { tagElems }
+            <br />
+            { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
           </Segment>
 
           { IS_ADMIN &&

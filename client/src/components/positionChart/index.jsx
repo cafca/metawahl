@@ -94,9 +94,11 @@ export default class PositionChart extends React.Component<Props, State> {
     if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
   }
 
-  handleHover(party: ?string) {
+  handleHover(data: ?MergedPartyDataType) {
+    const party = data && data.party
     if ( this.state.hovered !== party) {
       this.setState({ hovered: party });
+      if (party) this.props.toggleOpen(data)
     }
   }
 
@@ -167,7 +169,7 @@ export default class PositionChart extends React.Component<Props, State> {
         return <g key={"rect-" + data.party}>
           <Rect
           hovered={this.state.hovered === data.party}
-          handleHover={this.handleHover}
+          handleHover={() => this.handleHover(data)}
           width={width}
           xPos={usedPixels - width - gapWidth}
           toggleOpen={() => this.props.toggleOpen(data)}
@@ -177,6 +179,9 @@ export default class PositionChart extends React.Component<Props, State> {
             <text
               x={usedPixels - width - gapWidth + 5}
               y={'66%'} width={width}
+              onClick={() => this.props.toggleOpen(data)}
+              onMouseOver={() => this.handleHover(data)}
+              onMouseOut={() => this.handleHover(null)}
               style={{fill: 'white', opacity: 0.7, fontSize: '0.9rem', cursor: 'pointer'}}>
                 {data.party}
             </text>
@@ -184,20 +189,6 @@ export default class PositionChart extends React.Component<Props, State> {
         </g>
       });
     }
-
-    const partyNames = this.state.parties && this.state.parties.slice()
-      .sort((a, b) => a.party > b.party ? 1 : -1)
-      .map((data: MergedPartyDataType) => <span
-        key={"label-" + data.party}
-        onMouseOver={() => this.handleHover(data.party)}
-        onMouseOut={() => this.handleHover(null)}
-        onClick={() => this.props.toggleOpen(data)}
-        className={data.text == null ? "noText" : null}
-        style={this.state.hovered === data.party ? {
-          backgroundColor: OPINION_COLORS[data.value],
-          color: "white"
-        } : null}
-      >{ data.party }</span>);
 
     // Responsive dimensions of SVG elem
     let svgWidthString;
@@ -225,13 +216,6 @@ export default class PositionChart extends React.Component<Props, State> {
           {rectangles}
         </g>
       </svg>
-
-      { this.props.compact !== true &&
-        <div className="partyNames">
-          {partyNames}
-        </div>
-      }
-
     </span>
   }
 }
