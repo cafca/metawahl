@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Grid, Header, List, Segment
+  Container, Grid, Header, List
 } from 'semantic-ui-react';
 
 import { RouteProps } from '../../types/';
@@ -24,59 +24,36 @@ class LandingView extends React.Component<RouteProps> {
       </List.Item>);
 
     return <Container>
-      <Container textAlign='center' style={{margin: "4em auto 5em"}}>
-        <h1 className="ui header" style={{fontSize: "4rem"}}>
-          <Logo className='logo' style={{marginBottom: "-1em"}}/>
-          <div>Metawahl</div>
-          <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
-            Was haben wir gewählt?
-          </div>
-          <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
-            Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
-          </div>
-        </h1>
-      </Container>
-
-      <Container text>
-        <p>
-        Metawahl nutzt Stellungnahmen der Parteien aus 44 Wahlen, um zu zeigen, welche konkrete Politik von einer Mehrheit gewählt wurde — und wie sich
-        dieses im Laufe der Zeit geändert hat.
-        </p>
-        <p>
-          Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
-          den Bundestagswahlen 2013 und 2017. Vor der Flüchtlingskrise war das Ergebnis neutral, jetzt gibt es eine knappe
-          Mehrheit <em>gegen</em> eine Obergrenze:
-        </p>
-      </Container>
-
-      <Grid stackable columns='2' style={{margin: "5em 1em"}}>
+      <Grid columns='2' stackable verticalAlign='middle'>
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(160, 160, 160)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
-            Deutschland soll mehr Flüchtlinge aufnehmen
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>Keine Mehrheit dafür oder dagegen</div>
-          </Segment>
+          <h1 className="ui header" style={{fontSize: "4rem"}}>
+            <Logo className='logo' alt='Metawahl Logo'/>
+          </h1>
         </Grid.Column>
-
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(213, 0, 28)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
-            Für die Aufnahme von neuen Asylsuchenden soll eine jährliche Obergrenze gelten.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>53 von 100 haben Parteien gewählt, die gegen eine Obergrenze sind.</div>
-          </Segment>
+          <Header size='large'>
+            Metawahl zeigt, wie sich der politische Konsens in Deutschland über Zeit ändert.
+          </Header>
+          <Header size='medium'>
+            Hierzu werden Aussagen aus 44 Ausgaben des Wahl-o-Maten mit den dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar, welche Politik von vielen Stimmen gestützt wird und welche Parteien dies möglich machen.
+          </Header>
+
+          <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
+            Von <a href="https://blog.vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
+          </div>
         </Grid.Column>
       </Grid>
 
       <SuggestionsGrid title='Lies jetzt' sections={[
         {
+          subTitle: 'Prognose zur Landtagswahl',
+          title: 'Bayern 2018',
+          href: '/wahlen/bayern/43/'
+        },
+        {
           subTitle: 'Alle Fragen aus der',
           title: 'Bundestagswahl 2017',
           href: '/wahlen/deutschland/42/'
-        },
-        {
-          subTitle: 'Teste dein Wissen',
-          title: 'Quiz zur Bundestagswahl 2017',
-          href: '/quiz/deutschland/42/'
         },
         {
           subTitle: '43 Thesen zu',
