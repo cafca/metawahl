@@ -21,6 +21,7 @@ import Tag from '../tag/';
 import PositionChart from '../positionChart/';
 import Map from '../map/';
 import ErrorHandler from '../../utils/errorHandler';
+import { extractThesisID } from "../../utils/thesis"
 
 import {
   adminKey,
@@ -394,6 +395,9 @@ export default class Thesis extends Component<Props, State> {
         : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
     }
 
+    const thesisIdComps = extractThesisID(this.props.id)
+    const permaLink = `/wahlen/${this.props.occasion.territory}/${thesisIdComps['womID']}/${thesisIdComps['thesisNUM']}/`
+
     return <div style={{marginBottom: margin}}>
       <Transition
         visible={this.props.quizMode === true && this.state.quizAnswer != null}
@@ -410,7 +414,7 @@ export default class Thesis extends Component<Props, State> {
         </Header>
       </Transition>
 
-      <Header as='h2' inverted attached="top" size="huge"
+      <a href={permaLink}><Header as='h2' inverted attached="top" size="huge"
         style={headerStyle}>
 
         { this.props.linkOccasion &&
@@ -430,7 +434,7 @@ export default class Thesis extends Component<Props, State> {
           <span>{ subHeader }</span>
         }
         </Header.Subheader>
-      </Header>
+      </Header></a>
 
       { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
         <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
