@@ -29,6 +29,50 @@ export default class Occasion extends React.Component<Props, State> {
     this.thesisRefs = {};
   }
 
+  collectSources() {
+    let sources = [];
+    if (this.props.occasion != null) {
+      sources.push(
+        <span key="wom-source">
+          <a href={this.props.occasion.source}>
+            Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für
+            politische Bildung
+          </a>{" "}
+          via{" "}
+          <a href="https://github.com/gockelhahn/qual-o-mat-data">
+            qual-o-mat-data
+          </a>
+        </span>
+      );
+      if (this.props.occasion.results_sources) {
+        this.props.occasion.results_sources.forEach(
+          url =>
+            url.indexOf("wahl.tagesschau.de") >= 0
+              ? sources.push(
+                  <span key="tagesschau-source">
+                    ,<a href={url}>Wahlergebnisse: wahl.tagesschau.de</a>
+                  </span>
+                )
+              : url.indexOf("wikipedia") >= 0
+                ? sources.push(
+                    <span key="wp-source">
+                      ,<a href={url}>Wahlergebnisse: Wikipedia</a>
+                    </span>
+                  )
+                : sources.push(
+                    <span key="dawum-source">
+                      ,
+                      <a href={url}>
+                        Wahlprognose: dawum.de, lizensiert unter CC-BY-NC-SA-4.0
+                      </a>
+                    </span>
+                  )
+        );
+      }
+    }
+    return sources;
+  }
+
   getRatio({ title, positions }, reverse = false) {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
@@ -86,6 +130,8 @@ export default class Occasion extends React.Component<Props, State> {
         );
       });
 
+    let sources = this.collectSources();
+
     return (
       <div className="occasion-component">
         <Header as="h1">
@@ -112,7 +158,12 @@ export default class Occasion extends React.Component<Props, State> {
         <Legend text="Partei war im Wahl-o-Mat:" />
 
         {/* Main content */}
-        {thesesElems.length > 0 && <div className="theses">{thesesElems}</div>}
+        {thesesElems.length > 0 && (
+          <span>
+            <div className="theses">{thesesElems}</div>
+            <p className="sources">Quellen: {sources}</p>
+          </span>
+        )}
       </div>
     );
   }
