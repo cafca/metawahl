@@ -57,7 +57,7 @@ def gen_urls():
 def make_requests(urls):
     """Fetch all URLs."""
     l = len(urls)
-    for i, url in enumerate(urls[:50]):
+    for i, url in enumerate(urls):
         resp = requests.get(url)
         logger.info("{0:.1f}% - [{1}] {2:.2f}\t{3}k\t{4}".format(
             (100.0 * i / l),
