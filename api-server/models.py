@@ -372,6 +372,44 @@ class Thesis(db.Model):
             rv[reaction.kind] += 1
         return rv
 
+    def related(self):
+        """Return theses with similar tags"""
+        from collections import defaultdict
+        from operator import itemgetter
+
+        # Collect all theses that share a tag with this one
+        # and assign a score based on how big the tag is
+        scores = []
+        for tag in self.tags:
+            score = 1.0 / len(tag.theses)
+            for thesis in tag.theses:
+                scores.append((thesis.id, score))
+
+        scores = sorted(scores, key=itemgetter(0))
+
+        # Reduce the list of scores to yield a score per thesis
+        acc = []
+        prev = (None, 0)
+        for score in scores:
+            if score[0] == prev[0] or prev[0] is None:
+                prev = (score[0], prev[1] + score[1])
+            else:
+                acc.append(prev)
+                prev = score
+
+        # Group results by score
+        acc = sorted(acc, key=itemgetter(1), reverse=True)
+        collect = defaultdict(list)
+        for thesis_id, score in acc:
+            collect[score].append(thesis_id)
+
+        rv = list()
+        for score in sorted(collect.keys(), reverse=True):
+            rv.extend([Thesis.query.get(tid).to_dict() for tid in sorted(collect[score])])
+            if len(rv) > 20:
+                break
+
+        return rv
 
 if __name__ == '__main__':
     from main import create_app
