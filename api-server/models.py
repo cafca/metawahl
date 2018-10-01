@@ -383,7 +383,7 @@ class Thesis(db.Model):
         for tag in self.tags:
             score = 1.0 / len(tag.theses)
             if score > 0.03:
-                for thesis in tag.theses:
+                for thesis in tag.theses if thesis.id != self.id:
                     scores.append((thesis.id, score))
 
         scores = sorted(scores, key=itemgetter(0))
