@@ -382,8 +382,9 @@ class Thesis(db.Model):
         scores = []
         for tag in self.tags:
             score = 1.0 / len(tag.theses)
-            for thesis in tag.theses:
-                scores.append((thesis.id, score))
+            if score > 0.03:
+                for thesis in tag.theses:
+                    scores.append((thesis.id, score))
 
         scores = sorted(scores, key=itemgetter(0))
 
@@ -405,10 +406,9 @@ class Thesis(db.Model):
 
         rv = list()
         for score in sorted(collect.keys(), reverse=True):
-            rv.extend([Thesis.query.get(tid).to_dict() for tid in sorted(collect[score])])
-            if len(rv) > 20:
+            rv.extend([Thesis.query.get(tid).to_dict() for tid in sorted(collect[score], reverse=True)])
+            if len(rv) > 10:
                 break
-
         return rv
 
 if __name__ == '__main__':

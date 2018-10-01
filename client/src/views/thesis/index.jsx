@@ -2,7 +2,7 @@
 
 import React from 'react';
 import autoBind from 'react-autobind';
-import { Breadcrumb, Container, Message } from 'semantic-ui-react';
+import { Breadcrumb, Container, Header, Message } from 'semantic-ui-react';
 import Moment from 'moment';
 
 import { API_ROOT, TERRITORY_NAMES } from '../../config/';
@@ -11,10 +11,13 @@ import ThesisComponent from '../../components/thesis/';
 import Errorhandler from '../../utils/errorHandler';
 import { RouteProps, ThesisType, OccasionType } from '../../types/';
 
+import './styles.css'
+
 type State = {
   isLoading: boolean,
   occasion: OccasionType,
-  thesis: ThesisType
+  thesis: ThesisType,
+  related: Array<ThesisType>
 }
 
 class Thesis extends React.Component<RouteProps, State> {
@@ -28,7 +31,8 @@ class Thesis extends React.Component<RouteProps, State> {
     this.state = {
       isLoading: true,
       occasion: this.getCachedOccasion(),
-      thesis: null
+      thesis: null,
+      related: []
     }
     this.handleError = Errorhandler.bind(this);
   }
@@ -79,7 +83,8 @@ class Thesis extends React.Component<RouteProps, State> {
         this.handleError(response);
         this.setState({
           isLoading: false,
-          thesis: response.data
+          thesis: response.data,
+          related: response.related
         })
         if (cb != null) cb(response.data);
       })
@@ -92,8 +97,30 @@ class Thesis extends React.Component<RouteProps, State> {
       })
   }
 
+  getCachedOccasionById(oid: string) {
+    for (let terr of Object.keys(this.props.occasions)) {
+      for (let o of this.props.occasions[terr]) {
+        if (o.id === oid) {
+          return o
+        }
+      }
+    }
+  }
+
   render() {
-    return <Container>
+    const relatedElems = this.state.error != null
+      ? []
+      : this.state.related.map(t => {
+            const occasion = this.getCachedOccasionById(t.occasion_id)
+            return occasion == null ? null : <ThesisComponent
+            key={t.id}
+            occasion={occasion}
+            linkOccasion={true}
+            showHints={true}
+            {...t}
+          />})
+
+    return <Container id='outerContainer'>
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title + ' Quiz' : "Quiz")} />
 
@@ -131,6 +158,12 @@ class Thesis extends React.Component<RouteProps, State> {
             showHints={true}
             {...this.state.thesis}
           />
+          { relatedElems.length > 0 &&
+            <div>
+              <Header size='large' id='relatedHeader'>Ähnliche Thesen aus dem Archiv</Header>
+              {relatedElems}
+            </div>
+          }
         </div>
       }
 
