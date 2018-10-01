@@ -188,7 +188,9 @@ def load_position(position_data, comments, parties):
 
     comment_id = position_data["comment"]
     if comment_id and comments[comment_id]["text"] not in INVALID_POSITION_TEXTS:
-        position.text = comments[comment_id]["text"]
+        raw_text = comments[comment_id]["text"]
+        raw_text = raw_text[1:-1] if raw_text.startswith('"') else raw_text
+        position.text = raw_text
 
     return position
 

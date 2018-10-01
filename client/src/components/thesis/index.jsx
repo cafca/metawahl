@@ -444,7 +444,7 @@ export default class Thesis extends Component<Props, State> {
 
           { this.state.openText != null &&
             <Message
-              content={this.state.openText.text}
+              content={"»" + this.state.openText.text + "«"}
               floating
               header={this.state.openText.header} />
           }
