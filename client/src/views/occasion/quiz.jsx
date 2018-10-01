@@ -17,9 +17,6 @@ import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from '../../config/';
 import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
 import SEO from '../../components/seo/';
-import SuggestionsGrid from '../../components/suggestionsGrid';
-import Legend from '../../components/legend/';
-import { extractThesisID } from '../../utils/thesis';
 
 import './styles.css';
 
@@ -28,13 +25,12 @@ type State = {
   occasion: ?OccasionType,
   theses: Array<ThesisType>,
   quizSelection: Array<ThesisType>,
-  quizMode: boolean,
   quizAnswers: ?Array<number>,
   linkCopied: boolean,
   error?: ?string
 };
 
-export default class Occasion extends React.Component<RouteProps, State> {
+export default class Quiz extends React.Component<RouteProps, State> {
   territory: string;
   occasionNum: number;
   handleError: ErrorType => any;
@@ -49,7 +45,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
       occasion: this.getCachedOccasion(),
       theses: [],
       quizSelection: [],
-      quizMode: this.props.displayMode === "quiz" ? true : false,
       quizAnswers: [],
       linkCopied: false
     }
@@ -69,7 +64,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
         isLoading: true,
         occasion: this.getCachedOccasion(),
         theses: [],
-        quizMode: nextProps.displayMode === "quiz" ? true : false,
         quizAnswers: []
       });
       this.thesisRefs = {};
@@ -129,11 +123,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .then(response => {
         if (!this.handleError(response)) {
           this.setState({
-            isLoading: this.state.quizMode === true,
             occasion: response.data,
             theses: response.theses || []
           }, () => {
-            if (this.state.quizMode === true) this.selectQuizTheses()
+            this.selectQuizTheses()
           })
           if (cb != null) cb(response.data);
         }
@@ -168,9 +161,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
 
     if (this.state.isLoading || this.state.error) {
       thesesElems = [];
-
-    } else if (this.state.quizMode === true) {
-
+    } else {
       thesesElems = this.state.quizSelection
         .slice(0, this.state.quizAnswers.length + 1)
         .map(
@@ -178,7 +169,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
             key={t.id}
             occasion={this.state.occasion}
             showHints={i === 0}
-            quizMode={this.state.quizMode}
+            quizMode={true}
             scrollToNextQuestion={this.scrollToNextQuestion}
             answer={(answer, correct) => this.handleQuizAnswer(i, answer, correct)}
             ref={ref => this.thesisRefs[i] = ref}
@@ -189,71 +180,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
         .map(a => a === true ? 1 : 0)
         .reduce((acc, cur) => acc + cur, 0) / this.state.quizAnswers.length;
 
-    } else {
-      thesesElems = this.state.error != null ? [] : this.state.theses
-      .sort((a, b) => this.getRatio(a) > this.getRatio(b) ? -1 : 1)
-      .map((t, i) => {
-        const tRatio = this.getRatio(t);
-        const tUrl = '/wahlen/'
-          + this.territory + '/'
-          + this.occasionNum + '/'
-          + extractThesisID(t.id).thesisNUM + '/'
-
-      return <div key={'thesis-compact-' + i} className='thesis-compact'>
-        <a href={tUrl}>
-          <Thesis
-            key={t.id}
-            occasion={this.state.occasion}
-            compact={true}
-            {...t} />
-          <span className='thesisTitleInsert'>
-            <strong>
-              {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
-              &nbsp;von 100 wählen <em>{t.title}</em>:
-            </strong>
-            &nbsp;{t.text}
-          </span>
-        </a>
-      </div>
-      });
     }
 
-    // Select another occasion from the same territory for the
-    // suggestion box. Fallback to this one if it's the only one
-    let occ2 = this.props.occasions[this.territory] == null
-      ? null
-      : this.props.occasions[this.territory].reverse()
-        .filter(occ => occ.id !== this.occasionNum)
-        .shift();
-    if (occ2 == null) occ2 = this.state.occasion
-
-    let suggestions = []
-    if (occ2 != null && this.state.occasion != null) {
-      suggestions = [
-        {
-          subTitle: 'Teste dein Wissen',
-          title: 'Quiz zur ' + this.state.occasion.title,
-          href: '/quiz/' + this.territory + '/' + this.occasionNum + '/'
-        },
-        {
-          subTitle: 'Welche Politik wurde gewählt',
-          title: occ2.title,
-          href: '/wahlen/' + this.territory + '/' + occ2.id + '/'
-        },
-        {
-          subTitle: 'Alle Wahlen in',
-          title: TERRITORY_NAMES[this.territory],
-          href: '/wahlen/' + this.territory + '/'
-        },
-        {
-          subTitle: 'Stöbere in',
-          title: '600+ Wahlkampfthemen',
-          href: '/themen/'
-        }
-      ]
-    }
-
-    return <Container fluid={this.props.displayMode !== 'quiz'} className='occasionContainer'>
+    return <Container fluid={false} className='occasionContainer'>
       <SEO title={'Metawahl: '
         + (this.state.occasion ? this.state.occasion.title + ' Quiz' : "Quiz")} />
 
@@ -266,41 +195,29 @@ export default class Occasion extends React.Component<RouteProps, State> {
         <Breadcrumb.Divider icon='right angle' />
         { this.state.occasion == null
           ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-          : <Breadcrumb.Section active={this.state.quizMode !== true}
-              href={this.state.quizMode === true ? "#" : `/wahlen/${this.territory}/${this.occasionNum}/`}>
+          : <Breadcrumb.Section
+              href={`/wahlen/${this.territory}/${this.occasionNum}/`}>
               {Moment(this.state.occasion.date).year()}
             </Breadcrumb.Section>
         }
 
-        { this.state.quizMode === true && <span>
+        <span>
           <Breadcrumb.Divider icon='right angle' />
           <Breadcrumb.Section active href={`/quiz/${this.territory}/${this.occasionNum}/`}>
             Quiz
           </Breadcrumb.Section>
-        </span> }
+        </span>
       </Breadcrumb>
 
       <WikidataLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
       <WikipediaLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
 
       <Header as='h1'>
-        { this.state.occasion == null ? " "
-          : this.state.quizMode === true
-            ? "Teste dein Wissen: " + this.state.occasion.title
-            : this.state.occasion.preliminary
-              ? 'Welche Politik wird voraussichtlich bei der ' + this.state.occasion.title + ' gewählt?'
-              : 'Welche Politik wurde bei der ' + this.state.occasion.title + ' gewählt?'}
-          { this.props.displayMode !== 'quiz' && this.state.occasion != null &&
-            <Header.Subheader>
-              { this.state.occasion.preliminary
-              ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich für die jeweiligen Thesen ausgesprochen haben"
-              : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."
-              }
-            </Header.Subheader>
-          }
+        { this.state.occasion == null
+          ? " "
+          : "Teste dein Wissen: " + this.state.occasion.title}
       </Header>
 
-      { this.props.displayMode === 'quiz' &&
         <h3 style={{marginBottom: '4rem'}}>
           {
             this.state.occasion != null && this.state.occasion.preliminary
@@ -309,14 +226,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
           }
 
         </h3>
-      }
 
       { this.state.error != null &&
         <Message negative content={this.state.error} />
-      }
-
-      { this.props.displayMode !== 'quiz' &&
-          <Legend text='Partei war im Wahl-o-Mat:' />
       }
 
       <Loader active={this.state.isLoading} />
@@ -328,13 +240,8 @@ export default class Occasion extends React.Component<RouteProps, State> {
       </div>
       }
 
-      {/* Browsing suggestions */}
-      { this.state.isLoading === false && this.state.quizMode === false &&
-        <SuggestionsGrid title='Und jetzt:' sections={suggestions} />
-      }
-
       {/* Quiz progress indicator */}
-      { this.state.quizMode === true && this.state.quizAnswers.length < this.state.theses.length &&
+      { this.state.quizAnswers.length < this.state.theses.length &&
         <div>
           { this.state.quizAnswers.length !== this.state.quizSelection.length &&
             <span>Noch { this.state.quizSelection.length - this.state.quizAnswers.length } Thesen bis zum Ergebnis</span>
@@ -344,7 +251,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       }
 
       {/* Quiz Result */}
-      { this.state.quizMode === true && this.state.isLoading === false && this.state.quizAnswers.length === this.state.quizSelection.length &&
+      { this.state.isLoading === false && this.state.quizAnswers.length === this.state.quizSelection.length &&
         <Segment size='large' raised className='quizResult'>
           <Header as='h1'>
             { quizResult >= 0.5 &&

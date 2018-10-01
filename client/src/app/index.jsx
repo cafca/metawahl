@@ -13,6 +13,7 @@ import { API_ROOT } from '../config/';
 import Landing from  '../views/landing';
 import OccasionList from '../views/occasionList/';
 import Occasion from '../views/occasion/';
+import Quiz from '../views/occasion/quiz';
 import NotFound from '../views/notFound/';
 import LegalView from '../views/legal';
 import TagList from '../views/tagList/';
@@ -175,7 +176,7 @@ class App extends Component<Props, State> {
               )} />
 
               <Route exact path="/quiz/:territory/:occasionNum/" render={props => (
-                <Occasion displayMode='quiz' {...props} {...context} />
+                <Quiz {...props} {...context} />
               )} />
 
               <Route exact path="/wahlen/:territory/:occasionNum/:thesisNum/" render={props => (
