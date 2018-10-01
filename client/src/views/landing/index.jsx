@@ -116,7 +116,7 @@ class LandingView extends React.Component<RouteProps, State> {
         {
           subTitle: 'Bayern 2018',
           title: 'Quiz zur Landtagswahl',
-          href: '/wahlen/bayern/43/'
+          href: '/quiz/bayern/43/'
         },
         {
           subTitle: 'Alle Fragen aus der',
