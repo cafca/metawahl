@@ -10,7 +10,7 @@ import requests
 
 from logger import setup_logger
 from main import API_ROOT
-from models import Occasion, Tag
+from models import Occasion, Tag, Thesis
 
 logger = setup_logger(logfile="/var/log/metawahl/cache_filler.log", level=logging.DEBUG)
 
@@ -45,15 +45,22 @@ def gen_urls():
     for tag in tags:
         urls.append(url('/tags/{}').format(tag.slug))
 
+    # theses
+
+    theses = Thesis.query.all()
+    for thesis in theses:
+        urls.append(url('/thesis/{}'.format(thesis.id)))
+
     return urls
 
 
 def make_requests(urls):
     """Fetch all URLs."""
-
-    for url in urls:
+    l = len(urls)
+    for i, url in enumerate(urls[:50]):
         resp = requests.get(url)
-        logger.info("[{0}] {1:.2f}\t{2}k\t{3}".format(
+        logger.info("{0.1f}% - [{1}] {2:.2f}\t{3}k\t{4}".format(
+            (100.0 * i / l),
             resp.status_code,
             resp.elapsed.total_seconds(),
             int(len(resp.content) / 1024),
