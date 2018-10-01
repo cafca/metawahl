@@ -59,7 +59,7 @@ def make_requests(urls):
     l = len(urls)
     for i, url in enumerate(urls[:50]):
         resp = requests.get(url)
-        logger.info("{0.1f}% - [{1}] {2:.2f}\t{3}k\t{4}".format(
+        logger.info("{0:.1f}% - [{1}] {2:.2f}\t{3}k\t{4}".format(
             (100.0 * i / l),
             resp.status_code,
             resp.elapsed.total_seconds(),
