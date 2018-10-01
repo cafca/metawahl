@@ -95,7 +95,7 @@ class LandingView extends React.Component<RouteProps, State> {
             Metawahl zeigt, wie sich der politische Konsens in Deutschland über Zeit ändert.
           </Header>
           <Header size='medium'>
-            Hierzu werden Aussagen aus 44 Ausgaben des Wahl-o-Maten mit den dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar, welche Politik von vielen Stimmen gestützt wird und welche Parteien dies möglich machen.
+            Hierzu werden die Aussagen der Parteien aus 44 Wahl-o-Maten mit den dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar, welche Politik von vielen Stimmen gestützt wird und welche Parteien dies möglich machen.
           </Header>
 
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
