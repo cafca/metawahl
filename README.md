@@ -110,6 +110,7 @@ Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
 
 Version | Beschreibung
 --------|--------------
+1.6.0   | Thematisch ähnliche Thesen auf jeder Thesenseite
 1.5.0   | Neues Format für die Startseite
 1.4.0   | Unterstützung von vorläufigen Wahlergebnissen
 1.3.0   | Kompakte Thesendarstellung
