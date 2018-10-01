@@ -12,7 +12,7 @@ import {
 import Moment from "moment";
 
 import "../../index.css";
-import Thesis from "../../components/thesis/";
+import CompactThesis from "../../components/thesis/compact";
 import Errorhandler from "../../utils/errorHandler";
 import { API_ROOT, TERRITORY_NAMES } from "../../config/";
 import { ErrorType, RouteProps, ThesisType, OccasionType } from "../../types/";
@@ -155,10 +155,9 @@ export default class Occasion extends React.Component<RouteProps, State> {
                 return (
                   <div key={"thesis-compact-" + i} className="thesis-compact">
                     <a href={tUrl}>
-                      <Thesis
+                      <CompactThesis
                         key={t.id}
                         occasion={this.state.occasion}
-                        compact={true}
                         {...t}
                       />
                       <span className="thesisTitleInsert">
