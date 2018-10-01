@@ -106,6 +106,16 @@ Installation von metawahl durch Ausfürung eines einzelnen Skripts zu
 aktualisieren. Hierbei bleiben alle Daten bestehen, nur die Quellen für
 Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
 
+# Changelog
+
+Version | Beschreibung
+--------|--------------
+1.5.0   | Neues Format für die Startseite
+1.4.0   | Unterstützung von vorläufigen Wahlergebnissen
+1.3.0   | Kompakte Thesendarstellung
+1.2.0   | Bessere Quiz-Implementation
+1.1.0   | Quiz
+
 # Lizenz
 
 Copyright 2018 Vincent Ahrend
