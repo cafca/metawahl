@@ -2,17 +2,10 @@
 
 import React from "react";
 import autoBind from "react-autobind";
-import {
-  Breadcrumb,
-  Container,
-  Header,
-  Loader,
-  Message
-} from "semantic-ui-react";
+import { Breadcrumb, Container, Loader, Message } from "semantic-ui-react";
 import Moment from "moment";
 
 import "../../index.css";
-import CompactThesis from "../../components/thesis/compact";
 import Errorhandler from "../../utils/errorHandler";
 import { API_ROOT, TERRITORY_NAMES } from "../../config/";
 import { ErrorType, RouteProps, ThesisType, OccasionType } from "../../types/";
@@ -22,8 +15,7 @@ import {
 } from "../../components/label/DataLabel.jsx";
 import SEO from "../../components/seo/";
 import SuggestionsGrid from "../../components/suggestionsGrid";
-import Legend from "../../components/legend/";
-import { extractThesisID } from "../../utils/thesis";
+import OccasionComponent from "../../components/occasion";
 
 import "./styles.css";
 
@@ -79,37 +71,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
           .shift();
   }
 
-  getRatio({ title, positions }, reverse = false) {
-    // Determine the ratio of positive votes by summing up the vote results
-    // of all parties with positive answers
-    if (this.state.occasion === null) return null;
-
-    const occRes = this.state.occasion.results;
-
-    // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
-    // otherwise just return accumulator `acc` + result of party `cur`
-    const countVotes = (acc, cur) => {
-      if (occRes[cur["party"]] == null) {
-        let multipleLinkedResults = Object.keys(occRes).filter(
-          k => occRes[k].linked_position === cur["party"]
-        );
-        return (
-          acc +
-          multipleLinkedResults
-            .map(k => occRes[k]["pct"])
-            .reduce((acc, cur) => acc + cur, 0.0)
-        );
-      } else {
-        return acc + occRes[cur["party"]]["pct"];
-      }
-    };
-
-    const ratio = positions
-      .filter(p => (reverse ? p.value === -1 : p.value === 1))
-      .reduce(countVotes, 0.0);
-    return ratio;
-  }
-
   loadOccasion(cb?: OccasionType => mixed) {
     const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
     fetch(endpoint)
@@ -117,7 +78,7 @@ export default class Occasion extends React.Component<RouteProps, State> {
       .then(response => {
         if (!this.handleError(response)) {
           this.setState({
-            isLoading: this.state.quizMode === true,
+            isLoading: false,
             occasion: response.data,
             theses: response.theses || []
           });
@@ -136,48 +97,6 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   render() {
-    let thesesElems;
-
-    if (this.state.isLoading || this.state.error) {
-      thesesElems = [];
-    } else {
-      thesesElems =
-        this.state.error != null
-          ? []
-          : this.state.theses
-              .sort((a, b) => (this.getRatio(a) > this.getRatio(b) ? -1 : 1))
-              .map((t, i) => {
-                const tRatio = this.getRatio(t);
-                const tUrl = `/wahlen/${this.territory}/${this.occasionNum}/${
-                  extractThesisID(t.id).thesisNUM
-                }/`;
-
-                return (
-                  <div key={"thesis-compact-" + i} className="thesis-compact">
-                    <a href={tUrl}>
-                      <CompactThesis
-                        key={t.id}
-                        occasion={this.state.occasion}
-                        {...t}
-                      />
-                      <span className="thesisTitleInsert">
-                        <strong>
-                          {tRatio < 1
-                            ? "<1"
-                            : tRatio > 99
-                              ? ">99"
-                              : Math.round(tRatio)}
-                          &nbsp;von 100 wählen <em>{t.title}</em>:
-                        </strong>
-                        &nbsp;
-                        {t.text}
-                      </span>
-                    </a>
-                  </div>
-                );
-              });
-    }
-
     // Select another occasion from the same territory for the
     // suggestion box. Fallback to this one if it's the only one
     let occ2 =
@@ -215,9 +134,10 @@ export default class Occasion extends React.Component<RouteProps, State> {
       ];
     }
 
-    const pageTitle = this.state.occasion == null
-      ? "Metawahl"
-      : `Metawahl: ${this.state.occasion.title}`
+    const pageTitle =
+      this.state.occasion == null
+        ? "Metawahl"
+        : `Metawahl: ${this.state.occasion.title}`;
 
     return (
       <Container fluid className="occasionContainer">
@@ -251,37 +171,18 @@ export default class Occasion extends React.Component<RouteProps, State> {
           style={{ marginRight: "-10.5px" }}
         />
 
-        <Header as="h1">
-          {this.state.occasion == null
-            ? " "
-            : this.state.occasion.preliminary
-              ? "Welche Politik wird voraussichtlich bei der " +
-                this.state.occasion.title +
-                " gewählt?"
-              : "Welche Politik wurde bei der " +
-                this.state.occasion.title +
-                " gewählt?"}
-          {this.state.occasion != null && (
-            <Header.Subheader>
-              {this.state.occasion.preliminary
-                ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich für die jeweiligen Thesen ausgesprochen haben"
-                : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
-            </Header.Subheader>
-          )}
-        </Header>
+        <OccasionComponent
+          occasion={this.state.occasion}
+          theses={this.state.theses}
+          territory={this.territory}
+          occasionNum={this.occasionNum}
+        />
 
         {this.state.error != null && (
           <Message negative content={this.state.error} />
         )}
 
-        <Legend text="Partei war im Wahl-o-Mat:" />
-
         <Loader active={this.state.isLoading} />
-
-        {/* Main content */}
-        {this.state.isLoading === false && (
-          <div className="theses">{thesesElems}</div>
-        )}
 
         {/* Browsing suggestions */}
         {this.state.isLoading === false && (
