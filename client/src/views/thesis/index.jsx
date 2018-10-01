@@ -108,7 +108,7 @@ class Thesis extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const relatedElems = this.state.error != null
+    const relatedElems = (this.state.error != null || this.state.related == null)
       ? []
       : this.state.related.map(t => {
             const occasion = this.getCachedOccasionById(t.occasion_id)
