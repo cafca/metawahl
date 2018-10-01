@@ -213,7 +213,7 @@ export default class PositionChart extends React.Component<Props, State> {
     let svgHeightString;
     let svgStyle = {};
     if (this.props.compact) {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth < 992) {
         svgWidthString = "100%";
       } else {
         svgWidthString = "65%";

@@ -96,8 +96,7 @@ type Props = RouteProps & ThesisType & {
   occasion?: OccasionType,
   linkOccasion?: boolean,
   showHints?: boolean,
-  quizMode?: boolean,
-  compact?: boolean
+  quizMode?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -357,151 +356,143 @@ export default class Thesis extends Component<Props, State> {
     // Collect sources
     let sources = this.collectSources();
 
-    if (this.props.compact === true) {
-      return <PositionChart
-      parties={this.state.parties}
-      toggleOpen={this.toggleOpen}
-      compact={true} />
+    const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
+      ? {
+        backgroundColor: voterOpinionColor,
+        minHeight: this.props.linkOccasion ? "4em" : null,
+        fontSize: "1.7rem"
+      } : {
+        fontSize: "1.7rem",
+        backgroundColor: "#333",
+        color: "#fcfcfc"
+      };
+
+    const voterOpinionName = {
+      "-1": "dagegen",
+      "0": "neutral",
+      "1": "dafür"
+    }[this.state.voterOpinion];
+
+    const voterTerritoryName = this.props.occasion.territory === 'europa'
+      ? 'Deutschland'
+      : TERRITORY_NAMES[this.props.occasion.territory];
+
+    const margin = this.props.quizMode ? "4em" : "2em"
+
+    let subHeader = ""
+    if (this.state.voterOpinion === 0) {
+      subHeader = " Keine Mehrheit dafür oder dagegen"
+    } else if (this.state.voterOpinion === 1) {
+      subHeader = Math.round(this.state.ratioPro).toString()
+      subHeader += this.props.occasion.preliminary
+        ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
+        : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
     } else {
+      subHeader = Math.round(this.state.ratioContra).toString()
+      subHeader += this.props.occasion.preliminary
+        ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
+        : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
+    }
 
-      const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
-        ? {
-          backgroundColor: voterOpinionColor,
-          minHeight: this.props.linkOccasion ? "4em" : null,
-          fontSize: "1.7rem"
-        } : {
-          fontSize: "1.7rem",
-          backgroundColor: "#333",
-          color: "#fcfcfc"
-        };
-
-      const voterOpinionName = {
-        "-1": "dagegen",
-        "0": "neutral",
-        "1": "dafür"
-      }[this.state.voterOpinion];
-
-      const voterTerritoryName = this.props.occasion.territory === 'europa'
-        ? 'Deutschland'
-        : TERRITORY_NAMES[this.props.occasion.territory];
-
-      const margin = this.props.quizMode ? "4em" : "2em"
-
-      let subHeader = ""
-      if (this.state.voterOpinion === 0) {
-        subHeader = " Keine Mehrheit dafür oder dagegen"
-      } else if (this.state.voterOpinion === 1) {
-        subHeader = Math.round(this.state.ratioPro).toString()
-        subHeader += this.props.occasion.preliminary
-          ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
-          : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
-      } else {
-        subHeader = Math.round(this.state.ratioContra).toString()
-        subHeader += this.props.occasion.preliminary
-          ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
-          : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
-      }
-
-      return <div style={{marginBottom: margin}}>
-        <Transition
-          visible={this.props.quizMode === true && this.state.quizAnswer != null}
-          animation={this.state.quizAnswer === this.state.voterOpinion ? 'tada' : 'shake'}
-          duration={500}>
-          <Header as='h1' textAlign='center' onClick={this.props.scrollToNextQuestion} style={{cursor: "pointer"}}>
-            { this.state.quizAnswer === this.state.voterOpinion
-              ? "🌞 Richtig! " + voterTerritoryName + " stimmt " + voterOpinionName + "."
-              : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
-            }
-            <Header.Subheader>
-              <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
-            </Header.Subheader>
-          </Header>
-        </Transition>
-
-        <Header as='h2' inverted attached="top" size="huge"
-          style={headerStyle}>
-
-          { this.props.linkOccasion &&
-            <OccasionSubtitle occasion={this.props.occasion} />
+    return <div style={{marginBottom: margin}}>
+      <Transition
+        visible={this.props.quizMode === true && this.state.quizAnswer != null}
+        animation={this.state.quizAnswer === this.state.voterOpinion ? 'tada' : 'shake'}
+        duration={500}>
+        <Header as='h1' textAlign='center' onClick={this.props.scrollToNextQuestion} style={{cursor: "pointer"}}>
+          { this.state.quizAnswer === this.state.voterOpinion
+            ? "🌞 Richtig! " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+            : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
           }
-
-          {/* { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
-            <Header.Subheader style={{marginTop: "0.3em"}}>
-              {this.props.title}
-            </Header.Subheader>
-          } */}
-
-          {this.props.text}
-
-          <Header.Subheader style={{marginTop: "0.3em"}}>
-          { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
-            <span>{ subHeader }</span>
-          }
+          <Header.Subheader>
+            <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
           </Header.Subheader>
         </Header>
+      </Transition>
 
-        { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
-          <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
-            <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-              Stimmverteilung { this.props.occasion.preliminary ? " (Prognose)" : ""}
-            </Header>
+      <Header as='h2' inverted attached="top" size="huge"
+        style={headerStyle}>
 
-            <PositionChart
-              parties={this.state.parties}
-              toggleOpen={this.toggleOpen} />
-
-            { this.state.openText != null &&
-              <Message
-                content={this.state.openText.text}
-                floating
-                header={this.state.openText.header} />
-            }
-
-            { this.props.showHints === true && this.state.openText == null &&
-              <Message style={{marginTop: "1rem"}}>
-                <Icon name='info circle' /> Bewege deine Maus über die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder wurden nicht von der Bundeszentrale für politische Bildung zu ihrer Position befragt.
-              </Message>
-            }
-
-            { this.state.error != null &&
-              <Message negative content={this.state.error} />
-            }
-
-            <p
-              className='sources'
-              onClick={() => this.setState({showSources: true})}>
-              Quellen{ this.state.showSources && <span>: {sources}</span> }
-            </p>
-
-          </Segment>
-
-          <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
-            { tagElems }
-            <br />
-            { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
-          </Segment>
-
-          { IS_ADMIN &&
-            <Segment attached='bottom' secondary>
-              <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
-              { this.state.loading && <Loader />}
-            </Segment>
-          }
-        </span> }
-
-        { this.props.quizMode === true && this.state.quizAnswer == null &&
-          <Button.Group fluid className='stackable quizButtons' attached='bottom'>
-            <Button onClick={() => this.handleAnswer(1)} style={{backgroundColor: OPINION_COLORS[1]}}>
-              Mehrheit dafür
-            </Button>
-
-            <Button onClick={() => this.handleAnswer(-1)} style={{backgroundColor: OPINION_COLORS[-1]}}>
-              Mehrheit dagegen
-            </Button>
-
-          </Button.Group>
+        { this.props.linkOccasion &&
+          <OccasionSubtitle occasion={this.props.occasion} />
         }
-      </div>
-    }
+
+        {/* { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
+          <Header.Subheader style={{marginTop: "0.3em"}}>
+            {this.props.title}
+          </Header.Subheader>
+        } */}
+
+        {this.props.text}
+
+        <Header.Subheader style={{marginTop: "0.3em"}}>
+        { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
+          <span>{ subHeader }</span>
+        }
+        </Header.Subheader>
+      </Header>
+
+      { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
+        <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
+          <Header sub style={{color: "rgba(0,0,0,.65)"}}>
+            Stimmverteilung { this.props.occasion.preliminary ? " (Prognose)" : ""}
+          </Header>
+
+          <PositionChart
+            parties={this.state.parties}
+            toggleOpen={this.toggleOpen} />
+
+          { this.state.openText != null &&
+            <Message
+              content={"»" + this.state.openText.text + "«"}
+              floating
+              header={this.state.openText.header} />
+          }
+
+          { this.props.showHints === true && this.state.openText == null &&
+            <Message style={{marginTop: "1rem"}}>
+              <Icon name='info circle' /> Bewege deine Maus über die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder wurden nicht von der Bundeszentrale für politische Bildung zu ihrer Position befragt.
+            </Message>
+          }
+
+          { this.state.error != null &&
+            <Message negative content={this.state.error} />
+          }
+
+          <p
+            className='sources'
+            onClick={() => this.setState({showSources: true})}>
+            Quellen{ this.state.showSources && <span>: {sources}</span> }
+          </p>
+
+        </Segment>
+
+        <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
+          { tagElems }
+          <br />
+          { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
+        </Segment>
+
+        { IS_ADMIN &&
+          <Segment attached='bottom' secondary>
+            <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
+            { this.state.loading && <Loader />}
+          </Segment>
+        }
+      </span> }
+
+      { this.props.quizMode === true && this.state.quizAnswer == null &&
+        <Button.Group fluid className='stackable quizButtons' attached='bottom'>
+          <Button onClick={() => this.handleAnswer(1)} style={{backgroundColor: OPINION_COLORS[1]}}>
+            Mehrheit dafür
+          </Button>
+
+          <Button onClick={() => this.handleAnswer(-1)} style={{backgroundColor: OPINION_COLORS[-1]}}>
+            Mehrheit dagegen
+          </Button>
+
+        </Button.Group>
+      }
+    </div>
   }
 }

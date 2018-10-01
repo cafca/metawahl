@@ -1,13 +1,5 @@
-.quizLink {
-    margin-bottom: 1.5em;
-}
-
-.quizResult {
-  margin-top: 2em;
-}
-
-.quizResult .ui.a {
-  margin-bottom: 10px;
+.occasion-component {
+  padding-top: calc(2rem - .14285714em)
 }
 
 .thesis-compact {
@@ -28,7 +20,7 @@
   padding: 1em 2em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .occasionContainer {
     padding: 0;
   }

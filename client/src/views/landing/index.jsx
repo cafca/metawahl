@@ -6,16 +6,76 @@ import {
   Container, Grid, Header, List
 } from 'semantic-ui-react';
 
-import { RouteProps } from '../../types/';
-import { TERRITORY_NAMES } from '../../config/';
+import Errorhandler from "../../utils/errorHandler";
+import { RouteProps, ThesisType, OccasionType } from '../../types/';
+import { TERRITORY_NAMES, API_ROOT } from '../../config/';
 import Map from '../../components/map/';
+import OccasionComponent from '../../components/occasion/';
 
 import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
 
-import './Landing.css';
+import './styles.css';
 import SuggestionsGrid from '../../components/suggestionsGrid';
 
-class LandingView extends React.Component<RouteProps> {
+type State = {
+  isLoading: boolean,
+  occasion: OccasionType,
+  theses: Array<ThesisType>,
+  error?: ?string
+}
+
+class LandingView extends React.Component<RouteProps, State> {
+  occasionNum: number = 43
+  territory: string = 'bayern'
+  handleError: ErrorType => any;
+
+  constructor(props: RouteProps) {
+    super(props)
+    this.state = {
+      isLoading: true,
+      occasion: this.getCachedOccasion(),
+      theses: []
+    }
+    this.handleError = Errorhandler.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadOccasion();
+  }
+
+  getCachedOccasion() {
+    return this.props.occasions[this.territory] == null
+      ? null
+      : this.props.occasions[this.territory]
+          .filter(occ => occ.id === this.occasionNum)
+          .shift();
+  }
+
+  loadOccasion(cb?: OccasionType => mixed) {
+    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(response => {
+        if (!this.handleError(response)) {
+          this.setState({
+            isLoading: false,
+            occasion: response.data,
+            theses: response.theses || []
+          });
+          if (cb != null) cb(response.data);
+        }
+      })
+      .catch((error: Error) => {
+        this.handleError(error);
+        this.setState({
+          isLoading: false,
+          occasion: this.getCachedOccasion(),
+          theses: []
+        });
+      });
+  }
+
+
   render() {
     const territorries = Object.keys(TERRITORY_NAMES)
       .filter(k => ['deutschland', 'europa'].indexOf(k) === -1).map(k =>
@@ -44,11 +104,19 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
+      <OccasionComponent
+        title='Prognose zur Landtagswahl in Bayern'
+        occasion={this.state.occasion}
+        theses={this.state.theses}
+        territory={this.territory}
+        occasionNum={this.occasionNum}
+      />
+
       <SuggestionsGrid title='Lies jetzt' sections={[
         {
-          subTitle: 'Prognose zur Landtagswahl',
-          title: 'Bayern 2018',
-          href: '/wahlen/bayern/43/'
+          subTitle: 'Bayern 2018',
+          title: 'Quiz zur Landtagswahl',
+          href: '/quiz/bayern/43/'
         },
         {
           subTitle: 'Alle Fragen aus der',
