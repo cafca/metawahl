@@ -20,7 +20,7 @@
   padding: 1em 2em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .occasionContainer {
     padding: 0;
   }

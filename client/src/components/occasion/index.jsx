@@ -89,19 +89,21 @@ export default class Occasion extends React.Component<Props, State> {
     return (
       <div className="occasion-component">
         <Header as="h1">
-          {this.props.occasion == null
-            ? " "
-            : this.props.occasion.preliminary
-              ? "Welche Politik wird voraussichtlich bei der " +
-                this.props.occasion.title +
-                " gewählt?"
-              : "Welche Politik wurde bei der " +
-                this.props.occasion.title +
-                " gewählt?"}
+          {this.props.title != null
+            ? this.props.title
+            : this.props.occasion == null
+              ? " "
+              : this.props.occasion.preliminary
+                ? "Welche Politik wird voraussichtlich bei der " +
+                  this.props.occasion.title +
+                  " gewählt?"
+                : "Welche Politik wurde bei der " +
+                  this.props.occasion.title +
+                  " gewählt?"}
           {this.props.occasion != null && (
             <Header.Subheader>
               {this.props.occasion.preliminary
-                ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich für die jeweiligen Thesen ausgesprochen haben"
+                ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben"
                 : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
             </Header.Subheader>
           )}
