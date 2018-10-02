@@ -56,14 +56,14 @@ export default class Occasion extends React.Component<Props, State> {
               : url.indexOf("wikipedia") >= 0
                 ? sources.push(
                     <span key="wp-source">
-                      ,<a href={url}>Wahlergebnisse: Wikipedia</a>
+                      ,<a href={url}>Wahlergebnisse aus Wikipedia und lizensiert unter CC-BY-NC-SA-3.0</a>
                     </span>
                   )
                 : sources.push(
                     <span key="dawum-source">
                       ,
                       <a href={url}>
-                        Wahlprognose: dawum.de, lizensiert unter CC-BY-NC-SA-4.0
+                        Wahlprognose von dawum.de und lizensiert unter CC-BY-NC-SA-4.0
                       </a>
                     </span>
                   )
