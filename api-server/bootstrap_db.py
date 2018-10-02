@@ -5,6 +5,7 @@ Bootstrap database from JSON
 """
 import json
 import os
+import sys
 import dateutil.parser
 
 from collections import defaultdict
@@ -60,7 +61,8 @@ OCCASION_IDS = {
     "data/2017/saarland": 40,
     "data/2017/nordrheinwestfalen": 41,
     "data/2017/deutschland": 42,
-    "data/2018/bayern": 43
+    "data/2018/bayern": 43,
+    "data/2018/hessen": 44
 }
 
 INVALID_POSITION_TEXTS = [
@@ -377,7 +379,11 @@ def load_results():
 
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
-                options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
+                try:
+                    options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
+                except KeyError as e:
+                    logger.error("Missing substitution: {}".format(e.message))
+                    sys.exit()
                 matches = [(name, result) for name, result in res["results"].items() if name.lower() in options]
 
                 if len(matches) > 0:
