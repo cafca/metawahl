@@ -400,7 +400,10 @@ def load_results():
                             source=res["url"]
                         )
                 else:
-                    logger.error("No vote count for {} in {}".format(p, occ))
+                    if occ.preliminary:
+                        logger.info("{} missing vote count for  {}".format(occ, p))
+                    else:
+                        logger.error("No vote count for {} in {}".format(p, occ))
 
             # Add results missing in Wahl-o-Mat
             for p_name, match in res["results"].items():
