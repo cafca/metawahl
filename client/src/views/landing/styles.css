@@ -2,6 +2,30 @@
   max-height: 5em;
 }
 
+.st1 {
+  fill: #CCCCCC;
+}
+
+.st2 {
+  fill: #CCCCCC;
+  stroke: #F2F2F2;
+  stroke-miterlimit: 10;
+}
+
+.st3 {
+  fill: #F2F2F2;
+}
+
+.st4 {
+  fill: #999999;
+}
+
+.st5 {
+  fill: #999999;
+  stroke: #F2F2F2;
+  stroke-miterlimit: 10;
+}
+
 .st5:hover {
   fill: rgb(42, 64, 101);
 }
