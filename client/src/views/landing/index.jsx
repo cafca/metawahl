@@ -231,14 +231,14 @@ class LandingView extends React.Component<RouteProps, State> {
         <Grid.Column>
           <h3>Landtagswahlen</h3>
           <List>
-            {territorries.slice(0, parseInt(territorries.length / 2, 10))}
+            {territorries.slice(0, Math.ceil(territorries.length / 2))}
           </List>
         </Grid.Column>
 
         <Grid.Column>
           <h3>&nbsp;</h3>
           <List>
-            {territorries.slice(parseInt(territorries.length / 2, 10))}
+            {territorries.slice(Math.ceil(territorries.length / 2))}
           </List>
         </Grid.Column>
       </Grid>
