@@ -902,7 +902,7 @@
         "Asylsuchende", 
         "Asylberechtigter"
       ], 
-      "description": "Individual who seeks refuge, esp. political asylum, in a foreign country", 
+      "description": "Personen, die Aufnahme und Schutz vor politischer, religi\u00f6ser oder sonstiger Verfolgung suchen", 
       "labels": [
         "Asylbewerber"
       ], 
@@ -1816,6 +1816,7 @@
         "Bienenweide", 
         "Trachtpflanze"
       ], 
+      "description": "Pflanzen, die besonders reichhaltig Nektar und Pollen erzeugen", 
       "labels": [
         "Bienentrachtpflanze"
       ], 
@@ -2708,7 +2709,7 @@
       "title": "Bu\u00dfe", 
       "url": "http://www.wikidata.org/entity/Q2842797", 
       "wikidata_id": "Q2842797", 
-      "wikipedia_title": "Bu\u00dfe (Verwaltungsrecht)"
+      "wikipedia_title": "Geldbu\u00dfe (Verwaltungsrecht)"
     }, 
     {
       "description": "Konzept der Versicherung ausnahmslos aller B\u00fcrger in einer Krankenversicherung", 
@@ -2794,6 +2795,7 @@
       "wikipedia_title": "Computerspiel"
     }, 
     {
+      "description": "Practice of digging in shops trash dumpsters to recover what could still be eaten or used", 
       "labels": [
         "Containern"
       ], 
@@ -2807,7 +2809,7 @@
       "wikipedia_title": "Containern"
     }, 
     {
-      "description": "Alle Ma\u00dfnahmen zur angemessenen Nutzung von personenbezogenen Daten", 
+      "description": "Rechtsbegriff, alle Ma\u00dfnahmen zur angemessenen Nutzung von personenbezogenen Daten", 
       "slug": "datenschutz", 
       "theses": [
         "WOM-044-14", 
@@ -2856,7 +2858,8 @@
       ], 
       "title": "Datenschutz", 
       "url": "http://www.wikidata.org/entity/Q456632", 
-      "wikidata_id": "Q456632"
+      "wikidata_id": "Q456632", 
+      "wikipedia_title": "Datenschutz"
     }, 
     {
       "description": "Aktivit\u00e4t, die eine bestimmte Ansicht oder Meinung ausdr\u00fccken soll", 
@@ -3021,7 +3024,7 @@
         "Dieselpartikelfilter", 
         "Ru\u00dfpartikelfilter"
       ], 
-      "description": "Removes diesel particulate matter or soot from the exhaust gas of a diesel engine", 
+      "description": "Einrichtung zur Reduzierung von Feinstaub", 
       "labels": [
         "Dieselru\u00dfpartikelfilter"
       ], 
@@ -3597,7 +3600,7 @@
       "wikipedia_title": "Energiesteuergesetz (Deutschland)"
     }, 
     {
-      "description": "Realisierung einer Nachhaltigen Energieversorgung in den Sektoren Strom, W\u00e4rme und Mobilit\u00e4t mit Erneuerbaren Energien", 
+      "description": "Politischer Entscheid f\u00fcr eine nachhaltige Energieversorgung in den Sektoren Strom, W\u00e4rme und Mobilit\u00e4t mit Erneuerbaren Energien", 
       "labels": [
         "Energiewende"
       ], 
@@ -3971,7 +3974,7 @@
       "wikipedia_title": "Europ\u00e4ische Wirtschafts- und W\u00e4hrungsunion"
     }, 
     {
-      "description": "ETTA", 
+      "description": "Zollunion", 
       "labels": [
         "Europ\u00e4ische Zollunion"
       ], 
@@ -4011,7 +4014,7 @@
         "Extremistisch", 
         "Politischer Extremismus"
       ], 
-      "description": "Unacceptable ideology", 
+      "description": "Ideology considered extreme in a pejorative sense", 
       "labels": [
         "Extremismus"
       ], 
@@ -4077,7 +4080,7 @@
       "wikipedia_title": "Fahrrad"
     }, 
     {
-      "description": "Verkehrsanlage f\u00fcr Fahrradfahrer", 
+      "description": "Stra\u00dfe mit Vorrang f\u00fcr Fahrr\u00e4der", 
       "slug": "fahrradstrasse", 
       "theses": [
         "WOM-009-16"
@@ -4225,7 +4228,8 @@
       ], 
       "title": "Familienpolitik", 
       "url": "http://www.wikidata.org/entity/Q358238", 
-      "wikidata_id": "Q358238"
+      "wikidata_id": "Q358238", 
+      "wikipedia_title": "Familienpolitik"
     }, 
     {
       "slug": "fangquote", 
@@ -4277,7 +4281,7 @@
       "wikipedia_title": "Ferienwohnung"
     }, 
     {
-      "description": "Stra\u00dfentunnel zwischen D\u00e4nemark und Deutschland", 
+      "description": "Geplanter Eisenbahn- und Stra\u00dfentunnel zwischen D\u00e4nemark und Deutschland", 
       "labels": [
         "Feste Fehmarnbeltquerung"
       ], 
@@ -4482,7 +4486,7 @@
       "wikipedia_title": "Flughafen"
     }, 
     {
-      "description": "Flughafen in Deutschland", 
+      "description": "In Bau befindlicher Flughafen in Deutschland", 
       "slug": "flughafen-berlin-brandenburg", 
       "theses": [
         "WOM-038-03", 
@@ -4510,7 +4514,7 @@
         "Flughafen Frankfurt-Main", 
         "FRA"
       ], 
-      "description": "deutscher Flughafen in Hessen", 
+      "description": "Deutscher Flughafen in Hessen", 
       "labels": [
         "Flughafen Frankfurt am Main"
       ], 
@@ -4593,7 +4597,7 @@
         "Fl\u00fcchtlinge", 
         "Gefl\u00fcchteter"
       ], 
-      "description": "Person, die sich aus begr\u00fcndeter Furcht vor Verfolgung au\u00dferhalb des Landes befindet, dessen Staatsangeh\u00f6rigkeit sie besitzt", 
+      "description": "Person, die sich aus Furcht vor Verfolgung au\u00dferhalb ihres Heimatlandes befindet", 
       "labels": [
         "Fl\u00fcchtling"
       ], 
@@ -4689,7 +4693,7 @@
       "wikipedia_title": "Franz\u00f6sische Sprache"
     }, 
     {
-      "description": "Place of temporary refuge and support for women escaping violent or abusive situations", 
+      "description": "Soziale Einrichtung f\u00fcr Frauen", 
       "labels": [
         "Frauenhaus"
       ], 
@@ -4881,6 +4885,7 @@
       "wikipedia_title": "F\u00fchrerschein und Fahrerlaubnis (Deutschland)"
     }, 
     {
+      "description": "Sperrklausel f\u00fcr Wahlen in Deutschland", 
       "labels": [
         "F\u00fcnf-Prozent-H\u00fcrde in Deutschland"
       ], 
@@ -5111,6 +5116,7 @@
       "wikipedia_title": "Gemeinsame Au\u00dfen- und Sicherheitspolitik"
     }, 
     {
+      "description": "Defence policy of the European Union", 
       "labels": [
         "Gemeinsame Sicherheits- und Verteidigungspolitik"
       ], 
@@ -5382,7 +5388,7 @@
         "Facebook-Gesetz", 
         "Netzwerkdurchsetzungsgesetz"
       ], 
-      "description": "Gesetz gegen Hetze und gef\u00e4lschte Meldungen in sozialen Netzwerken; Zensurgesetz", 
+      "description": "Gesetz gegen Hetze und gef\u00e4lschte Meldungen in sozialen Netzwerken", 
       "labels": [
         "Gesetz zur Verbesserung der Rechtsdurchsetzung in sozialen Netzwerken"
       ], 
@@ -5396,7 +5402,6 @@
       "wikipedia_title": "Netzwerkdurchsetzungsgesetz"
     }, 
     {
-      "description": "Krankenversicherung", 
       "slug": "gesetzliche-krankenversicherung", 
       "theses": [
         "WOM-042-27", 
@@ -5753,7 +5758,7 @@
       "wikipedia_title": "Griechische Staatsschuldenkrise"
     }, 
     {
-      "description": "Steuer, die beim Erwerb einer Immobilie anf\u00e4llt", 
+      "description": "Steuer", 
       "labels": [
         "Grunderwerbsteuer"
       ], 
@@ -5772,7 +5777,8 @@
       ], 
       "title": "Grunderwerbsteuer", 
       "url": "http://www.wikidata.org/entity/Q1428543", 
-      "wikidata_id": "Q1428543"
+      "wikidata_id": "Q1428543", 
+      "wikipedia_title": "Grunderwerbsteuer"
     }, 
     {
       "aliases": [
@@ -7367,7 +7373,7 @@
       "wikipedia_title": "Kirchensteuer (Deutschland)"
     }, 
     {
-      "description": "Mixed-sex education", 
+      "description": "Gemeinsame Ausbildung von beiden Geschlechtern", 
       "labels": [
         "Koedukation"
       ], 
@@ -7522,7 +7528,7 @@
       "wikipedia_title": "Kopfnote"
     }, 
     {
-      "description": "Piece of cloth worn on one's head", 
+      "description": "Kopftuch", 
       "labels": [
         "Kopftuch"
       ], 
@@ -7735,6 +7741,7 @@
         "Terahertz-Kamera", 
         "Nackt-Scanner"
       ], 
+      "description": "Ger\u00e4t, mit dem der K\u00f6rper einer Person sowie Gegenst\u00e4nde unter der Kleidung abgebildet werden k\u00f6nnen", 
       "labels": [
         "K\u00f6rperscanner"
       ], 
@@ -8138,7 +8145,7 @@
         "Linksextrem", 
         "Linksextremistisch"
       ], 
-      "description": "Political alignment", 
+      "description": "Politische Ausrichtung", 
       "labels": [
         "Linksextremismus"
       ], 
@@ -8792,6 +8799,7 @@
         "Geschlechtsspezifische Erziehung", 
         "Seedukation"
       ], 
+      "description": "Education conducted with males and females separated", 
       "labels": [
         "Monoedukation"
       ], 
@@ -9026,6 +9034,7 @@
         "Nebenjob", 
         "Nebeneinkommen"
       ], 
+      "description": "Aus\u00fcbung eines weiteren Berufs neben einem Hauptberuf", 
       "labels": [
         "Nebent\u00e4tigkeit"
       ], 
@@ -9740,6 +9749,7 @@
         "Polizeiliche und justizielle Zusammenarbeit", 
         "TREVI"
       ], 
+      "description": "Pillar of the European Union", 
       "labels": [
         "Polizeiliche und justizielle Zusammenarbeit in Strafsachen"
       ], 
@@ -10016,6 +10026,7 @@
       "wikipedia_title": "RAG Deutsche Steinkohle AG"
     }, 
     {
+      "description": "Verbindungen im Radverkehrsnetz", 
       "slug": "radschnellweg", 
       "theses": [
         "WOM-041-17"
@@ -10092,6 +10103,7 @@
         "gesetzlicher Rahmen", 
         "gesetzliche Regelung"
       ], 
+      "description": "Rights bestowed onto a person by a given legal system", 
       "labels": [
         "Rechtsanspruch"
       ], 
@@ -10282,7 +10294,8 @@
       ], 
       "title": "Religionsfreiheit", 
       "url": "http://www.wikidata.org/entity/Q171899", 
-      "wikidata_id": "Q171899"
+      "wikidata_id": "Q171899", 
+      "wikipedia_title": "Religionsfreiheit"
     }, 
     {
       "description": "Freedom of religion in Germany", 
@@ -10450,6 +10463,7 @@
       "wikipedia_title": "Richtlinie 2008/115/EG (R\u00fcckf\u00fchrungsrichtlinie)"
     }, 
     {
+      "description": "Gef\u00e4hrdungseinsch\u00e4tzung der Fu\u00dfballspiele", 
       "slug": "risikospiel", 
       "theses": [
         "WOM-041-08", 
@@ -10475,7 +10489,7 @@
         "Fernsehrat", 
         "H\u00f6rfunkrat"
       ], 
-      "description": "Oberstes f\u00fcr die Programmkontrolle zust\u00e4ndige Aufsichtsgremium", 
+      "description": "Oberstes f\u00fcr die Programmkontrolle zust\u00e4ndiges Aufsichtsgremium", 
       "labels": [
         "Rundfunkrat"
       ], 
@@ -10741,6 +10755,7 @@
       "wikipedia_title": "Schulabschluss"
     }, 
     {
+      "description": "Haushaltsdisziplin", 
       "slug": "schuldenbremse-deutschland", 
       "theses": [
         "WOM-039-23", 
@@ -11071,6 +11086,7 @@
         "SemesterTicket", 
         "SemesterCard"
       ], 
+      "description": "Fahrausweis f\u00fcr den \u00f6ffentlichen Personennahverkehr, der f\u00fcr Studierende ein Semester lang gilt", 
       "labels": [
         "Semesterticket"
       ], 
@@ -11419,7 +11435,8 @@
       ], 
       "title": "Sozialpolitik", 
       "url": "http://www.wikidata.org/entity/Q828395", 
-      "wikidata_id": "Q828395"
+      "wikidata_id": "Q828395", 
+      "wikipedia_title": "Sozialpolitik"
     }, 
     {
       "slug": "sozialticket", 
@@ -11967,7 +11984,7 @@
         "Stra\u00dfenbahnverkehr", 
         "Tramverkehr"
       ], 
-      "description": "Schienengebundenes Transportmittel im Stadtverkehr des \u00f6ffentlichen Personennahverkehrs", 
+      "description": "Schienengebundenes Fahrzeug im Stadtverkehr des \u00f6ffentlichen Personennahverkehrs", 
       "labels": [
         "Stra\u00dfenbahn"
       ], 
@@ -12061,6 +12078,7 @@
       "wikipedia_title": "Strompreis"
     }, 
     {
+      "description": "Einstellung der Energieversorgung", 
       "labels": [
         "Stromsperre"
       ], 
@@ -12541,6 +12559,7 @@
       "aliases": [
         "Flugplatz Bad Lippspringe"
       ], 
+      "description": "British military training area in Germany", 
       "labels": [
         "Truppen\u00fcbungsplatz Senne"
       ], 
@@ -12787,7 +12806,8 @@
       ], 
       "title": "Umweltschutz", 
       "url": "http://www.wikidata.org/entity/Q832237", 
-      "wikidata_id": "Q832237"
+      "wikidata_id": "Q832237", 
+      "wikipedia_title": "Umweltschutz"
     }, 
     {
       "slug": "umweltzone", 
@@ -12923,7 +12943,7 @@
         "Betrieb", 
         "Unternehmung"
       ], 
-      "description": "Organisationseinheit in der Wirtschaft", 
+      "description": "Gewerbliches oder kaufm\u00e4nnisches Unternehmen", 
       "labels": [
         "Unternehmen"
       ], 
@@ -12933,8 +12953,7 @@
       ], 
       "title": "Unternehmen", 
       "url": "http://www.wikidata.org/entity/Q4830453", 
-      "wikidata_id": "Q4830453", 
-      "wikipedia_title": "Unternehmen"
+      "wikidata_id": "Q4830453"
     }, 
     {
       "labels": [
@@ -13249,7 +13268,7 @@
       "wikipedia_title": "Versetzung (Schule)"
     }, 
     {
-      "description": "Process of taking a private industry or private assets into public ownership by a national government or state", 
+      "description": "\u00dcberf\u00fchrung von Privateigentum/-aufgaben in Staatseigentum/-aufgaben", 
       "slug": "verstaatlichung", 
       "theses": [
         "WOM-042-15", 
@@ -14448,7 +14467,8 @@
       ], 
       "title": "politisches System", 
       "url": "http://www.wikidata.org/entity/Q28108", 
-      "wikidata_id": "Q28108"
+      "wikidata_id": "Q28108", 
+      "wikipedia_title": "Politisches System"
     }, 
     {
       "description": "Zusammenh\u00e4ngende Bestrebungen, die Folgen verschiedener Arten von Ereignissen auszugleichen", 
@@ -14503,7 +14523,8 @@
       ], 
       "title": "soziale Sicherheit", 
       "url": "http://www.wikidata.org/entity/Q2483208", 
-      "wikidata_id": "Q2483208"
+      "wikidata_id": "Q2483208", 
+      "wikipedia_title": "Soziale Sicherheit"
     }, 
     {
       "description": "Staatlich gef\u00f6rderter Wohnungsbau", 
@@ -14602,6 +14623,7 @@
       "wikipedia_title": "\u00d6ffentlich-rechtliches Kreditinstitut"
     }, 
     {
+      "description": "Garantieversprechen der Verwaltung", 
       "labels": [
         "\u00d6ffentliche B\u00fcrgschaft"
       ], 
@@ -14918,6 +14940,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "15.87452s"
+    "render_time": "15.78784s"
   }
 }
