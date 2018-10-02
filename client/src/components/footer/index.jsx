@@ -13,8 +13,8 @@ import {
 import type { RouteProps } from '../../types/';
 import { TERRITORY_NAMES } from '../../config/';
 
-import BMBF from '-!svg-react-loader!./logo-bmbf.svg'; // eslint-disable-line import/no-webpack-loader-syntax
-import OKFN from '-!svg-react-loader!./logo-okfn.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+import { ReactComponent as BMBF } from './logo-bmbf.svg'
+import { ReactComponent as OKFN } from './logo-okfn.svg'
 
 const Footer = (props: RouteProps) => {
   const territorries = Object.keys(props.occasions).map(o =>
