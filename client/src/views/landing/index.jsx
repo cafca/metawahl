@@ -84,7 +84,7 @@ class LandingView extends React.Component<RouteProps, State> {
       </List.Item>);
 
     return <Container>
-      <Grid columns='2' stackable verticalAlign='middle'>
+      <Grid columns='2' stackable verticalAlign='middle' id='hero'>
         <Grid.Column>
           <h1 className="ui header" style={{fontSize: "4rem"}}>
             <Logo className='logo' alt='Metawahl Logo'/>
@@ -95,7 +95,7 @@ class LandingView extends React.Component<RouteProps, State> {
             Metawahl zeigt, wie sich der politische Konsens in Deutschland über Zeit ändert.
           </Header>
           <Header size='medium'>
-            Hierzu werden die Aussagen der Parteien aus 44 Wahl-o-Maten mit den dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar, welche Politik von vielen Stimmen gestützt wird und welche Parteien dies möglich machen.
+            Hierzu werden die Aussagen der Parteien aus 45 Wahl-o-Maten mit den dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar, welche Politik von vielen Stimmen gestützt wird und welche Parteien dies möglich machen.
           </Header>
 
           <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
@@ -231,14 +231,14 @@ class LandingView extends React.Component<RouteProps, State> {
         <Grid.Column>
           <h3>Landtagswahlen</h3>
           <List>
-            {territorries.slice(0, parseInt(territorries.length / 2, 10))}
+            {territorries.slice(0, Math.ceil(territorries.length / 2))}
           </List>
         </Grid.Column>
 
         <Grid.Column>
           <h3>&nbsp;</h3>
           <List>
-            {territorries.slice(parseInt(territorries.length / 2, 10))}
+            {territorries.slice(Math.ceil(territorries.length / 2))}
           </List>
         </Grid.Column>
       </Grid>

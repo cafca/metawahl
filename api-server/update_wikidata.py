@@ -8,9 +8,13 @@ import json
 import os
 import wikipedia
 import time
+import logging
+
+from datetime import datetime, timedelta
 
 from models import Tag
-from main import logger, create_app, db
+from main import create_app, db
+from logger import setup_logger
 from wikidata.client import Client
 
 NON_DESCRIPTIONS = [
@@ -18,18 +22,31 @@ NON_DESCRIPTIONS = [
     'Wikimedia-Liste'
 ]
 
+RATE = 1  # seconds wait time
+
+logger = setup_logger(logfile="../wikidata_update.log", level=logging.DEBUG)
+
+
 def update_tags(fast=False):
     logger.info("Updating all Wikidata content...")
 
     client = Client()
     tags = db.session.query(Tag).all()
+    num_tags = len(tags)
+    last_request = None
 
-    for tag in tags:
+    logger.info("Loaded {} tags".format(num_tags))
+
+    for i, tag in enumerate(tags):
+        if i % 10 == 0:
+            logger.info(
+                "Now at tag #{0} --- {1:.1f}%".format((i + 1), (100.0 * i / num_tags)))
         wd = client.get(tag.wikidata_id, load=True)
         ident = tag.title[:16].ljust(16)
 
         # Update title
-        title = wd.attributes.get('labels', {}).get('de', {}).get('value', None)
+        title = wd.attributes.get('labels', {}).get(
+            'de', {}).get('value', None)
         if (title != tag.title):
             logger.warning("{} Title changed -> '{}'".format(ident, title))
             logger.warning("Title cannot be changed while it is a PK in db")
@@ -47,7 +64,7 @@ def update_tags(fast=False):
         if description is not None:
             description = description[0].title() + description[1:]
 
-        if description in NON_DESCRIPTIONS :
+        if description in NON_DESCRIPTIONS:
             logger.warning("{} Ignoring non-description '{}'".format(
                 ident, description))
             description = None
@@ -79,8 +96,12 @@ def update_tags(fast=False):
 
         db.session.add(tag)
 
-        if fast is not True:
-            time.sleep(1)
+        if last_request is not None:
+            td = timedelta(seconds=RATE) - (datetime.now() - last_request)
+            wait_time = td.seconds + td.microseconds / 1E6
+            if wait_time <= 1:
+                time.sleep(wait_time)
+        last_request = datetime.now()
 
     logger.info("Committing changes to disk...")
     db.session.commit()
@@ -94,6 +115,5 @@ if __name__ == '__main__':
     fast = "--fast" in sys.argv
 
     with app.app_context():
-        # update_tags(fast=fast)
-        update_wikipedia_descriptions(fast=fast)
+        update_tags(fast=fast)
         logger.info("Done")

@@ -5,6 +5,7 @@ Bootstrap database from JSON
 """
 import json
 import os
+import sys
 import dateutil.parser
 
 from collections import defaultdict
@@ -60,7 +61,8 @@ OCCASION_IDS = {
     "data/2017/saarland": 40,
     "data/2017/nordrheinwestfalen": 41,
     "data/2017/deutschland": 42,
-    "data/2018/bayern": 43
+    "data/2018/bayern": 43,
+    "data/2018/hessen": 44
 }
 
 INVALID_POSITION_TEXTS = [
@@ -355,7 +357,8 @@ def load_results():
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
         result_data = json.load(f)
     with open("./substitutions.json") as f:
-        substitutions = json.load(f)
+        substitutions = defaultdict(list)
+        substitutions.update(json.load(f))
 
     for occ in db.session.query(Occasion).all():
         dt = occ.date.date()
