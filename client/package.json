@@ -1,6 +1,6 @@
 {
   "name": "metawahl",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "private": true,
   "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
@@ -16,7 +16,7 @@
     "react-helmet": "^5.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.5",
+    "react-scripts": "^2.0.3",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.2",
     "wikidata-sdk": "^5.3.1"
@@ -33,13 +33,18 @@
     "eslint-plugin-flowtype": "^2.42.0",
     "flow-bin": "^0.60.1",
     "iflow-react-router": "^1.2.1",
-    "react-snap": "^1.18.0",
-    "svg-react-loader": "^0.4.5"
+    "react-snap": "^1.18.0"
   },
   "reactSnap": {
     "cacheAjaxRequests": true,
     "minifyHtml": {
       "sortClassName": false
     }
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

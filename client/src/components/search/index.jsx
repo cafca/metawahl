@@ -89,7 +89,8 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
     }
   }
 
-  handleResultSelect(result) {
+  handleResultSelect(e: Event, result) {
+    e.preventDefault()
     const baseUrl = result.kind === 'territory'
       ? '/wahlen/'
       : '/themen/';
@@ -145,8 +146,8 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
 
   render() {
     const territoryResults = this.state.territoryResults.map(res =>
-      <a className="result" key={"result-territory-" + res.slug}
-        onClick={() => this.handleResultSelect(res)}>
+      <a className="result" key={"result-territory-" + res.slug} href={`/wahlen/${res.slug}/`}
+        onClick={(e) => this.handleResultSelect(e, res)}>
 
         <div className="content">
           <div className='title'>{res.title}</div>
@@ -157,7 +158,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
 
     const tagResults = this.state.tagResults.map(res =>
       <span className="result" key={"result-" + res.slug}
-        onClick={() => this.handleResultSelect(res)}>
+        onClick={this.handleResultSelect}>
 
         <div className="content">
           <div className='title'>

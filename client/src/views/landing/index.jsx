@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Grid, Header, List
+  Container, Grid, Header, List, Message
 } from 'semantic-ui-react';
 
 import Errorhandler from "../../utils/errorHandler";
@@ -12,7 +12,7 @@ import { TERRITORY_NAMES, API_ROOT } from '../../config/';
 import Map from '../../components/map/';
 import OccasionComponent from '../../components/occasion/';
 
-import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+import { ReactComponent as Logo } from '../../logo.svg'
 
 import './styles.css';
 import SuggestionsGrid from '../../components/suggestionsGrid';
@@ -111,6 +111,10 @@ class LandingView extends React.Component<RouteProps, State> {
         territory={this.territory}
         occasionNum={this.occasionNum}
       />
+
+      {this.state.error != null && (
+        <Message negative content={this.state.error} />
+      )}
 
       <SuggestionsGrid title='Lies jetzt' sections={[
         {
