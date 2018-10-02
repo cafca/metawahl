@@ -13,8 +13,8 @@ import {
 import type { RouteProps } from '../../types/';
 import { TERRITORY_NAMES } from '../../config/';
 
-import BMBF from '-!svg-react-loader!./logo-bmbf.svg'; // eslint-disable-line import/no-webpack-loader-syntax
-import OKFN from '-!svg-react-loader!./logo-okfn.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+import { ReactComponent as BMBF } from './logo-bmbf.svg'
+import { ReactComponent as OKFN } from './logo-okfn.svg'
 
 const Footer = (props: RouteProps) => {
   const territorries = Object.keys(props.occasions).map(o =>
@@ -27,7 +27,7 @@ const Footer = (props: RouteProps) => {
     .sort((a, b) => {return a.date < b.date ? 1 : -1})
     .slice(0, territorries.length)
     .map(o => <List.Item key={'footer-link-' + o.id} as='a'
-      href={'/wahlen/' + o.territory + '/' + o.id}>
+      href={'/wahlen/' + o.territory + '/' + o.id + "/"}>
       {o.title}
     </List.Item>);
 
@@ -45,7 +45,7 @@ const Footer = (props: RouteProps) => {
           </Grid.Column>
           <Grid.Column textAlign='left' className='ui inverted link list' >
             <Header inverted as='h4' content='Über Metawahl' />
-            <p>Was wir gewählt haben, als wir Parteien unsere Stimme gaben</p>
+            <p>Metawahl — Was haben wir gewählt?</p>
             <p>Ein Projekt von <a className="item" href="http://vincentahrend.com/">Vincent Ahrend</a></p>
             <p>
               Mit Unterstützung von <a className='item' href="https://denk-nach-mcfly.de">Hanno »friesenkiwi«</a> und <a className='item' href="https://github.com/gockelhahn/qual-o-mat-data">Felix Bolte »gockelhahn«</a> bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.

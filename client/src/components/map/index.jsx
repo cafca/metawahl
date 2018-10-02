@@ -8,8 +8,8 @@ import { TERRITORY_NAMES } from "../../config/";
 // (also in footer)
 // https://github.com/facebook/create-react-app/pull/3718
 
-import Deutschland from '-!svg-react-loader!./Deutschland.svg'; // eslint-disable-line import/no-webpack-loader-syntax
-import Europa from '-!svg-react-loader!./Europa.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+import { ReactComponent as Deutschland } from './Deutschland.svg'
+import { ReactComponent as Europa } from './Europa.svg'
 
 type MapProps = {
   territory: string,

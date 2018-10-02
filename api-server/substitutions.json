@@ -1,232 +1,51 @@
 {
-  "Graue Panther": [],
-  "DIE VIOLETTEN": [
-    "Violette",
-    "Die Violetten "
-  ],
-  "AfD": [],
-  "ALFA": [],
-  "B": [],
-  "DIE LINKE": [
-    "Linke"
-  ],
-  "GRÜNE": [],
-  "CDU": [],
-  "SPD": [],
-  "BüSo": [],
-  "PSG": [
-    "PSG "
-  ],
-  "ÖDP": [],
-  "DKP": [],
-  "Die PARTEI": [],
-  "pro Deutschland": [
-    "PRODE"
-  ],
-  "Tierschutzpartei": [
-    "Die Tierschutzpartei"
-  ],
-  "FDP": [],
-  "NPD": [],
-  "PIRATEN": [
-    "Piraten "
-  ],
-  "Gesundheitsforschung": [],
-  "MENSCHLICHE WELT": [
-    "MenschlicheWelt"
-  ],
-  "WASG": [],
-  "DIE LINKE.PDS": [
-    "Linke"
-  ],
-  "BÜNDNIS 90/DIE GRÜNEN": [
-    "Grüne",
-    "Grüne/GAL"
-  ],
-  "FAMILIE": [
-    "Familien-Partei"
-  ],
-  "UNABHÄNGIGE": [],
-  "APPD": [],
-  "ödp": [],
-  "BIG": [],
-  "DIE FREIHEIT": [
-    "FREIHEIT"
-  ],
-  "ddp": [],
-  "Deutsche Konservative": [
-    "KONSERVATIVE"
-  ],
-  "CDU/CSU": [
-    "Union",
-    "CDU",
-    "CSU"
-  ],
-  "PARTEI DER VERNUNFT": [],
+  "Allianz Deutscher Demokraten": ["AD-Demokraten"],
+  "B*": ["B", "Bergpartei"],
+  "Bü-Mi": ["BüMi"],
+  "Bündnis 21/RRP": ["Bündnis 21 / RRP"],
+  "Bündnis 90/ Die Grünen": ["Grüne"],
+  "BÜNDNIS 90/DIE GRÜNEN": ["Grüne", "Grüne/GAL"],
+  "Bündnis 90/Die Grünen": ["Grüne"],
+  "BVB / FREIE WÄHLER": ["FW", "BVB/Freie Wähler", "BVB/FW"],
+  "CDU / CSU": ["CDU", "Union"],
+  "CDU/CSU": ["Union", "CDU", "CSU"],
+  "Deutsche Konservative": ["KONSERVATIVE"],
+  "DIE EINHEIT": ["Einheit"],
+  "DIE FRAUEN": ["Frauen"],
+  "DIE FREIHEIT Niedersachsen": ["Freiheit"],
+  "DIE FREIHEIT": ["FREIHEIT"],
+  "Die Grauen": ["DieGrauen", "Graue"],
+  "Die Grünen": ["Grüne"],
+  "Die Humanisten": ["DieHumanisten"],
+  "DIE LINKE.": ["Linke"],
+  "DIE LINKE.PDS": ["Linke"],
+  "Die Linke": ["Linke"],
+  "DIE LINKE": ["Linke"],
+  "DIE RECHTE": ["DIERECHTE"],
+  "Die Tierschutzpartei": ["Tierschutz", "Tierschutzpartei"],
+  "DIE VIOLETTEN": ["Violette", "Die Violetten "],
+  "DIREKTE DEMOKRATIE": ["Direkte"],
+  "FAMILIE": ["Familien-Partei"],
+  "FBI Freie Wähler": ["FBI/Freie Wähler"],
+  "FBI/Freie Wähler": ["FW"],
+  "Freie Union": ["FU"],
+  "Freie Wähler Bayern": ["FW"],
+  "FREIE WÄHLER": ["FW"],
+  "FW FREIE WÄHLER": ["FW"],
+  "FWD": ["FW-SH"],
+  "GRÜNE/B 90": ["Grüne"],
+  "GRÜNE/GAL": ["Grüne"],
+  "III. Weg": ["IIIWEG"],
+  "MENSCHLICHE WELT": ["MenschlicheWelt"],
   "Partei der Nichtwähler": ["Nichtwähler"],
-  "FREIE WÄHLER": [
-    "FW"
-  ],
-  "DIE FRAUEN": [
-    "Frauen"
-  ],
-  "Volksabstimmung": [
-    "Volksabstimmung "
-  ],
-  "MLPD": [],
-  "PBC": [],
-  "BP": [],
-  "RENTNER": [
-    "Rentner "
-  ],
-  "Bündnis 21/RRP": [
-    "Bündnis 21 / RRP"
-  ],
-  "CDU / CSU": [
-    "CDU",
-    "Union"
-  ],
-  "REP": [],
-  "PDS": [],
-  "Bündnis 90/ Die Grünen": [
-    "Grüne"
-  ],
-  "ADM": [],
-  "ZENTRUM": [
-    "Deutsche Zentrumspartei"
-  ],
-  "Die Tierschutzpartei": [
-    "Tierschutz",
-    "Tierschutzpartei"
-  ],
-  "FWD": [
-    "FW-SH"
-  ],
-  "DVU": [],
-  "RRP": [
-    "RRP "
-  ],
-  "PDV": [],
-  "SGP": [],
-  "DIE RECHTE": [
-    "DIERECHTE"
-  ],
-  "Allianz Deutscher Demokraten": [
-    "AD-Demokraten"
-  ],
-  "Tierschutzallianz": [],
-  "B*": [
-    "B",
-    "Bergpartei"
-  ],
-  "BGE": [],
-  "DiB": [],
-  "DM": [],
-  "Die Grauen": [
-    "DieGrauen",
-    "Graue"
-  ],
-  "du.": [],
-  "Die Humanisten": [
-    "DieHumanisten"
-  ],
-  "V-Partei³": [
-    "V-Partei"
-  ],
-  "BIW": [],
-  "PdB": [],
-  "Für Bremerhaven": [],
-  "FREIE WÄHLER BREMEN": [],
-  "BIP": [],
-  "B+B": [],
-  "Dialog Grundeinkommen": [],
-  "BBL": [],
-  "DIE LINKE.": [
-    "Linke"
-  ],
-  "GRÜNE/GAL": [
-    "Grüne"
-  ],
-  "Bü-Mi": [
-    "BüMi"
-  ],
-  "HHBL": [],
-  "Liberale": [],
-  "Die Linke": [
-    "Linke"
-  ],
-  "CSU": [],
-  "FW FREIE WÄHLER": [
-    "FW"
-  ],
-  "CM": [],
-  "50Plus": [],
-  "AUF": [],
-  "EDE": [],
-  "FBI": [],
-  "VOLKSENTSCHEIDE": [],
-  "Newropeans": [],
-  "Bündnis 90/Die Grünen": [
-    "Grüne"
-  ],
-  "PRO NRW": [],
-  "Bündnis C": [],
-  "RSB": [],
-  "DIE FRANKEN": [],
-  "FRAUENLISTE": [],
-  "Freie Wähler Bayern": [
-    "FW"
-  ],
-  "BVB / FREIE WÄHLER": [
-    "FW",
-    "BVB/Freie Wähler",
-    "BVB/FW"
-  ],
-  "GRÜNE/B 90": [
-    "Grüne"
-  ],
-  "DIE FREIHEIT Niedersachsen": [
-    "Freiheit"
-  ],
-  "FBI Freie Wähler": [
-    "FBI/Freie Wähler"
-  ],
-  "pro NRW": [
-    "proNRW"
-  ],
-  "Freie Union": [
-    "FU"
-  ],
-  "BGD": [],
-  "Partei der Vernunft": [],
-  "FBI/Freie Wähler": [
-    "FW"
-  ],
-  "TIERSCHUTZliste": [],
-  "JED": [],
-  "Schöner Leben": [],
-  "FBI/FWG": [],
-  "AD-Demokraten NRW": [],
-  "AUFBRUCH C": [],
-  "DBD": [],
-  "DIE EINHEIT": [
-    "Einheit"
-  ],
-  "III. Weg": [
-    "IIIWEG"
-  ],
-  "DIREKTE DEMOKRATIE": [
-    "Direkte"
-  ],
-  "LKR": [],
-  "REFORMER": [],
-  "DSU": [],
-  "FBM": [],
-  "Z.SH": [],
-  "SSW": [],
-  "MUD": [],
-  "Die Grünen": [
-    "Grüne"
-  ],
-  "KPD": []
+  "PIRATEN": ["Piraten "],
+  "pro Deutschland": ["PRODE"],
+  "pro NRW": ["proNRW"],
+  "PSG": ["PSG "],
+  "RENTNER": ["Rentner "],
+  "RRP": ["RRP "],
+  "Tierschutzpartei": ["Die Tierschutzpartei"],
+  "V-Partei³": ["V-Partei"],
+  "Volksabstimmung": ["Volksabstimmung "],
+  "ZENTRUM": ["Deutsche Zentrumspartei"]
 }

@@ -1,3 +1,5 @@
+![Metawahl Logo](https://raw.githubusercontent.com/ciex/metawahl/master/metawahl_logo.png)
+
 # Metawahl [![Build Status](https://travis-ci.org/ciex/metawahl.svg?branch=master)](https://travis-ci.org/ciex/metawahl)
 
 Metawahl verbindet Wahlergebnisse aus den letzten 16 Jahren mit über 21.000 Parteipositionen aus dem Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit für eine Idee gestimmt – oder dagegen?
@@ -104,9 +106,23 @@ Installation von metawahl durch Ausfürung eines einzelnen Skripts zu
 aktualisieren. Hierbei bleiben alle Daten bestehen, nur die Quellen für
 Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
 
+# Changelog
+
+Version | Beschreibung
+--------|--------------
+1.6.0   | Thematisch ähnliche Thesen auf jeder Thesenseite
+1.5.0   | Neues Format für die Startseite
+1.4.0   | Unterstützung von vorläufigen Wahlergebnissen
+1.3.0   | Kompakte Thesendarstellung
+1.2.0   | Bessere Quiz-Implementation
+1.1.0   | Quiz
+
 # Lizenz
 
-Siehe die Datei `./LICENSE`.
+Copyright 2018 Vincent Ahrend
+
+Lizensiert unter der GNU AFFERO GENERAL PUBLIC LICENSE 3.0 (Text der Lizenz 
+in der Datei `./LICENSE`.)
 
 Gefördert vom Bundesministerium für Bildung und Forschung
 

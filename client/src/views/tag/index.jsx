@@ -170,7 +170,7 @@ export default class TagView extends Component<RouteProps, State> {
       theses.length
     );
 
-    const thesesElems = this.state.loading || this.state.error  ? null : theses
+    const thesesElems = this.state.loading || this.state.error ? null : theses
       .slice(startPos, endPos)
       .map((thesis, i) =>
         <Thesis
@@ -337,7 +337,7 @@ export default class TagView extends Component<RouteProps, State> {
             }
           </h2>
 
-          <Legend />
+          <Legend text='Legende:' />
 
           <div style={{marginTop: "1.5em"}}>
             {thesesElems}

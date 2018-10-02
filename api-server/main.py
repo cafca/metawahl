@@ -449,7 +449,8 @@ def create_app(config=None):
             return json_response({"error": "Thesis not found"}, status=404)
 
         rv = {
-            "data": thesis.to_dict()
+            "data": thesis.to_dict(),
+            "related": thesis.related()
         }
 
         return json_response(rv)

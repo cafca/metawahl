@@ -10,9 +10,8 @@ import {
   Icon,
   Loader,
   Message,
-  Popup,
-  Responsive,
-  Segment
+  Segment,
+  Transition
 } from 'semantic-ui-react';
 
 import '../../index.css';
@@ -20,16 +19,18 @@ import { loadFromCache } from '../../app/';
 import WikidataTagger from '../wikidataTagger/';
 import Tag from '../tag/';
 import PositionChart from '../positionChart/';
-import Reactions from '../reactions/';
 import Map from '../map/';
 import ErrorHandler from '../../utils/errorHandler';
+import { extractThesisID } from "../../utils/thesis"
 
 import {
   adminKey,
   API_ROOT,
   COLOR_PALETTE,
+  OPINION_COLORS,
   IS_ADMIN,
-  makeJSONRequest,
+  TERRITORY_NAMES,
+  makeJSONRequest
   } from '../../config/';
 
 import type {
@@ -88,13 +89,15 @@ type State = {
   voterOpinion: -1 | 0 | 1,
   reported: ?boolean,
   reportingError?: string,
-  showSources: boolean
+  showSources: boolean,
+  quizAnswer: number
 };
 
 type Props = RouteProps & ThesisType & {
   occasion?: OccasionType,
   linkOccasion?: boolean,
-  showHints?: boolean
+  showHints?: boolean,
+  quizMode?: boolean
 };
 
 export default class Thesis extends Component<Props, State> {
@@ -115,10 +118,33 @@ export default class Thesis extends Component<Props, State> {
       ratioPro: 0.5,
       ratioContra: 0.5,
       reported: null,
-      showSources: false
+      showSources: false,
+      quizAnswer: null
     }
 
     this.handleError = ErrorHandler.bind(this);
+  }
+
+  collectSources() {
+    let sources = [];
+    if (this.props.occasion != null) {
+      sources.push(<span key='wom-source'><a href={this.props.occasion.source}>
+        Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+      </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
+          qual-o-mat-data
+        </a></span>);
+      if (this.props.occasion.results_sources) {
+        this.props.occasion.results_sources.forEach(url => url.indexOf('wahl.tagesschau.de') >= 0
+          ? sources.push(<span key='tagesschau-source'>,
+            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
+          : url.indexOf('wikipedia') >= 0
+            ? sources.push(<span key='wp-source'>,
+              <a href={url}>Wahlergebnisse: Wikipedia</a></span>)
+            : sources.push(<span key='dawum-source'>,
+              <a href={url}>Wahlprognose: dawum.de, lizensiert unter CC-BY-NC-SA-4.0</a></span>));
+      }
+    }
+    return sources;
   }
 
   componentWillMount() {
@@ -193,11 +219,16 @@ export default class Thesis extends Component<Props, State> {
     })
   }
 
+  handleAnswer(quizAnswer) {
+    this.setState({ quizAnswer });
+    this.props.answer(quizAnswer, this.state.voterOpinion === quizAnswer)
+  }
+
   toggleOpen(position: PositionType) {
     let openText: OpenTextType;
     if (position.value === "missing") {
       openText = Object.assign({}, position, {
-        text: "Diese Partei war im Wahl-o-Mat zu dieser Wahl nicht vertreten."
+        text: "Von dieser Partei liegen zu dieser Wahl keine Stellungnahmen vor."
       });
     } else if (position.text == null || position.text.length === 0) {
       openText = Object.assign({}, position, {
@@ -324,159 +355,147 @@ export default class Thesis extends Component<Props, State> {
     }
 
     // Collect sources
-    let sources = [];
-    if (this.props.occasion != null ) {
-      sources.push(<span><a href={this.props.occasion.source}>
-          Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
-        </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
-          qual-o-mat-data
-        </a></span>)
+    let sources = this.collectSources();
 
-      if (this.props.occasion.results_sources) {
-        this.props.occasion.results_sources.forEach(url =>
-          sources.push(<span>,
-            <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>
-          )
-        );
-      }
+    const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
+      ? {
+        backgroundColor: voterOpinionColor,
+        minHeight: this.props.linkOccasion ? "4em" : null,
+        fontSize: "1.7rem"
+      } : {
+        fontSize: "1.7rem",
+        backgroundColor: "#333",
+        color: "#fcfcfc"
+      };
+
+    const voterOpinionName = {
+      "-1": "dagegen",
+      "0": "neutral",
+      "1": "dafür"
+    }[this.state.voterOpinion];
+
+    const voterTerritoryName = this.props.occasion.territory === 'europa'
+      ? 'Deutschland'
+      : TERRITORY_NAMES[this.props.occasion.territory];
+
+    const margin = this.props.quizMode ? "4em" : "2em"
+
+    let subHeader = ""
+    if (this.state.voterOpinion === 0) {
+      subHeader = " Keine Mehrheit dafür oder dagegen"
+    } else if (this.state.voterOpinion === 1) {
+      subHeader = Math.round(this.state.ratioPro).toString()
+      subHeader += this.props.occasion.preliminary
+        ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
+        : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
+    } else {
+      subHeader = Math.round(this.state.ratioContra).toString()
+      subHeader += this.props.occasion.preliminary
+        ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
+        : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
     }
 
+    const thesisIdComps = extractThesisID(this.props.id)
+    const permaLink = `/wahlen/${this.props.occasion.territory}/${thesisIdComps['womID']}/${thesisIdComps['thesisNUM']}/`
 
+    return <div style={{marginBottom: margin}}>
+      <Transition
+        visible={this.props.quizMode === true && this.state.quizAnswer != null}
+        animation={this.state.quizAnswer === this.state.voterOpinion ? 'tada' : 'shake'}
+        duration={500}>
+        <Header as='h1' textAlign='center' onClick={this.props.scrollToNextQuestion} style={{cursor: "pointer"}}>
+          { this.state.quizAnswer === this.state.voterOpinion
+            ? "🌞 Richtig! " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+            : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
+          }
+          <Header.Subheader>
+            <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
+          </Header.Subheader>
+        </Header>
+      </Transition>
 
-    return <div style={{marginBottom: "2em"}}>
-      <Header as='h2' inverted attached="top" size="huge"
-        style={{
-          backgroundColor: voterOpinionColor,
-          minHeight: this.props.linkOccasion ? "4em" : null,
-          fontSize: "1.7rem"
-        }}>
+      <a href={permaLink}><Header as='h2' inverted attached="top" size="huge"
+        style={headerStyle}>
 
         { this.props.linkOccasion &&
           <OccasionSubtitle occasion={this.props.occasion} />
         }
 
-        { this.props.linkOccasion === false && (this.props.title != null && this.props.title.length > 0) &&
+        {/* { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
           <Header.Subheader style={{marginTop: "0.3em"}}>
             {this.props.title}
           </Header.Subheader>
-        }
+        } */}
 
         {this.props.text}
 
         <Header.Subheader style={{marginTop: "0.3em"}}>
-        {this.state.voterOpinion === 0 ? " Keine Mehrheit dafür oder dagegen"
-          : this.state.voterOpinion === 1
-            ? ` ${Math.round(this.state.ratioPro)} von 100 Wählern gaben ihre Stimme Parteien, die dafür waren`
-            : ` ${Math.round(this.state.ratioContra)} von 100 Wählern gaben ihre Stimme Parteien, die dagegen waren`
+        { (this.props.quizMode !== true || this.state.quizAnswer != null) &&
+          <span>{ subHeader }</span>
         }
         </Header.Subheader>
-      </Header>
+      </Header></a>
 
-      <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
-        <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-          Stimmverteilung
-        </Header>
+      { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
+        <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
+          <Header sub style={{color: "rgba(0,0,0,.65)"}}>
+            Stimmverteilung { this.props.occasion.preliminary ? " (Prognose)" : ""}
+          </Header>
 
-        <PositionChart
-          parties={this.state.parties}
-          toggleOpen={this.toggleOpen} />
+          <PositionChart
+            parties={this.state.parties}
+            toggleOpen={this.toggleOpen} />
 
-        { this.state.openText != null &&
-          <Message
-            content={this.state.openText.text}
-            floating
-            header={this.state.openText.header} />
-        }
-
-        { this.props.showHints === true && this.state.openText == null &&
-          <Message style={{marginTop: "1rem"}}>
-            <Icon name='info circle' /> Klicke die Parteinamen, um deren Position zu dieser These zu lesen. Wenn Parteinamen
-            hellgrau sind, so haben diese keine Begründung zu ihrer Position eingereicht, oder waren nicht im Wahl-o-Mat
-            vertreten.
-          </Message>
-        }
-
-        <Reactions
-          id={this.props.id}
-          reactions={this.props.reactions}
-        />
-
-        { this.state.error != null &&
-          <Message negative content={this.state.error} />
-        }
-
-        <p
-          className='sources'
-          onClick={() => this.setState({showSources: true})}>
-          Quellen{ this.state.showSources && <span>: {sources}</span> }
-        </p>
-
-      </Segment>
-
-      <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
-        <div className="tagContainer">
-          { this.state.reportingError != null &&
-            <Message negative
-              header='Fehler beim melden des Beitrags'
-              content={this.state.reportingError + 'Schreib uns doch eine email an hallo@metawahl.de, dann kümmern wir uns darum. Danke!'} />
+          { this.state.openText != null &&
+            <Message
+              content={"»" + this.state.openText.text + "«"}
+              floating
+              header={this.state.openText.header} />
           }
-          { this.state.reported === true &&
-            <Message positive>
-              <Message.Header>
-                Meldung abgeschickt
-              </Message.Header>
-              <Message.Content>
-                <p>Wir werden uns diesen Eintrag
-                genauer anschauen, wenn mehrere Leute diesen Fehler melden.</p>
-                <p>Handelt es sich um einen besonders groben Schnitzer, kannst
-                du uns sehr helfen, indem du eine Email
-                an <a href='mailto:metawahl@vincentahrend.com'>
-                metawahl@vincentahrend.com</a> schreibst
-                und kurz erzählst, was hier falsch ist.</p>
-                <p>Im <Link to='/legal'>Impressum</Link> findest du auch noch
-                weitere Kontaktmöglichkeiten. Vielen Dank für deine Hilfe!</p>
-              </Message.Content>
+
+          { this.props.showHints === true && this.state.openText == null &&
+            <Message style={{marginTop: "1rem"}}>
+              <Icon name='info circle' /> Bewege deine Maus über die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder wurden nicht von der Bundeszentrale für politische Bildung zu ihrer Position befragt.
             </Message>
           }
 
-          <Responsive minWidth={600}>
-          <Popup
-            content="Wenn du Fehler in den Inhalten zu diesem Eintrag entdeckt hast, kannst du uns hier darauf hinweisen."
-            header="Fehler melden"
-            trigger={
-              <Button basic compact icon floated='right'
-                loading={this.state.reported === false}
-                disabled={this.state.reported === true}
-                onClick={this.handleReport}
-                style={{marginTop: -2}}
-              >
-                <Icon name='warning circle' /> Melden
-              </Button>
-            }
-          />
-          </Responsive>
-          <Responsive maxWidth={600}>
-              <Button basic compact icon floated='right'
-                loading={this.state.reported === false}
-                disabled={this.state.reported === true}
-                onClick={this.handleReport}
-                style={{marginTop: -2}}
-              >
-                <Icon name='warning circle' /> Melden
-              </Button>
-          </Responsive>
+          { this.state.error != null &&
+            <Message negative content={this.state.error} />
+          }
 
+          <p
+            className='sources'
+            onClick={() => this.setState({showSources: true})}>
+            Quellen{ this.state.showSources && <span>: {sources}</span> }
+          </p>
+
+        </Segment>
+
+        <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
           { tagElems }
           <br />
           { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
-        </div>
-      </Segment>
-
-      { IS_ADMIN &&
-        <Segment attached='bottom' secondary>
-          <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
-          { this.state.loading && <Loader />}
         </Segment>
+
+        { IS_ADMIN &&
+          <Segment attached='bottom' secondary>
+            <WikidataTagger onSelection={this.handleTag} style={{float: "right"}} />
+            { this.state.loading && <Loader />}
+          </Segment>
+        }
+      </span> }
+
+      { this.props.quizMode === true && this.state.quizAnswer == null &&
+        <Button.Group fluid className='stackable quizButtons' attached='bottom'>
+          <Button onClick={() => this.handleAnswer(1)} style={{backgroundColor: OPINION_COLORS[1]}}>
+            Mehrheit dafür
+          </Button>
+
+          <Button onClick={() => this.handleAnswer(-1)} style={{backgroundColor: OPINION_COLORS[-1]}}>
+            Mehrheit dagegen
+          </Button>
+
+        </Button.Group>
       }
     </div>
   }

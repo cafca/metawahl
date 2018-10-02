@@ -6,7 +6,9 @@ matrix:
       env: METAWAHL_CONFIG=test.conf.py
       cache: pip
 
-      before_install: cd api-server/
+      before_install:
+        - cd api-server/
+
       install:
         - pip install -r requirements.txt
         - psql -c 'create database metawahl;' -U postgres
@@ -15,17 +17,17 @@ matrix:
 
       script: ./travis_tavern.sh
 
-    # - language: node_js
-    #   node_js:
-    #     - 8
-    #     - 9
+    - language: node_js
+      node_js:
+        - 9
+        - 10
 
-    #   before_install: cd client/
+      before_install: cd client/
 
-    #   script:
-    #     - npm run build
-    #     - npm test
+      script:
+        - npm run build
+        - npm test
 
-    #   cache:
-    #     directories:
-    #       - "node_modules"
+      cache:
+        directories:
+          - "node_modules"

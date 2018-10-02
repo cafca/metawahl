@@ -13,11 +13,13 @@ import { API_ROOT } from '../config/';
 import Landing from  '../views/landing';
 import OccasionList from '../views/occasionList/';
 import Occasion from '../views/occasion/';
+import Quiz from '../views/occasion/quiz';
 import NotFound from '../views/notFound/';
 import LegalView from '../views/legal';
 import TagList from '../views/tagList/';
 import TagOverview from '../views/tagOverview/';
 import TagView from '../views/tag/';
+import Thesis from '../views/thesis/';
 import Territory from '../views/territory';
 import ScrollToTop from '../utils/ScrollToTop';
 import ErrorHandler from '../utils/errorHandler';
@@ -149,6 +151,7 @@ class App extends Component<Props, State> {
             <SEO
               title='Metawahl'
             />
+
             <Route path='/:area?' render={props => <Header {...props} {...context} />} />
 
             { this.state.error != null &&
@@ -172,6 +175,14 @@ class App extends Component<Props, State> {
                 <Occasion {...props} {...context} />
               )} />
 
+              <Route exact path="/quiz/:territory/:occasionNum/" render={props => (
+                <Quiz {...props} {...context} />
+              )} />
+
+              <Route exact path="/wahlen/:territory/:occasionNum/:thesisNum/" render={props => (
+                <Thesis {...props} {...context} />
+              )} />
+
               <Route exact path="/themen/" render={props => (
                 <TagOverview {...props} {...context} />
               )} />
@@ -180,11 +191,11 @@ class App extends Component<Props, State> {
                 <TagList {...props} {...context} />
               )} />
 
-              <Route path="/themen/:tag/:page?/" render={props => (
+              <Route exact path="/themen/:tag/:page?/" render={props => (
                 <TagView {...props} {...context} />
               )} />
 
-              <Route path="/legal/" render={props => (
+              <Route exact path="/legal/" render={props => (
                 <LegalView {...props} {...context} />
               )} />
 

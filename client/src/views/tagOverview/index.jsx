@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import autoBind from 'react-autobind';
 import '../../index.css';
 import {
@@ -106,6 +107,13 @@ export default class TagOverview extends Component<RouteProps> {
         }
 
         {tagElems}
+
+        <Grid.Column>
+          <Link to='/themenliste/'>
+            <h1>... und viele mehr</h1>
+            <p>Viele weitere Themen sind in dieser Übersicht nicht enthalten. Klicke hier, um sie dir als Liste anzuschauen.</p>
+          </Link>
+        </Grid.Column>
       </Grid>
     </Container>;
   }

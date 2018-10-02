@@ -79,9 +79,9 @@ export default class OccasionList extends Component<RouteProps, State> {
     return <Container>
       <SEO title='Metawahl: Alle Wahlen im Überblick' />
       <Grid stackable columns={2} padded relaxed className='occasionList'>
-        <Grid.Row doubling>
+        <Grid.Row>
           <Grid.Column width={4} className='headerCount2'>
-            <div className='headerCountInner'><div>{occasionCount > 0 ? occasionCount : 43}</div> Wahlen</div>
+            <div className='headerCountInner'><div>{occasionCount > 0 ? occasionCount : 45}</div> Wahlen</div>
           </Grid.Column>
           <Grid.Column width={12}>
             <h3>Bundestags-, Landtags- und Europawahlen in der Übersicht</h3>

@@ -3,18 +3,79 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Grid, Header, Icon, List, Segment
+  Container, Grid, Header, List, Message
 } from 'semantic-ui-react';
 
-import { RouteProps } from '../../types/';
-import { TERRITORY_NAMES } from '../../config/';
+import Errorhandler from "../../utils/errorHandler";
+import { RouteProps, ThesisType, OccasionType } from '../../types/';
+import { TERRITORY_NAMES, API_ROOT } from '../../config/';
 import Map from '../../components/map/';
+import OccasionComponent from '../../components/occasion/';
 
-import Logo from '-!svg-react-loader!../../logo.svg'; // eslint-disable-line import/no-webpack-loader-syntax
+import { ReactComponent as Logo } from '../../logo.svg'
 
-import './Landing.css';
+import './styles.css';
+import SuggestionsGrid from '../../components/suggestionsGrid';
 
-class LandingView extends React.Component<RouteProps> {
+type State = {
+  isLoading: boolean,
+  occasion: OccasionType,
+  theses: Array<ThesisType>,
+  error?: ?string
+}
+
+class LandingView extends React.Component<RouteProps, State> {
+  occasionNum: number = 43
+  territory: string = 'bayern'
+  handleError: ErrorType => any;
+
+  constructor(props: RouteProps) {
+    super(props)
+    this.state = {
+      isLoading: true,
+      occasion: this.getCachedOccasion(),
+      theses: []
+    }
+    this.handleError = Errorhandler.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadOccasion();
+  }
+
+  getCachedOccasion() {
+    return this.props.occasions[this.territory] == null
+      ? null
+      : this.props.occasions[this.territory]
+          .filter(occ => occ.id === this.occasionNum)
+          .shift();
+  }
+
+  loadOccasion(cb?: OccasionType => mixed) {
+    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(response => {
+        if (!this.handleError(response)) {
+          this.setState({
+            isLoading: false,
+            occasion: response.data,
+            theses: response.theses || []
+          });
+          if (cb != null) cb(response.data);
+        }
+      })
+      .catch((error: Error) => {
+        this.handleError(error);
+        this.setState({
+          isLoading: false,
+          occasion: this.getCachedOccasion(),
+          theses: []
+        });
+      });
+  }
+
+
   render() {
     const territorries = Object.keys(TERRITORY_NAMES)
       .filter(k => ['deutschland', 'europa'].indexOf(k) === -1).map(k =>
@@ -23,134 +84,60 @@ class LandingView extends React.Component<RouteProps> {
       </List.Item>);
 
     return <Container>
-      <Container textAlign='center' style={{margin: "4em auto 7em"}}>
-        <h1 className="ui header" style={{fontSize: "4rem"}}>
-          <Logo className='logo' style={{marginBottom: "-1em"}}/>
-          <div>Metawahl</div>
-          <div className="ui sub header" style={{textTransform: "none", color: "rgba(0,0,0,0.8)", fontSize: "1.5rem"}}>
-            Was wir gewählt haben,<br /> als wir Parteien unsere Stimme
-            gaben
-          </div>
-          <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
-            Von <a href="http://vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
-          </div>
-        </h1>
-      </Container>
-
-      <Container text>
-        <p>
-          Metawahl verbindet Wahlergebnisse der letzten 16 Jahre mit über 21.000 Parteipositionen aus dem
-          Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit der Wähler für eine Idee gestimmt – oder dagegen?
-        </p>
-        <p>
-          Es werden Entwicklungen deutlich, wie die bei der Frage nach der Aufnahme von Asylsuchenden zwischen
-          den Bundestagswahlen 2013 und 2017. Vor der Flüchtlingskrise war das Ergebnis neutral, jetzt gibt es eine knappe
-          Mehrheit <em>gegen</em> eine Obergrenze:
-        </p>
-      </Container>
-
-      <Grid stackable columns='2' style={{margin: "3em 1em"}}>
+      <Grid columns='2' stackable verticalAlign='middle' id='hero'>
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(160, 160, 160)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/29" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2013</a></p>
-            Deutschland soll mehr Flüchtlinge aufnehmen
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>Keine Mehrheit dafür oder dagegen</div>
-          </Segment>
+          <h1 className="ui header" style={{fontSize: "4rem"}}>
+            <Logo className='logo' alt='Metawahl Logo'/>
+          </h1>
         </Grid.Column>
-
         <Grid.Column>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(213, 0, 28)", fontSize: "1.7rem"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a className='item' href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.9)"}}>Bundestagswahl 2017</a></p>
-            Für die Aufnahme von neuen Asylsuchenden soll eine jährliche Obergrenze gelten.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>53 von 100 Wählern gaben ihre Stimme Parteien, die gegen eine Obergrenze sind.</div>
-          </Segment>
+          <Header size='large'>
+            Metawahl zeigt, wie sich der politische Konsens in Deutschland über Zeit ändert.
+          </Header>
+          <Header size='medium'>
+            Hierzu werden die Aussagen der Parteien aus 45 Wahl-o-Maten mit den dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar, welche Politik von vielen Stimmen gestützt wird und welche Parteien dies möglich machen.
+          </Header>
+
+          <div className="ui sub header" style={{fontSize: "0.9rem", fontStyle: "italic", marginTop: ".5rem", textTransform: "none"}}>
+            Von <a href="https://blog.vincentahrend.com/" style={{color: "rgba(0,0,0,.6)", borderBottom: "1px solid rgba(0,0,0,.4)"}}>Vincent Ahrend</a>
+          </div>
         </Grid.Column>
       </Grid>
 
-            {/* <Grid stackable columns='4' style={{margin: "5em auto 7em"}}>
-        <Grid.Row>
-          <Grid.Column as='h2'>
-          Lies jetzt
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-        <Link to="/wahlen/deutschland/42/">
-            <Header as='h3'>
-              <Header.Subheader>
-                Alle Fragen aus der
-              </Header.Subheader>
-              Bundestagswahl 2017
-            </Header>
-        </Link>
-          </Grid.Column>
-          <Grid.Column>
-        <Link to="/wahlen/deutschland/42/">
-            <Header as='h3'>
-              <Header.Subheader>
-                10 Thesen zu
-              </Header.Subheader>
-              #Abitur nach der 12. Jahrgangsstufe
-            </Header>
-        </Link>
-          </Grid.Column>
-          <Grid.Column>
-        <Link to="/wahlen/deutschland/42/">
-            <Header as='h3'>
-              <Header.Subheader>
-                5 Thesen zu
-              </Header.Subheader>
-              #Beitrittsverhandlungen der Türkei mit der Europäischen Union
-            </Header>
-        </Link>
-          </Grid.Column>
-          <Grid.Column>
-        <Link to="/themen/">
-            <Header as='h3'>
-              Stöbere durch fast 600 weitere Themen
-            </Header>
-        </Link>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid> */}
+      <OccasionComponent
+        title='Prognose zur Landtagswahl in Bayern'
+        occasion={this.state.occasion}
+        theses={this.state.theses}
+        territory={this.territory}
+        occasionNum={this.occasionNum}
+      />
 
-      <Container text style={{margin: "5em auto 7em"}} className='suggestions'>
-        <Header size='medium' style={{marginBottom: "1.5em"}}>
-          Schau dir jetzt an
-        </Header>
+      {this.state.error != null && (
+        <Message negative content={this.state.error} />
+      )}
 
-        <p>
-          <Link to="/wahlen/deutschland/42/">
-            <Icon name='caret right' />
-            <span className='suggestionText'>Alle Fragen aus der <strong>Bundestagswahl 2017</strong></span>
-          </Link>
-        </p>
-
-        <p>
-          <Link to="/themen/abitur-nach-der-12-jahrgangsstufe/">
-            <Icon name='caret right' />
-            <span className='suggestionText'>10 Thesen zu <strong>#Abitur nach der 12. Jahrgangsstufe</strong></span>
-          </Link>
-        </p>
-
-        <p>
-          <Link to='/themen/beitrittsverhandlungen-der-turkei-mit-der-europaischen-union/'>
-            <Icon name='caret right' />
-            <span className='suggestionText'>5 Thesen zu <strong>#Beitrittsverhandlungen der Türkei mit der Europäischen Union</strong></span>
-          </Link>
-        </p>
-
-        <p>
-          <Link to='/themen/'>
-            <Icon name='caret right' />
-            <span className='suggestionText'>Stöbere durch fast 600 weitere Themen</span>
-          </Link>
-        </p>
-
-        <p style={{marginTop: "2em"}}>
-          Oder lies mehr darüber wie Metawahl funktioniert:
-        </p>
-      </Container>
+      <SuggestionsGrid title='Lies jetzt' sections={[
+        {
+          subTitle: 'Bayern 2018',
+          title: 'Quiz zur Landtagswahl',
+          href: '/quiz/bayern/43/'
+        },
+        {
+          subTitle: 'Alle Fragen aus der',
+          title: 'Bundestagswahl 2017',
+          href: '/wahlen/deutschland/42/'
+        },
+        {
+          subTitle: '43 Thesen zu',
+          title: '#soziale Sicherheit',
+          href: '/themen/soziale-sicherheit/'
+        },
+        {
+          subTitle: 'oder stöbere in weiteren',
+          title: '600+ Themen',
+          href: '/themen/'
+        }
+      ]} />
 
       <Grid stackable columns='3'>
         <Grid.Row>
@@ -169,10 +156,11 @@ class LandingView extends React.Component<RouteProps> {
           </p>
 
           <p>
-            Vieles sehen die Parteien auch gleich – aber in welchen Punkten unterscheiden sie sich eigentlich voneinander?
+            Vieles sehen die Parteien auch sehr ähnlich – aber in welchen Punkten unterscheiden sie sich eigentlich voneinander?
             Der Wahl-o-Mat der Bundeszentrale für politische Bildung ist enorm
             erfolgreich darin, uns zu zeigen, welche Fragen wir ihnen stellen
-            können um sie klar voneinander zu trennen.
+            können um sie klar voneinander zu trennen. Es stellt sich die Frage,
+            welche Antworten auf diese Fragen die Mehrheit gewählt hat.
           </p>
         </Grid.Column>
 
@@ -219,24 +207,6 @@ class LandingView extends React.Component<RouteProps> {
         </Grid.Column>
       </Grid>
 
-      {/* <Grid stackable columns='2' style={{margin: "3em 1em"}}>
-        <Grid.Column streteched>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(61, 133, 179)", fontSize: "1.7rem", height: "100%"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.8)"}}>Bundestagswahl 2017</a></p>
-            Die Videoüberwachung im öffentlichen Raum soll ausgeweitet werden.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>68 von 100 Wählern haben ihre Stimme befürwortenden Parteien gegeben</div>
-          </Segment>
-        </Grid.Column>
-
-        <Grid.Column streteched>
-          <Segment as='h2' size='huge' inverted style={{backgroundColor: "rgb(169, 124, 144)", fontSize: "1.7rem", height: "100%"}}>
-            <p style={{fontVariant: "all-small-caps", marginBottom: "0px", fontSize: "0.9em", lineGeight: "1em"}}><a href="/wahlen/deutschland/42" style={{color: "rgba(255, 255, 255, 0.8)"}}>Landtagswahl Nordrhein-Westfalen 2017</a></p>
-            Die Videoüberwachung auf Straßen und Plätzen soll ausgeweitet werden.
-            <div style={{fontSize: "0.7em", fontWeight: "initial", lineHeight: "1.3em", marginTop: "0.3rem"}}>Keine Mehrheit dafür oder dagegen</div>
-          </Segment>
-        </Grid.Column>
-      </Grid> */}
-
       <Header size='large' style={{margin: "4rem auto 1em"}}>
         <Link to='/wahlen' style={{borderBottom: "1px solid rgba(0,0,0,0.4)"}}>
           Alle Wahlen
@@ -261,14 +231,14 @@ class LandingView extends React.Component<RouteProps> {
         <Grid.Column>
           <h3>Landtagswahlen</h3>
           <List>
-            {territorries.slice(0, parseInt(territorries.length / 2, 10))}
+            {territorries.slice(0, Math.ceil(territorries.length / 2))}
           </List>
         </Grid.Column>
 
         <Grid.Column>
           <h3>&nbsp;</h3>
           <List>
-            {territorries.slice(parseInt(territorries.length / 2, 10))}
+            {territorries.slice(Math.ceil(territorries.length / 2))}
           </List>
         </Grid.Column>
       </Grid>

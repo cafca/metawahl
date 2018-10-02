@@ -93,9 +93,11 @@ class Occasion(db.Model):
     wikidata_id = db.Column(db.String(16))
     wikipedia_title = db.Column(db.Text)
     source = db.Column(db.Text)
+    preliminary = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return "<Occasion {}: {}>".format(self.id, self.title)
+        prelim = " (preliminary)" if self.preliminary else ""
+        return "<Occasion {}: {}{}>".format(self.id, self.title, prelim)
 
     def to_dict(self, thesis_data=False):
         rv = {
@@ -109,6 +111,9 @@ class Occasion(db.Model):
             "wikidata_id": self.wikidata_id,
             "wikipedia_title": self.wikipedia_title
         }
+
+        if self.preliminary:
+            rv["preliminary"] = True
 
         if thesis_data:
             rv["theses"] = dict()
@@ -183,7 +188,7 @@ class Position(db.Model):
 class Result(db.Model):
     """Represent an official result from an election for a party."""
     id = db.Column(db.Integer, primary_key=True)
-    votes = db.Column(db.Integer, nullable=False)
+    votes = db.Column(db.Integer)
     pct = db.Column(db.Float, nullable=False)
     is_seated = db.Column(db.Boolean, default=False)
     is_mandated = db.Column(db.Boolean, default=False)
@@ -372,6 +377,45 @@ class Thesis(db.Model):
             rv[reaction.kind] += 1
         return rv
 
+    def related(self):
+        """Return theses with similar tags"""
+        from collections import defaultdict
+        from operator import itemgetter
+
+        # Collect all theses that share a tag with this one
+        # and assign a score based on how big the tag is
+        scores = []
+        for tag in self.tags:
+            score = 1.0 / len(tag.theses)
+            if score > 0.03:
+                for thesis in tag.theses:
+                    if thesis.id != self.id:
+                        scores.append((thesis.id, score))
+
+        scores = sorted(scores, key=itemgetter(0))
+
+        # Reduce the list of scores to yield a score per thesis
+        acc = []
+        prev = (None, 0)
+        for score in scores:
+            if score[0] == prev[0] or prev[0] is None:
+                prev = (score[0], prev[1] + score[1])
+            else:
+                acc.append(prev)
+                prev = score
+
+        # Group results by score
+        acc = sorted(acc, key=itemgetter(1), reverse=True)
+        collect = defaultdict(list)
+        for thesis_id, score in acc:
+            collect[score].append(thesis_id)
+
+        rv = list()
+        for score in sorted(collect.keys(), reverse=True):
+            rv.extend([Thesis.query.get(tid).to_dict() for tid in sorted(collect[score], reverse=True)])
+            if len(rv) > 10:
+                break
+        return rv
 
 if __name__ == '__main__':
     from main import create_app
