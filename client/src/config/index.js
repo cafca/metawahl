@@ -46,6 +46,7 @@ export const TERRITORY_NAMES = {
   "deutschland": "Deutschland",
   "europa": "Europa",
   "hamburg": "Hamburg",
+  "hessen": "Hessen",
   "niedersachsen": "Niedersachsen",
   "nordrheinwestfalen": "Nordrhein-Westfalen",
   "rheinlandpfalz": "Rheinland-Pfalz",

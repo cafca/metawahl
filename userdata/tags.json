@@ -196,6 +196,7 @@
       ], 
       "slug": "agrarpolitik", 
       "theses": [
+        "WOM-044-16", 
         "WOM-043-31", 
         "WOM-043-27", 
         "WOM-042-18", 
@@ -259,10 +260,31 @@
       "wikipedia_title": "Agrarpolitik"
     }, 
     {
+      "aliases": [
+        "Producer support estimate"
+      ], 
       "description": "Subvention zugunsten der Landwirtschaft", 
+      "labels": [
+        "Agrarsubvention"
+      ], 
       "slug": "agrarsubvention", 
       "theses": [
+        "WOM-044-16", 
+        "WOM-043-31", 
+        "WOM-042-11", 
+        "WOM-040-29", 
+        "WOM-039-00", 
+        "WOM-037-02", 
+        "WOM-035-04", 
+        "WOM-031-21", 
         "WOM-030-11", 
+        "WOM-030-06", 
+        "WOM-029-07", 
+        "WOM-028-26", 
+        "WOM-026-04", 
+        "WOM-022-15", 
+        "WOM-020-23", 
+        "WOM-017-21", 
         "WOM-016-13", 
         "WOM-006-11"
       ], 
@@ -413,6 +435,7 @@
       ], 
       "slug": "ankerzentrum", 
       "theses": [
+        "WOM-044-25", 
         "WOM-043-17"
       ], 
       "title": "Ankerzentrum", 
@@ -596,6 +619,7 @@
       ], 
       "slug": "arbeitslosengeld-ii", 
       "theses": [
+        "WOM-044-29", 
         "WOM-043-24", 
         "WOM-041-33", 
         "WOM-039-25", 
@@ -671,6 +695,8 @@
       ], 
       "slug": "arbeitspolitik", 
       "theses": [
+        "WOM-044-31", 
+        "WOM-044-18", 
         "WOM-043-24", 
         "WOM-043-18", 
         "WOM-043-02", 
@@ -876,12 +902,14 @@
         "Asylsuchende", 
         "Asylberechtigter"
       ], 
-      "description": "Individual who seeks refuge, esp. political asylum, in a foreign country", 
+      "description": "Personen, die Aufnahme und Schutz vor politischer, religi\u00f6ser oder sonstiger Verfolgung suchen", 
       "labels": [
         "Asylbewerber"
       ], 
       "slug": "asylbewerber", 
       "theses": [
+        "WOM-044-25", 
+        "WOM-044-04", 
         "WOM-043-17", 
         "WOM-043-07", 
         "WOM-043-03", 
@@ -961,34 +989,48 @@
       "wikipedia_title": "Atomausstieg"
     }, 
     {
-      "description": "Die Vermittlung von Verm\u00f6gen, Kenntnissen und Wissen an einen Menschen", 
+      "aliases": [
+        "Bildung"
+      ], 
+      "description": "Vermittlung von Fertigkeiten und Wissen", 
       "labels": [
         "Ausbildung"
       ], 
       "slug": "ausbildung", 
       "theses": [
+        "WOM-044-05", 
+        "WOM-043-12", 
+        "WOM-043-10", 
         "WOM-042-05", 
+        "WOM-039-19", 
         "WOM-038-32", 
         "WOM-035-29", 
         "WOM-034-36", 
         "WOM-032-22", 
         "WOM-030-21", 
+        "WOM-029-17", 
         "WOM-028-17", 
         "WOM-027-32", 
+        "WOM-027-26", 
         "WOM-027-24", 
         "WOM-027-11", 
         "WOM-026-26", 
+        "WOM-026-10", 
         "WOM-025-06", 
+        "WOM-023-11", 
         "WOM-020-14", 
+        "WOM-019-27", 
+        "WOM-018-29", 
+        "WOM-017-19", 
         "WOM-017-15", 
         "WOM-015-32", 
         "WOM-013-23", 
         "WOM-011-03", 
         "WOM-010-16", 
         "WOM-008-14", 
-        "WOM-008-07", 
         "WOM-007-10", 
         "WOM-007-02", 
+        "WOM-006-19", 
         "WOM-005-16", 
         "WOM-004-12", 
         "WOM-004-08", 
@@ -999,17 +1041,35 @@
         "WOM-000-17"
       ], 
       "title": "Ausbildung", 
-      "url": "http://www.wikidata.org/entity/Q16861871", 
-      "wikidata_id": "Q16861871"
+      "url": "http://www.wikidata.org/entity/Q8434", 
+      "wikidata_id": "Q8434", 
+      "wikipedia_title": "Ausbildung"
     }, 
     {
+      "aliases": [
+        "Ausbildungsabgabe", 
+        "Ausbildungsplatzumlage", 
+        "Ausbildungsumlage", 
+        "Azubi-Abgabe", 
+        "Ausbildungsplatz-Abgabe", 
+        "Lehrstellenumlage", 
+        "Lehrstellenabgabe", 
+        "Berufsausbildungssicherungsabgabe", 
+        "Ausbildungsfonds"
+      ], 
+      "labels": [
+        "Ausbildungsplatzabgabe"
+      ], 
       "slug": "ausbildungsplatzabgabe", 
       "theses": [
+        "WOM-044-05", 
         "WOM-032-22", 
         "WOM-025-06", 
         "WOM-020-14", 
         "WOM-015-32", 
         "WOM-013-23", 
+        "WOM-011-03", 
+        "WOM-008-07", 
         "WOM-007-02", 
         "WOM-005-16", 
         "WOM-004-08", 
@@ -1040,31 +1100,17 @@
       "wikipedia_title": "Auslandsdeutsche"
     }, 
     {
-      "aliases": [
-        "Ausl\u00e4nderanteil", 
-        "Fremd"
-      ], 
-      "description": "Person, die in dem betreffenden Land kein Staatsb\u00fcrger ist", 
-      "labels": [
-        "Ausl\u00e4nder"
-      ], 
-      "slug": "auslander", 
-      "theses": [
-        "WOM-043-28", 
-        "WOM-043-12"
-      ], 
-      "title": "Ausl\u00e4nder", 
-      "url": "http://www.wikidata.org/entity/Q473741", 
-      "wikidata_id": "Q473741", 
-      "wikipedia_title": "Ausl\u00e4nder"
-    }, 
-    {
       "labels": [
         "Ausl\u00e4nderpolitik"
       ], 
       "slug": "auslanderpolitik", 
       "theses": [
+        "WOM-044-33", 
+        "WOM-044-25", 
+        "WOM-044-10", 
+        "WOM-043-28", 
         "WOM-043-17", 
+        "WOM-043-12", 
         "WOM-043-07", 
         "WOM-042-33", 
         "WOM-042-21", 
@@ -1418,9 +1464,26 @@
       "wikipedia_title": "Bayerische Grenzpolizei"
     }, 
     {
+      "aliases": [
+        "Grundeinkommen", 
+        "B\u00fcrgergehalt", 
+        "Lebensgeld", 
+        "B\u00fcrgereinkommen", 
+        "Existenzgeld", 
+        "B\u00fcrgergeldabgabe", 
+        "Garantiertes Mindesteinkommen", 
+        "Leistungsunabh\u00e4ngiges Grundeinkommen", 
+        "Erwerbsloses Grundeinkommen", 
+        "Sozialdividende", 
+        "Emanzipatorisches Grundeinkommen"
+      ], 
       "description": "System of social security in which all citizens or residents of a country regularly receive an unconditional sum of money, either from a government or some other public institution, in addition to any income received from elsewhere", 
+      "labels": [
+        "Bedingungsloses Grundeinkommen"
+      ], 
       "slug": "bedingungsloses-grundeinkommen", 
       "theses": [
+        "WOM-044-37", 
         "WOM-042-36", 
         "WOM-040-06", 
         "WOM-038-12", 
@@ -1506,6 +1569,7 @@
       ], 
       "slug": "behinderung", 
       "theses": [
+        "WOM-044-19", 
         "WOM-043-34", 
         "WOM-004-12"
       ], 
@@ -1752,6 +1816,7 @@
         "Bienenweide", 
         "Trachtpflanze"
       ], 
+      "description": "Pflanzen, die besonders reichhaltig Nektar und Pollen erzeugen", 
       "labels": [
         "Bienentrachtpflanze"
       ], 
@@ -1776,6 +1841,15 @@
       ], 
       "slug": "bildungspolitik", 
       "theses": [
+        "WOM-044-36", 
+        "WOM-044-28", 
+        "WOM-044-22", 
+        "WOM-044-19", 
+        "WOM-044-15", 
+        "WOM-044-12", 
+        "WOM-044-09", 
+        "WOM-044-05", 
+        "WOM-044-02", 
         "WOM-043-34", 
         "WOM-043-32", 
         "WOM-043-29", 
@@ -2366,6 +2440,7 @@
       ], 
       "slug": "bundesausbildungsforderungsgesetz", 
       "theses": [
+        "WOM-044-22", 
         "WOM-043-10", 
         "WOM-042-05", 
         "WOM-029-17", 
@@ -2634,7 +2709,7 @@
       "title": "Bu\u00dfe", 
       "url": "http://www.wikidata.org/entity/Q2842797", 
       "wikidata_id": "Q2842797", 
-      "wikipedia_title": "Bu\u00dfe (Verwaltungsrecht)"
+      "wikipedia_title": "Geldbu\u00dfe (Verwaltungsrecht)"
     }, 
     {
       "description": "Konzept der Versicherung ausnahmslos aller B\u00fcrger in einer Krankenversicherung", 
@@ -2720,6 +2795,7 @@
       "wikipedia_title": "Computerspiel"
     }, 
     {
+      "description": "Practice of digging in shops trash dumpsters to recover what could still be eaten or used", 
       "labels": [
         "Containern"
       ], 
@@ -2733,15 +2809,11 @@
       "wikipedia_title": "Containern"
     }, 
     {
-      "aliases": [
-        "Datensch\u00fctzer"
-      ], 
-      "description": "Alle Ma\u00dfnahmen zur angemessenen Nutzung von personenbezogenen Daten", 
-      "labels": [
-        "Datenschutz"
-      ], 
+      "description": "Rechtsbegriff, alle Ma\u00dfnahmen zur angemessenen Nutzung von personenbezogenen Daten", 
       "slug": "datenschutz", 
       "theses": [
+        "WOM-044-14", 
+        "WOM-043-13", 
         "WOM-042-06", 
         "WOM-041-34", 
         "WOM-040-24", 
@@ -2909,6 +2981,7 @@
       ], 
       "slug": "diesel-urteil", 
       "theses": [
+        "WOM-044-06", 
         "WOM-043-00"
       ], 
       "title": "Diesel-Urteil", 
@@ -2929,6 +3002,7 @@
       ], 
       "slug": "dieselkraftstoff", 
       "theses": [
+        "WOM-044-06", 
         "WOM-043-00", 
         "WOM-042-01", 
         "WOM-012-22", 
@@ -2950,7 +3024,7 @@
         "Dieselpartikelfilter", 
         "Ru\u00dfpartikelfilter"
       ], 
-      "description": "Removes diesel particulate matter or soot from the exhaust gas of a diesel engine", 
+      "description": "Einrichtung zur Reduzierung von Feinstaub", 
       "labels": [
         "Dieselru\u00dfpartikelfilter"
       ], 
@@ -3424,6 +3498,7 @@
       ], 
       "slug": "energiepolitik", 
       "theses": [
+        "WOM-044-03", 
         "WOM-043-19", 
         "WOM-042-19", 
         "WOM-042-03", 
@@ -3525,9 +3600,14 @@
       "wikipedia_title": "Energiesteuergesetz (Deutschland)"
     }, 
     {
-      "description": "Realisierung einer Nachhaltigen Energieversorgung in den Sektoren Strom, W\u00e4rme und Mobilit\u00e4t mit Erneuerbaren Energien", 
+      "description": "Politischer Entscheid f\u00fcr eine nachhaltige Energieversorgung in den Sektoren Strom, W\u00e4rme und Mobilit\u00e4t mit Erneuerbaren Energien", 
+      "labels": [
+        "Energiewende"
+      ], 
       "slug": "energiewende", 
       "theses": [
+        "WOM-044-06", 
+        "WOM-044-03", 
         "WOM-042-03", 
         "WOM-042-01", 
         "WOM-039-03", 
@@ -3616,6 +3696,7 @@
       ], 
       "slug": "erinnerungskultur", 
       "theses": [
+        "WOM-044-17", 
         "WOM-043-21", 
         "WOM-042-16"
       ], 
@@ -3637,6 +3718,7 @@
       ], 
       "slug": "erneuerbare-energie", 
       "theses": [
+        "WOM-044-03", 
         "WOM-043-19", 
         "WOM-042-03", 
         "WOM-041-30", 
@@ -3699,7 +3781,7 @@
         "Schule f\u00fcr Erwachsenenbildung", 
         "Erwachsenenbildner"
       ], 
-      "description": "ein Bestandteil der Bildung und Ausbildung", 
+      "description": "Ein Bestandteil der Bildung und Ausbildung", 
       "labels": [
         "Erwachsenen- und Weiterbildung"
       ], 
@@ -3892,7 +3974,7 @@
       "wikipedia_title": "Europ\u00e4ische Wirtschafts- und W\u00e4hrungsunion"
     }, 
     {
-      "description": "ETTA", 
+      "description": "Zollunion", 
       "labels": [
         "Europ\u00e4ische Zollunion"
       ], 
@@ -3926,9 +4008,21 @@
       "wikipedia_title": "Europ\u00e4isches Amt f\u00fcr Zusammenarbeit"
     }, 
     {
-      "description": "Unacceptable ideology", 
+      "aliases": [
+        "Extremismustheorie", 
+        "Extremist", 
+        "Extremistisch", 
+        "Politischer Extremismus"
+      ], 
+      "description": "Ideology considered extreme in a pejorative sense", 
+      "labels": [
+        "Extremismus"
+      ], 
       "slug": "extremismus", 
       "theses": [
+        "WOM-044-34", 
+        "WOM-044-21", 
+        "WOM-044-07", 
         "WOM-042-28", 
         "WOM-042-16", 
         "WOM-041-13", 
@@ -3986,7 +4080,7 @@
       "wikipedia_title": "Fahrrad"
     }, 
     {
-      "description": "Verkehrsanlage f\u00fcr Fahrradfahrer", 
+      "description": "Stra\u00dfe mit Vorrang f\u00fcr Fahrr\u00e4der", 
       "slug": "fahrradstrasse", 
       "theses": [
         "WOM-009-16"
@@ -4006,6 +4100,7 @@
       ], 
       "slug": "fahrverbot-deutschland", 
       "theses": [
+        "WOM-044-06", 
         "WOM-043-00"
       ], 
       "title": "Fahrverbot (Deutschland)", 
@@ -4058,6 +4153,7 @@
       ], 
       "slug": "familienformen", 
       "theses": [
+        "WOM-044-12", 
         "WOM-043-32", 
         "WOM-041-24", 
         "WOM-038-17", 
@@ -4089,16 +4185,46 @@
       "wikipedia_title": "Familienhilfe"
     }, 
     {
-      "aliases": [
-        "Familienf\u00f6rderung"
-      ], 
       "description": "Gesamtheit der Ma\u00dfnahmen, mit denen der Staat regelnd und gestaltend die Rahmenbedingungen f\u00fcr Familien beeinflusst", 
-      "labels": [
-        "Familienpolitik"
-      ], 
       "slug": "familienpolitik", 
       "theses": [
-        "WOM-043-15"
+        "WOM-044-36", 
+        "WOM-043-15", 
+        "WOM-043-06", 
+        "WOM-041-03", 
+        "WOM-040-30", 
+        "WOM-039-02", 
+        "WOM-038-20", 
+        "WOM-036-32", 
+        "WOM-035-11", 
+        "WOM-034-15", 
+        "WOM-032-19", 
+        "WOM-031-23", 
+        "WOM-029-01", 
+        "WOM-028-24", 
+        "WOM-027-13", 
+        "WOM-026-30", 
+        "WOM-025-24", 
+        "WOM-023-20", 
+        "WOM-022-01", 
+        "WOM-021-06", 
+        "WOM-020-04", 
+        "WOM-019-25", 
+        "WOM-018-10", 
+        "WOM-017-14", 
+        "WOM-015-04", 
+        "WOM-014-01", 
+        "WOM-013-05", 
+        "WOM-012-08", 
+        "WOM-012-07", 
+        "WOM-011-20", 
+        "WOM-010-18", 
+        "WOM-009-24", 
+        "WOM-007-28", 
+        "WOM-007-26", 
+        "WOM-005-04", 
+        "WOM-004-13", 
+        "WOM-002-18"
       ], 
       "title": "Familienpolitik", 
       "url": "http://www.wikidata.org/entity/Q358238", 
@@ -4146,6 +4272,7 @@
       ], 
       "slug": "ferienwohnung", 
       "theses": [
+        "WOM-044-35", 
         "WOM-038-00"
       ], 
       "title": "Ferienwohnung", 
@@ -4154,7 +4281,7 @@
       "wikipedia_title": "Ferienwohnung"
     }, 
     {
-      "description": "Stra\u00dfentunnel zwischen D\u00e4nemark und Deutschland", 
+      "description": "Geplanter Eisenbahn- und Stra\u00dfentunnel zwischen D\u00e4nemark und Deutschland", 
       "labels": [
         "Feste Fehmarnbeltquerung"
       ], 
@@ -4196,6 +4323,8 @@
       ], 
       "slug": "finanzpolitik", 
       "theses": [
+        "WOM-044-11", 
+        "WOM-044-08", 
         "WOM-042-32", 
         "WOM-042-29", 
         "WOM-042-25", 
@@ -4332,6 +4461,7 @@
       ], 
       "slug": "flughafen", 
       "theses": [
+        "WOM-044-00", 
         "WOM-040-12", 
         "WOM-039-32", 
         "WOM-038-03", 
@@ -4356,7 +4486,7 @@
       "wikipedia_title": "Flughafen"
     }, 
     {
-      "description": "Flughafen in Deutschland", 
+      "description": "In Bau befindlicher Flughafen in Deutschland", 
       "slug": "flughafen-berlin-brandenburg", 
       "theses": [
         "WOM-038-03", 
@@ -4368,6 +4498,58 @@
       "url": "http://www.wikidata.org/entity/Q160556", 
       "wikidata_id": "Q160556", 
       "wikipedia_title": "Flughafen Berlin Brandenburg"
+    }, 
+    {
+      "aliases": [
+        "Frankfurt Airport", 
+        "Frankfurt International Airport", 
+        "Frankfurt Flughafen", 
+        "Rhein-Main Flughafen", 
+        "Frankfurt Rhein-Main Flughafen", 
+        "Flughafen Frankfurt", 
+        "Frankfurter Flughafen", 
+        "Rhein-Main-Flughafen", 
+        "Airport Frankfurt", 
+        "EDDF", 
+        "Flughafen Frankfurt-Main", 
+        "FRA"
+      ], 
+      "description": "Deutscher Flughafen in Hessen", 
+      "labels": [
+        "Flughafen Frankfurt am Main"
+      ], 
+      "slug": "flughafen-frankfurt-am-main", 
+      "theses": [
+        "WOM-044-00"
+      ], 
+      "title": "Flughafen Frankfurt am Main", 
+      "url": "http://www.wikidata.org/entity/Q46033", 
+      "wikidata_id": "Q46033", 
+      "wikipedia_title": "Flughafen Frankfurt am Main"
+    }, 
+    {
+      "aliases": [
+        "EDFH", 
+        "Frankfurt-Hahn", 
+        "Hahn-Airport", 
+        "Flughafen Hahn", 
+        "Frankfurt Hahn", 
+        "Flugplatz Hahn", 
+        "HHN", 
+        "Frankfurt Hahn Airport"
+      ], 
+      "description": "Flughafen im Hunsr\u00fcck", 
+      "labels": [
+        "Flughafen Frankfurt-Hahn"
+      ], 
+      "slug": "flughafen-frankfurt-hahn", 
+      "theses": [
+        "WOM-039-32"
+      ], 
+      "title": "Flughafen Frankfurt-Hahn", 
+      "url": "http://www.wikidata.org/entity/Q158211", 
+      "wikidata_id": "Q158211", 
+      "wikipedia_title": "Flughafen Frankfurt-Hahn"
     }, 
     {
       "aliases": [
@@ -4415,12 +4597,14 @@
         "Fl\u00fcchtlinge", 
         "Gefl\u00fcchteter"
       ], 
-      "description": "Person, die sich aus begr\u00fcndeter Furcht vor Verfolgung au\u00dferhalb des Landes befindet, dessen Staatsangeh\u00f6rigkeit sie besitzt", 
+      "description": "Person, die sich aus Furcht vor Verfolgung au\u00dferhalb ihres Heimatlandes befindet", 
       "labels": [
         "Fl\u00fcchtling"
       ], 
       "slug": "fluchtling", 
       "theses": [
+        "WOM-044-33", 
+        "WOM-044-25", 
         "WOM-043-17", 
         "WOM-042-33", 
         "WOM-042-02", 
@@ -4509,7 +4693,7 @@
       "wikipedia_title": "Franz\u00f6sische Sprache"
     }, 
     {
-      "description": "Place of temporary refuge and support for women escaping violent or abusive situations", 
+      "description": "Soziale Einrichtung f\u00fcr Frauen", 
       "labels": [
         "Frauenhaus"
       ], 
@@ -4560,6 +4744,8 @@
       ], 
       "slug": "freizeitpolitik", 
       "theses": [
+        "WOM-044-35", 
+        "WOM-044-23", 
         "WOM-043-35", 
         "WOM-043-25", 
         "WOM-043-04", 
@@ -4665,6 +4851,26 @@
       "wikipedia_title": "F\u00f6deralismus"
     }, 
     {
+      "aliases": [
+        "Sonderschule", 
+        "F\u00f6rderzentrum", 
+        "Schule mit sonderp\u00e4dagogischem F\u00f6rderschwerpunkt"
+      ], 
+      "description": "Schule in Deutschland f\u00fcr beeintr\u00e4chtigte Sch\u00fcler", 
+      "labels": [
+        "F\u00f6rderschule"
+      ], 
+      "slug": "forderschule", 
+      "theses": [
+        "WOM-044-19", 
+        "WOM-043-34"
+      ], 
+      "title": "F\u00f6rderschule", 
+      "url": "http://www.wikidata.org/entity/Q1110689", 
+      "wikidata_id": "Q1110689", 
+      "wikipedia_title": "F\u00f6rderschule (Deutschland)"
+    }, 
+    {
       "description": "F\u00fchrerschein und Fahrerlaubnis (Deutschland)", 
       "labels": [
         "F\u00fchrerschein und Fahrerlaubnis (Deutschland)"
@@ -4679,6 +4885,7 @@
       "wikipedia_title": "F\u00fchrerschein und Fahrerlaubnis (Deutschland)"
     }, 
     {
+      "description": "Sperrklausel f\u00fcr Wahlen in Deutschland", 
       "labels": [
         "F\u00fcnf-Prozent-H\u00fcrde in Deutschland"
       ], 
@@ -4708,9 +4915,20 @@
       "wikipedia_title": "GEWOBA"
     }, 
     {
+      "aliases": [
+        "Tagesschule", 
+        "Ganztagesschule", 
+        "Ganztagsunterricht", 
+        "Ganztagschule", 
+        "Ganztagsklasse"
+      ], 
       "description": "Schule mit ganzt\u00e4gigem Angebot", 
+      "labels": [
+        "ganztagsschule"
+      ], 
       "slug": "ganztagsschule", 
       "theses": [
+        "WOM-044-02", 
         "WOM-042-34", 
         "WOM-033-15", 
         "WOM-012-14", 
@@ -4819,6 +5037,19 @@
     }, 
     {
       "labels": [
+        "Gef\u00e4hrder"
+      ], 
+      "slug": "gefahrder", 
+      "theses": [
+        "WOM-044-30"
+      ], 
+      "title": "Gef\u00e4hrder", 
+      "url": "http://www.wikidata.org/entity/Q1347135", 
+      "wikidata_id": "Q1347135", 
+      "wikipedia_title": "Gef\u00e4hrder"
+    }, 
+    {
+      "labels": [
         "Gef\u00e4hrlicher Hund"
       ], 
       "slug": "gefahrlicher-hund", 
@@ -4885,6 +5116,7 @@
       "wikipedia_title": "Gemeinsame Au\u00dfen- und Sicherheitspolitik"
     }, 
     {
+      "description": "Defence policy of the European Union", 
       "labels": [
         "Gemeinsame Sicherheits- und Verteidigungspolitik"
       ], 
@@ -4970,6 +5202,10 @@
       ], 
       "slug": "gesellschaftspolitik", 
       "theses": [
+        "WOM-044-33", 
+        "WOM-044-21", 
+        "WOM-044-17", 
+        "WOM-044-12", 
         "WOM-043-35", 
         "WOM-043-32", 
         "WOM-043-26", 
@@ -5152,7 +5388,7 @@
         "Facebook-Gesetz", 
         "Netzwerkdurchsetzungsgesetz"
       ], 
-      "description": "Gesetz gegen Hetze und gef\u00e4lschte Meldungen in sozialen Netzwerken; Zensurgesetz", 
+      "description": "Gesetz gegen Hetze und gef\u00e4lschte Meldungen in sozialen Netzwerken", 
       "labels": [
         "Gesetz zur Verbesserung der Rechtsdurchsetzung in sozialen Netzwerken"
       ], 
@@ -5166,7 +5402,6 @@
       "wikipedia_title": "Netzwerkdurchsetzungsgesetz"
     }, 
     {
-      "description": "Krankenversicherung", 
       "slug": "gesetzliche-krankenversicherung", 
       "theses": [
         "WOM-042-27", 
@@ -5230,6 +5465,7 @@
       ], 
       "slug": "gesundheitspolitik", 
       "theses": [
+        "WOM-044-13", 
         "WOM-043-22", 
         "WOM-042-31", 
         "WOM-042-27", 
@@ -5522,7 +5758,7 @@
       "wikipedia_title": "Griechische Staatsschuldenkrise"
     }, 
     {
-      "description": "Steuer, die beim Erwerb einer Immobilie anf\u00e4llt", 
+      "description": "Steuer", 
       "labels": [
         "Grunderwerbsteuer"
       ], 
@@ -5541,7 +5777,8 @@
       ], 
       "title": "Grunderwerbsteuer", 
       "url": "http://www.wikidata.org/entity/Q1428543", 
-      "wikidata_id": "Q1428543"
+      "wikidata_id": "Q1428543", 
+      "wikipedia_title": "Grunderwerbsteuer"
     }, 
     {
       "aliases": [
@@ -5554,6 +5791,7 @@
       ], 
       "slug": "grundschule", 
       "theses": [
+        "WOM-044-09", 
         "WOM-040-01", 
         "WOM-039-06", 
         "WOM-038-13", 
@@ -5589,8 +5827,12 @@
     }, 
     {
       "description": "Dienstleistung mit wichtiger Infrastruktur", 
+      "labels": [
+        "Grundversorgung"
+      ], 
       "slug": "grundversorgung", 
       "theses": [
+        "WOM-044-20", 
         "WOM-031-18", 
         "WOM-025-28", 
         "WOM-024-11", 
@@ -5902,6 +6144,20 @@
       "wikipedia_title": "Hebamme"
     }, 
     {
+      "description": "Unterrichtsfach", 
+      "labels": [
+        "Heimatkunde"
+      ], 
+      "slug": "heimatkunde", 
+      "theses": [
+        "WOM-044-15"
+      ], 
+      "title": "Heimatkunde", 
+      "url": "http://www.wikidata.org/entity/Q30278152", 
+      "wikidata_id": "Q30278152", 
+      "wikipedia_title": "Heimatkunde (Schulfach)"
+    }, 
+    {
       "aliases": [
         "Stubenvogel", 
         "Haustier"
@@ -6062,6 +6318,7 @@
       ], 
       "slug": "holocaust", 
       "theses": [
+        "WOM-044-17", 
         "WOM-043-21", 
         "WOM-042-16"
       ], 
@@ -6280,6 +6537,11 @@
       ], 
       "slug": "innere-sicherheit", 
       "theses": [
+        "WOM-044-34", 
+        "WOM-044-30", 
+        "WOM-044-27", 
+        "WOM-044-14", 
+        "WOM-044-07", 
         "WOM-043-33", 
         "WOM-043-11", 
         "WOM-043-05", 
@@ -6404,6 +6666,7 @@
       ], 
       "slug": "integrationskurs", 
       "theses": [
+        "WOM-044-33", 
         "WOM-033-09", 
         "WOM-014-03", 
         "WOM-005-02"
@@ -6515,6 +6778,7 @@
       ], 
       "slug": "islam-in-deutschland", 
       "theses": [
+        "WOM-044-21", 
         "WOM-043-09", 
         "WOM-040-28", 
         "WOM-039-18", 
@@ -6705,12 +6969,33 @@
       ], 
       "slug": "kalte-betten", 
       "theses": [
+        "WOM-044-35", 
         "WOM-038-00"
       ], 
       "title": "Kalte Betten", 
       "url": "http://www.wikidata.org/entity/Q1722612", 
       "wikidata_id": "Q1722612", 
       "wikipedia_title": "Kalte Betten"
+    }, 
+    {
+      "aliases": [
+        "Flughafen Kassel", 
+        "EDVK", 
+        "Flugplatz Kassel-Calden", 
+        "Flughafen Kassel-Calden"
+      ], 
+      "description": "Flughafen in Deutschland", 
+      "labels": [
+        "Kassel Airport"
+      ], 
+      "slug": "kassel-airport", 
+      "theses": [
+        "WOM-044-32"
+      ], 
+      "title": "Kassel Airport", 
+      "url": "http://www.wikidata.org/entity/Q529143", 
+      "wikidata_id": "Q529143", 
+      "wikipedia_title": "Flughafen Kassel-Calden"
     }, 
     {
       "labels": [
@@ -6865,6 +7150,7 @@
       ], 
       "slug": "kinderbetreuungskosten", 
       "theses": [
+        "WOM-044-36", 
         "WOM-043-06", 
         "WOM-041-03", 
         "WOM-040-30", 
@@ -6939,6 +7225,7 @@
       ], 
       "slug": "kindertagesstatte", 
       "theses": [
+        "WOM-044-36", 
         "WOM-043-06", 
         "WOM-041-03", 
         "WOM-040-30", 
@@ -7008,6 +7295,48 @@
       "wikipedia_title": "Kindervorsorgeuntersuchung"
     }, 
     {
+      "labels": [
+        "Kinderwahlrecht"
+      ], 
+      "slug": "kinderwahlrecht", 
+      "theses": [
+        "WOM-044-24", 
+        "WOM-043-37", 
+        "WOM-041-27", 
+        "WOM-040-20", 
+        "WOM-038-34", 
+        "WOM-035-37", 
+        "WOM-033-07", 
+        "WOM-028-33", 
+        "WOM-027-37", 
+        "WOM-026-23", 
+        "WOM-025-33", 
+        "WOM-024-36", 
+        "WOM-023-35", 
+        "WOM-022-33", 
+        "WOM-021-01", 
+        "WOM-020-03", 
+        "WOM-019-37", 
+        "WOM-016-07", 
+        "WOM-015-36", 
+        "WOM-014-29", 
+        "WOM-012-29", 
+        "WOM-011-29", 
+        "WOM-010-20", 
+        "WOM-008-25", 
+        "WOM-007-21", 
+        "WOM-006-26", 
+        "WOM-005-25", 
+        "WOM-003-02", 
+        "WOM-002-24", 
+        "WOM-000-09"
+      ], 
+      "title": "Kinderwahlrecht", 
+      "url": "http://www.wikidata.org/entity/Q1395314", 
+      "wikidata_id": "Q1395314", 
+      "wikipedia_title": "Kinderwahlrecht"
+    }, 
+    {
       "aliases": [
         "Staat und Kirche"
       ], 
@@ -7044,7 +7373,7 @@
       "wikipedia_title": "Kirchensteuer (Deutschland)"
     }, 
     {
-      "description": "Mixed-sex education", 
+      "description": "Gemeinsame Ausbildung von beiden Geschlechtern", 
       "labels": [
         "Koedukation"
       ], 
@@ -7101,6 +7430,22 @@
       "url": "http://www.wikidata.org/entity/Q6558431", 
       "wikidata_id": "Q6558431", 
       "wikipedia_title": "Kohlekraftwerk"
+    }, 
+    {
+      "aliases": [
+        "Kommunalabgabe"
+      ], 
+      "labels": [
+        "Kommunalabgaben"
+      ], 
+      "slug": "kommunalabgaben", 
+      "theses": [
+        "WOM-044-11"
+      ], 
+      "title": "Kommunalabgaben", 
+      "url": "http://www.wikidata.org/entity/Q1780317", 
+      "wikidata_id": "Q1780317", 
+      "wikipedia_title": "Kommunalabgaben"
     }, 
     {
       "labels": [
@@ -7183,7 +7528,7 @@
       "wikipedia_title": "Kopfnote"
     }, 
     {
-      "description": "Piece of cloth worn on one's head", 
+      "description": "Kopftuch", 
       "labels": [
         "Kopftuch"
       ], 
@@ -7212,8 +7557,12 @@
     }, 
     {
       "description": "Geldwert, der ben\u00f6tigt wird um Waren oder Dienstleistungen zu produzieren", 
+      "labels": [
+        "Kosten"
+      ], 
       "slug": "kosten", 
       "theses": [
+        "WOM-044-23", 
         "WOM-041-08", 
         "WOM-039-13", 
         "WOM-036-01", 
@@ -7234,9 +7583,36 @@
       "wikipedia_title": "Kosten"
     }, 
     {
+      "labels": [
+        "Kostenfreier Nahverkehr"
+      ], 
+      "slug": "kostenfreier-nahverkehr", 
+      "theses": [
+        "WOM-044-26", 
+        "WOM-038-36", 
+        "WOM-036-14", 
+        "WOM-035-25", 
+        "WOM-028-14"
+      ], 
+      "title": "Kostenfreier Nahverkehr", 
+      "url": "http://www.wikidata.org/entity/Q2105834", 
+      "wikidata_id": "Q2105834", 
+      "wikipedia_title": "Kostenfreier Nahverkehr"
+    }, 
+    {
+      "aliases": [
+        "Klinik", 
+        "Klinikum", 
+        "Hospital", 
+        "Spital"
+      ], 
       "description": "Medizinische Einrichtung", 
+      "labels": [
+        "Krankenhaus"
+      ], 
       "slug": "krankenhaus", 
       "theses": [
+        "WOM-044-13", 
         "WOM-039-05", 
         "WOM-034-22", 
         "WOM-032-25", 
@@ -7310,8 +7686,12 @@
     }, 
     {
       "description": "Area of public policy-making", 
+      "labels": [
+        "Kulturpolitik"
+      ], 
       "slug": "kulturpolitik", 
       "theses": [
+        "WOM-044-28", 
         "WOM-040-28", 
         "WOM-039-37", 
         "WOM-039-18", 
@@ -7361,6 +7741,7 @@
         "Terahertz-Kamera", 
         "Nackt-Scanner"
       ], 
+      "description": "Ger\u00e4t, mit dem der K\u00f6rper einer Person sowie Gegenst\u00e4nde unter der Kleidung abgebildet werden k\u00f6nnen", 
       "labels": [
         "K\u00f6rperscanner"
       ], 
@@ -7486,7 +7867,7 @@
       "wikipedia_title": "Laden\u00f6ffnungszeit"
     }, 
     {
-      "description": "principle of separation of government institutions from religion", 
+      "description": "Principle of separation of government institutions from religion", 
       "labels": [
         "Laizismus"
       ], 
@@ -7574,9 +7955,31 @@
       ], 
       "slug": "landwirtschaft", 
       "theses": [
+        "WOM-044-16", 
+        "WOM-043-31", 
         "WOM-043-27", 
+        "WOM-042-18", 
+        "WOM-042-11", 
+        "WOM-041-11", 
+        "WOM-040-29", 
+        "WOM-039-00", 
         "WOM-037-10", 
-        "WOM-034-37"
+        "WOM-037-02", 
+        "WOM-035-04", 
+        "WOM-034-37", 
+        "WOM-031-21", 
+        "WOM-030-11", 
+        "WOM-030-06", 
+        "WOM-030-02", 
+        "WOM-029-07", 
+        "WOM-028-26", 
+        "WOM-026-04", 
+        "WOM-022-15", 
+        "WOM-020-23", 
+        "WOM-017-21", 
+        "WOM-008-18", 
+        "WOM-007-27", 
+        "WOM-004-04"
       ], 
       "title": "Landwirtschaft", 
       "url": "http://www.wikidata.org/entity/Q11451", 
@@ -7742,12 +8145,13 @@
         "Linksextrem", 
         "Linksextremistisch"
       ], 
-      "description": "Political alignment", 
+      "description": "Politische Ausrichtung", 
       "labels": [
         "Linksextremismus"
       ], 
       "slug": "linksextremismus", 
       "theses": [
+        "WOM-044-34", 
         "WOM-021-11"
       ], 
       "title": "Linksextremismus", 
@@ -7821,7 +8225,7 @@
         "Magistra", 
         "M.A."
       ], 
-      "description": "akademischer Grad", 
+      "description": "Akademischer Grad", 
       "labels": [
         "Magister"
       ], 
@@ -8045,6 +8449,7 @@
       ], 
       "slug": "mietpreisbindung", 
       "theses": [
+        "WOM-044-01", 
         "WOM-043-08", 
         "WOM-041-16", 
         "WOM-039-16", 
@@ -8061,9 +8466,22 @@
       "wikipedia_title": "Mietpreisbindung"
     }, 
     {
+      "aliases": [
+        "Ertragswohnung", 
+        "Anlegerwohnung", 
+        "Mietwohnung", 
+        "Zinshaus", 
+        "Miethaus", 
+        "Vorsorgewohnung"
+      ], 
       "description": "Typ von Wohngeb\u00e4ude", 
+      "labels": [
+        "Mietshaus"
+      ], 
       "slug": "mietshaus", 
       "theses": [
+        "WOM-044-01", 
+        "WOM-043-08", 
         "WOM-041-16", 
         "WOM-039-16", 
         "WOM-038-08", 
@@ -8109,6 +8527,7 @@
       ], 
       "slug": "migration", 
       "theses": [
+        "WOM-044-33", 
         "WOM-043-26", 
         "WOM-043-12", 
         "WOM-042-21", 
@@ -8209,9 +8628,17 @@
       "wikipedia_title": "Minarett"
     }, 
     {
+      "aliases": [
+        "Lohnuntergrenze", 
+        "Mindeststundenlohn"
+      ], 
       "description": "Festgelegtes kleinstes rechtlich zul\u00e4ssiges Arbeitsentgelt", 
+      "labels": [
+        "Mindestlohn"
+      ], 
       "slug": "mindestlohn", 
       "theses": [
+        "WOM-044-18", 
         "WOM-041-09", 
         "WOM-038-21", 
         "WOM-037-06", 
@@ -8372,6 +8799,7 @@
         "Geschlechtsspezifische Erziehung", 
         "Seedukation"
       ], 
+      "description": "Education conducted with males and females separated", 
       "labels": [
         "Monoedukation"
       ], 
@@ -8385,9 +8813,18 @@
       "wikipedia_title": "Monoedukation"
     }, 
     {
+      "aliases": [
+        "Dzamija", 
+        "D\u017eamija", 
+        "Masjid"
+      ], 
       "description": "Ort des gemeinschaftlichen islamischen Gebets", 
+      "labels": [
+        "Moschee"
+      ], 
       "slug": "moschee", 
       "theses": [
+        "WOM-044-21", 
         "WOM-038-22", 
         "WOM-028-10", 
         "WOM-026-09", 
@@ -8487,8 +8924,12 @@
       "wikipedia_title": "NPD-Verbotsverfahren"
     }, 
     {
+      "labels": [
+        "Nachtflugverbot"
+      ], 
       "slug": "nachtflugverbot", 
       "theses": [
+        "WOM-044-00", 
         "WOM-039-32", 
         "WOM-031-02", 
         "WOM-018-09", 
@@ -8511,11 +8952,25 @@
       "wikipedia_title": "Nachtruhe"
     }, 
     {
+      "description": "Weltanschauungen und damit verbundene soziale Bewegungen", 
+      "labels": [
+        "Nationalismus"
+      ], 
+      "slug": "nationalismus", 
+      "theses": [
+        "WOM-044-15"
+      ], 
+      "title": "Nationalismus", 
+      "url": "http://www.wikidata.org/entity/Q6235", 
+      "wikidata_id": "Q6235", 
+      "wikipedia_title": "Nationalismus"
+    }, 
+    {
       "aliases": [
         "National Park", 
         "Nationalparks"
       ], 
-      "description": "ausgedehntes Schutzgebiet", 
+      "description": "Ausgedehntes Schutzgebiet", 
       "labels": [
         "Nationalpark"
       ], 
@@ -8579,6 +9034,7 @@
         "Nebenjob", 
         "Nebeneinkommen"
       ], 
+      "description": "Aus\u00fcbung eines weiteren Berufs neben einem Hauptberuf", 
       "labels": [
         "Nebent\u00e4tigkeit"
       ], 
@@ -8969,6 +9425,21 @@
       "wikipedia_title": "Ortstaxe"
     }, 
     {
+      "description": "Konflikte zwischen Einheimischen und Besuchern an stark besuchten Touristenzielen", 
+      "labels": [
+        "Overtourism"
+      ], 
+      "slug": "overtourism", 
+      "theses": [
+        "WOM-044-35", 
+        "WOM-038-00"
+      ], 
+      "title": "Overtourism", 
+      "url": "http://www.wikidata.org/entity/Q28456416", 
+      "wikidata_id": "Q28456416", 
+      "wikipedia_title": "Overtourism"
+    }, 
+    {
       "aliases": [
         "Parkgeb\u00fchr", 
         "Parkgeb\u00fchren", 
@@ -9214,6 +9685,7 @@
       ], 
       "slug": "polizeibehorde", 
       "theses": [
+        "WOM-044-23", 
         "WOM-043-33", 
         "WOM-043-11", 
         "WOM-043-05", 
@@ -9229,8 +9701,12 @@
     }, 
     {
       "description": "Polizeiliches Handeln im Au\u00dfendienst", 
+      "labels": [
+        "Polizeieinsatz"
+      ], 
       "slug": "polizeieinsatz", 
       "theses": [
+        "WOM-044-23", 
         "WOM-041-08", 
         "WOM-039-13", 
         "WOM-036-01", 
@@ -9273,6 +9749,7 @@
         "Polizeiliche und justizielle Zusammenarbeit", 
         "TREVI"
       ], 
+      "description": "Pillar of the European Union", 
       "labels": [
         "Polizeiliche und justizielle Zusammenarbeit in Strafsachen"
       ], 
@@ -9359,6 +9836,24 @@
     }, 
     {
       "aliases": [
+        "Privatquartier", 
+        "Privatzimmer"
+      ], 
+      "description": "Vermietung von Fremdenzimmern im Privathaushalt", 
+      "labels": [
+        "Private Zimmervermietung"
+      ], 
+      "slug": "private-zimmervermietung", 
+      "theses": [
+        "WOM-044-35"
+      ], 
+      "title": "Private Zimmervermietung", 
+      "url": "http://www.wikidata.org/entity/Q2111105", 
+      "wikidata_id": "Q2111105", 
+      "wikipedia_title": "Private Zimmervermietung"
+    }, 
+    {
+      "aliases": [
         "Privatisieren", 
         "Reprivatisierung", 
         "Teilprivatisierung"
@@ -9369,6 +9864,9 @@
       ], 
       "slug": "privatisierung", 
       "theses": [
+        "WOM-044-32", 
+        "WOM-044-20", 
+        "WOM-044-13", 
         "WOM-041-20", 
         "WOM-039-05", 
         "WOM-037-07", 
@@ -9528,6 +10026,7 @@
       "wikipedia_title": "RAG Deutsche Steinkohle AG"
     }, 
     {
+      "description": "Verbindungen im Radverkehrsnetz", 
       "slug": "radschnellweg", 
       "theses": [
         "WOM-041-17"
@@ -9604,6 +10103,7 @@
         "gesetzlicher Rahmen", 
         "gesetzliche Regelung"
       ], 
+      "description": "Rights bestowed onto a person by a given legal system", 
       "labels": [
         "Rechtsanspruch"
       ], 
@@ -9619,9 +10119,24 @@
       "wikidata_id": "Q22059430"
     }, 
     {
+      "aliases": [
+        "Rechtsextreme", 
+        "Rechtsextremist", 
+        "Ultra-Nationalismus", 
+        "Neofaschismus", 
+        "Ultranationalismus", 
+        "Rechtsextrem", 
+        "Neofaschistisch", 
+        "Rechtsextremistisch", 
+        "Neofaschist"
+      ], 
       "description": "Sammelbezeichnung f\u00fcr neofaschistische, neonazistische oder ultra-nationalistische politische Ideologien und Aktivit\u00e4ten", 
+      "labels": [
+        "Rechtsextremismus"
+      ], 
       "slug": "rechtsextremismus", 
       "theses": [
+        "WOM-044-07", 
         "WOM-042-28", 
         "WOM-041-13", 
         "WOM-040-26", 
@@ -9660,6 +10175,7 @@
       ], 
       "slug": "rechtspolitik", 
       "theses": [
+        "WOM-044-30", 
         "WOM-042-26", 
         "WOM-042-10", 
         "WOM-041-06", 
@@ -9740,14 +10256,41 @@
       "description": "Freedom practicing of religion", 
       "slug": "religionsfreiheit", 
       "theses": [
+        "WOM-044-28", 
+        "WOM-044-21", 
         "WOM-042-35", 
+        "WOM-040-28", 
         "WOM-040-17", 
+        "WOM-039-18", 
+        "WOM-038-22", 
+        "WOM-035-28", 
+        "WOM-034-28", 
         "WOM-029-29", 
+        "WOM-028-29", 
         "WOM-028-23", 
+        "WOM-028-10", 
         "WOM-026-36", 
+        "WOM-026-09", 
         "WOM-025-14", 
+        "WOM-025-05", 
         "WOM-024-28", 
-        "WOM-012-12"
+        "WOM-024-12", 
+        "WOM-023-12", 
+        "WOM-023-09", 
+        "WOM-022-14", 
+        "WOM-021-31", 
+        "WOM-020-30", 
+        "WOM-020-12", 
+        "WOM-019-30", 
+        "WOM-019-13", 
+        "WOM-019-07", 
+        "WOM-018-28", 
+        "WOM-018-12", 
+        "WOM-015-33", 
+        "WOM-015-19", 
+        "WOM-014-24", 
+        "WOM-012-12", 
+        "WOM-009-13"
       ], 
       "title": "Religionsfreiheit", 
       "url": "http://www.wikidata.org/entity/Q171899", 
@@ -9771,8 +10314,18 @@
       "wikipedia_title": "Religionsfreiheit in Deutschland"
     }, 
     {
+      "aliases": [
+        "Religionslehre", 
+        "Bekenntnisorientierter Unterricht", 
+        "Bekenntnisunterricht", 
+        "Au\u00dferschulischer Religionsunterricht"
+      ], 
+      "labels": [
+        "Religionsunterricht"
+      ], 
       "slug": "religionsunterricht", 
       "theses": [
+        "WOM-044-28", 
         "WOM-040-28", 
         "WOM-039-18", 
         "WOM-035-28", 
@@ -9891,6 +10444,26 @@
       "wikipedia_title": "Rheinland-Pfalz"
     }, 
     {
+      "aliases": [
+        "R\u00fcckf\u00fchrungsrichtlinie", 
+        "2008/115/EG", 
+        "R\u00fcckf\u00fchrung"
+      ], 
+      "description": "Normen und Verfahren zur R\u00fcckf\u00fchrung illegal aufh\u00e4ltiger Drittstaatsangeh\u00f6riger", 
+      "labels": [
+        "Richtlinie 2008/115/EG"
+      ], 
+      "slug": "richtlinie-2008-115-eg", 
+      "theses": [
+        "WOM-044-04"
+      ], 
+      "title": "Richtlinie 2008/115/EG", 
+      "url": "http://www.wikidata.org/entity/Q2151411", 
+      "wikidata_id": "Q2151411", 
+      "wikipedia_title": "Richtlinie 2008/115/EG (R\u00fcckf\u00fchrungsrichtlinie)"
+    }, 
+    {
+      "description": "Gef\u00e4hrdungseinsch\u00e4tzung der Fu\u00dfballspiele", 
       "slug": "risikospiel", 
       "theses": [
         "WOM-041-08", 
@@ -9916,7 +10489,7 @@
         "Fernsehrat", 
         "H\u00f6rfunkrat"
       ], 
-      "description": "Oberstes f\u00fcr die Programmkontrolle zust\u00e4ndige Aufsichtsgremium", 
+      "description": "Oberstes f\u00fcr die Programmkontrolle zust\u00e4ndiges Aufsichtsgremium", 
       "labels": [
         "Rundfunkrat"
       ], 
@@ -9963,6 +10536,23 @@
       "url": "http://www.wikidata.org/entity/Q159", 
       "wikidata_id": "Q159", 
       "wikipedia_title": "Russland"
+    }, 
+    {
+      "aliases": [
+        "R\u00fccknahmeabkommen", 
+        "R\u00fcck\u00fcbernahmeabkommen"
+      ], 
+      "labels": [
+        "R\u00fcckf\u00fchrungsabkommen"
+      ], 
+      "slug": "ruckfuhrungsabkommen", 
+      "theses": [
+        "WOM-044-04"
+      ], 
+      "title": "R\u00fcckf\u00fchrungsabkommen", 
+      "url": "http://www.wikidata.org/entity/Q2203309", 
+      "wikidata_id": "Q2203309", 
+      "wikipedia_title": "R\u00fcckf\u00fchrungsabkommen"
     }, 
     {
       "description": "Teil des Nahverkehrssystems von Berlin, Deutschland", 
@@ -10041,6 +10631,7 @@
       ], 
       "slug": "sanktion", 
       "theses": [
+        "WOM-044-29", 
         "WOM-041-33", 
         "WOM-039-25", 
         "WOM-038-35", 
@@ -10164,6 +10755,7 @@
       "wikipedia_title": "Schulabschluss"
     }, 
     {
+      "description": "Haushaltsdisziplin", 
       "slug": "schuldenbremse-deutschland", 
       "theses": [
         "WOM-039-23", 
@@ -10213,6 +10805,13 @@
       ], 
       "slug": "schule", 
       "theses": [
+        "WOM-044-31", 
+        "WOM-044-28", 
+        "WOM-044-19", 
+        "WOM-044-15", 
+        "WOM-044-12", 
+        "WOM-044-09", 
+        "WOM-044-02", 
         "WOM-043-34", 
         "WOM-043-32", 
         "WOM-043-23", 
@@ -10487,6 +11086,7 @@
         "SemesterTicket", 
         "SemesterCard"
       ], 
+      "description": "Fahrausweis f\u00fcr den \u00f6ffentlichen Personennahverkehr, der f\u00fcr Studierende ein Semester lang gilt", 
       "labels": [
         "Semesterticket"
       ], 
@@ -10557,22 +11157,26 @@
       "wikipedia_title": "Sozialleistung"
     }, 
     {
-      "aliases": [
-        "Sozialpolitiker", 
-        "Wohlfahrtspolitik"
-      ], 
       "description": "Bezeichnung f\u00fcr Ma\u00dfnahmen zur Verbesserung der wirtschaftlichen und sozialen Situation", 
-      "labels": [
-        "Sozialpolitik"
-      ], 
       "slug": "sozialpolitik", 
       "theses": [
+        "WOM-044-37", 
+        "WOM-044-33", 
+        "WOM-044-31", 
+        "WOM-044-29", 
+        "WOM-044-22", 
+        "WOM-044-19", 
+        "WOM-044-18", 
+        "WOM-044-04", 
+        "WOM-044-01", 
+        "WOM-044-00", 
         "WOM-043-34", 
         "WOM-043-24", 
         "WOM-043-09", 
         "WOM-043-08", 
         "WOM-043-03", 
         "WOM-043-02", 
+        "WOM-042-36", 
         "WOM-042-33", 
         "WOM-042-24", 
         "WOM-042-20", 
@@ -10592,8 +11196,10 @@
         "WOM-040-19", 
         "WOM-040-18", 
         "WOM-040-11", 
+        "WOM-040-06", 
         "WOM-040-03", 
         "WOM-040-00", 
+        "WOM-039-32", 
         "WOM-039-27", 
         "WOM-039-24", 
         "WOM-039-21", 
@@ -10607,12 +11213,14 @@
         "WOM-038-21", 
         "WOM-038-18", 
         "WOM-038-14", 
+        "WOM-038-12", 
         "WOM-038-02", 
         "WOM-038-01", 
         "WOM-037-33", 
         "WOM-037-31", 
         "WOM-037-30", 
         "WOM-037-22", 
+        "WOM-037-20", 
         "WOM-037-18", 
         "WOM-037-06", 
         "WOM-037-05", 
@@ -10654,6 +11262,7 @@
         "WOM-031-14", 
         "WOM-031-10", 
         "WOM-031-04", 
+        "WOM-031-02", 
         "WOM-030-36", 
         "WOM-030-27", 
         "WOM-030-15", 
@@ -10665,6 +11274,7 @@
         "WOM-029-15", 
         "WOM-029-14", 
         "WOM-029-08", 
+        "WOM-029-06", 
         "WOM-029-00", 
         "WOM-028-30", 
         "WOM-028-27", 
@@ -10737,6 +11347,7 @@
         "WOM-018-28", 
         "WOM-018-25", 
         "WOM-018-18", 
+        "WOM-018-09", 
         "WOM-018-07", 
         "WOM-018-04", 
         "WOM-018-02", 
@@ -10750,6 +11361,7 @@
         "WOM-016-27", 
         "WOM-016-04", 
         "WOM-016-03", 
+        "WOM-015-31", 
         "WOM-015-19", 
         "WOM-015-18", 
         "WOM-015-17", 
@@ -10792,6 +11404,7 @@
         "WOM-009-00", 
         "WOM-008-20", 
         "WOM-008-04", 
+        "WOM-008-01", 
         "WOM-007-29", 
         "WOM-007-25", 
         "WOM-007-22", 
@@ -10804,6 +11417,7 @@
         "WOM-005-15", 
         "WOM-005-02", 
         "WOM-004-17", 
+        "WOM-004-12", 
         "WOM-004-09", 
         "WOM-004-06", 
         "WOM-003-19", 
@@ -11022,8 +11636,16 @@
       "wikipedia_title": "Staatsforst"
     }, 
     {
+      "aliases": [
+        "Deutsche Staatsverschuldung", 
+        "Staatsverschuldung der Bundesrepublik Deutschland"
+      ], 
+      "labels": [
+        "Staatsverschuldung Deutschlands"
+      ], 
       "slug": "staatsverschuldung-deutschlands", 
       "theses": [
+        "WOM-044-08", 
         "WOM-042-17", 
         "WOM-037-29", 
         "WOM-036-35", 
@@ -11362,7 +11984,7 @@
         "Stra\u00dfenbahnverkehr", 
         "Tramverkehr"
       ], 
-      "description": "Schienengebundenes Transportmittel im Stadtverkehr des \u00f6ffentlichen Personennahverkehrs", 
+      "description": "Schienengebundenes Fahrzeug im Stadtverkehr des \u00f6ffentlichen Personennahverkehrs", 
       "labels": [
         "Stra\u00dfenbahn"
       ], 
@@ -11374,6 +11996,36 @@
       "url": "http://www.wikidata.org/entity/Q5641", 
       "wikidata_id": "Q5641", 
       "wikipedia_title": "Stra\u00dfenbahn"
+    }, 
+    {
+      "labels": [
+        "Stra\u00dfenerhaltung"
+      ], 
+      "slug": "strassenerhaltung", 
+      "theses": [
+        "WOM-044-11"
+      ], 
+      "title": "Stra\u00dfenerhaltung", 
+      "url": "http://www.wikidata.org/entity/Q56296700", 
+      "wikidata_id": "Q56296700", 
+      "wikipedia_title": "Stra\u00dfenerhaltung"
+    }, 
+    {
+      "aliases": [
+        "Stra\u00dfensanierung", 
+        "Fahrbahnsanierung"
+      ], 
+      "labels": [
+        "Stra\u00dfeninstandsetzung"
+      ], 
+      "slug": "strasseninstandsetzung", 
+      "theses": [
+        "WOM-044-11"
+      ], 
+      "title": "Stra\u00dfeninstandsetzung", 
+      "url": "http://www.wikidata.org/entity/Q1579762", 
+      "wikidata_id": "Q1579762", 
+      "wikipedia_title": "Stra\u00dfeninstandsetzung"
     }, 
     {
       "description": "Zeigt Stra\u00dfenname einer Stra\u00dfe an", 
@@ -11426,6 +12078,7 @@
       "wikipedia_title": "Strompreis"
     }, 
     {
+      "description": "Einstellung der Energieversorgung", 
       "labels": [
         "Stromsperre"
       ], 
@@ -11555,9 +12208,20 @@
       "wikipedia_title": "Pesco"
     }, 
     {
+      "aliases": [
+        "Subventionismus", 
+        "Staatliche Beihilfe", 
+        "Subventionierung", 
+        "Subventionen", 
+        "Subventionsabbau"
+      ], 
       "description": "Leistung, die ohne konkrete Gegenleistung erbracht wird", 
+      "labels": [
+        "Subvention"
+      ], 
       "slug": "subvention", 
       "theses": [
+        "WOM-027-32", 
         "WOM-006-11"
       ], 
       "title": "Subvention", 
@@ -11593,6 +12257,7 @@
       ], 
       "slug": "tariftreueregelung", 
       "theses": [
+        "WOM-044-18", 
         "WOM-004-06"
       ], 
       "title": "Tariftreueregelung", 
@@ -11735,7 +12400,9 @@
         "WOM-028-37", 
         "WOM-024-37", 
         "WOM-017-08", 
-        "WOM-010-23"
+        "WOM-016-35", 
+        "WOM-010-23", 
+        "WOM-001-20"
       ], 
       "title": "Tierschutz", 
       "url": "http://www.wikidata.org/entity/Q459426", 
@@ -11763,8 +12430,15 @@
       "wikipedia_title": "Tierversuch"
     }, 
     {
+      "aliases": [
+        "Abzahlung"
+      ], 
+      "labels": [
+        "Tilgung (Geldverkehr)"
+      ], 
       "slug": "tilgung-geldverkehr", 
       "theses": [
+        "WOM-044-08", 
         "WOM-042-17", 
         "WOM-039-23", 
         "WOM-037-29", 
@@ -11885,6 +12559,7 @@
       "aliases": [
         "Flugplatz Bad Lippspringe"
       ], 
+      "description": "British military training area in Germany", 
       "labels": [
         "Truppen\u00fcbungsplatz Senne"
       ], 
@@ -12090,31 +12765,43 @@
       "wikipedia_title": "Umweltpolitik"
     }, 
     {
-      "aliases": [
-        "Umweltgedanken", 
-        "\u00d6kologie", 
-        "Umweltvorsorge"
-      ], 
       "description": "Sammelbegriff f\u00fcr alle Ma\u00dfnahmen, die helfen, den Lebensbereich von Menschen, Tieren und Pflanzen zu sch\u00fctzen", 
-      "labels": [
-        "Umweltschutz"
-      ], 
       "slug": "umweltschutz", 
       "theses": [
+        "WOM-044-06", 
+        "WOM-044-03", 
         "WOM-043-27", 
         "WOM-041-19", 
         "WOM-039-26", 
+        "WOM-039-17", 
         "WOM-037-27", 
+        "WOM-034-04", 
         "WOM-030-31", 
         "WOM-030-17", 
+        "WOM-030-02", 
+        "WOM-028-04", 
         "WOM-026-37", 
+        "WOM-025-13", 
         "WOM-024-19", 
+        "WOM-023-16", 
         "WOM-022-37", 
+        "WOM-019-15", 
+        "WOM-017-25", 
+        "WOM-016-25", 
+        "WOM-016-00", 
+        "WOM-015-12", 
         "WOM-014-28", 
+        "WOM-011-10", 
         "WOM-011-09", 
+        "WOM-010-02", 
         "WOM-008-28", 
+        "WOM-008-02", 
         "WOM-007-15", 
+        "WOM-007-08", 
         "WOM-005-27", 
+        "WOM-004-05", 
+        "WOM-003-20", 
+        "WOM-002-09", 
         "WOM-001-17"
       ], 
       "title": "Umweltschutz", 
@@ -12180,6 +12867,7 @@
       ], 
       "slug": "universitat", 
       "theses": [
+        "WOM-044-22", 
         "WOM-043-29", 
         "WOM-043-23", 
         "WOM-043-10", 
@@ -12255,7 +12943,7 @@
         "Betrieb", 
         "Unternehmung"
       ], 
-      "description": "Organisationseinheit in der Wirtschaft", 
+      "description": "Gewerbliches oder kaufm\u00e4nnisches Unternehmen", 
       "labels": [
         "Unternehmen"
       ], 
@@ -12265,8 +12953,7 @@
       ], 
       "title": "Unternehmen", 
       "url": "http://www.wikidata.org/entity/Q4830453", 
-      "wikidata_id": "Q4830453", 
-      "wikipedia_title": "Unternehmen"
+      "wikidata_id": "Q4830453"
     }, 
     {
       "labels": [
@@ -12350,8 +13037,12 @@
     }, 
     {
       "description": "Deutscher Inlandsgeheimdienst", 
+      "labels": [
+        "Verfassungsschutz"
+      ], 
       "slug": "verfassungsschutz", 
       "theses": [
+        "WOM-044-27", 
         "WOM-036-36", 
         "WOM-034-26", 
         "WOM-031-07", 
@@ -12369,9 +13060,20 @@
       "wikipedia_title": "Verfassungsschutz"
     }, 
     {
+      "aliases": [
+        "Geschichtsaufarbeitung", 
+        "Aufarbeitung der Vergangenheit", 
+        "Vergangenheitsbew\u00e4ltigung der NS-Zeit", 
+        "Vergangenheitsbew\u00e4ltigung", 
+        "Geschichtsbew\u00e4ltigung"
+      ], 
       "description": "Aktivit\u00e4ten, mit denen sich demokratische und der Wahrung der Menschenrechte verpflichtete Gesellschaften befassen, um eine von Diktatur und Verbrechen gekennzeichnete Vergangenheit aufzuarbeiten", 
+      "labels": [
+        "Vergangenheitsaufarbeitung"
+      ], 
       "slug": "vergangenheitsaufarbeitung", 
       "theses": [
+        "WOM-044-17", 
         "WOM-042-16", 
         "WOM-034-30", 
         "WOM-031-15", 
@@ -12405,6 +13107,11 @@
       ], 
       "slug": "verkehrspolitik", 
       "theses": [
+        "WOM-044-32", 
+        "WOM-044-26", 
+        "WOM-044-11", 
+        "WOM-044-06", 
+        "WOM-044-00", 
         "WOM-043-30", 
         "WOM-043-16", 
         "WOM-043-00", 
@@ -12561,7 +13268,7 @@
       "wikipedia_title": "Versetzung (Schule)"
     }, 
     {
-      "description": "Process of taking a private industry or private assets into public ownership by a national government or state", 
+      "description": "\u00dcberf\u00fchrung von Privateigentum/-aufgaben in Staatseigentum/-aufgaben", 
       "slug": "verstaatlichung", 
       "theses": [
         "WOM-042-15", 
@@ -12636,6 +13343,7 @@
       ], 
       "slug": "videouberwachungsanlage", 
       "theses": [
+        "WOM-044-14", 
         "WOM-043-13", 
         "WOM-042-06", 
         "WOM-041-34", 
@@ -12847,7 +13555,10 @@
       ], 
       "slug": "wahlrecht", 
       "theses": [
+        "WOM-044-24", 
+        "WOM-044-10", 
         "WOM-043-37", 
+        "WOM-043-28", 
         "WOM-041-27", 
         "WOM-040-20", 
         "WOM-038-34", 
@@ -12884,7 +13595,8 @@
     }, 
     {
       "aliases": [
-        "Forst"
+        "Forst", 
+        "Waldgebiet"
       ], 
       "description": "Aus B\u00e4umen bestehende Pflanzenformation", 
       "labels": [
@@ -12892,6 +13604,7 @@
       ], 
       "slug": "wald", 
       "theses": [
+        "WOM-044-03", 
         "WOM-041-30"
       ], 
       "title": "Wald", 
@@ -12996,6 +13709,7 @@
       ], 
       "slug": "windkraftanlage", 
       "theses": [
+        "WOM-044-03", 
         "WOM-043-19", 
         "WOM-041-30", 
         "WOM-040-04", 
@@ -13042,6 +13756,9 @@
       ], 
       "slug": "wirtschaftspolitik", 
       "theses": [
+        "WOM-044-35", 
+        "WOM-044-32", 
+        "WOM-044-05", 
         "WOM-043-20", 
         "WOM-041-20", 
         "WOM-040-33", 
@@ -13167,6 +13884,8 @@
       ], 
       "slug": "wohnungspolitik", 
       "theses": [
+        "WOM-044-35", 
+        "WOM-044-01", 
         "WOM-043-15", 
         "WOM-043-08", 
         "WOM-042-04", 
@@ -13620,20 +14339,11 @@
       "wikipedia_title": "Leistungsorientierte Verg\u00fctung"
     }, 
     {
-      "aliases": [
-        "Politisch administratives System", 
-        "Politische Ordnung", 
-        "Politisch-administratives System", 
-        "Politische Systeme", 
-        "Politische Architektur", 
-        "Politisches System"
-      ], 
       "description": "Modell der Organisation eines Staates", 
-      "labels": [
-        "politisches System"
-      ], 
       "slug": "politisches-system", 
       "theses": [
+        "WOM-044-24", 
+        "WOM-044-10", 
         "WOM-043-37", 
         "WOM-043-36", 
         "WOM-043-28", 
@@ -13764,6 +14474,8 @@
       "description": "Zusammenh\u00e4ngende Bestrebungen, die Folgen verschiedener Arten von Ereignissen auszugleichen", 
       "slug": "soziale-sicherheit", 
       "theses": [
+        "WOM-044-37", 
+        "WOM-044-29", 
         "WOM-042-36", 
         "WOM-042-22", 
         "WOM-041-33", 
@@ -13777,6 +14489,7 @@
         "WOM-036-28", 
         "WOM-036-16", 
         "WOM-035-33", 
+        "WOM-034-32", 
         "WOM-034-12", 
         "WOM-033-12", 
         "WOM-032-12", 
@@ -13845,7 +14558,7 @@
         "Geschwindigkeitsbegrenzung", 
         "H\u00f6chstgeschwindigkeit"
       ], 
-      "description": "maximal legal erlaubte Geschwindigkeit", 
+      "description": "Maximal legal erlaubte Geschwindigkeit", 
       "labels": [
         "zul\u00e4ssige H\u00f6chstgeschwindigkeit"
       ], 
@@ -13910,6 +14623,7 @@
       "wikipedia_title": "\u00d6ffentlich-rechtliches Kreditinstitut"
     }, 
     {
+      "description": "Garantieversprechen der Verwaltung", 
       "labels": [
         "\u00d6ffentliche B\u00fcrgschaft"
       ], 
@@ -13921,6 +14635,22 @@
       "url": "http://www.wikidata.org/entity/Q294159", 
       "wikidata_id": "Q294159", 
       "wikipedia_title": "\u00d6ffentliche B\u00fcrgschaft"
+    }, 
+    {
+      "aliases": [
+        "Vergabewesen"
+      ], 
+      "labels": [
+        "\u00d6ffentlicher Auftrag"
+      ], 
+      "slug": "offentlicher-auftrag", 
+      "theses": [
+        "WOM-044-18"
+      ], 
+      "title": "\u00d6ffentlicher Auftrag", 
+      "url": "http://www.wikidata.org/entity/Q294300", 
+      "wikidata_id": "Q294300", 
+      "wikipedia_title": "\u00d6ffentlicher Auftrag"
     }, 
     {
       "aliases": [
@@ -13939,6 +14669,7 @@
       ], 
       "slug": "okologische-landwirtschaft", 
       "theses": [
+        "WOM-044-16", 
         "WOM-043-31", 
         "WOM-042-18", 
         "WOM-042-11", 
@@ -14010,9 +14741,20 @@
       "wikipedia_title": "\u00d6ffentlich-rechtlicher Rundfunk"
     }, 
     {
+      "aliases": [
+        "\u00d6ffentliche Tr\u00e4gerschaft", 
+        "Verwaltungswesen", 
+        "Administrative"
+      ], 
       "description": "Oberbegriff f\u00fcr die Verwaltungen, die Aufgaben des Staates einschlie\u00dflich Einrichtungen des \u00f6ffentlichen Rechtes wahrnehmen", 
+      "labels": [
+        "\u00f6ffentliche Verwaltung"
+      ], 
       "slug": "offentliche-verwaltung", 
       "theses": [
+        "WOM-044-32", 
+        "WOM-044-20", 
+        "WOM-044-13", 
         "WOM-042-15", 
         "WOM-040-27", 
         "WOM-040-17", 
@@ -14075,9 +14817,16 @@
       "wikipedia_title": "\u00d6ffentliche Verwaltung"
     }, 
     {
+      "aliases": [
+        "Staatsdienst"
+      ], 
       "description": "T\u00e4tigkeitsfeld der Beamten", 
+      "labels": [
+        "\u00f6ffentlicher Dienst"
+      ], 
       "slug": "offentlicher-dienst", 
       "theses": [
+        "WOM-044-31", 
         "WOM-038-27", 
         "WOM-037-30", 
         "WOM-029-22", 
@@ -14119,6 +14868,7 @@
       ], 
       "slug": "offentlicher-personennahverkehr", 
       "theses": [
+        "WOM-044-26", 
         "WOM-043-23", 
         "WOM-038-36", 
         "WOM-036-14", 
@@ -14147,6 +14897,7 @@
       ], 
       "slug": "offentlicher-raum", 
       "theses": [
+        "WOM-044-14", 
         "WOM-043-13", 
         "WOM-042-06", 
         "WOM-041-34", 
@@ -14189,6 +14940,6 @@
   "meta": {
     "api": "Metawahl API v1", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "14.46104s"
+    "render_time": "15.78784s"
   }
 }
