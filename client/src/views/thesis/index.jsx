@@ -116,7 +116,7 @@ class Thesis extends React.Component<RouteProps, State> {
             key={t.id}
             occasion={occasion}
             linkOccasion={true}
-            showHints={true}
+            showHints={false}
             {...t}
           />})
 
