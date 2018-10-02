@@ -357,7 +357,8 @@ def load_results():
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
         result_data = json.load(f)
     with open("./substitutions.json") as f:
-        substitutions = json.load(f)
+        substitutions = defaultdict(list)
+        substitutions.update(json.load(f))
 
     for occ in db.session.query(Occasion).all():
         dt = occ.date.date()
@@ -379,11 +380,7 @@ def load_results():
 
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
-                try:
-                    options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
-                except KeyError as e:
-                    logger.error("Missing substitution: {}".format(e.message))
-                    sys.exit()
+                options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
                 matches = [(name, result) for name, result in res["results"].items() if name.lower() in options]
 
                 if len(matches) > 0:
