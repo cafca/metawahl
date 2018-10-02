@@ -6,7 +6,10 @@ matrix:
       env: METAWAHL_CONFIG=test.conf.py
       cache: pip
 
-      before_install: cd api-server/
+      before_install:
+        - git submodule update --init --recursive
+        - cd api-server/
+
       install:
         - pip install -r requirements.txt
         - psql -c 'create database metawahl;' -U postgres
@@ -17,8 +20,8 @@ matrix:
 
     - language: node_js
       node_js:
-        - 8
         - 9
+        - 10
 
       before_install: cd client/
 
