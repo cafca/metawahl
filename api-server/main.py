@@ -13,6 +13,7 @@ import json
 import requests
 import traceback
 import lxml.html
+import math
 
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
@@ -420,28 +421,16 @@ def create_app(config=None):
 
         logger.info("Found {} tags with more than one thesis".format(len(tags)))
 
-        # cat_names = [c.name for c in db.session.query(Category).all()]
-
         # edges
         edges = defaultdict(list)
-        # cat_edges = defaultdict(list)
 
         for tag in tags.values():
             i = list(list(tags.keys())).index(tag.title)
             for thesis in tag.theses:
-                # for cat in thesis.categories:
-                #     try:
-                #         cat_edges[cat_names.index(cat.name) + len(tags)] += [list(tags.keys()).index(t.title) for t in thesis.tags]
-                #     except Exception as e:
-                #         logger.warning("No index: {}".format(e))
-
                 for rtag in thesis.tags:
-                    if rtag.title != tag.title:
-                        try:
-                            ri = list(tags.keys()).index(rtag.title)
-                            edges[min(i, ri)].append(max(i, ri))
-                        except Exception as e:
-                            logger.warning("No index: {}".format(e))
+                    if rtag.title != tag.title and rtag.title in tags:
+                        ri = list(tags.keys()).index(rtag.title)
+                        edges[min(i, ri)].append(max(i, ri))
 
         links = list()
         for source in edges.keys():
@@ -453,18 +442,11 @@ def create_app(config=None):
                     "value": counter[target]
                     })
 
-        # for source in cat_edges.keys():
-        #     counter = Counter(cat_edges[source])
-        #     for target in set(cat_edges[source]):
-        #         links.append({
-        #             "source": source,
-        #             "target": target,
-        #             "value": counter[target]
-        #             })
-
-        nodes = [{"name": n.title, "group": 1, "value": math.sqrt(len(n.theses))} for n in tags.values()]
-
-        # nodes += [{"name": n, "group": 2, 'value': 7} for n in cat_names]
+        nodes = [{
+            "name": n.title,
+            "group": 2 if n.is_root else 1,
+            "value": math.sqrt(len(n.theses))
+        } for n in tags.values()]
 
         return json_response({
             "nodes": nodes,
