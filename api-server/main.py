@@ -247,9 +247,11 @@ def create_app(config=None):
         return json_response(rv, filename=filename)
 
 
+
+
     @app.route(API_ROOT + '/graph-tags')
     def graphtags():
-        from models import Thesis, Tag, Category
+        from models import Thesis, Tag
 
         results = db.session.query(Thesis).all()
 
@@ -266,20 +268,22 @@ def create_app(config=None):
             if len(tag.theses) > 1:
                 tags[tag.title] = tag
 
-        cat_names = [c.name for c in db.session.query(Category).all()]
+        logger.info("Found {} tags with more than one thesis".format(len(tags)))
+
+        # cat_names = [c.name for c in db.session.query(Category).all()]
 
         # edges
         edges = defaultdict(list)
-        cat_edges = defaultdict(list)
+        # cat_edges = defaultdict(list)
 
         for tag in tags.values():
             i = list(list(tags.keys())).index(tag.title)
             for thesis in tag.theses:
-                for cat in thesis.categories:
-                    try:
-                        cat_edges[cat_names.index(cat.name) + len(tags)] += [list(tags.keys()).index(t.title) for t in thesis.tags]
-                    except Exception as e:
-                        logger.warning("No index: {}".format(e))
+                # for cat in thesis.categories:
+                #     try:
+                #         cat_edges[cat_names.index(cat.name) + len(tags)] += [list(tags.keys()).index(t.title) for t in thesis.tags]
+                #     except Exception as e:
+                #         logger.warning("No index: {}".format(e))
 
                 for rtag in thesis.tags:
                     if rtag.title != tag.title:
@@ -299,18 +303,18 @@ def create_app(config=None):
                     "value": counter[target]
                     })
 
-        for source in cat_edges.keys():
-            counter = Counter(cat_edges[source])
-            for target in set(cat_edges[source]):
-                links.append({
-                    "source": source,
-                    "target": target,
-                    "value": counter[target]
-                    })
+        # for source in cat_edges.keys():
+        #     counter = Counter(cat_edges[source])
+        #     for target in set(cat_edges[source]):
+        #         links.append({
+        #             "source": source,
+        #             "target": target,
+        #             "value": counter[target]
+        #             })
 
-        nodes = [{"name": n.title, "group": 1, "value": sqrt(len(n.theses))} for n in tags.values()]
+        nodes = [{"name": n.title, "group": 1, "value": math.sqrt(len(n.theses))} for n in tags.values()]
 
-        nodes += [{"name": n, "group": 2, 'value': 7} for n in cat_names]
+        # nodes += [{"name": n, "group": 2, 'value': 7} for n in cat_names]
 
         return json_response({
             "nodes": nodes,
