@@ -1,0 +1,20 @@
+svg g { fill: rgb(42,64,101) }
+.inverted g { fill: #fcfcfc }
+
+.territory-badenwuerttemberg #Baden__x26__Württemberg { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-bayern #Bayern { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-berlin #Berlin { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-brandenburg #Brandenburg { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-bremen #Bremen { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-deutschland g { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-europa #Europa { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-hamburg #Hamburg { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-hessen #Hessen { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-niedersachsen #Niedersachsen { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-nordrheinwestfalen #Nordrhein-Westfalen { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-rheinlandpfalz #Rheinland-Pfalz { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-saarland #Saarland { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-sachsen #Sachsen { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-sachsenanhalt #Sachsen-Anhalt { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-schleswigholstein #Schleswig-Holstein { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-thueringen #Thüringen { fill: "#fafafa"; fill-opacity: 1.0 }

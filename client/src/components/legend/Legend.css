@@ -1,0 +1,12 @@
+.legend {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.square  {
+  width: 1.1em;
+  height: 1.1em;
+  position: relative;
+  bottom: -1.5px;
+  display: inline-block;
+}

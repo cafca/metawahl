@@ -5,72 +5,75 @@ Bootstrap database from JSON
 """
 import json
 import os
+import sys
 import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
-from models import Occasion, Thesis, Position, Party, Tag, Category, Result, \
-    ThesisReport
+from models import Occasion, Thesis, Position, Party, Tag, Result, \
+    ThesisReport, Reaction
 from main import logger, create_app, db
 
 API_VERSION = "Metawahl API v1"
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
 OCCASION_IDS = {
-    "2003/bayern": 0,
-    "2004/europa": 1,
-    "2004/sachsen": 2,
-    "2004/saarland": 3,
-    "2005/nordrheinwestfalen": 4,
-    "2005/schleswigholstein": 5,
-    "2005/deutschland": 6,
-    "2006/sachsenanhalt": 7,
-    "2006/rheinlandpfalz": 8,
-    "2006/berlin": 9,
-    "2006/badenwuerttemberg": 10,
-    "2008/niedersachsen": 11,
-    "2007/bremen": 12,
-    "2008/hamburg": 13,
-    "2011/hamburg": 14,
-    "2010/nordrheinwestfalen": 15,
-    "2009/europa": 16,
-    "2009/deutschland": 17,
-    "2011/bremen": 18,
-    "2011/rheinlandpfalz": 19,
-    "2012/saarland": 20,
-    "2011/berlin": 21,
-    "2012/schleswigholstein": 22,
-    "2012/nordrheinwestfalen": 23,
-    "2013/niedersachsen": 24,
-    "2011/badenwuerttemberg": 25,
-    "2013/bayern": 26,
-    "2014/thueringen": 27,
-    "2014/sachsen": 28,
-    "2013/deutschland": 29,
-    "2014/europa": 30,
-    "2014/brandenburg": 31,
-    "2015/hamburg": 32,
-    "2002/deutschland": 33,
-    "2016/sachsenanhalt": 34,
-    "2016/badenwuerttemberg": 35,
-    "2015/bremen": 36,
-    "2017/schleswigholstein": 37,
-    "2016/berlin": 38,
-    "2016/rheinlandpfalz": 39,
-    "2017/saarland": 40,
-    "2017/nordrheinwestfalen": 41,
-    "2017/deutschland": 42
+    "data/2003/bayern": 0,
+    "data/2004/europa": 1,
+    "data/2004/sachsen": 2,
+    "data/2004/saarland": 3,
+    "data/2005/nordrheinwestfalen": 4,
+    "data/2005/schleswigholstein": 5,
+    "data/2005/deutschland": 6,
+    "data/2006/sachsenanhalt": 7,
+    "data/2006/rheinlandpfalz": 8,
+    "data/2006/berlin": 9,
+    "data/2006/badenwuerttemberg": 10,
+    "data/2008/niedersachsen": 11,
+    "data/2007/bremen": 12,
+    "data/2008/hamburg": 13,
+    "data/2011/hamburg": 14,
+    "data/2010/nordrheinwestfalen": 15,
+    "data/2009/europa": 16,
+    "data/2009/deutschland": 17,
+    "data/2011/bremen": 18,
+    "data/2011/rheinlandpfalz": 19,
+    "data/2012/saarland": 20,
+    "data/2011/berlin": 21,
+    "data/2012/schleswigholstein": 22,
+    "data/2012/nordrheinwestfalen": 23,
+    "data/2013/niedersachsen": 24,
+    "data/2011/badenwuerttemberg": 25,
+    "data/2013/bayern": 26,
+    "data/2014/thueringen": 27,
+    "data/2014/sachsen": 28,
+    "data/2013/deutschland": 29,
+    "data/2014/europa": 30,
+    "data/2014/brandenburg": 31,
+    "data/2015/hamburg": 32,
+    "data/2002/deutschland": 33,
+    "data/2016/sachsenanhalt": 34,
+    "data/2016/badenwuerttemberg": 35,
+    "data/2015/bremen": 36,
+    "data/2017/schleswigholstein": 37,
+    "data/2016/berlin": 38,
+    "data/2016/rheinlandpfalz": 39,
+    "data/2017/saarland": 40,
+    "data/2017/nordrheinwestfalen": 41,
+    "data/2017/deutschland": 42,
+    "data/2018/bayern": 43,
+    "data/2018/hessen": 44
 }
 
 INVALID_POSITION_TEXTS = [
     '"Die SPD Bayern verweist für ausführlichere Begründungen auf ihr Regierungsprogramm unter www.bayernspd.de"',
     'Die Begründung der Partei zu ihrem Abstimmverhalten wird nachgereicht, da noch nicht alle Begründungen vorliegen.',
-    'Zu dieser These hat die Partei keine Begründung vorgelegt.'
+    'Zu dieser These hat die Partei keine Begründung vorgelegt.',
+    'Es liegt keine Begründung zur Position dieser Partei vor.'
 ]
 
 party_instances = defaultdict(Party)
 tag_instances = defaultdict(Tag)
-
 
 def load_data_file(fp, index=False):
     """Load JSON encoded data from disk with option to index."""
@@ -79,7 +82,7 @@ def load_data_file(fp, index=False):
         with open(fp) as f:
             rv = json.load(f)
     except FileNotFoundError:
-        logger.error("File {} is missing".format(fp))
+        logger.warning("File {} is missing".format(fp))
     else:
         if index:
             # Instead of returning a list, assign each item in rv to
@@ -97,11 +100,11 @@ def load_occasions():
         occasion_list = json.load(f)
 
     for occasion_dir in sorted(occasion_list):
-        # occasion_dir is like "2017/deutschland"
-        year, territory = occasion_dir.split("/")
+        # occasion_dir is like "data/2017/deutschland"
+        _, year, territory = occasion_dir.split("/")
 
         def path_for(fn):
-            return os.path.join(DATADIR, year, territory, fn)
+            return os.path.join(DATADIR, "data", year, territory, fn)
 
         dataset = {
             "comments": load_data_file(path_for("comment.json"), index=True),
@@ -187,7 +190,9 @@ def load_position(position_data, comments, parties):
 
     comment_id = position_data["comment"]
     if comment_id and comments[comment_id]["text"] not in INVALID_POSITION_TEXTS:
-        position.text = comments[comment_id]["text"]
+        raw_text = comments[comment_id]["text"]
+        raw_text = raw_text[1:-1] if raw_text.startswith('"') else raw_text
+        position.text = raw_text
 
     return position
 
@@ -204,8 +209,6 @@ def load_tags():
 
     assert tag_export["meta"]["api"] == API_VERSION
     logger.info("Adding {} tags...".format(len(tag_export["data"])))
-
-    # TODO: Update existing tags
 
     for tag_data in tag_export["data"]:
         tag = Tag(
@@ -235,32 +238,6 @@ def load_tags():
         yield tag
 
 
-def load_categories():
-    """Load categories from exported categories.json."""
-    try:
-        with open("../userdata/categories.json") as f:
-            categories_export = json.load(f)
-    except FileNotFoundError:
-        logger.warning("File ../userdata/categories.json not found - " +
-            "categories were not imported")
-        return
-
-    assert categories_export["meta"]["api"] == API_VERSION
-    logger.info("Adding {} categories...".format(len(categories_export["data"])))
-
-    # TODO: Update existing categories
-
-    for category_data in categories_export["data"]:
-        category = Category(
-            name=category_data["name"],
-        )
-
-        for thesis_id in category_data["theses"]:
-            category.theses.append(Thesis.query.get(thesis_id))
-
-        yield category
-
-
 def load_reports():
     """Load user submitted reports from json file."""
     try:
@@ -284,6 +261,34 @@ def load_reports():
         )
 
         yield report
+
+
+def load_reactions():
+    """Load user submitted reactions from json file."""
+    try:
+        with open("../userdata/reactions.json") as f:
+            reaction_export = json.load(f)
+    except FileNotFoundError:
+        logger.warning("File ../userdata/reactions.json not found - " +
+            "reactions were not imported")
+        return
+
+    assert reaction_export["meta"]["api"] == API_VERSION
+    logger.info("Adding {} reactions...".format(len(reaction_export["data"])))
+
+    for reaction_data in reaction_export["data"]:
+        date = dateutil.parser.parse(reaction_data.get('date'))
+        try:
+            reaction = Reaction(
+                uuid=reaction_data.get('uuid'),
+                date=date,
+                kind=reaction_data.get('kind'),
+                thesis=Thesis.query.get(reaction_data.get('thesis'))
+            )
+        except (KeyError, TypeError) as e:
+            logger.error("Error importing reaction: {}".format(e))
+
+        yield reaction
 
 
 def load_wahlergebnisse():
@@ -346,13 +351,14 @@ def make_substitutions():
 
 
 def load_results():
-    """Match voting records to the existing occasion datasets."""
-    logger.info("Matching voting results...")
+    """Match election records to the existing occasion datasets."""
+    logger.info("Matching election results...")
 
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
         result_data = json.load(f)
     with open("./substitutions.json") as f:
-        substitutions = json.load(f)
+        substitutions = defaultdict(list)
+        substitutions.update(json.load(f))
 
     for occ in db.session.query(Occasion).all():
         dt = occ.date.date()
@@ -360,28 +366,83 @@ def load_results():
             if o["territory"].lower().startswith(occ.territory.lower()[:2])
                 and dateutil.parser.parse(o["date"]).date() == dt]
 
+        matched_results = set()
+
         if len(occ_results) == 0:
             logger.error("Didn't find results for {}".format(occ))
         else:
             res = occ_results[0]
+
+            if "preliminary" in res and res["preliminary"] == True:
+                logger.warning("Marking {} as preliminary".format(occ))
+                occ.preliminary = True
+                yield occ
+
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
                 options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
-                matches = [result for name, result in res["results"].items() if name.lower() in options]
+                matches = [(name, result) for name, result in res["results"].items() if name.lower() in options]
 
-                if len(matches) == 0:
-                    if p.name == "DIE LINKE":
-                        import pdb; pdb.set_trace()
-                    logger.warning("No vote count for {} in {}".format(p, occ))
+                if len(matches) > 0:
+                    for match in matches:
+                        if match[0].lower() != p.name.lower():
+                            logger.warning("Assigned WOM text from {} to election result of {} in {}".format(
+                                p, match[0], res["title"]
+                            ))
+                        matched_results.add(match[0])
+                        votes = match[1]["votes"] if "votes" in match[1] else None
+                        yield Result(
+                            occasion=occ,
+                            party=p,
+                            party_repr=match[0],
+                            votes=votes,
+                            pct=match[1]["pct"],
+                            source=res["url"]
+                        )
                 else:
-                    match = matches[0]
-                    yield Result(
-                        occasion=occ,
-                        party=p,
-                        votes=match["votes"],
-                        pct=match["pct"],
-                        source=res["url"]
+                    if occ.preliminary:
+                        logger.info("{} missing vote count for  {}".format(occ, p))
+                    else:
+                        logger.error("No vote count for {} in {}".format(p, occ))
+
+            # Add results missing in Wahl-o-Mat
+            for p_name, match in res["results"].items():
+                if p_name in list(matched_results):
+                    continue
+
+                # Try and assign a unified party instance to this election
+                # result to merge parties that have changed their name over
+                # time
+
+                party = None
+                if p_name in party_instances.keys():
+                    party = party_instances[p_name]
+                else:
+                    for (name, subs) in substitutions.items():
+                        if p_name in subs:
+                            if name in party_instances.keys():
+                                party = party_instances[name]
+                                logger.info(
+                                    "Linked party {} to election result of '{}' in {}".format(
+                                        party, p_name, res["title"])
+                                )
+                            break
+
+                if party is None:
+                    party = Party(
+                        name=p_name
                     )
+                    party_instances[p_name] = party
+
+                yield Result(
+                    occasion=occ,
+                    party_repr=p_name,
+                    party=party,
+                    votes=match["votes"] if "votes" in match else None,
+                    pct=match["pct"],
+                    source=res["url"],
+                    wom=False
+                )
 
 
 if __name__ == '__main__':
@@ -397,12 +458,13 @@ if __name__ == '__main__':
         for tag in load_tags():
             db.session.add(tag)
 
-        for category in load_categories():
-            db.session.add(category)
-
         for report in load_reports():
             db.session.add(report)
+
+        for reaction in load_reactions():
+            db.session.add(reaction)
 
         logger.info("Committing session to disk...")
         db.session.commit()
         logger.info("Done")
+        logger.warning("Clear and refill caches!")

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Bootstrap database from JSON
+Backup non-public and user-generated data to JSON
 
 """
 import json
 import os
 
-from models import ThesisReport
+from models import ThesisReport, Reaction
 from main import logger, create_app, db, API_FULL_NAME
 
 DATADIR = os.path.join("..", "userdata")
@@ -17,21 +17,41 @@ META = {
 licensing information"
 }
 
+def backup_data(data, fname):
+    """JSON-encode and write to file with metadata."""
+    rv = {
+        "data": data.to_dict() if hasattr(data, "to_dict") \
+            else [obj.to_dict() for obj in data],
+        "meta": META
+    }
+    with open(os.path.join(DATADIR, fname), "w") as f:
+        json.dump(rv, f, indent=2)
+
+
+def gen_thesis_reports():
+    """Backup thesis reports."""
+    logger.info("Backing up thesis reports...")
+
+    return db.session \
+        .query(ThesisReport) \
+        .order_by(ThesisReport.date) \
+        .all()
+
+
+def gen_reactions():
+    """Backup reactions and their votes."""
+    logger.info("Backing up reactions...")
+
+    return db.session \
+        .query(Reaction) \
+        .order_by(Reaction.date) \
+        .all()
+
+
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
-        logger.info("Backing up thesis reports...")
-
-        thesis_reports = db.session\
-            .query(ThesisReport)\
-            .order_by(ThesisReport.date)\
-            .all()
-
-        rv = {
-            "data": [r.to_dict() for r in thesis_reports],
-            "meta": META
-        }
-        with open(os.path.join(DATADIR, "thesis_reports.json"), "w") as f:
-            json.dump(rv, f, indent=2)
+        backup_data(gen_thesis_reports(), "thesis_reports.json")
+        backup_data(gen_reactions(), "reactions.json")
 
         logger.info("Done")

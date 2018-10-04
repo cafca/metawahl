@@ -5,6 +5,9 @@
 
 # testing
 /coverage
+/api-server/.cache/
+/api-server/*.log
+.pytest_cache
 
 # production
 /build
@@ -16,11 +19,13 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.vscode
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 metawahl-api.log
+flask_api.log
 
 __pycache__
 *.pyc

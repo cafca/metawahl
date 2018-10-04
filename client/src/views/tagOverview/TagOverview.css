@@ -1,0 +1,65 @@
+.App > .container {
+  margin-top: 42px;
+}
+
+@media only screen and (max-width: 767px) {
+  .App > .container {
+    margin-top: 1em;
+  }
+}
+
+.headerCount {
+  font-size: 4.5em;
+  line-height: 1.2em;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-variant: all-small-caps;
+  background-color: rgb(213, 0, 28);
+  color: white;
+  min-height: 210px;
+}
+
+.headerCountInner {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.headerCount div>div {
+  font-size: 1.4em;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .headerCount {
+    font-size: 6em;
+  }
+}
+
+
+.revealMe .hidden {
+  visibility: hidden;
+  height: 0;
+  opacity: 0;
+  transition: visibility 0s, height 0s, opacity 0.25s linear;
+}
+
+.revealMe:hover .hidden {
+  visibility: visible;
+  opacity: 1;
+  height: 11em;
+}
+
+
+.revealMe .visible {
+  visibility: visible;
+  height: 11em;
+}
+
+.revealMe:hover .visible {
+  visibility: hidden;
+  height: 0;
+}
+
+
+.revealMe .thesesCount {
+  font-size: 92px;
+}

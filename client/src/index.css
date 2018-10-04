@@ -1,5 +1,118 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+}
+
+h1 {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+}
+
+.App {
+  background-color: #fcfcfc;
+}
+
+a:not(.item) {
+  /* Make this !important until the weird Semantic UI LESS compiler setup is integrated with CRA without ejecting... */
+  color: #333 !important;
+}
+
+a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .content .header {
+  color: #111;
+}
+
+.ui.segment {
+  background-color: #fcfcfc;
+}
+
+.theses li {
+  margin-bottom: 5em;
+  list-style-type: none;
+}
+
+.positionWithText:hover {
+  cursor: pointer;
+  border-bottom-width: 2px !important;
+  margin-bottom: 6px;
+}
+
+.positionsOverview {
+  margin: .5em 0;
+}
+
+.occasionList .territory {
+  margin-bottom: 1em;
+}
+
+.searchNoBorder input {
+  border: none !important;
+}
+
+.tagContainer {
+  margin-bottom: -0.4em
+}
+
+.tagContainer a.label {
+  margin-left: 0;
+}
+
+.closeIcon {
+    cursor: pointer;
+    position: absolute;
+    margin: 0;
+    top: .78575em;
+    right: .5em;
+    opacity: .7;
+    -webkit-transition: opacity .1s ease;
+    transition: opacity .1s ease;
+}
+
+#outerContainer.ui.container {
+  max-width: 800px !important;
+};
+
+.ui.comments .comment .actions {
+  visibility: hidden;
+}
+
+.ui.comments .comment:hover .actions {
+  visibility: visible;
+}
+
+/* Stack objection form buttons on small screens */
+@media only screen and (max-width: 600px) {
+  .ui.stackable.buttons{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .ui.stackable.buttons > .button{
+    width: 100%;
+  }
+}
+
+/* Display Wikidata Logo monochrome unless hovered */
+.wikidataLabel { filter: grayscale(100%) }
+.wikidataLabel:hover { filter: initial }
+
+/* Add hyphens to long words
+  credit: https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/
+ */
+.hyphenate {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

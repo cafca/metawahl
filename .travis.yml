@@ -1,22 +1,33 @@
----
-language: node_js
-node_js:
-  - "6"
+matrix:
+  include:
+    - language: python
+      python: 3.6
 
-sudo: false
-dist: trusty
+      env: METAWAHL_CONFIG=test.conf.py
+      cache: pip
 
-addons:
-  chrome: stable
+      before_install:
+        - cd api-server/
 
-cache:
-  directories:
-    - $HOME/.npm
+      install:
+        - pip install -r requirements.txt
+        - psql -c 'create database metawahl;' -U postgres
+        - python models.py --force
+        - python bootstrap_db.py
 
-env:
-  global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
+      script: ./travis_tavern.sh
 
-before_install:
-  - npm config set spin false
+    - language: node_js
+      node_js:
+        - 9
+        - 10
+
+      before_install: cd client/
+
+      script:
+        - npm run build
+        - npm test
+
+      cache:
+        directories:
+          - "node_modules"

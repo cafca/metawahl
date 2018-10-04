@@ -5,97 +5,28 @@ Metawahl Flask-SQLAlchemy models
 """
 import json
 import datetime
+import sys
 
 from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func, desc
+from sqlalchemy import func, desc, UniqueConstraint
 from slugify import slugify
 from collections import defaultdict
 
 
-categories = db.Table('categories',
-    db.Column('category_name', db.String(64), db.ForeignKey('category.name'),
-        primary_key=True),
-    db.Column('thesis_id', db.String(10), db.ForeignKey('thesis.id'),
-        primary_key=True)
-)
+# Try and use these only for logging and debugging. Exact language for
+# reactions is defined in frontend code
+REACTION_NAMES = {
+    0: "Glücklich",
+    1: "Erleichtert",
+    2: "Na und",
+    3: "Beunruhigt",
+    4: "Verärgert"
+}
 
-
-class Category(db.Model):
-    """Represent one of the 27 categories."""
-    name = db.Column(db.String(64), primary_key=True)
-    slug = db.Column(db.String(64), unique=True)
-
-    def __repr__(self):
-        return "<Category {}>".format(self.name)
-
-    def __init__(self, name):
-        self.name = name
-        self.make_slug()
-
-    def make_slug(self):
-        self.slug = slugify(self.name)
-
-    @property
-    def related_tags(self):
-        tag_counts = defaultdict(int)
-        tags = dict()
-
-        for thesis in self.theses:
-            for tag in thesis.tags:
-                tag_counts[tag.title] += 1
-                tags[tag.title] = tag
-
-        num_related_tags = 10
-        cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
-
-        rv = dict()
-        for tag in tag_counts.keys():
-            if tag_counts[tag] > cutoff:
-                rv[tag] = {
-                    "count": tag_counts[tag],
-                    "tag": tags[tag].to_dict()
-                }
-
-        return rv
-
-    def to_dict(self, thesis_data=False, include_related_tags=False):
-        rv = {
-            "name": self.name,
-            "slug": self.slug
-        }
-
-        if thesis_data:
-            rv["theses"] = [thesis.to_dict() for thesis in self.theses]
-            rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
-                for thesis in self.theses}
-        else:
-            rv["theses"] = [thesis.id for thesis in self.theses]
-
-        if include_related_tags:
-            rv["related_tags"] = self.related_tags
-
-        return rv
-
-    @classmethod
-    def uncategorized(cls, thesis_data=False):
-        rv = {
-            "name": "(Noch in keinem Themenbereich)",
-            "slug": "_uncategorized"
-        }
-
-        theses = db.session.query(Thesis) \
-            .filter(Thesis.categories == None) \
-            .order_by(Thesis.id)
-
-        if thesis_data:
-            rv["theses"] = [thesis.to_dict() for thesis in theses]
-            rv["occasions"] = {thesis.occasion_id: thesis.occasion.to_dict()
-                for thesis in theses}
-        else:
-            rv["theses"] = [thesis.id for thesis in theses]
-
-        return rv
+def dt_string(dt):
+    """Return iso string representation of a datetime including tz."""
+    return dt.strftime("%Y-%m-%d %H:%M:%S Z")
 
 
 class ThesisReport(db.Model):
@@ -116,62 +47,41 @@ class ThesisReport(db.Model):
 
     def to_dict(self):
         return {
-            "date": self.date.isoformat(),
             "text": self.text,
             "thesis": self.thesis_id,
-            "uuid": self.uuid
+            "uuid": self.uuid,
+            "date": dt_string(self.date)
         }
 
 
-class Objection(db.Model):
-    """Represent an objection."""
+class Reaction(db.Model):
+    """Represent a reaction."""
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(36), nullable=False)
     date = db.Column(db.DateTime,
         nullable=False, default=datetime.datetime.utcnow)
-    source = db.Column(db.Text, nullable=False)
-    vote_count = db.Column(db.Integer, default=1)
+    kind = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
         db.ForeignKey('thesis.id'), nullable=False)
     thesis = db.relationship('Thesis',
-        backref=db.backref('objections', lazy=False))
+        backref=db.backref('reactions', lazy=True))
+
+    __table_args__ = (
+        UniqueConstraint('uuid', 'thesis_id', name='u_rctn'),
+    )
 
     def __repr__(self):
-        return "<Objection {} / {}>".format(self.thesis_id, self.date.isoformat())
+        return "<Reaction {} / {}>".format(self.thesis_id, REACTION_NAMES[self.kind])
 
     def to_dict(self):
-        return {
-            "date": self.date.isoformat(),
-            "source": self.source,
+        rv = {
+            "date": dt_string(self.date),
+            "kind": self.kind,
             "thesis": self.thesis_id,
-            "uuid": self.uuid,
-            "votes": [{date: v.date.isoformat(), value: v.value, uuid: v.uuid}
-                for v in self.votes]
+            "uuid": self.uuid
         }
-
-    def vote(self, value):
-        self.vote_count += 1
-        return ObjectionVote(value=value, objection=self)
-
-
-class ObjectionVote(db.Model):
-    """Represent a vote or report on an objection."""
-    id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(db.String(36), nullable=False)
-    date = db.Column(db.DateTime,
-        nullable=False, default=datetime.datetime.utcnow)
-    value = db.Column(db.Boolean, nullable=False)
-    reported_for = db.Column(db.Text)
-
-    objection_id = db.Column(db.Integer(),
-        db.ForeignKey('objection.id'), nullable=False)
-    objection = db.relationship('Objection',
-        backref=db.backref('votes', lazy=True))
-
-    def __repr__(self):
-        return "<Vote {}>".format(self.id) if self.reported_for is None \
-            else "<ObjectionReport {}/{}>".format(self.objection_id, self.id)
+        return rv
 
 
 class Occasion(db.Model):
@@ -183,21 +93,27 @@ class Occasion(db.Model):
     wikidata_id = db.Column(db.String(16))
     wikipedia_title = db.Column(db.Text)
     source = db.Column(db.Text)
+    preliminary = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
-        return "<Occasion {}: {}>".format(self.id, self.title)
+        prelim = " (preliminary)" if self.preliminary else ""
+        return "<Occasion {}: {}{}>".format(self.id, self.title, prelim)
 
     def to_dict(self, thesis_data=False):
         rv = {
             "id": self.id,
-            "date": self.date.isoformat(),
+            "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
+            "results_sources": list(set([r.source for r in self.results])),
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
             "wikipedia_title": self.wikipedia_title
         }
+
+        if self.preliminary:
+            rv["preliminary"] = True
 
         if thesis_data:
             rv["theses"] = dict()
@@ -209,11 +125,16 @@ class Occasion(db.Model):
     def result_dict(self):
         rv = dict()
         for r in self.results:
-            rv[r.party_name] = {
+            rv[r.party_repr] = {
                 "votes": r.votes,
                 "pct": r.pct
             }
 
+            if r.party_repr != r.party_name:
+                rv[r.party_repr]["linked_position"] = r.party_name
+
+            if r.wom is False:
+                rv[r.party_repr]["missing"] = True
         return rv
 
 
@@ -267,12 +188,17 @@ class Position(db.Model):
 class Result(db.Model):
     """Represent an official result from an election for a party."""
     id = db.Column(db.Integer, primary_key=True)
-    votes = db.Column(db.Integer, nullable=False)
+    votes = db.Column(db.Integer)
     pct = db.Column(db.Float, nullable=False)
     is_seated = db.Column(db.Boolean, default=False)
     is_mandated = db.Column(db.Boolean, default=False)
     source = db.Column(db.String(256), nullable=True)
 
+    # Is there a position for this result in the corresponding wom?
+    wom = db.Column(db.Boolean, default=True)
+
+    # How the name of the party was written for this election
+    party_repr = db.Column(db.String(256), nullable=False)
     party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
         nullable=False)
     party = db.relationship('Party', backref=db.backref('results',
@@ -311,7 +237,7 @@ class Tag(db.Model):
         self.slug = slugify(self.title)
 
     def to_dict(self, thesis_count=None, include_theses_ids=False,
-            include_related_tags=False):
+            include_related_tags=False, query_root_status=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -343,9 +269,22 @@ class Tag(db.Model):
         if include_related_tags:
             rv["related_tags"] = self.related_tags()
 
+        if query_root_status:
+            rv["root"] = self.is_root
+
         return rv
 
     def related_tags(self):
+        """Return a dictionary of related tags.
+
+        The return value distinguishes between parent tags, which are present
+        on more than 80% of this tag's theses and themselves have at least as
+        many theses as this tag does - and 'linked' tags, which are just tags
+        that are present on this tag's theses.
+
+        The number of returned tags in the 'linked' category is limited to ~15.
+        """
+
         tag_counts = defaultdict(int)
         tags = dict()
 
@@ -355,7 +294,7 @@ class Tag(db.Model):
                     tag_counts[tag.title] += 1
                     tags[tag.title] = tag
 
-        num_related_tags = 10
+        num_related_tags = 15
         try:
             # Determine the amount of tags where n=num_related_tags theses have
             # more related tags
@@ -363,15 +302,33 @@ class Tag(db.Model):
         except IndexError:
             return {}
         else:
-            rv = dict()
+            rv = {
+                'parents': {},
+                'linked': {}
+            }
+
+            self_theses_count = len(self.theses)
+
             for tag in tag_counts.keys():
                 if tag_counts[tag] >= cutoff:
-                    rv[tag] = {
+                    if tag_counts[tag] >= (0.8 * self_theses_count) and \
+                            len(tags[tag].theses) >= self_theses_count:
+                        relation = 'parents'
+                    else:
+                        relation = 'linked'
+
+                    rv[relation][tag] = {
                         "count": tag_counts[tag],
                         "tag": tags[tag].to_dict()
                     }
 
             return rv
+
+    @property
+    def is_root(self):
+        """Return true if this tag has no parent tagas in its related tags."""
+        rl = self.related_tags()
+        return len(rl["parents"]) == 0
 
 
 class Thesis(db.Model):
@@ -390,13 +347,6 @@ class Thesis(db.Model):
         lazy=False,
         backref=db.backref('theses', order_by=desc(tags.c.thesis_id)))
 
-    categories = db.relationship('Category',
-        secondary=categories,
-        lazy=False,
-        backref=db.backref('theses',
-            order_by=desc(categories.c.thesis_id)),
-        order_by='Category.name')
-
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
 
@@ -404,10 +354,10 @@ class Thesis(db.Model):
         rv = {
             "id": self.id,
             "title": self.title,
-            "categories": [category.slug for category in self.categories],
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
-            "occasion_id": self.occasion_id
+            "occasion_id": self.occasion_id,
+            "reactions": self.reactions_dict()
         }
 
         if self.text is not None:
@@ -415,12 +365,62 @@ class Thesis(db.Model):
 
         return rv
 
+    def reactions_dict(self):
+        """Make a tally of all reactions"""
+        rv = defaultdict(int)
+        for reaction in self.reactions:
+            rv[reaction.kind] += 1
+        return rv
+
+    def related(self):
+        """Return theses with similar tags"""
+        from collections import defaultdict
+        from operator import itemgetter
+
+        # Collect all theses that share a tag with this one
+        # and assign a score based on how big the tag is
+        scores = []
+        for tag in self.tags:
+            score = 1.0 / len(tag.theses)
+            if score > 0.03:
+                for thesis in tag.theses:
+                    if thesis.id != self.id:
+                        scores.append((thesis.id, score))
+
+        scores = sorted(scores, key=itemgetter(0))
+
+        # Reduce the list of scores to yield a score per thesis
+        acc = []
+        prev = (None, 0)
+        for score in scores:
+            if score[0] == prev[0] or prev[0] is None:
+                prev = (score[0], prev[1] + score[1])
+            else:
+                acc.append(prev)
+                prev = score
+
+        # Group results by score
+        acc = sorted(acc, key=itemgetter(1), reverse=True)
+        collect = defaultdict(list)
+        for thesis_id, score in acc:
+            collect[score].append(thesis_id)
+
+        rv = list()
+        for score in sorted(collect.keys(), reverse=True):
+            rv.extend([Thesis.query.get(tid).to_dict() for tid in sorted(collect[score], reverse=True)])
+            if len(rv) > 10:
+                break
+        return rv
 
 if __name__ == '__main__':
     from main import create_app
     app = create_app()
 
-    if input("Reset database? [y/N]") == "y":
+    arg_force = "--force" in sys.argv
+
+    logger.warning("All userdata backed up?")
+
+    if arg_force or input("Reset database? [y/N]") == "y":
         with app.app_context():
             logger.info("Drop and recreate...")
             db.drop_all(app=app)
