@@ -3,7 +3,6 @@
 import 'moment/locale/de';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { Link } from 'react-router-dom';
 import {
   Button,
   Header,
@@ -58,11 +57,10 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
       <p style={{
         fontVariant: "all-small-caps",
         marginBottom: ".3rem",
-        lineHeight: "1em"
+        lineHeight: "1em",
+        color: "rgba(255,255,255,.8)"
         }}>
-        <Link to={`/wahlen/${occasion.territory}/${occasion.id}`} className='item' style={{color: "rgba(255,255,255,.8)"}}>
-          {occasion.title}
-        </Link>
+        {occasion.title}
       </p>
     </span>;
 
