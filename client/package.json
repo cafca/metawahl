@@ -5,6 +5,7 @@
   "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
   "dependencies": {
+    "atob": "^2.1.0",
     "fuse.js": "^3.2.0",
     "hoek": "^5.0.4",
     "lodash": "^4.17.10",
