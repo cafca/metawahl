@@ -3,7 +3,6 @@
 import 'moment/locale/de';
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import { Link } from 'react-router-dom';
 import {
   Button,
   Header,
