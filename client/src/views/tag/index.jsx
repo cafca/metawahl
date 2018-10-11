@@ -211,7 +211,7 @@ export default class TagView extends Component<RouteProps, State> {
     return <Container id="outerContainer" style={{minHeight: 350}} >
       <SEO
         title={'Metawahl: Wahlthema ' + pageTitle}
-        canonical={'/themen/' + this.slug + '/'} />
+        canonical={'/themen/' + this.state.slug + '/'} />
 
       <Loader active={this.state.tag == null} />
 

@@ -1,10 +1,11 @@
 {
   "name": "metawahl",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "private": true,
   "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
   "dependencies": {
+    "ajv": "^6.0.0",
     "atob": "^2.1.0",
     "fuse.js": "^3.2.0",
     "hoek": "^5.0.4",
