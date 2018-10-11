@@ -5,6 +5,7 @@ Fetch updated content from Wikidata and Wikipedia
 
 """
 import json
+import sys
 import os
 import wikipedia
 import time
@@ -107,13 +108,52 @@ def update_tags(fast=False):
     db.session.commit()
 
 
+def update_wikipedia_descriptions(fast=False):
+    logger.info("Updating Wikipedia summaries...")
+    tags = db.session.query(Tag).all()
+
+    wikipedia.set_lang('de')
+
+    last_request = None
+
+    num_tags = len(tags)
+    logger.info("Loaded {} tags".format(num_tags))
+
+    for i, tag in enumerate(tags):
+        ident = tag.title[:16].ljust(16)
+        if tag.wikipedia_title != None:
+            try:
+                p = wikipedia.page(tag.wikipedia_title)
+            except wikipedia.exceptions.DisambiguationError:
+                logger.debug("{} Skipped disambiguation page".format(ident))
+            else:
+                ps = p.summary
+                if p.summary is not None:
+                    tag.wikipedia_summary = p.summary
+                    logger.info("{0:.1f}% {1} {2}w\t{3}".format(
+                        (100.0 * i / num_tags),
+                        ident,
+                        len(tag.wikipedia_summary.split()),
+                        tag.wikipedia_summary[:58])
+                    )
+
+                db.session.add(tag)
+                db.session.commit()  # fail early if something is wrong
+
+        if last_request is not None and fast is False:
+            td = timedelta(seconds=RATE) - (datetime.now() - last_request)
+            wait_time = td.seconds + td.microseconds / 1E6
+            if wait_time <= 1:
+                time.sleep(wait_time)
+        last_request = datetime.now()
+
+
 if __name__ == '__main__':
     app = create_app()
-    with app.app_context():
-        update_tags()
 
     fast = "--fast" in sys.argv
 
     with app.app_context():
-        update_tags(fast=fast)
+        # update_tags(fast=fast)
+        update_wikipedia_descriptions(fast=fast)
         logger.info("Done")
