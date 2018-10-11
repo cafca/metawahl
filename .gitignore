@@ -31,3 +31,5 @@ __pycache__
 *.pyc
 
 uwsgi.ini
+
+.venv
