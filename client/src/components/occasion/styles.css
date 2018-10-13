@@ -21,7 +21,7 @@
 }
 
 @media (max-width: 991px) {
-  ui.container.occasionContainer {
+  .ui.container.occasionContainer {
     padding: 0;
     width: auto!important;
     margin-left: 1em!important;
