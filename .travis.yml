@@ -10,7 +10,8 @@ matrix:
         - cd api-server/
 
       install:
-        - pip install -r requirements.txt
+        - pip install pipenv
+        - pipenv sync
         - psql -c 'create database metawahl;' -U postgres
         - python models.py --force
         - python bootstrap_db.py
@@ -25,8 +26,8 @@ matrix:
       before_install: cd client/
 
       script:
-        - npm run build
-        - npm test
+        - yarn run build
+        - yarn test
 
       cache:
         directories:
