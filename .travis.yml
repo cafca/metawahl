@@ -11,10 +11,10 @@ matrix:
 
       install:
         - pip install pipenv
-        - pipenv sync
+        - pipenv sync --verbose
         - psql -c 'create database metawahl;' -U postgres
-        - pipenv run scripts/reset_db.py --force
-        - pipenv run scripts/bootstrap_db.py
+        - pipenv run python scripts/reset_db.py --force
+        - pipenv run python scripts/bootstrap_db.py
 
       script: pipenv run ./travis_tavern.sh
 
