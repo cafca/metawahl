@@ -21,6 +21,7 @@ import TagOverview from '../views/tagOverview/';
 import TagView from '../views/tag/';
 import Thesis from '../views/thesis/';
 import Territory from '../views/territory';
+import DataOverview from '../views/data';
 import ScrollToTop from '../utils/ScrollToTop';
 import ErrorHandler from '../utils/errorHandler';
 
@@ -193,6 +194,10 @@ class App extends Component<Props, State> {
 
               <Route exact path="/themen/:tag/:page?/" render={props => (
                 <TagView {...props} {...context} />
+              )} />
+
+              <Route exact path="/daten/" render={props => (
+                <DataOverview {...props} {...context} />
               )} />
 
               <Route exact path="/legal/" render={props => (

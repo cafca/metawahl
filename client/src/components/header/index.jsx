@@ -22,6 +22,10 @@ const HeaderMenu = (props: {}) => (
             active={props.match.params.area === 'themen'} as={Link} to='/themen/'>
                 Themen
           </Menu.Item>
+          <Menu.Item
+            active={props.match.params.area === 'daten'} as={Link} to='/daten/'>
+                Daten
+          </Menu.Item>
 
           <Search {...props} large className="small right aligned item" />
 
