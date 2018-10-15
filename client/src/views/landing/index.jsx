@@ -143,7 +143,7 @@ class LandingView extends React.Component<RouteProps, State> {
           )}
 
           <SuggestionsGrid
-            title="Lies jetzt"
+            title="Und jetzt"
             sections={[
               {
                 subTitle: "Bayern 2018",
