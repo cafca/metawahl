@@ -6,16 +6,20 @@ Fetch updated content from Wikidata and Wikipedia
 """
 import json
 import os
-import wikipedia
 import time
 import logging
+import sys
 
 from datetime import datetime, timedelta
-
-from models import Tag
-from main import create_app, db
-from logger import setup_logger
 from wikidata.client import Client
+
+sys.path.append("./app/")
+
+from config import WIKIDATA_UPDATE_LOG
+from models import Tag
+from main import create_app
+from services import db
+from services.logger import setup_logger
 
 NON_DESCRIPTIONS = [
     'Wikimedia-Begriffsklärungsseite',
@@ -24,7 +28,7 @@ NON_DESCRIPTIONS = [
 
 RATE = 1  # seconds wait time
 
-logger = setup_logger(logfile="../wikidata_update.log", level=logging.DEBUG)
+logger = setup_logger(logfile=WIKIDATA_UPDATE_LOG, level=logging.DEBUG)
 
 
 def update_tags(fast=False):

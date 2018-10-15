@@ -75,7 +75,6 @@ def create_app(config=None):
 
     return app
 
-
 if __name__ == "__main__":
     port = int(os.environ.get("METAWAHL_PORT", 9000))
     app = create_app()

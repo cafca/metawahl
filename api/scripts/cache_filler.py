@@ -7,12 +7,17 @@ Request all API pages to fill cache
 """
 import logging
 import requests
+import sys
 
-from logger import setup_logger
-from main import API_ROOT
+sys.path.append("./app/")
+
+from config import CACHE_FILLER_LOG
+from services.logger import setup_logger
+from config import API_ROOT
 from models import Occasion, Tag, Thesis
 
-logger = setup_logger(logfile="/var/log/metawahl/cache_filler.log", level=logging.DEBUG)
+logger = setup_logger(logfile=CACHE_FILLER_LOG, level=logging.DEBUG)
+
 
 def gen_urls():
     """Generate URLs for all cached API URLs."""

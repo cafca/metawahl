@@ -6,10 +6,13 @@ from flask import Response
 
 from config import SITE_ROOT
 from models import Occasion, Tag
+from services import db, cache
 
-
+@cache.cached()
 def sitemap():
     def generate():
+        from main import create_app
+
         app = create_app()
         with app.app_context():
             yield SITE_ROOT + '\n'
@@ -35,6 +38,3 @@ def sitemap():
             yield '{}/legal/\n'.format(SITE_ROOT)
 
     return Response(generate(), mimetype='text/plain')
-
-
-from main import create_app, db

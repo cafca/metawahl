@@ -412,18 +412,3 @@ class Thesis(db.Model):
             if len(rv) > 10:
                 break
         return rv
-
-if __name__ == '__main__':
-    from main import create_app
-    app = create_app()
-
-    arg_force = "--force" in sys.argv
-
-    logger.warning("All userdata backed up?")
-
-    if arg_force or input("Reset database? [y/N]") == "y":
-        with app.app_context():
-            logger.info("Drop and recreate...")
-            db.drop_all(app=app)
-            db.create_all(app=app)
-    logger.info("OK")

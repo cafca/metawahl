@@ -10,9 +10,14 @@ import dateutil.parser
 
 from collections import defaultdict
 from datetime import datetime
+
+sys.path.append("./app/")
+
 from models import Occasion, Thesis, Position, Party, Tag, Result, \
     ThesisReport, Reaction
-from main import logger, create_app, db
+from main import create_app
+from services import db
+from services.logger import logger
 
 API_VERSION = "Metawahl API v1"
 DATADIR = os.path.join("..", "qual-o-mat-data")
