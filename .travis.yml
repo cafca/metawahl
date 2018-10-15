@@ -7,16 +7,16 @@ matrix:
       cache: pip
 
       before_install:
-        - cd api-server/
+        - cd api/
 
       install:
         - pip install pipenv
         - pipenv sync
         - psql -c 'create database metawahl;' -U postgres
-        - python models.py --force
-        - python bootstrap_db.py
+        - pipenv run scripts/reset_db.py --force
+        - pipenv run scripts/bootstrap_db.py
 
-      script: ./travis_tavern.sh
+      script: pipenv run ./travis_tavern.sh
 
     - language: node_js
       node_js:

@@ -6,7 +6,7 @@
 
 export METAWAHL_CONFIG=test.conf.py
 
-python main.py &
+python app/main.py &
 FLASK_PID=$!
 sleep 5
 pytest
