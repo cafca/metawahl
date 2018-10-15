@@ -129,7 +129,7 @@ class LandingView extends React.Component<RouteProps, State> {
 
         <Container fluid className="occasionContainer">
           <OccasionComponent
-            title="Prognose zur Landtagswahl in Bayern"
+            title="Vorläufiges Ergebnis zur Landtagswahl in Bayern"
             occasion={this.state.occasion}
             theses={this.state.theses}
             territory={this.territory}
