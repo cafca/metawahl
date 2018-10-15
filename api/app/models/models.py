@@ -7,11 +7,12 @@ import json
 import datetime
 import sys
 
-from main import db, logger
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func, desc, UniqueConstraint
 from slugify import slugify
 from collections import defaultdict
+
+from services import db, cache
 
 
 # Try and use these only for logging and debugging. Exact language for

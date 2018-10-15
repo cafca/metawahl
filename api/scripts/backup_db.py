@@ -6,8 +6,10 @@ Backup non-public and user-generated data to JSON
 import json
 import os
 
-from models import ThesisReport, Reaction
-from main import logger, create_app, db, API_FULL_NAME
+from ..app.models import ThesisReport, Reaction
+from ..app.services.logger import logger
+from ..app.services import db
+from ..app.config import API_FULL_NAME
 
 DATADIR = os.path.join("..", "userdata")
 

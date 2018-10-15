@@ -3,7 +3,7 @@ test_name: thesis endpoint
 stages:
   - name: Make sure that a specific thesis is returned
     request:
-      url: http://localhost:9000/api/v1/thesis/WOM-001-01
+      url: http://localhost:9000/api/v2/thesis/WOM-001-01
       method: GET
     response:
       status_code: 200
@@ -13,7 +13,7 @@ stages:
 stages:
   - name: Make sure that a specific thesis that doesn't exist gives 404
     request:
-      url: http://localhost:9000/api/v1/thesis/WOM-001-99
+      url: http://localhost:9000/api/v2/thesis/WOM-001-99
       method: GET
     response:
       status_code: 404
@@ -21,7 +21,7 @@ stages:
 stages:
   - name: Make sure that changing thesis tags without a valid admin key returns error message
     request:
-      url: http://localhost:9000/api/v1/thesis/WOM-001-01/tags/
+      url: http://localhost:9000/api/v2/thesis/WOM-001-01/tags/
       method: POST
     response:
       status_code: 200
@@ -33,7 +33,7 @@ stages:
 stages:
   - name: Make sure that changing thesis tags for a not existing thesis gives 404
     request:
-      url: http://localhost:9000/api/v1/thesis/WOM-001-99/tags/
+      url: http://localhost:9000/api/v2/thesis/WOM-001-99/tags/
       method: POST
     response:
       status_code: 404
