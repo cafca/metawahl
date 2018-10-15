@@ -4,11 +4,12 @@
 from flask import request
 from sqlalchemy import func
 
-from models import Tag, Thesis
+from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
-from middleware.cache import is_cache_filler, cache_filler
-from services import db, cache
+from models import Tag, Thesis
+from services import cache, db
 from services.logger import logger
+
 
 @cache_filler(cache)
 @cache.cached()
@@ -27,7 +28,7 @@ def tags(filename=None):
 
         rv = {
             "data": [tag.to_dict(include_theses_ids=True)
-                for tag in results]
+                     for tag in results]
         }
 
     else:
@@ -38,7 +39,7 @@ def tags(filename=None):
 
         rv = {
             "data": [item[0].to_dict(thesis_count=item[1])
-                for item in results]
+                     for item in results]
         }
 
     return json_response(rv, filename=filename)
@@ -71,7 +72,7 @@ def tag(tag_title: str):
         "data": tag.to_dict(include_related_tags=True),
         "theses": [thesis.to_dict() for thesis in tag.theses],
         "occasions": {thesis.occasion_id: thesis.occasion.to_dict()
-            for thesis in tag.theses}
+                      for thesis in tag.theses}
     }
 
     return json_response(rv)

@@ -34,6 +34,7 @@ API_VERSION = config.API_VERSION
 API_ROOT = config.API_ROOT
 SITE_ROOT = config.SITE_ROOT
 
+
 def create_app(config=None):
     app = Flask(__name__)
     app.config.update(config or {})
@@ -62,18 +63,39 @@ def create_app(config=None):
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    app.route(API_ROOT + "/base", methods=["GET"])(controllers.base)
-    app.route(API_ROOT + "/occasions/", methods=["GET"])(controllers.occasions)
-    app.route(API_ROOT + "/occasions/<int:wom_id>", methods=["GET"])(controllers.occasion)
-    app.route(API_ROOT + "/react/<string:endpoint>", methods=["POST"])(controllers.react)
-    app.route(API_ROOT + "/tags.json", methods=["GET"], defaults={'filename': 'tags.json'})(controllers.tags)
-    app.route(API_ROOT + "/tags/", methods=["GET"])(controllers.tags)
-    app.route(API_ROOT + "/tags/<string:tag_title>", methods=["GET", "DELETE"])(controllers.tag)
-    app.route(API_ROOT + '/sitemap.xml', methods=["GET"])(controllers.sitemap)
-    app.route(API_ROOT + "/thesis/<string:thesis_id>", methods=["GET"])(controllers.thesis)
-    app.route(API_ROOT + "/thesis/<string:thesis_id>/tags/", methods=["POST"])(controllers.thesis_tags)
+    app.route(API_ROOT + "/base",
+              methods=["GET"])(controllers.base)
+
+    app.route(API_ROOT + "/occasions/",
+              methods=["GET"])(controllers.occasions)
+
+    app.route(API_ROOT + "/occasions/<int:wom_id>",
+              methods=["GET"])(controllers.occasion)
+
+    app.route(API_ROOT + "/react/<string:endpoint>",
+              methods=["POST"])(controllers.react)
+
+    app.route(API_ROOT + "/tags.json",
+              methods=["GET"],
+              defaults={'filename': 'tags.json'})(controllers.tags)
+
+    app.route(API_ROOT + "/tags/",
+              methods=["GET"])(controllers.tags)
+
+    app.route(API_ROOT + "/tags/<string:tag_title>",
+              methods=["GET", "DELETE"])(controllers.tag)
+
+    app.route(API_ROOT + '/sitemap.xml',
+              methods=["GET"])(controllers.sitemap)
+
+    app.route(API_ROOT + "/thesis/<string:thesis_id>",
+              methods=["GET"])(controllers.thesis)
+
+    app.route(API_ROOT + "/thesis/<string:thesis_id>/tags/",
+              methods=["POST"])(controllers.thesis_tags)
 
     return app
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("METAWAHL_PORT", 9000))

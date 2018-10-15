@@ -5,6 +5,7 @@
 import config
 from flask import g, jsonify
 
+
 def json_response(data, filename=None, status=200):
     data["meta"] = {
         "api": config.API_FULL_NAME,

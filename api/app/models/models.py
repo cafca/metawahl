@@ -25,6 +25,7 @@ REACTION_NAMES = {
     4: "Verärgert"
 }
 
+
 def dt_string(dt):
     """Return iso string representation of a datetime including tz."""
     return dt.strftime("%Y-%m-%d %H:%M:%S Z")
@@ -35,13 +36,13 @@ class ThesisReport(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(36), nullable=False)
     date = db.Column(db.DateTime,
-        nullable=False, default=datetime.datetime.utcnow)
+                     nullable=False, default=datetime.datetime.utcnow)
     text = db.Column(db.Text, nullable=False)
 
     thesis_id = db.Column(db.String(10),
-        db.ForeignKey('thesis.id'), nullable=False)
+                          db.ForeignKey('thesis.id'), nullable=False)
     thesis = db.relationship('Thesis',
-        backref=db.backref('reports', lazy=True))
+                             backref=db.backref('reports', lazy=True))
 
     def __repr__(self):
         return "<Report {}>".format(self.thesis_id)
@@ -60,13 +61,13 @@ class Reaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(db.String(36), nullable=False)
     date = db.Column(db.DateTime,
-        nullable=False, default=datetime.datetime.utcnow)
+                     nullable=False, default=datetime.datetime.utcnow)
     kind = db.Column(db.Integer, nullable=False)
 
     thesis_id = db.Column(db.String(10),
-        db.ForeignKey('thesis.id'), nullable=False)
+                          db.ForeignKey('thesis.id'), nullable=False)
     thesis = db.relationship('Thesis',
-        backref=db.backref('reactions', lazy=True))
+                             backref=db.backref('reactions', lazy=True))
 
     __table_args__ = (
         UniqueConstraint('uuid', 'thesis_id', name='u_rctn'),
@@ -161,14 +162,14 @@ class Position(db.Model):
     text = db.Column(db.Text)
 
     party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
-        nullable=False)
-    party = db.relationship('Party', backref=db.backref('positions',
-        lazy=True))
+                           nullable=False)
+    party = db.relationship('Party',
+                            backref=db.backref('positions', lazy=True))
 
-    thesis_id = db.Column(db.String(10),
-        db.ForeignKey('thesis.id'), nullable=False)
+    thesis_id = db.Column(db.String(10), db.ForeignKey('thesis.id'),
+                          nullable=False)
     thesis = db.relationship('Thesis',
-        backref=db.backref('positions', lazy=False))
+                             backref=db.backref('positions', lazy=False))
 
     def __repr__(self):
         return "<Position {}/{}: {}>".format(
@@ -201,22 +202,26 @@ class Result(db.Model):
     # How the name of the party was written for this election
     party_repr = db.Column(db.String(256), nullable=False)
     party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
-        nullable=False)
+                           nullable=False)
     party = db.relationship('Party', backref=db.backref('results',
-        lazy=True))
+                                                        lazy=True))
 
     occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
-        nullable=False)
+                            nullable=False)
     occasion = db.relationship('Occasion',
-        backref=db.backref('results', lazy=False))
+                               backref=db.backref('results', lazy=False))
 
 
 tags = db.Table('tags',
-    db.Column('tag_title',
-        db.String(128), db.ForeignKey('tag.title'), primary_key=True),
-    db.Column('thesis_id',
-        db.String(10), db.ForeignKey('thesis.id'), primary_key=True)
-)
+                db.Column('tag_title',
+                          db.String(128),
+                          db.ForeignKey('tag.title'),
+                          primary_key=True),
+                db.Column('thesis_id',
+                          db.String(10),
+                          db.ForeignKey('thesis.id'),
+                          primary_key=True)
+                )
 
 
 class Tag(db.Model):
@@ -238,7 +243,7 @@ class Tag(db.Model):
         self.slug = slugify(self.title)
 
     def to_dict(self, thesis_count=None, include_theses_ids=False,
-            include_related_tags=False, query_root_status=False):
+                include_related_tags=False, query_root_status=False):
         rv = {
             "title": self.title,
             "slug": self.slug,
@@ -339,14 +344,14 @@ class Thesis(db.Model):
     text = db.Column(db.Text, nullable=False)
 
     occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
-        nullable=False)
+                            nullable=False)
     occasion = db.relationship('Occasion',
-        backref=db.backref('theses', lazy=True))
+                               backref=db.backref('theses', lazy=True))
 
     tags = db.relationship('Tag',
-        secondary=tags,
-        lazy=False,
-        backref=db.backref('theses', order_by=desc(tags.c.thesis_id)))
+                           secondary=tags,
+                           lazy=False,
+                           backref=db.backref('theses', order_by=desc(tags.c.thesis_id)))
 
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
@@ -408,7 +413,8 @@ class Thesis(db.Model):
 
         rv = list()
         for score in sorted(collect.keys(), reverse=True):
-            rv.extend([Thesis.query.get(tid).to_dict() for tid in sorted(collect[score], reverse=True)])
+            rv.extend([Thesis.query.get(tid).to_dict()
+                       for tid in sorted(collect[score], reverse=True)])
             if len(rv) > 10:
                 break
         return rv

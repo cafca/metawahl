@@ -11,6 +11,7 @@ from services import db, cache
 from services.logger import logger
 from config import API_ROOT
 
+
 def react(endpoint: str):
     """Save a user submitted reaction.
 
@@ -67,7 +68,8 @@ def react(endpoint: str):
                 thesis = db.session.query(Thesis).get(thesis_id)
 
                 if thesis is None:
-                    logger.warning("No thesis instance was found for this request")
+                    logger.warning(
+                        "No thesis instance was found for this request")
                     error = True
 
                 if error is False:
@@ -88,7 +90,8 @@ def react(endpoint: str):
                     logger.info("Stored {}".format(reaction))
 
                     # Delete cached user ratings endpoint
-                    cache.delete('views/{}/reactions/{}'.format(API_ROOT, uuid))
+                    cache.delete(
+                        'views/{}/reactions/{}'.format(API_ROOT, uuid))
 
                     rv['data'] = reaction.thesis.reactions_dict()
     else:

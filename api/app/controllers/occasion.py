@@ -10,6 +10,7 @@ from middleware.json_response import json_response
 from services import db, cache
 from services.logger import logger
 
+
 @cache_filler(cache)
 @cache.cached()
 def occasions():
@@ -49,7 +50,7 @@ def occasion(wom_id: int):
     rv = {
         "data": occasion.to_dict(),
         "theses": [thesis.to_dict()
-            for thesis in occasion.theses]
+                   for thesis in occasion.theses]
     }
 
     return json_response(rv)

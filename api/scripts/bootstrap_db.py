@@ -80,6 +80,7 @@ INVALID_POSITION_TEXTS = [
 party_instances = defaultdict(Party)
 tag_instances = defaultdict(Tag)
 
+
 def load_data_file(fp, index=False):
     """Load JSON encoded data from disk with option to index."""
     rv = None
@@ -127,7 +128,8 @@ def load_occasions():
 
         if dataset["overview"]["info"] is not None:
             splitPos = dataset["overview"]["info"].rfind("/") + 1
-            wikipedia_title = dataset["overview"]["info"][splitPos:].replace("_", " ")
+            wikipedia_title = dataset["overview"]["info"][splitPos:].replace(
+                "_", " ")
 
         dt = dateutil.parser.parse(dataset["overview"]["date"])
 
@@ -209,7 +211,7 @@ def load_tags():
             tag_export = json.load(f)
     except FileNotFoundError:
         logger.warning("File ../userdata/tags.json not found - tags were not" +
-            "imported")
+                       "imported")
         return
 
     assert tag_export["meta"]["api"] == API_VERSION
@@ -250,7 +252,7 @@ def load_reports():
             reports_export = json.load(f)
     except FileNotFoundError:
         logger.warning("File ../userdata/thesis_reports.json not found - " +
-            "reports were not imported")
+                       "reports were not imported")
         return
 
     assert reports_export["meta"]["api"] == API_VERSION
@@ -275,7 +277,7 @@ def load_reactions():
             reaction_export = json.load(f)
     except FileNotFoundError:
         logger.warning("File ../userdata/reactions.json not found - " +
-            "reactions were not imported")
+                       "reactions were not imported")
         return
 
     assert reaction_export["meta"]["api"] == API_VERSION
@@ -304,7 +306,7 @@ def load_wahlergebnisse():
             wahlergebnisse = json.load(f)
     except FileNotFoundError:
         logger.warning("wahlergebnisse/wahlergebnisse.json not found. Is " +
-            "the submodule initialised?")
+                       "the submodule initialised?")
         quit()
 
     return wahlergebnisse
@@ -344,12 +346,15 @@ def make_substitutions():
                     found = True
 
             if found is False:
-                print("\n".join("{}: {}".format(i, n) for i, n in enumerate(we[d]["results"].keys())))
+                print("\n".join("{}: {}".format(i, n)
+                                for i, n in enumerate(we[d]["results"].keys())))
 
-                choice = int(input("Welche Partei ist {}?\n{}\n\n".format(p, parties[p].text)))
+                choice = int(
+                    input("Welche Partei ist {}?\n{}\n\n".format(p, parties[p].text)))
 
                 if choice != -1:
-                    substitutions[p].append(list(we[d]["results"].keys())[choice])
+                    substitutions[p].append(
+                        list(we[d]["results"].keys())[choice])
 
         with open("substitutions.json", "w") as f:
             json.dump(substitutions, f, indent=2, ensure_ascii=False)
@@ -368,8 +373,8 @@ def load_results():
     for occ in db.session.query(Occasion).all():
         dt = occ.date.date()
         occ_results = [o for o in result_data
-            if o["territory"].lower().startswith(occ.territory.lower()[:2])
-                and dateutil.parser.parse(o["date"]).date() == dt]
+                       if o["territory"].lower().startswith(occ.territory.lower()[:2])
+                       and dateutil.parser.parse(o["date"]).date() == dt]
 
         matched_results = set()
 
@@ -385,8 +390,10 @@ def load_results():
 
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
-                options = [p.name.lower(), ] + list(map(str.lower, substitutions[p.name]))
-                matches = [(name, result) for name, result in res["results"].items() if name.lower() in options]
+                options = [p.name.lower(), ] + \
+                    list(map(str.lower, substitutions[p.name]))
+                matches = [(name, result) for name, result in res["results"].items(
+                ) if name.lower() in options]
 
                 if len(matches) > 0:
                     for match in matches:
@@ -406,9 +413,11 @@ def load_results():
                         )
                 else:
                     if occ.preliminary:
-                        logger.info("{} missing vote count for  {}".format(occ, p))
+                        logger.info(
+                            "{} missing vote count for  {}".format(occ, p))
                     else:
-                        logger.error("No vote count for {} in {}".format(p, occ))
+                        logger.error(
+                            "No vote count for {} in {}".format(p, occ))
 
             # Add results missing in Wahl-o-Mat
             for p_name, match in res["results"].items():

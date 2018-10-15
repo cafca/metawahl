@@ -23,11 +23,12 @@ META = {
 licensing information"
 }
 
+
 def backup_data(data, fname):
     """JSON-encode and write to file with metadata."""
     rv = {
-        "data": data.to_dict() if hasattr(data, "to_dict") \
-            else [obj.to_dict() for obj in data],
+        "data": data.to_dict() if hasattr(data, "to_dict")
+        else [obj.to_dict() for obj in data],
         "meta": META
     }
     with open(os.path.join(DATADIR, fname), "w") as f:

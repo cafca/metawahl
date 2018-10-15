@@ -3,7 +3,6 @@
 """Logging middleware."""
 
 import time
-
 from flask import g, request
 from datetime import datetime
 
@@ -30,9 +29,9 @@ def after_request(response):
     if response.status_code != 500:
         ts = datetime.utcnow().strftime('[%Y-%b-%d %H:%M]')
         logger.debug('%s %s %s %s %s',
-                    request.remote_addr,
-                    request.method,
-                    request.scheme,
-                    request.full_path,
-                    response.status)
+                     request.remote_addr,
+                     request.method,
+                     request.scheme,
+                     request.full_path,
+                     response.status)
     return response

@@ -8,6 +8,7 @@ from config import SITE_ROOT
 from models import Occasion, Tag
 from services import db, cache
 
+
 @cache.cached()
 def sitemap():
     def generate():
@@ -20,13 +21,16 @@ def sitemap():
             # Occasions
             yield '{}/wahlen/\n'.format(SITE_ROOT)
             terr = None
-            for occ in db.session.query(Occasion).order_by(Occasion.territory).all():
+            query = db.session.query(Occasion).order_by(Occasion.territory).all()
+            for occ in query:
                 if occ.territory != terr:
                     yield '{}/wahlen/{}/\n'.format(SITE_ROOT, occ.territory)
-                yield '{}/wahlen/{}/{}/\n'.format(SITE_ROOT, occ.territory, occ.id)
+                yield '{}/wahlen/{}/{}/\n'.format(
+                    SITE_ROOT, occ.territory, occ.id)
                 terr = occ.territory
                 for thesis in occ.theses:
-                    yield '{}/wahlen/{}/{}/{}/\n'.format(SITE_ROOT, occ.territory, occ.id, thesis.id[-2:])
+                    yield '{}/wahlen/{}/{}/{}/\n'.format(
+                        SITE_ROOT, occ.territory, occ.id, thesis.id[-2:])
 
             # Topics
             yield '{}/themen/\n'.format(SITE_ROOT)

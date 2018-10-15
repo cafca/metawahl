@@ -2,12 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from flask import request
-
-from models import Thesis, Tag
-from middleware.logger import log_request_info
+from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
-from middleware.cache import is_cache_filler, cache_filler
-from services import db, cache
+from middleware.logger import log_request_info
+from models import Tag, Thesis
+from services import cache, db
 from services.logger import logger
 
 
@@ -73,7 +72,7 @@ def thesis_tags(thesis_id: str):
             logger.info("Removing tags {}".format(
                 ", ".join(data.get("remove"))))
             thesis.tags = [tag for tag in thesis.tags
-                if tag.title not in data.get("remove")]
+                           if tag.title not in data.get("remove")]
 
         db.session.add(thesis)
         db.session.commit()

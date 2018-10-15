@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 from models import Occasion, Tag, Thesis
 from middleware.cache import cache_filler
 from middleware.json_response import json_response
 from services import db, cache
 from services.logger import logger
+
 
 @cache_filler(cache)
 @cache.cached()
@@ -41,9 +41,8 @@ def baseData():
         .all()
 
     rv["data"]["tags"] = [
-        item[0].to_dict(thesis_count=item[1], query_root_status=True, include_related_tags=True)
-            for item in tagItems]
+        item[0].to_dict(thesis_count=item[1],
+                        query_root_status=True, include_related_tags=True)
+        for item in tagItems]
 
     return json_response(rv)
-
-

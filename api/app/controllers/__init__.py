@@ -1,3 +1,4 @@
+# flatten package
 from .base import *
 from .occasion import *
 from .sitemap import *
