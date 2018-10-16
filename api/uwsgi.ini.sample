@@ -1,5 +1,5 @@
 [uwsgi]
-chdir = /home/pv/metawahl/src/api-server
+chdir = /home/pv/metawahl/src/api
 module = wsgi
 
 master = true

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Error handler middleware."""
+"""Middleware to enable insertion of traceback into error logs."""
 
 import traceback
 from datetime import datetime
