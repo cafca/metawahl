@@ -11,7 +11,7 @@ matrix:
 
       install:
         - pip install pipenv
-        - pipenv sync --verbose
+        - pipenv sync
         - psql -c 'create database metawahl;' -U postgres
         - pipenv run python scripts/reset_db.py --force
         - pipenv run python scripts/bootstrap_db.py
