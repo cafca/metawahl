@@ -8,7 +8,9 @@ stages:
     response:
       status_code: 405
       headers:
-        content-type: text/html
+        content-type: application/json
+      body:
+        error: "Method Not Allowed"
 
   - name: Make sure that invalid reaction types are not handled
     request:
