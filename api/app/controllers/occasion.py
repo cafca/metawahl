@@ -6,6 +6,7 @@ from flask import request
 from flask_restplus import Resource
 
 from models import Occasion
+from middleware.api import api
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from services import db, cache
@@ -15,6 +16,7 @@ from services.logger import logger
 class OccasionView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
+    @api.doc(params={'wom_id': 'Occasion ID like `WOM-43-01`'})
     def get(self, wom_id: int):
         """Return metadata for an occasion and all theses therein."""
         if not is_cache_filler():

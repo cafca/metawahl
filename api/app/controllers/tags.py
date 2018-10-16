@@ -16,7 +16,7 @@ class TagsView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
     def get(self, filename=None):
-        """Return list of all tags."""
+        """List of all known tags."""
 
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))

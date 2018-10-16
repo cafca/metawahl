@@ -21,6 +21,7 @@ from flask_restplus import Api, Namespace
 from pprint import pformat
 
 import controllers
+from middleware.api import api
 from middleware.error import exceptions, page_not_found
 from middleware.logger import logger, log_request_info, before_request, after_request
 from middleware.json_response import json_response
@@ -49,12 +50,7 @@ def create_app(config=None):
     db.init_app(app)
     cache.init_app(app, config=app.config)
 
-    api = Api(app,
-              version=API_VERSION,
-              title="Metawahl API",
-              license="MIT",
-              license_url="https://github.com/ciex/metawahl/blob/master/LICENSE"
-              )
+    api.init_app(app)
 
     CORS(app)
 
