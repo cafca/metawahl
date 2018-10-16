@@ -11,7 +11,7 @@ from services import db, cache
 from services.logger import logger
 
 
-@cache_filler(cache)
+@cache_filler()
 @cache.cached()
 def occasions():
     """Return a list of all occasions."""
@@ -35,7 +35,7 @@ def occasions():
     return json_response(rv)
 
 
-@cache_filler(cache)
+@cache_filler()
 @cache.cached()
 def occasion(wom_id: int):
     """Return metadata for an occasion and all theses therein."""

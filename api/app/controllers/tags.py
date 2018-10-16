@@ -11,7 +11,7 @@ from services import cache, db
 from services.logger import logger
 
 
-@cache_filler(cache)
+@cache_filler()
 @cache.cached()
 def tags(filename=None):
     """Return list of all tags."""
@@ -45,7 +45,7 @@ def tags(filename=None):
     return json_response(rv, filename=filename)
 
 
-@cache_filler(cache)
+@cache_filler()
 @cache.cached()
 def tag(tag_title: str):
     """Return data for all theses in a tag."""

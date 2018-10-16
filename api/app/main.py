@@ -17,6 +17,7 @@ from datetime import datetime
 from logging.handlers import RotatingFileHandler
 from flask import Flask, jsonify, request, send_file, g, make_response, abort, Response
 from flask_cors import CORS
+from flask_restplus import Api
 from pprint import pformat
 
 import controllers
@@ -48,6 +49,8 @@ def create_app(config=None):
     db.init_app(app)
     cache.init_app(app, config=app.config)
 
+    api = Api(app)
+
     CORS(app)
 
     handler = RotatingFileHandler(
@@ -63,17 +66,13 @@ def create_app(config=None):
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    app.route(API_ROOT + "/base",
-              methods=["GET"])(controllers.base)
+    api.add_resource(controllers.BaseData, API_ROOT + '/base')
 
     app.route(API_ROOT + "/occasions/",
               methods=["GET"])(controllers.occasions)
 
     app.route(API_ROOT + "/occasions/<int:wom_id>",
               methods=["GET"])(controllers.occasion)
-
-    app.route(API_ROOT + "/react/<string:endpoint>",
-              methods=["POST"])(controllers.react)
 
     app.route(API_ROOT + "/tags.json",
               methods=["GET"],
@@ -93,6 +92,9 @@ def create_app(config=None):
 
     app.route(API_ROOT + "/thesis/<string:thesis_id>/tags/",
               methods=["POST"])(controllers.thesis_tags)
+
+    app.route(API_ROOT + "/react/<string:endpoint>",
+              methods=["POST"])(controllers.react)
 
     return app
 

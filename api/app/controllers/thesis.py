@@ -10,7 +10,7 @@ from services import cache, db
 from services.logger import logger
 
 
-@cache_filler(cache)
+@cache_filler()
 @cache.cached()
 def thesis(thesis_id: str):
     """Return metadata for a specific thesis."""
