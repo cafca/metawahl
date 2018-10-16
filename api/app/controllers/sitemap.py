@@ -3,42 +3,43 @@
 """Generate plaintext sitemap."""
 
 from flask import Response
+from flask_restplus import Resource
 
 from config import SITE_ROOT
 from models import Occasion, Tag
 from services import db, cache
 
 
-@cache.cached()
-def sitemap():
-    def generate():
-        from main import create_app
+class SitemapView(Resource):
+    def get(self):
+        def generate():
+            from main import create_app
 
-        app = create_app()
-        with app.app_context():
-            yield SITE_ROOT + '\n'
+            app = create_app()
+            with app.app_context():
+                yield SITE_ROOT + '\n'
 
-            # Occasions
-            yield '{}/wahlen/\n'.format(SITE_ROOT)
-            terr = None
-            query = db.session.query(Occasion).order_by(Occasion.territory).all()
-            for occ in query:
-                if occ.territory != terr:
-                    yield '{}/wahlen/{}/\n'.format(SITE_ROOT, occ.territory)
-                yield '{}/wahlen/{}/{}/\n'.format(
-                    SITE_ROOT, occ.territory, occ.id)
-                terr = occ.territory
-                for thesis in occ.theses:
-                    yield '{}/wahlen/{}/{}/{}/\n'.format(
-                        SITE_ROOT, occ.territory, occ.id, thesis.id[-2:])
+                # Occasions
+                yield '{}/wahlen/\n'.format(SITE_ROOT)
+                terr = None
+                query = db.session.query(Occasion).order_by(Occasion.territory).all()
+                for occ in query:
+                    if occ.territory != terr:
+                        yield '{}/wahlen/{}/\n'.format(SITE_ROOT, occ.territory)
+                    yield '{}/wahlen/{}/{}/\n'.format(
+                        SITE_ROOT, occ.territory, occ.id)
+                    terr = occ.territory
+                    for thesis in occ.theses:
+                        yield '{}/wahlen/{}/{}/{}/\n'.format(
+                            SITE_ROOT, occ.territory, occ.id, thesis.id[-2:])
 
-            # Topics
-            yield '{}/themen/\n'.format(SITE_ROOT)
-            yield '{}/themenliste/\n'.format(SITE_ROOT)
-            for tag in db.session.query(Tag).order_by(Tag.slug).all():
-                yield '{}/themen/{}/\n'.format(SITE_ROOT, tag.slug)
+                # Topics
+                yield '{}/themen/\n'.format(SITE_ROOT)
+                yield '{}/themenliste/\n'.format(SITE_ROOT)
+                for tag in db.session.query(Tag).order_by(Tag.slug).all():
+                    yield '{}/themen/{}/\n'.format(SITE_ROOT, tag.slug)
 
-            # Other
-            yield '{}/legal/\n'.format(SITE_ROOT)
+                # Other
+                yield '{}/legal/\n'.format(SITE_ROOT)
 
-    return Response(generate(), mimetype='text/plain')
+        return Response(generate(), mimetype='text/plain')

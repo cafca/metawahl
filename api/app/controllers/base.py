@@ -13,7 +13,7 @@ from services import db, cache
 from services.logger import logger
 
 
-class BaseData(Resource):
+class BaseView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
     def get(self):

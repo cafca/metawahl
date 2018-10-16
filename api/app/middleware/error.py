@@ -21,20 +21,12 @@ def exceptions(e):
                  request.full_path,
                  tb)
 
-    try:
-        status = e.code
-    except AttributeError:
-        status = None
-
-    if status and status < 500:
-        return json_response({"error": e.name}, status = e.code)
-    else:
-        return json_response(
-            {
-                "error": "AAAHH! Serverfehler. Rute ist gezückt, Computer wird bestraft."
-            },
-            status = 500
-        )
+    return json_response(
+        {
+            "error": "AAAHH! Serverfehler. Rute ist gezückt, Computer wird bestraft."
+        },
+        status = 500
+    )
 
 
 def page_not_found(e):

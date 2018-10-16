@@ -3,18 +3,18 @@ test_name: react endpoint
 stages:
   - name: Make sure that GET requests are disabled
     request:
-      url: http://localhost:9000/api/v2/react/thesis-report
+      url: http://localhost:9000/v2/react/thesis-report
       method: GET
     response:
       status_code: 405
       headers:
         content-type: application/json
       body:
-        error: "Method Not Allowed"
+        message: "The method is not allowed for the requested URL."
 
   - name: Make sure that invalid reaction types are not handled
     request:
-      url: http://localhost:9000/api/v2/react/schmu
+      url: http://localhost:9000/v2/react/schmu
       method: POST
     response:
       status_code: 200
@@ -25,7 +25,7 @@ stages:
 
   - name: Make sure that thesis reports are handled
     request:
-      url: http://localhost:9000/api/v2/react/thesis-report
+      url: http://localhost:9000/v2/react/thesis-report
       method: POST
       json:
         thesis_id: WOM-001-01
@@ -38,7 +38,7 @@ stages:
 
   - name: Make sure that thesis reports missing thesis id return an error
     request:
-      url: http://localhost:9000/api/v2/react/thesis-report
+      url: http://localhost:9000/v2/react/thesis-report
       method: POST
       json:
         uuid: test-uuid
@@ -52,7 +52,7 @@ stages:
 
   - name: Make sure that thesis reports missing uuid return an error
     request:
-      url: http://localhost:9000/api/v2/react/thesis-report
+      url: http://localhost:9000/v2/react/thesis-report
       method: POST
       json:
         thesis_id: WOM-001-01
@@ -66,7 +66,7 @@ stages:
 
   - name: Make sure that new reactions are handled
     request:
-      url: http://localhost:9000/api/v2/react/reaction
+      url: http://localhost:9000/v2/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
@@ -82,7 +82,7 @@ stages:
 
   - name: Make sure that duplicate reactions are handled
     request:
-      url: http://localhost:9000/api/v2/react/reaction
+      url: http://localhost:9000/v2/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
@@ -99,7 +99,7 @@ stages:
 
   - name: Make sure that reactions missing thesis id return an error
     request:
-      url: http://localhost:9000/api/v2/react/reaction
+      url: http://localhost:9000/v2/react/reaction
       method: POST
       json:
         uuid: test-uuid
@@ -113,7 +113,7 @@ stages:
 
   - name: Make sure that reactions missing uuid return an error
     request:
-      url: http://localhost:9000/api/v2/react/reaction
+      url: http://localhost:9000/v2/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01
@@ -127,7 +127,7 @@ stages:
 
   - name: Make sure that reactions missing rating return an error
     request:
-      url: http://localhost:9000/api/v2/react/reaction
+      url: http://localhost:9000/v2/react/reaction
       method: POST
       json:
         thesis_id: WOM-001-01

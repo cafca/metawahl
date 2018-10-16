@@ -3,7 +3,7 @@ test_name: tags endpoint
 stages:
   - name: Make sure that tag list is returned
     request:
-      url: http://localhost:9000/api/v2/tags/
+      url: http://localhost:9000/v2/tags/
       method: GET
     response:
       status_code: 200
@@ -13,7 +13,7 @@ stages:
 stages:
   - name: Make sure that tags json download is returned
     request:
-      url: http://localhost:9000/api/v2/tags.json
+      url: http://localhost:9000/v2/tags.json
       method: GET
     response:
       status_code: 200
@@ -24,7 +24,7 @@ stages:
 stages:
   - name: Make sure that tag list including thesis ids is returned
     request:
-      url: http://localhost:9000/api/v2/tags/?include_theses_ids=1
+      url: http://localhost:9000/v2/tags/?include_theses_ids=1
       method: GET
     response:
       status_code: 200
@@ -34,7 +34,7 @@ stages:
 stages:
   - name: Make sure that a specific tag is returned
     request:
-      url: http://localhost:9000/api/v2/tags/schule
+      url: http://localhost:9000/v2/tags/schule
       method: GET
     response:
       status_code: 200
@@ -44,7 +44,7 @@ stages:
 stages:
   - name: Make sure that a specific tag that doesn't exist gives 404
     request:
-      url: http://localhost:9000/api/v2/tags/_schule
+      url: http://localhost:9000/v2/tags/_schule
       method: GET
     response:
       status_code: 404
