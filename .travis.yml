@@ -1,9 +1,15 @@
 matrix:
   include:
     - language: python
-      python: 3.6
+      python:
+        - "3.5"
+        - "3.7"
 
-      env: METAWAHL_CONFIG=test.conf.py
+      env:
+        - METAWAHL_CONFIG=test.conf.py
+        - PIPENV_VENV_IN_PROJECT=1
+        - PIPENV_IGNORE_VIRTUALENVS=1
+
       cache: pip
 
       before_install:
@@ -11,7 +17,7 @@ matrix:
 
       install:
         - pip install pipenv
-        - pipenv sync
+        - pipenv sync --dev
         - psql -c 'create database metawahl;' -U postgres
         - pipenv run python scripts/reset_db.py --force
         - pipenv run python scripts/bootstrap_db.py

@@ -7,10 +7,8 @@
 
 METAWAHL_CONFIG=test.conf.py python app/main.py &
 FLASK_PID=$!
-echo "pid" $FLASK_PID
-echo $(pwd)
 sleep 5
-pytest -v
+py.test tests -s -v
 TEST_RESULT=$?
 kill -9 $FLASK_PID
 
