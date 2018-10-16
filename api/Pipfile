@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 lxml = "*"
 prettyprint = "*"
-"psycopg2" = "*"
 pylibmc = "*"
 python-dateutil = "*"
 python-slugify = "*"
@@ -17,6 +16,7 @@ Flask-Caching = "*"
 Flask-Cors = "*"
 Wikidata = "*"
 flask-restplus = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 autopep8 = "*"
