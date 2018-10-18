@@ -312,7 +312,7 @@ def load_results():
 
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
         result_data = json.load(f)
-    with open("./userdata/substitutions.json") as f:
+    with open("../userdata/substitutions.json") as f:
         substitutions = defaultdict(list)
         substitutions.update(json.load(f))
 
