@@ -12,7 +12,7 @@ export type RelatedTag = {
   // This is a Babel bug apparently
   // // Related issue: https://github.com/babel/babel-eslint/pull/584
   // eslint-disable-next-line no-use-before-define
-  [name: string]: { count: number, tag: TagType }
+  [name: string]: { count: number, tag: TagType | string }
 };
 
 export type TagType = {

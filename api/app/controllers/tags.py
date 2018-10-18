@@ -59,7 +59,7 @@ class TagView(Resource):
             return json_response({"error": "Tag not found"}, status=404)
 
         rv = {
-            "data": tag.to_dict(include_related_tags=True),
+            "data": tag.to_dict(include_related_tags='full'),
             "theses": [thesis.to_dict() for thesis in tag.theses],
             "elections": {
                 thesis.election_id: thesis.election.to_dict() for thesis in tag.theses
@@ -84,7 +84,7 @@ class TagView(Resource):
         db.session.commit()
 
         rv = {
-            "data": tag.to_dict(include_related_tags=True),
+            "data": tag.to_dict(include_related_tags='full'),
             "theses": [thesis.to_dict() for thesis in tag.theses],
             "elections": {
                 thesis.election_id: thesis.election.to_dict() for thesis in tag.theses

@@ -166,7 +166,7 @@ class Tag(db.Model):
         self,
         thesis_count=None,
         include_theses_ids=False,
-        include_related_tags=False,
+        include_related_tags=None,
         query_root_status=False,
     ):
         rv = {
@@ -197,15 +197,15 @@ class Tag(db.Model):
         if include_theses_ids:
             rv["theses"] = [thesis.id for thesis in self.theses]
 
-        if include_related_tags:
-            rv["related_tags"] = self.related_tags()
+        if include_related_tags is not None:
+            rv["related_tags"] = self.related_tags(include_related_tags)
 
         if query_root_status:
             rv["root"] = self.is_root
 
         return rv
 
-    def related_tags(self):
+    def related_tags(self, format):
         """Return a dictionary of related tags.
 
         The return value distinguishes between parent tags, which are present
@@ -215,6 +215,9 @@ class Tag(db.Model):
 
         The number of returned tags in the 'linked' category is limited to ~15.
         """
+
+        if format not in ["simple", "full"]:
+            format = "simple"
 
         tag_counts = defaultdict(int)
         tags = dict()
@@ -247,17 +250,19 @@ class Tag(db.Model):
                     else:
                         relation = "linked"
 
-                    rv[relation][tag] = {
-                        "count": tag_counts[tag],
-                        "tag": tags[tag].to_dict(),
-                    }
+                    if format == "full":
+                        related_tag = tags[tag].to_dict()
+                    else:
+                        related_tag = tags[tag].slug
+
+                    rv[relation][tag] = {"count": tag_counts[tag], "tag": related_tag}
 
             return rv
 
     @property
     def is_root(self):
         """Return true if this tag has no parent tagas in its related tags."""
-        rl = self.related_tags()
+        rl = self.related_tags('simple')
         return len(rl["parents"]) == 0
 
 

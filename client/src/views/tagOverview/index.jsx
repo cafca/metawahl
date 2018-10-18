@@ -13,7 +13,7 @@ import {
   Grid
 } from 'semantic-ui-react';
 
-import type { RouteProps } from '../../types/';
+import type { RouteProps, TagType } from '../../types/';
 import SEO from '../../components/seo/';
 
 import './TagOverview.css';
@@ -23,6 +23,12 @@ export default class TagOverview extends Component<RouteProps> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
+  }
+
+  tagBySlug(slug: string): ?TagType {
+    return this.props.tags
+      .filter(t => t.slug === slug)
+      .shift(1)
   }
 
   render() {
@@ -43,7 +49,11 @@ export default class TagOverview extends Component<RouteProps> {
         const relatedTags = tag.related_tags.linked &&
           Object.keys(tag.related_tags.linked)
             .filter(k => rootTagNames.filter(t => t.title === k).length === 0)
-            .map(k => Object.assign({}, tag.related_tags.linked[k].tag, { thesis_count: tag.related_tags.linked[k].count }))
+            .map(k => Object.assign(
+              {},
+              this.tagBySlug(tag.related_tags.linked[k].tag),
+              { thesis_count: tag.related_tags.linked[k].count })
+            )
             .sort(sortByThesisCount)
             .slice(0, 5)
             .map((entry, j) => <List.Item key={i + '-' + j}>
