@@ -11,7 +11,7 @@ def json_response(data, filename=None, status=200):
         "api": config.API_FULL_NAME,
         "render_time": g.request_time(),
         "license": "Please see https://github.com/ciex/metawahl/master/LICENSE \
-for licensing information"
+for licensing information",
     }
 
     rv = jsonify(data)
@@ -19,8 +19,7 @@ for licensing information"
     rv.status_code = status
 
     if filename is not None:
-        rv.headers['Content-Type'] = 'text/json'
-        rv.headers['Content-Disposition'] = \
-            'attachment; filename={}'.format(filename)
+        rv.headers["Content-Type"] = "text/json"
+        rv.headers["Content-Disposition"] = "attachment; filename={}".format(filename)
 
     return rv

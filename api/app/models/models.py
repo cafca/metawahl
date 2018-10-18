@@ -22,6 +22,7 @@ def dt_string(dt):
 
 class Election(db.Model):
     """Represent an election for which WOM data exists."""
+
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
     territory = db.Column(db.String(32), nullable=False)
@@ -45,7 +46,7 @@ class Election(db.Model):
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
-            "wikipedia_title": self.wikipedia_title
+            "wikipedia_title": self.wikipedia_title,
         }
 
         if self.preliminary:
@@ -61,10 +62,7 @@ class Election(db.Model):
     def result_dict(self):
         rv = dict()
         for r in self.results:
-            rv[r.party_repr] = {
-                "votes": r.votes,
-                "pct": r.pct
-            }
+            rv[r.party_repr] = {"votes": r.votes, "pct": r.pct}
 
             if r.party_repr != r.party_name:
                 rv[r.party_repr]["linked_position"] = r.party_name
@@ -76,6 +74,7 @@ class Election(db.Model):
 
 class Party(db.Model):
     """Represent a party electable in one of the elections."""
+
     name = db.Column(db.String(32), primary_key=True)
     long_name = db.Column(db.Text)
 
@@ -83,37 +82,29 @@ class Party(db.Model):
         return "<Party {}>".format(self.name)
 
     def to_dict(self):
-        return {
-            "name": self.name,
-            "long_name": self.long_name
-        }
+        return {"name": self.name, "long_name": self.long_name}
 
 
 class Position(db.Model):
     """Represent a party's position towards a thesis."""
+
     id = db.Column(db.Integer, primary_key=True)
     value = db.Column(db.Integer, nullable=False)
     text = db.Column(db.Text)
 
-    party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
-                           nullable=False)
-    party = db.relationship('Party',
-                            backref=db.backref('positions', lazy=True))
+    party_name = db.Column(db.String(32), db.ForeignKey("party.name"), nullable=False)
+    party = db.relationship("Party", backref=db.backref("positions", lazy=True))
 
-    thesis_id = db.Column(db.String(10), db.ForeignKey('thesis.id'),
-                          nullable=False)
-    thesis = db.relationship('Thesis',
-                             backref=db.backref('positions', lazy=False))
+    thesis_id = db.Column(db.String(10), db.ForeignKey("thesis.id"), nullable=False)
+    thesis = db.relationship("Thesis", backref=db.backref("positions", lazy=False))
 
     def __repr__(self):
         return "<Position {}/{}: {}>".format(
-            self.thesis_id, self.party_name, self.value)
+            self.thesis_id, self.party_name, self.value
+        )
 
     def to_dict(self):
-        rv = {
-            "value": self.value,
-            "party": self.party_name,
-        }
+        rv = {"value": self.value, "party": self.party_name}
 
         if self.text is not None:
             rv["text"] = self.text
@@ -123,6 +114,7 @@ class Position(db.Model):
 
 class Result(db.Model):
     """Represent an official result from an election for a party."""
+
     id = db.Column(db.Integer, primary_key=True)
     votes = db.Column(db.Integer)
     pct = db.Column(db.Float, nullable=False)
@@ -135,31 +127,25 @@ class Result(db.Model):
 
     # How the name of the party was written for this election
     party_repr = db.Column(db.String(256), nullable=False)
-    party_name = db.Column(db.String(32), db.ForeignKey('party.name'),
-                           nullable=False)
-    party = db.relationship('Party', backref=db.backref('results',
-                                                        lazy=True))
+    party_name = db.Column(db.String(32), db.ForeignKey("party.name"), nullable=False)
+    party = db.relationship("Party", backref=db.backref("results", lazy=True))
 
-    election_id = db.Column(db.Integer, db.ForeignKey('election.id'),
-                            nullable=False)
-    election = db.relationship('Election',
-                               backref=db.backref('results', lazy=False))
+    election_id = db.Column(db.Integer, db.ForeignKey("election.id"), nullable=False)
+    election = db.relationship("Election", backref=db.backref("results", lazy=False))
 
 
-tags = db.Table('tags',
-                db.Column('tag_title',
-                          db.String(128),
-                          db.ForeignKey('tag.title'),
-                          primary_key=True),
-                db.Column('thesis_id',
-                          db.String(10),
-                          db.ForeignKey('thesis.id'),
-                          primary_key=True)
-                )
+tags = db.Table(
+    "tags",
+    db.Column(
+        "tag_title", db.String(128), db.ForeignKey("tag.title"), primary_key=True
+    ),
+    db.Column("thesis_id", db.String(10), db.ForeignKey("thesis.id"), primary_key=True),
+)
 
 
 class Tag(db.Model):
     """Represent a tag linked to a Wikidata ID."""
+
     aliases = db.Column(db.Text)
     description = db.Column(db.Text)
     labels = db.Column(db.Text)
@@ -176,13 +162,18 @@ class Tag(db.Model):
     def make_slug(self):
         self.slug = slugify(self.title)
 
-    def to_dict(self, thesis_count=None, include_theses_ids=False,
-                include_related_tags=False, query_root_status=False):
+    def to_dict(
+        self,
+        thesis_count=None,
+        include_theses_ids=False,
+        include_related_tags=False,
+        query_root_status=False,
+    ):
         rv = {
             "title": self.title,
             "slug": self.slug,
             "wikidata_id": self.wikidata_id,
-            "url": self.url
+            "url": self.url,
         }
 
         if self.description is not None:
@@ -192,10 +183,10 @@ class Tag(db.Model):
             rv["wikipedia_title"] = self.wikipedia_title
 
         if self.aliases is not None and len(self.aliases) > 0:
-            rv["aliases"] = self.aliases.split(';')
+            rv["aliases"] = self.aliases.split(";")
 
         if self.labels is not None and len(self.labels) > 0:
-            rv["labels"] = self.labels.split(';')
+            rv["labels"] = self.labels.split(";")
 
         if self.image is not None:
             rv["image"] = self.image
@@ -238,28 +229,27 @@ class Tag(db.Model):
         try:
             # Determine the amount of tags where n=num_related_tags theses have
             # more related tags
-            cutoff = sorted(tag_counts.values())[::-1][:num_related_tags + 1][-1]
+            cutoff = sorted(tag_counts.values())[::-1][: num_related_tags + 1][-1]
         except IndexError:
             return {}
         else:
-            rv = {
-                'parents': {},
-                'linked': {}
-            }
+            rv = {"parents": {}, "linked": {}}
 
             self_theses_count = len(self.theses)
 
             for tag in tag_counts.keys():
                 if tag_counts[tag] >= cutoff:
-                    if tag_counts[tag] >= (0.8 * self_theses_count) and \
-                            len(tags[tag].theses) >= self_theses_count:
-                        relation = 'parents'
+                    if (
+                        tag_counts[tag] >= (0.8 * self_theses_count)
+                        and len(tags[tag].theses) >= self_theses_count
+                    ):
+                        relation = "parents"
                     else:
-                        relation = 'linked'
+                        relation = "linked"
 
                     rv[relation][tag] = {
                         "count": tag_counts[tag],
-                        "tag": tags[tag].to_dict()
+                        "tag": tags[tag].to_dict(),
                     }
 
             return rv
@@ -273,19 +263,20 @@ class Tag(db.Model):
 
 class Thesis(db.Model):
     """Represent a single thesis within an elections thesis set."""
+
     id = db.Column(db.String(10), primary_key=True)
     title = db.Column(db.Text)
     text = db.Column(db.Text, nullable=False)
 
-    election_id = db.Column(db.Integer, db.ForeignKey('election.id'),
-                            nullable=False)
-    election = db.relationship('Election',
-                               backref=db.backref('theses', lazy=True))
+    election_id = db.Column(db.Integer, db.ForeignKey("election.id"), nullable=False)
+    election = db.relationship("Election", backref=db.backref("theses", lazy=True))
 
-    tags = db.relationship('Tag',
-                           secondary=tags,
-                           lazy=False,
-                           backref=db.backref('theses', order_by=desc(tags.c.thesis_id)))
+    tags = db.relationship(
+        "Tag",
+        secondary=tags,
+        lazy=False,
+        backref=db.backref("theses", order_by=desc(tags.c.thesis_id)),
+    )
 
     def __repr__(self):
         return "<Thesis {}>".format(self.id)
@@ -296,7 +287,7 @@ class Thesis(db.Model):
             "title": self.title,
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
-            "election_id": self.election_id
+            "election_id": self.election_id,
         }
 
         if self.text is not None:
@@ -339,8 +330,12 @@ class Thesis(db.Model):
 
         rv = list()
         for score in sorted(collect.keys(), reverse=True):
-            rv.extend([Thesis.query.get(tid).to_dict()
-                       for tid in sorted(collect[score], reverse=True)])
+            rv.extend(
+                [
+                    Thesis.query.get(tid).to_dict()
+                    for tid in sorted(collect[score], reverse=True)
+                ]
+            )
             if len(rv) > 10:
                 break
         return rv

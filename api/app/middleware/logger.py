@@ -27,11 +27,13 @@ def after_request(response):
     # This IF avoids the duplication of registry in the log,
     # since that 500 is already logged via @app.errorhandler.
     if response.status_code != 500:
-        ts = datetime.utcnow().strftime('[%Y-%b-%d %H:%M]')
-        logger.debug('%s %s %s %s %s',
-                     request.remote_addr,
-                     request.method,
-                     request.scheme,
-                     request.full_path,
-                     response.status)
+        ts = datetime.utcnow().strftime("[%Y-%b-%d %H:%M]")
+        logger.debug(
+            "%s %s %s %s %s",
+            request.remote_addr,
+            request.method,
+            request.scheme,
+            request.full_path,
+            response.status,
+        )
     return response

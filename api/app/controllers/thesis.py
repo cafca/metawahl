@@ -26,10 +26,7 @@ class ThesisView(Resource):
         if thesis is None:
             return json_response({"error": "Thesis not found"}, status=404)
 
-        rv = {
-            "data": thesis.to_dict(),
-            "related": thesis.related()
-        }
+        rv = {"data": thesis.to_dict(), "related": thesis.related()}
 
         return json_response(rv)
 
@@ -45,21 +42,23 @@ class ThesisTagsView(Resource):
         if thesis is None:
             return json_response({"error": "Thesis not found"}, status=404)
 
-        if data is None or data.get('admin_key', '') != app.config.get('ADMIN_KEY'):
+        if data is None or data.get("admin_key", "") != app.config.get("ADMIN_KEY"):
             logger.warning("Invalid admin key")
             error = "Invalid admin key"
         else:
             for tag_data in data.get("add", []):
-                tag = db.session.query(Tag) \
-                    .filter(Tag.wikidata_id == tag_data["wikidata_id"]) \
+                tag = (
+                    db.session.query(Tag)
+                    .filter(Tag.wikidata_id == tag_data["wikidata_id"])
                     .first()
+                )
                 if tag is None:
                     tag = Tag(
                         description=tag_data.get("description", None),
                         title=tag_data["title"],
                         url=tag_data["url"],
                         wikidata_id=tag_data["wikidata_id"],
-                        image=tag_data.get('image', None)
+                        image=tag_data.get("image", None),
                     )
 
                     tag.make_slug()
@@ -73,10 +72,10 @@ class ThesisTagsView(Resource):
                 thesis.tags.append(tag)
 
             if len(data.get("remove", [])) > 0:
-                logger.info("Removing tags {}".format(
-                    ", ".join(data.get("remove"))))
-                thesis.tags = [tag for tag in thesis.tags
-                            if tag.title not in data.get("remove")]
+                logger.info("Removing tags {}".format(", ".join(data.get("remove"))))
+                thesis.tags = [
+                    tag for tag in thesis.tags if tag.title not in data.get("remove")
+                ]
 
             db.session.add(thesis)
             db.session.commit()

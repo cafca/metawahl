@@ -56,7 +56,8 @@ def create_app(config=None):
 
     handler = RotatingFileHandler(
         app.config.get("METAWAHL_API_LOGFILE", None) or "../flask_api.log",
-        backupCount=3)
+        backupCount=3,
+    )
     app.logger.addHandler(handler)
     app.logger.setLevel(logging.INFO)
 
@@ -67,23 +68,22 @@ def create_app(config=None):
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    ns = Namespace('Public v2', path=API_ROOT)
-    ns.add_resource(controllers.BaseView, '/base')
-    ns.add_resource(controllers.Elections, '/elections/')
-    ns.add_resource(controllers.ElectionView, '/elections/<int:wom_id>')
-    ns.add_resource(controllers.TagsView, '/tags/')
-    ns.add_resource(controllers.TagView, '/tags/<string:slug>')
-    ns.add_resource(controllers.ThesisView, '/thesis/<string:thesis_id>')
-    ns.add_resource(controllers.ThesisTagsView,
-                         '/thesis/<string:thesis_id>/tags/')
+    ns = Namespace("Public v2", path=API_ROOT)
+    ns.add_resource(controllers.BaseView, "/base")
+    ns.add_resource(controllers.Elections, "/elections/")
+    ns.add_resource(controllers.ElectionView, "/elections/<int:wom_id>")
+    ns.add_resource(controllers.TagsView, "/tags/")
+    ns.add_resource(controllers.TagView, "/tags/<string:slug>")
+    ns.add_resource(controllers.ThesisView, "/thesis/<string:thesis_id>")
+    ns.add_resource(controllers.ThesisTagsView, "/thesis/<string:thesis_id>/tags/")
     api.add_namespace(ns)
 
     # downloads = Namespace('Downloads', description='Downloadable JSON files')
     # downloads.add_resource(controllers.Elections, '/tags.json', )
     # api.add_namespace(downloads)
 
-    extra = Namespace("Sitemap", path='/')
-    extra.add_resource(controllers.SitemapView, '/sitemap.xml')
+    extra = Namespace("Sitemap", path="/")
+    extra.add_resource(controllers.SitemapView, "/sitemap.xml")
     api.add_namespace(extra)
 
     return app

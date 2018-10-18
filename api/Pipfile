@@ -19,7 +19,7 @@ flask-restplus = "*"
 "psycopg2-binary" = "*"
 
 [dev-packages]
-autopep8 = "*"
 tavern = "*"
 pytest = "*"
+black = "==18.6b4"
 "flake8" = "*"

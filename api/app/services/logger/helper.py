@@ -26,6 +26,7 @@ parameter `level`.
 """
 import sys
 import logging
+
 try:
     import curses  # type: ignore
 except ImportError:
@@ -33,7 +34,7 @@ except ImportError:
 
 # Python 2+3 compatibility settings for logger
 bytes_type = bytes
-if sys.version_info >= (3, ):
+if sys.version_info >= (3,):
     unicode_type = str
     basestring_type = str
     xrange = range
@@ -85,8 +86,9 @@ class LogFormatter(logging.Formatter):
     * Timestamps on every log line.
     * Robust against str/bytes encoding problems.
     """
-    DEFAULT_FORMAT = '%(color)s[%(levelname)1.1s %(asctime)s %(module)s:%(lineno)d]%(end_color)s %(message)s'
-    DEFAULT_DATE_FORMAT = '%y%m%d %H:%M:%S'
+
+    DEFAULT_FORMAT = "%(color)s[%(levelname)1.1s %(asctime)s %(module)s:%(lineno)d]%(end_color)s %(message)s"
+    DEFAULT_DATE_FORMAT = "%y%m%d %H:%M:%S"
     DEFAULT_COLORS = {
         logging.DEBUG: 4,  # Blue
         logging.INFO: 2,  # Green
@@ -94,11 +96,13 @@ class LogFormatter(logging.Formatter):
         logging.ERROR: 1,  # Red
     }
 
-    def __init__(self,
-                 color=True,
-                 fmt=DEFAULT_FORMAT,
-                 datefmt=DEFAULT_DATE_FORMAT,
-                 colors=DEFAULT_COLORS):
+    def __init__(
+        self,
+        color=True,
+        fmt=DEFAULT_FORMAT,
+        datefmt=DEFAULT_DATE_FORMAT,
+        colors=DEFAULT_COLORS,
+    ):
         r"""
         :arg bool color: Enables color support.
         :arg string fmt: Log message format.
@@ -124,23 +128,22 @@ class LogFormatter(logging.Formatter):
             # works with unicode strings.  The explicit calls to
             # unicode() below are harmless in python2 but will do the
             # right conversion in python 3.
-            fg_color = (curses.tigetstr("setaf") or curses.tigetstr("setf") or
-                        "")
+            fg_color = curses.tigetstr("setaf") or curses.tigetstr("setf") or ""
             if (3, 0) < sys.version_info < (3, 2, 3):
                 fg_color = unicode_type(fg_color, "ascii")
 
             for levelno, code in colors.items():
                 self._colors[levelno] = unicode_type(
-                    curses.tparm(fg_color, code), "ascii")
+                    curses.tparm(fg_color, code), "ascii"
+                )
             self._normal = unicode_type(curses.tigetstr("sgr0"), "ascii")
         else:
-            self._normal = ''
+            self._normal = ""
 
     def format(self, record):
         try:
             message = record.getMessage()
-            assert isinstance(message,
-                              basestring_type)  # guaranteed by logging
+            assert isinstance(message, basestring_type)  # guaranteed by logging
             # Encoding notes:  The logging module prefers to work with character
             # strings, but only enforces that log messages are instances of
             # basestring.  In python 2, non-ascii bytestrings will make
@@ -167,7 +170,7 @@ class LogFormatter(logging.Formatter):
             record.color = self._colors[record.levelno]
             record.end_color = self._normal
         else:
-            record.color = record.end_color = ''
+            record.color = record.end_color = ""
 
         formatted = self._fmt % record.__dict__
 
@@ -179,15 +182,14 @@ class LogFormatter(logging.Formatter):
             # each line separately so that non-utf8 bytes don't cause
             # all the newlines to turn into '\n'.
             lines = [formatted.rstrip()]
-            lines.extend(
-                _safe_unicode(ln) for ln in record.exc_text.split('\n'))
-            formatted = '\n'.join(lines)
+            lines.extend(_safe_unicode(ln) for ln in record.exc_text.split("\n"))
+            formatted = "\n".join(lines)
         return formatted.replace("\n", "\n    ")
 
 
 def _stderr_supports_color():
     color = False
-    if curses and hasattr(sys.stderr, 'isatty') and sys.stderr.isatty():
+    if curses and hasattr(sys.stderr, "isatty") and sys.stderr.isatty():
         try:
             curses.setupterm()
             if curses.tigetnum("colors") > 0:
@@ -209,8 +211,7 @@ def to_unicode(value):
     if isinstance(value, _TO_UNICODE_TYPES):
         return value
     if not isinstance(value, bytes):
-        raise TypeError(
-            "Expected bytes, unicode, or None; got %r" % type(value))
+        raise TypeError("Expected bytes, unicode, or None; got %r" % type(value))
     return value.decode("utf-8")
 
 

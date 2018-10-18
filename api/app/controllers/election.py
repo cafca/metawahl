@@ -16,7 +16,7 @@ from services.logger import logger
 class ElectionView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(params={'wom_id': 'Election ID like `WOM-43-01`'})
+    @api.doc(params={"wom_id": "Election ID like `WOM-43-01`"})
     def get(self, wom_id: int):
         """Return metadata for an election and all theses therein."""
         if not is_cache_filler():
@@ -29,8 +29,7 @@ class ElectionView(Resource):
 
         rv = {
             "data": election.to_dict(),
-            "theses": [thesis.to_dict()
-                       for thesis in election.theses]
+            "theses": [thesis.to_dict() for thesis in election.theses],
         }
 
         return json_response(rv)
@@ -56,6 +55,7 @@ class Elections(Resource):
         rv = {"data": defaultdict(list)}
         for election in elections:
             rv["data"][election.territory].append(
-                election.to_dict(thesis_data=thesis_data))
+                election.to_dict(thesis_data=thesis_data)
+            )
 
         return json_response(rv)
