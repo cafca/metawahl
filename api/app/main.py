@@ -69,22 +69,17 @@ def create_app(config=None):
 
     ns = Namespace('Public v2', path=API_ROOT)
     ns.add_resource(controllers.BaseView, '/base')
-    ns.add_resource(controllers.Occasions, '/occasions/')
-    ns.add_resource(controllers.OccasionView, '/occasions/<int:wom_id>')
+    ns.add_resource(controllers.elections, '/elections/')
+    ns.add_resource(controllers.electionView, '/elections/<int:wom_id>')
     ns.add_resource(controllers.TagsView, '/tags/')
-    ns.add_resource(controllers.TagView, '/tags/<string:tag_title>')
+    ns.add_resource(controllers.TagView, '/tags/<string:slug>')
     ns.add_resource(controllers.ThesisView, '/thesis/<string:thesis_id>"')
-    ns.add_resource(controllers.ReactView, '/react/<string:endpoint>')
+    ns.add_resource(controllers.ThesisTagsView,
+                         '/thesis/<string:thesis_id>/tags/')
     api.add_namespace(ns)
 
-    ns_priv = Namespace('Private v2', path=API_ROOT,
-                        description='For site administration')
-    ns_priv.add_resource(controllers.ThesisTagsView,
-                         '/thesis/<string:thesis_id>/tags/')
-    api.add_namespace(ns_priv)
-
     # downloads = Namespace('Downloads', description='Downloadable JSON files')
-    # downloads.add_resource(controllers.Occasions, '/tags.json', )
+    # downloads.add_resource(controllers.elections, '/tags.json', )
     # api.add_namespace(downloads)
 
     extra = Namespace("Sitemap", path='/')
