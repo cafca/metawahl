@@ -73,7 +73,7 @@ def create_app(config=None):
     ns.add_resource(controllers.ElectionView, '/elections/<int:wom_id>')
     ns.add_resource(controllers.TagsView, '/tags/')
     ns.add_resource(controllers.TagView, '/tags/<string:slug>')
-    ns.add_resource(controllers.ThesisView, '/thesis/<string:thesis_id>"')
+    ns.add_resource(controllers.ThesisView, '/thesis/<string:thesis_id>')
     ns.add_resource(controllers.ThesisTagsView,
                          '/thesis/<string:thesis_id>/tags/')
     api.add_namespace(ns)
