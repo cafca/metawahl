@@ -4,11 +4,20 @@
 
 import sys
 
+from sqlalchemy.schema import DropTable
+from sqlalchemy.ext.compiler import compiles
+
 sys.path.append("./app/")
 
 from main import create_app
 from services import db
 from services.logger import logger
+
+# Add `CASCADE` to drop table statement
+# https://stackoverflow.com/a/38679457
+@compiles(DropTable, "postgresql")
+def _compile_drop_table(element, compiler, **kwargs):
+    return compiler.visit_drop_table(element) + " CASCADE"
 
 if __name__ == '__main__':
     app = create_app()

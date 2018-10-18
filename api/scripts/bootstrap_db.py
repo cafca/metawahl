@@ -13,8 +13,7 @@ from datetime import datetime
 
 sys.path.append("./app/")
 
-from models import Election, Thesis, Position, Party, Tag, Result, \
-    ThesisReport, Reaction
+from models import Election, Thesis, Position, Party, Tag, Result
 from main import create_app
 from services import db
 from services.logger import logger
@@ -245,59 +244,6 @@ def load_tags():
         yield tag
 
 
-def load_reports():
-    """Load user submitted reports from json file."""
-    try:
-        with open("../userdata/thesis_reports.json") as f:
-            reports_export = json.load(f)
-    except FileNotFoundError:
-        logger.warning("File ../userdata/thesis_reports.json not found - " +
-                       "reports were not imported")
-        return
-
-    assert reports_export["meta"]["api"] == API_VERSION
-    logger.info("Adding {} reports...".format(len(reports_export["data"])))
-
-    for report_data in reports_export["data"]:
-        date = dateutil.parser.parse(report_data.get('date'))
-        report = ThesisReport(
-            uuid=report_data.get('uuid'),
-            date=date,
-            text=report_data.get('text'),
-            thesis=Thesis.query.get(report_data.get('thesis'))
-        )
-
-        yield report
-
-
-def load_reactions():
-    """Load user submitted reactions from json file."""
-    try:
-        with open("../userdata/reactions.json") as f:
-            reaction_export = json.load(f)
-    except FileNotFoundError:
-        logger.warning("File ../userdata/reactions.json not found - " +
-                       "reactions were not imported")
-        return
-
-    assert reaction_export["meta"]["api"] == API_VERSION
-    logger.info("Adding {} reactions...".format(len(reaction_export["data"])))
-
-    for reaction_data in reaction_export["data"]:
-        date = dateutil.parser.parse(reaction_data.get('date'))
-        try:
-            reaction = Reaction(
-                uuid=reaction_data.get('uuid'),
-                date=date,
-                kind=reaction_data.get('kind'),
-                thesis=Thesis.query.get(reaction_data.get('thesis'))
-            )
-        except (KeyError, TypeError) as e:
-            logger.error("Error importing reaction: {}".format(e))
-
-        yield reaction
-
-
 def load_wahlergebnisse():
     """Load Wahlergebnisse from wahlergebnisse submodule."""
 
@@ -356,7 +302,7 @@ def make_substitutions():
                     substitutions[p].append(
                         list(we[d]["results"].keys())[choice])
 
-        with open("substitutions.json", "w") as f:
+        with open("../userdata/substitutions.json", "w") as f:
             json.dump(substitutions, f, indent=2, ensure_ascii=False)
 
 
@@ -366,7 +312,7 @@ def load_results():
 
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
         result_data = json.load(f)
-    with open("./substitutions.json") as f:
+    with open("./userdata/substitutions.json") as f:
         substitutions = defaultdict(list)
         substitutions.update(json.load(f))
 
@@ -471,12 +417,6 @@ if __name__ == '__main__':
 
         for tag in load_tags():
             db.session.add(tag)
-
-        for report in load_reports():
-            db.session.add(report)
-
-        for reaction in load_reactions():
-            db.session.add(reaction)
 
         logger.info("Committing session to disk...")
         db.session.commit()

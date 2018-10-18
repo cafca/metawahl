@@ -4,4 +4,3 @@ from .election import *
 from .sitemap import *
 from .tags import *
 from .thesis import *
-from .react import *

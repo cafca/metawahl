@@ -13,7 +13,7 @@ import { ElectionListType, RouteProps } from '../../types/';
 import MapComponent from '../../components/map/';
 import SEO from '../../components/seo/';
 
-import './ElectionList.css';
+import './styles.css';
 
 moment.locale('de');
 

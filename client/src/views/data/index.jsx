@@ -17,7 +17,7 @@ const DataOverview = () => {
       <p>
         Hier findest du bald eine Dokumentation der Metawahl-Datensätze, welche
         im JSON-Format unter dem Endpunkt{" "}
-        https://api.metawahl.de/api/v1/ zur Verfügung stehen.
+        https://api.metawahl.de/v2/ zur Verfügung stehen.
       </p>
     </Container>
   );

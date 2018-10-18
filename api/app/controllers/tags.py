@@ -50,13 +50,13 @@ class TagsView(Resource):
 class TagView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    def get(self, tag_title: str):
+    def get(self, slug: str):
         """Return data for all theses in a tag."""
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
 
         tag = db.session.query(Tag) \
-            .filter(Tag.slug == tag_title.lower()) \
+            .filter(Tag.slug == slug.lower()) \
             .first()
 
         if tag is None:
@@ -79,7 +79,7 @@ class TagView(Resource):
                 status=401)
 
         tag = db.session.query(Tag) \
-            .filter(Tag.slug == tag_title) \
+            .filter(Tag.slug == slug) \
             .first()
 
         if tag is None:

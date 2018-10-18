@@ -5,8 +5,8 @@
 export const DATA_DIR = "/data";
 
 export const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-  ? "http://localhost:9000/api/v1"
-  : "https://api.metawahl.de/api/v1";
+  ? "http://localhost:9000/v2"
+  : "https://api.metawahl.de/v2";
 
 export const SITE_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
   ? "http://localhost:3000"
@@ -61,14 +61,6 @@ export const OBJECTION_NAMES = {
   "-1": ["Trotzdem umgesetzt", "Neutral", "Nicht umgesetzt"],
   "0": ["Nicht umgesetzt", "Neutral", "Umgesetzt"],
   "1": ["Nicht umgesetzt", "Neutral", "Umgesetzt"]
-};
-
-export const REACTION_NAMES = {
-  0: "Glücklich",
-  1: "Erleichert",
-  2: "Gleichgültig",
-  3: "Enttäuscht",
-  4: "Wütend"
 };
 
 // Cosmetic

@@ -30,24 +30,13 @@ export type TagType = {
   }
 };
 
-export type ReactionsTallyType = {
-  [kind: number]: number
-}
-
-export type ReactionType = {
-  thesis: string,
-  kind: number,
-  date?: string,
-}
-
 export type ThesisType = {
   id: string,
   text: string,
   title: ?string,
   tags: Array<TagType>,
   election_id: number,
-  positions: Array<PositionType>,
-  reactions: ReactionsTallyType
+  positions: Array<PositionType>
 };
 
 export type ResultsType = {

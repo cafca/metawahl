@@ -14,7 +14,6 @@ import {
 } from 'semantic-ui-react';
 
 import '../../index.css';
-import { loadFromCache } from '../../app/';
 import WikidataTagger from '../wikidataTagger/';
 import Tag from '../tag/';
 import PositionChart from '../positionChart/';
@@ -85,8 +84,6 @@ type State = {
   neutralPositions: Array<PositionType>,
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
-  reported: ?boolean,
-  reportingError?: string,
   showSources: boolean,
   quizAnswer: number
 };
@@ -115,7 +112,6 @@ export default class Thesis extends Component<Props, State> {
       voterOpinion: 0,
       ratioPro: 0.5,
       ratioContra: 0.5,
-      reported: null,
       showSources: false,
       quizAnswer: null
     }
@@ -156,35 +152,6 @@ export default class Thesis extends Component<Props, State> {
 
     if (Object.is(nextProps.election.results, this.props.election.results) === false) {
       this.mergePartyData();
-    }
-  }
-
-  handleReport() {
-    const uuid = loadFromCache('uuid');
-
-    if (uuid != null) {
-      const data = {
-        uuid,
-        text: "",
-        thesis_id: this.props.id
-      };
-
-      this.setState({reported: false});
-
-      fetch(`${API_ROOT}/react/thesis-report`, makeJSONRequest(data))
-        .then(resp => resp.json())
-        .then(resp => {
-          this.setState({
-            reported: this.handleError(resp) ? null : true
-          });
-        })
-        .catch(error => {
-          this.handleError(error);
-          this.setState({reported: null});
-          console.log("Error handling report: " + error);
-        })
-    } else {
-      // TODO: Handle no cookies allowed
     }
   }
 
@@ -407,7 +374,7 @@ export default class Thesis extends Component<Props, State> {
             : "🌚 Leider falsch. " + voterTerritoryName + " stimmt " + voterOpinionName + "."
           }
           <Header.Subheader>
-            <Icon name='long arrow down' />Zur nächsten Frage scrollen<Icon name='long arrow down' />
+            <Icon name='arrow down' />Zur nächsten Frage scrollen<Icon name='arrow down' />
           </Header.Subheader>
         </Header>
       </Transition>

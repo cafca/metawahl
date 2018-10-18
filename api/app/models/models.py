@@ -15,75 +15,9 @@ from collections import defaultdict
 from services import db, cache
 
 
-# Try and use these only for logging and debugging. Exact language for
-# reactions is defined in frontend code
-REACTION_NAMES = {
-    0: "Glücklich",
-    1: "Erleichtert",
-    2: "Na und",
-    3: "Beunruhigt",
-    4: "Verärgert"
-}
-
-
 def dt_string(dt):
     """Return iso string representation of a datetime including tz."""
     return dt.strftime("%Y-%m-%d %H:%M:%S Z")
-
-
-class ThesisReport(db.Model):
-    """Represent a report of a thesis for some error."""
-    id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(db.String(36), nullable=False)
-    date = db.Column(db.DateTime,
-                     nullable=False, default=datetime.datetime.utcnow)
-    text = db.Column(db.Text, nullable=False)
-
-    thesis_id = db.Column(db.String(10),
-                          db.ForeignKey('thesis.id'), nullable=False)
-    thesis = db.relationship('Thesis',
-                             backref=db.backref('reports', lazy=True))
-
-    def __repr__(self):
-        return "<Report {}>".format(self.thesis_id)
-
-    def to_dict(self):
-        return {
-            "text": self.text,
-            "thesis": self.thesis_id,
-            "uuid": self.uuid,
-            "date": dt_string(self.date)
-        }
-
-
-class Reaction(db.Model):
-    """Represent a reaction."""
-    id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(db.String(36), nullable=False)
-    date = db.Column(db.DateTime,
-                     nullable=False, default=datetime.datetime.utcnow)
-    kind = db.Column(db.Integer, nullable=False)
-
-    thesis_id = db.Column(db.String(10),
-                          db.ForeignKey('thesis.id'), nullable=False)
-    thesis = db.relationship('Thesis',
-                             backref=db.backref('reactions', lazy=True))
-
-    __table_args__ = (
-        UniqueConstraint('uuid', 'thesis_id', name='u_rctn'),
-    )
-
-    def __repr__(self):
-        return "<Reaction {} / {}>".format(self.thesis_id, REACTION_NAMES[self.kind])
-
-    def to_dict(self):
-        rv = {
-            "date": dt_string(self.date),
-            "kind": self.kind,
-            "thesis": self.thesis_id,
-            "uuid": self.uuid
-        }
-        return rv
 
 
 class Election(db.Model):
@@ -362,20 +296,12 @@ class Thesis(db.Model):
             "title": self.title,
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
-            "election_id": self.election_id,
-            "reactions": self.reactions_dict()
+            "election_id": self.election_id
         }
 
         if self.text is not None:
             rv["text"] = self.text
 
-        return rv
-
-    def reactions_dict(self):
-        """Make a tally of all reactions"""
-        rv = defaultdict(int)
-        for reaction in self.reactions:
-            rv[reaction.kind] += 1
         return rv
 
     def related(self):
