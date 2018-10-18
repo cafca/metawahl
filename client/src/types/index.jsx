@@ -45,7 +45,7 @@ export type ThesisType = {
   text: string,
   title: ?string,
   tags: Array<TagType>,
-  occasion_id: number,
+  election_id: number,
   positions: Array<PositionType>,
   reactions: ReactionsTallyType
 };
@@ -63,7 +63,7 @@ export type ResultsType = {
 export type MergedPartyDataType =
   PositionType & ResultsType & { party: string } ;
 
-export type OccasionType = {
+export type ElectionType = {
   id: number,
   date: string,
   results: ResultsType,
@@ -75,8 +75,8 @@ export type OccasionType = {
   wikipedia_title: ?string
 };
 
-export type OccasionListType = {
-  [ territory: string ]: Array<OccasionType>
+export type ElectionListType = {
+  [ territory: string ]: Array<ElectionType>
 };
 
 export type PartyType = {
@@ -86,7 +86,7 @@ export type PartyType = {
 
 export type RouteProps = {
   isLoading: boolean,
-  occasions: OccasionListType,
+  elections: ElectionListType,
   tags: Array<TagType>
 };
 

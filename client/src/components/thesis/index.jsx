@@ -35,7 +35,7 @@ import {
 import type {
   ErrorType,
   MergedPartyDataType,
-  OccasionType,
+  ElectionType,
   PositionType,
   RouteProps,
   TagType,
@@ -46,11 +46,11 @@ import type { WikidataType } from '../wikidataTagger/';
 
 import './Thesis.css';
 
-const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
-  occasion != null &&
+const ElectionSubtitle = ({ election }: { election?: ElectionType }) =>
+  election != null &&
     <span>
       <Map
-        territory={occasion.territory}
+        territory={election.territory}
         inverted={true}
         style={{height: "3em", float: 'right', paddingLeft: ".5em"}}
       /> {' '}
@@ -60,7 +60,7 @@ const OccasionSubtitle = ({ occasion }: { occasion?: OccasionType }) =>
         lineHeight: "1em",
         color: "rgba(255,255,255,.8)"
         }}>
-        {occasion.title}
+        {election.title}
       </p>
     </span>;
 
@@ -92,8 +92,8 @@ type State = {
 };
 
 type Props = RouteProps & ThesisType & {
-  occasion?: OccasionType,
-  linkOccasion?: boolean,
+  election?: ElectionType,
+  linkElection?: boolean,
   showHints?: boolean,
   quizMode?: boolean
 };
@@ -125,14 +125,14 @@ export default class Thesis extends Component<Props, State> {
 
   collectSources() {
     let sources = [];
-    if (this.props.occasion != null) {
-      sources.push(<span key='wom-source'><a href={this.props.occasion.source}>
-        Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für politische Bildung
+    if (this.props.election != null) {
+      sources.push(<span key='wom-source'><a href={this.props.election.source}>
+        Wahl-o-Mat zur {this.props.election.title} © Bundeszentrale für politische Bildung
       </a> via <a href="https://github.com/gockelhahn/qual-o-mat-data">
           qual-o-mat-data
         </a></span>);
-      if (this.props.occasion.results_sources) {
-        this.props.occasion.results_sources.forEach(url => url.indexOf('wahl.tagesschau.de') >= 0
+      if (this.props.election.results_sources) {
+        this.props.election.results_sources.forEach(url => url.indexOf('wahl.tagesschau.de') >= 0
           ? sources.push(<span key='tagesschau-source'>,
             <a href={url}>Wahlergebnisse: wahl.tagesschau.de</a></span>)
           : url.indexOf('wikipedia') >= 0
@@ -154,7 +154,7 @@ export default class Thesis extends Component<Props, State> {
       tags: nextProps.tags
     });
 
-    if (Object.is(nextProps.occasion.results, this.props.occasion.results) === false) {
+    if (Object.is(nextProps.election.results, this.props.election.results) === false) {
       this.mergePartyData();
     }
   }
@@ -236,9 +236,9 @@ export default class Thesis extends Component<Props, State> {
       openText = position;
     }
 
-    const name = this.props.occasion.results[openText.party]["name"]
+    const name = this.props.election.results[openText.party]["name"]
       || openText.party;
-    const result = (this.props.occasion.results[openText.party]["pct"]
+    const result = (this.props.election.results[openText.party]["pct"]
       || "<0,1") + "%";
     const posName = Object.keys(valueNames).indexOf(openText.value.toString()) > -1
       ? " — " + valueNames[openText.value] : '' ;
@@ -268,7 +268,7 @@ export default class Thesis extends Component<Props, State> {
 
   mergePartyData() {
     // Merge party positions with election results
-    const res = this.props.occasion.results;
+    const res = this.props.election.results;
     const sortPositions = (a, b) => {
       if (res != null) {
         // Sort last if vote count unknown
@@ -315,9 +315,9 @@ export default class Thesis extends Component<Props, State> {
 
   updateVoterOpinion() {
     const countVotes = (prev, cur) =>
-      this.props.occasion.results[cur["party"]] == null
+      this.props.election.results[cur["party"]] == null
         ? prev
-        : prev + this.props.occasion.results[cur["party"]]["pct"];
+        : prev + this.props.election.results[cur["party"]]["pct"];
 
     let voterOpinion;
 
@@ -358,7 +358,7 @@ export default class Thesis extends Component<Props, State> {
     const headerStyle = (this.props.quizMode !== true || this.state.quizAnswer != null)
       ? {
         backgroundColor: voterOpinionColor,
-        minHeight: this.props.linkOccasion ? "4em" : null,
+        minHeight: this.props.linkElection ? "4em" : null,
         fontSize: "1.7rem"
       } : {
         fontSize: "1.7rem",
@@ -372,9 +372,9 @@ export default class Thesis extends Component<Props, State> {
       "1": "dafür"
     }[this.state.voterOpinion];
 
-    const voterTerritoryName = this.props.occasion.territory === 'europa'
+    const voterTerritoryName = this.props.election.territory === 'europa'
       ? 'Deutschland'
-      : TERRITORY_NAMES[this.props.occasion.territory];
+      : TERRITORY_NAMES[this.props.election.territory];
 
     const margin = this.props.quizMode ? "4em" : "2em"
 
@@ -383,18 +383,18 @@ export default class Thesis extends Component<Props, State> {
       subHeader = " Keine Mehrheit dafür oder dagegen"
     } else if (this.state.voterOpinion === 1) {
       subHeader = Math.round(this.state.ratioPro).toString()
-      subHeader += this.props.occasion.preliminary
+      subHeader += this.props.election.preliminary
         ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
         : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
     } else {
       subHeader = Math.round(this.state.ratioContra).toString()
-      subHeader += this.props.occasion.preliminary
+      subHeader += this.props.election.preliminary
         ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
         : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
     }
 
     const thesisIdComps = extractThesisID(this.props.id)
-    const permaLink = `/wahlen/${this.props.occasion.territory}/${thesisIdComps['womID']}/${thesisIdComps['thesisNUM']}/`
+    const permaLink = `/wahlen/${this.props.election.territory}/${thesisIdComps['womID']}/${thesisIdComps['thesisNUM']}/`
 
     return <div style={{marginBottom: margin}}>
       <Transition
@@ -415,11 +415,11 @@ export default class Thesis extends Component<Props, State> {
       <a href={permaLink}><Header as='h2' inverted attached="top" size="huge"
         style={headerStyle}>
 
-        { this.props.linkOccasion &&
-          <OccasionSubtitle occasion={this.props.occasion} />
+        { this.props.linkElection &&
+          <ElectionSubtitle election={this.props.election} />
         }
 
-        {/* { this.props.linkOccasion == false && (this.props.title != null && this.props.title.length > 0) &&
+        {/* { this.props.linkElection == false && (this.props.title != null && this.props.title.length > 0) &&
           <Header.Subheader style={{marginTop: "0.3em"}}>
             {this.props.title}
           </Header.Subheader>
@@ -437,7 +437,7 @@ export default class Thesis extends Component<Props, State> {
       { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
         <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
           <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-            Stimmverteilung { this.props.occasion.preliminary ? " (Prognose)" : ""}
+            Stimmverteilung { this.props.election.preliminary ? " (Prognose)" : ""}
           </Header>
 
           <PositionChart

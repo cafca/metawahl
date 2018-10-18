@@ -6,7 +6,7 @@ from flask import request
 from flask_restplus import Resource
 from sqlalchemy import func
 
-from models import Occasion, Tag, Thesis
+from models import Election, Tag, Thesis
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from services import db, cache
@@ -26,18 +26,18 @@ class BaseView(Resource):
             "data": dict()
         }
 
-        # Occasions
+        # Elections
 
         try:
-            occasions = db.session.query(Occasion).all()
+            elections = db.session.query(Election).all()
         except SQLAlchemyError as e:
             logger.error(e)
             return json_response({"error": "Server Error"})
 
-        rv["data"]["occasions"] = defaultdict(list)
-        for occasion in occasions:
-            rv["data"]["occasions"][occasion.territory].append(
-                occasion.to_dict(thesis_data=False))
+        rv["data"]["elections"] = defaultdict(list)
+        for election in elections:
+            rv["data"]["elections"][election.territory].append(
+                election.to_dict(thesis_data=False))
 
         # Tags
 

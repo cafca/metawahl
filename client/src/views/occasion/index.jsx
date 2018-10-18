@@ -8,37 +8,37 @@ import Moment from "moment";
 import "../../index.css";
 import Errorhandler from "../../utils/errorHandler";
 import { API_ROOT, TERRITORY_NAMES } from "../../config/";
-import { ErrorType, RouteProps, ThesisType, OccasionType } from "../../types/";
+import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/";
 import {
   WikidataLabel,
   WikipediaLabel
 } from "../../components/label/DataLabel.jsx";
 import SEO from "../../components/seo/";
 import SuggestionsGrid from "../../components/suggestionsGrid";
-import OccasionComponent from "../../components/occasion";
+import ElectionComponent from "../../components/election";
 
 import "./styles.css";
 
 type State = {
   isLoading: boolean,
-  occasion: ?OccasionType,
+  election: ?ElectionType,
   theses: Array<ThesisType>,
   error?: ?string
 };
 
-export default class Occasion extends React.Component<RouteProps, State> {
+export default class Election extends React.Component<RouteProps, State> {
   territory: string;
-  occasionNum: number;
+  electionNum: number;
   handleError: ErrorType => any;
 
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.occasionNum = parseInt(this.props.match.params.occasionNum, 10);
+    this.electionNum = parseInt(this.props.match.params.electionNum, 10);
     this.territory = this.props.match.params.territory;
     this.state = {
       isLoading: true,
-      occasion: this.getCachedOccasion(),
+      election: this.getCachedElection(),
       theses: []
     };
     this.thesisRefs = {};
@@ -46,40 +46,40 @@ export default class Occasion extends React.Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    this.loadOccasion();
+    this.loadElection();
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
-    if (nextProps.match.params.occasionNum !== this.occasionNum) {
-      this.occasionNum = parseInt(nextProps.match.params.occasionNum, 10);
+    if (nextProps.match.params.electionNum !== this.electionNum) {
+      this.electionNum = parseInt(nextProps.match.params.electionNum, 10);
       this.territory = nextProps.match.params.territory;
       this.setState({
         isLoading: true,
-        occasion: this.getCachedOccasion(),
+        election: this.getCachedElection(),
         theses: []
       });
       this.thesisRefs = {};
-      this.loadOccasion();
+      this.loadElection();
     }
   }
 
-  getCachedOccasion() {
-    return this.props.occasions[this.territory] == null
+  getCachedElection() {
+    return this.props.elections[this.territory] == null
       ? null
-      : this.props.occasions[this.territory]
-          .filter(occ => occ.id === this.occasionNum)
+      : this.props.elections[this.territory]
+          .filter(occ => occ.id === this.electionNum)
           .shift();
   }
 
-  loadOccasion(cb?: OccasionType => mixed) {
-    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
+  loadElection(cb?: ElectionType => mixed) {
+    const endpoint = API_ROOT + "/elections/" + this.electionNum;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
         if (!this.handleError(response)) {
           this.setState({
             isLoading: false,
-            occasion: response.data,
+            election: response.data,
             theses: response.theses || []
           });
           if (cb != null) cb(response.data);
@@ -87,34 +87,34 @@ export default class Occasion extends React.Component<RouteProps, State> {
       })
       .catch((error: Error) => {
         this.handleError(error);
-        console.log("Error fetching occasion data: " + error.message);
+        console.log("Error fetching election data: " + error.message);
         this.setState({
           isLoading: false,
-          occasion: this.getCachedOccasion(),
+          election: this.getCachedElection(),
           theses: []
         });
       });
   }
 
   render() {
-    // Select another occasion from the same territory for the
+    // Select another election from the same territory for the
     // suggestion box. Fallback to this one if it's the only one
     let occ2 =
-      this.props.occasions[this.territory] == null
+      this.props.elections[this.territory] == null
         ? null
-        : this.props.occasions[this.territory]
+        : this.props.elections[this.territory]
             .reverse()
-            .filter(occ => occ.id !== this.occasionNum)
+            .filter(occ => occ.id !== this.electionNum)
             .shift();
-    if (occ2 == null) occ2 = this.state.occasion;
+    if (occ2 == null) occ2 = this.state.election;
 
     let suggestions = [];
-    if (occ2 != null && this.state.occasion != null) {
+    if (occ2 != null && this.state.election != null) {
       suggestions = [
         {
           subTitle: "Teste dein Wissen",
-          title: "Quiz zur " + this.state.occasion.title,
-          href: "/quiz/" + this.territory + "/" + this.occasionNum + "/"
+          title: "Quiz zur " + this.state.election.title,
+          href: "/quiz/" + this.territory + "/" + this.electionNum + "/"
         },
         {
           subTitle: "Welche Politik wurde gewählt",
@@ -135,12 +135,12 @@ export default class Occasion extends React.Component<RouteProps, State> {
     }
 
     const pageTitle =
-      this.state.occasion == null
+      this.state.election == null
         ? "Metawahl"
-        : `Metawahl: ${this.state.occasion.title}`;
+        : `Metawahl: ${this.state.election.title}`;
 
     return (
-      <Container fluid className="occasionContainer">
+      <Container fluid className="electionContainer">
         <SEO title={pageTitle} />
 
         <Breadcrumb>
@@ -150,32 +150,32 @@ export default class Occasion extends React.Component<RouteProps, State> {
             {TERRITORY_NAMES[this.territory]}
           </Breadcrumb.Section>
           <Breadcrumb.Divider icon="right angle" />
-          {this.state.occasion == null ? (
+          {this.state.election == null ? (
             <Breadcrumb.Section>Loading...</Breadcrumb.Section>
           ) : (
             <Breadcrumb.Section
               active
-              href={`/wahlen/${this.territory}/${this.occasionNum}/`}
+              href={`/wahlen/${this.territory}/${this.electionNum}/`}
             >
-              {Moment(this.state.occasion.date).year()}
+              {Moment(this.state.election.date).year()}
             </Breadcrumb.Section>
           )}
         </Breadcrumb>
 
         <WikidataLabel
-          {...this.state.occasion}
+          {...this.state.election}
           style={{ marginRight: "-10.5px" }}
         />
         <WikipediaLabel
-          {...this.state.occasion}
+          {...this.state.election}
           style={{ marginRight: "-10.5px" }}
         />
 
-        <OccasionComponent
-          occasion={this.state.occasion}
+        <ElectionComponent
+          election={this.state.election}
           theses={this.state.theses}
           territory={this.territory}
-          occasionNum={this.occasionNum}
+          electionNum={this.electionNum}
         />
 
         {this.state.error != null && (

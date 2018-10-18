@@ -6,7 +6,7 @@ from flask import Response
 from flask_restplus import Resource
 
 from config import SITE_ROOT
-from models import Occasion, Tag
+from models import Election, Tag
 from services import db, cache
 
 
@@ -19,10 +19,10 @@ class SitemapView(Resource):
             with app.app_context():
                 yield SITE_ROOT + '\n'
 
-                # Occasions
+                # Elections
                 yield '{}/wahlen/\n'.format(SITE_ROOT)
                 terr = None
-                query = db.session.query(Occasion).order_by(Occasion.territory).all()
+                query = db.session.query(Election).order_by(Election.territory).all()
                 for occ in query:
                     if occ.territory != terr:
                         yield '{}/wahlen/{}/\n'.format(SITE_ROOT, occ.territory)

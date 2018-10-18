@@ -5,7 +5,7 @@ import autoBind from "react-autobind";
 import { Header } from "semantic-ui-react";
 
 import CompactThesis from "../../components/thesis/compact";
-import { RouteProps, ThesisType, OccasionType } from "../../types/";
+import { RouteProps, ThesisType, ElectionType } from "../../types/";
 import Legend from "../../components/legend/";
 import { extractThesisID } from "../../utils/thesis";
 
@@ -13,14 +13,14 @@ import "./styles.css";
 
 type Props = {
   territory: string,
-  occasionNum: number,
-  occasion: ?OccasionType,
+  electionNum: number,
+  election: ?ElectionType,
   theses: Array<ThesisType>
 };
 
 type State = {};
 
-export default class Occasion extends React.Component<Props, State> {
+export default class Election extends React.Component<Props, State> {
   territory: string;
 
   constructor(props: RouteProps) {
@@ -31,11 +31,11 @@ export default class Occasion extends React.Component<Props, State> {
 
   collectSources() {
     let sources = [];
-    if (this.props.occasion != null) {
+    if (this.props.election != null) {
       sources.push(
         <span key="wom-source">
-          <a href={this.props.occasion.source}>
-            Wahl-o-Mat zur {this.props.occasion.title} © Bundeszentrale für
+          <a href={this.props.election.source}>
+            Wahl-o-Mat zur {this.props.election.title} © Bundeszentrale für
             politische Bildung
           </a>{" "}
           via{" "}
@@ -44,8 +44,8 @@ export default class Occasion extends React.Component<Props, State> {
           </a>
         </span>
       );
-      if (this.props.occasion.results_sources) {
-        this.props.occasion.results_sources.forEach(
+      if (this.props.election.results_sources) {
+        this.props.election.results_sources.forEach(
           url =>
             url.indexOf("wahl.tagesschau.de") >= 0
               ? sources.push(
@@ -76,9 +76,9 @@ export default class Occasion extends React.Component<Props, State> {
   getRatio({ title, positions }, reverse = false) {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
-    if (this.props.occasion === null) return null;
+    if (this.props.election === null) return null;
 
-    const occRes = this.props.occasion.results;
+    const occRes = this.props.election.results;
 
     // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
     // otherwise just return accumulator `acc` + result of party `cur`
@@ -110,13 +110,13 @@ export default class Occasion extends React.Component<Props, State> {
       .map((t, i) => {
         const tRatio = this.getRatio(t);
         const tUrl = `/wahlen/${this.props.territory}/${
-          this.props.occasionNum
+          this.props.electionNum
         }/${extractThesisID(t.id).thesisNUM}/`;
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
             <a href={tUrl}>
-              <CompactThesis key={t.id} occasion={this.props.occasion} {...t} />
+              <CompactThesis key={t.id} election={this.props.election} {...t} />
               <span className="thesisTitleInsert">
                 <strong>
                   {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
@@ -133,22 +133,22 @@ export default class Occasion extends React.Component<Props, State> {
     let sources = this.collectSources();
 
     return (
-      <div className="occasion-component">
+      <div className="election-component">
         <Header as="h1">
           {this.props.title != null
             ? this.props.title
-            : this.props.occasion == null
+            : this.props.election == null
               ? " "
-              : this.props.occasion.preliminary
+              : this.props.election.preliminary
                 ? "Welche Politik wird voraussichtlich bei der " +
-                  this.props.occasion.title +
+                  this.props.election.title +
                   " gewählt?"
                 : "Welche Politik wurde bei der " +
-                  this.props.occasion.title +
+                  this.props.election.title +
                   " gewählt?"}
-          {this.props.occasion != null && (
+          {this.props.election != null && (
             <Header.Subheader>
-              {this.props.occasion.preliminary
+              {this.props.election.preliminary
                 ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben"
                 : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
             </Header.Subheader>

@@ -11,9 +11,9 @@ import Footer from '../components/footer/';
 import SEO from '../components/seo/';
 import { API_ROOT } from '../config/';
 import Landing from  '../views/landing';
-import OccasionList from '../views/occasionList/';
-import Occasion from '../views/occasion/';
-import Quiz from '../views/occasion/quiz';
+import ElectionList from '../views/electionList/';
+import Election from '../views/election/';
+import Quiz from '../views/election/quiz';
 import NotFound from '../views/notFound/';
 import LegalView from '../views/legal';
 import TagList from '../views/tagList/';
@@ -26,7 +26,7 @@ import ScrollToTop from '../utils/ScrollToTop';
 import ErrorHandler from '../utils/errorHandler';
 
 import type {
-  OccasionListType, TagType, ErrorType
+  ElectionListType, TagType, ErrorType
 } from '../../types/';
 
 export const loadFromCache = (key: string) => {
@@ -74,7 +74,7 @@ export const saveToCache = (key: string, json: string) => {
 type State = {
   error?: ?string,
   isLoading: boolean,
-  occasions: OccasionListType,
+  elections: ElectionListType,
   tags: Array<TagType>
 };
 
@@ -86,12 +86,12 @@ class App extends Component<Props, State> {
   constructor(props: {}) {
     super(props);
 
-    const occasionsJSON = loadFromCache('occasions');
+    const electionsJSON = loadFromCache('elections');
     const tagsJSON = loadFromCache('tags');
 
     this.state = {
-      isLoading: occasionsJSON == null || tagsJSON == null,
-      occasions: occasionsJSON != null ? JSON.parse(occasionsJSON) : {},
+      isLoading: electionsJSON == null || tagsJSON == null,
+      elections: electionsJSON != null ? JSON.parse(electionsJSON) : {},
       tags: tagsJSON != null ? JSON.parse(tagsJSON) : []
     }
     autoBind(this);
@@ -117,12 +117,12 @@ class App extends Component<Props, State> {
       .then(response => {
         if (!this.handleError(response)) {
           this.setState({
-            occasions: response.data.occasions,
+            elections: response.data.elections,
             tags: response.data.tags,
             isLoading: false
           });
 
-          saveToCache('occasions', JSON.stringify(response.data.occasions));
+          saveToCache('elections', JSON.stringify(response.data.elections));
           saveToCache('tags', JSON.stringify(response.data.tags));
         } else {
           this.setState({
@@ -165,22 +165,22 @@ class App extends Component<Props, State> {
               )} />
 
               <Route exact path="/wahlen/" render={props => (
-                <OccasionList {...props} {...context} />
+                <ElectionList {...props} {...context} />
               )} />
 
               <Route exact path="/wahlen/:territory/" render={props => (
                 <Territory {...props} {...context} />
               )} />
 
-              <Route exact path="/wahlen/:territory/:occasionNum/" render={props => (
-                <Occasion {...props} {...context} />
+              <Route exact path="/wahlen/:territory/:electionNum/" render={props => (
+                <Election {...props} {...context} />
               )} />
 
-              <Route exact path="/quiz/:territory/:occasionNum/" render={props => (
+              <Route exact path="/quiz/:territory/:electionNum/" render={props => (
                 <Quiz {...props} {...context} />
               )} />
 
-              <Route exact path="/wahlen/:territory/:occasionNum/:thesisNum/" render={props => (
+              <Route exact path="/wahlen/:territory/:electionNum/:thesisNum/" render={props => (
                 <Thesis {...props} {...context} />
               )} />
 

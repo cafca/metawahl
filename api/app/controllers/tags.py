@@ -65,7 +65,7 @@ class TagView(Resource):
         rv = {
             "data": tag.to_dict(include_related_tags=True),
             "theses": [thesis.to_dict() for thesis in tag.theses],
-            "occasions": {thesis.occasion_id: thesis.occasion.to_dict()
+            "elections": {thesis.election_id: thesis.election.to_dict()
                         for thesis in tag.theses}
         }
 
@@ -92,7 +92,7 @@ class TagView(Resource):
         rv = {
             "data": tag.to_dict(include_related_tags=True),
             "theses": [thesis.to_dict() for thesis in tag.theses],
-            "occasions": {thesis.occasion_id: thesis.occasion.to_dict()
+            "elections": {thesis.election_id: thesis.election.to_dict()
                         for thesis in tag.theses}
         }
 

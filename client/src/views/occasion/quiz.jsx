@@ -14,7 +14,7 @@ import '../../index.css';
 import Thesis from '../../components/thesis/';
 import Errorhandler from '../../utils/errorHandler';
 import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from '../../config/';
-import { ErrorType, RouteProps, ThesisType, OccasionType } from '../../types/';
+import { ErrorType, RouteProps, ThesisType, ElectionType } from '../../types/';
 import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
 import SEO from '../../components/seo/';
 
@@ -22,7 +22,7 @@ import './styles.css';
 
 type State = {
   isLoading: boolean,
-  occasion: ?OccasionType,
+  election: ?ElectionType,
   theses: Array<ThesisType>,
   quizSelection: Array<ThesisType>,
   quizAnswers: ?Array<number>,
@@ -32,17 +32,17 @@ type State = {
 
 export default class Quiz extends React.Component<RouteProps, State> {
   territory: string;
-  occasionNum: number;
+  electionNum: number;
   handleError: ErrorType => any;
 
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
-    this.occasionNum = parseInt(this.props.match.params.occasionNum, 10);
+    this.electionNum = parseInt(this.props.match.params.electionNum, 10);
     this.territory = this.props.match.params.territory;
     this.state =  {
       isLoading: true,
-      occasion: this.getCachedOccasion(),
+      election: this.getCachedElection(),
       theses: [],
       quizSelection: [],
       quizAnswers: [],
@@ -53,37 +53,37 @@ export default class Quiz extends React.Component<RouteProps, State> {
   }
 
   componentDidMount() {
-    this.loadOccasion();
+    this.loadElection();
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
-    if(nextProps.match.params.occasionNum !== this.occasionNum || nextProps.displayMode !== this.props.displayMode) {
-      this.occasionNum = parseInt(nextProps.match.params.occasionNum, 10);
+    if(nextProps.match.params.electionNum !== this.electionNum || nextProps.displayMode !== this.props.displayMode) {
+      this.electionNum = parseInt(nextProps.match.params.electionNum, 10);
       this.territory = nextProps.match.params.territory;
       this.setState({
         isLoading: true,
-        occasion: this.getCachedOccasion(),
+        election: this.getCachedElection(),
         theses: [],
         quizAnswers: []
       });
       this.thesisRefs = {};
-      this.loadOccasion();
+      this.loadElection();
     }
   }
 
-  getCachedOccasion() {
-    return this.props.occasions[this.territory] == null ? null :
-      this.props.occasions[this.territory]
-      .filter(occ => occ.id === this.occasionNum)
+  getCachedElection() {
+    return this.props.elections[this.territory] == null ? null :
+      this.props.elections[this.territory]
+      .filter(occ => occ.id === this.electionNum)
       .shift();
   }
 
   getRatio({ title, positions }, reverse=false) {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
-    if (this.state.occasion === null) return null
+    if (this.state.election === null) return null
 
-    const occRes = this.state.occasion.results;
+    const occRes = this.state.election.results;
 
     // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
     // otherwise just return accumulator `acc` + result of party `cur`
@@ -116,14 +116,14 @@ export default class Quiz extends React.Component<RouteProps, State> {
     }
   }
 
-  loadOccasion(cb?: OccasionType => mixed) {
-    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
+  loadElection(cb?: ElectionType => mixed) {
+    const endpoint = API_ROOT + "/elections/" + this.electionNum;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
         if (!this.handleError(response)) {
           this.setState({
-            occasion: response.data,
+            election: response.data,
             theses: response.theses || []
           }, () => {
             this.selectQuizTheses()
@@ -133,10 +133,10 @@ export default class Quiz extends React.Component<RouteProps, State> {
       })
       .catch((error: Error) => {
         this.handleError(error);
-        console.log("Error fetching occasion data: " + error.message)
+        console.log("Error fetching election data: " + error.message)
         this.setState({
           isLoading: false,
-          occasion: this.getCachedOccasion(),
+          election: this.getCachedElection(),
           theses: []
         })
       })
@@ -167,7 +167,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
         .map(
           (t, i) => <Thesis
             key={t.id}
-            occasion={this.state.occasion}
+            election={this.state.election}
             showHints={i === 0}
             quizMode={true}
             scrollToNextQuestion={this.scrollToNextQuestion}
@@ -182,9 +182,9 @@ export default class Quiz extends React.Component<RouteProps, State> {
 
     }
 
-    return <Container fluid={false} className='occasionContainer'>
+    return <Container fluid={false} className='electionContainer'>
       <SEO title={'Metawahl: '
-        + (this.state.occasion ? this.state.occasion.title + ' Quiz' : "Quiz")} />
+        + (this.state.election ? this.state.election.title + ' Quiz' : "Quiz")} />
 
       <Breadcrumb>
         <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
@@ -193,34 +193,34 @@ export default class Quiz extends React.Component<RouteProps, State> {
           {TERRITORY_NAMES[this.territory]}
         </Breadcrumb.Section>
         <Breadcrumb.Divider icon='right angle' />
-        { this.state.occasion == null
+        { this.state.election == null
           ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
           : <Breadcrumb.Section
-              href={`/wahlen/${this.territory}/${this.occasionNum}/`}>
-              {Moment(this.state.occasion.date).year()}
+              href={`/wahlen/${this.territory}/${this.electionNum}/`}>
+              {Moment(this.state.election.date).year()}
             </Breadcrumb.Section>
         }
 
         <span>
           <Breadcrumb.Divider icon='right angle' />
-          <Breadcrumb.Section active href={`/quiz/${this.territory}/${this.occasionNum}/`}>
+          <Breadcrumb.Section active href={`/quiz/${this.territory}/${this.electionNum}/`}>
             Quiz
           </Breadcrumb.Section>
         </span>
       </Breadcrumb>
 
-      <WikidataLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
-      <WikipediaLabel {...this.state.occasion} style={{marginRight: "-10.5px"}} />
+      <WikidataLabel {...this.state.election} style={{marginRight: "-10.5px"}} />
+      <WikipediaLabel {...this.state.election} style={{marginRight: "-10.5px"}} />
 
       <Header as='h1'>
-        { this.state.occasion == null
+        { this.state.election == null
           ? " "
-          : "Teste dein Wissen: " + this.state.occasion.title}
+          : "Teste dein Wissen: " + this.state.election.title}
       </Header>
 
         <h3 style={{marginBottom: '4rem'}}>
           {
-            this.state.occasion != null && this.state.occasion.preliminary
+            this.state.election != null && this.state.election.preliminary
               ? "Was wird die Mehrheit in " + TERRITORY_NAMES[this.territory] + " voraussichtlich wählen?"
               : "Was hat die Mehrheit in " + TERRITORY_NAMES[this.territory] + " gewählt?"
           }
@@ -263,7 +263,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
           </Header>
 
           <p>
-            <Link to={'/wahlen/' + this.territory + '/' + this.occasionNum + '/'}><Icon name='caret right' /> Öffne die Übersichtsgrafik zur {this.state.occasion.title}</Link> <br />
+            <Link to={'/wahlen/' + this.territory + '/' + this.electionNum + '/'}><Icon name='caret right' /> Öffne die Übersichtsgrafik zur {this.state.election.title}</Link> <br />
             <Link to={'/wahlen/'}><Icon name='caret right' /> Siehe alle Wahlen, zu denen es Quizzes gibt</Link> <br />
             <Link to='/'><Icon name='caret right' /> Finde heraus, worum es bei Metawahl geht</Link>
           </p>

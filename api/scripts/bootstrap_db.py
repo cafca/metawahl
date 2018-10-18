@@ -13,7 +13,7 @@ from datetime import datetime
 
 sys.path.append("./app/")
 
-from models import Occasion, Thesis, Position, Party, Tag, Result, \
+from models import Election, Thesis, Position, Party, Tag, Result, \
     ThesisReport, Reaction
 from main import create_app
 from services import db
@@ -100,14 +100,14 @@ def load_data_file(fp, index=False):
     return rv
 
 
-def load_occasions():
+def load_elections():
     """Load data from qual-o-mat-data and return model instances."""
     with open(os.path.join(DATADIR, "list.json")) as f:
-        occasion_list = json.load(f)
+        election_list = json.load(f)
 
-    for occasion_dir in sorted(occasion_list):
-        # occasion_dir is like "data/2017/deutschland"
-        _, year, territory = occasion_dir.split("/")
+    for election_dir in sorted(election_list):
+        # election_dir is like "data/2017/deutschland"
+        _, year, territory = election_dir.split("/")
 
         def path_for(fn):
             return os.path.join(DATADIR, "data", year, territory, fn)
@@ -133,8 +133,8 @@ def load_occasions():
 
         dt = dateutil.parser.parse(dataset["overview"]["date"])
 
-        occasion = Occasion(
-            id=OCCASION_IDS[occasion_dir],
+        election = Election(
+            id=OCCASION_IDS[election_dir],
             title="{} {}".format(dataset["overview"]["title"], dt.year),
             date=dt,
             source=dataset["overview"]["data_source"],
@@ -142,17 +142,17 @@ def load_occasions():
             wikipedia_title=wikipedia_title
         )
 
-        occasion.theses = load_theses(occasion_dir, **dataset)
-        yield occasion
+        election.theses = load_theses(election_dir, **dataset)
+        yield election
 
 
-def load_theses(occasion_dir, comments=None, opinions=None, overview=None,
+def load_theses(election_dir, comments=None, opinions=None, overview=None,
                 parties=None, theses=None):
     """Load theses from a given ressource file."""
     rv = []
     for thesis_num in theses:
-        thesis_id = "WOM-{occasion:03d}-{thesis:02d}".format(
-            occasion=OCCASION_IDS[occasion_dir],
+        thesis_id = "WOM-{election:03d}-{thesis:02d}".format(
+            election=OCCASION_IDS[election_dir],
             thesis=thesis_num
         )
 
@@ -328,10 +328,10 @@ def make_substitutions():
         d = dateutil.parser.parse(w["date"]).date()
         we[d] = w
 
-    occasions = db.session.query(Occasion).order_by(Occasion.title).all()
-    for i, occ in enumerate(occasions):
+    elections = db.session.query(Election).order_by(Election.title).all()
+    for i, occ in enumerate(elections):
         print(occ.title)
-        print("{} of {}".format(i + 1, len(occasions)))
+        print("{} of {}".format(i + 1, len(elections)))
         d = occ.date.date()
         parties = dict()
         for t in occ.theses:
@@ -361,7 +361,7 @@ def make_substitutions():
 
 
 def load_results():
-    """Match election records to the existing occasion datasets."""
+    """Match election records to the existing election datasets."""
     logger.info("Matching election results...")
 
     with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
@@ -370,7 +370,7 @@ def load_results():
         substitutions = defaultdict(list)
         substitutions.update(json.load(f))
 
-    for occ in db.session.query(Occasion).all():
+    for occ in db.session.query(Election).all():
         dt = occ.date.date()
         occ_results = [o for o in result_data
                        if o["territory"].lower().startswith(occ.territory.lower()[:2])
@@ -404,7 +404,7 @@ def load_results():
                         matched_results.add(match[0])
                         votes = match[1]["votes"] if "votes" in match[1] else None
                         yield Result(
-                            occasion=occ,
+                            election=occ,
                             party=p,
                             party_repr=match[0],
                             votes=votes,
@@ -449,7 +449,7 @@ def load_results():
                     party_instances[p_name] = party
 
                 yield Result(
-                    occasion=occ,
+                    election=occ,
                     party_repr=p_name,
                     party=party,
                     votes=match["votes"] if "votes" in match else None,
@@ -462,7 +462,7 @@ def load_results():
 if __name__ == '__main__':
     app = create_app()
     with app.app_context():
-        for obj in load_occasions():
+        for obj in load_elections():
             db.session.add(obj)
             logger.info("Added {}".format(obj))
 

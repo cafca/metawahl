@@ -86,8 +86,8 @@ class Reaction(db.Model):
         return rv
 
 
-class Occasion(db.Model):
-    """Represent an occasion for which WOM data exists."""
+class Election(db.Model):
+    """Represent an election for which WOM data exists."""
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime)
     territory = db.Column(db.String(32), nullable=False)
@@ -99,7 +99,7 @@ class Occasion(db.Model):
 
     def __repr__(self):
         prelim = " (preliminary)" if self.preliminary else ""
-        return "<Occasion {}: {}{}>".format(self.id, self.title, prelim)
+        return "<Election {}: {}{}>".format(self.id, self.title, prelim)
 
     def to_dict(self, thesis_data=False):
         rv = {
@@ -141,7 +141,7 @@ class Occasion(db.Model):
 
 
 class Party(db.Model):
-    """Represent a party electable in one of the occasions."""
+    """Represent a party electable in one of the elections."""
     name = db.Column(db.String(32), primary_key=True)
     long_name = db.Column(db.Text)
 
@@ -206,9 +206,9 @@ class Result(db.Model):
     party = db.relationship('Party', backref=db.backref('results',
                                                         lazy=True))
 
-    occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
+    election_id = db.Column(db.Integer, db.ForeignKey('election.id'),
                             nullable=False)
-    occasion = db.relationship('Occasion',
+    election = db.relationship('Election',
                                backref=db.backref('results', lazy=False))
 
 
@@ -338,14 +338,14 @@ class Tag(db.Model):
 
 
 class Thesis(db.Model):
-    """Represent a single thesis within an occasions thesis set."""
+    """Represent a single thesis within an elections thesis set."""
     id = db.Column(db.String(10), primary_key=True)
     title = db.Column(db.Text)
     text = db.Column(db.Text, nullable=False)
 
-    occasion_id = db.Column(db.Integer, db.ForeignKey('occasion.id'),
+    election_id = db.Column(db.Integer, db.ForeignKey('election.id'),
                             nullable=False)
-    occasion = db.relationship('Occasion',
+    election = db.relationship('Election',
                                backref=db.backref('theses', lazy=True))
 
     tags = db.relationship('Tag',
@@ -362,7 +362,7 @@ class Thesis(db.Model):
             "title": self.title,
             "positions": [position.to_dict() for position in self.positions],
             "tags": [tag.to_dict() for tag in self.tags],
-            "occasion_id": self.occasion_id,
+            "election_id": self.election_id,
             "reactions": self.reactions_dict()
         }
 

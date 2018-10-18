@@ -40,36 +40,36 @@
   }
 }
 
-.occasionList > .territory {
+.electionList > .territory {
   margin-bottom: 6em;
 }
 
 @media only screen and (max-width: 767px) {
-  .ui.grid.occasionList > .column.territory {
+  .ui.grid.electionList > .column.territory {
     margin-bottom: 1em !important;
   }
 }
 
-.occasionList > .row {
+.electionList > .row {
   margin-bottom: 2em;
 }
 
-.occasionList > .column h1 {
+.electionList > .column h1 {
   margin-bottom: 1em;
   width: 70%;
 }
 
-.occasionList > .column .map {
+.electionList > .column .map {
   max-height: 10em;
   float: right;
   width: 25%;
   margin: 12px auto 1em 1em;
 }
 
-.occasionListItem {
+.electionListItem {
   height: 4em;
 }
 
-.occasionListItem span {
+.electionListItem span {
   color: rgb(140, 140, 140);
 }

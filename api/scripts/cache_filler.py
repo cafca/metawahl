@@ -14,7 +14,7 @@ sys.path.append("./app/")
 from config import CACHE_FILLER_LOG
 from services.logger import setup_logger
 from config import API_ROOT
-from models import Occasion, Tag, Thesis
+from models import Election, Tag, Thesis
 
 logger = setup_logger(logfile=CACHE_FILLER_LOG, level=logging.DEBUG)
 
@@ -33,13 +33,13 @@ def gen_urls():
 
     urls.append(url('/base'))
 
-    # occasions
+    # elections
 
-    urls.append(url('/occasions'))
+    urls.append(url('/elections'))
 
-    occasions = Occasion.query.all()
-    for occasion in occasions:
-        urls.append(url('/occasions/{}').format(occasion.id))
+    elections = Election.query.all()
+    for election in elections:
+        urls.append(url('/elections/{}').format(election.id))
 
     # tags
 

@@ -1,4 +1,4 @@
-.occasion-component {
+.election-component {
   padding-top: calc(2rem - .14285714em)
 }
 
@@ -15,13 +15,13 @@
   padding-left: .5em
 }
 
-.occasionContainer {
+.electionContainer {
   min-height: 350px;
   padding: 1em 2em;
 }
 
 @media (max-width: 991px) {
-  .ui.container.occasionContainer {
+  .ui.container.electionContainer {
     padding: 0;
     width: auto!important;
     margin-left: 1em!important;

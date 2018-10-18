@@ -5,7 +5,7 @@ from collections import defaultdict
 from flask import request
 from flask_restplus import Resource
 
-from models import Occasion
+from models import Election
 from middleware.api import api
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
@@ -13,40 +13,40 @@ from services import db, cache
 from services.logger import logger
 
 
-class OccasionView(Resource):
+class ElectionView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(params={'wom_id': 'Occasion ID like `WOM-43-01`'})
+    @api.doc(params={'wom_id': 'Election ID like `WOM-43-01`'})
     def get(self, wom_id: int):
-        """Return metadata for an occasion and all theses therein."""
+        """Return metadata for an election and all theses therein."""
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
 
-        occasion = Occasion.query.get(wom_id)
+        election = Election.query.get(wom_id)
 
-        if occasion is None:
-            return json_response({"error": "Occasion not found"}, status=404)
+        if election is None:
+            return json_response({"error": "Election not found"}, status=404)
 
         rv = {
-            "data": occasion.to_dict(),
+            "data": election.to_dict(),
             "theses": [thesis.to_dict()
-                       for thesis in occasion.theses]
+                       for thesis in election.theses]
         }
 
         return json_response(rv)
 
 
-class Occasions(Resource):
+class Elections(Resource):
     decorators = [cache_filler(), cache.cached()]
 
     def get(self):
-        """Return a list of all occasions."""
+        """Return a list of all elections."""
 
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
 
         try:
-            occasions = Occasion.query.all()
+            elections = Election.query.all()
         except SQLAlchemyError as e:
             logger.error(e)
             return json_response({"error": "Server Error"})
@@ -54,8 +54,8 @@ class Occasions(Resource):
         thesis_data = request.args.get("thesis_data", False)
 
         rv = {"data": defaultdict(list)}
-        for occasion in occasions:
-            rv["data"][occasion.territory].append(
-                occasion.to_dict(thesis_data=thesis_data))
+        for election in elections:
+            rv["data"][election.territory].append(
+                election.to_dict(thesis_data=thesis_data))
 
         return json_response(rv)

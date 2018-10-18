@@ -1,6 +1,6 @@
 # flatten package
 from .base import *
-from .occasion import *
+from .election import *
 from .sitemap import *
 from .tags import *
 from .thesis import *

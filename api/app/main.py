@@ -69,8 +69,8 @@ def create_app(config=None):
 
     ns = Namespace('Public v2', path=API_ROOT)
     ns.add_resource(controllers.BaseView, '/base')
-    ns.add_resource(controllers.elections, '/elections/')
-    ns.add_resource(controllers.electionView, '/elections/<int:wom_id>')
+    ns.add_resource(controllers.Elections, '/elections/')
+    ns.add_resource(controllers.ElectionView, '/elections/<int:wom_id>')
     ns.add_resource(controllers.TagsView, '/tags/')
     ns.add_resource(controllers.TagView, '/tags/<string:slug>')
     ns.add_resource(controllers.ThesisView, '/thesis/<string:thesis_id>"')
@@ -79,7 +79,7 @@ def create_app(config=None):
     api.add_namespace(ns)
 
     # downloads = Namespace('Downloads', description='Downloadable JSON files')
-    # downloads.add_resource(controllers.elections, '/tags.json', )
+    # downloads.add_resource(controllers.Elections, '/tags.json', )
     # api.add_namespace(downloads)
 
     extra = Namespace("Sitemap", path='/')

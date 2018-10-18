@@ -9,47 +9,47 @@ import { Link } from 'react-router-dom';
 import { Container, Grid, Header, List } from 'semantic-ui-react';
 
 import { TERRITORY_NAMES } from '../../config/';
-import { OccasionListType, RouteProps } from '../../types/';
+import { ElectionListType, RouteProps } from '../../types/';
 import MapComponent from '../../components/map/';
 import SEO from '../../components/seo/';
 
-import './OccasionList.css';
+import './ElectionList.css';
 
 moment.locale('de');
 
 type State = {
-  occasions: OccasionListType
+  elections: ElectionListType
 };
 
-export default class OccasionList extends Component<RouteProps, State> {
+export default class ElectionList extends Component<RouteProps, State> {
   constructor(props: RouteProps) {
     super(props);
     autoBind(this);
     this.state = {
-      occasions: this.props.occasions
+      elections: this.props.elections
     };
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
     this.setState({
-      occasions: nextProps.occasions
+      elections: nextProps.elections
     });
   }
 
   render() {
-    let occasionCount = 0;
+    let electionCount = 0;
 
-    const occasionElem = territory => {
-      const occasions = this.state.occasions[territory] != null && this.state.occasions[territory]
+    const electionElem = territory => {
+      const elections = this.state.elections[territory] != null && this.state.elections[territory]
         .sort((a, b) => a.date < b.date)
-        .map(occasion => {
-          occasionCount += 1;
-          return <List.Item key={occasion.id} as='a'
-            href={`/wahlen/${occasion.territory}/${occasion.id}/`}
-            className='occasionListItem'>
-          <List.Header as='h3'>{moment(occasion.date).year()}</List.Header>
+        .map(election => {
+          electionCount += 1;
+          return <List.Item key={election.id} as='a'
+            href={`/wahlen/${election.territory}/${election.id}/`}
+            className='electionListItem'>
+          <List.Header as='h3'>{moment(election.date).year()}</List.Header>
           <span>
-            {occasion.title.slice(0, occasion.title.indexOf(' '))} vom {moment(occasion.date).format('LL')}
+            {election.title.slice(0, election.title.indexOf(' '))} vom {moment(election.date).format('LL')}
           </span>
         </List.Item>});
 
@@ -61,27 +61,27 @@ export default class OccasionList extends Component<RouteProps, State> {
           </Link>
         </Header>
         <List relaxed>
-          {occasions}
+          {elections}
         </List>
       </Grid.Column>;
     };
 
     // Sort German and European elections first
-    const occasionElems = [];
-    if (this.state.occasions != null) {
-      occasionElems.push(occasionElem('deutschland'));
-      occasionElems.push(occasionElem('europa'));
-      Object.keys(this.state.occasions)
+    const electionElems = [];
+    if (this.state.elections != null) {
+      electionElems.push(electionElem('deutschland'));
+      electionElems.push(electionElem('europa'));
+      Object.keys(this.state.elections)
         .filter(o => o !== 'deutschland' && o !== 'europa')
-        .forEach(o => occasionElems.push(occasionElem(o)));
+        .forEach(o => electionElems.push(electionElem(o)));
     }
 
     return <Container>
       <SEO title='Metawahl: Alle Wahlen im Überblick' />
-      <Grid stackable columns={2} padded relaxed className='occasionList'>
+      <Grid stackable columns={2} padded relaxed className='electionList'>
         <Grid.Row>
           <Grid.Column width={4} className='headerCount2'>
-            <div className='headerCountInner'><div>{occasionCount > 0 ? occasionCount : 45}</div> Wahlen</div>
+            <div className='headerCountInner'><div>{electionCount > 0 ? electionCount : 45}</div> Wahlen</div>
           </Grid.Column>
           <Grid.Column width={12}>
             <h3>Bundestags-, Landtags- und Europawahlen in der Übersicht</h3>
@@ -92,7 +92,7 @@ export default class OccasionList extends Component<RouteProps, State> {
             2017, sind hier nicht vertreten.</p>
           </Grid.Column>
         </Grid.Row>
-        {occasionElems}
+        {electionElems}
       </Grid>
     </Container>;
   }

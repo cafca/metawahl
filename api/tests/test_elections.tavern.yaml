@@ -1,0 +1,36 @@
+test_name: elections endpoint
+
+stages:
+  - name: Make sure that elections list is returned
+    request:
+      url: http://localhost:9000/v2/elections/
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that elections list including thesis data is returned
+    request:
+      url: http://localhost:9000/v2/elections/?thesis_data=1
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that specific election is returned
+    request:
+      url: http://localhost:9000/v2/elections/1
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+
+  - name: Make sure that unknown election gives 404
+    request:
+      url: http://localhost:9000/v2/elections/999
+      method: GET
+    response:
+      status_code: 404
