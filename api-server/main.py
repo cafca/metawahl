@@ -13,10 +13,11 @@ import json
 import requests
 import traceback
 import lxml.html
+import math
 
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
-from collections import defaultdict
+from collections import defaultdict, Counter, OrderedDict
 from flask import Flask, jsonify, request, send_file, g, make_response, abort, Response
 from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
@@ -26,6 +27,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from flask_cors import CORS
 from logger import setup_logger
 from pprint import pformat
+from math import sqrt
 
 logfile = os.getenv("METAWAHL_API_LOGFILE", "../metawahl-api.log")
 logger = setup_logger(logfile=logfile, level=logging.DEBUG)
@@ -394,6 +396,62 @@ def create_app(config=None):
             }
 
         return json_response(rv, filename=filename)
+
+
+
+
+    @app.route(API_ROOT + '/graph-tags')
+    def graphtags():
+        from models import Thesis, Tag
+
+        results = db.session.query(Thesis).all()
+
+        results = db.session.query(Tag) \
+            .join(Tag.theses) \
+            .filter(Tag.title != "Laufzeit") \
+            .group_by(Tag.title) \
+            .order_by(Tag.title) \
+            .all()
+
+        # nodes
+        tags = OrderedDict()
+        for tag in results:
+            if len(tag.theses) > 1:
+                tags[tag.title] = tag
+
+        logger.info("Found {} tags with more than one thesis".format(len(tags)))
+
+        # edges
+        edges = defaultdict(list)
+
+        for tag in tags.values():
+            i = list(list(tags.keys())).index(tag.title)
+            for thesis in tag.theses:
+                for rtag in thesis.tags:
+                    if rtag.title != tag.title and rtag.title in tags:
+                        ri = list(tags.keys()).index(rtag.title)
+                        edges[min(i, ri)].append(max(i, ri))
+
+        links = list()
+        for source in edges.keys():
+            counter = Counter(edges[source])
+            for target in set(edges[source]):
+                links.append({
+                    "source": source,
+                    "target": target,
+                    "value": counter[target]
+                    })
+
+        nodes = [{
+            "name": n.title,
+            "group": 2 if n.is_root else 1,
+            "value": math.sqrt(len(n.theses))
+        } for n in tags.values()]
+
+        return json_response({
+            "nodes": nodes,
+            "links": links
+        })
 
     @app.route(API_ROOT + "/tags/<string:tag_title>",
         methods=["GET", "DELETE"])
