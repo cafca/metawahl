@@ -21,5 +21,4 @@ flask-restplus = "*"
 [dev-packages]
 tavern = "*"
 pytest = "*"
-black = "==18.6b4"
 "flake8" = "*"
