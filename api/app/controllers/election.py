@@ -6,7 +6,7 @@ from flask import request
 from flask_restplus import Resource
 
 from models import Election
-from middleware.api import api
+from middleware import api
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from services import db, cache
@@ -16,7 +16,7 @@ from services.logger import logger
 class ElectionView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(params={"wom_id": "Election ID like `WOM-43-01`"})
+    @api.doc(params={"wom_id": "Election ID like `43`"})
     def get(self, wom_id: int):
         """Return metadata for an election and all theses therein."""
         if not is_cache_filler():

@@ -21,7 +21,7 @@ from flask_restplus import Api, Namespace
 from pprint import pformat
 
 import controllers
-from middleware.api import api
+from middleware import api
 from middleware.error import exceptions, page_not_found
 from middleware.logger import logger, log_request_info, before_request, after_request
 from middleware.json_response import json_response
