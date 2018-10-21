@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import request
-from flask_restplus import Resource, fields
+from flask_restful import Resource, fields
 from sqlalchemy import func
 
 from middleware import api
@@ -16,12 +16,6 @@ from services.logger import logger
 class TagsView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(
-        params={
-            "filename": "If set, return a downloadable file with this name",
-            "include_theses_ids": "Set to `true` to also include list of thesis IDs for each tag",
-        }
-    )
     def get(self, filename=None):
         """List all tags."""
 
@@ -51,20 +45,14 @@ class TagsView(Resource):
 
         return json_response(rv, filename=filename)
 
-
-auth = api.model(
-    "auth", {"admin_key": fields.String(required=True, description="Admin auth key")}
-)
-
-
-delete_request = api.parser()
-delete_request.add_argument("admin_key", type=str, location="body")
+class TagsDownload(TagsView):
+    def get(self):
+        return TagsView.get(self, filename='tags.json')
 
 
 class TagView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(params={"slug": "Slug for the requested tag"})
     def get(self, slug: str):
         """Tag metadata, list of all related theses and their elections."""
         if not is_cache_filler():
@@ -85,8 +73,6 @@ class TagView(Resource):
 
         return json_response(rv)
 
-    @api.hide
-    @api.expect(auth, validate=True)
     def delete(self):
         admin_key = request.get_json().get("admin_key", "")
         if admin_key != app.config.get("ADMIN_KEY"):

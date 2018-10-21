@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import request
-from flask_restplus import Resource
+from flask_restful import Resource
 
 from middleware import api
 from middleware.cache import cache_filler, is_cache_filler
@@ -33,7 +33,6 @@ class ThesisView(Resource):
 
 
 class ThesisTagsView(Resource):
-    @api.hide
     def post(self, thesis_id: str):
         log_request_info("Thesis tags update", request)
 

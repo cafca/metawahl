@@ -15,8 +15,8 @@ Flask-SQLAlchemy = "*"
 Flask-Caching = "*"
 Flask-Cors = "*"
 Wikidata = "*"
-flask-restplus = "*"
 "psycopg2-binary" = "*"
+flask-restful = "*"
 
 [dev-packages]
 tavern = "*"

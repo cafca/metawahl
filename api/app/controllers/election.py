@@ -3,7 +3,7 @@
 
 from collections import defaultdict
 from flask import request
-from flask_restplus import Resource, fields
+from flask_restful import Resource, fields
 
 from models import Election
 from middleware import api
@@ -16,7 +16,6 @@ from services.logger import logger
 class ElectionView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(params={"wom_id": "Election ID like `43`"})
     def get(self, wom_id: int):
         """Election data and a list of its theses."""
         if not is_cache_filler():

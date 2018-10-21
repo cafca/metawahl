@@ -3,7 +3,7 @@
 
 from collections import defaultdict
 from flask import request
-from flask_restplus import Resource
+from flask_restful import Resource
 from sqlalchemy import func
 
 from models import Election, Tag, Thesis

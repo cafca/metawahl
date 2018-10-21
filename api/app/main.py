@@ -15,9 +15,19 @@ import lxml.html
 
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
-from flask import Flask, jsonify, request, send_file, g, make_response, abort, Response
+from flask import (
+    Flask,
+    jsonify,
+    request,
+    send_file,
+    g,
+    make_response,
+    abort,
+    Response,
+    url_for,
+)
 from flask_cors import CORS
-from flask_restplus import Api, Namespace
+from flask_restful import Api, Resource
 from pprint import pformat
 
 import controllers
@@ -50,8 +60,6 @@ def create_app(config=None):
     db.init_app(app)
     cache.init_app(app, config=app.config)
 
-    api.init_app(app)
-
     CORS(app)
 
     handler = RotatingFileHandler(
@@ -68,23 +76,19 @@ def create_app(config=None):
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    ns = Namespace("Public v2", path=API_ROOT)
-    ns.add_resource(controllers.BaseView, "/base")
-    ns.add_resource(controllers.Elections, "/elections/")
-    ns.add_resource(controllers.ElectionView, "/elections/<int:wom_id>")
-    ns.add_resource(controllers.TagsView, "/tags/")
-    ns.add_resource(controllers.TagView, "/tags/<string:slug>")
-    ns.add_resource(controllers.ThesisView, "/thesis/<string:thesis_id>")
-    ns.add_resource(controllers.ThesisTagsView, "/thesis/<string:thesis_id>/tags/")
-    api.add_namespace(ns)
+    api.add_resource(controllers.BaseView, "/v2/base")
+    api.add_resource(controllers.Elections, "/v2/elections/")
+    api.add_resource(controllers.ElectionView, "/v2/elections/<int:wom_id>")
+    api.add_resource(controllers.TagsView, "/v2/tags/")
+    api.add_resource(controllers.TagsDownload, "/v2/tags.json")
+    api.add_resource(controllers.TagView, "/v2/tags/<string:slug>")
+    api.add_resource(controllers.ThesisView, "/v2/thesis/<string:thesis_id>")
+    api.add_resource(controllers.ThesisTagsView, "/v2/thesis/<string:thesis_id>/tags/")
 
-    # downloads = Namespace('Downloads', description='Downloadable JSON files')
-    # downloads.add_resource(controllers.Elections, '/tags.json', )
-    # api.add_namespace(downloads)
+    api.add_resource(controllers.SitemapView, "/sitemap.xml")
 
-    extra = Namespace("Sitemap", path="/")
-    extra.add_resource(controllers.SitemapView, "/sitemap.xml")
-    api.add_namespace(extra)
+    # MUST be after route declaration
+    api.init_app(app)
 
     return app
 

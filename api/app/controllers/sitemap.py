@@ -3,7 +3,7 @@
 """Generate plaintext sitemap."""
 
 from flask import Response
-from flask_restplus import Resource
+from flask_restful import Resource
 
 from config import SITE_ROOT
 from models import Election, Tag
