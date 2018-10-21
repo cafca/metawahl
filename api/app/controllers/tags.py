@@ -16,7 +16,12 @@ from services.logger import logger
 class TagsView(Resource):
     decorators = [cache_filler(), cache.cached()]
 
-    @api.doc(params={"filename": "If set, return a downloadable file with this name"})
+    @api.doc(
+        params={
+            "filename": "If set, return a downloadable file with this name",
+            "include_theses_ids": "Set to `true` to also include list of thesis IDs for each tag",
+        }
+    )
     def get(self, filename=None):
         """List all tags."""
 
@@ -47,9 +52,9 @@ class TagsView(Resource):
         return json_response(rv, filename=filename)
 
 
-auth = api.model('auth', {
-    'admin_key': fields.String(required=True, description="Admin auth key")
-})
+auth = api.model(
+    "auth", {"admin_key": fields.String(required=True, description="Admin auth key")}
+)
 
 
 delete_request = api.parser()
@@ -61,7 +66,7 @@ class TagView(Resource):
 
     @api.doc(params={"slug": "Slug for the requested tag"})
     def get(self, slug: str):
-        """Return data for all theses in a tag."""
+        """Tag metadata, list of all related theses and their elections."""
         if not is_cache_filler():
             logger.info("Cache miss for {}".format(request.path))
 
@@ -80,6 +85,7 @@ class TagView(Resource):
 
         return json_response(rv)
 
+    @api.hide
     @api.expect(auth, validate=True)
     def delete(self):
         admin_key = request.get_json().get("admin_key", "")

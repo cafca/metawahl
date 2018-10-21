@@ -9,6 +9,6 @@ import config
 api = Api(
     version=config.API_VERSION,
     title="Metawahl API",
-    license="MIT",
+    description="Provides tagged dataset of all Wahl-o-Mat theses, party positions and election results",
     license_url="https://github.com/ciex/metawahl/blob/master/LICENSE",
 )
