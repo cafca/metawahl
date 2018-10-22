@@ -43,7 +43,7 @@ export default class ElectionList extends Component<RouteProps, State> {
       const elections =
         this.state.elections[territory] != null &&
         this.state.elections[territory]
-          .sort((a, b) => a.date < b.date)
+          .sort((a, b) => a.date < b.date ? 1 : -1)
           .map(election => {
             electionCount += 1
             return (
