@@ -31,11 +31,16 @@ const tagSearchOptions = Object.assign({}, baseSearchOptions, {
 const territorySearchOptions = Object.assign({}, baseSearchOptions, {
   distance: 30,
   minMatchCharLength: 2,
-  keys: ["title"]
+  keys: ["title", "alias"]
 })
+
+const territoryAliases = {
+  deutschland: 'Bundestag'
+}
 
 const territoryList = Object.keys(TERRITORY_NAMES).map(k => ({
   title: TERRITORY_NAMES[k],
+  alias: territoryAliases[k] || null,
   slug: k,
   kind: "territory"
 }))
