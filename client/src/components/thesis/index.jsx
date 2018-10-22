@@ -436,11 +436,13 @@ export default class Thesis extends Component<Props, State> {
 
         </Segment>
 
+        { this.props.quizMode === false &&
         <Segment attached={IS_ADMIN ? true : 'bottom'} secondary>
           { tagElems }
           <br />
           { tagElems.length === 0 && IS_ADMIN &&  " Noch keine Tags gewählt. "}
         </Segment>
+        }
 
         { IS_ADMIN &&
           <Segment attached='bottom' secondary>
