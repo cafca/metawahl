@@ -231,7 +231,7 @@ export default class PositionChart extends React.Component<Props, State> {
 
   render() {
     let rectangles = [];
-    const combinedGapWidth = gapWidth * (this.state.parties.length - 1);
+    const combinedGapWidth = gapWidth * (this.state.parties.filter(d => d.pct > 0.1).length - 1);
     const usablePixels = this.state.width - combinedGapWidth;
 
     if (usablePixels != null && usablePixels > 0) {
