@@ -41,5 +41,6 @@ class SitemapView(Resource):
 
                 # Other
                 yield "{}/legal/\n".format(SITE_ROOT)
+                yield "{}/daten/\n"
 
         return Response(generate(), mimetype="text/plain")
