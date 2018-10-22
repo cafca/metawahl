@@ -188,11 +188,13 @@ export default class PositionChart extends React.Component<Props, State> {
               : -1;
       } else {
         // Sort last if vote count unknown
-        if (a.votes == null) return 1;
-        if (b.votes == null) return -1;
+        if (a.pct == null) return 1;
+        if (b.pct == null) return -1;
 
         // Then sort descending by vote count
-        if (a.votes !== b.votes) {
+        if (a.pct !== b.pct) {
+          return a.pct > b.pct ? -1 : 1;
+        } else if (a.votes != null && b.votes != null && a.votes !== b.votes) {
           return a.votes > b.votes ? -1 : 1;
         }
 
