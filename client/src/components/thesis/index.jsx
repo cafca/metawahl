@@ -91,12 +91,12 @@ type State = {
   quizAnswer: number
 }
 
-type Props = RouteProps &
-  ThesisType & {
+type Props = RouteProps & ThesisType & {
     election?: ElectionType,
     linkElection?: boolean,
     showHints?: boolean,
-    quizMode?: boolean
+    quizMode?: boolean,
+    hideTags?: boolean
   }
 
 export default class Thesis extends Component<Props, State> {
@@ -425,12 +425,12 @@ export default class Thesis extends Component<Props, State> {
             style={{ cursor: "pointer" }}
           >
             {this.state.quizAnswer === this.state.voterOpinion
-              ? "🌞 Richtig! " +
+              ? "😀 Richtig! " +
                 voterTerritoryName +
                 " stimmt " +
                 voterOpinionName +
                 "."
-              : "🌚 Leider falsch. " +
+              : "☹️ Leider falsch. " +
                 voterTerritoryName +
                 " stimmt " +
                 voterOpinionName +
@@ -519,7 +519,7 @@ export default class Thesis extends Component<Props, State> {
               </p>
             </Segment>
 
-            {this.props.quizMode !== true && (
+            {this.props.hideTags !== true && (
               <Segment attached={IS_ADMIN ? true : "bottom"} secondary>
                 {tagElems}
                 <br />

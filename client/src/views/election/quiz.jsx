@@ -205,8 +205,9 @@ export default class Quiz extends React.Component<RouteProps, State> {
           <Thesis
             key={t.id}
             election={this.state.election}
-            showHints={i === 0}
+            showHints={true}
             quizMode={true}
+            hideTags={true}
             scrollToNextQuestion={this.scrollToNextQuestion}
             answer={(answer, correct) =>
               this.handleQuizAnswer(i, answer, correct)
