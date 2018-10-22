@@ -10,6 +10,7 @@ import SEO from '../../components/seo/';
 import ThesisComponent from '../../components/thesis/';
 import Errorhandler from '../../utils/errorHandler';
 import { RouteProps, ThesisType, ElectionType } from '../../types/';
+import Legend from "../../components/legend/";
 
 import './styles.css'
 
@@ -149,6 +150,14 @@ class Thesis extends React.Component<RouteProps, State> {
       { this.state.error != null &&
         <Message negative content={this.state.error} />
       }
+
+        { this.state.thesis != null && this.state.election != null &&
+      <Header as='h1' style={{marginBottom: "2rem"}}>
+        These #{this.thesisNum} aus dem Wahl-o-Mat zur {this.state.election.title}
+      </Header>
+        }
+
+      <Legend text='Legende:' />
 
       { this.state.isLoading === false && this.state.error == null &&
         <div style={{marginTop: "2rem"}}>
