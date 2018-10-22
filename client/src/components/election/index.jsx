@@ -108,12 +108,10 @@ export default class Election extends React.Component<Props, State> {
     let thesesElems = this.props.theses
       .sort((a, b) => (this.getRatio(a) > this.getRatio(b) ? -1 : 1))
       .map((t, i) => {
-        const tRatio = this.getRatio(t);
         const tUrl = `/wahlen/${this.props.territory}/${
           this.props.electionNum
         }/${extractThesisID(t.id).thesisNUM}/`;
         const proCount = t.positions.filter(p => p.value === 1).length
-        const proParties = t.positions.filter(p => p.value !== 1)
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
