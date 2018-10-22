@@ -47,7 +47,7 @@ export default class Territory extends Component<RouteProps, State> {
       this.props.elections[this.state.slug] == null
         ? null
         : this.props.elections[this.state.slug]
-            .sort((a, b) => a.date < b.date)
+            .sort((a, b) => a.date < b.date ? 1 : -1)
             .map(election => (
               <List.Item
                 key={election.id}
