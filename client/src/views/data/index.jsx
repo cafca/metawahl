@@ -13,7 +13,7 @@ class DataOverview extends React.Component<RouteProps> {
   componentDidMount() {
     SwaggerUI({
       dom_id: "#swagger-ui",
-      url: "http://petstore.swagger.io/v2/swagger.json"
+      url: "/swagger.yaml"
     })
   }
   render() {
