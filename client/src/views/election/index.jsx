@@ -166,10 +166,6 @@ export default class Election extends React.Component<RouteProps, State> {
           {...this.state.election}
           style={{ marginRight: "-10.5px" }}
         />
-        <WikipediaLabel
-          {...this.state.election}
-          style={{ marginRight: "-10.5px" }}
-        />
 
         <ElectionComponent
           election={this.state.election}
