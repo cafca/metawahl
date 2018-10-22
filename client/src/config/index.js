@@ -2,70 +2,72 @@
 
 // Settings
 
-export const DATA_DIR = "/data";
+export const DATA_DIR = "/data"
 
-export const API_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-  ? "http://localhost:9000/v2"
-  : "https://api.metawahl.de/v2";
+export const API_ROOT =
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+    ? "http://localhost:9000/v2"
+    : "https://api.metawahl.de/v2"
 
-export const SITE_ROOT = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-  ? "http://localhost:3000"
-  : "https://metawahl.de"
+export const SITE_ROOT =
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://metawahl.de"
 
 // Tools
 
 export const adminKey = () => {
   try {
-    return localStorage.getItem("admin_key");
-  } catch(e) {}
+    return localStorage.getItem("admin_key")
+  } catch (e) {}
 
-  return null;
+  return null
 }
 
-export const IS_ADMIN = adminKey() != null;
+export const IS_ADMIN = adminKey() != null
 
 export const makeJSONRequest = (data: {}) => {
   return {
-    method: 'post',
+    method: "post",
     headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
-  };
+  }
 }
 
 // Language
 
 export const TERRITORY_NAMES = {
-  "badenwuerttemberg": "Baden-Württemberg",
-  "bayern": "Bayern",
-  "berlin": "Berlin",
-  "brandenburg": "Brandenburg",
-  "bremen": "Bremen",
-  "deutschland": "Deutschland",
-  "europa": "Europa",
-  "hamburg": "Hamburg",
-  "hessen": "Hessen",
-  "niedersachsen": "Niedersachsen",
-  "nordrheinwestfalen": "Nordrhein-Westfalen",
-  "rheinlandpfalz": "Rheinland-Pfalz",
-  "saarland": "Saarland",
-  "sachsen": "Sachsen",
-  "sachsenanhalt": "Sachsen-Anhalt",
-  "schleswigholstein": "Schleswig-Holstein",
-  "thueringen": "Thüringen"
-};
+  badenwuerttemberg: "Baden-Württemberg",
+  bayern: "Bayern",
+  berlin: "Berlin",
+  brandenburg: "Brandenburg",
+  bremen: "Bremen",
+  deutschland: "Deutschland",
+  europa: "Europa",
+  hamburg: "Hamburg",
+  hessen: "Hessen",
+  niedersachsen: "Niedersachsen",
+  nordrheinwestfalen: "Nordrhein-Westfalen",
+  rheinlandpfalz: "Rheinland-Pfalz",
+  saarland: "Saarland",
+  sachsen: "Sachsen",
+  sachsenanhalt: "Sachsen-Anhalt",
+  schleswigholstein: "Schleswig-Holstein",
+  thueringen: "Thüringen"
+}
 
 export const OBJECTION_NAMES = {
   "-1": ["Trotzdem umgesetzt", "Neutral", "Nicht umgesetzt"],
   "0": ["Nicht umgesetzt", "Neutral", "Umgesetzt"],
   "1": ["Nicht umgesetzt", "Neutral", "Umgesetzt"]
-};
+}
 
 // Cosmetic
 
-export const THESES_PER_PAGE = 20;
+export const THESES_PER_PAGE = 20
 
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#dcbc37,a56072,82e8b3,796da0
 // http://davidjohnstone.net/pages/lch-lab-colour-gradient-picker#f1376c,2d339f
@@ -88,14 +90,13 @@ export const COLOR_PALETTE = [
   "rgb(213, 0, 28)",
   "rgb(180,180,180)",
   "rgb(42, 64, 101)"
-];
+]
 
 // export const COLOR_PALETTE = ["#ffac82", "#ebc170", "rgb(148, 148, 148)", "#8ce999", "#00f7d2"]
-
 
 export const OPINION_COLORS = {
   "-1": COLOR_PALETTE[0],
   "0": COLOR_PALETTE[parseInt(COLOR_PALETTE.length / 2.0, 10)],
   "1": COLOR_PALETTE[COLOR_PALETTE.length - 1],
-  "missing": "rgb(80, 80, 80)"
+  missing: "rgb(80, 80, 80)"
 }
