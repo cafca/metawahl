@@ -12,7 +12,7 @@ export type RelatedTag = {
   // This is a Babel bug apparently
   // // Related issue: https://github.com/babel/babel-eslint/pull/584
   // eslint-disable-next-line no-use-before-define
-  [name: string]: { count: number, tag: TagType }
+  [name: string]: { count: number, tag: TagType | string }
 };
 
 export type TagType = {
@@ -30,24 +30,13 @@ export type TagType = {
   }
 };
 
-export type ReactionsTallyType = {
-  [kind: number]: number
-}
-
-export type ReactionType = {
-  thesis: string,
-  kind: number,
-  date?: string,
-}
-
 export type ThesisType = {
   id: string,
   text: string,
   title: ?string,
   tags: Array<TagType>,
-  occasion_id: number,
-  positions: Array<PositionType>,
-  reactions: ReactionsTallyType
+  election_id: number,
+  positions: Array<PositionType>
 };
 
 export type ResultsType = {
@@ -63,7 +52,7 @@ export type ResultsType = {
 export type MergedPartyDataType =
   PositionType & ResultsType & { party: string } ;
 
-export type OccasionType = {
+export type ElectionType = {
   id: number,
   date: string,
   results: ResultsType,
@@ -75,8 +64,8 @@ export type OccasionType = {
   wikipedia_title: ?string
 };
 
-export type OccasionListType = {
-  [ territory: string ]: Array<OccasionType>
+export type ElectionListType = {
+  [ territory: string ]: Array<ElectionType>
 };
 
 export type PartyType = {
@@ -86,7 +75,7 @@ export type PartyType = {
 
 export type RouteProps = {
   isLoading: boolean,
-  occasions: OccasionListType,
+  elections: ElectionListType,
   tags: Array<TagType>
 };
 

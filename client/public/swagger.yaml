@@ -1,0 +1,109 @@
+swagger: "2.0"
+info:
+  description: "The Metawahl API provides access to a tagged datasets of all Wahl-o-Mat theses and party positions. Responses are returned as `application/json` objects with keys `data`, `error` and `meta`. The `data` field contains the response object or array, `error` may contain an error description that can be displayed to the user."
+  version: "2.0.0"
+  title: "Metawahl API"
+host: "api.metawahl.de"
+basePath: "/v2"
+schemes:
+  - "https"
+paths:
+  /base:
+    get:
+      summary: "Base dataset for web client"
+      description: "Return a base dataset containing all election results as well as a list of all tags with item count."
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Success"
+  /elections/:
+    get:
+      summary: "All elections"
+      description: "Returns all elections as an object with a key for each territory."
+      parameters:
+        - name: "thesis_data"
+          in: "query"
+          description: "Also return all theses for each election"
+          type: "boolean"
+          default: False
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Success"
+  /elections/{wom_id}:
+    get:
+      summary: "A single election"
+      description: "Return election metadata and theses"
+      parameters:
+        - name: "wom_id"
+          in: "path"
+          description: "Wahl-o-Mat ID"
+          type: "integer"
+          required: true
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "No election with this WOM ID"
+  /tags:
+    get:
+      summary: "All tags"
+      description: "Return all tags"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "include_theses_ids"
+          in: "query"
+          description: "Return list of tagged thesis IDs instead of a thesis count"
+          type: "boolean"
+          default: False
+      responses:
+        200:
+          description: "Success"
+  /tags.json:
+    get:
+      summary: "Download all tags as JSON file"
+      description: "Return all tags with `Content-Disposition: attachment` header so it gets downloaded by web browsers"
+      produces:
+        - "text/json"
+      responses:
+        200:
+          description: "Success"
+  /tags/{slug}:
+    get:
+      summary: "A single tag"
+      description: "Return a single tag with its theses and all elections for the theses"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "slug"
+          description: "Slug (a simplified notation) for the requested tag"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Tag not found"
+  /thesis/{id}:
+    get:
+      summary: "A single thesis"
+      description: "Return a single thesis and related theses based on shared tags"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          description: "Thesis id like `WOM-010-01`"
+          in: "path"
+          required: True
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Thesis not found"

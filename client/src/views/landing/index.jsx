@@ -5,25 +5,25 @@ import { Link } from "react-router-dom";
 import { Container, Grid, Header, List, Message } from "semantic-ui-react";
 
 import Map from "../../components/map/";
-import OccasionComponent from "../../components/occasion/";
+import ElectionComponent from "../../components/election/";
 import SuggestionsGrid from "../../components/suggestionsGrid";
 import { API_ROOT, TERRITORY_NAMES } from "../../config/";
 import { ReactComponent as Logo } from "../../logo.svg";
-import { OccasionType, RouteProps, ThesisType } from "../../types/";
+import { ElectionType, RouteProps, ThesisType } from "../../types/";
 import Errorhandler from "../../utils/errorHandler";
 
 import "./styles.css";
 
 type State = {
   isLoading: boolean,
-  occasion: OccasionType,
+  election: ElectionType,
   theses: Array<ThesisType>,
   error?: ?string
 };
 
 class LandingView extends React.Component<RouteProps, State> {
-  // This is the occasion that is shown on the landing page
-  occasionNum: number = 43;
+  // This is the election that is shown on the landing page
+  electionNum: number = 43;
   territory: string = "bayern";
   handleError: ErrorType => any;
 
@@ -31,33 +31,33 @@ class LandingView extends React.Component<RouteProps, State> {
     super(props);
     this.state = {
       isLoading: true,
-      occasion: this.getCachedOccasion(),
+      election: this.getCachedElection(),
       theses: []
     };
     this.handleError = Errorhandler.bind(this);
   }
 
   componentDidMount() {
-    this.loadOccasion();
+    this.loadElection();
   }
 
-  getCachedOccasion() {
-    return this.props.occasions[this.territory] == null
+  getCachedElection() {
+    return this.props.elections[this.territory] == null
       ? null
-      : this.props.occasions[this.territory]
-          .filter(occ => occ.id === this.occasionNum)
+      : this.props.elections[this.territory]
+          .filter(occ => occ.id === this.electionNum)
           .shift();
   }
 
-  loadOccasion(cb?: OccasionType => mixed) {
-    const endpoint = API_ROOT + "/occasions/" + this.occasionNum;
+  loadElection(cb?: ElectionType => mixed) {
+    const endpoint = API_ROOT + "/elections/" + this.electionNum;
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
         if (!this.handleError(response)) {
           this.setState({
             isLoading: false,
-            occasion: response.data,
+            election: response.data,
             theses: response.theses || []
           });
           if (cb != null) cb(response.data);
@@ -67,7 +67,7 @@ class LandingView extends React.Component<RouteProps, State> {
         this.handleError(error);
         this.setState({
           isLoading: false,
-          occasion: this.getCachedOccasion(),
+          election: this.getCachedElection(),
           theses: []
         });
       });
@@ -127,13 +127,13 @@ class LandingView extends React.Component<RouteProps, State> {
           </Grid>
         </Container>
 
-        <Container fluid className="occasionContainer">
-          <OccasionComponent
+        <Container fluid className="electionContainer">
+          <ElectionComponent
             title="Vorläufiges Ergebnis zur Landtagswahl in Bayern"
-            occasion={this.state.occasion}
+            election={this.state.election}
             theses={this.state.theses}
             territory={this.territory}
-            occasionNum={this.occasionNum}
+            electionNum={this.electionNum}
           />
         </Container>
 

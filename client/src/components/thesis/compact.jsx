@@ -11,7 +11,7 @@ import ErrorHandler from '../../utils/errorHandler';
 import type {
   ErrorType,
   MergedPartyDataType,
-  OccasionType,
+  ElectionType,
   PositionType,
   RouteProps,
   ThesisType
@@ -31,8 +31,8 @@ type State = {
 };
 
 type Props = RouteProps & ThesisType & {
-  occasion?: OccasionType,
-  linkOccasion?: boolean,
+  election?: ElectionType,
+  linkElection?: boolean,
   showHints?: boolean,
   quizMode?: boolean
 };
@@ -66,14 +66,14 @@ export default class CompactThesis extends Component<Props, State> {
       tags: nextProps.tags
     });
 
-    if (Object.is(nextProps.occasion.results, this.props.occasion.results) === false) {
+    if (Object.is(nextProps.election.results, this.props.election.results) === false) {
       this.mergePartyData();
     }
   }
 
   mergePartyData() {
     // Merge party positions with election results
-    const res = this.props.occasion.results;
+    const res = this.props.election.results;
     const sortPositions = (a, b) => {
       if (res != null) {
         // Sort last if vote count unknown
@@ -120,9 +120,9 @@ export default class CompactThesis extends Component<Props, State> {
 
   updateVoterOpinion() {
     const countVotes = (prev, cur) =>
-      this.props.occasion.results[cur["party"]] == null
+      this.props.election.results[cur["party"]] == null
         ? prev
-        : prev + this.props.occasion.results[cur["party"]]["pct"];
+        : prev + this.props.election.results[cur["party"]]["pct"];
 
     let voterOpinion;
 

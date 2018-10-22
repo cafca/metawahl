@@ -7,7 +7,7 @@ import Fuse from 'fuse.js';
 
 import { TERRITORY_NAMES } from '../../config/';
 
-import type { TagType, OccasionListType } from '../../types/';
+import type { TagType, ElectionListType } from '../../types/';
 
 const baseSearchOptions = {
   threshold: 0.2,
@@ -47,7 +47,7 @@ type SearchProps = {
   className?: string,
   large?: boolean,
   isLoading: boolean,
-  occasions: OccasionListType,
+  elections: ElectionListType,
   tags: Array<TagType>
 };
 
