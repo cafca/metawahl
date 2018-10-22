@@ -404,7 +404,7 @@ export default class Thesis extends Component<Props, State> {
       { (this.props.quizMode !== true || this.state.quizAnswer != null) && <span>
         <Segment id={this.props.id} attached style={{paddingBottom: "1.5em"}}>
           <Header sub style={{color: "rgba(0,0,0,.65)"}}>
-            Stimmverteilung { this.props.election.preliminary ? " (Prognose)" : ""}
+            Stimmverteilung { this.props.election.preliminary ? " (Prognose von dawum.de)" : ""}
           </Header>
 
           <PositionChart
