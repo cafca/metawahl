@@ -225,7 +225,7 @@ export default class PositionChart extends React.Component<Props, State> {
       svgHeightString = "40";
     } else {
       svgWidthString = "100%";
-      svgHeightString = "28";
+      svgHeightString = "40";
       svgStyle = {
         margin: "0.3em 0"
       };
