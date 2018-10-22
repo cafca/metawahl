@@ -112,6 +112,7 @@ export default class Election extends React.Component<Props, State> {
         const tUrl = `/wahlen/${this.props.territory}/${
           this.props.electionNum
         }/${extractThesisID(t.id).thesisNUM}/`;
+        const proCount = t.positions.filter(p => p.value === 1).length
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
@@ -119,11 +120,9 @@ export default class Election extends React.Component<Props, State> {
               <CompactThesis key={t.id} election={this.props.election} {...t} />
               <span className="thesisTitleInsert">
                 <strong>
-                  {tRatio < 1 ? "<1" : tRatio > 99 ? ">99" : Math.round(tRatio)}
-                  &nbsp;von 100 wählen <em>{t.title}</em>:
+                  <em>{t.title}</em>{" "}
                 </strong>
-                &nbsp;
-                {t.text}
+                {proCount} von {t.positions.length} Parteien wollen: {t.text}
               </span>
             </a>
           </div>
