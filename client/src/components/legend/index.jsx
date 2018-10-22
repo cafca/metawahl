@@ -7,8 +7,8 @@ import { COLOR_PALETTE, OPINION_COLORS } from "../../config/"
 
 import "./Legend.css"
 
-const Legend = ({ text }) => (
-  <Table collapsing compact className="legend">
+const Legend = ({ text, style }) => (
+  <Table collapsing compact className="legend" style={style}>
     <Table.Body>
       <Table.Row>
         {text != null && (

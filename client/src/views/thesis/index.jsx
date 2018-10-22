@@ -2,7 +2,7 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Breadcrumb, Container, Header, Message } from "semantic-ui-react"
+import { Breadcrumb, Container, Header, Message, Loader } from "semantic-ui-react"
 import Moment from "moment"
 
 import { API_ROOT, TERRITORY_NAMES } from "../../config/"
@@ -161,7 +161,7 @@ class Thesis extends React.Component<RouteProps, State> {
                   this.thesisNum
                 }`}
               >
-                These #{this.thesisNum}
+                These #{this.thesisNum + 1}
               </Breadcrumb.Section>
             </span>
           )}
@@ -174,16 +174,18 @@ class Thesis extends React.Component<RouteProps, State> {
         {this.state.thesis != null &&
           this.state.election != null && (
             <Header as="h1" style={{ marginBottom: "2rem" }}>
-              These #{this.thesisNum} aus dem Wahl-o-Mat zur{" "}
+              These #{this.thesisNum + 1} aus dem Wahl-o-Mat zur{" "}
               {this.state.election.title}
             </Header>
           )}
 
-        <Legend text="Legende:" />
+        <Loader active={this.state.isLoading} />
+
 
         {this.state.isLoading === false &&
           this.state.error == null && (
             <div style={{ marginTop: "2rem" }}>
+              <Legend text="Legende:" style={{marginBottom: "2rem"}}/>
               <ThesisComponent
                 election={this.state.election}
                 linkElection={true}

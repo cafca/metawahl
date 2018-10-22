@@ -159,7 +159,8 @@ export default class Election extends React.Component<Props, State> {
         </Header>
 
         <Button
-          basic
+
+          compact
           icon
           labelPosition="left"
           floated="right"
@@ -167,7 +168,7 @@ export default class Election extends React.Component<Props, State> {
           href={quizUrl}
         >
           <Icon name="right arrow" />
-          Quiz zur Wahl
+          Teste dein Wissen im Quiz
         </Button>
 
         <Legend text="Partei ist:" />

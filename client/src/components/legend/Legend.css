@@ -3,6 +3,10 @@
   margin-bottom: 2em;
 }
 
+.legend td {
+  white-space: nowrap;
+}
+
 .square  {
   width: 1.1em;
   height: 1.1em;
