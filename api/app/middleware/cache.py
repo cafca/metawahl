@@ -3,7 +3,6 @@
 """Middleware to cache whole requests."""
 
 import logging
-
 from flask import request
 from functools import wraps
 
@@ -19,7 +18,7 @@ def cache_filler():
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if is_cache_filler():
-                logger.debug("Forcing cache miss for {}".format(request.path))
+                logging.debug("Forcing cache miss for {}".format(request.path))
                 cache.delete("view/{}".format(request.path))
             return f(*args, **kwargs)
 
