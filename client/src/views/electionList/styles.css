@@ -1,0 +1,75 @@
+.App > .container {
+  margin-top: 42px;
+}
+
+@media only screen and (max-width: 767px) {
+  .App > .container {
+    margin-top: 1em;
+  }
+}
+
+.headerCount2 {
+  font-size: 4.5em;
+  line-height: 1.2em;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-variant: all-small-caps;
+  background-color: rgb(42, 64, 101);
+  color: white;
+  min-height: 210px;
+}
+
+.headerCountInner {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.headerCountInner > div {
+  font-size: 1.4em;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .headerCount2 {
+    font-size: 3em;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .headerCount2 {
+    font-size: 3.5em;
+  }
+}
+
+.electionList > .territory {
+  margin-bottom: 6em;
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.grid.electionList > .column.territory {
+    margin-bottom: 1em !important;
+  }
+}
+
+.electionList > .row {
+  margin-bottom: 2em;
+}
+
+.electionList > .column h1 {
+  margin-bottom: 1em;
+  width: 70%;
+}
+
+.electionList > .column .map {
+  max-height: 10em;
+  float: right;
+  width: 25%;
+  margin: 12px auto 1em 1em;
+}
+
+.electionListItem {
+  height: 4em;
+}
+
+.electionListItem span {
+  color: rgb(140, 140, 140);
+}

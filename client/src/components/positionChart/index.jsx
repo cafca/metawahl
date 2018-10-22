@@ -155,7 +155,9 @@ export default class PositionChart extends React.Component<Props, State> {
                   cursor: "pointer"
                 }}
               >
-                {data.party}
+              <tspan x={usedPixels - width - gapWidth + 10} y="40%" style={{fontWeight: "bold"}}>{data.party}</tspan>
+              <tspan x={usedPixels - width - gapWidth + 10} y="80%">{parseInt(data.pct, 10)}%</tspan>
+              {/* {data.party} {data.pct}% */}
               </text>
             )}
           </g>
@@ -188,11 +190,13 @@ export default class PositionChart extends React.Component<Props, State> {
               : -1;
       } else {
         // Sort last if vote count unknown
-        if (a.votes == null) return 1;
-        if (b.votes == null) return -1;
+        if (a.pct == null) return 1;
+        if (b.pct == null) return -1;
 
         // Then sort descending by vote count
-        if (a.votes !== b.votes) {
+        if (a.pct !== b.pct) {
+          return a.pct > b.pct ? -1 : 1;
+        } else if (a.votes != null && b.votes != null && a.votes !== b.votes) {
           return a.votes > b.votes ? -1 : 1;
         }
 
@@ -212,26 +216,17 @@ export default class PositionChart extends React.Component<Props, State> {
     let svgWidthString;
     let svgHeightString;
     let svgStyle = {};
-    if (this.props.compact) {
-      if (window.innerWidth < 992) {
-        svgWidthString = "100%";
-      } else {
-        svgWidthString = "65%";
-      }
-      svgHeightString = "35";
-    } else {
-      svgWidthString = "100%";
-      svgHeightString = "28";
-      svgStyle = {
-        margin: "0.3em 0"
-      };
-    }
+    svgWidthString = "100%";
+    svgHeightString = "40";
+    svgStyle = {
+      margin: "0.3em 0"
+    };
     return { svgWidthString, svgHeightString, svgStyle };
   }
 
   render() {
     let rectangles = [];
-    const combinedGapWidth = gapWidth * (this.state.parties.length - 1);
+    const combinedGapWidth = gapWidth * (this.state.parties.filter(d => d.pct > 0.1).length - 1);
     const usablePixels = this.state.width - combinedGapWidth;
 
     if (usablePixels != null && usablePixels > 0) {

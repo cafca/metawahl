@@ -25,11 +25,11 @@ import Legend from '../../components/legend/';
 import Tag from '../../components/tag/';
 
 import type {
-  ErrorType, TagType, ThesisType, OccasionType, RouteProps
+  ErrorType, TagType, ThesisType, ElectionType, RouteProps
 } from '../../types/';
 
 type State = {
-  occasions: { [occasionNum: number]: OccasionType},
+  elections: { [electionNum: number]: ElectionType},
   loading: boolean,
   page: number,
   slug: string,
@@ -52,7 +52,7 @@ export default class TagView extends Component<RouteProps, State> {
       page: parseInt(this.props.match.params.page, 10) || 1,
       slug: this.props.match.params.tag,
       tag: this.getCachedTag(),
-      occasions: {},
+      elections: {},
       theses: [],
       tagFilter: null,
       territoryFilter: null,
@@ -78,7 +78,7 @@ export default class TagView extends Component<RouteProps, State> {
         slug,
         tag: this.getCachedTag(slug),
         theses: [],
-        occasions: {}
+        elections: {}
       }, this.loadTag);
     } else if (page !== this.state.page) {
       this.setState({
@@ -107,7 +107,7 @@ export default class TagView extends Component<RouteProps, State> {
         this.setState({
           tag: response.data,
           theses: response.theses || [],
-          occasions: response.occasions || {},
+          elections: response.elections || {},
           loading: false
         }, this.updateTerritoryCounts);
       })
@@ -119,7 +119,7 @@ export default class TagView extends Component<RouteProps, State> {
           this.setState({
             loading: false,
             theses: [],
-            occasions: {}
+            elections: {}
           });
         }
       }
@@ -131,16 +131,16 @@ export default class TagView extends Component<RouteProps, State> {
     Object.keys(territoryCounts)
       .forEach(k => territoryCounts[k] = 0);
     this.state.theses
-      .map(t => this.state.occasions[t.occasion_id].territory)
+      .map(t => this.state.elections[t.election_id].territory)
       .forEach(k => territoryCounts[k] += 1);
     this.setState({ territoryCounts });
   }
 
   render() {
-    const occasionDateById = Object.keys(this.props.occasions)
-      // Collect all occasions into one array
-      .reduce((acc, cur) => acc.concat(this.props.occasions[cur]), [])
-      // Extract date into an object keyed by occasion id
+    const electionDateById = Object.keys(this.props.elections)
+      // Collect all elections into one array
+      .reduce((acc, cur) => acc.concat(this.props.elections[cur]), [])
+      // Extract date into an object keyed by election id
       .reduce((acc, cur) => { acc[cur.id] = cur.date; return acc; }, {});
 
     const theses = this.state.loading || this.state.error ? [] : this.state.theses
@@ -153,13 +153,13 @@ export default class TagView extends Component<RouteProps, State> {
       )
       .filter(thesis => this.state.territoryFilter == null ? true :
         this.state.invertFilter === false
-          ? this.state.occasions[thesis.occasion_id].territory
+          ? this.state.elections[thesis.election_id].territory
             === this.state.territoryFilter
-          : this.state.occasions[thesis.occasion_id].territory
+          : this.state.elections[thesis.election_id].territory
             !== this.state.territoryFilter
       )
-      .sort((t1, t2) => moment(occasionDateById[t2.occasion_id]).isBefore(
-        moment(occasionDateById[t1.occasion_id])
+      .sort((t1, t2) => moment(electionDateById[t2.election_id]).isBefore(
+        moment(electionDateById[t1.election_id])
       ) ? -1 : 1);
 
     const startPos = (this.state.page - 1) * THESES_PER_PAGE;
@@ -173,8 +173,8 @@ export default class TagView extends Component<RouteProps, State> {
       .map((thesis, i) =>
         <Thesis
           key={"Thesis-" + thesis.id}
-          occasion={this.state.occasions[thesis.occasion_id]}
-          linkOccasion={true}
+          election={this.state.elections[thesis.election_id]}
+          linkElection={true}
           showHints={i === 0}
           {...thesis}
         />

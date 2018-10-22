@@ -1,0 +1,43 @@
+.election-component {
+  padding-top: calc(2rem - .14285714em)
+}
+
+.thesis-compact {
+  cursor: pointer;
+}
+
+.thesis-compact:hover .thesisTitleInsert {
+  text-decoration: underline;
+}
+
+.thesisTitleInsert {
+  display: block;
+  position: initial;
+  padding-left: .5em;
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-bottom: 1rem;
+}
+
+.electionContainer {
+  min-height: 350px;
+  padding: 1em 2em;
+}
+
+.thesis-compact {
+  height: auto;
+}
+
+.thesis-compact .ui.header {
+  margin-bottom: 0;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .ui.container.electionContainer {
+    padding: 0;
+    width: auto!important;
+    margin-left: 1em!important;
+    margin-right: 1em!important;
+  }
+}

@@ -1,22 +1,26 @@
 matrix:
   include:
     - language: python
-      python: 3.6
+      python:
+        - "3.5"
+        - "3.7"
 
-      env: METAWAHL_CONFIG=test.conf.py
+      env:
+        - METAWAHL_CONFIG=test.conf.py
+
       cache: pip
 
       before_install:
-        - cd api-server/
+        - cd api/
 
       install:
         - pip install pipenv
-        - pipenv sync
+        - pipenv sync --dev
         - psql -c 'create database metawahl;' -U postgres
-        - python models.py --force
-        - python bootstrap_db.py
+        - pipenv run python scripts/reset_db.py --force
+        - pipenv run python scripts/bootstrap_db.py
 
-      script: ./travis_tavern.sh
+      script: pipenv run ./travis_tavern.sh
 
     - language: node_js
       node_js:

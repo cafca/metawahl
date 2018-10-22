@@ -4,9 +4,9 @@
 /client/node_modules
 
 # testing
-/coverage
-/api-server/.cache/
-/api-server/*.log
+coverage
+.cache
+*.log
 .pytest_cache
 
 # production

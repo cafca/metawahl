@@ -35,13 +35,12 @@ In den Thesen spiegelt sich auch, wie sich die Position der Wähler oder einer P
 
 Der Server wurde als Flask app (Python) entwickelt und bietet eine JSON
 API, die vom Client angesprochen wird um Daten abzurufen und Nutzereingaben 
-zu speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api-server`.
+zu speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api`.
 
-    $ virtualenv -p Python3 metawahl
-    $ cd metawahl && source bin/activate
-    $ git clone https://github.com/ciex/metawahl.git src
-    $ cd src/api-server
-    $ METAWAHL_CONFIG=dev.conf.py python main.py
+    $ git clone https://github.com/ciex/metawahl.git
+    $ cd metawahl/api
+    $ pipenv sync
+    $ pipenv run python app/main.py
 
 Um den Server dauerhaft laufen zu lassen, sollte dieser z.B. als uWSGI Awendung 
 über einen Webserver wie Nginx laufen. Hierzu:
@@ -69,15 +68,15 @@ dataset.
     $ git submodule update
 
 Make sure that a Postgres server is running and update the server config file 
-`api-server/dev.conf.py` to include its connection URI.
+`api/dev.conf.py` to include its connection URI.
 
     SQLALCHEMY_DATABASE_URI="postgresql://localhost/metawahl"
 
 Now you can import the dataset to the database:
 
-    $ cd api-server
-    $ python models.py
-    $ METAWAHL_CONFIG=dev.conf.py python bootstrap_db.py
+    $ cd api
+    $ python run scripts/reset_db.py
+    $ python run scripts/bootstrap_db.py
 
 ## Client
 
@@ -110,6 +109,7 @@ Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
 
 Version | Beschreibung
 --------|--------------
+1.7.0   | Backend Refactor und API-Dokumentation auf metawahl.de/daten/
 1.6.0   | Thematisch ähnliche Thesen auf jeder Thesenseite
 1.5.0   | Neues Format für die Startseite
 1.4.0   | Unterstützung von vorläufigen Wahlergebnissen

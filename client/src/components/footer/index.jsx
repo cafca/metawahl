@@ -17,12 +17,12 @@ import { ReactComponent as BMBF } from './logo-bmbf.svg'
 import { ReactComponent as OKFN } from './logo-okfn.svg'
 
 const Footer = (props: RouteProps) => {
-  const territorries = Object.keys(props.occasions).map(o =>
+  const territorries = Object.keys(props.elections).map(o =>
     <List.Item as='a' key={'footer-link-' + o} href={`/wahlen/${o}/`}>{TERRITORY_NAMES[o]}</List.Item>
   );
 
-  const recentElections = Object.keys(props.occasions)
-    .map(o => props.occasions[o])
+  const recentElections = Object.keys(props.elections)
+    .map(o => props.elections[o])
     .reduce((prev, cur) => prev.concat(cur), [])
     .sort((a, b) => {return a.date < b.date ? 1 : -1})
     .slice(0, territorries.length)

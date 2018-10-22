@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+lxml = "*"
+prettyprint = "*"
+pylibmc = "*"
+python-dateutil = "*"
+python-slugify = "*"
+requests = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Flask-Caching = "*"
+Flask-Cors = "*"
+Wikidata = "*"
+"psycopg2-binary" = "*"
+flask-restful = "*"
+
+[dev-packages]
+tavern = "*"
+pytest = "*"
+"flake8" = "*"

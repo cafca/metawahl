@@ -36,15 +36,15 @@ export default class Territory extends Component<RouteProps, State> {
   render() {
     const territoryName = TERRITORY_NAMES[this.state.slug];
 
-      const occasions = this.props.occasions[this.state.slug] == null ? null :
-        this.props.occasions[this.state.slug]
+      const elections = this.props.elections[this.state.slug] == null ? null :
+        this.props.elections[this.state.slug]
           .sort((a, b) => a.date < b.date)
-          .map(occasion => <List.Item key={occasion.id} as='a'
-              href={`/wahlen/${occasion.territory}/${occasion.id}/`}
-              className='occasionListItem'>
-            <List.Header as='h3'>{moment(occasion.date).year()}</List.Header>
+          .map(election => <List.Item key={election.id} as='a'
+              href={`/wahlen/${election.territory}/${election.id}/`}
+              className='electionListItem'>
+            <List.Header as='h3'>{moment(election.date).year()}</List.Header>
             <span style={{color: 'rgb(140, 140, 140)'}}>
-              {occasion.title.slice(0, occasion.title.indexOf(' '))} vom {moment(occasion.date).format('LL')}
+              {election.title.slice(0, election.title.indexOf(' '))} vom {moment(election.date).format('LL')}
             </span>
           </List.Item>);
 
@@ -75,7 +75,7 @@ export default class Territory extends Component<RouteProps, State> {
 
         <Grid.Column width='10'>
           <List relaxed='very'>
-            {occasions}
+            {elections}
           </List>
         </Grid.Column>
       </Grid>
