@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """Middleware to cache whole requests."""
 
+import logger
+
 from flask import request
 from functools import wraps
 
