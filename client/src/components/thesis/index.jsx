@@ -91,7 +91,8 @@ type State = {
   quizAnswer: number
 }
 
-type Props = RouteProps & ThesisType & {
+type Props = RouteProps &
+  ThesisType & {
     election?: ElectionType,
     linkElection?: boolean,
     showHints?: boolean,
@@ -220,7 +221,12 @@ export default class Thesis extends Component<Props, State> {
 
   toggleOpen(position: PositionType) {
     let openText: OpenTextType
-    if (position.value === "missing") {
+    if (position.party === "Sonstige") {
+      openText = Object.assign({}, position, {
+        text:
+          "Kleine Parteien sind in den Prognosewerten nicht enthalten, da deren Wahlergebnisse kaum vorherzusehen sind."
+      })
+    } else if (position.value === "missing") {
       openText = Object.assign({}, position, {
         text:
           "Von dieser Partei liegen zu dieser Wahl keine Stellungnahmen vor."
@@ -230,7 +236,9 @@ export default class Thesis extends Component<Props, State> {
         text: "Es liegt keine Begründung zur Position dieser Partei vor."
       })
     } else {
-      openText = position
+      openText = Object.assign({}, position, {
+        text: "»" + position.text + "«"
+      })
     }
 
     const name =
@@ -455,12 +463,6 @@ export default class Thesis extends Component<Props, State> {
               <ElectionSubtitle election={this.props.election} />
             )}
 
-            {/* { this.props.linkElection == false && (this.props.title != null && this.props.title.length > 0) &&
-          <Header.Subheader style={{marginTop: "0.3em"}}>
-            {this.props.title}
-          </Header.Subheader>
-        } */}
-
             {this.props.text}
 
             <Header.Subheader style={{ marginTop: "0.3em" }}>
@@ -491,7 +493,7 @@ export default class Thesis extends Component<Props, State> {
 
               {this.state.openText != null && (
                 <Message
-                  content={"»" + this.state.openText.text + "«"}
+                  content={this.state.openText.text}
                   floating
                   header={this.state.openText.header}
                 />

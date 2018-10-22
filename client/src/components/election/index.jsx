@@ -170,7 +170,7 @@ export default class Election extends React.Component<Props, State> {
           Quiz zur Wahl
         </Button>
 
-        <Legend text="Partei war im Wahl-o-Mat:" />
+        <Legend text="Partei ist:" />
 
         {/* Main content */}
         {thesesElems.length > 0 && (
