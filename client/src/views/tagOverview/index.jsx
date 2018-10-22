@@ -66,7 +66,7 @@ export default class TagOverview extends Component<RouteProps> {
           </Header>
           <a href={"/themen/" + tag.slug + "/"}>
             <div className="visible">
-              <p className="thesesCount" style={{ fontFamily: "Roboto" }}>
+              <p className="thesesCount" style={{ fontFamily: "Roboto, Helvetica, Arial, sans-serif" }}>
                 {tag.thesis_count}
               </p>
             </div>
