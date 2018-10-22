@@ -351,13 +351,13 @@ export default class Thesis extends Component<Props, State> {
     } else if (this.state.voterOpinion === 1) {
       subHeader = Math.round(this.state.ratioPro).toString()
       subHeader += this.props.election.preliminary
-        ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
-        : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
+        ? " von 100 Wählern werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
+        : " von 100 Wählern haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
     } else {
       subHeader = Math.round(this.state.ratioContra).toString()
       subHeader += this.props.election.preliminary
-        ? " von 100 werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
-        : " von 100 haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
+        ? " von 100 Wählern werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
+        : " von 100 Wählern haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
     }
 
     const thesisIdComps = extractThesisID(this.props.id)
@@ -420,7 +420,7 @@ export default class Thesis extends Component<Props, State> {
 
           { this.props.showHints === true && this.state.openText == null &&
             <Message style={{marginTop: "1rem"}}>
-              <Icon name='info circle' /> Bewege deine Maus über die Parteinamen, um deren Position zu dieser These zu lesen. Manche Parteien haben keine Begründung zu ihrer Position eingereicht, oder wurden nicht von der Bundeszentrale für politische Bildung zu ihrer Position befragt.
+              <Icon name='hand point right outline' /> Bewege deine Maus über die Parteinamen, um deren Position zu dieser These zu lesen.
             </Message>
           }
 
