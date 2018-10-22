@@ -1,44 +1,44 @@
 // @flow
 
-import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Grid, Header, List, Message } from "semantic-ui-react";
+import React from "react"
+import { Link } from "react-router-dom"
+import { Container, Grid, Header, List, Message } from "semantic-ui-react"
 
-import Map from "../../components/map/";
-import ElectionComponent from "../../components/election/";
-import SuggestionsGrid from "../../components/suggestionsGrid";
-import { API_ROOT, TERRITORY_NAMES } from "../../config/";
-import { ReactComponent as Logo } from "../../logo.svg";
-import { ElectionType, RouteProps, ThesisType } from "../../types/";
-import Errorhandler from "../../utils/errorHandler";
+import Map from "../../components/map/"
+import ElectionComponent from "../../components/election/"
+import SuggestionsGrid from "../../components/suggestionsGrid"
+import { API_ROOT, TERRITORY_NAMES } from "../../config/"
+import { ReactComponent as Logo } from "../../logo.svg"
+import { ElectionType, RouteProps, ThesisType } from "../../types/"
+import Errorhandler from "../../utils/errorHandler"
 
-import "./styles.css";
+import "./styles.css"
 
 type State = {
   isLoading: boolean,
   election: ElectionType,
   theses: Array<ThesisType>,
   error?: ?string
-};
+}
 
 class LandingView extends React.Component<RouteProps, State> {
   // This is the election that is shown on the landing page
-  electionNum: number = 43;
-  territory: string = "bayern";
-  handleError: ErrorType => any;
+  electionNum: number = 43
+  territory: string = "bayern"
+  handleError: ErrorType => any
 
   constructor(props: RouteProps) {
-    super(props);
+    super(props)
     this.state = {
       isLoading: true,
       election: this.getCachedElection(),
       theses: []
-    };
-    this.handleError = Errorhandler.bind(this);
+    }
+    this.handleError = Errorhandler.bind(this)
   }
 
   componentDidMount() {
-    this.loadElection();
+    this.loadElection()
   }
 
   getCachedElection() {
@@ -46,11 +46,11 @@ class LandingView extends React.Component<RouteProps, State> {
       ? null
       : this.props.elections[this.territory]
           .filter(occ => occ.id === this.electionNum)
-          .shift();
+          .shift()
   }
 
   loadElection(cb?: ElectionType => mixed) {
-    const endpoint = API_ROOT + "/elections/" + this.electionNum;
+    const endpoint = API_ROOT + "/elections/" + this.electionNum
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
@@ -59,18 +59,18 @@ class LandingView extends React.Component<RouteProps, State> {
             isLoading: false,
             election: response.data,
             theses: response.theses || []
-          });
-          if (cb != null) cb(response.data);
+          })
+          if (cb != null) cb(response.data)
         }
       })
       .catch((error: Error) => {
-        this.handleError(error);
+        this.handleError(error)
         this.setState({
           isLoading: false,
           election: this.getCachedElection(),
           theses: []
-        });
-      });
+        })
+      })
   }
 
   render() {
@@ -80,7 +80,7 @@ class LandingView extends React.Component<RouteProps, State> {
         <List.Item key={k}>
           <Link to={"/wahlen/" + k + "/"}>{TERRITORY_NAMES[k]}</Link>
         </List.Item>
-      ));
+      ))
 
     return (
       <div>
@@ -286,8 +286,8 @@ class LandingView extends React.Component<RouteProps, State> {
           </Grid>
         </Container>
       </div>
-    );
+    )
   }
 }
 
-export default LandingView;
+export default LandingView

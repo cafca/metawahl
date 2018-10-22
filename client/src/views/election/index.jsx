@@ -1,65 +1,65 @@
 // @flow
 
-import React from "react";
-import autoBind from "react-autobind";
-import { Breadcrumb, Container, Loader, Message } from "semantic-ui-react";
-import Moment from "moment";
+import React from "react"
+import autoBind from "react-autobind"
+import { Breadcrumb, Container, Loader, Message } from "semantic-ui-react"
+import Moment from "moment"
 
-import "../../index.css";
-import Errorhandler from "../../utils/errorHandler";
-import { API_ROOT, TERRITORY_NAMES } from "../../config/";
-import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/";
+import "../../index.css"
+import Errorhandler from "../../utils/errorHandler"
+import { API_ROOT, TERRITORY_NAMES } from "../../config/"
+import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
 import {
   WikidataLabel,
   WikipediaLabel
-} from "../../components/label/DataLabel.jsx";
-import SEO from "../../components/seo/";
-import SuggestionsGrid from "../../components/suggestionsGrid";
-import ElectionComponent from "../../components/election";
+} from "../../components/label/DataLabel.jsx"
+import SEO from "../../components/seo/"
+import SuggestionsGrid from "../../components/suggestionsGrid"
+import ElectionComponent from "../../components/election"
 
-import "./styles.css";
+import "./styles.css"
 
 type State = {
   isLoading: boolean,
   election: ?ElectionType,
   theses: Array<ThesisType>,
   error?: ?string
-};
+}
 
 export default class Election extends React.Component<RouteProps, State> {
-  territory: string;
-  electionNum: number;
-  handleError: ErrorType => any;
+  territory: string
+  electionNum: number
+  handleError: ErrorType => any
 
   constructor(props: RouteProps) {
-    super(props);
-    autoBind(this);
-    this.electionNum = parseInt(this.props.match.params.electionNum, 10);
-    this.territory = this.props.match.params.territory;
+    super(props)
+    autoBind(this)
+    this.electionNum = parseInt(this.props.match.params.electionNum, 10)
+    this.territory = this.props.match.params.territory
     this.state = {
       isLoading: true,
       election: this.getCachedElection(),
       theses: []
-    };
-    this.thesisRefs = {};
-    this.handleError = Errorhandler.bind(this);
+    }
+    this.thesisRefs = {}
+    this.handleError = Errorhandler.bind(this)
   }
 
   componentDidMount() {
-    this.loadElection();
+    this.loadElection()
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
     if (nextProps.match.params.electionNum !== this.electionNum) {
-      this.electionNum = parseInt(nextProps.match.params.electionNum, 10);
-      this.territory = nextProps.match.params.territory;
+      this.electionNum = parseInt(nextProps.match.params.electionNum, 10)
+      this.territory = nextProps.match.params.territory
       this.setState({
         isLoading: true,
         election: this.getCachedElection(),
         theses: []
-      });
-      this.thesisRefs = {};
-      this.loadElection();
+      })
+      this.thesisRefs = {}
+      this.loadElection()
     }
   }
 
@@ -68,11 +68,11 @@ export default class Election extends React.Component<RouteProps, State> {
       ? null
       : this.props.elections[this.territory]
           .filter(occ => occ.id === this.electionNum)
-          .shift();
+          .shift()
   }
 
   loadElection(cb?: ElectionType => mixed) {
-    const endpoint = API_ROOT + "/elections/" + this.electionNum;
+    const endpoint = API_ROOT + "/elections/" + this.electionNum
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
@@ -81,19 +81,19 @@ export default class Election extends React.Component<RouteProps, State> {
             isLoading: false,
             election: response.data,
             theses: response.theses || []
-          });
-          if (cb != null) cb(response.data);
+          })
+          if (cb != null) cb(response.data)
         }
       })
       .catch((error: Error) => {
-        this.handleError(error);
-        console.log("Error fetching election data: " + error.message);
+        this.handleError(error)
+        console.log("Error fetching election data: " + error.message)
         this.setState({
           isLoading: false,
           election: this.getCachedElection(),
           theses: []
-        });
-      });
+        })
+      })
   }
 
   render() {
@@ -105,10 +105,10 @@ export default class Election extends React.Component<RouteProps, State> {
         : this.props.elections[this.territory]
             .reverse()
             .filter(occ => occ.id !== this.electionNum)
-            .shift();
-    if (occ2 == null) occ2 = this.state.election;
+            .shift()
+    if (occ2 == null) occ2 = this.state.election
 
-    let suggestions = [];
+    let suggestions = []
     if (occ2 != null && this.state.election != null) {
       suggestions = [
         {
@@ -131,13 +131,13 @@ export default class Election extends React.Component<RouteProps, State> {
           title: "600+ Wahlkampfthemen",
           href: "/themen/"
         }
-      ];
+      ]
     }
 
     const pageTitle =
       this.state.election == null
         ? "Metawahl"
-        : `Metawahl: ${this.state.election.title}`;
+        : `Metawahl: ${this.state.election.title}`
 
     return (
       <Container className="electionContainer">
@@ -185,6 +185,6 @@ export default class Election extends React.Component<RouteProps, State> {
           <SuggestionsGrid title="Und jetzt:" sections={suggestions} />
         )}
       </Container>
-    );
+    )
   }
 }

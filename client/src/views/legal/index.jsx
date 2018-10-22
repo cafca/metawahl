@@ -1,6 +1,6 @@
-import React from "react";
-import { Container, Header, Image } from "semantic-ui-react";
-import SEO from "../../components/seo/";
+import React from "react"
+import { Container, Header, Image } from "semantic-ui-react"
+import SEO from "../../components/seo/"
 
 export const LegalView = () => {
   return (
@@ -156,7 +156,7 @@ export const LegalView = () => {
         .
       </p>
     </Container>
-  );
-};
+  )
+}
 
-export default LegalView;
+export default LegalView

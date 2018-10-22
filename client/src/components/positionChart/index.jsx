@@ -1,22 +1,22 @@
 // @flow
 
-import React from "react";
-import autoBind from "react-autobind";
+import React from "react"
+import autoBind from "react-autobind"
 
-import { OPINION_COLORS } from "../../config/";
+import { OPINION_COLORS } from "../../config/"
 
-import type { MergedPartyDataType } from "../../types/";
+import type { MergedPartyDataType } from "../../types/"
 
-import "./PositionChart.css";
+import "./PositionChart.css"
 
 const valueNames = {
   "1": "pro",
   "0": "neutral",
   "-1": "contra"
-};
+}
 
 // Gap between colored rectangles
-const gapWidth = 1;
+const gapWidth = 1
 
 type RectProps = {
   toggleOpen: () => any,
@@ -25,7 +25,7 @@ type RectProps = {
   width: number,
   xPos: number,
   ...MergedPartyDataType
-};
+}
 
 const Rect = ({
   party,
@@ -42,12 +42,12 @@ const Rect = ({
   const baseStyle = {
     fill: OPINION_COLORS[value],
     fillOpacity: 1.0
-  };
+  }
 
   const style =
     hovered && compact !== true
       ? Object.assign(baseStyle, { fillOpacity: 0.45 })
-      : baseStyle;
+      : baseStyle
 
   return (
     <rect
@@ -60,75 +60,75 @@ const Rect = ({
       width={width}
       x={xPos.toString() + "px"}
     />
-  );
-};
+  )
+}
 
 type Props = {
   parties: MergedPartyDataType,
   toggleOpen: (party: string) => any,
   compact?: boolean // set to true to restrict width to 70% and hide party names
-};
+}
 
 type State = {
   parties: Array<MergedPartyDataType>,
   hovered: ?string,
   width: number
-};
+}
 
 export default class PositionChart extends React.Component<Props, State> {
-  svg = null;
-  measuringTimeout = null;
+  svg = null
+  measuringTimeout = null
 
   constructor(props: Props) {
-    super(props);
-    autoBind(this);
+    super(props)
+    autoBind(this)
     this.state = {
       parties: [],
       hovered: null,
       width: 0
-    };
+    }
   }
 
   componentWillMount() {
-    this.sortPositions();
+    this.sortPositions()
   }
 
   componentDidMount() {
-    this.measureSVGWidth();
-    window.addEventListener("resize", this.waitAndMeasureSVGWidth);
+    this.measureSVGWidth()
+    window.addEventListener("resize", this.waitAndMeasureSVGWidth)
   }
 
   componentDidUpdate() {
-    this.waitAndMeasureSVGWidth();
+    this.waitAndMeasureSVGWidth()
   }
 
   componentWillUnMount() {
-    if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
+    if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout)
   }
 
   handleHover(data: ?MergedPartyDataType) {
-    const party = data && data.party;
+    const party = data && data.party
     if (this.state.hovered !== party) {
-      this.setState({ hovered: party });
-      if (party) this.props.toggleOpen(data);
+      this.setState({ hovered: party })
+      if (party) this.props.toggleOpen(data)
     }
   }
 
   handleRef(ref: ?SVGSVGElement) {
-    this.svg = ref;
+    this.svg = ref
   }
 
   waitAndMeasureSVGWidth() {
-    if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout);
-    this.measuringTimeout = setTimeout(this.measureSVGWidth, 50);
+    if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout)
+    this.measuringTimeout = setTimeout(this.measureSVGWidth, 50)
   }
 
   makeRectangles(usablePixels, usedPixels) {
     const rectangles = this.state.parties
       .filter(d => d.pct > 0.1)
       .map((data: MergedPartyDataType) => {
-        const width = Math.round((data.pct * usablePixels) / 100.0);
-        usedPixels += width + gapWidth;
+        const width = Math.round((data.pct * usablePixels) / 100.0)
+        usedPixels += width + gapWidth
         return (
           <g key={"rect-" + data.party}>
             <Rect
@@ -155,21 +155,29 @@ export default class PositionChart extends React.Component<Props, State> {
                   cursor: "pointer"
                 }}
               >
-              <tspan x={usedPixels - width - gapWidth + 10} y="40%" style={{fontWeight: "bold"}}>{data.party}</tspan>
-              <tspan x={usedPixels - width - gapWidth + 10} y="80%">{parseInt(data.pct, 10)}%</tspan>
-              {/* {data.party} {data.pct}% */}
+                <tspan
+                  x={usedPixels - width - gapWidth + 10}
+                  y="40%"
+                  style={{ fontWeight: "bold" }}
+                >
+                  {data.party}
+                </tspan>
+                <tspan x={usedPixels - width - gapWidth + 10} y="80%">
+                  {parseInt(data.pct, 10)}%
+                </tspan>
+                {/* {data.party} {data.pct}% */}
               </text>
             )}
           </g>
-        );
-      });
-    return { rectangles, usedPixels };
+        )
+      })
+    return { rectangles, usedPixels }
   }
 
   measureSVGWidth() {
     if (this.svg != null) {
-      const { width } = this.svg.getBoundingClientRect();
-      this.setState({ width });
+      const { width } = this.svg.getBoundingClientRect()
+      this.setState({ width })
     }
   }
 
@@ -177,67 +185,71 @@ export default class PositionChart extends React.Component<Props, State> {
     return (
       this.state.width !== nextState.width ||
       this.state.hovered !== nextState.hovered
-    );
+    )
   }
 
   sortPositions() {
     const sortPositions = (a, b) => {
       // First sort into pro, neutral, contra and missing
       if (a.value !== b.value) {
-        return a.value === "missing" ? 1
-          : b.value === "missing" ? -1
-            : a.value < b.value ? 1
-              : -1;
+        return a.value === "missing"
+          ? 1
+          : b.value === "missing"
+            ? -1
+            : a.value < b.value
+              ? 1
+              : -1
       } else {
         // Sort last if vote count unknown
-        if (a.pct == null) return 1;
-        if (b.pct == null) return -1;
+        if (a.pct == null) return 1
+        if (b.pct == null) return -1
 
         // Then sort descending by vote count
         if (a.pct !== b.pct) {
-          return a.pct > b.pct ? -1 : 1;
+          return a.pct > b.pct ? -1 : 1
         } else if (a.votes != null && b.votes != null && a.votes !== b.votes) {
-          return a.votes > b.votes ? -1 : 1;
+          return a.votes > b.votes ? -1 : 1
         }
 
         // Sort by name if all else is equal
-        return a.party > b.party ? 1 : -1;
+        return a.party > b.party ? 1 : -1
       }
-    };
+    }
 
     // Merge election results with WoM positions
     this.props.parties &&
       this.setState({
         parties: this.props.parties.sort(sortPositions)
-      });
+      })
   }
 
   responsiveSVGStyle() {
-    let svgWidthString;
-    let svgHeightString;
-    let svgStyle = {};
-    svgWidthString = "100%";
-    svgHeightString = "40";
+    let svgWidthString
+    let svgHeightString
+    let svgStyle = {}
+    svgWidthString = "100%"
+    svgHeightString = "40"
     svgStyle = {
       margin: "0.3em 0"
-    };
-    return { svgWidthString, svgHeightString, svgStyle };
+    }
+    return { svgWidthString, svgHeightString, svgStyle }
   }
 
   render() {
-    let rectangles = [];
-    const combinedGapWidth = gapWidth * (this.state.parties.filter(d => d.pct > 0.1).length - 1);
-    const usablePixels = this.state.width - combinedGapWidth;
+    let rectangles = []
+    const combinedGapWidth =
+      gapWidth * (this.state.parties.filter(d => d.pct > 0.1).length - 1)
+    const usablePixels = this.state.width - combinedGapWidth
 
     if (usablePixels != null && usablePixels > 0) {
-      let usedPixels = 0;
+      let usedPixels = 0
 
       // Parties with less than 0.1 % of votes are not visible in the chart
       // anyway
-      ({ rectangles, usedPixels } = this.makeRectangles(
+      ;({ rectangles, usedPixels } = this.makeRectangles(
         usablePixels,
         usedPixels
-      ));
+      ))
     }
 
     // Responsive dimensions of SVG elem
@@ -245,7 +257,7 @@ export default class PositionChart extends React.Component<Props, State> {
       svgWidthString,
       svgHeightString,
       svgStyle
-    } = this.responsiveSVGStyle();
+    } = this.responsiveSVGStyle()
 
     return (
       <span className="positionChartContainer">
@@ -260,6 +272,6 @@ export default class PositionChart extends React.Component<Props, State> {
           <g className="bar">{rectangles}</g>
         </svg>
       </span>
-    );
+    )
   }
 }

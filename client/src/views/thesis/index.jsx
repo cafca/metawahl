@@ -1,18 +1,18 @@
 // @flow
 
-import React from 'react';
-import autoBind from 'react-autobind';
-import { Breadcrumb, Container, Header, Message } from 'semantic-ui-react';
-import Moment from 'moment';
+import React from "react"
+import autoBind from "react-autobind"
+import { Breadcrumb, Container, Header, Message } from "semantic-ui-react"
+import Moment from "moment"
 
-import { API_ROOT, TERRITORY_NAMES } from '../../config/';
-import SEO from '../../components/seo/';
-import ThesisComponent from '../../components/thesis/';
-import Errorhandler from '../../utils/errorHandler';
-import { RouteProps, ThesisType, ElectionType } from '../../types/';
-import Legend from "../../components/legend/";
+import { API_ROOT, TERRITORY_NAMES } from "../../config/"
+import SEO from "../../components/seo/"
+import ThesisComponent from "../../components/thesis/"
+import Errorhandler from "../../utils/errorHandler"
+import { RouteProps, ThesisType, ElectionType } from "../../types/"
+import Legend from "../../components/legend/"
 
-import './styles.css'
+import "./styles.css"
 
 type State = {
   isLoading: boolean,
@@ -35,7 +35,7 @@ class Thesis extends React.Component<RouteProps, State> {
       thesis: null,
       related: []
     }
-    this.handleError = Errorhandler.bind(this);
+    this.handleError = Errorhandler.bind(this)
   }
 
   componentDidMount() {
@@ -47,25 +47,26 @@ class Thesis extends React.Component<RouteProps, State> {
   }
 
   getCachedElection() {
-    return this.props.elections[this.territory] == null ? null :
-      this.props.elections[this.territory]
-      .filter(occ => occ.id === this.electionNum)
-      .shift();
+    return this.props.elections[this.territory] == null
+      ? null
+      : this.props.elections[this.territory]
+          .filter(occ => occ.id === this.electionNum)
+          .shift()
   }
 
   loadElection(cb?: ElectionType => mixed) {
-    const endpoint = API_ROOT + "/elections/" + this.electionNum;
+    const endpoint = API_ROOT + "/elections/" + this.electionNum
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
-        this.handleError(response);
+        this.handleError(response)
         this.setState({
           election: response.data
         })
-        if (cb != null) cb(response.data);
+        if (cb != null) cb(response.data)
       })
       .catch((error: Error) => {
-        this.handleError(error);
+        this.handleError(error)
         console.log("Error fetching election data: " + error.message)
         this.setState({
           election: this.getCachedElection()
@@ -74,23 +75,26 @@ class Thesis extends React.Component<RouteProps, State> {
   }
 
   loadThesis(cb?: ThesisType => mixed) {
-    const endpoint = API_ROOT + "/thesis/WOM-"
-      + this.electionNum.toString().padStart(3, '0') + '-'
-      + this.thesisNum.toString().padStart(2, '0')
+    const endpoint =
+      API_ROOT +
+      "/thesis/WOM-" +
+      this.electionNum.toString().padStart(3, "0") +
+      "-" +
+      this.thesisNum.toString().padStart(2, "0")
 
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
-        this.handleError(response);
+        this.handleError(response)
         this.setState({
           isLoading: false,
           thesis: response.data,
           related: response.related
         })
-        if (cb != null) cb(response.data);
+        if (cb != null) cb(response.data)
       })
       .catch((error: Error) => {
-        this.handleError(error);
+        this.handleError(error)
         console.log("Error fetching election data: " + error.message)
         this.setState({
           isLoading: false
@@ -109,75 +113,96 @@ class Thesis extends React.Component<RouteProps, State> {
   }
 
   render() {
-    const relatedElems = (this.state.error != null || this.state.related == null)
-      ? []
-      : this.state.related.map(t => {
+    const relatedElems =
+      this.state.error != null || this.state.related == null
+        ? []
+        : this.state.related.map(t => {
             const election = this.getCachedElectionById(t.election_id)
-            return election == null ? null : <ThesisComponent
-            key={t.id}
-            election={election}
-            linkElection={true}
-            showHints={false}
-            {...t}
-          />})
+            return election == null ? null : (
+              <ThesisComponent
+                key={t.id}
+                election={election}
+                linkElection={true}
+                showHints={false}
+                {...t}
+              />
+            )
+          })
 
-    return <Container id='outerContainer'>
-      <SEO title={'Metawahl: '
-        + (this.state.election ? this.state.election.title + ' Quiz' : "Quiz")} />
-
-      <Breadcrumb>
-        <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
-        <Breadcrumb.Divider icon='right angle' />
-        <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
-          {TERRITORY_NAMES[this.territory]}
-        </Breadcrumb.Section>
-        <Breadcrumb.Divider icon='right angle' />
-        { this.state.election == null
-          ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-          : <span>
-            <Breadcrumb.Section
-              href={`/wahlen/${this.territory}/${this.electionNum}/`}>
-              {Moment(this.state.election.date).year()}
-            </Breadcrumb.Section>
-            <Breadcrumb.Divider icon='right angle' />
-            <Breadcrumb.Section active href={`/wahlen/${this.territory}/${this.electionNum}/${this.thesisNum}`}>
-              These #{this.thesisNum}
-            </Breadcrumb.Section>
-          </span>
-        }
-      </Breadcrumb>
-
-      { this.state.error != null &&
-        <Message negative content={this.state.error} />
-      }
-
-        { this.state.thesis != null && this.state.election != null &&
-      <Header as='h1' style={{marginBottom: "2rem"}}>
-        These #{this.thesisNum} aus dem Wahl-o-Mat zur {this.state.election.title}
-      </Header>
-        }
-
-      <Legend text='Legende:' />
-
-      { this.state.isLoading === false && this.state.error == null &&
-        <div style={{marginTop: "2rem"}}>
-          <ThesisComponent
-            election={this.state.election}
-            linkElection={true}
-            showHints={true}
-            {...this.state.thesis}
-          />
-          { relatedElems.length > 0 &&
-            <div>
-              <Header size='large' id='relatedHeader'>Ähnliche Thesen aus dem Archiv</Header>
-              {relatedElems}
-            </div>
+    return (
+      <Container id="outerContainer">
+        <SEO
+          title={
+            "Metawahl: " +
+            (this.state.election ? this.state.election.title + " Quiz" : "Quiz")
           }
-        </div>
-      }
+        />
 
-    </Container>
+        <Breadcrumb>
+          <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Divider icon="right angle" />
+          <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
+            {TERRITORY_NAMES[this.territory]}
+          </Breadcrumb.Section>
+          <Breadcrumb.Divider icon="right angle" />
+          {this.state.election == null ? (
+            <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+          ) : (
+            <span>
+              <Breadcrumb.Section
+                href={`/wahlen/${this.territory}/${this.electionNum}/`}
+              >
+                {Moment(this.state.election.date).year()}
+              </Breadcrumb.Section>
+              <Breadcrumb.Divider icon="right angle" />
+              <Breadcrumb.Section
+                active
+                href={`/wahlen/${this.territory}/${this.electionNum}/${
+                  this.thesisNum
+                }`}
+              >
+                These #{this.thesisNum}
+              </Breadcrumb.Section>
+            </span>
+          )}
+        </Breadcrumb>
+
+        {this.state.error != null && (
+          <Message negative content={this.state.error} />
+        )}
+
+        {this.state.thesis != null &&
+          this.state.election != null && (
+            <Header as="h1" style={{ marginBottom: "2rem" }}>
+              These #{this.thesisNum} aus dem Wahl-o-Mat zur{" "}
+              {this.state.election.title}
+            </Header>
+          )}
+
+        <Legend text="Legende:" />
+
+        {this.state.isLoading === false &&
+          this.state.error == null && (
+            <div style={{ marginTop: "2rem" }}>
+              <ThesisComponent
+                election={this.state.election}
+                linkElection={true}
+                showHints={true}
+                {...this.state.thesis}
+              />
+              {relatedElems.length > 0 && (
+                <div>
+                  <Header size="large" id="relatedHeader">
+                    Ähnliche Thesen aus dem Archiv
+                  </Header>
+                  {relatedElems}
+                </div>
+              )}
+            </div>
+          )}
+      </Container>
+    )
   }
 }
 
-export default Thesis;
+export default Thesis

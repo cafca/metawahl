@@ -1,33 +1,34 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { SITE_ROOT } from "../../config/";
-import { withRouter } from 'react-router'
+import React from "react"
+import Helmet from "react-helmet"
+import { SITE_ROOT } from "../../config/"
+import { withRouter } from "react-router"
 
 const locales = {
   de: "de_DE"
-};
+}
 
 class Meta extends React.Component {
   componentWillReceiveProps(nextProps) {
-    const isNewPage = this.props.location.pathname !== nextProps.location.pathname
-    if (isNewPage && Object.keys(window).indexOf('fathom') >= 0) {
-      window.fathom('trackPageview')
+    const isNewPage =
+      this.props.location.pathname !== nextProps.location.pathname
+    if (isNewPage && Object.keys(window).indexOf("fathom") >= 0) {
+      window.fathom("trackPageview")
     }
   }
 
   render() {
-    const data = this.props;
-    const lang = data.lang || "de";
-    const title = data.title;
+    const data = this.props
+    const lang = data.lang || "de"
+    const title = data.title
     const description =
       data.description ||
-      "Welche Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?";
-    const image = data.image !== undefined && `${SITE_ROOT}${data.image}`;
+      "Welche Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?"
+    const image = data.image !== undefined && `${SITE_ROOT}${data.image}`
     const canonical =
-      data.canonical !== undefined && `${SITE_ROOT}${data.canonical}`;
-    const type = data.type === undefined ? "article" : "website";
-    const width = data.image && (data.width || 1200);
-    const height = data.image && (data.height || 630);
+      data.canonical !== undefined && `${SITE_ROOT}${data.canonical}`
+    const type = data.type === undefined ? "article" : "website"
+    const width = data.image && (data.width || 1200)
+    const height = data.image && (data.height || 630)
 
     return (
       <Helmet>
@@ -68,8 +69,8 @@ class Meta extends React.Component {
         ) : null}
         {/* { canonical ? <link rel="alternate" href={ `${SITE_ROOT}${alternatePathname}` } hreflang={ alternateLang } /> : null } */}
       </Helmet>
-    );
+    )
   }
 }
 
-export default withRouter(Meta);
+export default withRouter(Meta)

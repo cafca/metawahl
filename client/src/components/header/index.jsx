@@ -1,10 +1,10 @@
 // @flow
 
-import React from 'react';
+import React from "react"
 
-import { Container, Dropdown, Menu, Responsive } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
-import Search from '../search/';
+import { Container, Dropdown, Menu, Responsive } from "semantic-ui-react"
+import { Link } from "react-router-dom"
+import Search from "../search/"
 
 const HeaderMenu = (props: {}) => (
   <div>
@@ -15,36 +15,50 @@ const HeaderMenu = (props: {}) => (
             Metawahl
           </Menu.Item>
           <Menu.Item
-            active={props.match.params.area === 'wahlen'} as={Link} to='/wahlen/'>
-              Wahlen
+            active={props.match.params.area === "wahlen"}
+            as={Link}
+            to="/wahlen/"
+          >
+            Wahlen
           </Menu.Item>
           <Menu.Item
-            active={props.match.params.area === 'themen'} as={Link} to='/themen/'>
-                Themen
+            active={props.match.params.area === "themen"}
+            as={Link}
+            to="/themen/"
+          >
+            Themen
           </Menu.Item>
           <Menu.Item
-            active={props.match.params.area === 'daten'} as={Link} to='/daten/'>
-                Daten
+            active={props.match.params.area === "daten"}
+            as={Link}
+            to="/daten/"
+          >
+            Daten
           </Menu.Item>
 
           <Search {...props} large className="small right aligned item" />
-
         </Container>
       </Menu>
     </Responsive>
     <Responsive maxWidth={600}>
       <Menu fluid>
-        <Dropdown item text='Metawahl'>
+        <Dropdown item text="Metawahl">
           <Dropdown.Menu>
-            <Dropdown.Item as={Link} to="/">Einführung</Dropdown.Item>
-            <Dropdown.Item as={Link} to="/wahlen/">Wahlen</Dropdown.Item>
-            <Dropdown.Item as={Link} to="/themen/">Themen</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/">
+              Einführung
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to="/wahlen/">
+              Wahlen
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to="/themen/">
+              Themen
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Search {...props} large className="small right aligned item" />
       </Menu>
     </Responsive>
   </div>
-);
+)
 
-export default HeaderMenu;
+export default HeaderMenu

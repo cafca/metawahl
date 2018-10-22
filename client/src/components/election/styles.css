@@ -1,5 +1,5 @@
 .election-component {
-  padding-top: calc(2rem - .14285714em)
+  padding-top: calc(2rem - 0.14285714em);
 }
 
 .thesis-compact {
@@ -13,7 +13,7 @@
 .thesisTitleInsert {
   display: block;
   position: initial;
-  padding-left: .5em;
+  padding-left: 0.5em;
   font-size: 1rem;
   line-height: 1rem;
   margin-bottom: 1rem;
@@ -36,8 +36,8 @@
 @media (max-width: 991px) {
   .ui.container.electionContainer {
     padding: 0;
-    width: auto!important;
-    margin-left: 1em!important;
-    margin-right: 1em!important;
+    width: auto !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
   }
 }
