@@ -1,7 +1,7 @@
 // @flow
 
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 import SwaggerUI from "swagger-ui";
 
 import SEO from "../../components/seo/";
