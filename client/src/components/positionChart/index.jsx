@@ -155,7 +155,7 @@ export default class PositionChart extends React.Component<Props, State> {
                   cursor: "pointer"
                 }}
               >
-              <tspan x={usedPixels - width - gapWidth + 10} y="40%">{data.party}</tspan>
+              <tspan x={usedPixels - width - gapWidth + 10} y="40%" style={{fontWeight: "bold"}}>{data.party}</tspan>
               <tspan x={usedPixels - width - gapWidth + 10} y="80%">{parseInt(data.pct, 10)}%</tspan>
               {/* {data.party} {data.pct}% */}
               </text>
