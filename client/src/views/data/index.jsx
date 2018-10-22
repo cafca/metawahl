@@ -2,25 +2,28 @@
 
 import React from "react";
 import { Container, Header } from "semantic-ui-react";
-import SEO from "../../components/seo/";
+import SwaggerUI from "swagger-ui";
 
-const DataOverview = () => {
-  return (
-    <Container>
-      <SEO />
-      <Header as="h1">
-        Daten
-        <Header.Subheader>
-          API Dokumentation und Downloads für alle Datensätze
-        </Header.Subheader>
-      </Header>
-      <p>
-        Hier findest du bald eine Dokumentation der Metawahl-Datensätze, welche
-        im JSON-Format unter dem Endpunkt{" "}
-        https://api.metawahl.de/v2/ zur Verfügung stehen.
-      </p>
-    </Container>
-  );
-};
+import SEO from "../../components/seo/";
+import type { RouteProps } from '../../types'
+
+import "./swagger-theme-material.css"
+
+class DataOverview extends React.Component<RouteProps> {
+  componentDidMount() {
+    SwaggerUI({
+      dom_id: "#swagger-ui",
+      url: "http://petstore.swagger.io/v2/swagger.json"
+    })
+  }
+  render() {
+    return (
+      <Container>
+        <SEO />
+        <div id="swagger-ui" />
+      </Container>
+    );
+  }
+}
 
 export default DataOverview;
