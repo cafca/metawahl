@@ -124,7 +124,7 @@ export default class Election extends React.Component<Props, State> {
               <Header size="medium">{t.title} </Header>
               <CompactThesis key={t.id} election={this.props.election} {...t} />
               <span className="thesisTitleInsert">
-                {proCount} von {t.positions.length} Parteien wollen: {t.text}
+                {proCount} von {t.positions.length} Parteien fordern: {t.text}
               </span>
             </a>
           </div>
