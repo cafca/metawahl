@@ -60,7 +60,7 @@ def create_app(config=None):
     db.init_app(app)
     cache.init_app(app, config=app.config)
 
-    CORS(app)
+    CORS(app, resources={r"{}/*".format(API_ROOT): {"origins": "*"}})
 
     handler = RotatingFileHandler(
         app.config.get("METAWAHL_API_LOGFILE", None) or "../flask_api.log",
@@ -85,7 +85,7 @@ def create_app(config=None):
     api.add_resource(controllers.ThesisView, "/v2/thesis/<string:thesis_id>")
     api.add_resource(controllers.ThesisTagsView, "/v2/thesis/<string:thesis_id>/tags/")
 
-    api.add_resource(controllers.SitemapView, "/sitemap.xml")
+    api.add_resource(controllers.SitemapView, "/v2/sitemap.xml")
 
     # MUST be after route declaration
     api.init_app(app)
