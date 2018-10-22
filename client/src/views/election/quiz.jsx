@@ -56,6 +56,11 @@ export default class Quiz extends React.Component<RouteProps, State> {
     this.loadElection();
   }
 
+  componentDidUpdate() {
+    // Prompt user before navigating away from unfinished quiz
+    window.onbeforeunload = () => true
+  }
+
   componentWillReceiveProps(nextProps: RouteProps) {
     if(nextProps.match.params.electionNum !== this.electionNum || nextProps.displayMode !== this.props.displayMode) {
       this.electionNum = parseInt(nextProps.match.params.electionNum, 10);
@@ -208,9 +213,6 @@ export default class Quiz extends React.Component<RouteProps, State> {
           </Breadcrumb.Section>
         </span>
       </Breadcrumb>
-
-      <WikidataLabel {...this.state.election} style={{marginRight: "-10.5px"}} />
-      <WikipediaLabel {...this.state.election} style={{marginRight: "-10.5px"}} />
 
       <Header as='h1'>
         { this.state.election == null
