@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Middleware to cache whole requests."""
 
-import logger
+import logging
 
 from flask import request
 from functools import wraps
