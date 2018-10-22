@@ -127,7 +127,7 @@ class LandingView extends React.Component<RouteProps, State> {
           </Grid>
         </Container>
 
-        <Container fluid className="electionContainer">
+        <Container className="electionContainer">
           <ElectionComponent
             title="Vorläufiges Ergebnis zur Landtagswahl in Bayern"
             election={this.state.election}

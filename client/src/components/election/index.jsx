@@ -113,15 +113,16 @@ export default class Election extends React.Component<Props, State> {
           this.props.electionNum
         }/${extractThesisID(t.id).thesisNUM}/`;
         const proCount = t.positions.filter(p => p.value === 1).length
+        const proParties = t.positions.filter(p => p.value !== 1)
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
             <a href={tUrl}>
+              <Header size='medium'>
+                {t.title}{" "}
+              </Header>
               <CompactThesis key={t.id} election={this.props.election} {...t} />
               <span className="thesisTitleInsert">
-                <strong>
-                  <em>{t.title}</em>{" "}
-                </strong>
                 {proCount} von {t.positions.length} Parteien wollen: {t.text}
               </span>
             </a>
@@ -148,8 +149,8 @@ export default class Election extends React.Component<Props, State> {
           {this.props.election != null && (
             <Header.Subheader>
               {this.props.election.preliminary
-                ? "Die Grafik zeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben"
-                : "Die Grafik zeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
+                ? "Hier wird gezeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben"
+                : "Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
             </Header.Subheader>
           )}
         </Header>

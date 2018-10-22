@@ -140,7 +140,7 @@ export default class Election extends React.Component<RouteProps, State> {
         : `Metawahl: ${this.state.election.title}`;
 
     return (
-      <Container fluid className="electionContainer">
+      <Container className="electionContainer">
         <SEO title={pageTitle} />
 
         <Breadcrumb>
