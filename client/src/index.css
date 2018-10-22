@@ -97,6 +97,7 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 
 #outerContainer.ui.container {
   max-width: 800px !important;
+  min-height: 500px;
 };
 
 .ui.comments .comment .actions {
