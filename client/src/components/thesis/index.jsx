@@ -349,7 +349,7 @@ export default class Thesis extends Component<Props, State> {
 
   render() {
     const tagElems = this.state.tags
-      .sort()
+      .sort((t1, t2) => t1.slug > t2.slug ? 1 : -1)
       .map(tag => (
         <Tag
           data={tag}
