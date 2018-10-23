@@ -1,12 +1,12 @@
 test_name: quiz answers endpoint
 
 stages:
-  - name: Make sure that GET requests are disabled
+  - name: Make sure that GET requests are handled
     request:
-      url: http://localhost:9000/v2/quiz/WOM-001-00
+      url: http://localhost:9000/v2/quiz/10
       method: GET
     response:
-      status_code: 405
+      status_code: 200
       headers:
         content-type: application/json
 

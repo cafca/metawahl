@@ -141,7 +141,6 @@ export default class Quiz extends React.Component<RouteProps, State> {
     answer: QuizAnswer,
     correctAnswer: QuizAnswer
   ) {
-    debugger;
     this.setState({
       quizAnswers: this.state.quizAnswers.concat([answer === correctAnswer]),
       correctAnswer

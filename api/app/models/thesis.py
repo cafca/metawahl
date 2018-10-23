@@ -6,6 +6,7 @@ from operator import itemgetter
 from sqlalchemy import func, desc
 from services import db
 
+from .quiz_answer import QuizAnswer
 from .tag import tags
 
 
@@ -85,3 +86,17 @@ class Thesis(db.Model):
             if len(rv) > 10:
                 break
         return rv
+
+    def quiz_tally(self):
+        rv = None
+
+        base = db.session \
+            .query(Thesis.id, func.count(QuizAnswer.id)) \
+            .join(Thesis.quiz_answers) \
+            .filter(Thesis.id == self.id) \
+            .group_by(Thesis.id)
+
+        y = base.filter(QuizAnswer.answer == 1).all()
+        n = base.filter(QuizAnswer.answer == -1).all()
+
+        return (y[0][1] if len(y) > 0 else 0, n[0][1] if len(n) > 0 else 0)

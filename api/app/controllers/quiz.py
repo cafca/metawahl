@@ -7,17 +7,34 @@ from sqlalchemy.exc import IntegrityError
 
 from middleware.json_response import json_response
 from middleware.logger import logger, log_request_info
-from models import QuizAnswer, Thesis
+from models import QuizAnswer, Thesis, Election
 from services import db
 
 
 class Quiz(Resource):
-    def post(self, thesis_id):
+    def get(self, election_num):
+        """Return a tally of how many users guessed yes/no for each thesis"""
+        rv = {}
+        error = None
+
+        election = Election.query.get(election_num)
+        if election is None:
+            return json_response({"error": "Election not found"}, status=404)
+
+        for thesis in election.theses:
+            thesis_num = int(thesis.id[-2:])
+            rv[thesis_num] = thesis.quiz_tally()
+
+        return json_response({"error": error, "data": rv})
+
+    def post(self, election_num, thesis_num):
         """Record an answer given by a user in a quiz."""
         log_request_info("Quiz answer post", request)
         rv = None
         error = None
         status = 200
+
+        thesis_id = "WOM-{:03d}-{:02d}".format(election_num, thesis_num)
 
         data = request.get_json()
         if data is not None:
