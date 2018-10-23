@@ -9,10 +9,7 @@ import "../../index.css"
 import Errorhandler from "../../utils/errorHandler"
 import { API_ROOT, TERRITORY_NAMES } from "../../config/"
 import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
-import {
-  WikidataLabel,
-  WikipediaLabel
-} from "../../components/label/DataLabel.jsx"
+import { WikidataLabel } from "../../components/label/DataLabel.jsx"
 import SEO from "../../components/seo/"
 import SuggestionsGrid from "../../components/suggestionsGrid"
 import ElectionComponent from "../../components/election"

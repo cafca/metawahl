@@ -2,7 +2,7 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Button, Header, Message, Icon } from "semantic-ui-react"
+import { Button, Header, Icon } from "semantic-ui-react"
 
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
@@ -166,6 +166,7 @@ export default class Election extends React.Component<Props, State> {
           floated="right"
           as="a"
           href={quizUrl}
+          style={{marginBottom: "1rem"}}
         >
           <Icon name="right arrow" />
           Teste dein Wissen im Quiz

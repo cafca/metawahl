@@ -9,8 +9,7 @@ import {
   Icon,
   Loader,
   Message,
-  Segment,
-  Transition
+  Segment
 } from "semantic-ui-react"
 
 import "../../index.css"
@@ -27,7 +26,6 @@ import {
   COLOR_PALETTE,
   OPINION_COLORS,
   IS_ADMIN,
-  TERRITORY_NAMES,
   makeJSONRequest
 } from "../../config/"
 
@@ -88,7 +86,7 @@ type State = {
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
   showSources: boolean,
-  quizAnswer: number
+  quizAnswer: ?number
 }
 
 type Props = RouteProps &
@@ -214,9 +212,9 @@ export default class Thesis extends Component<Props, State> {
     })
   }
 
-  handleAnswer(quizAnswer) {
+  handleAnswer(quizAnswer: -1 | 0 | 1) {
     this.setState({ quizAnswer })
-    this.props.answer(quizAnswer, this.state.voterOpinion === quizAnswer)
+    this.props.answer(quizAnswer, this.state.voterOpinion)
   }
 
   toggleOpen(position: PositionType) {
@@ -382,17 +380,6 @@ export default class Thesis extends Component<Props, State> {
             color: "#fcfcfc"
           }
 
-    const voterOpinionName = {
-      "-1": "dagegen",
-      "0": "neutral",
-      "1": "dafür"
-    }[this.state.voterOpinion]
-
-    const voterTerritoryName =
-      this.props.election.territory === "europa"
-        ? "Deutschland"
-        : TERRITORY_NAMES[this.props.election.territory]
-
     const margin = this.props.quizMode ? "4em" : "2em"
 
     let subHeader = ""
@@ -417,40 +404,6 @@ export default class Thesis extends Component<Props, State> {
 
     return (
       <div style={{ marginBottom: margin }}>
-        <Transition
-          visible={
-            this.props.quizMode === true && this.state.quizAnswer != null
-          }
-          animation={
-            this.state.quizAnswer === this.state.voterOpinion ? "tada" : "shake"
-          }
-          duration={500}
-        >
-          <Header
-            as="h1"
-            textAlign="center"
-            onClick={this.props.scrollToNextQuestion}
-            style={{ cursor: "pointer" }}
-          >
-            {this.state.quizAnswer === this.state.voterOpinion
-              ? "😀 Richtig! " +
-                voterTerritoryName +
-                " stimmt " +
-                voterOpinionName +
-                "."
-              : "☹️ Leider falsch. " +
-                voterTerritoryName +
-                " stimmt " +
-                voterOpinionName +
-                "."}
-            <Header.Subheader>
-              <Icon name="arrow down" />
-              Zur nächsten Frage scrollen
-              <Icon name="arrow down" />
-            </Header.Subheader>
-          </Header>
-        </Transition>
-
         <a href={permaLink}>
           <Header
             as="h2"

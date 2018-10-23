@@ -2,17 +2,18 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
-import ReactDOM from "react-dom"
 import autoBind from "react-autobind"
 import {
   Button,
   Breadcrumb,
   Container,
+  Grid,
   Header,
   Loader,
   Message,
   Progress,
   Segment,
+  Transition,
   Icon
 } from "semantic-ui-react"
 import Moment from "moment"
@@ -24,20 +25,20 @@ import Legend from "../../components/legend"
 import Errorhandler from "../../utils/errorHandler"
 import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from "../../config/"
 import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
-import {
-  WikidataLabel,
-  WikipediaLabel
-} from "../../components/label/DataLabel.jsx"
 import SEO from "../../components/seo/"
 
 import "./styles.css"
+
+type QuizAnswer = -1 | 0 | 1
 
 type State = {
   isLoading: boolean,
   election: ?ElectionType,
   theses: Array<ThesisType>,
   quizSelection: Array<ThesisType>,
-  quizAnswers: ?Array<number>,
+  quizAnswers: Array<bool>,
+  quizIndex: number,
+  correctAnswer: ?QuizAnswer,
   linkCopied: boolean,
   error?: ?string
 }
@@ -58,9 +59,10 @@ export default class Quiz extends React.Component<RouteProps, State> {
       theses: [],
       quizSelection: [],
       quizAnswers: [],
+      quizIndex: 0,
+      correctAnswer: null,
       linkCopied: false
     }
-    this.thesisRefs = {}
     this.handleError = Errorhandler.bind(this)
   }
 
@@ -70,7 +72,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
 
   componentDidUpdate() {
     // Prompt user before navigating away from unfinished quiz
-    window.onbeforeunload = () => true
+    // window.onbeforeunload = () => true
   }
 
   componentWillUnmount() {
@@ -90,7 +92,6 @@ export default class Quiz extends React.Component<RouteProps, State> {
         theses: [],
         quizAnswers: []
       })
-      this.thesisRefs = {}
       this.loadElection()
     }
   }
@@ -103,28 +104,28 @@ export default class Quiz extends React.Component<RouteProps, State> {
           .shift()
   }
 
-  getRatio({ title, positions }, reverse = false) {
+  getRatio({ title, positions }, reverse:bool = false): number {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
-    if (this.state.election === null) return null
+    if (this.state.election == null) return 0.0
 
-    const occRes = this.state.election.results
+    const results = this.state.election.results
 
     // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
     // otherwise just return accumulator `acc` + result of party `cur`
     const countVotes = (acc, cur) => {
-      if (occRes[cur["party"]] == null) {
-        let multipleLinkedResults = Object.keys(occRes).filter(
-          k => occRes[k].linked_position === cur["party"]
+      if (results[cur["party"]] == null) {
+        let multipleLinkedResults = Object.keys(results).filter(
+          k => results[k].linked_position === cur["party"]
         )
         return (
           acc +
           multipleLinkedResults
-            .map(k => occRes[k]["pct"])
+            .map(k => results[k]["pct"])
             .reduce((acc, cur) => acc + cur, 0.0)
         )
       } else {
-        return acc + occRes[cur["party"]]["pct"]
+        return acc + results[cur["party"]]["pct"]
       }
     }
 
@@ -134,19 +135,18 @@ export default class Quiz extends React.Component<RouteProps, State> {
     return ratio
   }
 
-  handleQuizAnswer(thesisNum, answer, correct) {
-    const answerNode = ReactDOM.findDOMNode(this.thesisRefs[thesisNum])
-    window.scrollTo(0, answerNode.offsetTop - 35)
-    this.setState({ quizAnswers: this.state.quizAnswers.concat([correct]) })
+  handleQuizAnswer(thesisNum:number, answer:QuizAnswer, correctAnswer:QuizAnswer) {
+    this.setState({
+      quizAnswers: this.state.quizAnswers.concat([answer === correctAnswer]),
+      correctAnswer
+    })
   }
 
-  scrollToNextQuestion() {
-    if (this.state.quizAnswers.length !== this.state.quizSelection.length) {
-      const answerNode = ReactDOM.findDOMNode(
-        this.thesisRefs[this.state.quizAnswers.length]
-      )
-      window.scrollTo(0, answerNode.offsetTop - 35)
-    }
+  handleNextQuestion() {
+    this.setState(prevState => ({
+      quizIndex: prevState.quizIndex + 1,
+      correctAnswer: null
+    }))
   }
 
   loadElection(cb?: ElectionType => mixed) {
@@ -193,34 +193,48 @@ export default class Quiz extends React.Component<RouteProps, State> {
   }
 
   render() {
-    let quizResult
-    let thesesElems
+    let thesis
+    let voterOpinionName = ""
+    let voterTerritoryName = ""
+    let currentThesis
+
+    const quizResult =
+      this.state.quizAnswers
+        .map(a => (a === true ? 1 : 0))
+        .reduce((acc, cur) => acc + cur, 0) / this.state.quizAnswers.length
 
     if (this.state.isLoading || this.state.error) {
-      thesesElems = []
+      thesis = null
     } else {
-      thesesElems = this.state.quizSelection
-        .slice(0, this.state.quizAnswers.length + 1)
-        .map((t, i) => (
-          <Thesis
-            key={t.id}
-            election={this.state.election}
-            showHints={true}
-            quizMode={true}
-            hideTags={true}
-            scrollToNextQuestion={this.scrollToNextQuestion}
-            answer={(answer, correct) =>
-              this.handleQuizAnswer(i, answer, correct)
-            }
-            ref={ref => (this.thesisRefs[i] = ref)}
-            {...t}
-          />
-        ))
+      currentThesis = this.state.quizSelection[this.state.quizIndex]
+      thesis = this.state.quizIndex < this.state.quizSelection.length && (
+        <Thesis
+          key={"quiz-thesis-" + this.state.quizIndex}
+          election={this.state.election}
+          showHints={true}
+          quizMode={true}
+          hideTags={true}
+          answer={(answer, correctAnswer) =>
+            this.handleQuizAnswer(this.state.quizIndex, answer, correctAnswer)
+          }
+          {...currentThesis}
+        />
+      )
 
-      quizResult =
-        this.state.quizAnswers
-          .map(a => (a === true ? 1 : 0))
-          .reduce((acc, cur) => acc + cur, 0) / this.state.quizAnswers.length
+
+
+      voterOpinionName =
+        this.state.correctAnswer &&
+        {
+          "-1": "dagegen",
+          "0": "neutral",
+          "1": "dafür"
+        }[this.state.correctAnswer]
+
+      voterTerritoryName =
+        this.state.election.territory === "europa"
+          ? "Deutschland"
+          : TERRITORY_NAMES[this.state.election.territory]
     }
 
     return (
@@ -260,12 +274,13 @@ export default class Quiz extends React.Component<RouteProps, State> {
           </span>
         </Breadcrumb>
 
-        <Header as="h1">
+        <Header as="h1" style={{marginBottom: "3rem"}}>
           {this.state.election == null
             ? " "
             : "Teste dein Wissen: " + this.state.election.title}
         </Header>
 
+        { this.state.quizAnswers.length === 0 &&
         <h3 style={{ marginBottom: "4rem" }}>
           {this.state.election != null && this.state.election.preliminary
             ? "Was wird die Mehrheit in " +
@@ -275,6 +290,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
               TERRITORY_NAMES[this.territory] +
               " gewählt?"}
         </h3>
+      }
 
         {this.state.error != null && (
           <Message negative content={this.state.error} />
@@ -285,37 +301,45 @@ export default class Quiz extends React.Component<RouteProps, State> {
         {/* Main content */}
         {this.state.isLoading === false && (
           <div className="theses">
-            {this.state.quizAnswers.length > 0 && <Legend />}
-            {thesesElems}
-          </div>
-        )}
-
-        {/* Quiz progress indicator */}
-        {this.state.quizAnswers.length < this.state.theses.length && (
-          <div>
-            {this.state.quizAnswers.length !==
-              this.state.quizSelection.length && (
-              <span>
-                Noch{" "}
-                {this.state.quizSelection.length -
-                  this.state.quizAnswers.length}{" "}
-                Thesen bis zum Ergebnis
-              </span>
+            {this.state.quizAnswers.length > this.state.quizIndex && (
+              <Grid style={{marginBottom: "2rem"}} columns='2' stackable>
+                <Grid.Column>
+                <Transition
+                  visible={this.state.quizAnswers.length > this.state.quizIndex}
+                  animation={
+                    this.state.quizAnswers[this.state.quizIndex] === true
+                      ? "bounce"
+                      : "shake"
+                  }
+                  duration={500}
+                >
+                  <Header as="h2">
+                    {this.state.quizAnswers[this.state.quizIndex] === true
+                      ? "😀 Richtig! " +
+                        voterTerritoryName +
+                        " stimmt " +
+                        voterOpinionName +
+                        "."
+                      : "☹️ Leider falsch. " +
+                        voterTerritoryName +
+                        " stimmt " +
+                        voterOpinionName +
+                        "."}
+                  </Header>
+                </Transition>
+                </Grid.Column>
+                <Grid.Column>
+                <Legend style={{float: 'right'}}/>
+                </Grid.Column>
+              </Grid>
             )}
-            <Progress
-              value={this.state.quizAnswers.length}
-              total={this.state.quizSelection.length}
-              success={
-                this.state.quizAnswers.length ===
-                  this.state.quizSelection.length && quizResult >= 0.5
-              }
-            />
+            {thesis}
           </div>
         )}
 
         {/* Quiz Result */}
         {this.state.isLoading === false &&
-          this.state.quizAnswers.length === this.state.quizSelection.length && (
+          this.state.quizIndex === this.state.quizSelection.length && (
             <Segment size="large" raised className="quizResult">
               <Header as="h1">
                 {quizResult >= 0.5 && (
@@ -394,6 +418,41 @@ export default class Quiz extends React.Component<RouteProps, State> {
               </Button.Group>
             </Segment>
           )}
+
+        {/* Quiz progress indicator */}
+        <Grid stackable verticalAlign="middle" reversed='mobile'>
+          <Grid.Column width="12">
+            {this.state.quizAnswers.length !==
+              this.state.quizSelection.length && (
+              <span>
+                Noch{" "}
+                {this.state.quizSelection.length -
+                  this.state.quizAnswers.length}{" "}
+                Thesen bis zum Ergebnis
+              </span>
+            )}
+
+            <Progress
+              value={this.state.quizAnswers.length}
+              total={this.state.quizSelection.length}
+              success={
+                this.state.quizIndex === this.state.quizSelection.length &&
+                quizResult >= 0.5
+              }
+            />
+          </Grid.Column>
+          <Grid.Column width="4" textAlign="right">
+            <Button
+              size="large"
+              disabled={this.state.quizAnswers.length === this.state.quizIndex}
+              onClick={this.handleNextQuestion}
+            >
+              {this.state.quizIndex + 1 === this.state.quizSelection.length
+                ? "Ergebnis zeigen"
+                : "Nächste Frage"}
+            </Button>
+          </Grid.Column>
+        </Grid>
       </Container>
     )
   }
