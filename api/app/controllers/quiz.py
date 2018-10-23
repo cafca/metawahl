@@ -12,7 +12,7 @@ from services import db
 
 
 class Quiz(Resource):
-    def post(self):
+    def post(self, thesis_id):
         """Record an answer given by a user in a quiz."""
         log_request_info("Quiz answer post", request)
         rv = None
@@ -23,9 +23,8 @@ class Quiz(Resource):
         if data is not None:
             uuid = data.get("uuid", None)
             answer = data.get("answer", None)
-            thesis_id = data.get("thesis", None)
 
-        if data is None or uuid is None or answer is None or thesis_id is None:
+        if data is None or uuid is None or answer is None:
             logger.warning("Request missing data: {}".format(data))
             error = "The request is missing data"
             status = 422

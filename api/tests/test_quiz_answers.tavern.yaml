@@ -3,7 +3,7 @@ test_name: quiz answers endpoint
 stages:
   - name: Make sure that GET requests are disabled
     request:
-      url: http://localhost:9000/v2/quiz
+      url: http://localhost:9000/v2/quiz/WOM-001-00
       method: GET
     response:
       status_code: 405
@@ -12,10 +12,9 @@ stages:
 
   - name: Make sure that quiz answers are handled
     request:
-      url: http://localhost:9000/v2/quiz
+      url: http://localhost:9000/v2/quiz/WOM-001-00
       method: POST
       json:
-        thesis: WOM-001-01
         uuid: test-uuid
         answer: 1
     response:
@@ -25,10 +24,10 @@ stages:
 
   - name: Make sure that quiz answers missing data return an error
     request:
-      url: http://localhost:9000/v2/quiz
+      url: http://localhost:9000/v2/quiz/WOM-001-00
       method: POST
       json:
-        thesis: WOM-001-01
+        answer: 1
     response:
       status_code: 422
       headers:
@@ -36,11 +35,10 @@ stages:
 
   - name: Make sure that quiz answers for not existing theses return an error
     request:
-      url: http://localhost:9000/v2/quiz
+      url: http://localhost:9000/v2/quiz/bargleborp
       method: POST
       json:
-        thesis: WOM-001-99
-        uuid: test-uuid
+        uuid: test-uuid2
         answer: 1
     response:
       status_code: 404

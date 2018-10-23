@@ -78,7 +78,7 @@ def create_app(config=None):
     api.add_resource(controllers.BaseView, "/v2/base")
     api.add_resource(controllers.Elections, "/v2/elections/")
     api.add_resource(controllers.ElectionView, "/v2/elections/<int:wom_id>")
-    api.add_resource(controllers.Quiz, "/v2/quiz")
+    api.add_resource(controllers.Quiz, "/v2/quiz/<string:thesis_id>")
     api.add_resource(controllers.TagsView, "/v2/tags/")
     api.add_resource(controllers.TagsDownload, "/v2/tags.json")
     api.add_resource(controllers.TagView, "/v2/tags/<string:slug>")
