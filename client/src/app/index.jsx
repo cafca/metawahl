@@ -145,90 +145,102 @@ class App extends Component<Props, State> {
     return (
       <BrowserRouter>
         <ScrollToTop>
-          <div className="App">
-            <SEO title="Metawahl" />
-
+          <Switch>
             <Route
-              path="/:area?"
-              render={props => <Header {...props} {...context} />}
+              exact
+              path="/iframe/:territory/:electionNum/"
+              render={props => (
+                <div>
+                  <base target="_blank" />
+                  <Election {...props} {...context} iframe={true} />
+                </div>
+              )}
             />
-
-            {this.state.error != null && (
-              <Message negative header="Upsi" content={this.state.error} />
-            )}
-
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={props => <Landing {...props} {...context} />}
-              />
+            <div className="App">
+              <SEO title="Metawahl" />
 
               <Route
-                exact
-                path="/wahlen/"
-                render={props => <ElectionList {...props} {...context} />}
+                path="/:area?"
+                render={props => <Header {...props} {...context} />}
               />
 
-              <Route
-                exact
-                path="/wahlen/:territory/"
-                render={props => <Territory {...props} {...context} />}
-              />
+              {this.state.error != null && (
+                <Message negative header="Upsi" content={this.state.error} />
+              )}
 
-              <Route
-                exact
-                path="/wahlen/:territory/:electionNum/"
-                render={props => <Election {...props} {...context} />}
-              />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={props => <Landing {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/quiz/:territory/:electionNum/"
-                render={props => <Quiz {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/wahlen/"
+                  render={props => <ElectionList {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/wahlen/:territory/:electionNum/:thesisNum/"
-                render={props => <Thesis {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/wahlen/:territory/"
+                  render={props => <Territory {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/themen/"
-                render={props => <TagOverview {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/wahlen/:territory/:electionNum/"
+                  render={props => <Election {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/themenliste/"
-                render={props => <TagList {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/quiz/:territory/:electionNum/"
+                  render={props => <Quiz {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/themen/:tag/:page?/"
-                render={props => <TagView {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/wahlen/:territory/:electionNum/:thesisNum/"
+                  render={props => <Thesis {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/daten/"
-                render={props => <DataOverview {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/themen/"
+                  render={props => <TagOverview {...props} {...context} />}
+                />
 
-              <Route
-                exact
-                path="/legal/"
-                render={props => <LegalView {...props} {...context} />}
-              />
+                <Route
+                  exact
+                  path="/themenliste/"
+                  render={props => <TagList {...props} {...context} />}
+                />
 
-              <Route render={props => <NotFound {...props} {...context} />} />
-            </Switch>
+                <Route
+                  exact
+                  path="/themen/:tag/:page?/"
+                  render={props => <TagView {...props} {...context} />}
+                />
 
-            <Footer {...context} />
-          </div>
+                <Route
+                  exact
+                  path="/daten/"
+                  render={props => <DataOverview {...props} {...context} />}
+                />
+
+                <Route
+                  exact
+                  path="/legal/"
+                  render={props => <LegalView {...props} {...context} />}
+                />
+
+                <Route render={props => <NotFound {...props} {...context} />} />
+              </Switch>
+
+              <Footer {...context} />
+            </div>
+          </Switch>
         </ScrollToTop>
       </BrowserRouter>
     )

@@ -23,7 +23,11 @@ type State = {
   error?: ?string
 }
 
-export default class Election extends React.Component<RouteProps, State> {
+type Props = RouteProps & {
+  iframe?: boolean
+}
+
+export default class Election extends React.Component<Props, State> {
   territory: string
   electionNum: number
   handleError: ErrorType => any
@@ -138,6 +142,8 @@ export default class Election extends React.Component<RouteProps, State> {
 
     return (
       <Container className="electionContainer">
+        { this.props.iframe !== true &&
+        <div>
         <SEO title={pageTitle} />
 
         <Breadcrumb>
@@ -163,6 +169,8 @@ export default class Election extends React.Component<RouteProps, State> {
           {...this.state.election}
           style={{ marginRight: "-10.5px" }}
         />
+        </div>
+      }
 
         <ElectionComponent
           election={this.state.election}
@@ -178,7 +186,7 @@ export default class Election extends React.Component<RouteProps, State> {
         <Loader active={this.state.isLoading} />
 
         {/* Browsing suggestions */}
-        {this.state.isLoading === false && (
+        {this.state.isLoading === false && this.props.iframe !== true && (
           <SuggestionsGrid title="Und jetzt:" sections={suggestions} />
         )}
       </Container>
