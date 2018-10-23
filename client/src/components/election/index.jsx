@@ -64,14 +64,14 @@ export default class Election extends React.Component<Props, State> {
                     </span>
                   )
                 : sources.push(
-                    <span key="dawum-source">
-                      ,
-                      <a href={url}>
-                        Wahlprognose von dawum.de und lizensiert unter
-                        CC-BY-NC-SA-4.0
-                      </a>
-                    </span>
-                  )
+                      <span key="dawum-source">
+                        ,
+                        <a href={url}>
+                          Wahlprognose von dawum.de und lizensiert unter
+                          CC-BY-NC-SA-4.0
+                        </a>
+                      </span>
+                    )
         )
       }
     }
@@ -159,14 +159,13 @@ export default class Election extends React.Component<Props, State> {
         </Header>
 
         <Button
-
           compact
           icon
           labelPosition="left"
           floated="right"
           as="a"
           href={quizUrl}
-          style={{marginBottom: "1rem"}}
+          style={{ marginBottom: "1rem" }}
         >
           <Icon name="right arrow" />
           Teste dein Wissen im Quiz
