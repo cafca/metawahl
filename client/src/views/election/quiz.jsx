@@ -36,7 +36,7 @@ type State = {
   election: ?ElectionType,
   theses: Array<ThesisType>,
   quizSelection: Array<ThesisType>,
-  quizAnswers: Array<bool>,
+  quizAnswers: Array<boolean>,
   quizIndex: number,
   correctAnswer: ?QuizAnswer,
   linkCopied: boolean,
@@ -104,7 +104,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
           .shift()
   }
 
-  getRatio({ title, positions }, reverse:bool = false): number {
+  getRatio({ title, positions }, reverse: boolean = false): number {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
     if (this.state.election == null) return 0.0
@@ -135,7 +135,11 @@ export default class Quiz extends React.Component<RouteProps, State> {
     return ratio
   }
 
-  handleQuizAnswer(thesisNum:number, answer:QuizAnswer, correctAnswer:QuizAnswer) {
+  handleQuizAnswer(
+    thesisNum: number,
+    answer: QuizAnswer,
+    correctAnswer: QuizAnswer
+  ) {
     this.setState({
       quizAnswers: this.state.quizAnswers.concat([answer === correctAnswer]),
       correctAnswer
@@ -221,8 +225,6 @@ export default class Quiz extends React.Component<RouteProps, State> {
         />
       )
 
-
-
       voterOpinionName =
         this.state.correctAnswer &&
         {
@@ -274,23 +276,23 @@ export default class Quiz extends React.Component<RouteProps, State> {
           </span>
         </Breadcrumb>
 
-        <Header as="h1" style={{marginBottom: "3rem"}}>
+        <Header as="h1" style={{ marginBottom: "3rem" }}>
           {this.state.election == null
             ? " "
             : "Teste dein Wissen: " + this.state.election.title}
         </Header>
 
-        { this.state.quizAnswers.length === 0 &&
-        <h3 style={{ marginBottom: "4rem" }}>
-          {this.state.election != null && this.state.election.preliminary
-            ? "Was wird die Mehrheit in " +
-              TERRITORY_NAMES[this.territory] +
-              " voraussichtlich wählen?"
-            : "Was hat die Mehrheit in " +
-              TERRITORY_NAMES[this.territory] +
-              " gewählt?"}
-        </h3>
-      }
+        {this.state.quizAnswers.length === 0 && (
+          <h3 style={{ marginBottom: "4rem" }}>
+            {this.state.election != null && this.state.election.preliminary
+              ? "Was wird die Mehrheit in " +
+                TERRITORY_NAMES[this.territory] +
+                " voraussichtlich wählen?"
+              : "Was hat die Mehrheit in " +
+                TERRITORY_NAMES[this.territory] +
+                " gewählt?"}
+          </h3>
+        )}
 
         {this.state.error != null && (
           <Message negative content={this.state.error} />
@@ -302,34 +304,39 @@ export default class Quiz extends React.Component<RouteProps, State> {
         {this.state.isLoading === false && (
           <div className="theses">
             {this.state.quizAnswers.length > this.state.quizIndex && (
-              <Grid style={{marginBottom: "2rem"}} columns='2' stackable>
+              <Grid style={{ marginBottom: "2rem" }} columns="2" stackable>
                 <Grid.Column>
-                <Transition
-                  visible={this.state.quizAnswers.length > this.state.quizIndex}
-                  animation={
-                    this.state.quizAnswers[this.state.quizIndex] === true
-                      ? "bounce"
-                      : "shake"
-                  }
-                  duration={500}
-                >
-                  <Header as="h2">
-                    {this.state.quizAnswers[this.state.quizIndex] === true
-                      ? "😀 Richtig! " +
-                        voterTerritoryName +
-                        " stimmt " +
-                        voterOpinionName +
-                        "."
-                      : "☹️ Leider falsch. " +
-                        voterTerritoryName +
-                        " stimmt " +
-                        voterOpinionName +
-                        "."}
-                  </Header>
-                </Transition>
+                  <Transition
+                    visible={
+                      this.state.quizAnswers.length > this.state.quizIndex
+                    }
+                    animation={
+                      this.state.quizAnswers[this.state.quizIndex] === true
+                        ? "bounce"
+                        : "shake"
+                    }
+                    duration={500}
+                  >
+                    <Header as="h2">
+                      {this.state.quizAnswers[this.state.quizIndex] === true
+                        ? "😀 Richtig! " +
+                          voterTerritoryName +
+                          " stimmt " +
+                          voterOpinionName +
+                          "."
+                        : "☹️ Leider falsch. " +
+                          voterTerritoryName +
+                          " stimmt " +
+                          voterOpinionName +
+                          "."}
+                    </Header>
+                  </Transition>
+                  <p>
+                    Diese Frage wurde von 30% der Besucher richtig beantwortet.
+                  </p>
                 </Grid.Column>
                 <Grid.Column>
-                <Legend style={{float: 'right'}}/>
+                  <Legend style={{ float: "right" }} />
                 </Grid.Column>
               </Grid>
             )}
@@ -420,7 +427,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
           )}
 
         {/* Quiz progress indicator */}
-        <Grid stackable verticalAlign="middle" reversed='mobile'>
+        <Grid stackable verticalAlign="middle" reversed="mobile">
           <Grid.Column width="12">
             {this.state.quizAnswers.length !==
               this.state.quizSelection.length && (
@@ -443,10 +450,14 @@ export default class Quiz extends React.Component<RouteProps, State> {
           </Grid.Column>
           <Grid.Column width="4" textAlign="right">
             <Button
+              primary
               size="large"
+              icon
+              labelPosition="left"
               disabled={this.state.quizAnswers.length === this.state.quizIndex}
               onClick={this.handleNextQuestion}
             >
+              <Icon name="right arrow" />
               {this.state.quizIndex + 1 === this.state.quizSelection.length
                 ? "Ergebnis zeigen"
                 : "Nächste Frage"}
