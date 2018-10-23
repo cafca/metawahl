@@ -3,10 +3,36 @@
   margin-bottom: 2em;
 }
 
-.square  {
+.legend td {
+  white-space: nowrap;
+}
+
+.square {
   width: 1.1em;
   height: 1.1em;
   position: relative;
   bottom: -1.5px;
   display: inline-block;
+}
+
+.legend .small-legend {
+  display: none;
+}
+
+.legend .large-legend {
+  display: block;
+}
+
+.legend.ui.table tr, .legend.ui.table tr td {
+  border: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .legend .small-legend {
+    display: block;
+  }
+
+  .legend .large-legend {
+    display: none;
+  }
 }

@@ -9,3 +9,7 @@
 .quizResult .ui.a {
   margin-bottom: 10px;
 }
+
+.ui.primary.button {
+  background-color: rgb(42, 64, 101) !important;
+}

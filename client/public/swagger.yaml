@@ -107,3 +107,20 @@ paths:
           description: "Success"
         404:
           description: "Thesis not found"
+  /quiz/{wom_id}:
+    get:
+      summary: "Tally of answers in a quiz"
+      description: "Returns a dictionary with a key for each `thesis_num` and a tuple of (`count_yes`, `count_no`) for answers in a quiz."
+      produces:
+      - "application/json"
+      parameters:
+        - name: "wom_id"
+          in: "path"
+          description: "Wahl-o-Mat ID"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: "Success"
+        404:
+          description: "Wahl-o-Mat not found"

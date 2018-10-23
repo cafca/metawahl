@@ -1,36 +1,36 @@
 // @flow
 
-import React from "react";
-import autoBind from "react-autobind";
-import { Header } from "semantic-ui-react";
+import React from "react"
+import autoBind from "react-autobind"
+import { Button, Header, Icon } from "semantic-ui-react"
 
-import CompactThesis from "../../components/thesis/compact";
-import { RouteProps, ThesisType, ElectionType } from "../../types/";
-import Legend from "../../components/legend/";
-import { extractThesisID } from "../../utils/thesis";
+import CompactThesis from "../../components/thesis/compact"
+import { RouteProps, ThesisType, ElectionType } from "../../types/"
+import Legend from "../../components/legend/"
+import { extractThesisID } from "../../utils/thesis"
 
-import "./styles.css";
+import "./styles.css"
 
 type Props = {
   territory: string,
   electionNum: number,
   election: ?ElectionType,
   theses: Array<ThesisType>
-};
+}
 
-type State = {};
+type State = {}
 
 export default class Election extends React.Component<Props, State> {
-  territory: string;
+  territory: string
 
   constructor(props: RouteProps) {
-    super(props);
-    autoBind(this);
-    this.thesisRefs = {};
+    super(props)
+    autoBind(this)
+    this.thesisRefs = {}
   }
 
   collectSources() {
-    let sources = [];
+    let sources = []
     if (this.props.election != null) {
       sources.push(
         <span key="wom-source">
@@ -43,7 +43,7 @@ export default class Election extends React.Component<Props, State> {
             qual-o-mat-data
           </a>
         </span>
-      );
+      )
       if (this.props.election.results_sources) {
         this.props.election.results_sources.forEach(
           url =>
@@ -56,29 +56,34 @@ export default class Election extends React.Component<Props, State> {
               : url.indexOf("wikipedia") >= 0
                 ? sources.push(
                     <span key="wp-source">
-                      ,<a href={url}>Wahlergebnisse aus Wikipedia und lizensiert unter CC-BY-NC-SA-3.0</a>
-                    </span>
-                  )
-                : sources.push(
-                    <span key="dawum-source">
                       ,
                       <a href={url}>
-                        Wahlprognose von dawum.de und lizensiert unter CC-BY-NC-SA-4.0
+                        Wahlergebnisse aus Wikipedia und lizensiert unter
+                        CC-BY-NC-SA-3.0
                       </a>
                     </span>
                   )
-        );
+                : sources.push(
+                      <span key="dawum-source">
+                        ,
+                        <a href={url}>
+                          Wahlprognose von dawum.de und lizensiert unter
+                          CC-BY-NC-SA-4.0
+                        </a>
+                      </span>
+                    )
+        )
       }
     }
-    return sources;
+    return sources
   }
 
   getRatio({ title, positions }, reverse = false) {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
-    if (this.props.election === null) return null;
+    if (this.props.election === null) return null
 
-    const occRes = this.props.election.results;
+    const occRes = this.props.election.results
 
     // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
     // otherwise just return accumulator `acc` + result of party `cur`
@@ -86,22 +91,22 @@ export default class Election extends React.Component<Props, State> {
       if (occRes[cur["party"]] == null) {
         let multipleLinkedResults = Object.keys(occRes).filter(
           k => occRes[k].linked_position === cur["party"]
-        );
+        )
         return (
           acc +
           multipleLinkedResults
             .map(k => occRes[k]["pct"])
             .reduce((acc, cur) => acc + cur, 0.0)
-        );
+        )
       } else {
-        return acc + occRes[cur["party"]]["pct"];
+        return acc + occRes[cur["party"]]["pct"]
       }
-    };
+    }
 
     const ratio = positions
       .filter(p => (reverse ? p.value === -1 : p.value === 1))
-      .reduce(countVotes, 0.0);
-    return ratio;
+      .reduce(countVotes, 0.0)
+    return ratio
   }
 
   render() {
@@ -110,25 +115,25 @@ export default class Election extends React.Component<Props, State> {
       .map((t, i) => {
         const tUrl = `/wahlen/${this.props.territory}/${
           this.props.electionNum
-        }/${extractThesisID(t.id).thesisNUM}/`;
+        }/${extractThesisID(t.id).thesisNUM}/`
         const proCount = t.positions.filter(p => p.value === 1).length
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
             <a href={tUrl}>
-              <Header size='medium'>
-                {t.title}{" "}
-              </Header>
+              <Header size="medium">{t.title} </Header>
               <CompactThesis key={t.id} election={this.props.election} {...t} />
               <span className="thesisTitleInsert">
-                {proCount} von {t.positions.length} Parteien wollen: {t.text}
+                {proCount} von {t.positions.length} Parteien fordern: {t.text}
               </span>
             </a>
           </div>
-        );
-      });
+        )
+      })
 
-    let sources = this.collectSources();
+    let sources = this.collectSources()
+
+    const quizUrl = `/quiz/${this.props.territory}/${this.props.electionNum}/`
 
     return (
       <div className="election-component">
@@ -153,7 +158,20 @@ export default class Election extends React.Component<Props, State> {
           )}
         </Header>
 
-        <Legend text="Partei war im Wahl-o-Mat:" />
+        <Button
+          compact
+          icon
+          labelPosition="left"
+          floated="right"
+          as="a"
+          href={quizUrl}
+          style={{ marginBottom: "1rem" }}
+        >
+          <Icon name="right arrow" />
+          Teste dein Wissen im Quiz
+        </Button>
+
+        <Legend text="Partei ist:" />
 
         {/* Main content */}
         {thesesElems.length > 0 && (
@@ -163,6 +181,6 @@ export default class Election extends React.Component<Props, State> {
           </span>
         )}
       </div>
-    );
+    )
   }
 }

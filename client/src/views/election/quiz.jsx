@@ -1,138 +1,219 @@
 // @flow
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import autoBind from 'react-autobind';
+import React from "react"
+import { Link } from "react-router-dom"
+import autoBind from "react-autobind"
 import {
-  Button, Breadcrumb, Container, Header, Loader, Message, Progress, Segment, Icon
-} from 'semantic-ui-react';
-import Moment from 'moment';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+  Button,
+  Breadcrumb,
+  Container,
+  Grid,
+  Header,
+  Loader,
+  Message,
+  Progress,
+  Segment,
+  Transition,
+  Icon
+} from "semantic-ui-react"
+import Moment from "moment"
+import { CopyToClipboard } from "react-copy-to-clipboard"
 
-import '../../index.css';
-import Thesis from '../../components/thesis/';
-import Errorhandler from '../../utils/errorHandler';
-import { API_ROOT, SITE_ROOT, TERRITORY_NAMES } from '../../config/';
-import { ErrorType, RouteProps, ThesisType, ElectionType } from '../../types/';
-import { WikidataLabel, WikipediaLabel } from '../../components/label/DataLabel.jsx'
-import SEO from '../../components/seo/';
+import { loadFromCache } from "../../app/"
+import Thesis from "../../components/thesis/"
+import Legend from "../../components/legend"
+import Errorhandler from "../../utils/errorHandler"
+import { extractThesisID } from "../../utils/thesis"
+import {
+  API_ROOT,
+  SITE_ROOT,
+  TERRITORY_NAMES,
+  makeJSONRequest
+} from "../../config/"
+import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
+import SEO from "../../components/seo/"
 
-import './styles.css';
+import "../../index.css"
+import "./styles.css"
+
+type QuizAnswer = -1 | 0 | 1
+type QuizTally = { [string]: [number, number] }
 
 type State = {
   isLoading: boolean,
   election: ?ElectionType,
   theses: Array<ThesisType>,
   quizSelection: Array<ThesisType>,
-  quizAnswers: ?Array<number>,
+  quizAnswers: Array<boolean>,
+  quizIndex: number,
+  quizTally?: QuizTally,
+  correctRatio?: number,
+  correctAnswer: ?QuizAnswer,
   linkCopied: boolean,
   error?: ?string
-};
+}
+
+type QuizTallyResponse = {
+  error?: ?string,
+  data?: QuizTally
+}
 
 export default class Quiz extends React.Component<RouteProps, State> {
-  territory: string;
-  electionNum: number;
-  handleError: ErrorType => any;
+  territory: string
+  electionNum: number
+  handleError: ErrorType => any
 
   constructor(props: RouteProps) {
-    super(props);
-    autoBind(this);
-    this.electionNum = parseInt(this.props.match.params.electionNum, 10);
-    this.territory = this.props.match.params.territory;
-    this.state =  {
+    super(props)
+    autoBind(this)
+    this.electionNum = parseInt(this.props.match.params.electionNum, 10)
+    this.territory = this.props.match.params.territory
+    this.state = {
       isLoading: true,
       election: this.getCachedElection(),
       theses: [],
       quizSelection: [],
       quizAnswers: [],
+      quizIndex: 0,
+      correctAnswer: null,
       linkCopied: false
     }
-    this.thesisRefs = {};
-    this.handleError = Errorhandler.bind(this);
+    this.handleError = Errorhandler.bind(this)
   }
 
   componentDidMount() {
-    this.loadElection();
+    this.loadElection()
+  }
+
+  componentDidUpdate() {
+    // Prompt user before navigating away from unfinished quiz
+    // window.onbeforeunload = () => true
+  }
+
+  componentWillUnmount() {
+    window.onbeforeunload = null
   }
 
   componentWillReceiveProps(nextProps: RouteProps) {
-    if(nextProps.match.params.electionNum !== this.electionNum || nextProps.displayMode !== this.props.displayMode) {
-      this.electionNum = parseInt(nextProps.match.params.electionNum, 10);
-      this.territory = nextProps.match.params.territory;
+    if (
+      nextProps.match.params.electionNum !== this.electionNum ||
+      nextProps.displayMode !== this.props.displayMode
+    ) {
+      this.electionNum = parseInt(nextProps.match.params.electionNum, 10)
+      this.territory = nextProps.match.params.territory
       this.setState({
         isLoading: true,
         election: this.getCachedElection(),
         theses: [],
         quizAnswers: []
-      });
-      this.thesisRefs = {};
-      this.loadElection();
+      })
+      this.loadElection()
     }
   }
 
   getCachedElection() {
-    return this.props.elections[this.territory] == null ? null :
-      this.props.elections[this.territory]
-      .filter(occ => occ.id === this.electionNum)
-      .shift();
+    return this.props.elections[this.territory] == null
+      ? null
+      : this.props.elections[this.territory]
+          .filter(occ => occ.id === this.electionNum)
+          .shift()
   }
 
-  getRatio({ title, positions }, reverse=false) {
+  getRatio({ title, positions }, reverse: boolean = false): number {
     // Determine the ratio of positive votes by summing up the vote results
     // of all parties with positive answers
-    if (this.state.election === null) return null
+    if (this.state.election == null) return 0.0
 
-    const occRes = this.state.election.results;
+    const results = this.state.election.results
 
     // Combine results if multiple parties correspond to an entry (CDU + CSU => CDU/CSU)
     // otherwise just return accumulator `acc` + result of party `cur`
     const countVotes = (acc, cur) => {
-      if (occRes[cur["party"]] == null) {
-        let multipleLinkedResults = Object.keys(occRes)
-          .filter(k => occRes[k].linked_position === cur["party"]);
-        return acc + multipleLinkedResults
-          .map(k => occRes[k]['pct'])
-          .reduce((acc, cur) => acc + cur, 0.0);
+      if (results[cur["party"]] == null) {
+        let multipleLinkedResults = Object.keys(results).filter(
+          k => results[k].linked_position === cur["party"]
+        )
+        return (
+          acc +
+          multipleLinkedResults
+            .map(k => results[k]["pct"])
+            .reduce((acc, cur) => acc + cur, 0.0)
+        )
       } else {
-        return acc + occRes[cur["party"]]["pct"];
+        return acc + results[cur["party"]]["pct"]
       }
     }
 
-    const ratio = positions.filter(p => reverse ? p.value === -1 : p.value === 1).reduce(countVotes, 0.0);
-    return ratio;
+    const ratio = positions
+      .filter(p => (reverse ? p.value === -1 : p.value === 1))
+      .reduce(countVotes, 0.0)
+    return ratio
   }
 
-  handleQuizAnswer(thesisNum, answer, correct) {
-    const answerNode = ReactDOM.findDOMNode(this.thesisRefs[thesisNum]);
-    window.scrollTo(0, answerNode.offsetTop - 35);
-    this.setState({quizAnswers: this.state.quizAnswers.concat([correct])});
+  handleQuizAnswer(
+    thesisNum: number,
+    answer: QuizAnswer,
+    correctAnswer: QuizAnswer
+  ) {
+    let correctRatio = this.tallyCorrectRatio(correctAnswer)
+    this.setState({
+      quizAnswers: this.state.quizAnswers.concat([answer === correctAnswer]),
+      correctAnswer,
+      correctRatio
+    })
+    this.submitQuizAnswer(thesisNum, answer)
   }
 
-  scrollToNextQuestion() {
-    if (this.state.quizAnswers.length !== this.state.quizSelection.length) {
-      const answerNode = ReactDOM.findDOMNode(this.thesisRefs[this.state.quizAnswers.length]);
-      window.scrollTo(0, answerNode.offsetTop - 35);
+  tallyCorrectRatio(correctAnswer: QuizAnswer) {
+    // Return the ratio of correct answers by other users
+    let correctRatio
+    if (this.state.quizTally != null && correctAnswer !== 0) {
+      const currentThesisNum = extractThesisID(
+        this.state.quizSelection[this.state.quizIndex].id
+      ).thesisNUM
+      if (this.state.quizTally[currentThesisNum] != null) {
+        const totalAnswers = this.state.quizTally[currentThesisNum].reduce(
+          (a, b) => a + b,
+          0
+        )
+        if (totalAnswers > 5) {
+          const i = correctAnswer === 1 ? 0 : 1
+          correctRatio =
+            this.state.quizTally[currentThesisNum][i] / totalAnswers
+        }
+      }
     }
+    return correctRatio
+  }
+
+  handleNextQuestion() {
+    this.setState(prevState => ({
+      quizIndex: prevState.quizIndex + 1,
+      correctAnswer: null
+    }))
   }
 
   loadElection(cb?: ElectionType => mixed) {
-    const endpoint = API_ROOT + "/elections/" + this.electionNum;
+    const endpoint = API_ROOT + "/elections/" + this.electionNum
     fetch(endpoint)
       .then(response => response.json())
       .then(response => {
         if (!this.handleError(response)) {
-          this.setState({
-            election: response.data,
-            theses: response.theses || []
-          }, () => {
-            this.selectQuizTheses()
-          })
-          if (cb != null) cb(response.data);
+          this.setState(
+            {
+              election: response.data,
+              theses: response.theses || []
+            },
+            () => {
+              this.selectQuizTheses()
+              this.loadQuizTally()
+            }
+          )
+          if (cb != null) cb(response.data)
         }
       })
       .catch((error: Error) => {
-        this.handleError(error);
+        this.handleError(error)
         console.log("Error fetching election data: " + error.message)
         this.setState({
           isLoading: false,
@@ -142,144 +223,319 @@ export default class Quiz extends React.Component<RouteProps, State> {
       })
   }
 
+  loadQuizTally() {
+    const endpoint = `${API_ROOT}/quiz/${this.electionNum}`
+    fetch(endpoint)
+      .then(res => res.json())
+      .then((res: QuizTallyResponse) => {
+        if (!this.handleError(res)) {
+          this.setState({ quizTally: res.data })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   selectQuizTheses() {
     const quizSelection = this.state.theses
-      .sort((a, b) => a.id > b.id ? 1 : -1)
+      .sort((a, b) => (a.id > b.id ? 1 : -1))
       .filter(thesis => {
         const ratioPro = this.getRatio(thesis)
         const ratioCon = this.getRatio(thesis, true)
-        const rv = ratioPro > 15 && ratioCon > 15 && (ratioPro > 50 || ratioCon >= 50)
+        const rv =
+          ratioPro > 15 && ratioCon > 15 && (ratioPro > 50 || ratioCon >= 50)
         return rv
       })
       .slice(0, 20)
     this.setState({ quizSelection, isLoading: false })
   }
 
+  submitQuizAnswer(thesisNum: number, answer: QuizAnswer) {
+    if (this.state.error != null || this.state.election == null) return
+    const data = {
+      answer,
+      uuid: loadFromCache("uuid")
+    }
+    const endpoint = `${API_ROOT}/quiz/${this.state.election.id}/${thesisNum}`
+    fetch(endpoint, makeJSONRequest(data)).catch((error: Error) =>
+      console.log("Error submitting quiz answer: " + error.message)
+    )
+  }
+
   render() {
-    let quizResult;
-    let thesesElems;
+    let thesis
+    let voterOpinionName = ""
+    let voterTerritoryName = ""
+    let currentThesis
+
+    const quizResult =
+      this.state.quizAnswers
+        .map(a => (a === true ? 1 : 0))
+        .reduce((acc, cur) => acc + cur, 0) / this.state.quizAnswers.length
 
     if (this.state.isLoading || this.state.error) {
-      thesesElems = [];
+      thesis = null
     } else {
-      thesesElems = this.state.quizSelection
-        .slice(0, this.state.quizAnswers.length + 1)
-        .map(
-          (t, i) => <Thesis
-            key={t.id}
-            election={this.state.election}
-            showHints={i === 0}
-            quizMode={true}
-            scrollToNextQuestion={this.scrollToNextQuestion}
-            answer={(answer, correct) => this.handleQuizAnswer(i, answer, correct)}
-            ref={ref => this.thesisRefs[i] = ref}
-            {...t} />
-        );
+      currentThesis = this.state.quizSelection[this.state.quizIndex]
+      thesis = this.state.quizIndex < this.state.quizSelection.length && (
+        <Thesis
+          key={"quiz-thesis-" + this.state.quizIndex}
+          election={this.state.election}
+          showHints={true}
+          quizMode={true}
+          hideTags={true}
+          answer={(answer, correctAnswer) =>
+            this.handleQuizAnswer(this.state.quizIndex, answer, correctAnswer)
+          }
+          {...currentThesis}
+        />
+      )
 
-      quizResult = this.state.quizAnswers
-        .map(a => a === true ? 1 : 0)
-        .reduce((acc, cur) => acc + cur, 0) / this.state.quizAnswers.length;
+      voterOpinionName =
+        this.state.correctAnswer &&
+        {
+          "-1": "dagegen",
+          "0": "neutral",
+          "1": "dafür"
+        }[this.state.correctAnswer]
 
+      voterTerritoryName =
+        this.state.election.territory === "europa"
+          ? "Deutschland"
+          : TERRITORY_NAMES[this.state.election.territory]
     }
 
-    return <Container fluid={false} className='electionContainer'>
-      <SEO title={'Metawahl: '
-        + (this.state.election ? this.state.election.title + ' Quiz' : "Quiz")} />
+    return (
+      <Container fluid={false} className="electionContainer">
+        <SEO
+          title={
+            "Metawahl: " +
+            (this.state.election ? this.state.election.title + " Quiz" : "Quiz")
+          }
+        />
 
-      <Breadcrumb>
-        <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
-        <Breadcrumb.Divider icon='right angle' />
-        <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
-          {TERRITORY_NAMES[this.territory]}
-        </Breadcrumb.Section>
-        <Breadcrumb.Divider icon='right angle' />
-        { this.state.election == null
-          ? <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-          : <Breadcrumb.Section
-              href={`/wahlen/${this.territory}/${this.electionNum}/`}>
+        <Breadcrumb>
+          <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
+          <Breadcrumb.Divider icon="right angle" />
+          <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
+            {TERRITORY_NAMES[this.territory]}
+          </Breadcrumb.Section>
+          <Breadcrumb.Divider icon="right angle" />
+          {this.state.election == null ? (
+            <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+          ) : (
+            <Breadcrumb.Section
+              href={`/wahlen/${this.territory}/${this.electionNum}/`}
+            >
               {Moment(this.state.election.date).year()}
             </Breadcrumb.Section>
-        }
+          )}
 
-        <span>
-          <Breadcrumb.Divider icon='right angle' />
-          <Breadcrumb.Section active href={`/quiz/${this.territory}/${this.electionNum}/`}>
-            Quiz
-          </Breadcrumb.Section>
-        </span>
-      </Breadcrumb>
+          <span>
+            <Breadcrumb.Divider icon="right angle" />
+            <Breadcrumb.Section
+              active
+              href={`/quiz/${this.territory}/${this.electionNum}/`}
+            >
+              Quiz
+            </Breadcrumb.Section>
+          </span>
+        </Breadcrumb>
 
-      <WikidataLabel {...this.state.election} style={{marginRight: "-10.5px"}} />
-      <WikipediaLabel {...this.state.election} style={{marginRight: "-10.5px"}} />
+        <Header as="h1" style={{ marginBottom: "3rem" }}>
+          {this.state.election == null
+            ? " "
+            : "Teste dein Wissen: " + this.state.election.title}
+        </Header>
 
-      <Header as='h1'>
-        { this.state.election == null
-          ? " "
-          : "Teste dein Wissen: " + this.state.election.title}
-      </Header>
+        {this.state.quizAnswers.length === 0 && (
+          <h3 style={{ marginBottom: "4rem" }}>
+            {this.state.election != null && this.state.election.preliminary
+              ? "Was wird die Mehrheit in " +
+                TERRITORY_NAMES[this.territory] +
+                " voraussichtlich wählen?"
+              : "Was hat die Mehrheit in " +
+                TERRITORY_NAMES[this.territory] +
+                " gewählt?"}
+          </h3>
+        )}
 
-        <h3 style={{marginBottom: '4rem'}}>
-          {
-            this.state.election != null && this.state.election.preliminary
-              ? "Was wird die Mehrheit in " + TERRITORY_NAMES[this.territory] + " voraussichtlich wählen?"
-              : "Was hat die Mehrheit in " + TERRITORY_NAMES[this.territory] + " gewählt?"
-          }
+        {this.state.error != null && (
+          <Message negative content={this.state.error} />
+        )}
 
-        </h3>
+        <Loader active={this.state.isLoading} />
 
-      { this.state.error != null &&
-        <Message negative content={this.state.error} />
-      }
+        {/* Main content */}
+        {this.state.isLoading === false && (
+          <div className="theses">
+            {this.state.quizAnswers.length > this.state.quizIndex && (
+              <Grid style={{ marginBottom: "2rem" }} columns="2" stackable>
+                <Grid.Column>
+                  <Transition
+                    visible={
+                      this.state.quizAnswers.length > this.state.quizIndex
+                    }
+                    animation={
+                      this.state.quizAnswers[this.state.quizIndex] === true
+                        ? "bounce"
+                        : "shake"
+                    }
+                    duration={500}
+                  >
+                    <Header as="h2">
+                      {this.state.quizAnswers[this.state.quizIndex] === true
+                        ? "👍 Richtig! " +
+                          voterTerritoryName +
+                          " stimmt " +
+                          voterOpinionName +
+                          "."
+                        : "👎 Leider falsch. " +
+                          voterTerritoryName +
+                          " stimmt " +
+                          voterOpinionName +
+                          "."}
+                    </Header>
+                  </Transition>
+                  {this.state.correctRatio != null && (
+                    <p>
+                      Diese Frage wurde von{" "}
+                      {parseInt(this.state.correctRatio * 100.0, 10)}% der
+                      Besucher richtig beantwortet.
+                    </p>
+                  )}
+                </Grid.Column>
+                <Grid.Column>
+                  <Legend style={{ float: "right" }} />
+                </Grid.Column>
+              </Grid>
+            )}
+            {thesis}
+          </div>
+        )}
 
-      <Loader active={this.state.isLoading} />
+        {/* Quiz Result */}
+        {this.state.isLoading === false &&
+          this.state.quizIndex === this.state.quizSelection.length && (
+            <Segment size="large" raised className="quizResult">
+              <Header as="h1">
+                {quizResult >= 0.5 && (
+                  <span>
+                    Du bist ein Gewinner! {parseInt(quizResult * 100, 10)} % der
+                    Fragen richtig.
+                  </span>
+                )}
+                {quizResult < 0.5 && (
+                  <span>
+                    Leider verloren. {parseInt(quizResult * 100, 10)} % der
+                    Fragen richtig.
+                  </span>
+                )}
+              </Header>
 
-      {/* Main content */}
-      {this.state.isLoading === false &&
-      <div className="theses">
-        {thesesElems}
-      </div>
-      }
+              <p>
+                <Link
+                  to={
+                    "/wahlen/" + this.territory + "/" + this.electionNum + "/"
+                  }
+                >
+                  <Icon name="caret right" /> Öffne die Übersichtsgrafik zur{" "}
+                  {this.state.election.title}
+                </Link>{" "}
+                <br />
+                <Link to={"/wahlen/"}>
+                  <Icon name="caret right" /> Siehe alle Wahlen, zu denen es
+                  Quizzes gibt
+                </Link>{" "}
+                <br />
+                <Link to="/">
+                  <Icon name="caret right" /> Finde heraus, worum es bei
+                  Metawahl geht
+                </Link>
+              </p>
 
-      {/* Quiz progress indicator */}
-      { this.state.quizAnswers.length < this.state.theses.length &&
-        <div>
-          { this.state.quizAnswers.length !== this.state.quizSelection.length &&
-            <span>Noch { this.state.quizSelection.length - this.state.quizAnswers.length } Thesen bis zum Ergebnis</span>
-          }
-          <Progress value={this.state.quizAnswers.length} total={this.state.quizSelection.length} success={this.state.quizAnswers.length === this.state.quizSelection.length && quizResult >= 0.5} />
-        </div>
-      }
+              <Button.Group className="stackable">
+                <Button
+                  as="a"
+                  href={
+                    "https://www.facebook.com/sharer/sharer.php?u=" +
+                    SITE_ROOT +
+                    this.props.location.pathname
+                  }
+                  className="item"
+                  color="facebook"
+                  rel="nofollow"
+                  _target="blank"
+                >
+                  Quiz auf Facebook teilen
+                </Button>
+                <Button
+                  as="a"
+                  href={
+                    "https://twitter.com/home?status=" +
+                    SITE_ROOT +
+                    this.props.location.pathname
+                  }
+                  className="item"
+                  color="twitter"
+                  rel="nofollow"
+                  _target="blank"
+                >
+                  Quiz auf Twitter teilen
+                </Button>
+                <CopyToClipboard
+                  text={SITE_ROOT + this.props.location.pathname}
+                  onCopy={() => this.setState({ linkCopied: true })}
+                >
+                  <Button onClick={this.onClick}>
+                    <Icon name={this.state.linkCopied ? "check" : "linkify"} />{" "}
+                    Link kopieren
+                  </Button>
+                </CopyToClipboard>
+              </Button.Group>
+            </Segment>
+          )}
 
-      {/* Quiz Result */}
-      { this.state.isLoading === false && this.state.quizAnswers.length === this.state.quizSelection.length &&
-        <Segment size='large' raised className='quizResult'>
-          <Header as='h1'>
-            { quizResult >= 0.5 &&
-              <span>Du bist ein Gewinner! {parseInt(quizResult * 100, 10)} % der Fragen richtig.</span>
-            }
-            { quizResult < 0.5 &&
-              <span>Leider verloren. {parseInt(quizResult * 100, 10)} % der Fragen richtig.</span>
-            }
-          </Header>
+        {/* Quiz progress indicator */}
+        <Grid stackable verticalAlign="middle" reversed="mobile">
+          <Grid.Column width="12">
+            {this.state.quizAnswers.length !==
+              this.state.quizSelection.length && (
+              <span>
+                Noch{" "}
+                {this.state.quizSelection.length -
+                  this.state.quizAnswers.length}{" "}
+                Thesen bis zum Ergebnis
+              </span>
+            )}
 
-          <p>
-            <Link to={'/wahlen/' + this.territory + '/' + this.electionNum + '/'}><Icon name='caret right' /> Öffne die Übersichtsgrafik zur {this.state.election.title}</Link> <br />
-            <Link to={'/wahlen/'}><Icon name='caret right' /> Siehe alle Wahlen, zu denen es Quizzes gibt</Link> <br />
-            <Link to='/'><Icon name='caret right' /> Finde heraus, worum es bei Metawahl geht</Link>
-          </p>
-
-          <Button.Group className='stackable'>
-          <Button as='a' href={'https://www.facebook.com/sharer/sharer.php?u=' + SITE_ROOT + this.props.location.pathname}
-             className='item' color='facebook' rel='nofollow' _target='blank'>Quiz auf Facebook teilen</Button>
-          <Button as='a' href={'https://twitter.com/home?status=' + SITE_ROOT + this.props.location.pathname}
-             className='item' color='twitter' rel='nofollow' _target='blank'>Quiz auf Twitter teilen</Button>
-          <CopyToClipboard text={SITE_ROOT + this.props.location.pathname}
-            onCopy={() => this.setState({linkCopied: true})}>
-            <Button onClick={this.onClick}><Icon name={this.state.linkCopied ? 'check' : 'linkify'} /> Link kopieren</Button>
-          </CopyToClipboard>
-          </Button.Group>
-        </Segment>
-      }
-    </Container>;
+            <Progress
+              value={this.state.quizAnswers.length}
+              total={this.state.quizSelection.length}
+              success={
+                this.state.quizIndex === this.state.quizSelection.length &&
+                quizResult >= 0.5
+              }
+            />
+          </Grid.Column>
+          <Grid.Column width="4" textAlign="right">
+            <Button
+              primary
+              size="large"
+              icon
+              labelPosition="left"
+              disabled={this.state.quizAnswers.length === this.state.quizIndex}
+              onClick={this.handleNextQuestion}
+            >
+              <Icon name="right arrow" />
+              {this.state.quizIndex + 1 === this.state.quizSelection.length
+                ? "Ergebnis zeigen"
+                : "Nächste Frage"}
+            </Button>
+          </Grid.Column>
+        </Grid>
+      </Container>
+    )
   }
 }
