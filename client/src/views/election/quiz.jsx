@@ -23,7 +23,13 @@ import { loadFromCache } from "../../app/"
 import Thesis from "../../components/thesis/"
 import Legend from "../../components/legend"
 import Errorhandler from "../../utils/errorHandler"
-import { API_ROOT, SITE_ROOT, TERRITORY_NAMES, makeJSONRequest } from "../../config/"
+import { extractThesisID } from "../../utils/thesis"
+import {
+  API_ROOT,
+  SITE_ROOT,
+  TERRITORY_NAMES,
+  makeJSONRequest
+} from "../../config/"
 import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
 import SEO from "../../components/seo/"
 
@@ -31,6 +37,7 @@ import "../../index.css"
 import "./styles.css"
 
 type QuizAnswer = -1 | 0 | 1
+type QuizTally = { [string]: [number, number] }
 
 type State = {
   isLoading: boolean,
@@ -39,9 +46,16 @@ type State = {
   quizSelection: Array<ThesisType>,
   quizAnswers: Array<boolean>,
   quizIndex: number,
+  quizTally?: QuizTally,
+  correctRatio?: number,
   correctAnswer: ?QuizAnswer,
   linkCopied: boolean,
   error?: ?string
+}
+
+type QuizTallyResponse = {
+  error?: ?string,
+  data?: QuizTally
 }
 
 export default class Quiz extends React.Component<RouteProps, State> {
@@ -141,11 +155,35 @@ export default class Quiz extends React.Component<RouteProps, State> {
     answer: QuizAnswer,
     correctAnswer: QuizAnswer
   ) {
+    let correctRatio = this.tallyCorrectRatio(correctAnswer)
     this.setState({
       quizAnswers: this.state.quizAnswers.concat([answer === correctAnswer]),
-      correctAnswer
+      correctAnswer,
+      correctRatio
     })
     this.submitQuizAnswer(thesisNum, answer)
+  }
+
+  tallyCorrectRatio(correctAnswer: QuizAnswer) {
+    // Return the ratio of correct answers by other users
+    let correctRatio
+    if (this.state.quizTally != null && correctAnswer !== 0) {
+      const currentThesisNum = extractThesisID(
+        this.state.quizSelection[this.state.quizIndex].id
+      ).thesisNUM
+      if (this.state.quizTally[currentThesisNum] != null) {
+        const totalAnswers = this.state.quizTally[currentThesisNum].reduce(
+          (a, b) => a + b,
+          0
+        )
+        if (totalAnswers > 5) {
+          const i = correctAnswer === 1 ? 0 : 1
+          correctRatio =
+            this.state.quizTally[currentThesisNum][i] / totalAnswers
+        }
+      }
+    }
+    return correctRatio
   }
 
   handleNextQuestion() {
@@ -168,6 +206,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
             },
             () => {
               this.selectQuizTheses()
+              this.loadQuizTally()
             }
           )
           if (cb != null) cb(response.data)
@@ -181,6 +220,20 @@ export default class Quiz extends React.Component<RouteProps, State> {
           election: this.getCachedElection(),
           theses: []
         })
+      })
+  }
+
+  loadQuizTally() {
+    const endpoint = `${API_ROOT}/quiz/${this.electionNum}`
+    fetch(endpoint)
+      .then(res => res.json())
+      .then((res: QuizTallyResponse) => {
+        if (!this.handleError(res)) {
+          this.setState({ quizTally: res.data })
+        }
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
 
@@ -198,19 +251,17 @@ export default class Quiz extends React.Component<RouteProps, State> {
     this.setState({ quizSelection, isLoading: false })
   }
 
-  submitQuizAnswer(thesisNum:number, answer:QuizAnswer) {
-    if (this.state.error != null) return
-      const data = {
-        answer,
-        uuid: loadFromCache('uuid')
-      }
-      const thesis_id = this.state.quizSelection[thesisNum].id
-      fetch(
-        `${API_ROOT}/quiz/${thesis_id}`,
-        makeJSONRequest(data)
-      ).catch((error: Error) =>
-        console.log("Error submitting quiz answer: " + error.message)
-      )
+  submitQuizAnswer(thesisNum: number, answer: QuizAnswer) {
+    if (this.state.error != null || this.state.election == null) return
+    const data = {
+      answer,
+      uuid: loadFromCache("uuid")
+    }
+    const thesis_id = this.state.quizSelection[thesisNum].id
+    const endpoint = `${API_ROOT}/quiz/${this.state.election.id}/${thesisNum}`
+    fetch(endpoint, makeJSONRequest(data)).catch((error: Error) =>
+      console.log("Error submitting quiz answer: " + error.message)
+    )
   }
 
   render() {
@@ -348,9 +399,13 @@ export default class Quiz extends React.Component<RouteProps, State> {
                           "."}
                     </Header>
                   </Transition>
-                  <p>
-                    Diese Frage wurde von 30% der Besucher richtig beantwortet.
-                  </p>
+                  {this.state.correctRatio != null && (
+                    <p>
+                      Diese Frage wurde von{" "}
+                      {parseInt(this.state.correctRatio * 100.0, 10)}% der
+                      Besucher richtig beantwortet.
+                    </p>
+                  )}
                 </Grid.Column>
                 <Grid.Column>
                   <Legend style={{ float: "right" }} />
