@@ -16,7 +16,7 @@ class Quiz(Resource):
         "get": [cache.cached(timeout=(5 * 60))]
     }
 
-    def get(self, election_num):
+    def get(self, election_num, thesis_num=None):
         """Return a tally of how many users guessed yes/no for each thesis"""
         rv = {}
         error = None
@@ -31,8 +31,11 @@ class Quiz(Resource):
 
         return json_response({"error": error, "data": rv})
 
-    def post(self, election_num, thesis_num):
+    def post(self, election_num, thesis_num=None):
         """Record an answer given by a user in a quiz."""
+        if thesis_num == None:
+            return json_response({"error": "Missing path parameter for thesis number"}, status=422)
+
         log_request_info("Quiz answer post", request)
         rv = None
         error = None
