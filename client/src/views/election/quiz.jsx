@@ -386,12 +386,12 @@ export default class Quiz extends React.Component<RouteProps, State> {
                   >
                     <Header as="h2">
                       {this.state.quizAnswers[this.state.quizIndex] === true
-                        ? "😀 Richtig! " +
+                        ? "👍 Richtig! " +
                           voterTerritoryName +
                           " stimmt " +
                           voterOpinionName +
                           "."
-                        : "☹️ Leider falsch. " +
+                        : "👎 Leider falsch. " +
                           voterTerritoryName +
                           " stimmt " +
                           voterOpinionName +
