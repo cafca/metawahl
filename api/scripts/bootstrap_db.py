@@ -13,12 +13,12 @@ from datetime import datetime
 
 sys.path.append("./app/")
 
-from models import Election, Thesis, Position, Party, Tag, Result
+from models import Election, Thesis, Position, Party, Tag, Result, QuizAnswer
 from main import create_app
 from services import db
 from services.logger import logger
 
-API_VERSION = "Metawahl API v1"
+API_VERSION = "Metawahl API v2"
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
 OCCASION_IDS = {
@@ -66,14 +66,14 @@ OCCASION_IDS = {
     "data/2017/nordrheinwestfalen": 41,
     "data/2017/deutschland": 42,
     "data/2018/bayern": 43,
-    "data/2018/hessen": 44
+    "data/2018/hessen": 44,
 }
 
 INVALID_POSITION_TEXTS = [
     '"Die SPD Bayern verweist für ausführlichere Begründungen auf ihr Regierungsprogramm unter www.bayernspd.de"',
-    'Die Begründung der Partei zu ihrem Abstimmverhalten wird nachgereicht, da noch nicht alle Begründungen vorliegen.',
-    'Zu dieser These hat die Partei keine Begründung vorgelegt.',
-    'Es liegt keine Begründung zur Position dieser Partei vor.'
+    "Die Begründung der Partei zu ihrem Abstimmverhalten wird nachgereicht, da noch nicht alle Begründungen vorliegen.",
+    "Zu dieser These hat die Partei keine Begründung vorgelegt.",
+    "Es liegt keine Begründung zur Position dieser Partei vor.",
 ]
 
 party_instances = defaultdict(Party)
@@ -116,7 +116,7 @@ def load_elections():
             "opinions": load_data_file(path_for("opinion.json")),
             "overview": load_data_file(path_for("overview.json")),
             "parties": load_data_file(path_for("party.json"), index=True),
-            "theses": load_data_file(path_for("statement.json"), index=True)
+            "theses": load_data_file(path_for("statement.json"), index=True),
         }
 
         # Sort opinions by the thesis they belong to
@@ -127,8 +127,7 @@ def load_elections():
 
         if dataset["overview"]["info"] is not None:
             splitPos = dataset["overview"]["info"].rfind("/") + 1
-            wikipedia_title = dataset["overview"]["info"][splitPos:].replace(
-                "_", " ")
+            wikipedia_title = dataset["overview"]["info"][splitPos:].replace("_", " ")
 
         dt = dateutil.parser.parse(dataset["overview"]["date"])
 
@@ -138,34 +137,36 @@ def load_elections():
             date=dt,
             source=dataset["overview"]["data_source"],
             territory=territory,
-            wikipedia_title=wikipedia_title
+            wikipedia_title=wikipedia_title,
         )
 
         election.theses = load_theses(election_dir, **dataset)
         yield election
 
 
-def load_theses(election_dir, comments=None, opinions=None, overview=None,
-                parties=None, theses=None):
+def load_theses(
+    election_dir, comments=None, opinions=None, overview=None, parties=None, theses=None
+):
     """Load theses from a given ressource file."""
     rv = []
     for thesis_num in theses:
         thesis_id = "WOM-{election:03d}-{thesis:02d}".format(
-            election=OCCASION_IDS[election_dir],
-            thesis=thesis_num
+            election=OCCASION_IDS[election_dir], thesis=thesis_num
         )
 
         thesis = Thesis(
             id=thesis_id,
             title=theses[thesis_num]["label"],
-            text=theses[thesis_num]["text"]
+            text=theses[thesis_num]["text"],
         )
 
         if thesis.title == thesis.text:
             thesis.title = None
 
-        positions = [load_position(position_data, comments, parties)
-                     for position_data in opinions[thesis_num]]
+        positions = [
+            load_position(position_data, comments, parties)
+            for position_data in opinions[thesis_num]
+        ]
 
         for pos in positions:
             thesis.positions.append(pos)
@@ -186,11 +187,7 @@ def load_position(position_data, comments, parties):
     # ablehnend oder neutral sind, wird der Schlüssel hier hart kodiert,
 
     assert position_data["answer"] in [0, 1, 2]
-    value = {
-        0: 1,
-        1: -1,
-        2: 0
-    }[position_data["answer"]]
+    value = {0: 1, 1: -1, 2: 0}[position_data["answer"]]
 
     position = Position(value=value, party=party)
 
@@ -203,14 +200,40 @@ def load_position(position_data, comments, parties):
     return position
 
 
+def load_quiz_answers():
+    """Load quiz answers from quiz_answers.json"""
+    try:
+        with open("../userdata/quiz_answers.json") as f:
+            qa_export = json.load(f)
+    except FileNotFoundError:
+        logger.warning(
+            "File ../userdata/quiz_answers.json not found - quiz answers were not"
+            + "imported"
+        )
+        return
+
+    assert qa_export["meta"]["api"] == API_VERSION
+
+    logger.info("Adding {} quiz answers...".format(len(qa_export["data"])))
+
+    for qa_data in qa_export["data"]:
+        d = dateutil.parser.parse(qa_data["date"]).date()
+        qa = QuizAnswer(
+            thesis_id=qa_data["thesis"],
+            uuid=qa_data["uuid"],
+            date=d,
+            answer=qa_data["answer"],
+        )
+        yield qa
+
+
 def load_tags():
     """Load tags from exported tags.json."""
     try:
         with open("../userdata/tags.json") as f:
             tag_export = json.load(f)
     except FileNotFoundError:
-        logger.warning("File ../userdata/tags.json not found - tags were not" +
-                       "imported")
+        logger.warning("File ../userdata/tags.json not found - tags were not imported")
         return
 
     assert tag_export["meta"]["api"] == API_VERSION
@@ -221,7 +244,7 @@ def load_tags():
             title=tag_data["title"],
             slug=tag_data["slug"],
             url=tag_data["url"],
-            wikidata_id=tag_data["wikidata_id"]
+            wikidata_id=tag_data["wikidata_id"],
         )
 
         tag.description = tag_data.get("description", None)
@@ -251,8 +274,10 @@ def load_wahlergebnisse():
         with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
             wahlergebnisse = json.load(f)
     except FileNotFoundError:
-        logger.warning("wahlergebnisse/wahlergebnisse.json not found. Is " +
-                       "the submodule initialised?")
+        logger.warning(
+            "wahlergebnisse/wahlergebnisse.json not found. Is "
+            + "the submodule initialised?"
+        )
         quit()
 
     return wahlergebnisse
@@ -287,20 +312,24 @@ def make_substitutions():
         for p in parties.keys():
             found = False
 
-            for p1 in ([p] + substitutions[p]):
+            for p1 in [p] + substitutions[p]:
                 if p1.upper() in map(str.upper, we[d]["results"].keys()):
                     found = True
 
             if found is False:
-                print("\n".join("{}: {}".format(i, n)
-                                for i, n in enumerate(we[d]["results"].keys())))
+                print(
+                    "\n".join(
+                        "{}: {}".format(i, n)
+                        for i, n in enumerate(we[d]["results"].keys())
+                    )
+                )
 
                 choice = int(
-                    input("Welche Partei ist {}?\n{}\n\n".format(p, parties[p].text)))
+                    input("Welche Partei ist {}?\n{}\n\n".format(p, parties[p].text))
+                )
 
                 if choice != -1:
-                    substitutions[p].append(
-                        list(we[d]["results"].keys())[choice])
+                    substitutions[p].append(list(we[d]["results"].keys())[choice])
 
         with open("../userdata/substitutions.json", "w") as f:
             json.dump(substitutions, f, indent=2, ensure_ascii=False)
@@ -318,9 +347,12 @@ def load_results():
 
     for occ in db.session.query(Election).all():
         dt = occ.date.date()
-        occ_results = [o for o in result_data
-                       if o["territory"].lower().startswith(occ.territory.lower()[:2])
-                       and dateutil.parser.parse(o["date"]).date() == dt]
+        occ_results = [
+            o
+            for o in result_data
+            if o["territory"].lower().startswith(occ.territory.lower()[:2])
+            and dateutil.parser.parse(o["date"]).date() == dt
+        ]
 
         matched_results = set()
 
@@ -336,17 +368,21 @@ def load_results():
 
             parties = set([p.party for p in occ.theses[0].positions])
             for p in parties:
-                options = [p.name.lower(), ] + \
-                    list(map(str.lower, substitutions[p.name]))
-                matches = [(name, result) for name, result in res["results"].items(
-                ) if name.lower() in options]
+                options = [p.name.lower()] + list(map(str.lower, substitutions[p.name]))
+                matches = [
+                    (name, result)
+                    for name, result in res["results"].items()
+                    if name.lower() in options
+                ]
 
                 if len(matches) > 0:
                     for match in matches:
                         if match[0].lower() != p.name.lower():
-                            logger.warning("Assigned WOM text from {} to election result of {} in {}".format(
-                                p, match[0], res["title"]
-                            ))
+                            logger.warning(
+                                "Assigned WOM text from {} to election result of {} in {}".format(
+                                    p, match[0], res["title"]
+                                )
+                            )
                         matched_results.add(match[0])
                         votes = match[1]["votes"] if "votes" in match[1] else None
                         yield Result(
@@ -355,15 +391,13 @@ def load_results():
                             party_repr=match[0],
                             votes=votes,
                             pct=match[1]["pct"],
-                            source=res["url"]
+                            source=res["url"],
                         )
                 else:
                     if occ.preliminary:
-                        logger.info(
-                            "{} missing vote count for  {}".format(occ, p))
+                        logger.info("{} missing vote count for  {}".format(occ, p))
                     else:
-                        logger.error(
-                            "No vote count for {} in {}".format(p, occ))
+                        logger.error("No vote count for {} in {}".format(p, occ))
 
             # Add results missing in Wahl-o-Mat
             for p_name, match in res["results"].items():
@@ -384,14 +418,13 @@ def load_results():
                                 party = party_instances[name]
                                 logger.info(
                                     "Linked party {} to election result of '{}' in {}".format(
-                                        party, p_name, res["title"])
+                                        party, p_name, res["title"]
+                                    )
                                 )
                             break
 
                 if party is None:
-                    party = Party(
-                        name=p_name
-                    )
+                    party = Party(name=p_name)
                     party_instances[p_name] = party
 
                 yield Result(
@@ -401,11 +434,11 @@ def load_results():
                     votes=match["votes"] if "votes" in match else None,
                     pct=match["pct"],
                     source=res["url"],
-                    wom=False
+                    wom=False,
                 )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = create_app()
     with app.app_context():
         for obj in load_elections():
@@ -417,6 +450,9 @@ if __name__ == '__main__':
 
         for tag in load_tags():
             db.session.add(tag)
+
+        for quiz_answer in load_quiz_answers():
+            db.session.add(quiz_answer)
 
         logger.info("Committing session to disk...")
         db.session.commit()

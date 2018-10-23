@@ -2,10 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from services import db
-
-def dt_string(dt):
-    """Return iso string representation of a datetime including tz."""
-    return dt.strftime("%Y-%m-%d %H:%M:%S Z")
+from . import dt_string
 
 class Election(db.Model):
     """Represent an election for which WOM data exists."""

@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "date": "2018-10-23 11:15:04 Z",
+      "answer": 1,
+      "thesis": "WOM-001-01",
+      "uuid": "test-uuid"
+    }
+  ],
+  "meta": {
+    "api": "Metawahl API v2",
+    "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information"
+  }
+}
