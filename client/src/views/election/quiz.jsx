@@ -257,7 +257,6 @@ export default class Quiz extends React.Component<RouteProps, State> {
       answer,
       uuid: loadFromCache("uuid")
     }
-    const thesis_id = this.state.quizSelection[thesisNum].id
     const endpoint = `${API_ROOT}/quiz/${this.state.election.id}/${thesisNum}`
     fetch(endpoint, makeJSONRequest(data)).catch((error: Error) =>
       console.log("Error submitting quiz answer: " + error.message)
