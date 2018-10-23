@@ -8,10 +8,14 @@ from sqlalchemy.exc import IntegrityError
 from middleware.json_response import json_response
 from middleware.logger import logger, log_request_info
 from models import QuizAnswer, Thesis, Election
-from services import db
+from services import db, cache
 
 
 class Quiz(Resource):
+    method_decorators = {
+        "get": [cache.cached(timeout=(5 * 60))]
+    }
+
     def get(self, election_num):
         """Return a tally of how many users guessed yes/no for each thesis"""
         rv = {}
