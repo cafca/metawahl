@@ -109,6 +109,7 @@ Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
 
 Version | Beschreibung
 --------|--------------
+1.8.0   | Neues Design für Wahl-Übersicht, Quiz neu gestaltet
 1.7.0   | Backend Refactor und API-Dokumentation auf metawahl.de/daten/
 1.6.0   | Thematisch ähnliche Thesen auf jeder Thesenseite
 1.5.0   | Neues Format für die Startseite
