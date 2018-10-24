@@ -137,31 +137,27 @@ export default class Thesis extends Component<Props, State> {
           </a>
         </span>
       )
-      if (this.props.election.results_sources) {
-        this.props.election.results_sources.forEach(
-          url =>
-            url.indexOf("wahl.tagesschau.de") >= 0
-              ? sources.push(
-                  <span key="tagesschau-source">
-                    ,<a href={url}>Wahlergebnisse: wahl.tagesschau.de</a>
-                  </span>
-                )
-              : url.indexOf("wikipedia") >= 0
-                ? sources.push(
-                    <span key="wp-source">
-                      ,<a href={url}>Wahlergebnisse: Wikipedia</a>
-                    </span>
-                  )
-                : sources.push(
-                    <span key="dawum-source">
-                      ,
-                      <a href={url}>
-                        Wahlprognose: dawum.de, lizensiert unter CC-BY-NC-SA-4.0
-                      </a>
-                    </span>
-                  )
-        )
+      let source_name = this.props.election.results_source.name
+      let source_url = this.props.election.results_source.url
+      if (source_name == null) {
+        if (source_url.indexOf("wahl.tagesschau.de") >= 0) {
+          source_name = "Wahlergebnisse: wahl.tagesschau.de"
+        } else if (source_url.indexOf("wikipedia") >= 0) {
+          source_name =
+            "Wahlergebnisse: Wikipedia und lizensiert unter CC-BY-NC-SA-3.0"
+        } else if (source_url.indexOf("dawum.de") >= 0) {
+          source_name =
+            "Wahlprognose von dawum.de und lizensiert unter CC-BY-NC-SA-4.0"
+        } else {
+          source_name = source_url
+        }
       }
+
+      sources.push(
+        <span key="results-source">
+          ,<a href={source_url}>{source_name}</a>
+        </span>
+      )
     }
     return sources
   }

@@ -391,7 +391,8 @@ def load_results():
                             party_repr=match[0],
                             votes=votes,
                             pct=match[1]["pct"],
-                            source=res["url"],
+                            source_url=res["url"],
+                            source_name=res["source"] if "source" in res else None
                         )
                 else:
                     if occ.preliminary:
@@ -433,7 +434,8 @@ def load_results():
                     party=party,
                     votes=match["votes"] if "votes" in match else None,
                     pct=match["pct"],
-                    source=res["url"],
+                    source_url=res["url"],
+                    source_name=res["source"] if "source" in res else None,
                     wom=False,
                 )
 

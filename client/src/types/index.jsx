@@ -56,7 +56,11 @@ export type ElectionType = {
   id: number,
   date: string,
   results: ResultsType,
-  source: ?string,
+  results_source: {
+    url: string,
+    name?: string
+  },
+  preliminary?: boolean,
   territory: string,
   theses?: Array<ThesisType>,
   title: string,

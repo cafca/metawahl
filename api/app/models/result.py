@@ -12,7 +12,8 @@ class Result(db.Model):
     pct = db.Column(db.Float, nullable=False)
     is_seated = db.Column(db.Boolean, default=False)
     is_mandated = db.Column(db.Boolean, default=False)
-    source = db.Column(db.String(256), nullable=True)
+    source_url = db.Column(db.String(256), nullable=False)
+    source_name = db.Column(db.String(256), nullable=True)
 
     # Is there a position for this result in the corresponding wom?
     wom = db.Column(db.Boolean, default=True)

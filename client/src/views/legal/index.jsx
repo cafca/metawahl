@@ -146,15 +146,6 @@ export const LegalView = () => {
         </a>
         .
       </p>
-      <p>
-        Wahlprognosen zur{" "}
-        <a href="/wahlen/bayern/43">Landtagswahl Bayern 2018</a> von{" "}
-        <a href="https://dawum.de/Bayern/">dawum.de</a> lizensiert unteer{" "}
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.de">
-          CC-BY-NC-SA-4.0
-        </a>
-        .
-      </p>
     </Container>
   )
 }
