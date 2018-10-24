@@ -186,7 +186,7 @@ export default class Election extends React.Component<Props, State> {
         <Loader active={this.state.isLoading} />
 
         {/* Browsing suggestions */}
-        {this.state.isLoading === false && this.props.iframe !== true && (
+        {this.state.isLoading === false && this.props.iframe !== true && suggestions.length > 0 && (
           <SuggestionsGrid title="Und jetzt:" sections={suggestions} />
         )}
       </Container>

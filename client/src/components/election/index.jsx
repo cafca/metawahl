@@ -44,36 +44,37 @@ export default class Election extends React.Component<Props, State> {
           </a>
         </span>
       )
-      if (this.props.election.results_sources) {
-        this.props.election.results_sources.forEach(
-          url =>
-            url.indexOf("wahl.tagesschau.de") >= 0
-              ? sources.push(
-                  <span key="tagesschau-source">
-                    ,<a href={url}>Wahlergebnisse: wahl.tagesschau.de</a>
-                  </span>
-                )
-              : url.indexOf("wikipedia") >= 0
-                ? sources.push(
-                    <span key="wp-source">
-                      ,
-                      <a href={url}>
-                        Wahlergebnisse aus Wikipedia und lizensiert unter
-                        CC-BY-NC-SA-3.0
-                      </a>
-                    </span>
-                  )
-                : sources.push(
-                      <span key="dawum-source">
-                        ,
-                        <a href={url}>
-                          Wahlprognose von dawum.de und lizensiert unter
-                          CC-BY-NC-SA-4.0
-                        </a>
-                      </span>
-                    )
-        )
+
+      let source_name = this.props.election.results_source.name
+      let source_url = this.props.election.results_source.url
+
+      if (source_name == null) {
+        if (source_url.indexOf("wahl.tagesschau.de") >= 0) {
+          source_name = "Wahlergebnisse: wahl.tagesschau.de"
+        } else if (source_url.indexOf("wikipedia") >= 0) {
+          source_name =
+            "Wahlergebnisse: Wikipedia und lizensiert unter CC-BY-NC-SA-3.0"
+        } else if (source_url.indexOf("dawum.de") >= 0) {
+          source_name =
+            "Wahlprognose von dawum.de und lizensiert unter CC-BY-NC-SA-4.0"
+        } else {
+          source_name = source_url
+        }
+      } else {
+        if (this.props.election.preliminary !== true) {
+          source_name = "Wahlergebnisse: " + source_name
+        } else {
+          source_name = "Wahlprognose: " + source_name
+        }
       }
+
+
+
+      sources.push(
+        <span key="results-source">
+          ,<a href={source_url}>{source_name}</a>
+        </span>
+      )
     }
     return sources
   }
@@ -134,6 +135,7 @@ export default class Election extends React.Component<Props, State> {
     let sources = this.collectSources()
 
     const quizUrl = `/quiz/${this.props.territory}/${this.props.electionNum}/`
+    const sourceName = this.props.election && this.props.election.results_source.name
 
     return (
       <div className="election-component">
@@ -152,7 +154,7 @@ export default class Election extends React.Component<Props, State> {
           {this.props.election != null && (
             <Header.Subheader>
               {this.props.election.preliminary
-                ? "Hier wird gezeigt, welcher Stimmanteil laut Wahlprognosen an Parteien geht, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben"
+                ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
                 : "Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
             </Header.Subheader>
           )}

@@ -26,12 +26,17 @@ class Election(db.Model):
             "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
-            "results_sources": list(set([r.source for r in self.results])),
+            "results_source": {
+                "url": self.results[0].source_url
+            },
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,
             "wikipedia_title": self.wikipedia_title,
         }
+
+        if self.results[0].source_name != None:
+            rv["results_source"]["name"] = self.results[0].source_name
 
         if self.preliminary:
             rv["preliminary"] = True
