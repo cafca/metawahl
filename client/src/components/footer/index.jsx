@@ -114,10 +114,16 @@ const Footer = (props: RouteProps) => {
               </p>
               <p>
                 <a href="https://bmbf.de/">
-                  <BMBF style={{ filter: "invert(100%) grayscale(100%)" }} />
+                  <BMBF
+                    style={{ filter: "invert(100%) grayscale(100%)" }}
+                    alt="gefördert von: Logo Bundesministerium für Bildung und Forschung"
+                  />
                 </a>
                 <a href="https://okfn.de/">
-                  <OKFN style={{ filter: "invert(100%)" }} />
+                  <OKFN
+                    style={{ filter: "invert(100%)" }}
+                    alt="Logo Open Knowledge foundation"
+                  />
                 </a>
               </p>
             </Grid.Column>
