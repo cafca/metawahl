@@ -27,7 +27,7 @@
   border: none;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 500px) {
   .legend .small-legend {
     display: block;
   }

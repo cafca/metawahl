@@ -175,7 +175,7 @@ export default class Election extends React.Component<Props, State> {
           </Button>
         )}
 
-        <Legend text="Partei ist:" />
+        <Legend text="Legende:" showSmallParties={true} />
 
         {/* Main content */}
         {thesesElems.length > 0 && (
