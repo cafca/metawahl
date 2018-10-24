@@ -69,8 +69,6 @@ export default class Election extends React.Component<Props, State> {
         }
       }
 
-
-
       sources.push(
         <span key="results-source">
           ,<a href={source_url}>{source_name}</a>
@@ -136,7 +134,8 @@ export default class Election extends React.Component<Props, State> {
     let sources = this.collectSources()
 
     const quizUrl = `/quiz/${this.props.territory}/${this.props.electionNum}/`
-    const sourceName = this.props.election && this.props.election.results_source.name
+    const sourceName =
+      this.props.election && this.props.election.results_source.name
 
     return (
       <div className="election-component">
@@ -162,18 +161,18 @@ export default class Election extends React.Component<Props, State> {
         </Header>
 
         {this.props.iframe !== true && (
-        <Button
-          compact
-          icon
-          labelPosition="left"
-          floated="right"
-          as="a"
-          href={quizUrl}
-          style={{ marginBottom: "1rem" }}
-        >
-          <Icon name="right arrow" />
-          Teste dein Wissen im Quiz
-        </Button>
+          <Button
+            compact
+            icon
+            labelPosition="left"
+            floated="right"
+            as="a"
+            href={quizUrl}
+            style={{ marginBottom: "1rem" }}
+          >
+            <Icon name="right arrow" />
+            Teste dein Wissen im Quiz
+          </Button>
         )}
 
         <Legend text="Partei ist:" />
