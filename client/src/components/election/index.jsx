@@ -15,7 +15,8 @@ type Props = {
   territory: string,
   electionNum: number,
   election: ?ElectionType,
-  theses: Array<ThesisType>
+  theses: Array<ThesisType>,
+  iframe?: boolean
 }
 
 type State = {}
@@ -160,6 +161,7 @@ export default class Election extends React.Component<Props, State> {
           )}
         </Header>
 
+        {this.props.iframe !== true && (
         <Button
           compact
           icon
@@ -172,6 +174,7 @@ export default class Election extends React.Component<Props, State> {
           <Icon name="right arrow" />
           Teste dein Wissen im Quiz
         </Button>
+        )}
 
         <Legend text="Partei ist:" />
 

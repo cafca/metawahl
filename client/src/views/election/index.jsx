@@ -142,7 +142,7 @@ export default class Election extends React.Component<Props, State> {
 
     return (
       <Container className="electionContainer">
-        { this.props.iframe !== true &&
+        {this.props.iframe !== true && (
         <div>
         <SEO title={pageTitle} />
 
@@ -170,13 +170,14 @@ export default class Election extends React.Component<Props, State> {
           style={{ marginRight: "-10.5px" }}
         />
         </div>
-      }
+        )}
 
         <ElectionComponent
           election={this.state.election}
           theses={this.state.theses}
           territory={this.territory}
           electionNum={this.electionNum}
+          iframe={this.props.iframe}
         />
 
         {this.state.error != null && (
