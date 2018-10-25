@@ -233,7 +233,7 @@ export default class CompactThesis extends Component<Props, State> {
               {this.props.iframe === true ? (
                 <span>
                   Öffne diese These auf <a href={tUrl}>Metawahl.de</a> und finde
-                  heraus, wie die Parteien ihre Positionen gegenüber vergangenen
+                  heraus, wie die Parteien ihre Position gegenüber vergangenen
                   Wahlen geändert haben.
                 </span>
               ) : (
