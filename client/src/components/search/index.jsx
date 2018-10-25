@@ -190,6 +190,7 @@ class SearchComponent extends React.Component<SearchProps, SearchState> {
       <div className={className}>
         <div className="ui icon input">
           <input
+            aria-label="Suche"
             className="prompt"
             type="text"
             placeholder="Alles ist möglich..."

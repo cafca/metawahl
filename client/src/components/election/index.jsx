@@ -7,15 +7,34 @@ import { Button, Header, Icon } from "semantic-ui-react"
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
 import Legend from "../../components/legend/"
-import { extractThesisID } from "../../utils/thesis"
 
 import "./styles.css"
+
+const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
+  if (numTheses === 0) numTheses = "..."
+  let rv
+  if (iframe === true) {
+    rv =  preliminary === true
+      ? `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
+        stehen. So kann man schon jetzt sehen, welche Positionen wahrscheinlich gewählt werden.`
+      : `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
+        stehen. So kann man jetzt sehen, welche Positionen wirklich gewählt wurden.`
+  } else {
+    rv = preliminary === true
+      ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien
+        gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
+      : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
+        Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben.`
+  }
+  return <span>{rv} <em><a href="#methodik">Mehr zur Methode.</a></em></span>
+}
 
 type Props = {
   territory: string,
   electionNum: number,
   election: ?ElectionType,
-  theses: Array<ThesisType>
+  theses: Array<ThesisType>,
+  iframe?: boolean
 }
 
 type State = {}
@@ -68,8 +87,6 @@ export default class Election extends React.Component<Props, State> {
         }
       }
 
-
-
       sources.push(
         <span key="results-source">
           ,<a href={source_url}>{source_name}</a>
@@ -114,20 +131,17 @@ export default class Election extends React.Component<Props, State> {
     let thesesElems = this.props.theses
       .sort((a, b) => (this.getRatio(a) > this.getRatio(b) ? -1 : 1))
       .map((t, i) => {
-        const tUrl = `/wahlen/${this.props.territory}/${
-          this.props.electionNum
-        }/${extractThesisID(t.id).thesisNUM}/`
-        const proCount = t.positions.filter(p => p.value === 1).length
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
-            <a href={tUrl}>
               <Header size="medium">{t.title} </Header>
-              <CompactThesis key={t.id} election={this.props.election} {...t} />
-              <span className="thesisTitleInsert">
-                {proCount} von {t.positions.length} Parteien fordern: {t.text}
-              </span>
-            </a>
+              <CompactThesis
+                key={t.id}
+                election={this.props.election}
+                listIndex={i}
+                iframe={this.props.iframe}
+                {...t}
+              />
           </div>
         )
       })
@@ -135,7 +149,11 @@ export default class Election extends React.Component<Props, State> {
     let sources = this.collectSources()
 
     const quizUrl = `/quiz/${this.props.territory}/${this.props.electionNum}/`
-    const sourceName = this.props.election && this.props.election.results_source.name
+    const sourceName =
+      this.props.election && this.props.election.results_source.name
+
+    const legendShowMissing =
+      this.props.election && parseInt(this.props.election.date) < 2008
 
     return (
       <div className="election-component">
@@ -145,41 +163,54 @@ export default class Election extends React.Component<Props, State> {
             : this.props.election == null
               ? " "
               : this.props.election.preliminary
-                ? "Welche Politik wird voraussichtlich bei der " +
-                  this.props.election.title +
-                  " gewählt?"
+                ? "Welche Politik wird bei der " +
+                  (this.props.election.title === "Landtagswahl Hessen 2018"
+                    ? "Hessenwahl"
+                    : this.props.election.title) +
+                  " voraussichtlich gewählt?"
                 : "Welche Politik wurde bei der " +
                   this.props.election.title +
                   " gewählt?"}
           {this.props.election != null && (
             <Header.Subheader>
-              {this.props.election.preliminary
-                ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
-                : "Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
+              <ElectionSubheader
+                sourceName={sourceName}
+                iframe={this.props.iframe}
+                preliminary={this.props.election.preliminary}
+                numTheses={this.props.theses.length}
+              />
             </Header.Subheader>
           )}
         </Header>
 
-        <Button
-          compact
-          icon
-          labelPosition="left"
-          floated="right"
-          as="a"
-          href={quizUrl}
-          style={{ marginBottom: "1rem" }}
-        >
-          <Icon name="right arrow" />
-          Teste dein Wissen im Quiz
-        </Button>
+        {this.props.iframe !== true && (
+          <Button
+            compact
+            icon
+            labelPosition="left"
+            floated="right"
+            as="a"
+            href={quizUrl}
+            style={{ marginBottom: "1rem" }}
+          >
+            <Icon name="right arrow" />
+            Teste dein Wissen im Quiz
+          </Button>
+        )}
 
-        <Legend text="Partei ist:" />
+        {this.props.election && (
+          <Legend
+            text="Legende:"
+            showMissing={legendShowMissing === true}
+            preliminary={this.props.election.preliminary}
+          />
+        )}
 
         {/* Main content */}
         {thesesElems.length > 0 && (
           <span>
             <div className="theses">{thesesElems}</div>
-            <p className="sources">Quellen: {sources}</p>
+            <p className="sources" id="methodik">Quellen: {sources}</p>
           </span>
         )}
       </div>
