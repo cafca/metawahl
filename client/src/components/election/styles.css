@@ -29,8 +29,9 @@
 }
 
 .thesis-compact .ui.header {
-  margin-bottom: 0;
+  margin-bottom: .1em;
   margin-top: 1.5rem;
+  line-height: 1.1em;
 }
 
 @media (max-width: 991px) {
@@ -40,4 +41,26 @@
     margin-left: 1em !important;
     margin-right: 1em !important;
   }
+
+  .electionContainer h1.ui.header {
+    line-height: 1.1em;
+  }
+
+  .electionContainer .ui.header > .sub.header {
+    margin-top: .5rem;
+    line-height: 1.1em !important;
+  }
 }
+
+@media (max-width: 650px) {
+  .electionContainer h1.ui.header {
+    font-size: 1.6em;
+    line-height: 1.1em;
+  }
+
+  .electionContainer .ui.header > .sub.header {
+    margin-top: .5rem;
+    line-height: 1.1em !important;
+  }
+}
+
