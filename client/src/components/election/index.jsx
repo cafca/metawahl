@@ -27,7 +27,7 @@ const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
       : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
         Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben.`
   }
-  return <span>{rv} <em><a href="#">Mehr zur Methode.</a></em></span>
+  return <span>{rv} <em><a href="#methodik">Mehr zur Methode.</a></em></span>
 }
 
 type Props = {
@@ -211,7 +211,7 @@ export default class Election extends React.Component<Props, State> {
         {thesesElems.length > 0 && (
           <span>
             <div className="theses">{thesesElems}</div>
-            <p className="sources">Quellen: {sources}</p>
+            <p className="sources" id="methodik">Quellen: {sources}</p>
           </span>
         )}
       </div>
