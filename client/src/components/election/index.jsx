@@ -19,6 +19,7 @@ const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
         stehen. So kann man schon jetzt sehen, welche Positionen wahrscheinlich gewählt werden.`
       : `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
         stehen. So kann man jetzt sehen, welche Positionen wirklich gewählt wurden.`
+    rv = <span>{rv} <em><a href="#methodik">Mehr zur Methode.</a></em></span>
   } else {
     rv = preliminary === true
       ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien
@@ -26,7 +27,7 @@ const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
       : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
         Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben.`
   }
-  return <span>{rv} <em><a href="#methodik">Mehr zur Methode.</a></em></span>
+  return rv
 }
 
 type Props = {
@@ -147,8 +148,6 @@ export default class Election extends React.Component<Props, State> {
       })
 
     let sources = this.collectSources()
-
-    const quizUrl = `/quiz/${this.props.territory}/${this.props.electionNum}/`
     const sourceName =
       this.props.election && this.props.election.results_source.name
 
@@ -182,21 +181,6 @@ export default class Election extends React.Component<Props, State> {
             </Header.Subheader>
           )}
         </Header>
-
-        {this.props.iframe !== true && (
-          <Button
-            compact
-            icon
-            labelPosition="left"
-            floated="right"
-            as="a"
-            href={quizUrl}
-            style={{ marginBottom: "1rem" }}
-          >
-            <Icon name="right arrow" />
-            Teste dein Wissen im Quiz
-          </Button>
-        )}
 
         {this.props.election && (
           <Legend
