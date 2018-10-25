@@ -3,7 +3,7 @@
   margin-bottom: 2em;
 }
 
-.legend td {
+.legend tr td {
   white-space: nowrap;
 }
 
@@ -15,17 +15,20 @@
   display: inline-block;
 }
 
-.legend .small-legend {
+.ui.legend.small-legend {
   display: none;
+  border: none;
+  border-spacing: 1px;
 }
 
-.legend .large-legend {
+.ui.legend.large-legend {
   display: block;
 }
 
-.ui.table .small-legend tr td {
-  padding: 3px 11px;
+.ui.table.small-legend tr td {
+  padding: 3px 5px;
   color: #ececec;
+  text-align: center;
 }
 
 .legend.ui.table tr,
@@ -34,11 +37,11 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .legend .small-legend {
+  .ui.legend.small-legend {
     display: block;
   }
 
-  .legend .large-legend {
+  .ui.legend.large-legend {
     display: none;
   }
 }

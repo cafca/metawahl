@@ -12,6 +12,7 @@ import { extractThesisID } from "../../utils/thesis"
 import "./styles.css"
 
 const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
+  if (numTheses === 0) numTheses = "..."
   if (iframe === true) {
     return preliminary === true
       ? `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
