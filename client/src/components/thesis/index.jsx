@@ -65,9 +65,9 @@ const ElectionSubtitle = ({ election }: { election?: ElectionType }) =>
   )
 
 const valueNames = {
-  "-1": "Contra",
+  "-1": "Dagegen",
   "0": "Neutral",
-  "1": "Pro"
+  "1": "Dafür"
 }
 
 export type OpenTextType = PositionType & {
@@ -242,7 +242,7 @@ export default class Thesis extends Component<Props, State> {
       (this.props.election.results[openText.party]["pct"] || "<0,1") + "%"
     const posName =
       Object.keys(valueNames).indexOf(openText.value.toString()) > -1
-        ? " — " + valueNames[openText.value]
+        ? ": " + valueNames[openText.value]
         : ""
     openText["header"] = `${name} — ${result}${posName}`
 
@@ -473,6 +473,9 @@ export default class Thesis extends Component<Props, State> {
 
             {this.props.hideTags !== true && (
               <Segment attached={IS_ADMIN ? true : "bottom"} secondary>
+                {this.props.showHints === true &&
+                <Header size="small">Alle Parteipositionen zu:</Header>
+              }
                 {tagElems}
                 <br />
                 {tagElems.length === 0 &&
