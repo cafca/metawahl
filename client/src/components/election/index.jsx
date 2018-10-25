@@ -156,7 +156,7 @@ export default class Election extends React.Component<Props, State> {
 
     return (
       <div className="election-component">
-        <Header as="h1">
+        <Header as="h1" className={this.props.iframe ? "hyphenate" : ""}>
           {this.props.title != null
             ? this.props.title
             : this.props.election == null
