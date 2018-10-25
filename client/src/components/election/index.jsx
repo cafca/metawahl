@@ -13,19 +13,21 @@ import "./styles.css"
 
 const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
   if (numTheses === 0) numTheses = "..."
+  let rv
   if (iframe === true) {
-    return preliminary === true
+    rv =  preliminary === true
       ? `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
         stehen. So kann man schon jetzt sehen, welche Positionen wahrscheinlich gewählt werden.`
       : `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
         stehen. So kann man jetzt sehen, welche Positionen wirklich gewählt wurden.`
   } else {
-    return preliminary === true
+    rv = preliminary === true
       ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien
         gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
       : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
         Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben.`
   }
+  return <span>{rv} <em><a href="#">Mehr zur Methode.</a></em></span>
 }
 
 type Props = {
@@ -138,6 +140,7 @@ export default class Election extends React.Component<Props, State> {
                 key={t.id}
                 election={this.props.election}
                 listIndex={i}
+                iframe={this.props.iframe}
                 {...t}
               />
           </div>
