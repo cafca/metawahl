@@ -159,7 +159,7 @@ class App extends Component<Props, State> {
 
             <Route>
               <div className="App">
-                <SEO title="Metawahl" />
+                <SEO title="Metawahl" image="/metawahl-card.png" />
 
                 <Route
                   path="/:area?"

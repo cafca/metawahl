@@ -23,9 +23,9 @@ import type { OpenTextType } from "./"
 import "./Thesis.css"
 
 const valueNames = {
-  "-1": "Dagegen",
-  "0": "Neutral",
-  "1": "Dafür"
+  "-1": "dagegen",
+  "0": "neutral",
+  "1": "dafür"
 }
 
 type State = {
@@ -187,14 +187,14 @@ export default class CompactThesis extends Component<Props, State> {
 
     const name =
       this.props.election.results[openText.party]["name"] || openText.party
-    const result =
-      (this.props.election.results[openText.party]["pct"] || "<0,1") + "%"
+    // const result =
+    //   (this.props.election.results[openText.party]["pct"] || "<0,1") + "%"
     const posName =
       Object.keys(valueNames).indexOf(openText.value.toString()) > -1
-        ? " — " + valueNames[openText.value]
+        ? valueNames[openText.value]
         : ""
-    const ifPrognosis = this.props.preliminary === true ? "Wahlprognose " : ""
-    openText["header"] = `${name} (${ifPrognosis}${result})${posName}`
+    // const ifPrognosis = this.props.preliminary === true ? "Wahlprognose " : ""
+    openText["header"] = `${name} ${posName}:`
 
     this.setState({ openText })
   }
@@ -202,6 +202,10 @@ export default class CompactThesis extends Component<Props, State> {
   render() {
     const proCount = this.state.proPositions
       ? this.state.proPositions.length
+      : "..."
+
+    const totalCount = this.state.proPositions ?
+      (this.state.proPositions.length + this.state.neutralPositions.length + this.state.contraPositions.length)
       : "..."
 
     const tUrl = `/wahlen/${this.props.election.territory}/${
@@ -216,32 +220,52 @@ export default class CompactThesis extends Component<Props, State> {
           preliminary={this.props.election.preliminary}
           listIndex={this.props.listIndex}
         />
-        <span className="thesisTitleInsert">
-          {proCount} von {this.props.positions.length}{" "}
-          Parteien fordern: {this.props.text}
-        </span>
+        {this.state.openText === null && (
+          <span className="thesisTitleInsert">
+            {proCount} von {totalCount} Parteien {proCount === 1 ? "fordert" : "fordern"}:{" "}
+            {this.props.text}
+          </span>
+        )}
         <Transition visible={this.state.openText != null}>
           <div>
             <Message
+              className="positionPopup"
               attached
               onDismiss={() => this.toggleOpen(null)}
-              content={this.state.openText != null && this.state.openText.text}
-              header={this.state.openText != null && this.state.openText.header}
+              header={this.props.text}
+              content={
+                <p>
+                  <strong>
+                    {this.state.openText != null && this.state.openText.header}
+                  </strong>{" "}
+                  {this.state.openText != null && this.state.openText.text}
+                </p>
+              }
             />
             <Message attached="bottom" info>
               <Icon name="arrow right" />
               {this.props.iframe === true ? (
-                <span>
-                  Öffne diese These auf <a href={tUrl}>Metawahl.de</a> und finde
-                  heraus, wie die Parteien ihre Position gegenüber vergangenen
-                  Wahlen geändert haben.
-                </span>
+                <a href={tUrl} style={{ cursor: "pointer" }}>
+                  <span>
+                    Öffne diese These auf{" "}
+                    <span style={{ textDecoration: "underline" }}>
+                      Metawahl.de
+                    </span>{" "}
+                    und finde heraus, wie die Parteien ihre Position gegenüber
+                    vergangenen Wahlen geändert haben.
+                  </span>
+                </a>
               ) : (
-                <span>
-                  In der <a href={tUrl}>Detailansicht</a> zu dieser These findest du heraus, wie
-                  die Parteien ihre Position gegenüber vergangenen Wahlen
-                  geändert haben.
-                </span>
+                <a href={tUrl} style={{ cursor: "pointer" }}>
+                  <span>
+                    In der{" "}
+                    <span style={{ textDecoration: "underline" }}>
+                      Detailansicht
+                    </span>{" "}
+                    zu dieser These findest du heraus, wie die Parteien ihre
+                    Position gegenüber vergangenen Wahlen geändert haben.
+                  </span>
+                </a>
               )}
             </Message>
           </div>

@@ -2,7 +2,7 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Button, Header, Icon } from "semantic-ui-react"
+import { Header } from "semantic-ui-react"
 
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
@@ -14,19 +14,29 @@ const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
   if (numTheses === 0) numTheses = "..."
   let rv
   if (iframe === true) {
-    rv =  preliminary === true
-      ? `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
+    rv =
+      preliminary === true
+        ? `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
         stehen. So kann man schon jetzt sehen, welche Positionen wahrscheinlich gewählt werden.`
-      : `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
+        : `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
         stehen. So kann man jetzt sehen, welche Positionen wirklich gewählt wurden.`
+    rv = (
+      <span>
+        {rv}{" "}
+        <em>
+          <a href="#methodik">Mehr zur Methode.</a>
+        </em>
+      </span>
+    )
   } else {
-    rv = preliminary === true
-      ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien
+    rv =
+      preliminary === true
+        ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien
         gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
-      : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
+        : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
         Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben.`
   }
-  return <span>{rv} <em><a href="#methodik">Mehr zur Methode.</a></em></span>
+  return rv
 }
 
 type Props = {
@@ -48,52 +58,58 @@ export default class Election extends React.Component<Props, State> {
     this.thesisRefs = {}
   }
 
-  collectSources() {
-    let sources = []
-    if (this.props.election != null) {
-      sources.push(
-        <span key="wom-source">
-          <a href={this.props.election.source}>
-            Wahl-o-Mat zur {this.props.election.title} © Bundeszentrale für
-            politische Bildung
-          </a>{" "}
-          via{" "}
-          <a href="https://github.com/gockelhahn/qual-o-mat-data">
-            qual-o-mat-data
-          </a>
-        </span>
-      )
+  renderSources() {
+    let resultsSource = "Wahlergebnissen oder Wahlprognosen"
+    let womSource = "Wahl-o-Mat"
+    let prelimNote = ""
 
+    if (this.props.election != null) {
       let source_name = this.props.election.results_source.name
       let source_url = this.props.election.results_source.url
 
       if (source_name == null) {
         if (source_url.indexOf("wahl.tagesschau.de") >= 0) {
-          source_name = "Wahlergebnisse: wahl.tagesschau.de"
+          resultsSource = "Wahlergebnissen aus dem Tagesschau Wahlarchiv"
         } else if (source_url.indexOf("wikipedia") >= 0) {
-          source_name =
-            "Wahlergebnisse: Wikipedia und lizensiert unter CC-BY-NC-SA-3.0"
+          resultsSource = "Wahlergebnissen von Wikipedia"
         } else if (source_url.indexOf("dawum.de") >= 0) {
-          source_name =
-            "Wahlprognose von dawum.de und lizensiert unter CC-BY-NC-SA-4.0"
-        } else {
-          source_name = source_url
+          resultsSource = "Wahlprognosen von Dawum.de"
         }
       } else {
         if (this.props.election.preliminary !== true) {
-          source_name = "Wahlergebnisse: " + source_name
+          resultsSource = "Wahlergebnissen von " + source_name
         } else {
-          source_name = "Wahlprognose: " + source_name
+          resultsSource = "Wahlprognosen der " + source_name
         }
       }
 
-      sources.push(
-        <span key="results-source">
-          ,<a href={source_url}>{source_name}</a>
-        </span>
-      )
+      womSource = <em><a href={this.props.election.source}>Wahl-o-Mat zur {this.props.election.title} [PDF]</a></em>
+      prelimNote = this.props.election.preliminary ? "voraussichtlich " : ""
     }
-    return sources
+
+    return (
+      <div className="source" id="methodik">
+        {this.props.iframe === true && (
+          <p>
+            Diese Analyse ist ein Teil von <a href="https://metawahl.de">Metawahl.de</a>: Einem Tool
+            das zeigt, wie sich Politik in Deutschland über Zeit ändert und welche Parteien dies möglich machen. Es wurde von
+            Vincent Ahrend entwickelt und mit Förderung durch das
+            Bundesministerium für Bildung und Forschung als OpenSource-Projekt umgesetzt.
+          </p>
+        )}
+        <p>
+          Thesen und Parteipositionen stammen aus dem{" "}
+          {womSource} der Bundeszentrale für politische Bildung. Die Daten
+          wurden hier mit Unterstützung durch das Projekt{" "}
+          <a href="https://github.com/gockelhahn/qual-o-mat-data">
+            <em>qual-o-mat data</em>
+          </a>{" "}
+          eingebunden. Die Thesen und Positionen wurden mit {resultsSource}{" "}
+          kombiniert, um zu zeigen, welche politischen Positionen {prelimNote}von einer
+          Mehrzahl der Wähler durch ihre Stimme unterstützt werden.
+        </p>
+      </div>
+    )
   }
 
   getRatio({ title, positions }, reverse = false) {
@@ -131,24 +147,20 @@ export default class Election extends React.Component<Props, State> {
     let thesesElems = this.props.theses
       .sort((a, b) => (this.getRatio(a) > this.getRatio(b) ? -1 : 1))
       .map((t, i) => {
-
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
-              <Header size="medium">{t.title} </Header>
-              <CompactThesis
-                key={t.id}
-                election={this.props.election}
-                listIndex={i}
-                iframe={this.props.iframe}
-                {...t}
-              />
+            <Header size="medium">{t.title} </Header>
+            <CompactThesis
+              key={t.id}
+              election={this.props.election}
+              listIndex={i}
+              iframe={this.props.iframe}
+              {...t}
+            />
           </div>
         )
       })
 
-    let sources = this.collectSources()
-
-    const quizUrl = `/quiz/${this.props.territory}/${this.props.electionNum}/`
     const sourceName =
       this.props.election && this.props.election.results_source.name
 
@@ -157,7 +169,7 @@ export default class Election extends React.Component<Props, State> {
 
     return (
       <div className="election-component">
-        <Header as="h1">
+        <Header as="h1" className={this.props.iframe ? "hyphenate" : ""}>
           {this.props.title != null
             ? this.props.title
             : this.props.election == null
@@ -183,21 +195,6 @@ export default class Election extends React.Component<Props, State> {
           )}
         </Header>
 
-        {this.props.iframe !== true && (
-          <Button
-            compact
-            icon
-            labelPosition="left"
-            floated="right"
-            as="a"
-            href={quizUrl}
-            style={{ marginBottom: "1rem" }}
-          >
-            <Icon name="right arrow" />
-            Teste dein Wissen im Quiz
-          </Button>
-        )}
-
         {this.props.election && (
           <Legend
             text="Legende:"
@@ -210,7 +207,7 @@ export default class Election extends React.Component<Props, State> {
         {thesesElems.length > 0 && (
           <span>
             <div className="theses">{thesesElems}</div>
-            <p className="sources" id="methodik">Quellen: {sources}</p>
+            {this.renderSources()}
           </span>
         )}
       </div>

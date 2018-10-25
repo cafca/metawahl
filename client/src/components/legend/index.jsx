@@ -11,10 +11,17 @@ type Props = {
   text?: string,
   style?: any,
   preliminary: boolean,
-  showMissing: boolean
+  showMissing: boolean,
+  genericVariation?: boolean
 }
 
-const Legend = ({ text, style, preliminary, showMissing }: Props) => (
+const Legend = ({
+  text,
+  style,
+  preliminary,
+  showMissing,
+  genericVariation
+}: Props) => (
   <div>
     <Table
       basic
@@ -24,7 +31,7 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
       style={style}
       className="legend large-legend"
     >
-      <Table.Body >
+      <Table.Body>
         <Table.Row>
           {text != null && (
             <Table.Cell>
@@ -38,7 +45,9 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
             >
               &nbsp;
             </div>{" "}
-            Partei {preliminary ? "ist" : "war"} dafür
+            {genericVariation === true
+              ? "Dafür"
+              : "Partei" + (preliminary ? " ist " : " war ") + "dafür"}
           </Table.Cell>
           <Table.Cell>
             <div
@@ -47,7 +56,7 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
             >
               &nbsp;
             </div>{" "}
-            neutral
+            {genericVariation === true ? "Neutral" : "neutral"}
           </Table.Cell>
           <Table.Cell>
             <div
@@ -56,7 +65,7 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
             >
               &nbsp;
             </div>{" "}
-            dagegen
+            {genericVariation === true ? "Dagegen" : "dagegen"}
           </Table.Cell>
           {(preliminary || showMissing) && (
             <Table.Cell>
@@ -67,7 +76,9 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
                 &nbsp;
               </div>{" "}
               {showMissing
-                ? "nicht im Wahl-o-Mat"
+                ? genericVariation
+                  ? "Partei nicht im Wahl-o-Mat"
+                  : "nicht im Wahl-o-Mat"
                 : preliminary
                   ? "Kleinparteien"
                   : ""}
@@ -81,18 +92,18 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
       unstackable
       className="legend small-legend"
       style={style}
-      columns={(preliminary || showMissing) ? 4 : 3}
+      columns={preliminary || showMissing ? 4 : 3}
     >
       <Table.Body>
         <Table.Row>
           <Table.Cell style={{ backgroundColor: COLOR_PALETTE[2] }}>
-            Partei dafür
+          {genericVariation === true ? "Dafür" : "Partei dafür"}
           </Table.Cell>
           <Table.Cell style={{ backgroundColor: COLOR_PALETTE[1] }}>
-            neutral
+          {genericVariation === true ? "Neutral" : "neutral"}
           </Table.Cell>
           <Table.Cell style={{ backgroundColor: COLOR_PALETTE[0] }}>
-            dagegen
+          {genericVariation === true ? "Dagegen" : "dagegen"}
           </Table.Cell>
           {(preliminary || showMissing) && (
             <Table.Cell style={{ backgroundColor: OPINION_COLORS["missing"] }}>

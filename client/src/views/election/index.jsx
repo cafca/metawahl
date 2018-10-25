@@ -2,7 +2,14 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Breadcrumb, Container, Loader, Message } from "semantic-ui-react"
+import {
+  Button,
+  Icon,
+  Breadcrumb,
+  Container,
+  Loader,
+  Message
+} from "semantic-ui-react"
 import Moment from "moment"
 
 import "../../index.css"
@@ -142,6 +149,12 @@ export default class Election extends React.Component<Props, State> {
       ? "electionContainer iframe"
       : "electionContainer"
 
+    const quizUrl =
+      this.state.election != null &&
+      `/quiz/${this.state.election.territory}/${
+        this.state.election.id
+      }/`
+
     return (
       <Container className={containerClass}>
         {this.props.iframe !== true && (
@@ -171,6 +184,19 @@ export default class Election extends React.Component<Props, State> {
               {...this.state.election}
               style={{ marginRight: "-10.5px" }}
             />
+
+            <Button
+              compact
+              icon
+              labelPosition="left"
+              floated="right"
+              as="a"
+              href={quizUrl || ""}
+              style={{ marginBottom: "1rem", marginTop: "1rem" }}
+            >
+              <Icon name="right arrow" />
+              Teste dein Wissen im Quiz
+            </Button>
           </div>
         )}
 

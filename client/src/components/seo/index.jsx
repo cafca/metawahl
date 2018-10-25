@@ -22,7 +22,7 @@ class Meta extends React.Component {
     const title = data.title
     const description =
       data.description ||
-      "Welche Politik haben wir gewählt, als wir Parteien unsere Stimme gegeben haben?"
+      "Welche Politik wird in Deutschland tatsächlich gewählt?"
     const image = data.image !== undefined && `${SITE_ROOT}${data.image}`
     const canonical =
       data.canonical !== undefined && `${SITE_ROOT}${data.canonical}`
@@ -59,7 +59,7 @@ class Meta extends React.Component {
           <meta name="twitter:description" content={description} />
         ) : null}
         {image ? <meta name="twitter:image" content={image} /> : null}
-        <meta name="twitter:site" content="@metawahl_de" />
+        <meta name="twitter:site" content="@ciex" />
         {canonical ? (
           <link
             rel="alternate"
