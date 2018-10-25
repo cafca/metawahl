@@ -217,7 +217,7 @@ export default class CompactThesis extends Component<Props, State> {
           listIndex={this.props.listIndex}
         />
         <span className="thesisTitleInsert">
-          {this.state.proPositions.length} von {this.props.positions.length}{" "}
+          {proCount} von {this.props.positions.length}{" "}
           Parteien fordern: {this.props.text}
         </span>
         <Transition visible={this.state.openText != null}>

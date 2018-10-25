@@ -7,7 +7,6 @@ import { Button, Header, Icon } from "semantic-ui-react"
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
 import Legend from "../../components/legend/"
-import { extractThesisID } from "../../utils/thesis"
 
 import "./styles.css"
 
