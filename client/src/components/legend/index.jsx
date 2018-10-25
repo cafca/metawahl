@@ -10,16 +10,11 @@ import "./Legend.css"
 type Props = {
   text?: string,
   style?: any,
-  showMissing?: boolean,
-  showSmallParties?: boolean
+  preliminary: boolean,
+  showMissing: boolean
 }
 
-const Legend = ({
-  text,
-  style,
-  showMissing = false,
-  showSmallParties = false
-}: Props) => (
+const Legend = ({ text, style, preliminary, showMissing }: Props) => (
   <Table basic collapsing compact unstackable className="legend" style={style}>
     <Table.Body className="large-legend">
       <Table.Row>
@@ -32,7 +27,7 @@ const Legend = ({
           <div className="square" style={{ backgroundColor: COLOR_PALETTE[2] }}>
             &nbsp;
           </div>{" "}
-          Partei ist dafür
+          Partei {preliminary ? 'ist' : 'war'} dafür
         </Table.Cell>
         <Table.Cell>
           <div className="square" style={{ backgroundColor: COLOR_PALETTE[1] }}>
@@ -46,7 +41,7 @@ const Legend = ({
           </div>{" "}
           dagegen
         </Table.Cell>
-        {(showMissing || showSmallParties) && (
+        {(preliminary || showMissing) && (
           <Table.Cell>
             <div
               className="square"
@@ -54,13 +49,11 @@ const Legend = ({
             >
               &nbsp;
             </div>{" "}
-            {showMissing && showSmallParties
-              ? "Nicht vertreten / Kleinparteien"
-              : showMissing
-                ? "Nicht vertreten"
-                : showSmallParties
-                  ? "Kleinparteien"
-                  : ""}
+            {showMissing
+              ? "nicht im Wahl-o-Mat"
+              : preliminary
+                ? "Kleinparteien"
+                : ""}
           </Table.Cell>
         )}
       </Table.Row>
@@ -68,18 +61,11 @@ const Legend = ({
 
     <Table.Body className="small-legend">
       <Table.Row>
-        {text != null && (
-          <Table.Cell>
-            <p>{text}</p>
-          </Table.Cell>
-        )}
-      </Table.Row>
-      <Table.Row>
         <Table.Cell style={{ fontWeight: "normal" }}>
           <div className="square" style={{ backgroundColor: COLOR_PALETTE[2] }}>
             &nbsp;
           </div>{" "}
-          Partei ist dafür
+          Partei {preliminary ? 'ist' : 'war'} dafür
         </Table.Cell>
         <Table.Cell>
           <div className="square" style={{ backgroundColor: COLOR_PALETTE[1] }}>
@@ -95,7 +81,7 @@ const Legend = ({
           </div>{" "}
           dagegen
         </Table.Cell>
-        {(showMissing || showSmallParties) && (
+        {(preliminary || showMissing) && (
           <Table.Cell>
             <div
               className="square"
@@ -103,13 +89,11 @@ const Legend = ({
             >
               &nbsp;
             </div>{" "}
-            {showMissing && showSmallParties
-              ? "Nicht vertreten / Kleinparteien"
-              : showMissing
-                ? "Nicht vertreten"
-                : showSmallParties
-                  ? "Kleinparteien"
-                  : ""}
+            {showMissing
+              ? "nicht im W-o-M"
+              : preliminary
+                ? "Kleinparteien"
+                : ""}
           </Table.Cell>
         )}
       </Table.Row>

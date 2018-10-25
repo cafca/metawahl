@@ -22,3 +22,9 @@
 .partyNames span:hover {
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .positionChartFirstElementLabel {
+    display: none;
+  }
+}

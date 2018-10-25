@@ -11,6 +11,22 @@ import { extractThesisID } from "../../utils/thesis"
 
 import "./styles.css"
 
+const ElectionSubheader = ({ iframe, preliminary, sourceName, numTheses }) => {
+  if (iframe === true) {
+    return preliminary === true
+      ? `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
+        stehen. So kann man schon jetzt sehen, welche Positionen wahrscheinlich gewählt werden.`
+      : `Für den Wahl-O-Mat wurden alle Parteien gefragt, wie sie zu ${numTheses} Kernfragen
+        stehen. So kann man jetzt sehen, welche Positionen wirklich gewählt wurden.`
+  } else {
+    return preliminary === true
+      ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien
+        gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
+      : `Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich im
+        Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben.`
+  }
+}
+
 type Props = {
   territory: string,
   electionNum: number,
@@ -137,6 +153,9 @@ export default class Election extends React.Component<Props, State> {
     const sourceName =
       this.props.election && this.props.election.results_source.name
 
+    const legendShowMissing =
+      this.props.election && parseInt(this.props.election.date) < 2008
+
     return (
       <div className="election-component">
         <Header as="h1">
@@ -145,17 +164,20 @@ export default class Election extends React.Component<Props, State> {
             : this.props.election == null
               ? " "
               : this.props.election.preliminary
-                ? "Welche Politik wird voraussichtlich bei der " +
-                  this.props.election.title +
-                  " gewählt?"
+                ? "Welche Politik wird bei der " +
+                  (this.props.election.title === "Landtagswahl Hessen 2018" ? "Hessenwahl" : this.props.election.title) +
+                  " voraussichtlich gewählt?"
                 : "Welche Politik wurde bei der " +
                   this.props.election.title +
                   " gewählt?"}
           {this.props.election != null && (
             <Header.Subheader>
-              {this.props.election.preliminary
-                ? `Hier wird gezeigt, welcher Stimmanteil laut ${sourceName} an Parteien gehen wird, die sich im Wahl-o-Mat für die jeweiligen Thesen ausgesprochen haben`
-                : "Hier wird gezeigt, welcher Stimmanteil an Parteien ging, die sich vor der Wahl für eine These ausgesprochen haben."}
+              <ElectionSubheader
+                sourceName={sourceName}
+                iframe={this.props.iframe}
+                preliminary={this.props.election.preliminary}
+                numTheses={this.props.theses.length}
+              />
             </Header.Subheader>
           )}
         </Header>
@@ -175,7 +197,13 @@ export default class Election extends React.Component<Props, State> {
           </Button>
         )}
 
-        <Legend text="Legende:" showSmallParties={true} />
+        {this.props.election && (
+          <Legend
+            text="Legende:"
+            showMissing={legendShowMissing === true}
+            preliminary={this.props.election.preliminary}
+          />
+        )}
 
         {/* Main content */}
         {thesesElems.length > 0 && (

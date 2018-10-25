@@ -66,7 +66,8 @@ const Rect = ({
 type Props = {
   parties: MergedPartyDataType,
   toggleOpen: (party: string) => any,
-  compact?: boolean // set to true to restrict width to 70% and hide party names
+  compact?: boolean, // set to true to restrict width to 70% and hide party names,
+  preliminary?: boolean
 }
 
 type State = {
@@ -126,7 +127,7 @@ export default class PositionChart extends React.Component<Props, State> {
   makeRectangles(usablePixels, usedPixels) {
     const rectangles = this.state.parties
       .filter(d => d.pct > 0.1)
-      .map((data: MergedPartyDataType) => {
+      .map((data: MergedPartyDataType, i: number) => {
         const width = Math.round((data.pct * usablePixels) / 100.0)
         usedPixels += width + gapWidth
         return (
@@ -163,9 +164,11 @@ export default class PositionChart extends React.Component<Props, State> {
                   {data.party}
                 </tspan>
                 <tspan x={usedPixels - width - gapWidth + 10} y="80%">
-                  {parseInt(data.pct, 10)}%
+                  {parseInt(data.pct, 10)}%{" "}
+                  <tspan className="positionChartFirstElementLabel">
+                    {this.props.preliminary && i === 0 && "(Wahlprognose)"}
+                  </tspan>
                 </tspan>
-                {/* {data.party} {data.pct}% */}
               </text>
             )}
           </g>

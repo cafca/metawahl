@@ -150,6 +150,7 @@ export default class CompactThesis extends Component<Props, State> {
         parties={this.state.parties}
         toggleOpen={() => {}}
         compact={true}
+        preliminary={this.props.election.preliminary}
       />
     )
   }
