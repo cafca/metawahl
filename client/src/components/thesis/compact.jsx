@@ -3,12 +3,12 @@
 import "moment/locale/de"
 import React, { Component } from "react"
 import autoBind from "react-autobind"
-import { Transition, Message } from "semantic-ui-react"
+import { Transition, Message, Icon } from "semantic-ui-react"
 
 import "../../index.css"
 import PositionChart from "../positionChart/"
 import ErrorHandler from "../../utils/errorHandler"
-import { extractThesisID} from "../../utils/thesis"
+import { extractThesisID } from "../../utils/thesis"
 
 import type {
   ErrorType,
@@ -165,11 +165,9 @@ export default class CompactThesis extends Component<Props, State> {
     }
 
     if (position.party === "Sonstige") {
-      const tUrl = `/wahlen/${this.props.election.territory}/${
-        this.props.election.id
-      }/${extractThesisID(this.props.id).thesisNUM}/`
       openText = Object.assign({}, position, {
-        text: "Kleine Parteien sind in den Prognosewerten nicht enthalten, da deren Wahlergebnisse kaum vorherzusehen sind."
+        text:
+          "Kleine Parteien sind in den Prognosewerten nicht enthalten, da deren Wahlergebnisse kaum vorherzusehen sind."
       })
     } else if (position.value === "missing") {
       openText = Object.assign({}, position, {
@@ -204,6 +202,10 @@ export default class CompactThesis extends Component<Props, State> {
     const proCount = this.state.proPositions
       ? this.state.proPositions.length
       : "..."
+
+    const tUrl = `/wahlen/${this.props.election.territory}/${
+      this.props.election.id
+    }/${extractThesisID(this.props.id).thesisNUM}/`
     return (
       <div>
         <PositionChart
@@ -218,12 +220,30 @@ export default class CompactThesis extends Component<Props, State> {
           Parteien fordern: {this.props.text}
         </span>
         <Transition visible={this.state.openText != null}>
-          <Message
-            floating
-            onDismiss={() => this.toggleOpen(null)}
-            content={this.state.openText != null && this.state.openText.text}
-            header={this.state.openText != null && this.state.openText.header}
-          />
+          <div>
+            <Message
+              attached
+              onDismiss={() => this.toggleOpen(null)}
+              content={this.state.openText != null && this.state.openText.text}
+              header={this.state.openText != null && this.state.openText.header}
+            />
+            <Message attached="bottom" info>
+              <Icon name="arrow right" />
+              {this.props.iframe === true ? (
+                <span>
+                  Öffne diese These auf <a href={tUrl}>Metawahl.de</a> und finde
+                  heraus, wie die Parteien ihre Positionen gegenüber vergangenen
+                  Wahlen geändert haben.
+                </span>
+              ) : (
+                <span>
+                  In der <a href={tUrl}>Detailansicht</a> zu dieser These findest du heraus, wie
+                  die Parteien ihre Positionen gegenüber vergangenen Wahlen
+                  geändert haben.
+                </span>
+              )}
+            </Message>
+          </div>
         </Transition>
       </div>
     )

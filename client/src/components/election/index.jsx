@@ -130,7 +130,6 @@ export default class Election extends React.Component<Props, State> {
     let thesesElems = this.props.theses
       .sort((a, b) => (this.getRatio(a) > this.getRatio(b) ? -1 : 1))
       .map((t, i) => {
-        const proCount = t.positions.filter(p => p.value === 1).length
 
         return (
           <div key={"thesis-compact-" + i} className="thesis-compact">
