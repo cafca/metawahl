@@ -187,13 +187,13 @@ export default class CompactThesis extends Component<Props, State> {
 
     const name =
       this.props.election.results[openText.party]["name"] || openText.party
-    const result =
-      (this.props.election.results[openText.party]["pct"] || "<0,1") + "%"
+    // const result =
+    //   (this.props.election.results[openText.party]["pct"] || "<0,1") + "%"
     const posName =
       Object.keys(valueNames).indexOf(openText.value.toString()) > -1
         ? valueNames[openText.value]
         : ""
-    const ifPrognosis = this.props.preliminary === true ? "Wahlprognose " : ""
+    // const ifPrognosis = this.props.preliminary === true ? "Wahlprognose " : ""
     openText["header"] = `${name} ${posName}:`
 
     this.setState({ openText })
