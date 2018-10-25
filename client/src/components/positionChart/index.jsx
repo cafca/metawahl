@@ -68,7 +68,8 @@ type Props = {
   toggleOpen: (party: string) => any,
   compact?: boolean, // set to true to restrict width to 70% and hide party names,
   preliminary?: boolean,
-  listIndex?: number // position index of this element in listing
+  listIndex?: number // position index of this element in listing,
+
 }
 
 type State = {
