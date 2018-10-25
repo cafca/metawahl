@@ -23,7 +23,13 @@
   display: block;
 }
 
-.legend.ui.table tr, .legend.ui.table tr td {
+.ui.table .small-legend tr td {
+  padding: 3px 11px;
+  color: #ececec;
+}
+
+.legend.ui.table tr,
+.legend.ui.table tr td {
   border: none;
 }
 

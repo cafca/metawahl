@@ -14,7 +14,7 @@ type Props = {
   showMissing: boolean
 }
 
-const Legend = ({ text, style, preliminary, showMissing }: Props) => (
+const Legend = ({ text, style, preliminary, showMissing }: Props) => (<span>
   <Table basic collapsing compact unstackable className="legend" style={style}>
     <Table.Body className="large-legend">
       <Table.Row>
@@ -58,37 +58,21 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
         )}
       </Table.Row>
     </Table.Body>
-
+  </Table>
+  <Table basic unstackable className="legend" style={style} columns={(preliminary || showMissing) ? 4 : 3}>
     <Table.Body className="small-legend">
       <Table.Row>
-        <Table.Cell style={{ fontWeight: "normal" }}>
-          <div className="square" style={{ backgroundColor: COLOR_PALETTE[2] }}>
-            &nbsp;
-          </div>{" "}
-          Partei {preliminary ? 'ist' : 'war'} dafür
+        <Table.Cell style={{ backgroundColor: COLOR_PALETTE[2] }}>
+        Partei {preliminary ? 'ist' : 'war'} dafür
         </Table.Cell>
-        <Table.Cell>
-          <div className="square" style={{ backgroundColor: COLOR_PALETTE[1] }}>
-            &nbsp;
-          </div>{" "}
-          neutral
+        <Table.Cell style={{ backgroundColor: COLOR_PALETTE[1] }}>
+        neutral
         </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>
-          <div className="square" style={{ backgroundColor: COLOR_PALETTE[0] }}>
-            &nbsp;
-          </div>{" "}
-          dagegen
+        <Table.Cell style={{ backgroundColor: COLOR_PALETTE[0] }}>
+        dagegen
         </Table.Cell>
         {(preliminary || showMissing) && (
-          <Table.Cell>
-            <div
-              className="square"
-              style={{ backgroundColor: OPINION_COLORS["missing"] }}
-            >
-              &nbsp;
-            </div>{" "}
+          <Table.Cell style={{ backgroundColor: OPINION_COLORS["missing"] }}>
             {showMissing
               ? "nicht im W-o-M"
               : preliminary
@@ -98,7 +82,7 @@ const Legend = ({ text, style, preliminary, showMissing }: Props) => (
         )}
       </Table.Row>
     </Table.Body>
-  </Table>
+  </Table></span>
 )
 
 export default Legend
