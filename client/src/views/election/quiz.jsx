@@ -306,6 +306,9 @@ export default class Quiz extends React.Component<RouteProps, State> {
           : TERRITORY_NAMES[this.state.election.territory]
     }
 
+    const legendShowMissing =
+      this.state.election && parseInt(this.state.election.date) < 2008
+
     return (
       <Container fluid={false} className="electionContainer">
         <SEO
@@ -407,7 +410,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
                   )}
                 </Grid.Column>
                 <Grid.Column>
-                  <Legend style={{ float: "right" }} />
+                  <Legend style={{ float: "right" }} showMissing={legendShowMissing} preliminary={this.state.election && this.state.election.preliminary} />
                 </Grid.Column>
               </Grid>
             )}

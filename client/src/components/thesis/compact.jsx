@@ -217,12 +217,13 @@ export default class CompactThesis extends Component<Props, State> {
           listIndex={this.props.listIndex}
         />
         <span className="thesisTitleInsert">
-          {proCount} von {this.props.positions.length}{" "}
-          Parteien fordern: {this.props.text}
+          {proCount} von {this.props.positions.length} Parteien fordern:{" "}
+          {this.props.text}
         </span>
         <Transition visible={this.state.openText != null}>
           <div>
             <Message
+            className="positionPopup"
               attached
               onDismiss={() => this.toggleOpen(null)}
               content={this.state.openText != null && this.state.openText.text}
@@ -231,17 +232,27 @@ export default class CompactThesis extends Component<Props, State> {
             <Message attached="bottom" info>
               <Icon name="arrow right" />
               {this.props.iframe === true ? (
-                <span>
-                  Öffne diese These auf <a href={tUrl}>Metawahl.de</a> und finde
-                  heraus, wie die Parteien ihre Position gegenüber vergangenen
-                  Wahlen geändert haben.
-                </span>
+                <a href={tUrl} style={{ cursor: "pointer" }}>
+                  <span>
+                    Öffne diese These auf{" "}
+                    <span style={{ textDecoration: "underline" }}>
+                      Metawahl.de
+                    </span>{" "}
+                    und finde heraus, wie die Parteien ihre Position gegenüber
+                    vergangenen Wahlen geändert haben.
+                  </span>
+                </a>
               ) : (
-                <span>
-                  In der <a href={tUrl}>Detailansicht</a> zu dieser These findest du heraus, wie
-                  die Parteien ihre Position gegenüber vergangenen Wahlen
-                  geändert haben.
-                </span>
+                <a href={tUrl} style={{ cursor: "pointer" }}>
+                  <span>
+                    In der{" "}
+                    <span style={{ textDecoration: "underline" }}>
+                      Detailansicht
+                    </span>{" "}
+                    zu dieser These findest du heraus, wie die Parteien ihre
+                    Position gegenüber vergangenen Wahlen geändert haben.
+                  </span>
+                </a>
               )}
             </Message>
           </div>

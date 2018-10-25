@@ -30,3 +30,7 @@
 .thesis-compact {
   height: 50px;
 }
+
+.ui.message.positionPopup .header + p {
+  margin-top: .5em;
+}

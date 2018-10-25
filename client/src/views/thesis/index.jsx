@@ -2,7 +2,13 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Breadcrumb, Container, Header, Message, Loader } from "semantic-ui-react"
+import {
+  Breadcrumb,
+  Container,
+  Header,
+  Message,
+  Loader
+} from "semantic-ui-react"
 import Moment from "moment"
 
 import { API_ROOT, TERRITORY_NAMES } from "../../config/"
@@ -184,24 +190,35 @@ class Thesis extends React.Component<RouteProps, State> {
 
         <Loader active={this.state.isLoading} />
 
-
         {this.state.isLoading === false &&
           this.state.error == null && (
             <div className="contentLoaded">
-              <Legend text="Legende:" preliminary={this.state.election && this.state.election.preliminary} showMissing={legendShowMissing} />
+              <Legend
+                text="Legende:"
+                preliminary={
+                  this.state.election && this.state.election.preliminary
+                }
+                genericVariation={true}
+                showMissing={legendShowMissing}
+              />
               <ThesisComponent
                 election={this.state.election}
                 linkElection={true}
                 showHints={true}
                 {...this.state.thesis}
               />
-                <div>
-                  <Header size="large" id="relatedHeader">
-                    Ähnliche Thesen aus dem Archiv
-                  </Header>
-              {relatedElems.length === 0 && <p>Leider hat Metawahl für diese These in keinem anderen Wahl-o-Mat ähnliche Themen gefunden.</p>}
-                  {relatedElems}
-                </div>
+              <div>
+                <Header size="large" id="relatedHeader">
+                  Ähnliche Thesen aus dem Archiv
+                </Header>
+                {relatedElems.length === 0 && (
+                  <p>
+                    Leider hat Metawahl für diese These in keinem anderen
+                    Wahl-o-Mat ähnliche Themen gefunden.
+                  </p>
+                )}
+                {relatedElems}
+              </div>
             </div>
           )}
       </Container>
