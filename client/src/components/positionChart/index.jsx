@@ -45,7 +45,7 @@ const Rect = ({
   }
 
   const style =
-    hovered && compact !== true
+    hovered
       ? Object.assign(baseStyle, { fillOpacity: 0.45 })
       : baseStyle
 
@@ -55,7 +55,6 @@ const Rect = ({
       height="100%"
       onClick={() => toggleOpen()}
       onMouseOver={() => handleHover(party)}
-      onMouseOut={() => handleHover(undefined)}
       style={style}
       width={width}
       x={xPos.toString() + "px"}
@@ -113,6 +112,8 @@ export default class PositionChart extends React.Component<Props, State> {
     const party = data && data.party
     if (this.state.hovered !== party) {
       this.setState({ hovered: party })
+    }
+    if (this.props.compact !== true) {
       if (party) this.props.toggleOpen(data)
     }
   }
@@ -260,7 +261,7 @@ export default class PositionChart extends React.Component<Props, State> {
     } = this.responsiveSVGStyle()
 
     return (
-      <span className="positionChartContainer">
+      <span className="positionChartContainer" onMouseLeave={() => this.handleHover()}>
         <svg
           width={svgWidthString}
           height={svgHeightString}

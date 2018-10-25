@@ -2,12 +2,8 @@
   padding-top: calc(2rem - 0.14285714em);
 }
 
-.thesis-compact {
+.thesis-compact svg {
   cursor: pointer;
-}
-
-.thesis-compact:hover .thesisTitleInsert {
-  text-decoration: underline;
 }
 
 .thesisTitleInsert {
