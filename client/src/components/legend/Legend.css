@@ -23,6 +23,7 @@
 
 .ui.legend.large-legend {
   display: block;
+  width: fit-content;
 }
 
 .ui.table.small-legend tr td {
