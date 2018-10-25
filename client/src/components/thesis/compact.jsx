@@ -46,7 +46,8 @@ type Props = RouteProps &
     linkElection?: boolean,
     showHints?: boolean,
     quizMode?: boolean,
-    listIndex?: number
+    listIndex?: number,
+    iframe?: boolean
   }
 
 export default class CompactThesis extends Component<Props, State> {
@@ -238,7 +239,7 @@ export default class CompactThesis extends Component<Props, State> {
               ) : (
                 <span>
                   In der <a href={tUrl}>Detailansicht</a> zu dieser These findest du heraus, wie
-                  die Parteien ihre Positionen gegenüber vergangenen Wahlen
+                  die Parteien ihre Position gegenüber vergangenen Wahlen
                   geändert haben.
                 </span>
               )}
