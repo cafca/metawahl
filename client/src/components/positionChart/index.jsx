@@ -45,7 +45,7 @@ const Rect = ({
   }
 
   const style =
-    hovered && compact !== true
+    hovered
       ? Object.assign(baseStyle, { fillOpacity: 0.45 })
       : baseStyle
 
@@ -55,7 +55,6 @@ const Rect = ({
       height="100%"
       onClick={() => toggleOpen()}
       onMouseOver={() => handleHover(party)}
-      onMouseOut={() => handleHover(undefined)}
       style={style}
       width={width}
       x={xPos.toString() + "px"}
@@ -66,7 +65,10 @@ const Rect = ({
 type Props = {
   parties: MergedPartyDataType,
   toggleOpen: (party: string) => any,
-  compact?: boolean // set to true to restrict width to 70% and hide party names
+  compact?: boolean, // set to true to restrict width to 70% and hide party names,
+  preliminary?: boolean,
+  listIndex?: number // position index of this element in listing,
+
 }
 
 type State = {
@@ -110,6 +112,8 @@ export default class PositionChart extends React.Component<Props, State> {
     const party = data && data.party
     if (this.state.hovered !== party) {
       this.setState({ hovered: party })
+    }
+    if (this.props.compact !== true) {
       if (party) this.props.toggleOpen(data)
     }
   }
@@ -126,7 +130,7 @@ export default class PositionChart extends React.Component<Props, State> {
   makeRectangles(usablePixels, usedPixels) {
     const rectangles = this.state.parties
       .filter(d => d.pct > 0.1)
-      .map((data: MergedPartyDataType) => {
+      .map((data: MergedPartyDataType, i: number) => {
         const width = Math.round((data.pct * usablePixels) / 100.0)
         usedPixels += width + gapWidth
         return (
@@ -148,24 +152,21 @@ export default class PositionChart extends React.Component<Props, State> {
                 onClick={() => this.props.toggleOpen(data)}
                 onMouseOver={() => this.handleHover(data)}
                 onMouseOut={() => this.handleHover(null)}
-                style={{
-                  fill: "white",
-                  opacity: 0.7,
-                  fontSize: "0.9rem",
-                  cursor: "pointer"
-                }}
+                className="chartLabel"
               >
                 <tspan
-                  x={usedPixels - width - gapWidth + 10}
+                  x={usedPixels - width - gapWidth + 4}
                   y="40%"
                   style={{ fontWeight: "bold" }}
                 >
                   {data.party}
                 </tspan>
-                <tspan x={usedPixels - width - gapWidth + 10} y="80%">
-                  {parseInt(data.pct, 10)}%
+                <tspan x={usedPixels - width - gapWidth + 4} y="80%">
+                  {parseInt(data.pct, 10)}%{" "}
+                  <tspan className="positionChartFirstElementLabel">
+                    {this.props.preliminary && this.props.listIndex === 0 && i === 0 && "(Wahlprognose)"}
+                  </tspan>
                 </tspan>
-                {/* {data.party} {data.pct}% */}
               </text>
             )}
           </g>
@@ -260,7 +261,7 @@ export default class PositionChart extends React.Component<Props, State> {
     } = this.responsiveSVGStyle()
 
     return (
-      <span className="positionChartContainer">
+      <span className="positionChartContainer" onMouseLeave={() => this.handleHover()}>
         <svg
           width={svgWidthString}
           height={svgHeightString}

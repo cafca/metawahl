@@ -13,3 +13,8 @@
 .ui.primary.button {
   background-color: rgb(42, 64, 101) !important;
 }
+
+.ui.container.electionContainer.iframe {
+  margin: 0!important;
+  padding: 0!important;
+}

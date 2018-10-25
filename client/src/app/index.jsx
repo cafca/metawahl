@@ -25,7 +25,7 @@ import DataOverview from "../views/data"
 import ScrollToTop from "../utils/ScrollToTop"
 import ErrorHandler from "../utils/errorHandler"
 
-import type { ElectionListType, TagType, ErrorType } from "../../types/"
+import type { ElectionListType, TagType, ErrorType } from "../types/"
 
 export const loadFromCache = (key: string) => {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') return;

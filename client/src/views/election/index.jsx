@@ -42,7 +42,6 @@ export default class Election extends React.Component<Props, State> {
       election: this.getCachedElection(),
       theses: []
     }
-    this.thesisRefs = {}
     this.handleError = Errorhandler.bind(this)
   }
 
@@ -59,7 +58,6 @@ export default class Election extends React.Component<Props, State> {
         election: this.getCachedElection(),
         theses: []
       })
-      this.thesisRefs = {}
       this.loadElection()
     }
   }
@@ -140,43 +138,48 @@ export default class Election extends React.Component<Props, State> {
         ? "Metawahl"
         : `Metawahl: ${this.state.election.title}`
 
+    const containerClass = this.props.iframe
+      ? "electionContainer iframe"
+      : "electionContainer"
+
     return (
-      <Container className="electionContainer">
-        { this.props.iframe !== true &&
-        <div>
-        <SEO title={pageTitle} />
+      <Container className={containerClass}>
+        {this.props.iframe !== true && (
+          <div>
+            <SEO title={pageTitle} />
 
-        <Breadcrumb>
-          <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
-          <Breadcrumb.Divider icon="right angle" />
-          <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
-            {TERRITORY_NAMES[this.territory]}
-          </Breadcrumb.Section>
-          <Breadcrumb.Divider icon="right angle" />
-          {this.state.election == null ? (
-            <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-          ) : (
-            <Breadcrumb.Section
-              active
-              href={`/wahlen/${this.territory}/${this.electionNum}/`}
-            >
-              {Moment(this.state.election.date).year()}
-            </Breadcrumb.Section>
-          )}
-        </Breadcrumb>
+            <Breadcrumb>
+              <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
+              <Breadcrumb.Divider icon="right angle" />
+              <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
+                {TERRITORY_NAMES[this.territory]}
+              </Breadcrumb.Section>
+              <Breadcrumb.Divider icon="right angle" />
+              {this.state.election == null ? (
+                <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+              ) : (
+                <Breadcrumb.Section
+                  active
+                  href={`/wahlen/${this.territory}/${this.electionNum}/`}
+                >
+                  {Moment(this.state.election.date).year()}
+                </Breadcrumb.Section>
+              )}
+            </Breadcrumb>
 
-        <WikidataLabel
-          {...this.state.election}
-          style={{ marginRight: "-10.5px" }}
-        />
-        </div>
-      }
+            <WikidataLabel
+              {...this.state.election}
+              style={{ marginRight: "-10.5px" }}
+            />
+          </div>
+        )}
 
         <ElectionComponent
           election={this.state.election}
           theses={this.state.theses}
           territory={this.territory}
           electionNum={this.electionNum}
+          iframe={this.props.iframe}
         />
 
         {this.state.error != null && (
@@ -186,9 +189,11 @@ export default class Election extends React.Component<Props, State> {
         <Loader active={this.state.isLoading} />
 
         {/* Browsing suggestions */}
-        {this.state.isLoading === false && this.props.iframe !== true && suggestions.length > 0 && (
-          <SuggestionsGrid title="Und jetzt:" sections={suggestions} />
-        )}
+        {this.state.isLoading === false &&
+          this.props.iframe !== true &&
+          suggestions.length > 0 && (
+            <SuggestionsGrid title="Und jetzt:" sections={suggestions} />
+          )}
       </Container>
     )
   }
