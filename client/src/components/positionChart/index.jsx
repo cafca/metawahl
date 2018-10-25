@@ -67,7 +67,8 @@ type Props = {
   parties: MergedPartyDataType,
   toggleOpen: (party: string) => any,
   compact?: boolean, // set to true to restrict width to 70% and hide party names,
-  preliminary?: boolean
+  preliminary?: boolean,
+  listIndex?: number // position index of this element in listing
 }
 
 type State = {
@@ -166,7 +167,7 @@ export default class PositionChart extends React.Component<Props, State> {
                 <tspan x={usedPixels - width - gapWidth + 10} y="80%">
                   {parseInt(data.pct, 10)}%{" "}
                   <tspan className="positionChartFirstElementLabel">
-                    {this.props.preliminary && i === 0 && "(Wahlprognose)"}
+                    {this.props.preliminary && this.props.listIndex === 0 && i === 0 && "(Wahlprognose)"}
                   </tspan>
                 </tspan>
               </text>

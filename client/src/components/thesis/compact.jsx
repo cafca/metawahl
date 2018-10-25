@@ -35,7 +35,8 @@ type Props = RouteProps &
     election?: ElectionType,
     linkElection?: boolean,
     showHints?: boolean,
-    quizMode?: boolean
+    quizMode?: boolean,
+    listIndex?: number
   }
 
 export default class CompactThesis extends Component<Props, State> {
@@ -151,6 +152,7 @@ export default class CompactThesis extends Component<Props, State> {
         toggleOpen={() => {}}
         compact={true}
         preliminary={this.props.election.preliminary}
+        listIndex={this.props.listIndex}
       />
     )
   }

@@ -138,7 +138,12 @@ export default class Election extends React.Component<Props, State> {
           <div key={"thesis-compact-" + i} className="thesis-compact">
             <a href={tUrl}>
               <Header size="medium">{t.title} </Header>
-              <CompactThesis key={t.id} election={this.props.election} {...t} />
+              <CompactThesis
+                key={t.id}
+                election={this.props.election}
+                listIndex={i}
+                {...t}
+              />
               <span className="thesisTitleInsert">
                 {proCount} von {t.positions.length} Parteien fordern: {t.text}
               </span>
@@ -165,7 +170,9 @@ export default class Election extends React.Component<Props, State> {
               ? " "
               : this.props.election.preliminary
                 ? "Welche Politik wird bei der " +
-                  (this.props.election.title === "Landtagswahl Hessen 2018" ? "Hessenwahl" : this.props.election.title) +
+                  (this.props.election.title === "Landtagswahl Hessen 2018"
+                    ? "Hessenwahl"
+                    : this.props.election.title) +
                   " voraussichtlich gewählt?"
                 : "Welche Politik wurde bei der " +
                   this.props.election.title +
