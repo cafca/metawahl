@@ -128,7 +128,7 @@ export default class Thesis extends Component<Props, State> {
       sources.push(
         <span key="wom-source">
           <a href={this.props.election.source}>
-            Wahl-o-Mat zur {this.props.election.title} © Bundeszentrale für
+            Wahl-o-Mat zur {this.props.election.title} der Bundeszentrale für
             politische Bildung
           </a>{" "}
           via{" "}
@@ -432,7 +432,7 @@ export default class Thesis extends Component<Props, State> {
               <Header sub style={{ color: "rgba(0,0,0,.65)" }}>
                 Stimmverteilung{" "}
                 {this.props.election.preliminary
-                  ? " (Prognose von dawum.de)"
+                  ? " (Prognose)"
                   : ""}
               </Header>
 

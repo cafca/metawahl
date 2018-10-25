@@ -54,7 +54,7 @@ export default class Election extends React.Component<Props, State> {
       sources.push(
         <span key="wom-source">
           <a href={this.props.election.source}>
-            Wahl-o-Mat zur {this.props.election.title} © Bundeszentrale für
+            Wahl-o-Mat zur {this.props.election.title} von der Bundeszentrale für
             politische Bildung
           </a>{" "}
           via{" "}

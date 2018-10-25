@@ -87,7 +87,7 @@ const Footer = (props: RouteProps) => {
                 .
               </p>
               <p>
-                Alle Fragen und Antworten aus dem Wahl-o-Mat © Bundeszentrale
+                Alle Fragen und Antworten aus dem Wahl-o-Mat der Bundeszentrale
                 für politische Bildung. Auch wenn diese Daten hier ohne jegliche
                 inhaltliche Modifikationen abgebildet werden sollen, kann es aus
                 technischen Gründen zu Übertragunsfehlern gekommen sein. Solche
