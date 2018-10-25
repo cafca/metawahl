@@ -23,6 +23,22 @@
   cursor: pointer;
 }
 
+.chartLabel {
+  fill: white;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.chartLabel tspan {
+  padding-left: 5px;
+}
+@media (min-width: 651px) {
+  .chartLabel {
+    transform: translateX(6px)
+  }
+}
+
 @media (max-width: 650px) {
   .positionChartFirstElementLabel {
     display: none;

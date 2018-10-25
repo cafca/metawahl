@@ -150,21 +150,16 @@ export default class PositionChart extends React.Component<Props, State> {
                 onClick={() => this.props.toggleOpen(data)}
                 onMouseOver={() => this.handleHover(data)}
                 onMouseOut={() => this.handleHover(null)}
-                style={{
-                  fill: "white",
-                  opacity: 0.7,
-                  fontSize: "0.9rem",
-                  cursor: "pointer"
-                }}
+                className="chartLabel"
               >
                 <tspan
-                  x={usedPixels - width - gapWidth + 10}
+                  x={usedPixels - width - gapWidth + 4}
                   y="40%"
                   style={{ fontWeight: "bold" }}
                 >
                   {data.party}
                 </tspan>
-                <tspan x={usedPixels - width - gapWidth + 10} y="80%">
+                <tspan x={usedPixels - width - gapWidth + 4} y="80%">
                   {parseInt(data.pct, 10)}%{" "}
                   <tspan className="positionChartFirstElementLabel">
                     {this.props.preliminary && this.props.listIndex === 0 && i === 0 && "(Wahlprognose)"}
