@@ -23,9 +23,9 @@ import type { OpenTextType } from "./"
 import "./Thesis.css"
 
 const valueNames = {
-  "-1": "Dagegen",
-  "0": "Neutral",
-  "1": "Dafür"
+  "-1": "dagegen",
+  "0": "neutral",
+  "1": "dafür"
 }
 
 type State = {
@@ -191,10 +191,10 @@ export default class CompactThesis extends Component<Props, State> {
       (this.props.election.results[openText.party]["pct"] || "<0,1") + "%"
     const posName =
       Object.keys(valueNames).indexOf(openText.value.toString()) > -1
-        ? " — " + valueNames[openText.value]
+        ? valueNames[openText.value]
         : ""
     const ifPrognosis = this.props.preliminary === true ? "Wahlprognose " : ""
-    openText["header"] = `${name} (${ifPrognosis}${result})${posName}`
+    openText["header"] = `${name} ${posName}:`
 
     this.setState({ openText })
   }
@@ -202,6 +202,10 @@ export default class CompactThesis extends Component<Props, State> {
   render() {
     const proCount = this.state.proPositions
       ? this.state.proPositions.length
+      : "..."
+
+    const totalCount = this.state.proPositions ?
+      (this.state.proPositions.length + this.state.neutralPositions.length + this.state.contraPositions.length)
       : "..."
 
     const tUrl = `/wahlen/${this.props.election.territory}/${
@@ -216,18 +220,27 @@ export default class CompactThesis extends Component<Props, State> {
           preliminary={this.props.election.preliminary}
           listIndex={this.props.listIndex}
         />
-        <span className="thesisTitleInsert">
-          {proCount} von {this.props.positions.length} Parteien fordern:{" "}
-          {this.props.text}
-        </span>
+        {this.state.openText === null && (
+          <span className="thesisTitleInsert">
+            {proCount} von {totalCount} Parteien {proCount === 1 ? "fordert" : "fordern"}:{" "}
+            {this.props.text}
+          </span>
+        )}
         <Transition visible={this.state.openText != null}>
           <div>
             <Message
-            className="positionPopup"
+              className="positionPopup"
               attached
               onDismiss={() => this.toggleOpen(null)}
-              content={this.state.openText != null && this.state.openText.text}
-              header={this.state.openText != null && this.state.openText.header}
+              header={this.props.text}
+              content={
+                <p>
+                  <strong>
+                    {this.state.openText != null && this.state.openText.header}
+                  </strong>{" "}
+                  {this.state.openText != null && this.state.openText.text}
+                </p>
+              }
             />
             <Message attached="bottom" info>
               <Icon name="arrow right" />
