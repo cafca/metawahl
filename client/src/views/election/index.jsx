@@ -191,7 +191,7 @@ export default class Election extends React.Component<Props, State> {
               labelPosition="left"
               floated="right"
               as="a"
-              href={quizUrl}
+              href={quizUrl || ""}
               style={{ marginBottom: "1rem", marginTop: "1rem" }}
             >
               <Icon name="right arrow" />
