@@ -129,6 +129,9 @@ class Thesis extends React.Component<RouteProps, State> {
             )
           })
 
+    const legendShowMissing =
+      this.state.election && parseInt(this.state.election.date) < 2008
+
     return (
       <Container id="outerContainer">
         <SEO
@@ -173,7 +176,7 @@ class Thesis extends React.Component<RouteProps, State> {
 
         {this.state.thesis != null &&
           this.state.election != null && (
-            <Header as="h1" style={{ marginBottom: "2rem" }}>
+            <Header as="h1">
               These #{this.thesisNum + 1} aus dem Wahl-o-Mat zur{" "}
               {this.state.election.title}
             </Header>
@@ -184,22 +187,21 @@ class Thesis extends React.Component<RouteProps, State> {
 
         {this.state.isLoading === false &&
           this.state.error == null && (
-            <div style={{ marginTop: "2rem" }}>
-              <Legend text="Legende:" style={{marginBottom: "2rem"}}/>
+            <div className="contentLoaded">
+              <Legend text="Legende:" preliminary={this.state.election && this.state.election.preliminary} showMissing={legendShowMissing} />
               <ThesisComponent
                 election={this.state.election}
                 linkElection={true}
                 showHints={true}
                 {...this.state.thesis}
               />
-              {relatedElems.length > 0 && (
                 <div>
                   <Header size="large" id="relatedHeader">
                     Ähnliche Thesen aus dem Archiv
                   </Header>
+              {relatedElems.length === 0 && <p>Leider gab es im Wahl-o-Mat bisher keine Frage zu einem ähnlichen Thema.</p>}
                   {relatedElems}
                 </div>
-              )}
             </div>
           )}
       </Container>

@@ -1,3 +1,31 @@
 #relatedHeader {
   margin: 2em auto 1em;
 }
+
+.contentLoaded {
+  margin-top: 2rem;
+}
+
+table.legend.large-legend {
+  margin-bottom: 2rem;
+}
+
+table.legend.small-legend {
+  margin-bottom: 1rem !important;
+}
+
+.outerContainer > h1.ui.header {
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 500px) {
+  h1.ui.header {
+    line-height: 2.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .contentLoaded {
+    margin-top: 1rem;
+  }
+}
