@@ -199,7 +199,7 @@ class Thesis extends React.Component<RouteProps, State> {
                   <Header size="large" id="relatedHeader">
                     Ähnliche Thesen aus dem Archiv
                   </Header>
-              {relatedElems.length === 0 && <p>Leider gab es im Wahl-o-Mat bisher keine Frage zu einem ähnlichen Thema.</p>}
+              {relatedElems.length === 0 && <p>Leider hat Metawahl für diese These in keinem anderen Wahl-o-Mat ähnliche Themen gefunden.</p>}
                   {relatedElems}
                 </div>
             </div>
