@@ -138,8 +138,12 @@ export default class Election extends React.Component<Props, State> {
         ? "Metawahl"
         : `Metawahl: ${this.state.election.title}`
 
+    const containerClass = this.props.iframe
+      ? "electionContainer iframe"
+      : "electionContainer"
+
     return (
-      <Container className="electionContainer">
+      <Container className={containerClass}>
         {this.props.iframe !== true && (
           <div>
             <SEO title={pageTitle} />
