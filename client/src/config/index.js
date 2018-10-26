@@ -4,6 +4,7 @@
 
 export const DATA_DIR = "/data"
 
+export const API_VERSION = "Metawahl API v2"
 export const API_ROOT =
   !process.env.NODE_ENV || process.env.NODE_ENV === "development"
     ? "http://localhost:9000/v2"
