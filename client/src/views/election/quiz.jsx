@@ -32,6 +32,7 @@ import {
 } from "../../config/"
 import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
 import SEO from "../../components/seo/"
+import { ReactComponent as Logo } from "../../logo.svg"
 
 import "../../index.css"
 import "./styles.css"
@@ -267,6 +268,61 @@ export default class Quiz extends React.Component<Props, State> {
     )
   }
 
+  renderSources() {
+    let resultsSource = "Wahlergebnissen oder Wahlprognosen"
+    let womSource = "Wahl-o-Mat"
+    let prelimNote = ""
+
+    if (this.props.election && this.props.election.results_source != null) {
+      let source_name = this.props.election.results_source.name
+      let source_url = this.props.election.results_source.url
+
+      if (source_name == null) {
+        if (source_url.indexOf("wahl.tagesschau.de") >= 0) {
+          resultsSource = "Wahlergebnissen aus dem Tagesschau Wahlarchiv"
+        } else if (source_url.indexOf("wikipedia") >= 0) {
+          resultsSource = "Wahlergebnissen von Wikipedia"
+        } else if (source_url.indexOf("dawum.de") >= 0) {
+          resultsSource = "Wahlprognosen von Dawum.de"
+        }
+      } else {
+        if (this.props.election.preliminary !== true) {
+          resultsSource = "Wahlergebnissen von " + source_name
+        } else {
+          resultsSource = "Wahlprognosen der " + source_name
+        }
+      }
+
+      womSource = (
+        <em>
+          Wahl-o-Mat zur {this.props.election.title}
+        </em>
+      )
+      prelimNote = this.props.election.preliminary ? "voraussichtlich " : ""
+    }
+
+    return (
+      <Message className="source" id="methodik">
+          <p>
+            <Logo className="inlineLogo" />
+            Dieser Quiz ist Teil von{" "}
+            <a href="https://metawahl.de">Metawahl.de</a>: Einem Tool das zeigt,
+            wie sich Politik in Deutschland über Zeit ändert und welche Parteien
+            dies möglich machen. Es wurde von Vincent Ahrend entwickelt und mit
+            Förderung durch das Bundesministerium für Bildung und Forschung als
+            Open Source-Projekt umgesetzt.
+          </p>
+        <p>
+          Thesen und Parteipositionen stammen aus dem {womSource} der
+          Bundeszentrale für politische Bildung. Sie
+          wurden mit {resultsSource} kombiniert, um zu zeigen, welche
+          politischen Positionen {prelimNote}
+          von einer Mehrzahl der Wähler durch ihre Stimme unterstützt werden.
+        </p>
+      </Message>
+    )
+  }
+
   render() {
     let thesis
     let voterOpinionName = ""
@@ -351,12 +407,13 @@ export default class Quiz extends React.Component<Props, State> {
             </span>
           </Breadcrumb>
         )}
-
+        {this.state.quizAnswers.length === 0 &&
         <Header as="h1">
           {this.state.election == null
             ? " "
             : "Teste dein Wissen: " + this.state.election.title}
         </Header>
+        }
 
         {this.state.quizAnswers.length === 0 && (
           <h3>
@@ -550,6 +607,10 @@ export default class Quiz extends React.Component<Props, State> {
             </Button>
           </Grid.Column>
         </Grid>
+
+        {this.props.iframe === true &&
+          this.renderSources()
+      }
       </Container>
     )
   }

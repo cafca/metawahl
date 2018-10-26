@@ -32,10 +32,14 @@
   margin-bottom: 0;
 }
 
+.quiz .topGrid {
+  margin-top: 1rem;
+}
 
 
 @media only screen and (min-width: 500px) {
   .quiz .topGrid {
+    margin-top: 1rem;
     margin-bottom: 1rem;
   }
 }
