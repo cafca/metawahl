@@ -33,7 +33,6 @@ import {
 } from "../../config/"
 import { ErrorType, RouteProps, ThesisType, ElectionType } from "../../types/"
 import SEO from "../../components/seo/"
-import { ReactComponent as Logo } from "../../logo.svg"
 
 import "../../index.css"
 import "./styles.css"
@@ -85,6 +84,14 @@ export default class Quiz extends React.Component<Props, State> {
       linkCopied: false
     }
     this.handleError = Errorhandler.bind(this)
+  }
+
+  componentWillMount() {
+    if (this.props.iframe === true) {
+      const bodyElem = document.getElementsByTagName("BODY")[0];
+      bodyElem.setAttribute("style","min-width: 280px;");
+
+    }
   }
 
   componentDidMount() {

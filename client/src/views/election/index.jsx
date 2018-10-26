@@ -52,6 +52,13 @@ export default class Election extends React.Component<Props, State> {
     this.handleError = Errorhandler.bind(this)
   }
 
+  componentWillMount() {
+    if (this.props.iframe === true) {
+      const bodyElem = document.getElementsByTagName("BODY")[0];
+      bodyElem.setAttribute("style","min-width: 288px;");
+    }
+  }
+
   componentDidMount() {
     this.loadElection()
   }
