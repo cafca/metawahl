@@ -593,7 +593,7 @@ export default class Quiz extends React.Component<Props, State> {
           </Grid.Column>
           <Grid.Column width="4" textAlign="right">
             <Button
-              primary
+              color="grey"
               size="large"
               icon
               labelPosition="left"
