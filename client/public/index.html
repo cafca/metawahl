@@ -1,39 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#2a4065">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2a4065">
-    <meta name="apple-mobile-web-app-title" content="Metawahl">
-    <meta name="application-name" content="Metawahl">
-    <meta name="msapplication-TileColor" content="#2a4065">
-    <meta name="theme-color" content="#ffffff">
-    <title>Metawahl</title>
-  </head>
-  <body>
-    <noscript>
-      Wir empfehlen Javascript, um diese App zu genießen
-    </noscript>
-    <div id="root"></div>
-    <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
-    <script>
-      (function(f, a, t, h, o, m){
-        a[h]=a[h]||function(){
-          (a[h].q=a[h].q||[]).push(arguments)
-        };
-        o=f.createElement('script'),
-        m=f.getElementsByTagName('script')[0];
-        o.async=1; o.src=t; o.id='fathom-script';
-        m.parentNode.insertBefore(o,m)
-      })(document, window, '//fathom.metawahl.de/tracker.js', 'fathom');
-      fathom('trackPageview');
-      </script>
-      <!-- / Fathom -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#2a4065">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2a4065">
+  <meta name="apple-mobile-web-app-title" content="Metawahl">
+  <meta name="application-name" content="Metawahl">
+  <meta name="msapplication-TileColor" content="#2a4065">
+  <meta name="theme-color" content="#ffffff">
+  <title>Metawahl</title>
+  <link rel="image_src" href="https://metawahl.de/metawahl-card.png" data-react-helmet="true">
+  <meta name="description" content="Welche Politik wird in Deutschland tatsächlich gewählt?" data-react-helmet="true">
+  <meta itemprop="image" content="https://metawahl.de/metawahl-card.png" data-react-helmet="true">
+  <meta property="og:site_name" content="Metawahl" data-react-helmet="true">
+  <meta property="og:title" content="Metawahl" data-react-helmet="true">
+  <meta property="og:description" content="Welche Politik wird in Deutschland tatsächlich gewählt?" data-react-helmet="true">
+  <meta property="og:locale" content="de_DE" data-react-helmet="true">
+  <meta property="og:type" content="article" data-react-helmet="true">
+  <meta property="og:image" content="https://metawahl.de/metawahl-card.png" data-react-helmet="true">
+  <meta property="og:image:width" content="1200" data-react-helmet="true">
+  <meta property="og:image:height" content="630" data-react-helmet="true">
+  <meta name="twitter:card" content="summary_large_image" data-react-helmet="true">
+  <meta name="twitter:title" content="Metawahl" data-react-helmet="true">
+  <meta name="twitter:description" content="Welche Politik wird in Deutschland tatsächlich gewählt?" data-react-helmet="true">
+  <meta name="twitter:image" content="https://metawahl.de/metawahl-card.png" data-react-helmet="true">
+  <meta name="twitter:site" content="@ciex" data-react-helmet="true">
+</head>
+
+<body>
+  <noscript>
+    Wir empfehlen Javascript, um diese App zu genießen
+  </noscript>
+  <div id="root"></div>
+  <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
+  <script>
+    (function (f, a, t, h, o, m) {
+      a[h] = a[h] || function () {
+        (a[h].q = a[h].q || []).push(arguments)
+      };
+      o = f.createElement('script'),
+        m = f.getElementsByTagName('script')[0];
+      o.async = 1; o.src = t; o.id = 'fathom-script';
+      m.parentNode.insertBefore(o, m)
+    })(document, window, '//fathom.metawahl.de/tracker.js', 'fathom');
+    fathom('trackPageview');
+  </script>
+  <!-- / Fathom -->
+</body>
+
 </html>

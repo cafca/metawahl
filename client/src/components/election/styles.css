@@ -62,3 +62,9 @@
 .source a {
   text-decoration: underline;
 }
+
+.inlineLogo {
+  height: 5em;
+  vertical-align: middle;
+  float: left;
+}
