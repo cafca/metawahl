@@ -385,13 +385,13 @@ export default class Thesis extends Component<Props, State> {
     } else if (this.state.voterOpinion === 1) {
       subHeader = Math.round(this.state.ratioPro).toString()
       subHeader += this.props.election.preliminary
-        ? " von 100 Wählern werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dafür sind"
-        : " von 100 Wählern haben Parteien gewählt, die im Wahl-o-Mat dafür waren"
+        ? " von 100 werden voraussichtlich Parteien wählen, die dafür sind"
+        : " von 100 haben Parteien gewählt, die dafür waren"
     } else {
       subHeader = Math.round(this.state.ratioContra).toString()
       subHeader += this.props.election.preliminary
-        ? " von 100 Wählern werden voraussichtlich Parteien wählen, die im Wahl-o-Mat dagegen sind"
-        : " von 100 Wählern haben Parteien gewählt, die im Wahl-o-Mat dagegen waren"
+        ? " von 100 werden voraussichtlich Parteien wählen, die dagegen sind"
+        : " von 100 haben Parteien gewählt, die dagegen waren"
     }
 
     const thesisIdComps = extractThesisID(this.props.id)
@@ -507,14 +507,14 @@ export default class Thesis extends Component<Props, State> {
                 onClick={() => this.handleAnswer(1)}
                 style={{ backgroundColor: OPINION_COLORS[1] }}
               >
-                Mehrheit dafür
+                Mehrheit stimmt dafür
               </Button>
 
               <Button
                 onClick={() => this.handleAnswer(-1)}
                 style={{ backgroundColor: OPINION_COLORS[-1] }}
               >
-                Mehrheit dagegen
+                Mehrheit stimmt dagegen
               </Button>
             </Button.Group>
           )}
