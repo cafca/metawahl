@@ -58,7 +58,11 @@ type QuizTallyResponse = {
   data?: QuizTally
 }
 
-export default class Quiz extends React.Component<RouteProps, State> {
+type Props = RouteProps & {
+  iframe?: boolean
+}
+
+export default class Quiz extends React.Component<Props, State> {
   territory: string
   electionNum: number
   handleError: ErrorType => any
@@ -310,7 +314,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
       this.state.election && parseInt(this.state.election.date) < 2008
 
     return (
-      <Container fluid={false} className="electionContainer">
+      <Container fluid={false} className="electionContainer quiz">
         <SEO
           title={
             "Metawahl: " +
@@ -318,42 +322,44 @@ export default class Quiz extends React.Component<RouteProps, State> {
           }
         />
 
-        <Breadcrumb>
-          <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
-          <Breadcrumb.Divider icon="right angle" />
-          <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
-            {TERRITORY_NAMES[this.territory]}
-          </Breadcrumb.Section>
-          <Breadcrumb.Divider icon="right angle" />
-          {this.state.election == null ? (
-            <Breadcrumb.Section>Loading...</Breadcrumb.Section>
-          ) : (
-            <Breadcrumb.Section
-              href={`/wahlen/${this.territory}/${this.electionNum}/`}
-            >
-              {Moment(this.state.election.date).year()}
-            </Breadcrumb.Section>
-          )}
-
-          <span>
+        {this.props.iframe !== true && (
+          <Breadcrumb>
+            <Breadcrumb.Section href="/wahlen/">Wahlen</Breadcrumb.Section>
             <Breadcrumb.Divider icon="right angle" />
-            <Breadcrumb.Section
-              active
-              href={`/quiz/${this.territory}/${this.electionNum}/`}
-            >
-              Quiz
+            <Breadcrumb.Section href={`/wahlen/${this.territory}/`}>
+              {TERRITORY_NAMES[this.territory]}
             </Breadcrumb.Section>
-          </span>
-        </Breadcrumb>
+            <Breadcrumb.Divider icon="right angle" />
+            {this.state.election == null ? (
+              <Breadcrumb.Section>Loading...</Breadcrumb.Section>
+            ) : (
+              <Breadcrumb.Section
+                href={`/wahlen/${this.territory}/${this.electionNum}/`}
+              >
+                {Moment(this.state.election.date).year()}
+              </Breadcrumb.Section>
+            )}
 
-        <Header as="h1" style={{ marginBottom: "3rem" }}>
+            <span>
+              <Breadcrumb.Divider icon="right angle" />
+              <Breadcrumb.Section
+                active
+                href={`/quiz/${this.territory}/${this.electionNum}/`}
+              >
+                Quiz
+              </Breadcrumb.Section>
+            </span>
+          </Breadcrumb>
+        )}
+
+        <Header as="h1">
           {this.state.election == null
             ? " "
             : "Teste dein Wissen: " + this.state.election.title}
         </Header>
 
         {this.state.quizAnswers.length === 0 && (
-          <h3 style={{ marginBottom: "4rem" }}>
+          <h3>
             {this.state.election != null && this.state.election.preliminary
               ? "Was wird die Mehrheit in " +
                 TERRITORY_NAMES[this.territory] +
@@ -374,7 +380,7 @@ export default class Quiz extends React.Component<RouteProps, State> {
         {this.state.isLoading === false && (
           <div className="theses">
             {this.state.quizAnswers.length > this.state.quizIndex && (
-              <Grid style={{ marginBottom: "2rem" }} columns="2" stackable>
+              <Grid columns="2" stackable className="topGrid">
                 <Grid.Column>
                   <Transition
                     visible={
@@ -410,7 +416,13 @@ export default class Quiz extends React.Component<RouteProps, State> {
                   )}
                 </Grid.Column>
                 <Grid.Column>
-                  <Legend style={{ float: "right" }} showMissing={legendShowMissing} preliminary={this.state.election && this.state.election.preliminary} />
+                  <Legend
+                    style={{ float: "right" }}
+                    showMissing={legendShowMissing}
+                    preliminary={
+                      this.state.election && this.state.election.preliminary
+                    }
+                  />
                 </Grid.Column>
               </Grid>
             )}

@@ -377,7 +377,7 @@ export default class Thesis extends Component<Props, State> {
             color: "#fcfcfc"
           }
 
-    const margin = this.props.quizMode ? "4em" : "2em"
+    const margin = this.props.quizMode ? "2em" : "2em"
 
     let subHeader = ""
     if (this.state.voterOpinion === 0) {
