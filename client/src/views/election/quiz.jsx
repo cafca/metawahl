@@ -98,9 +98,12 @@ export default class Quiz extends React.Component<Props, State> {
     this.loadElection()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState: State) {
     // Prompt user before navigating away from unfinished quiz
     window.onbeforeunload = () => true
+    if (prevState.quizIndex !== this.state.quizIndex || prevState.quizAnswers.length !== this.state.quizAnswers.length) {
+      window.scrollTo(0, 0)
+    }
   }
 
   componentWillUnmount() {
@@ -528,7 +531,7 @@ export default class Quiz extends React.Component<Props, State> {
 
         {/* Quiz progress indicator */}
         <Grid stackable verticalAlign="middle" reversed="mobile">
-          <Grid.Column width="12">
+          <Grid.Column width={ this.state.quizAnswers.length > 0 ? '12' : '16'}>
             {this.state.quizAnswers.length !==
               this.state.quizSelection.length && (
               <span>
@@ -548,6 +551,7 @@ export default class Quiz extends React.Component<Props, State> {
               }
             />
           </Grid.Column>
+            { this.state.quizAnswers.length > 0 &&
           <Grid.Column width="4" textAlign="right">
             <Button
               color="grey"
@@ -562,7 +566,9 @@ export default class Quiz extends React.Component<Props, State> {
                 ? "Ergebnis zeigen"
                 : "Nächste Frage"}
             </Button>
+            &nbsp;
           </Grid.Column>
+            }
         </Grid>
 
         {this.props.iframe === true && (

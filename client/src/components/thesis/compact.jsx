@@ -146,9 +146,9 @@ export default class CompactThesis extends Component<Props, State> {
     const ratioPro = this.state.proPositions.reduce(countVotes, 0.0)
     const ratioContra = this.state.contraPositions.reduce(countVotes, 0.0)
 
-    if (ratioPro > 50.0) {
+    if (ratioPro >= 51.0) {
       voterOpinion = 1
-    } else if (ratioContra < 50.0) {
+    } else if (ratioContra < 50.0 || ratioPro > 50.0) {
       voterOpinion = 0
     } else {
       voterOpinion = -1
