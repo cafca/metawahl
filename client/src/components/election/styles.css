@@ -30,6 +30,10 @@
   line-height: 1.1em;
 }
 
+.ui.header .sub.header, .ui.header .sub.header a:not(.item) {
+  color: rgba(0,0,0,.7) !important;
+}
+
 @media (max-width: 991px) {
   .ui.container.electionContainer {
     padding: 0;
