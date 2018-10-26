@@ -36,10 +36,29 @@
   margin-top: 1rem;
 }
 
+@media only screen and (max-width: 500px) {
+  .quiz .small-legend {
+    margin-bottom: 2rem;
+    margin-top: 0;
+  }
 
-@media only screen and (min-width: 500px) {
+  .quiz .ui.stackable.grid>.legendCol.column:not(.row) {
+    padding: 0 !important;
+  }
+
+  .quiz .topGrid {
+    margin-top: .2rem;
+    margin-bottom: .2rem;
+  }
+}
+
+@media only screen and (min-width: 501px) {
   .quiz .topGrid {
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+
+  .quiz table.ui.legend {
+    float: right;
   }
 }

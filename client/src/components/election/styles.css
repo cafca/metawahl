@@ -30,7 +30,7 @@
   line-height: 1.1em;
 }
 
-.ui.header .sub.header, .ui.header .sub.header a:not(.item) {
+.election-component > .ui.header .sub.header, .election-component > .ui.header .sub.header a:not(.item) {
   color: rgba(0,0,0,.7) !important;
 }
 

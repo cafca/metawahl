@@ -93,7 +93,7 @@ export default class Quiz extends React.Component<Props, State> {
 
   componentDidUpdate() {
     // Prompt user before navigating away from unfinished quiz
-    // window.onbeforeunload = () => true
+    window.onbeforeunload = () => true
   }
 
   componentWillUnmount() {
@@ -269,61 +269,6 @@ export default class Quiz extends React.Component<Props, State> {
     )
   }
 
-  renderSources() {
-    let resultsSource = "Wahlergebnissen oder Wahlprognosen"
-    let womSource = "Wahl-o-Mat"
-    let prelimNote = ""
-
-    if (this.props.election && this.props.election.results_source != null) {
-      let source_name = this.props.election.results_source.name
-      let source_url = this.props.election.results_source.url
-
-      if (source_name == null) {
-        if (source_url.indexOf("wahl.tagesschau.de") >= 0) {
-          resultsSource = "Wahlergebnissen aus dem Tagesschau Wahlarchiv"
-        } else if (source_url.indexOf("wikipedia") >= 0) {
-          resultsSource = "Wahlergebnissen von Wikipedia"
-        } else if (source_url.indexOf("dawum.de") >= 0) {
-          resultsSource = "Wahlprognosen von Dawum.de"
-        }
-      } else {
-        if (this.props.election.preliminary !== true) {
-          resultsSource = "Wahlergebnissen von " + source_name
-        } else {
-          resultsSource = "Wahlprognosen der " + source_name
-        }
-      }
-
-      womSource = (
-        <em>
-          Wahl-o-Mat zur {this.props.election.title}
-        </em>
-      )
-      prelimNote = this.props.election.preliminary ? "voraussichtlich " : ""
-    }
-
-    return (
-      <Message className="source" id="methodik">
-          <p>
-            <Logo className="inlineLogo" />
-            Dieser Quiz ist Teil von{" "}
-            <a href="https://metawahl.de">Metawahl.de</a>: Einem Tool das zeigt,
-            wie sich Politik in Deutschland über Zeit ändert und welche Parteien
-            dies möglich machen. Es wurde von Vincent Ahrend entwickelt und mit
-            Förderung durch das Bundesministerium für Bildung und Forschung als
-            Open Source-Projekt umgesetzt.
-          </p>
-        <p>
-          Thesen und Parteipositionen stammen aus dem {womSource} der
-          Bundeszentrale für politische Bildung. Sie
-          wurden mit {resultsSource} kombiniert, um zu zeigen, welche
-          politischen Positionen {prelimNote}
-          von einer Mehrzahl der Wähler durch ihre Stimme unterstützt werden.
-        </p>
-      </Message>
-    )
-  }
-
   render() {
     let thesis
     let voterOpinionName = ""
@@ -370,8 +315,13 @@ export default class Quiz extends React.Component<Props, State> {
     const legendShowMissing =
       this.state.election && parseInt(this.state.election.date) < 2008
 
+    const containerClass =
+      this.props.iframe === true
+        ? "electionContainer quiz iframe"
+        : "electionContainer quiz"
+
     return (
-      <Container fluid={false} className="electionContainer quiz">
+      <Container fluid={false} className={containerClass}>
         <SEO
           title={
             "Metawahl: " +
@@ -408,13 +358,13 @@ export default class Quiz extends React.Component<Props, State> {
             </span>
           </Breadcrumb>
         )}
-        {this.state.quizAnswers.length === 0 &&
-        <Header as="h1">
-          {this.state.election == null
-            ? " "
-            : "Teste dein Wissen: " + this.state.election.title}
-        </Header>
-        }
+        {this.state.quizAnswers.length === 0 && (
+          <Header as="h1">
+            {this.state.election == null
+              ? " "
+              : "Teste dein Wissen: " + this.state.election.title}
+          </Header>
+        )}
 
         {this.state.quizAnswers.length === 0 && (
           <h3>
@@ -473,9 +423,8 @@ export default class Quiz extends React.Component<Props, State> {
                     </p>
                   )}
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column className="legendCol">
                   <Legend
-                    style={{ float: "right" }}
                     showMissing={legendShowMissing}
                     preliminary={
                       this.state.election && this.state.election.preliminary
@@ -609,9 +558,9 @@ export default class Quiz extends React.Component<Props, State> {
           </Grid.Column>
         </Grid>
 
-        {this.props.iframe === true &&
-          <SourcesFooter election={this.props.election} iframe={true} />
-      }
+        {this.props.iframe === true && (
+          <SourcesFooter election={this.props.election} iframe={true} context="Dieser Quiz"/>
+        )}
       </Container>
     )
   }

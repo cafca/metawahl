@@ -6,10 +6,11 @@ import type { ElectionType } from "../../types"
 
 type Props = {
   election: ?ElectionType,
-  iframe: ?boolean
+  iframe: ?boolean,
+  context?: string
 }
 
-const SourcesFooter = ({ election, iframe }: Props) => {
+const SourcesFooter = ({ election, iframe, context }: Props) => {
   let resultsSource = "Wahlergebnissen oder Wahlprognosen"
   let womSource = "Wahl-o-Mat"
   let prelimNote = ""
@@ -68,7 +69,7 @@ const SourcesFooter = ({ election, iframe }: Props) => {
       {iframe === true && (
         <p>
           <Logo className="inlineLogo" />
-          Diese Analyse ist Teil von{" "}
+          {context == null ? "Diese Analyse" : context} ist Teil von{" "}
           <a href="https://metawahl.de">Metawahl.de</a>, einem Tool das zeigt,
           wie sich die Parteipolitik in Deutschland über Zeit ändert. Es wurde
           von Vincent Ahrend entwickelt und vom Bundesministerium für Bildung
