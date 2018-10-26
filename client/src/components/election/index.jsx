@@ -109,7 +109,7 @@ export default class Election extends React.Component<Props, State> {
             und Forschung als Open Source-Projekt gefördert.
           </p>
         )}
-        <p>
+        <p style={{clear: "both"}}>
           Die Thesen und Parteipositionen stammen aus dem {womSource} der
           Bundeszentrale für politische Bildung. Sie wurden mit {resultsSource}{" "}
           kombiniert, um zu zeigen, welche politischen Positionen {prelimNote}
