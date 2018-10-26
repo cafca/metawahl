@@ -102,7 +102,7 @@ export default class Election extends React.Component<Props, State> {
             wie sich Politik in Deutschland über Zeit ändert und welche Parteien
             dies möglich machen. Es wurde von Vincent Ahrend entwickelt und mit
             Förderung durch das Bundesministerium für Bildung und Forschung als
-            OpenSource-Projekt umgesetzt.
+            Open Source-Projekt umgesetzt.
           </p>
         )}
         <p>
