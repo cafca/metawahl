@@ -2,11 +2,12 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Header } from "semantic-ui-react"
+import { Header, Image } from "semantic-ui-react"
 
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
 import Legend from "../../components/legend/"
+import { ReactComponent as Logo } from "../../logo.svg"
 
 import "./styles.css"
 
@@ -63,7 +64,7 @@ export default class Election extends React.Component<Props, State> {
     let womSource = "Wahl-o-Mat"
     let prelimNote = ""
 
-    if (this.props.election != null) {
+    if (this.props.election && this.props.election.results_source != null) {
       let source_name = this.props.election.results_source.name
       let source_url = this.props.election.results_source.url
 
@@ -83,7 +84,11 @@ export default class Election extends React.Component<Props, State> {
         }
       }
 
-      womSource = <em><a href={this.props.election.source}>Wahl-o-Mat zur {this.props.election.title} [PDF]</a></em>
+      womSource = (
+        <em>
+          Wahl-o-Mat zur {this.props.election.title}
+        </em>
+      )
       prelimNote = this.props.election.preliminary ? "voraussichtlich " : ""
     }
 
@@ -91,22 +96,21 @@ export default class Election extends React.Component<Props, State> {
       <div className="source" id="methodik">
         {this.props.iframe === true && (
           <p>
-            Diese Analyse ist ein Teil von <a href="https://metawahl.de">Metawahl.de</a>: Einem Tool
-            das zeigt, wie sich Politik in Deutschland über Zeit ändert und welche Parteien dies möglich machen. Es wurde von
-            Vincent Ahrend entwickelt und mit Förderung durch das
-            Bundesministerium für Bildung und Forschung als OpenSource-Projekt umgesetzt.
+            <Logo className="inlineLogo" />
+            Diese Analyse ist Teil von{" "}
+            <a href="https://metawahl.de">Metawahl.de</a>: Einem Tool das zeigt,
+            wie sich Politik in Deutschland über Zeit ändert und welche Parteien
+            dies möglich machen. Es wurde von Vincent Ahrend entwickelt und mit
+            Förderung durch das Bundesministerium für Bildung und Forschung als
+            OpenSource-Projekt umgesetzt.
           </p>
         )}
         <p>
-          Thesen und Parteipositionen stammen aus dem{" "}
-          {womSource} der Bundeszentrale für politische Bildung. Die Daten
-          wurden hier mit Unterstützung durch das Projekt{" "}
-          <a href="https://github.com/gockelhahn/qual-o-mat-data">
-            <em>qual-o-mat data</em>
-          </a>{" "}
-          eingebunden. Die Thesen und Positionen wurden mit {resultsSource}{" "}
-          kombiniert, um zu zeigen, welche politischen Positionen {prelimNote}von einer
-          Mehrzahl der Wähler durch ihre Stimme unterstützt werden.
+          Thesen und Parteipositionen stammen aus dem {womSource} der
+          Bundeszentrale für politische Bildung. Sie
+          wurden mit {resultsSource} kombiniert, um zu zeigen, welche
+          politischen Positionen {prelimNote}
+          von einer Mehrzahl der Wähler durch ihre Stimme unterstützt werden.
         </p>
       </div>
     )
@@ -162,10 +166,10 @@ export default class Election extends React.Component<Props, State> {
       })
 
     const sourceName =
-      this.props.election && this.props.election.results_source.name
+      this.props.election !== null && this.props.election.results_source.name
 
     const legendShowMissing =
-      this.props.election && parseInt(this.props.election.date) < 2008
+      this.props.election !== null && parseInt(this.props.election.date) < 2008
 
     return (
       <div className="election-component">
