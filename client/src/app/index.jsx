@@ -6,10 +6,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Message } from "semantic-ui-react"
 
 import "../index.css"
+import { API_ROOT, API_VERSION } from "../config/"
 import Header from "../components/header/"
 import Footer from "../components/footer/"
 import SEO from "../components/seo/"
-import { API_ROOT } from "../config/"
 import Landing from "../views/landing"
 import ElectionList from "../views/electionList/"
 import Election from "../views/election/"
@@ -69,6 +69,24 @@ export const saveToCache = (key: string, json: string) => {
   }
 }
 
+const deleteFromCache = (keys: Array<string>) => {
+  let localStorage = document.defaultView.localStorage
+
+  if (localStorage == null) {
+    localStorage = {}
+  }
+
+  if (typeof localStorage.setItem === "function") {
+    try {
+      keys.forEach(k => localStorage.removeItem(k))
+    } catch (e) {
+      console.log("Error purging local storage. " + e)
+    }
+  } else {
+    keys.forEach(k => { delete localStorage[k]} )
+  }
+}
+
 type State = {
   error?: ?string,
   isLoading: boolean,
@@ -103,7 +121,12 @@ class App extends Component<Props, State> {
         ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
         : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid)
     }
-    if (loadFromCache("uuid") == null) saveToCache("uuid", uuid())
+    const uuidValue = loadFromCache("uuid")
+    if (uuidValue == null) saveToCache("uuid", uuid())
+
+    if (uuidValue != null && loadFromCache("api-version") !== API_VERSION) {
+      deleteFromCache(["tags", "elections"])
+    }
 
     if (this.state.isLoading) this.fillCaches()
   }
@@ -122,6 +145,7 @@ class App extends Component<Props, State> {
 
           saveToCache("elections", JSON.stringify(response.data.elections))
           saveToCache("tags", JSON.stringify(response.data.tags))
+          saveToCache("api-version", response.meta.api)
         } else {
           this.setState({
             isLoading: false
