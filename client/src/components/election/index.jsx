@@ -2,7 +2,7 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Header, Image } from "semantic-ui-react"
+import { Header } from "semantic-ui-react"
 
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
