@@ -86,11 +86,11 @@ export default class Election extends React.Component<Props, State> {
 
       womSource =
         this.props.election.title === "Landtagswahl Hessen 2018" ? (
-          <a href="https://www.wahl-o-mat.de/hessen2018/" target="_blank">
+          <a href="https://www.wahl-o-mat.de/hessen2018/" target="_blank" rel="noopener noreferrer">
             Wahl-o-Mat zur {this.props.election.title}
           </a>
         ) : (
-          <a href={this.props.election.source} target="_blank">
+          <a href={this.props.election.source} target="_blank" rel="noopener noreferrer">
             Wahl-o-Mat zur {this.props.election.title}
           </a>
         )
