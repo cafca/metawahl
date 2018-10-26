@@ -170,6 +170,18 @@ class App extends Component<Props, State> {
       <BrowserRouter>
         <ScrollToTop>
           <Switch>
+
+            <Route
+              exact
+              path="/iframe/quiz/:territory/:electionNum/"
+              render={props => (
+                <React.Fragment>
+                  <base target="_blank" />
+                  <Quiz iframe={true} {...props} {...context} />
+                </React.Fragment>
+              )}
+            />
+
             <Route
               exact
               path="/iframe/:territory/:electionNum/"

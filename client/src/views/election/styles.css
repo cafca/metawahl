@@ -18,3 +18,28 @@
   margin: 0!important;
   padding: 0!important;
 }
+
+.quiz h1 {
+  margin-bottom: 1rem;
+}
+
+.quiz h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.quiz table.legend.large-legend {
+  margin-bottom: 0;
+}
+
+.quiz .topGrid {
+  margin-top: 1rem;
+}
+
+
+@media only screen and (min-width: 500px) {
+  .quiz .topGrid {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
