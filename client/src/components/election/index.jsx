@@ -2,7 +2,7 @@
 
 import React from "react"
 import autoBind from "react-autobind"
-import { Header } from "semantic-ui-react"
+import { Header, Message } from "semantic-ui-react"
 
 import CompactThesis from "../../components/thesis/compact"
 import { RouteProps, ThesisType, ElectionType } from "../../types/"
@@ -84,35 +84,38 @@ export default class Election extends React.Component<Props, State> {
         }
       }
 
-      womSource = (
-        <em>
-          Wahl-o-Mat zur {this.props.election.title}
-        </em>
-      )
+      womSource =
+        this.props.election.title === "Landtagswahl Hessen 2018" ? (
+          <a href="https://www.wahl-o-mat.de/hessen2018/" target="_blank">
+            Wahl-o-Mat zur {this.props.election.title}
+          </a>
+        ) : (
+          <a href={this.props.election.source} target="_blank">
+            Wahl-o-Mat zur {this.props.election.title}
+          </a>
+        )
       prelimNote = this.props.election.preliminary ? "voraussichtlich " : ""
     }
 
     return (
-      <div className="source" id="methodik">
+      <Message className="source" id="methodik">
         {this.props.iframe === true && (
           <p>
             <Logo className="inlineLogo" />
             Diese Analyse ist Teil von{" "}
-            <a href="https://metawahl.de">Metawahl.de</a>: Einem Tool das zeigt,
-            wie sich Politik in Deutschland über Zeit ändert und welche Parteien
-            dies möglich machen. Es wurde von Vincent Ahrend entwickelt und mit
-            Förderung durch das Bundesministerium für Bildung und Forschung als
-            Open Source-Projekt umgesetzt.
+            <a href="https://metawahl.de">Metawahl.de</a>, einem Tool das zeigt,
+            wie sich die Parteipolitik in Deutschland über Zeit ändert. Es wurde
+            von Vincent Ahrend entwickelt und vom Bundesministerium für Bildung
+            und Forschung als Open Source-Projekt gefördert.
           </p>
         )}
         <p>
-          Thesen und Parteipositionen stammen aus dem {womSource} der
-          Bundeszentrale für politische Bildung. Sie
-          wurden mit {resultsSource} kombiniert, um zu zeigen, welche
-          politischen Positionen {prelimNote}
+          Die Thesen und Parteipositionen stammen aus dem {womSource} der
+          Bundeszentrale für politische Bildung. Sie wurden mit {resultsSource}{" "}
+          kombiniert, um zu zeigen, welche politischen Positionen {prelimNote}
           von einer Mehrzahl der Wähler durch ihre Stimme unterstützt werden.
         </p>
-      </div>
+      </Message>
     )
   }
 

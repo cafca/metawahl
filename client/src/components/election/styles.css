@@ -59,6 +59,10 @@
   }
 }
 
+.ui.message#methodik {
+  margin-top: 3rem;
+}
+
 .source a {
   text-decoration: underline;
 }

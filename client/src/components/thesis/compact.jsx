@@ -204,8 +204,10 @@ export default class CompactThesis extends Component<Props, State> {
       ? this.state.proPositions.length
       : "..."
 
-    const totalCount = this.state.proPositions ?
-      (this.state.proPositions.length + this.state.neutralPositions.length + this.state.contraPositions.length)
+    const totalCount = this.state.proPositions
+      ? this.state.proPositions.length +
+        this.state.neutralPositions.length +
+        this.state.contraPositions.length
       : "..."
 
     const tUrl = `/wahlen/${this.props.election.territory}/${
@@ -222,8 +224,8 @@ export default class CompactThesis extends Component<Props, State> {
         />
         {this.state.openText === null && (
           <span className="thesisTitleInsert">
-            {proCount} von {totalCount} Parteien {proCount === 1 ? "fordert" : "fordern"}:{" "}
-            {this.props.text}
+            {proCount} von {totalCount} Parteien{" "}
+            {proCount === 1 ? "fordert" : "fordern"}: {this.props.text}
           </span>
         )}
         <Transition visible={this.state.openText != null}>
@@ -245,16 +247,14 @@ export default class CompactThesis extends Component<Props, State> {
             <Message attached="bottom" info>
               <Icon name="arrow right" />
               {this.props.iframe === true ? (
-                <a href={tUrl} style={{ cursor: "pointer" }}>
-                  <span>
+                <span>
+                  <a href={tUrl} style={{ textDecoration: "underline" }}>
                     Öffne diese These auf{" "}
-                    <span style={{ textDecoration: "underline" }}>
                       Metawahl.de
-                    </span>{" "}
-                    und finde heraus, wie die Parteien ihre Position gegenüber
-                    vergangenen Wahlen geändert haben.
-                  </span>
-                </a>
+                  </a>{" "}
+                  und finde heraus, wie die Parteien ihre Position gegenüber
+                  vergangenen Wahlen geändert haben.
+                </span>
               ) : (
                 <a href={tUrl} style={{ cursor: "pointer" }}>
                   <span>
