@@ -32,6 +32,8 @@ body {
   padding: 0;
 }
 
+body, html { height: auto }
+
 h1 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }

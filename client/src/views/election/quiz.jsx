@@ -22,6 +22,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard"
 import { loadFromCache } from "../../app/"
 import Thesis from "../../components/thesis/"
 import Legend from "../../components/legend"
+import SourcesFooter from "../../components/sourcesFooter"
 import Errorhandler from "../../utils/errorHandler"
 import { extractThesisID } from "../../utils/thesis"
 import {
@@ -609,7 +610,7 @@ export default class Quiz extends React.Component<Props, State> {
         </Grid>
 
         {this.props.iframe === true &&
-          this.renderSources()
+          <SourcesFooter election={this.props.election} iframe={true} />
       }
       </Container>
     )
