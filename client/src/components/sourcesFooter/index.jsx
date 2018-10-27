@@ -42,7 +42,7 @@ const SourcesFooter = ({ election, iframe, context }: Props) => {
         )
       } else {
         resultsSource = (
-          <a href={source_url}>Wahlergebnissen der {source_name}</a>
+          <a href={source_url}>Wahlprognosen der {source_name}</a>
         )
       }
     }
