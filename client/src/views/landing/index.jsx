@@ -2,7 +2,15 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
-import { Container, Grid, Header, List, Message } from "semantic-ui-react"
+import {
+  Button,
+  Container,
+  Grid,
+  Header,
+  Icon,
+  List,
+  Message
+} from "semantic-ui-react"
 
 import Map from "../../components/map/"
 import ElectionComponent from "../../components/election/"
@@ -123,6 +131,37 @@ class LandingView extends React.Component<RouteProps, State> {
                   Vincent Ahrend
                 </a>
               </div>
+
+              <Button
+                basic
+                as='a'
+                href="/wahlen/hessen/44"
+                icon
+                labelPosition="left"
+                style={{ marginBottom: 5, marginTop: "1.5em" }}
+              >
+                <Icon name="arrow right" />
+                Hessenwahl
+              </Button>
+
+              <Button basic
+                as='a'
+                href="/quiz/hessen/44" icon labelPosition="left"
+                style={{ marginBottom: 5 }}>
+                <Icon name="arrow right" />
+                Quiz zur Hessenwahl
+              </Button><Button
+                basic
+                as='a'
+                href="/wahlen/"
+                icon
+                labelPosition="left"
+              >
+                <Icon name="arrow right" />
+                Alle Länder
+              </Button>
+
+
             </Grid.Column>
           </Grid>
         </Container>
@@ -146,9 +185,9 @@ class LandingView extends React.Component<RouteProps, State> {
             title="Und jetzt"
             sections={[
               {
-                subTitle: "Bayern 2018",
-                title: "Quiz zur Landtagswahl",
-                href: "/quiz/bayern/43/"
+                subTitle: "Hessen 2018",
+                title: "Quiz zur Hessenwahl",
+                href: "/quiz/hessen/44/"
               },
               {
                 subTitle: "Alle Fragen aus der",
@@ -156,9 +195,9 @@ class LandingView extends React.Component<RouteProps, State> {
                 href: "/wahlen/deutschland/42/"
               },
               {
-                subTitle: "43 Thesen zu",
-                title: "#soziale Sicherheit",
-                href: "/themen/soziale-sicherheit/"
+                subTitle: "5 Wahlen im Vergleich",
+                title: "#Diesel",
+                href: "/themen/dieselkraftstoff/"
               },
               {
                 subTitle: "oder stöbere in weiteren",
