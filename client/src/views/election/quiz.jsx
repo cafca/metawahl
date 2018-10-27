@@ -572,7 +572,7 @@ export default class Quiz extends React.Component<Props, State> {
         </Grid>
 
         {this.props.iframe === true && (
-          <SourcesFooter election={this.props.election} iframe={true} context="Dieser Quiz"/>
+          <SourcesFooter election={this.state.election} iframe={true} context="Dieser Quiz"/>
         )}
       </Container>
     )
