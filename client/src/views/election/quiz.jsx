@@ -51,6 +51,7 @@ type State = {
   correctRatio?: number,
   correctAnswer: ?QuizAnswer,
   linkCopied: boolean,
+  embedCopied: boolean,
   error?: ?string
 }
 
@@ -81,7 +82,8 @@ export default class Quiz extends React.Component<Props, State> {
       quizAnswers: [],
       quizIndex: 0,
       correctAnswer: null,
-      linkCopied: false
+      linkCopied: false,
+      embedCopied: false
     }
     this.handleError = Errorhandler.bind(this)
   }
@@ -179,7 +181,9 @@ export default class Quiz extends React.Component<Props, State> {
       correctAnswer,
       correctRatio
     })
-    const thesisNum = extractThesisID(this.state.quizSelection[thesisQuizIndex].id).thesisNUM
+    const thesisNum = extractThesisID(
+      this.state.quizSelection[thesisQuizIndex].id
+    ).thesisNUM
     this.submitQuizAnswer(thesisNum, answer)
   }
 
@@ -457,13 +461,13 @@ export default class Quiz extends React.Component<Props, State> {
               <Header as="h1">
                 {quizResult >= 0.5 && (
                   <span>
-                    Du bist ein Gewinner! {parseInt(quizResult * 100, 10)} % der
+                    Du bist ein Gewinner! {parseInt(quizResult * 100, 10)}% der
                     Fragen richtig.
                   </span>
                 )}
                 {quizResult < 0.5 && (
                   <span>
-                    Leider verloren. {parseInt(quizResult * 100, 10)} % der
+                    Leider verloren. {parseInt(quizResult * 100, 10)}% der
                     Fragen richtig.
                   </span>
                 )}
@@ -530,6 +534,23 @@ export default class Quiz extends React.Component<Props, State> {
                 >
                   Quiz auf Twitter teilen
                 </Button>
+                <CopyToClipboard
+                  text={`<iframe src="${SITE_ROOT}/iframe/quiz/${
+                    this.state.election.territory
+                  }/${
+                    this.state.election.id
+                  }" frameborder="0" width="100%" height="600px" scrolling="no" style="overflow: hidden; height: 936.5px;"></iframe>`}
+                  onCopy={() => this.setState({ embedCopied: true })}
+                >
+                  <Button onClick={this.onClick}>
+                    <Icon
+                      name={this.state.embedCopied ? "check" : "file code"}
+                    />{" "}
+                    {this.state.embedCopied
+                      ? "iFrame-HTML kopiert"
+                      : "Einbetten"}
+                  </Button>
+                </CopyToClipboard>
                 <CopyToClipboard
                   text={SITE_ROOT + this.props.location.pathname}
                   onCopy={() => this.setState({ linkCopied: true })}
