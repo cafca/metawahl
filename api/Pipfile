@@ -17,6 +17,7 @@ Flask-Cors = "*"
 Wikidata = "*"
 "psycopg2-binary" = "*"
 flask-restful = "*"
+itsdangerous = "*"
 
 [dev-packages]
 tavern = "*"
