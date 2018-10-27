@@ -88,9 +88,8 @@ export default class Quiz extends React.Component<Props, State> {
 
   componentWillMount() {
     if (this.props.iframe === true) {
-      const bodyElem = document.getElementsByTagName("BODY")[0];
-      bodyElem.setAttribute("style","min-width: 280px;");
-
+      const bodyElem = document.getElementsByTagName("BODY")[0]
+      bodyElem.setAttribute("style", "min-width: 280px;")
     }
   }
 
@@ -101,7 +100,10 @@ export default class Quiz extends React.Component<Props, State> {
   componentDidUpdate(prevProps, prevState: State) {
     // Prompt user before navigating away from unfinished quiz
     window.onbeforeunload = () => true
-    if (prevState.quizIndex !== this.state.quizIndex || prevState.quizAnswers.length !== this.state.quizAnswers.length) {
+    if (
+      prevState.quizIndex !== this.state.quizIndex ||
+      prevState.quizAnswers.length !== this.state.quizAnswers.length
+    ) {
       window.scrollTo(0, 0)
     }
   }
@@ -167,7 +169,7 @@ export default class Quiz extends React.Component<Props, State> {
   }
 
   handleQuizAnswer(
-    thesisNum: number,
+    thesisQuizIndex: number,
     answer: QuizAnswer,
     correctAnswer: QuizAnswer
   ) {
@@ -177,6 +179,7 @@ export default class Quiz extends React.Component<Props, State> {
       correctAnswer,
       correctRatio
     })
+    const thesisNum = extractThesisID(this.state.quizSelection[thesisQuizIndex].id).thesisNUM
     this.submitQuizAnswer(thesisNum, answer)
   }
 
@@ -466,26 +469,37 @@ export default class Quiz extends React.Component<Props, State> {
                 )}
               </Header>
 
-              <p>
-                <Link
-                  to={
-                    "/wahlen/" + this.territory + "/" + this.electionNum + "/"
-                  }
-                >
-                  <Icon name="caret right" /> Öffne die Übersichtsgrafik zur{" "}
-                  {this.state.election.title}
-                </Link>{" "}
-                <br />
-                <Link to={"/wahlen/"}>
-                  <Icon name="caret right" /> Siehe alle Wahlen, zu denen es
-                  Quizzes gibt
-                </Link>{" "}
-                <br />
-                <Link to="/">
-                  <Icon name="caret right" /> Finde heraus, worum es bei
-                  Metawahl geht
-                </Link>
-              </p>
+              {this.props.iframe === true && (
+                <p>
+                  <a href="https://metawahl.de/" _target="blank">
+                    <Icon name="caret right" /> Noch mehr Quizzes und
+                    Wahlanalysen gibt es auf metawahl.de
+                  </a>
+                </p>
+              )}
+
+              {this.props.iframe !== true && (
+                <p>
+                  <Link
+                    to={
+                      "/wahlen/" + this.territory + "/" + this.electionNum + "/"
+                    }
+                  >
+                    <Icon name="caret right" /> Öffne die Übersichtsgrafik zur{" "}
+                    {this.state.election.title}
+                  </Link>{" "}
+                  <br />
+                  <Link to={"/wahlen/"}>
+                    <Icon name="caret right" /> Siehe alle Wahlen, zu denen es
+                    Quizzes gibt
+                  </Link>{" "}
+                  <br />
+                  <Link to="/">
+                    <Icon name="caret right" /> Finde heraus, worum es bei
+                    Metawahl geht
+                  </Link>
+                </p>
+              )}
 
               <Button.Group className="stackable">
                 <Button
@@ -531,7 +545,7 @@ export default class Quiz extends React.Component<Props, State> {
 
         {/* Quiz progress indicator */}
         <Grid stackable verticalAlign="middle" reversed="mobile">
-          <Grid.Column width={ this.state.quizAnswers.length > 0 ? '12' : '16'}>
+          <Grid.Column width={this.state.quizAnswers.length > 0 ? "12" : "16"}>
             {this.state.quizAnswers.length !==
               this.state.quizSelection.length && (
               <span>
@@ -551,28 +565,34 @@ export default class Quiz extends React.Component<Props, State> {
               }
             />
           </Grid.Column>
-            { this.state.quizAnswers.length > 0 &&
-          <Grid.Column width="4" textAlign="right">
-            <Button
-              color="grey"
-              size="large"
-              icon
-              labelPosition="left"
-              disabled={this.state.quizAnswers.length === this.state.quizIndex}
-              onClick={this.handleNextQuestion}
-            >
-              <Icon name="right arrow" />
-              {this.state.quizIndex + 1 === this.state.quizSelection.length
-                ? "Ergebnis zeigen"
-                : "Nächste Frage"}
-            </Button>
-            &nbsp;
-          </Grid.Column>
-            }
+          {this.state.quizAnswers.length > 0 && (
+            <Grid.Column width="4" textAlign="right">
+              <Button
+                color="grey"
+                size="large"
+                icon
+                labelPosition="left"
+                disabled={
+                  this.state.quizAnswers.length === this.state.quizIndex
+                }
+                onClick={this.handleNextQuestion}
+              >
+                <Icon name="right arrow" />
+                {this.state.quizIndex + 1 === this.state.quizSelection.length
+                  ? "Ergebnis zeigen"
+                  : "Nächste Frage"}
+              </Button>
+              &nbsp;
+            </Grid.Column>
+          )}
         </Grid>
 
         {this.props.iframe === true && (
-          <SourcesFooter election={this.state.election} iframe={true} context="Dieser Quiz"/>
+          <SourcesFooter
+            election={this.state.election}
+            iframe={true}
+            context="Dieser Quiz"
+          />
         )}
       </Container>
     )
