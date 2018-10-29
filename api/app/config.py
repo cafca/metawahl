@@ -1,7 +1,7 @@
 import logging
 
 API_NAME = "Metawahl API"
-API_VERSION = "v2"
+API_VERSION = "v3"
 API_FULL_NAME = "{name} {version}".format(name=API_NAME, version=API_VERSION)
 API_ROOT = "/{}".format(API_VERSION)
 

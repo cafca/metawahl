@@ -8,7 +8,7 @@
     }
   ],
   "meta": {
-    "api": "Metawahl API v2",
+    "api": "Metawahl API v3",
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information"
   }
 }

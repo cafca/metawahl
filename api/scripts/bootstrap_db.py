@@ -17,8 +17,8 @@ from models import Election, Thesis, Position, Party, Tag, Result, QuizAnswer
 from main import create_app
 from services import db
 from services.logger import logger
+from config import API_FULL_NAME
 
-API_VERSION = "Metawahl API v2"
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
 OCCASION_IDS = {
@@ -212,7 +212,7 @@ def load_quiz_answers():
         )
         return
 
-    assert qa_export["meta"]["api"] == API_VERSION
+    assert qa_export["meta"]["api"] == API_FULL_NAME
 
     logger.info("Adding {} quiz answers...".format(len(qa_export["data"])))
 
@@ -236,7 +236,8 @@ def load_tags():
         logger.warning("File ../userdata/tags.json not found - tags were not imported")
         return
 
-    assert tag_export["meta"]["api"] == API_VERSION
+    if tag_export["meta"]["api"] != API_FULL_NAME:
+        raise ValueError("Tag export has Version '{}' but should be '{}'".format(tag_export["meta"]["api"], API_FULL_NAME))
     logger.info("Adding {} tags...".format(len(tag_export["data"])))
 
     for tag_data in tag_export["data"]:
