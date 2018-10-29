@@ -75,21 +75,21 @@ def create_app(config=None):
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    api.add_resource(controllers.BaseView, "/v2/base")
-    api.add_resource(controllers.Elections, "/v2/elections/")
-    api.add_resource(controllers.ElectionView, "/v2/elections/<int:wom_id>")
-    api.add_resource(controllers.TagsView, "/v2/tags/")
-    api.add_resource(controllers.TagsDownload, "/v2/tags.json")
-    api.add_resource(controllers.TagView, "/v2/tags/<string:slug>")
-    api.add_resource(controllers.ThesisView, "/v2/thesis/<string:thesis_id>")
-    api.add_resource(controllers.ThesisTagsView, "/v2/thesis/<string:thesis_id>/tags/")
+    api.add_resource(controllers.BaseView, "/{}/base".format(API_VERSION))
+    api.add_resource(controllers.Elections, "/{}/elections/".format(API_VERSION))
+    api.add_resource(controllers.ElectionView, "/{}/elections/<int:wom_id>".format(API_VERSION))
+    api.add_resource(controllers.TagsView, "/{}/tags/".format(API_VERSION))
+    api.add_resource(controllers.TagsDownload, "/{}/tags.json".format(API_VERSION))
+    api.add_resource(controllers.TagView, "/{}/tags/<string:slug>".format(API_VERSION))
+    api.add_resource(controllers.ThesisView, "/{}/thesis/<string:thesis_id>".format(API_VERSION))
+    api.add_resource(controllers.ThesisTagsView, "/{}/thesis/<string:thesis_id>/tags/".format(API_VERSION))
     api.add_resource(
         controllers.Quiz,
-        "/v2/quiz/<int:election_num>",
-        "/v2/quiz/<int:election_num>/<int:thesis_num>",
+        "/{}/quiz/<int:election_num>".format(API_VERSION),
+        "/{}/quiz/<int:election_num>/<int:thesis_num>".format(API_VERSION),
     )
 
-    api.add_resource(controllers.SitemapView, "/v2/sitemap.xml")
+    api.add_resource(controllers.SitemapView, "/{}/sitemap.xml".format(API_VERSION))
 
     # MUST be after route declaration
     api.init_app(app)
