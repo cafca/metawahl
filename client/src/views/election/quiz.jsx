@@ -611,7 +611,7 @@ export default class Quiz extends React.Component<Props, State> {
         <SourcesFooter
           election={this.state.election}
           iframe={true}
-          context="Dieser Quiz"
+          context="Dieses Quiz"
         />
       </Container>
     )

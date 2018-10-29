@@ -123,12 +123,12 @@ export default class Election extends React.Component<Props, State> {
               ? " "
               : this.props.election.preliminary
                 ? "Welche Politik wird bei der " +
-                  (this.props.election.title === "Landtagswahl Hessen 2018"
-                    ? "Hessenwahl"
-                    : this.props.election.title) +
+                  this.props.election.title +
                   " voraussichtlich gewählt?"
                 : "Welche Politik wurde bei der " +
-                  this.props.election.title +
+                (this.props.election.title === "Landtagswahl Hessen 2018"
+                    ? "Hessenwahl"
+                    : this.props.election.title) +
                   " gewählt?"}
           {this.props.election != null && (
             <Header.Subheader>
