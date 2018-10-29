@@ -1,10 +1,10 @@
 swagger: "2.0"
 info:
   description: "The Metawahl API provides access to a tagged datasets of all Wahl-o-Mat theses and party positions. Responses are returned as `application/json` objects with keys `data`, `error` and `meta`. The `data` field contains the response object or array, `error` may contain an error description that can be displayed to the user."
-  version: "2.0.0"
+  version: "3.0.0"
   title: "Metawahl API"
 host: "api.metawahl.de"
-basePath: "/v2"
+basePath: "/v3"
 schemes:
   - "https"
 paths:
