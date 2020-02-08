@@ -364,7 +364,12 @@ def load_results():
         matched_results = set()
 
         if len(occ_results) == 0:
-            logger.error("Didn't find results for {}".format(occ))
+            logger.error("Didn't find results for {}. Removing from db..".format(occ))
+            for th in occ.theses:
+                for pos in th.positions:
+                    db.session.delete(pos)
+                db.session.delete(th)
+            db.session.delete(occ)
         else:
             res = occ_results[0]
 
@@ -450,20 +455,25 @@ def load_results():
 if __name__ == "__main__":
     app = create_app()
     with app.app_context():
-        for obj in load_elections():
-            db.session.add(obj)
-            logger.info("Added {}".format(obj))
+        try:
+            for obj in load_elections():
+                db.session.add(obj)
+                logger.info("Added {}".format(obj))
 
-        for result in load_results():
-            db.session.add(result)
+            for result in load_results():
+                db.session.add(result)
 
-        for tag in load_tags():
-            db.session.add(tag)
+            for tag in load_tags():
+                db.session.add(tag)
 
-        for quiz_answer in load_quiz_answers():
-            db.session.add(quiz_answer)
+            for quiz_answer in load_quiz_answers():
+                db.session.add(quiz_answer)
 
-        logger.info("Committing session to disk...")
-        db.session.commit()
-        logger.info("Done")
-        logger.warning("Clear and refill caches!")
+            logger.info("Committing session to disk...")
+            db.session.commit()
+        except:
+            db.session.rollback()
+            raise
+        finally:
+            logger.info("Done")
+            logger.warning("Clear and refill caches!")
