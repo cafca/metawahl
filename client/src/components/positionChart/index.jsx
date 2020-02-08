@@ -104,7 +104,7 @@ export default class PositionChart extends React.Component<Props, State> {
     this.waitAndMeasureSVGWidth()
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     if (this.measuringTimeout != null) clearTimeout(this.measuringTimeout)
   }
 

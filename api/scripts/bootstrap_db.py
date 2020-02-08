@@ -67,6 +67,12 @@ OCCASION_IDS = {
     "data/2017/deutschland": 42,
     "data/2018/bayern": 43,
     "data/2018/hessen": 44,
+    "data/2019/bremen": 45,
+    "data/2019/europa": 46,
+    "data/2019/brandenburg": 47,
+    "data/2019/sachsen": 48,
+    "data/2019/thueringen": 49,
+    "data/2020/hamburg": 50
 }
 
 INVALID_POSITION_TEXTS = [
@@ -272,7 +278,7 @@ def load_wahlergebnisse():
     """Load Wahlergebnisse from wahlergebnisse submodule."""
 
     try:
-        with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
+        with open("../wahlergebnisse/wahlergebnisse.json") as f:
             wahlergebnisse = json.load(f)
     except FileNotFoundError:
         logger.warning(
@@ -340,7 +346,7 @@ def load_results():
     """Match election records to the existing election datasets."""
     logger.info("Matching election results...")
 
-    with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
+    with open("../wahlergebnisse/wahlergebnisse.json") as f:
         result_data = json.load(f)
     with open("../userdata/substitutions.json") as f:
         substitutions = defaultdict(list)
@@ -393,7 +399,7 @@ def load_results():
                             votes=votes,
                             pct=match[1]["pct"],
                             source_url=res["url"],
-                            source_name=res["source"] if "source" in res else None
+                            source_name="Tagesschau Wahlarchiv"
                         )
                 else:
                     if occ.preliminary:
@@ -436,7 +442,7 @@ def load_results():
                     votes=match["votes"] if "votes" in match else None,
                     pct=match["pct"],
                     source_url=res["url"],
-                    source_name=res["source"] if "source" in res else None,
+                    source_name="Tagesschau Wahlarchiv",
                     wom=False,
                 )
 
