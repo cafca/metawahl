@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import request
+from flask import request, current_app
 from flask_restful import Resource
 
 from middleware import api
@@ -43,7 +43,7 @@ class ThesisTagsView(Resource):
         if thesis is None:
             return json_response({"error": "Thesis not found"}, status=404)
 
-        if data is None or data.get("admin_key", "") != app.config.get("ADMIN_KEY"):
+        if data is None or data.get("admin_key", "") != current_app.config.get("ADMIN_KEY"):
             logger.warning("Invalid admin key")
             error = "Invalid admin key"
         else:
