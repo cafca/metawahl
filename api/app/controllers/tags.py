@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import request
+from flask import request, current_app
 from flask_restful import Resource, fields
 from sqlalchemy import func
 
@@ -73,9 +73,9 @@ class TagView(Resource):
 
         return json_response(rv)
 
-    def delete(self):
+    def delete(self, slug:str):
         admin_key = request.get_json().get("admin_key", "")
-        if admin_key != app.config.get("ADMIN_KEY"):
+        if admin_key != current_app.config.get("ADMIN_KEY"):
             logger.warning("Invalid admin password")
             return json_response({"error": "Invalid admin password"}, status=401)
 
