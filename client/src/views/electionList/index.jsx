@@ -94,7 +94,7 @@ export default class ElectionList extends Component<RouteProps, State> {
           <Grid.Row>
             <Grid.Column width={4} className="headerCount2">
               <div className="headerCountInner">
-                <div>{electionCount > 0 ? electionCount : 45}</div> Wahlen
+                <div>{electionCount > 0 ? electionCount : 50}</div> Wahlen
               </div>
             </Grid.Column>
             <Grid.Column width={12}>
