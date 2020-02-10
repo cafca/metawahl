@@ -485,7 +485,7 @@ export default class Thesis extends Component<Props, State> {
             )}
 
             {IS_ADMIN && (
-              <Segment attached="bottom" secondary>
+              <Segment attached="bottom" secondary style={{minHeight: 70}}>
                 <WikidataTagger
                   onSelection={this.handleTag}
                   style={{ float: "right" }}
