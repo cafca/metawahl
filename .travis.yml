@@ -20,6 +20,9 @@ matrix:
         - pipenv run python scripts/reset_db.py --force
         - pipenv run python scripts/bootstrap_db.py
 
+      services:
+        - postgresql
+
       script: pipenv run ./travis_tavern.sh
 
     - language: node_js
