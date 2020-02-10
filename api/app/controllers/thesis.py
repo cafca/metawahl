@@ -54,6 +54,9 @@ class ThesisTagsView(Resource):
                     .first()
                 )
                 if tag is None:
+                    tag = db.session.query(Tag).filter_by(title=tag_data["title"]).first()
+
+                if tag is None:
                     tag = Tag(
                         description=tag_data.get("description", None),
                         title=tag_data["title"],
