@@ -113,9 +113,6 @@ def update_tags(fast=False):
 
 if __name__ == '__main__':
     app = create_app()
-    with app.app_context():
-        update_tags()
-
     fast = "--fast" in sys.argv
 
     with app.app_context():
