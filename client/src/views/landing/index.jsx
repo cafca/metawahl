@@ -105,7 +105,7 @@ class LandingView extends React.Component<RouteProps, State> {
                 über Zeit ändert.
               </Header>
               <Header size="medium">
-                Hierzu werden die Aussagen der Parteien aus 45 Wahl-o-Maten mit
+                Hierzu werden die Aussagen der Parteien aus 50 Wahl-o-Maten mit
                 den dazugehörigen Wahlergebnissen zusammengeführt. Es wird
                 sichtbar, welche Politik von vielen Stimmen gestützt wird und
                 welche Parteien dies möglich machen.
