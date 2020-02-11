@@ -205,6 +205,7 @@ class Thesis extends React.Component<RouteProps, State> {
                 election={this.state.election}
                 linkElection={true}
                 showHints={true}
+                related={this.state.related}
                 {...this.state.thesis}
               />
               <div>
@@ -213,7 +214,7 @@ class Thesis extends React.Component<RouteProps, State> {
                 </Header>
                 {relatedElems.length === 0 && (
                   <p>
-                    Leider hat Metawahl für diese These in keinem anderen
+                    Leider hat Metawahl in keinem anderen
                     Wahl-o-Mat ähnliche Themen gefunden.
                   </p>
                 )}
