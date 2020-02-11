@@ -432,13 +432,16 @@ export default class Thesis extends Component<Props, State> {
       thesisIdComps["womID"]
     }/${thesisIdComps["thesisNUM"]}/`
 
-    const relatedTags = this.state.related.map(tag => (
-      <Tag
-        data={tag}
-        key={`related-${tag.title}`}
-        onClick={() => this.handleRelatedTagClick(tag)}
-      />
-    ));
+    const relatedTags =
+      IS_ADMIN === false
+        ? null
+        : this.state.related.map(tag => (
+            <Tag
+              data={tag}
+              key={`related-${tag.title}`}
+              onClick={() => this.handleRelatedTagClick(tag)}
+            />
+          ));
 
     return (
       <div style={{ marginBottom: margin }}>
