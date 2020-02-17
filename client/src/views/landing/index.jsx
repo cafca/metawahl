@@ -135,21 +135,21 @@ class LandingView extends React.Component<RouteProps, State> {
               <Button
                 basic
                 as='a'
-                href="/wahlen/hessen/44"
+                href="wahlen/thueringen/49"
                 icon
                 labelPosition="left"
                 style={{ marginBottom: 5, marginTop: "1.5em" }}
               >
                 <Icon name="arrow right" />
-                Hessenwahl
+                Thüringen 2019
               </Button>
 
               <Button basic
                 as='a'
-                href="/quiz/hessen/44" icon labelPosition="left"
+                href="/quiz/thueringen/49" icon labelPosition="left"
                 style={{ marginBottom: 5 }}>
                 <Icon name="arrow right" />
-                Quiz zur Hessenwahl
+                Quiz zu Thüringen
               </Button><Button
                 basic
                 as='a'
@@ -166,46 +166,10 @@ class LandingView extends React.Component<RouteProps, State> {
           </Grid>
         </Container>
 
-        <Container className="electionContainer">
-          <ElectionComponent
-            title="Vorläufiges Ergebnis zur Landtagswahl in Bayern"
-            election={this.state.election}
-            theses={this.state.theses}
-            territory={this.territory}
-            electionNum={this.electionNum}
-          />
-        </Container>
-
         <Container>
           {this.state.error != null && (
             <Message negative content={this.state.error} />
           )}
-
-          <SuggestionsGrid
-            title="Und jetzt"
-            sections={[
-              {
-                subTitle: "Hessen 2018",
-                title: "Quiz zur Hessenwahl",
-                href: "/quiz/hessen/44/"
-              },
-              {
-                subTitle: "Alle Fragen aus der",
-                title: "Bundestagswahl 2017",
-                href: "/wahlen/deutschland/42/"
-              },
-              {
-                subTitle: "5 Wahlen im Vergleich",
-                title: "#Diesel",
-                href: "/themen/dieselkraftstoff/"
-              },
-              {
-                subTitle: "oder stöbere in weiteren",
-                title: "600+ Themen",
-                href: "/themen/"
-              }
-            ]}
-          />
 
           <Grid stackable columns="3">
             <Grid.Row>
@@ -323,6 +287,33 @@ class LandingView extends React.Component<RouteProps, State> {
               </List>
             </Grid.Column>
           </Grid>
+
+
+          <SuggestionsGrid
+            title="Und jetzt"
+            sections={[
+              {
+                subTitle: "Quiz zur Wahl",
+                title: "Wie gut kennst du Thüringen?",
+                href: "/quiz/thueringen/49/"
+              },
+              {
+                subTitle: "Alle Fragen aus der",
+                title: "Bundestagswahl 2017",
+                href: "/wahlen/deutschland/42/"
+              },
+              {
+                subTitle: "5 Wahlen im Vergleich",
+                title: "#Diesel",
+                href: "/themen/dieselkraftstoff/"
+              },
+              {
+                subTitle: "oder stöbere in weiteren",
+                title: "600+ Themen",
+                href: "/themen/"
+              }
+            ]}
+          />
         </Container>
       </div>
     )
