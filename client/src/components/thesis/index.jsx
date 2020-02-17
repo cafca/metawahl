@@ -86,7 +86,8 @@ type State = {
   contraPositions: Array<PositionType>,
   voterOpinion: -1 | 0 | 1,
   showSources: boolean,
-  quizAnswer: ?number
+  quizAnswer: ?number,
+  related: Array<TagType>
 }
 
 type Props = RouteProps &
@@ -95,7 +96,8 @@ type Props = RouteProps &
     linkElection?: boolean,
     showHints?: boolean,
     quizMode?: boolean,
-    hideTags?: boolean
+    hideTags?: boolean,
+    related?: Array<ThesisType>
   }
 
 export default class Thesis extends Component<Props, State> {
@@ -116,7 +118,8 @@ export default class Thesis extends Component<Props, State> {
       ratioPro: 0.5,
       ratioContra: 0.5,
       showSources: false,
-      quizAnswer: null
+      quizAnswer: null,
+      related: this.getRelatedTags()
     }
 
     this.handleError = ErrorHandler.bind(this)
@@ -177,6 +180,36 @@ export default class Thesis extends Component<Props, State> {
     ) {
       this.mergePartyData()
     }
+  }
+
+  /**
+   * Takes a list of related theses (from props), returns most common tags
+   */
+  getRelatedTags(num: number = 10) {
+    if (this.props.related == null) return []
+    const tags = {}
+    this.props.related.forEach(th => {
+        th.tags.forEach(tag => {
+          if(this.props.tags.find(t => t.title === tag.title)) return
+          if (Object.keys(tags).includes(tag.title)) {
+            tags[tag.title]['count'] += 1;
+          } else {
+            tags[tag.title] = tag;
+            tags[tag.title]['count'] = 1;
+          }
+        })
+    });
+    const comp = (a, b) => tags[b.title]['count'] - tags[a.title]['count']
+    const rv = Object.values(tags)
+    rv.sort(comp)
+    return rv.slice(0, num)
+  }
+
+  handleRelatedTagClick(tag: TagType) {
+    this.sendTagChanges({add: [tag], remove: []})
+    this.setState({
+      related: this.state.related.filter(t => t.title !== tag.title)
+    })
   }
 
   handleTag(tagData: WikidataType) {
@@ -399,6 +432,17 @@ export default class Thesis extends Component<Props, State> {
       thesisIdComps["womID"]
     }/${thesisIdComps["thesisNUM"]}/`
 
+    const relatedTags =
+      IS_ADMIN === false
+        ? null
+        : this.state.related.map(tag => (
+            <Tag
+              data={tag}
+              key={`related-${tag.title}`}
+              onClick={() => this.handleRelatedTagClick(tag)}
+            />
+          ));
+
     return (
       <div style={{ marginBottom: margin }}>
         <a href={permaLink}>
@@ -485,7 +529,13 @@ export default class Thesis extends Component<Props, State> {
             )}
 
             {IS_ADMIN && (
-              <Segment attached="bottom" secondary>
+              <Segment attached="bottom" secondary style={{minHeight: 70}}>
+                { relatedTags.length > 0 &&
+                  <div style={{maxWidth: "70%", display: "inline-block"}}>
+                  <Header size="small">Verwandte Tags hinzufügen:</Header>
+                    {relatedTags}
+                  </div>
+                }
                 <WikidataTagger
                   onSelection={this.handleTag}
                   style={{ float: "right" }}

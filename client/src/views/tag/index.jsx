@@ -213,12 +213,13 @@ export default class TagView extends Component<RouteProps, State> {
     const parentTags =
       this.state.tag &&
       this.state.tag.related_tags &&
+      this.state.tag.related_tags.parents &&
       Object.keys(this.state.tag.related_tags.parents).map(k => (
         <Tag key={k} data={this.state.tag.related_tags.parents[k].tag} />
       ))
 
     let linkedTags = {}
-    if (this.state.tag && this.state.tag.related_tags) {
+    if (this.state.tag && this.state.tag.related_tags && this.state.tag.related_tags.linked) {
       linkedTags = this.state.tag.related_tags.linked
     }
 

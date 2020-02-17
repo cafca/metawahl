@@ -94,7 +94,7 @@ export default class ElectionList extends Component<RouteProps, State> {
           <Grid.Row>
             <Grid.Column width={4} className="headerCount2">
               <div className="headerCountInner">
-                <div>{electionCount > 0 ? electionCount : 45}</div> Wahlen
+                <div>{electionCount > 0 ? electionCount : 50}</div> Wahlen
               </div>
             </Grid.Column>
             <Grid.Column width={12}>
@@ -103,7 +103,7 @@ export default class ElectionList extends Component<RouteProps, State> {
                 Diese Übersicht zeigt alle Wahlen, zu denen ein Wahl-o-Mat
                 herausgegeben wurde. Das sind leider nicht alle Wahlen, seitdem
                 dieses Tool für die Bundestagswahl 2002 das erste Mal produziert
-                wurde. Zu Wahlen in Mecklenburg-Vorpommern und Thüringen gab es
+                wurde. Zu Wahlen in Mecklenburg-Vorpommern gab es
                 noch gar keine Ausgabe und auch einzelne andere Wahlen, wie die
                 Landtagswahl in Niedersachsen 2017, sind hier nicht vertreten.
               </p>

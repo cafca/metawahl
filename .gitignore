@@ -34,3 +34,4 @@ __pycache__
 uwsgi.ini
 
 .venv
+.DS_Store

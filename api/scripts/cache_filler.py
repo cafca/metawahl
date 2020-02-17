@@ -11,6 +11,7 @@ import sys
 
 sys.path.append("./app/")
 
+from flask import current_app
 from config import CACHE_FILLER_LOG
 from services.logger import setup_logger
 from config import API_ROOT
@@ -25,7 +26,7 @@ def gen_urls():
     urls = []
 
     def url(endpoint):
-        host = "http://localhost:9000" if app.config.get('DEBUG', True) \
+        host = "http://localhost:9000" if current_app.config.get('DEBUG', True) \
             else "https://api.metawahl.de"
         return "{}{}{}?force_cache_miss".format(host, API_ROOT, endpoint)
 

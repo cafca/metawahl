@@ -117,7 +117,7 @@ class TagMenu extends Component<Props, State> {
             }}
             style={{ color: "#999" }}
           >
-            <Icon name="trash outline" /> Tag löschen
+            <Icon name="trash" /> Tag löschen
           </Menu.Item>
         )}
 

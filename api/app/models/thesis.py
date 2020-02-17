@@ -18,7 +18,9 @@ class Thesis(db.Model):
     text = db.Column(db.Text, nullable=False)
 
     election_id = db.Column(db.Integer, db.ForeignKey("election.id"), nullable=False)
-    election = db.relationship("Election", backref=db.backref("theses", lazy=True))
+    election = db.relationship(
+        "Election", backref=db.backref("theses", lazy=True)
+    )
 
     tags = db.relationship(
         "Tag",
@@ -90,11 +92,12 @@ class Thesis(db.Model):
     def quiz_tally(self):
         rv = None
 
-        base = db.session \
-            .query(Thesis.id, func.count(QuizAnswer.id)) \
-            .join(Thesis.quiz_answers) \
-            .filter(Thesis.id == self.id) \
+        base = (
+            db.session.query(Thesis.id, func.count(QuizAnswer.id))
+            .join(Thesis.quiz_answers)
+            .filter(Thesis.id == self.id)
             .group_by(Thesis.id)
+        )
 
         y = base.filter(QuizAnswer.answer == 1).all()
         n = base.filter(QuizAnswer.answer == -1).all()

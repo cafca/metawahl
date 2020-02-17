@@ -1,7 +1,7 @@
 svg g { fill: rgb(42,64,101) }
 .inverted g { fill: #fcfcfc }
 
-.territory-badenwuerttemberg #Baden__x26__Württemberg { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-badenwuerttemberg #badenwuerttemberg { fill: "#fafafa"; fill-opacity: 1.0 }
 .territory-bayern #Bayern { fill: "#fafafa"; fill-opacity: 1.0 }
 .territory-berlin #Berlin { fill: "#fafafa"; fill-opacity: 1.0 }
 .territory-brandenburg #Brandenburg { fill: "#fafafa"; fill-opacity: 1.0 }
@@ -17,4 +17,4 @@ svg g { fill: rgb(42,64,101) }
 .territory-sachsen #Sachsen { fill: "#fafafa"; fill-opacity: 1.0 }
 .territory-sachsenanhalt #Sachsen-Anhalt { fill: "#fafafa"; fill-opacity: 1.0 }
 .territory-schleswigholstein #Schleswig-Holstein { fill: "#fafafa"; fill-opacity: 1.0 }
-.territory-thueringen #Thüringen { fill: "#fafafa"; fill-opacity: 1.0 }
+.territory-thueringen #thueringen { fill: "#fafafa"; fill-opacity: 1.0 }

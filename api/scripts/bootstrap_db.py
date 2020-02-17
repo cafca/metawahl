@@ -67,6 +67,12 @@ OCCASION_IDS = {
     "data/2017/deutschland": 42,
     "data/2018/bayern": 43,
     "data/2018/hessen": 44,
+    "data/2019/bremen": 45,
+    "data/2019/europa": 46,
+    "data/2019/brandenburg": 47,
+    "data/2019/sachsen": 48,
+    "data/2019/thueringen": 49,
+    "data/2020/hamburg": 50
 }
 
 INVALID_POSITION_TEXTS = [
@@ -272,7 +278,7 @@ def load_wahlergebnisse():
     """Load Wahlergebnisse from wahlergebnisse submodule."""
 
     try:
-        with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
+        with open("../wahlergebnisse/wahlergebnisse.json") as f:
             wahlergebnisse = json.load(f)
     except FileNotFoundError:
         logger.warning(
@@ -340,7 +346,7 @@ def load_results():
     """Match election records to the existing election datasets."""
     logger.info("Matching election results...")
 
-    with open("../wahlergebnisse/wahlergebnisse.extended.json") as f:
+    with open("../wahlergebnisse/wahlergebnisse.json") as f:
         result_data = json.load(f)
     with open("../userdata/substitutions.json") as f:
         substitutions = defaultdict(list)
@@ -358,7 +364,12 @@ def load_results():
         matched_results = set()
 
         if len(occ_results) == 0:
-            logger.error("Didn't find results for {}".format(occ))
+            logger.error("Didn't find results for {}. Removing from db..".format(occ))
+            for th in occ.theses:
+                for pos in th.positions:
+                    db.session.delete(pos)
+                db.session.delete(th)
+            db.session.delete(occ)
         else:
             res = occ_results[0]
 
@@ -393,7 +404,7 @@ def load_results():
                             votes=votes,
                             pct=match[1]["pct"],
                             source_url=res["url"],
-                            source_name=res["source"] if "source" in res else None
+                            source_name="Tagesschau Wahlarchiv"
                         )
                 else:
                     if occ.preliminary:
@@ -419,7 +430,7 @@ def load_results():
                             if name in party_instances.keys():
                                 party = party_instances[name]
                                 logger.info(
-                                    "Linked party {} to election result of '{}' in {}".format(
+                                    "Linked statement {} to election result of '{}' in {}".format(
                                         party, p_name, res["title"]
                                     )
                                 )
@@ -436,7 +447,7 @@ def load_results():
                     votes=match["votes"] if "votes" in match else None,
                     pct=match["pct"],
                     source_url=res["url"],
-                    source_name=res["source"] if "source" in res else None,
+                    source_name="Tagesschau Wahlarchiv",
                     wom=False,
                 )
 
@@ -444,20 +455,25 @@ def load_results():
 if __name__ == "__main__":
     app = create_app()
     with app.app_context():
-        for obj in load_elections():
-            db.session.add(obj)
-            logger.info("Added {}".format(obj))
+        try:
+            for obj in load_elections():
+                db.session.add(obj)
+                logger.info("Added {}".format(obj))
 
-        for result in load_results():
-            db.session.add(result)
+            for result in load_results():
+                db.session.add(result)
 
-        for tag in load_tags():
-            db.session.add(tag)
+            for tag in load_tags():
+                db.session.add(tag)
 
-        for quiz_answer in load_quiz_answers():
-            db.session.add(quiz_answer)
+            for quiz_answer in load_quiz_answers():
+                db.session.add(quiz_answer)
 
-        logger.info("Committing session to disk...")
-        db.session.commit()
-        logger.info("Done")
-        logger.warning("Clear and refill caches!")
+            logger.info("Committing session to disk...")
+            db.session.commit()
+        except:
+            db.session.rollback()
+            raise
+        finally:
+            logger.info("Done")
+            logger.warning("Clear and refill caches!")
