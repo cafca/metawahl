@@ -430,7 +430,7 @@ def load_results():
                             if name in party_instances.keys():
                                 party = party_instances[name]
                                 logger.info(
-                                    "Linked party {} to election result of '{}' in {}".format(
+                                    "Linked statement {} to election result of '{}' in {}".format(
                                         party, p_name, res["title"]
                                     )
                                 )
