@@ -13,7 +13,6 @@ import {
 } from "semantic-ui-react"
 
 import Map from "../../components/map/"
-import ElectionComponent from "../../components/election/"
 import SuggestionsGrid from "../../components/suggestionsGrid"
 import { API_ROOT, TERRITORY_NAMES } from "../../config/"
 import { ReactComponent as Logo } from "../../logo.svg"
