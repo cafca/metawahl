@@ -8,16 +8,14 @@ import {
   Grid,
   Header,
   Icon,
-  List,
-  Message
+  List
 } from "semantic-ui-react"
 
 import Map from "../../components/map/"
 import SuggestionsGrid from "../../components/suggestionsGrid"
-import { API_ROOT, TERRITORY_NAMES } from "../../config/"
+import { TERRITORY_NAMES } from "../../config/"
 import { ReactComponent as Logo } from "../../logo.svg"
 import { ElectionType, RouteProps, ThesisType } from "../../types/"
-import Errorhandler from "../../utils/errorHandler"
 
 import "./styles.css"
 
@@ -29,57 +27,6 @@ type State = {
 }
 
 class LandingView extends React.Component<RouteProps, State> {
-  // This is the election that is shown on the landing page
-  electionNum: number = 43
-  territory: string = "bayern"
-  handleError: ErrorType => any
-
-  constructor(props: RouteProps) {
-    super(props)
-    this.state = {
-      isLoading: true,
-      election: this.getCachedElection(),
-      theses: []
-    }
-    this.handleError = Errorhandler.bind(this)
-  }
-
-  componentDidMount() {
-    this.loadElection()
-  }
-
-  getCachedElection() {
-    return this.props.elections[this.territory] == null
-      ? null
-      : this.props.elections[this.territory]
-          .filter(occ => occ.id === this.electionNum)
-          .shift()
-  }
-
-  loadElection(cb?: ElectionType => mixed) {
-    const endpoint = API_ROOT + "/elections/" + this.electionNum
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(response => {
-        if (!this.handleError(response)) {
-          this.setState({
-            isLoading: false,
-            election: response.data,
-            theses: response.theses || []
-          })
-          if (cb != null) cb(response.data)
-        }
-      })
-      .catch((error: Error) => {
-        this.handleError(error)
-        this.setState({
-          isLoading: false,
-          election: this.getCachedElection(),
-          theses: []
-        })
-      })
-  }
-
   render() {
     const territorries = Object.keys(TERRITORY_NAMES)
       .filter(k => ["deutschland", "europa"].indexOf(k) === -1)
@@ -166,10 +113,6 @@ class LandingView extends React.Component<RouteProps, State> {
         </Container>
 
         <Container>
-          {this.state.error != null && (
-            <Message negative content={this.state.error} />
-          )}
-
           <Grid stackable columns="3">
             <Grid.Row>
               <Grid.Column>
