@@ -213,6 +213,9 @@
       ], 
       "slug": "agrarpolitik", 
       "theses": [
+        "WOM-049-29", 
+        "WOM-049-21", 
+        "WOM-049-07", 
         "WOM-048-16", 
         "WOM-048-00", 
         "WOM-047-36", 
@@ -295,6 +298,7 @@
       ], 
       "slug": "agrarsubvention", 
       "theses": [
+        "WOM-049-07", 
         "WOM-048-16", 
         "WOM-047-07", 
         "WOM-044-16", 
@@ -425,6 +429,7 @@
       ], 
       "slug": "anerkennungsgesetz", 
       "theses": [
+        "WOM-049-33", 
         "WOM-048-30", 
         "WOM-047-33", 
         "WOM-046-17", 
@@ -469,6 +474,7 @@
       ], 
       "slug": "ankerzentrum", 
       "theses": [
+        "WOM-049-30", 
         "WOM-048-20", 
         "WOM-047-23", 
         "WOM-044-25", 
@@ -601,6 +607,7 @@
       ], 
       "slug": "arbeitsentgelt", 
       "theses": [
+        "WOM-049-09", 
         "WOM-048-10", 
         "WOM-030-36", 
         "WOM-017-04", 
@@ -681,6 +688,7 @@
       ], 
       "slug": "arbeitslosengeld-ii", 
       "theses": [
+        "WOM-049-17", 
         "WOM-048-17", 
         "WOM-045-34", 
         "WOM-044-29", 
@@ -986,6 +994,9 @@
       ], 
       "slug": "asylbewerber", 
       "theses": [
+        "WOM-049-30", 
+        "WOM-049-20", 
+        "WOM-049-08", 
         "WOM-048-20", 
         "WOM-048-09", 
         "WOM-047-23", 
@@ -1082,6 +1093,7 @@
       ], 
       "slug": "ausbildung", 
       "theses": [
+        "WOM-049-23", 
         "WOM-045-32", 
         "WOM-044-05", 
         "WOM-043-12", 
@@ -1129,6 +1141,39 @@
       "url": "http://www.wikidata.org/entity/Q8434", 
       "wikidata_id": "Q8434", 
       "wikipedia_title": "Ausbildung"
+    }, 
+    {
+      "description": "Alle Finanzierungsaspekte der beruflichen Bildung: finanzielle F\u00f6rderung durch den Staat, aber auch finanzielle Belastung z.B. der ausbildenden Betriebe.", 
+      "slug": "ausbildungsfinanzierung", 
+      "theses": [
+        "WOM-049-23", 
+        "WOM-049-05", 
+        "WOM-047-09", 
+        "WOM-045-12", 
+        "WOM-034-19", 
+        "WOM-028-28", 
+        "WOM-025-35", 
+        "WOM-024-01", 
+        "WOM-020-20", 
+        "WOM-019-32", 
+        "WOM-017-06", 
+        "WOM-015-06", 
+        "WOM-014-22", 
+        "WOM-013-01", 
+        "WOM-012-02", 
+        "WOM-011-13", 
+        "WOM-010-05", 
+        "WOM-009-14", 
+        "WOM-008-03", 
+        "WOM-007-18", 
+        "WOM-006-17", 
+        "WOM-005-10", 
+        "WOM-004-18", 
+        "WOM-000-03"
+      ], 
+      "title": "Ausbildungsfinanzierung", 
+      "url": "http://www.wikidata.org/entity/Q59263337", 
+      "wikidata_id": "Q59263337"
     }, 
     {
       "aliases": [
@@ -1192,6 +1237,11 @@
       ], 
       "slug": "auslanderpolitik", 
       "theses": [
+        "WOM-049-33", 
+        "WOM-049-30", 
+        "WOM-049-25", 
+        "WOM-049-20", 
+        "WOM-049-08", 
         "WOM-048-30", 
         "WOM-048-24", 
         "WOM-048-20", 
@@ -1620,6 +1670,7 @@
       ], 
       "slug": "bedingungsloses-grundeinkommen", 
       "theses": [
+        "WOM-049-34", 
         "WOM-048-28", 
         "WOM-047-22", 
         "WOM-044-37", 
@@ -1983,6 +2034,12 @@
       ], 
       "slug": "bildungspolitik", 
       "theses": [
+        "WOM-049-27", 
+        "WOM-049-24", 
+        "WOM-049-23", 
+        "WOM-049-09", 
+        "WOM-049-05", 
+        "WOM-049-01", 
         "WOM-048-33", 
         "WOM-048-32", 
         "WOM-048-26", 
@@ -3035,6 +3092,7 @@
       ], 
       "slug": "datenschutz", 
       "theses": [
+        "WOM-049-35", 
         "WOM-048-11", 
         "WOM-047-28", 
         "WOM-046-11", 
@@ -3183,6 +3241,7 @@
       ], 
       "slug": "deutsche-staatsangehorigkeit", 
       "theses": [
+        "WOM-049-25", 
         "WOM-048-24", 
         "WOM-042-12", 
         "WOM-041-21", 
@@ -3397,6 +3456,7 @@
       ], 
       "slug": "drogenpolitik", 
       "theses": [
+        "WOM-049-10", 
         "WOM-048-35", 
         "WOM-047-31", 
         "WOM-042-31", 
@@ -3477,6 +3537,7 @@
       ], 
       "slug": "duldung", 
       "theses": [
+        "WOM-049-08", 
         "WOM-048-09", 
         "WOM-047-14", 
         "WOM-045-13", 
@@ -3901,6 +3962,7 @@
       ], 
       "slug": "energiewende", 
       "theses": [
+        "WOM-049-00", 
         "WOM-048-36", 
         "WOM-048-21", 
         "WOM-048-08", 
@@ -4416,6 +4478,7 @@
       ], 
       "slug": "extremismus", 
       "theses": [
+        "WOM-049-03", 
         "WOM-048-14", 
         "WOM-045-23", 
         "WOM-045-06", 
@@ -4593,6 +4656,7 @@
       ], 
       "slug": "familienformen", 
       "theses": [
+        "WOM-049-27", 
         "WOM-048-32", 
         "WOM-047-26", 
         "WOM-044-12", 
@@ -4637,6 +4701,7 @@
       ], 
       "slug": "familienpolitik", 
       "theses": [
+        "WOM-049-13", 
         "WOM-048-15", 
         "WOM-045-30", 
         "WOM-044-36", 
@@ -4790,8 +4855,13 @@
       ], 
       "slug": "finanzpolitik", 
       "theses": [
+        "WOM-049-32", 
+        "WOM-049-24", 
+        "WOM-049-19", 
+        "WOM-049-02", 
         "WOM-048-36", 
         "WOM-048-07", 
+        "WOM-047-34", 
         "WOM-047-11", 
         "WOM-047-02", 
         "WOM-046-24", 
@@ -4974,6 +5044,7 @@
       ], 
       "slug": "flughafen", 
       "theses": [
+        "WOM-049-02", 
         "WOM-047-21", 
         "WOM-044-00", 
         "WOM-040-12", 
@@ -5136,6 +5207,7 @@
       ], 
       "slug": "fluchtling", 
       "theses": [
+        "WOM-049-30", 
         "WOM-048-20", 
         "WOM-047-20", 
         "WOM-047-06", 
@@ -5222,6 +5294,7 @@
       ], 
       "slug": "forstwirtschaft", 
       "theses": [
+        "WOM-049-29", 
         "WOM-047-01", 
         "WOM-031-08"
       ], 
@@ -5268,6 +5341,7 @@
       ], 
       "slug": "frauenquote", 
       "theses": [
+        "WOM-049-06", 
         "WOM-048-22", 
         "WOM-047-35", 
         "WOM-046-14", 
@@ -5401,6 +5475,7 @@
       ], 
       "slug": "friedenspolitik", 
       "theses": [
+        "WOM-049-12", 
         "WOM-048-29", 
         "WOM-046-29", 
         "WOM-045-35", 
@@ -5695,6 +5770,7 @@
       ], 
       "slug": "gegliedertes-schulsystem", 
       "theses": [
+        "WOM-049-01", 
         "WOM-048-04", 
         "WOM-047-32", 
         "WOM-045-22", 
@@ -5771,6 +5847,7 @@
       ], 
       "slug": "gemeinschaftsschule", 
       "theses": [
+        "WOM-049-01", 
         "WOM-048-04", 
         "WOM-041-14", 
         "WOM-035-02", 
@@ -5844,12 +5921,34 @@
       "wikipedia_title": "Integrierte Gesamtschule"
     }, 
     {
+      "aliases": [
+        "Genderpolitik"
+      ], 
+      "labels": [
+        "Geschlechterpolitik"
+      ], 
+      "slug": "geschlechterpolitik", 
+      "theses": [
+        "WOM-049-22"
+      ], 
+      "title": "Geschlechterpolitik", 
+      "url": "http://www.wikidata.org/entity/Q80834214", 
+      "wikidata_id": "Q80834214", 
+      "wikipedia_title": "Geschlechterpolitik"
+    }, 
+    {
       "description": "Bezeichnung f\u00fcr Ma\u00dfnahmen zur Formung und Beeinflussung einer menschlichen Gesellschaft", 
       "labels": [
         "Gesellschaftspolitik"
       ], 
       "slug": "gesellschaftspolitik", 
       "theses": [
+        "WOM-049-27", 
+        "WOM-049-25", 
+        "WOM-049-22", 
+        "WOM-049-20", 
+        "WOM-049-06", 
+        "WOM-049-03", 
         "WOM-048-32", 
         "WOM-048-22", 
         "WOM-048-18", 
@@ -6168,6 +6267,9 @@
       ], 
       "slug": "gesundheitspolitik", 
       "theses": [
+        "WOM-049-36", 
+        "WOM-049-10", 
+        "WOM-049-04", 
         "WOM-048-35", 
         "WOM-048-05", 
         "WOM-047-31", 
@@ -6528,6 +6630,7 @@
       ], 
       "slug": "grunderwerbsteuer", 
       "theses": [
+        "WOM-049-19", 
         "WOM-048-07", 
         "WOM-047-34", 
         "WOM-045-27", 
@@ -6558,6 +6661,7 @@
       ], 
       "slug": "grundschule", 
       "theses": [
+        "WOM-049-09", 
         "WOM-047-05", 
         "WOM-045-01", 
         "WOM-044-09", 
@@ -6780,6 +6884,7 @@
       ], 
       "slug": "hanf", 
       "theses": [
+        "WOM-049-10", 
         "WOM-048-35", 
         "WOM-047-31", 
         "WOM-042-31", 
@@ -7354,6 +7459,9 @@
       "description": "Sicherheit eines Staates vor Bedrohungen aus seinem inneren", 
       "slug": "innere-sicherheit", 
       "theses": [
+        "WOM-049-35", 
+        "WOM-049-28", 
+        "WOM-049-14", 
         "WOM-048-23", 
         "WOM-048-14", 
         "WOM-048-11", 
@@ -7497,6 +7605,7 @@
       ], 
       "slug": "integrationskurs", 
       "theses": [
+        "WOM-049-20", 
         "WOM-044-33", 
         "WOM-033-09", 
         "WOM-014-03", 
@@ -7513,6 +7622,7 @@
       ], 
       "slug": "integrationsprojekte", 
       "theses": [
+        "WOM-049-20", 
         "WOM-043-26", 
         "WOM-042-33", 
         "WOM-041-26", 
@@ -7560,6 +7670,7 @@
       ], 
       "slug": "intensivtierhaltung", 
       "theses": [
+        "WOM-049-21", 
         "WOM-047-27", 
         "WOM-031-36"
       ], 
@@ -8057,6 +8168,7 @@
       ], 
       "slug": "kinderbetreuungskosten", 
       "theses": [
+        "WOM-049-13", 
         "WOM-048-15", 
         "WOM-045-30", 
         "WOM-044-36", 
@@ -8135,6 +8247,7 @@
       ], 
       "slug": "kindertagesstatte", 
       "theses": [
+        "WOM-049-13", 
         "WOM-048-15", 
         "WOM-048-10", 
         "WOM-045-30", 
@@ -8213,6 +8326,7 @@
       ], 
       "slug": "kinderwahlrecht", 
       "theses": [
+        "WOM-049-31", 
         "WOM-048-37", 
         "WOM-047-00", 
         "WOM-046-37", 
@@ -8301,6 +8415,8 @@
       ], 
       "slug": "klimapolitik", 
       "theses": [
+        "WOM-049-02", 
+        "WOM-049-00", 
         "WOM-048-36", 
         "WOM-048-21", 
         "WOM-048-12", 
@@ -8540,6 +8656,7 @@
       ], 
       "slug": "kostenfreier-nahverkehr", 
       "theses": [
+        "WOM-049-26", 
         "WOM-044-26", 
         "WOM-038-36", 
         "WOM-036-14", 
@@ -8564,6 +8681,7 @@
       ], 
       "slug": "krankenhaus", 
       "theses": [
+        "WOM-049-04", 
         "WOM-045-28", 
         "WOM-044-13", 
         "WOM-039-05", 
@@ -8832,6 +8950,7 @@
       ], 
       "slug": "laizismus", 
       "theses": [
+        "WOM-049-18", 
         "WOM-048-18", 
         "WOM-048-01", 
         "WOM-043-14"
@@ -8940,6 +9059,7 @@
       ], 
       "slug": "landwirtschaft", 
       "theses": [
+        "WOM-049-07", 
         "WOM-048-16", 
         "WOM-047-07", 
         "WOM-044-16", 
@@ -9009,6 +9129,7 @@
       ], 
       "slug": "legalisierung-von-drogen", 
       "theses": [
+        "WOM-049-10", 
         "WOM-048-35", 
         "WOM-047-31", 
         "WOM-042-31", 
@@ -9035,9 +9156,18 @@
       "wikipedia_title": "Legalisierung von Drogen"
     }, 
     {
+      "aliases": [
+        "Lehrerin", 
+        "Lehrkraft", 
+        "Lehrk\u00f6rper"
+      ], 
       "description": "Person, die andere bei ihrer Bildung unterst\u00fctzt", 
+      "labels": [
+        "Lehrer"
+      ], 
       "slug": "lehrer", 
       "theses": [
+        "WOM-049-09", 
         "WOM-040-21", 
         "WOM-038-27", 
         "WOM-037-11", 
@@ -9423,9 +9553,20 @@
       "wikipedia_title": "Mehrwertsteuer"
     }, 
     {
+      "aliases": [
+        "Me.", 
+        "Handwerksmeister", 
+        "Ma\u00eetre", 
+        "Meisterbetrieb", 
+        "Zimmermeister"
+      ], 
       "description": "H\u00f6herer Berufsabschluss", 
+      "labels": [
+        "Meister"
+      ], 
       "slug": "meister", 
       "theses": [
+        "WOM-049-23", 
         "WOM-027-11", 
         "WOM-007-10", 
         "WOM-004-07", 
@@ -9564,6 +9705,8 @@
       ], 
       "slug": "migration", 
       "theses": [
+        "WOM-049-33", 
+        "WOM-049-08", 
         "WOM-048-30", 
         "WOM-047-33", 
         "WOM-046-17", 
@@ -9914,6 +10057,7 @@
       ], 
       "slug": "museum", 
       "theses": [
+        "WOM-049-24", 
         "WOM-038-06", 
         "WOM-020-09", 
         "WOM-003-03"
@@ -10201,6 +10345,23 @@
       "url": "http://www.wikidata.org/entity/Q18185", 
       "wikidata_id": "Q18185", 
       "wikipedia_title": "Schulnote"
+    }, 
+    {
+      "aliases": [
+        "Notruf"
+      ], 
+      "description": "Signal zum Erreichen einer Notrufzentrale", 
+      "labels": [
+        "Notrufnummer"
+      ], 
+      "slug": "notrufnummer", 
+      "theses": [
+        "WOM-049-36"
+      ], 
+      "title": "Notrufnummer", 
+      "url": "http://www.wikidata.org/entity/Q694554", 
+      "wikidata_id": "Q694554", 
+      "wikipedia_title": "Notruf"
     }, 
     {
       "description": "Place for people to live temporarily when they cannot live in their previous residence", 
@@ -10824,10 +10985,13 @@
       ], 
       "slug": "polizeikontrolle", 
       "theses": [
+        "WOM-049-14", 
         "WOM-047-18", 
+        "WOM-045-07", 
         "WOM-041-29", 
         "WOM-038-05", 
-        "WOM-032-27"
+        "WOM-032-27", 
+        "WOM-027-20"
       ], 
       "title": "Polizeikontrolle", 
       "url": "http://www.wikidata.org/entity/Q2101754", 
@@ -10972,6 +11136,8 @@
       ], 
       "slug": "privatisierung", 
       "theses": [
+        "WOM-049-15", 
+        "WOM-049-04", 
         "WOM-047-01", 
         "WOM-045-28", 
         "WOM-045-17", 
@@ -11329,6 +11495,7 @@
       ], 
       "slug": "rechtsextremismus", 
       "theses": [
+        "WOM-049-03", 
         "WOM-048-14", 
         "WOM-045-23", 
         "WOM-044-07", 
@@ -11370,6 +11537,7 @@
       ], 
       "slug": "rechtspolitik", 
       "theses": [
+        "WOM-049-10", 
         "WOM-047-31", 
         "WOM-044-30", 
         "WOM-042-26", 
@@ -11512,9 +11680,11 @@
     {
       "aliases": [
         "Religionslehre", 
-        "Bekenntnisorientierter Unterricht", 
+        "bekenntnisorientierter Unterricht", 
         "Bekenntnisunterricht", 
-        "Au\u00dferschulischer Religionsunterricht"
+        "au\u00dferschulischer Religionsunterricht", 
+        "schRU", 
+        "aRU"
       ], 
       "description": "Lehre der Religion", 
       "labels": [
@@ -11522,6 +11692,7 @@
       ], 
       "slug": "religionsunterricht", 
       "theses": [
+        "WOM-049-18", 
         "WOM-044-28", 
         "WOM-040-28", 
         "WOM-039-18", 
@@ -11830,6 +12001,7 @@
       ], 
       "slug": "sanktion", 
       "theses": [
+        "WOM-049-17", 
         "WOM-048-17", 
         "WOM-046-29", 
         "WOM-046-24", 
@@ -11873,6 +12045,7 @@
       ], 
       "slug": "schienenverkehr", 
       "theses": [
+        "WOM-049-37", 
         "WOM-047-30", 
         "WOM-037-07", 
         "WOM-034-13", 
@@ -11938,6 +12111,7 @@
       ], 
       "slug": "schleierfahndung", 
       "theses": [
+        "WOM-049-14", 
         "WOM-047-18", 
         "WOM-045-07", 
         "WOM-041-29", 
@@ -11985,6 +12159,7 @@
       "description": "Verfassungsm\u00e4\u00dfige Haushaltsdisziplin, \"schwarze Null\"", 
       "slug": "schuldenbremse-deutschland", 
       "theses": [
+        "WOM-049-32", 
         "WOM-039-23", 
         "WOM-035-06", 
         "WOM-034-24", 
@@ -12037,6 +12212,9 @@
       ], 
       "slug": "schule", 
       "theses": [
+        "WOM-049-27", 
+        "WOM-049-18", 
+        "WOM-049-01", 
         "WOM-048-32", 
         "WOM-048-26", 
         "WOM-048-18", 
@@ -12230,6 +12408,7 @@
       ], 
       "slug": "schulsystem-in-deutschland", 
       "theses": [
+        "WOM-049-01", 
         "WOM-048-04", 
         "WOM-047-32", 
         "WOM-045-22", 
@@ -12460,6 +12639,10 @@
       ], 
       "slug": "sozialpolitik", 
       "theses": [
+        "WOM-049-34", 
+        "WOM-049-27", 
+        "WOM-049-17", 
+        "WOM-049-11", 
         "WOM-048-28", 
         "WOM-048-26", 
         "WOM-048-17", 
@@ -12946,6 +13129,7 @@
       ], 
       "slug": "staatsforst", 
       "theses": [
+        "WOM-049-29", 
         "WOM-047-01", 
         "WOM-031-08"
       ], 
@@ -13069,6 +13253,7 @@
       ], 
       "slug": "stadtplanung", 
       "theses": [
+        "WOM-049-11", 
         "WOM-048-31", 
         "WOM-045-36", 
         "WOM-045-03", 
@@ -13149,7 +13334,9 @@
       ], 
       "slug": "steuer", 
       "theses": [
+        "WOM-049-19", 
         "WOM-048-07", 
+        "WOM-047-34", 
         "WOM-047-02", 
         "WOM-046-30", 
         "WOM-046-22", 
@@ -13505,6 +13692,7 @@
       ], 
       "slug": "studiengebuhr", 
       "theses": [
+        "WOM-049-05", 
         "WOM-047-09", 
         "WOM-045-12", 
         "WOM-034-19", 
@@ -13595,6 +13783,9 @@
       ], 
       "slug": "subvention", 
       "theses": [
+        "WOM-049-24", 
+        "WOM-049-07", 
+        "WOM-049-02", 
         "WOM-046-19", 
         "WOM-027-32", 
         "WOM-006-11"
@@ -13750,6 +13941,7 @@
       ], 
       "slug": "tier", 
       "theses": [
+        "WOM-049-21", 
         "WOM-048-00", 
         "WOM-047-36", 
         "WOM-047-27", 
@@ -13784,6 +13976,7 @@
       ], 
       "slug": "tierschutz", 
       "theses": [
+        "WOM-049-21", 
         "WOM-048-00", 
         "WOM-047-36", 
         "WOM-047-27", 
@@ -13835,6 +14028,7 @@
       ], 
       "slug": "tilgung-geldverkehr", 
       "theses": [
+        "WOM-049-32", 
         "WOM-047-11", 
         "WOM-046-24", 
         "WOM-045-25", 
@@ -14113,6 +14307,7 @@
       ], 
       "slug": "umweltpolitik", 
       "theses": [
+        "WOM-049-07", 
         "WOM-048-16", 
         "WOM-048-02", 
         "WOM-047-07", 
@@ -14219,6 +14414,7 @@
       ], 
       "slug": "umweltschutz", 
       "theses": [
+        "WOM-049-00", 
         "WOM-048-36", 
         "WOM-047-15", 
         "WOM-047-12", 
@@ -14324,6 +14520,8 @@
       ], 
       "slug": "universitat", 
       "theses": [
+        "WOM-049-12", 
+        "WOM-049-05", 
         "WOM-048-29", 
         "WOM-047-09", 
         "WOM-045-12", 
@@ -14549,6 +14747,7 @@
       ], 
       "slug": "verfassungsschutz", 
       "theses": [
+        "WOM-049-28", 
         "WOM-048-06", 
         "WOM-047-25", 
         "WOM-045-31", 
@@ -14615,7 +14814,10 @@
       ], 
       "slug": "verkehrspolitik", 
       "theses": [
+        "WOM-049-37", 
+        "WOM-049-26", 
         "WOM-049-16", 
+        "WOM-049-02", 
         "WOM-048-34", 
         "WOM-048-21", 
         "WOM-048-19", 
@@ -14765,6 +14967,7 @@
       ], 
       "slug": "verkehrswende", 
       "theses": [
+        "WOM-049-26", 
         "WOM-047-30"
       ], 
       "title": "Verkehrswende", 
@@ -14851,6 +15054,7 @@
       ], 
       "slug": "verteidigungspolitik", 
       "theses": [
+        "WOM-049-12", 
         "WOM-048-29", 
         "WOM-047-29", 
         "WOM-046-02", 
@@ -14898,6 +15102,7 @@
       ], 
       "slug": "videouberwachungsanlage", 
       "theses": [
+        "WOM-049-35", 
         "WOM-048-11", 
         "WOM-044-14", 
         "WOM-043-13", 
@@ -15125,6 +15330,7 @@
       ], 
       "slug": "wahlliste", 
       "theses": [
+        "WOM-049-06", 
         "WOM-047-35"
       ], 
       "title": "Wahlliste", 
@@ -15151,6 +15357,7 @@
       ], 
       "slug": "wahlrecht", 
       "theses": [
+        "WOM-049-31", 
         "WOM-048-37", 
         "WOM-047-00", 
         "WOM-046-37", 
@@ -15343,6 +15550,7 @@
       ], 
       "slug": "windkraftanlage", 
       "theses": [
+        "WOM-049-00", 
         "WOM-045-10", 
         "WOM-044-03", 
         "WOM-043-19", 
@@ -15392,6 +15600,7 @@
       ], 
       "slug": "wirtschaftspolitik", 
       "theses": [
+        "WOM-049-02", 
         "WOM-048-30", 
         "WOM-048-12", 
         "WOM-047-01", 
@@ -15470,6 +15679,7 @@
       ], 
       "slug": "wissenschaftspolitik", 
       "theses": [
+        "WOM-049-12", 
         "WOM-048-29", 
         "WOM-046-20", 
         "WOM-045-35", 
@@ -15546,6 +15756,7 @@
       ], 
       "slug": "wohnungspolitik", 
       "theses": [
+        "WOM-049-11", 
         "WOM-048-31", 
         "WOM-045-36", 
         "WOM-045-03", 
@@ -15710,6 +15921,7 @@
       ], 
       "slug": "zivilklausel", 
       "theses": [
+        "WOM-049-12", 
         "WOM-048-29", 
         "WOM-045-35", 
         "WOM-038-31", 
@@ -15782,6 +15994,7 @@
       ], 
       "slug": "deutsche-polizei", 
       "theses": [
+        "WOM-049-14", 
         "WOM-048-23", 
         "WOM-048-03", 
         "WOM-047-28", 
@@ -16016,6 +16229,8 @@
       ], 
       "slug": "politisches-system", 
       "theses": [
+        "WOM-049-31", 
+        "WOM-049-06", 
         "WOM-048-37", 
         "WOM-048-27", 
         "WOM-047-35", 
@@ -16166,6 +16381,8 @@
       ], 
       "slug": "soziale-sicherheit", 
       "theses": [
+        "WOM-049-34", 
+        "WOM-049-17", 
         "WOM-048-28", 
         "WOM-048-17", 
         "WOM-047-22", 
@@ -16230,6 +16447,8 @@
       ], 
       "slug": "sozialer-wohnungsbau", 
       "theses": [
+        "WOM-049-25", 
+        "WOM-049-11", 
         "WOM-045-03", 
         "WOM-042-04", 
         "WOM-041-07", 
@@ -16386,6 +16605,7 @@
       ], 
       "slug": "okologische-landwirtschaft", 
       "theses": [
+        "WOM-049-07", 
         "WOM-048-16", 
         "WOM-047-07", 
         "WOM-044-16", 
@@ -16472,6 +16692,8 @@
       ], 
       "slug": "offentliche-verwaltung", 
       "theses": [
+        "WOM-049-15", 
+        "WOM-049-04", 
         "WOM-048-25", 
         "WOM-048-22", 
         "WOM-048-08", 
@@ -16594,6 +16816,7 @@
       ], 
       "slug": "offentlicher-personennahverkehr", 
       "theses": [
+        "WOM-049-26", 
         "WOM-047-24", 
         "WOM-045-08", 
         "WOM-044-26", 
@@ -16625,6 +16848,7 @@
       ], 
       "slug": "offentlicher-raum", 
       "theses": [
+        "WOM-049-35", 
         "WOM-048-11", 
         "WOM-044-14", 
         "WOM-043-13", 
@@ -16669,6 +16893,6 @@
   "meta": {
     "api": "Metawahl API v3", 
     "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information", 
-    "render_time": "18.89109s"
+    "render_time": "22.50222s"
   }
 }
