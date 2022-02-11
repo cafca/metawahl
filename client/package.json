@@ -5,7 +5,7 @@
   "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
   "dependencies": {
-    "ajv": "^6.0.0",
+    "ajv": "^6.12.3",
     "atob": "^2.1.0",
     "fuse.js": "^3.2.0",
     "hoek": "^5.0.4",
