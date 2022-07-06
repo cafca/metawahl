@@ -11,7 +11,7 @@ flask==1.0.2
 idna==2.7
 itsdangerous>=1.0.0
 jinja2==2.10
-lxml==4.2.5
+lxml==4.9.1
 markupsafe==1.0
 prettyprint==0.1.5
 psycopg2-binary==2.7.5
