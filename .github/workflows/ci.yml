@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [master, containerize-py38]
   pull_request:
 
 permissions:
@@ -91,7 +91,7 @@ jobs:
 
   publish:
     needs: [lint, client, api]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/containerize-py38')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
