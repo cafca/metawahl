@@ -31,8 +31,9 @@ In den Thesen spiegelt sich auch, wie sich die Position der Wähler oder einer P
 
 # Installation
 
-Die Anwendung läuft als Docker-Compose-Stack aus vier Services: `api` (Flask), `client` (React), `db` (Postgres) und
-`memcached`. Quellen für Server und Client liegen in `/api` bzw. `/client`.
+Die Anwendung läuft als Docker-Compose-Stack aus vier Services: `api` (Flask
+3 / Python 3.12 / uWSGI), `client` (React), `db` (Postgres 16) und `redis`
+(Flask-Caching). Quellen für Server und Client liegen in `/api` bzw. `/client`.
 
 ## Voraussetzungen
 
@@ -60,8 +61,8 @@ Die API liest ihre Flask-Konfiguration aus der Datei, auf die
 Im Repo-Root:
 
     $ docker compose build
-    $ docker compose up -d db memcached
-    $ docker compose run --rm -w /app/api api python scripts/reset_db.py --force
+    $ docker compose up -d db redis
+    $ docker compose run --rm -w /app/api api uv run alembic upgrade head
     $ docker compose run --rm -w /app/api api python scripts/bootstrap_db.py
     $ docker compose up -d api client
 
@@ -73,15 +74,54 @@ läuft unter `http://localhost:3000`. Für psql-Zugriff:
 
 ## Start (Production)
 
-In production nur die Basis-Compose-Datei verwenden,
-damit die Dev-Overrides nicht greifen:
+In production nur die Basis-Compose-Datei verwenden, damit die Dev-Overrides
+nicht greifen:
 
     $ docker compose -f compose.yml up -d
 
 Die API läuft dann unter uWSGI hinter Port 3001, der Client liefert den
 statischen Build über Nginx aus. Beide Images werden von der CI zusätzlich
-nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client`
-gepusht.
+nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client` gepusht.
+
+## Lokale Entwicklung ohne Container (uv)
+
+Python-Toolchain direkt via [`uv`](https://docs.astral.sh/uv/):
+
+    $ cd api
+    $ uv sync
+    $ docker compose up -d db redis    # Datenbank + Cache weiter im Container
+    $ METAWAHL_CONFIG=dev.conf.py \
+      METAWAHL_DB_URL=postgresql://metawahl:…@localhost:5432/metawahl \
+      uv run flask --app wsgi run --port 9000
+
+### Tests
+
+Tests laufen in-process gegen ein frisches Postgres. Port muss dafür vom
+`db`-Service exponiert sein:
+
+    $ cd api
+    $ METAWAHL_DB_URL=postgresql://metawahl:…@localhost:5432/metawahl \
+      METAWAHL_CONFIG=test.conf.py \
+      uv run pytest
+
+### Linting und Typechecking
+
+    $ uv run ruff check
+    $ uv run mypy app
+
+## Migrations (Alembic)
+
+Das Schema wird per Alembic verwaltet. Baseline in
+`api/migrations/versions/0001_baseline.py`.
+
+**Frische DB:**
+
+    $ uv run alembic upgrade head
+
+**Bestehende DB** aus der Pre-Alembic-Zeit: einmalig stempeln, bevor neue
+Migrationen angewendet werden.
+
+    $ uv run alembic stamp 0001_baseline
 
 ## Daten bearbeiten
 
