@@ -9,12 +9,12 @@ flask-restful==0.3.6
 flask-sqlalchemy==2.3.2
 flask==1.0.2
 idna==2.7
-itsdangerous>=1.0.0
+itsdangerous==1.1.0
 jinja2==2.10
-lxml==4.2.5
-markupsafe==1.0
+lxml==4.9.3
+markupsafe==1.1.1
 prettyprint==0.1.5
-psycopg2-binary==2.7.5
+psycopg2-binary==2.9.9
 pylibmc==1.5.2
 python-dateutil==2.7.3
 python-slugify==1.2.6

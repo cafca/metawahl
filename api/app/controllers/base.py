@@ -5,6 +5,7 @@ from collections import defaultdict
 from flask import request
 from flask_restful import Resource
 from sqlalchemy import func
+from sqlalchemy.exc import SQLAlchemyError
 
 from models import Election, Tag, Thesis
 from middleware.cache import cache_filler, is_cache_filler

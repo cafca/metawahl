@@ -1,0 +1,26 @@
+services:
+  api:
+    environment:
+      METAWAHL_CONFIG: /app/api/app/dev.conf.py
+      FLASK_APP: wsgi:application
+      FLASK_ENV: development
+      FLASK_DEBUG: "1"
+      PYTHONPATH: /app/api/app
+    volumes:
+      - ./api:/app/api
+    working_dir: /app/api/app
+    command: ["flask", "run", "--host", "0.0.0.0", "--port", "3001", "--reload"]
+    healthcheck:
+      disable: true
+      
+  client:
+    build:
+      target: dev
+    image: metawahl-client:dev
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      REACT_APP_API_ROOT: http://localhost:3001/v3

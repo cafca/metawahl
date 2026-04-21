@@ -1,0 +1,40 @@
+.git
+.github
+.gitignore
+.vscode
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Frontend is served as static files by nginx, not needed in the API image.
+client
+build
+
+# Local venvs / caches.
+.env/
+.venv/
+api/.env/
+api/.venv/
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+.cache
+
+# Logs / dumps.
+*.log
+*.sql
+*.sql.gz
+*.dump
+*.db
+*.db-bup
+
+# Compose / Docker metadata.
+compose.yml
+compose.*.yml
+Dockerfile
+.dockerignore
+
+# Data dirs (pg bind mount, etc.)
+data/

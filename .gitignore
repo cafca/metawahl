@@ -35,3 +35,7 @@ uwsgi.ini
 
 .venv
 .DS_Store
+
+# Docker compose runtime dirs (pg data, api logs).
+/data/
+/logs/

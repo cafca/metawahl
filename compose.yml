@@ -1,0 +1,58 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    image: metawahl-api:dev
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      memcached:
+        condition: service_started
+    environment:
+      METAWAHL_CONFIG: ${METAWAHL_CONFIG}
+      METAWAHL_SECRET: ${METAWAHL_SECRET}
+      METAWAHL_ADMIN_KEY: ${METAWAHL_ADMIN_KEY}
+      METAWAHL_DB_URL: ${METAWAHL_DB_URL}
+      CACHE_MEMCACHED_SERVERS: ${CACHE_MEMCACHED_SERVERS}
+      METAWAHL_API_LOGFILE: ${METAWAHL_API_LOGFILE}
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - ./logs:/var/log/metawahl
+      - ./userdata:/app/userdata
+      - ./qual-o-mat-data:/app/qual-o-mat-data:ro
+      - ./wahlergebnisse:/app/wahlergebnisse:ro
+
+  client:
+    build:
+      context: ./client
+      target: prod
+      args:
+        REACT_APP_API_ROOT: ${REACT_APP_API_ROOT:-https://api.metawahl.de/v3}
+    image: metawahl-client:prod
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    # DB port intentionally not published; reach it via `docker compose exec db psql`.
+
+  memcached:
+    image: memcached:1.6-alpine
+    restart: unless-stopped
+    command: ["-m", "128"]

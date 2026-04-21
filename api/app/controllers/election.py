@@ -4,6 +4,7 @@
 from collections import defaultdict
 from flask import request
 from flask_restful import Resource, fields
+from sqlalchemy.exc import SQLAlchemyError
 
 from models import Election
 from middleware import api

@@ -1,0 +1,10 @@
+node_modules
+build
+.git
+.gitignore
+npm-debug.log
+yarn-error.log
+.env
+.env.local
+.DS_Store
+coverage
