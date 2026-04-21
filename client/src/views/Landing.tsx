@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
@@ -32,14 +31,6 @@ const SUGGESTIONS = [
 ] as const;
 
 export default function Landing() {
-  useEffect(() => {
-    const prev = document.title;
-    document.title = "Metawahl";
-    return () => {
-      document.title = prev;
-    };
-  }, []);
-
   const landtagSlugs = (Object.keys(TERRITORY_NAMES) as TerritorySlug[]).filter(
     (k) => k !== "deutschland" && k !== "europa",
   );
@@ -49,6 +40,7 @@ export default function Landing() {
 
   return (
     <div className="mx-auto max-w-6xl px-4">
+      <title>Metawahl</title>
       {/* Hero */}
       <section id="hero" className="my-16 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
         <div className="flex justify-center md:justify-start">
