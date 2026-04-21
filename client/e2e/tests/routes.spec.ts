@@ -8,7 +8,7 @@ const routes: Array<{ path: string; name: string }> = [
   { path: "/wahlen/deutschland/", name: "wahlen-deutschland" },
   { path: "/wahlen/deutschland/1/", name: "wahlen-deutschland-1" },
   { path: "/quiz/deutschland/1/", name: "quiz-deutschland-1" },
-  { path: "/wahlen/deutschland/1/1/", name: "wahlen-deutschland-1-1" },
+  { path: "/wahlen/europa/1/1/", name: "wahlen-europa-1-1" },
   { path: "/themen/", name: "themen" },
   { path: "/themenliste/", name: "themenliste" },
   { path: "/themen/schule/", name: "themen-schule" },

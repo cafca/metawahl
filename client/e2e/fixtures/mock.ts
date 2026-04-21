@@ -12,7 +12,6 @@ type Entry = { match: RegExp; fixture: string }
 const map: Entry[] = [
   { match: /^\/base\/?$/, fixture: "base.json" },
   { match: /^\/elections\/1\/?$/, fixture: "elections-1.json" },
-  { match: /^\/elections\/1\/1\/?$/, fixture: "elections-1-1.json" },
   { match: /^\/thesis\/WOM-001-01\/?$/, fixture: "thesis-WOM-001-01.json" },
   { match: /^\/quiz\/1\/?$/, fixture: "quiz-1.json" },
   { match: /^\/tags\/schule\/?$/, fixture: "tags-schule.json" },

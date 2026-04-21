@@ -19,7 +19,6 @@ const API_ROOT = process.env.API_ROOT || "http://127.0.0.1:3001/v3"
 const endpoints = [
   { path: "/base", file: "base.json" },
   { path: "/elections/1", file: "elections-1.json" },
-  { path: "/elections/1/1", file: "elections-1-1.json" },
   { path: "/thesis/WOM-001-01", file: "thesis-WOM-001-01.json" },
   { path: "/quiz/1", file: "quiz-1.json" },
   // `schule` exists in the local dev DB and returns rich tag data.

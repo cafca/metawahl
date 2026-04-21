@@ -1,8 +1,0 @@
-{
-  "error": "Ressource not found",
-  "meta": {
-    "api": "Metawahl API v3",
-    "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information",
-    "render_time": "0.00005s"
-  }
-}
