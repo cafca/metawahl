@@ -9,6 +9,10 @@ permissions:
   contents: read
   packages: write
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -54,6 +58,8 @@ jobs:
           python-version: "3.8"
       - name: Prepare .env
         run: cp .env.example .env
+      - name: Prepare bind-mount dirs
+        run: mkdir -p logs userdata && chmod 777 logs userdata
       - name: Build API image
         run: docker compose build api
       - name: Start db + memcached
