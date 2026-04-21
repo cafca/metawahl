@@ -1,23 +1,32 @@
 #!/usr/bin/env python
 
 import datetime
+from typing import TYPE_CHECKING
 
 from services import db
-from sqlalchemy import UniqueConstraint
+from sqlalchemy import DateTime, ForeignKey, Integer, String, UniqueConstraint
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from . import dt_string
+
+if TYPE_CHECKING:
+    from .thesis import Thesis
 
 
 class QuizAnswer(db.Model):
     """Represents an answer given by a user in a quiz."""
 
-    id = db.Column(db.Integer, primary_key=True)
-    uuid = db.Column(db.String(36), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
-    answer = db.Column(db.Integer, nullable=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    uuid: Mapped[str] = mapped_column(String(36), nullable=False)
+    date: Mapped[datetime.datetime] = mapped_column(
+        DateTime, nullable=False, default=datetime.datetime.utcnow
+    )
+    answer: Mapped[int] = mapped_column(Integer, nullable=False)
 
-    thesis_id = db.Column(db.String(10), db.ForeignKey("thesis.id"), nullable=False)
-    thesis = db.relationship("Thesis", backref=db.backref("quiz_answers", lazy=True))
+    thesis_id: Mapped[str] = mapped_column(
+        String(10), ForeignKey("thesis.id"), nullable=False
+    )
+    thesis: Mapped["Thesis"] = relationship(back_populates="quiz_answers")
 
     __table_args__ = (UniqueConstraint("uuid", "thesis_id", name="u_quizanswer"),)
 

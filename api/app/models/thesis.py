@@ -2,32 +2,44 @@
 
 from collections import defaultdict
 from operator import itemgetter
+from typing import TYPE_CHECKING
 
 from services import db
-from sqlalchemy import desc, func
+from sqlalchemy import ForeignKey, String, Text, func, select
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .quiz_answer import QuizAnswer
 from .tag import tags
+
+if TYPE_CHECKING:
+    from .election import Election
+    from .position import Position
+    from .tag import Tag
 
 
 class Thesis(db.Model):
     """Represent a single thesis within an elections thesis set."""
 
-    id = db.Column(db.String(10), primary_key=True)
-    title = db.Column(db.Text)
-    text = db.Column(db.Text, nullable=False)
+    id: Mapped[str] = mapped_column(String(10), primary_key=True)
+    title: Mapped[str | None] = mapped_column(Text)
+    text: Mapped[str] = mapped_column(Text, nullable=False)
 
-    election_id = db.Column(db.Integer, db.ForeignKey("election.id"), nullable=False)
-    election = db.relationship(
-        "Election", backref=db.backref("theses", lazy=True)
+    election_id: Mapped[int] = mapped_column(
+        ForeignKey("election.id"), nullable=False
     )
+    election: Mapped["Election"] = relationship(back_populates="theses")
 
-    tags = db.relationship(
-        "Tag",
+    tags: Mapped[list["Tag"]] = relationship(
         secondary=tags,
-        lazy=False,
-        backref=db.backref("theses", order_by=desc(tags.c.thesis_id)),
+        back_populates="theses",
+        lazy="joined",
     )
+
+    positions: Mapped[list["Position"]] = relationship(
+        back_populates="thesis", lazy="joined"
+    )
+
+    quiz_answers: Mapped[list["QuizAnswer"]] = relationship(back_populates="thesis")
 
     def __repr__(self):
         return f"<Thesis {self.id}>"
@@ -81,7 +93,7 @@ class Thesis(db.Model):
         for score in sorted(collect.keys(), reverse=True):
             rv.extend(
                 [
-                    Thesis.query.get(tid).to_dict()
+                    db.session.get(Thesis, tid).to_dict()
                     for tid in sorted(collect[score], reverse=True)
                 ]
             )
@@ -91,13 +103,13 @@ class Thesis(db.Model):
 
     def quiz_tally(self):
         base = (
-            db.session.query(Thesis.id, func.count(QuizAnswer.id))
+            select(Thesis.id, func.count(QuizAnswer.id))
             .join(Thesis.quiz_answers)
-            .filter(Thesis.id == self.id)
+            .where(Thesis.id == self.id)
             .group_by(Thesis.id)
         )
 
-        y = base.filter(QuizAnswer.answer == 1).all()
-        n = base.filter(QuizAnswer.answer == -1).all()
+        y = db.session.execute(base.where(QuizAnswer.answer == 1)).all()
+        n = db.session.execute(base.where(QuizAnswer.answer == -1)).all()
 
         return (y[0][1] if len(y) > 0 else 0, n[0][1] if len(n) > 0 else 0)

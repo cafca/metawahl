@@ -7,8 +7,9 @@ from flask_restful import Resource
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from models import Election
-from services import cache
+from services import cache, db
 from services.logger import logger
+from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 
 
@@ -20,7 +21,7 @@ class ElectionView(Resource):
         if not is_cache_filler():
             logger.info(f"Cache miss for {request.path}")
 
-        election = Election.query.get(wom_id)
+        election = db.session.get(Election, wom_id)
 
         if election is None:
             return json_response({"error": "Election not found"}, status=404)
@@ -43,7 +44,7 @@ class Elections(Resource):
             logger.info(f"Cache miss for {request.path}")
 
         try:
-            elections = Election.query.all()
+            elections = db.session.execute(select(Election)).scalars().all()
         except SQLAlchemyError as e:
             logger.error(e)
             return json_response({"error": "Server Error"})

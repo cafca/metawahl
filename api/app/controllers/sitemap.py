@@ -6,6 +6,7 @@ from flask import Response
 from flask_restful import Resource
 from models import Election, Tag
 from services import db
+from sqlalchemy import select
 
 
 class SitemapView(Resource):
@@ -20,7 +21,9 @@ class SitemapView(Resource):
                 # Elections
                 yield f"{SITE_ROOT}/wahlen/\n"
                 terr = None
-                query = db.session.query(Election).order_by(Election.territory).all()
+                query = db.session.execute(
+                    select(Election).order_by(Election.territory)
+                ).scalars().all()
                 for occ in query:
                     if occ.territory != terr:
                         yield f"{SITE_ROOT}/wahlen/{occ.territory}/\n"
@@ -32,7 +35,9 @@ class SitemapView(Resource):
                 # Topics
                 yield f"{SITE_ROOT}/themen/\n"
                 yield f"{SITE_ROOT}/themenliste/\n"
-                for tag in db.session.query(Tag).order_by(Tag.slug).all():
+                for tag in db.session.execute(
+                    select(Tag).order_by(Tag.slug)
+                ).scalars().all():
                     yield f"{SITE_ROOT}/themen/{tag.slug}/\n"
 
                 # Other

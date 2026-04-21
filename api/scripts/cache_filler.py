@@ -15,7 +15,9 @@ sys.path.append("./app/")
 from config import API_ROOT, CACHE_FILLER_LOG
 from flask import current_app
 from models import Election, Tag, Thesis
+from services import db
 from services.logger import setup_logger
+from sqlalchemy import select
 
 logger = setup_logger(logfile=CACHE_FILLER_LOG, level=logging.DEBUG)
 
@@ -38,7 +40,7 @@ def gen_urls():
 
     urls.append(url('/elections'))
 
-    elections = Election.query.all()
+    elections = db.session.execute(select(Election)).scalars().all()
     for election in elections:
         urls.append(url('/elections/{}').format(election.id))
 
@@ -47,13 +49,13 @@ def gen_urls():
     urls.append(url('/tags.json'))
     urls.append(url('/tags'))
 
-    tags = Tag.query.all()
+    tags = db.session.execute(select(Tag)).scalars().all()
     for tag in tags:
         urls.append(url('/tags/{}').format(tag.slug))
 
     # theses
 
-    theses = Thesis.query.all()
+    theses = db.session.execute(select(Thesis)).scalars().all()
     for thesis in theses:
         urls.append(url(f'/thesis/{thesis.id}'))
 

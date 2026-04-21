@@ -19,7 +19,7 @@ class Quiz(Resource):
         rv = {}
         error = None
 
-        election = Election.query.get(election_num)
+        election = db.session.get(Election, election_num)
         if election is None:
             return json_response({"error": "Election not found"}, status=404)
 
@@ -51,7 +51,7 @@ class Quiz(Resource):
             error = "The request is missing data"
             status = 422
         else:
-            thesis = Thesis.query.get(thesis_id)
+            thesis = db.session.get(Thesis, thesis_id)
 
             if thesis is None:
                 error = "Thesis not found"

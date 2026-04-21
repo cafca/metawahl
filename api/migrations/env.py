@@ -20,10 +20,9 @@ os.environ.setdefault(
     "METAWAHL_CONFIG", str(API_ROOT / "app" / "test.conf.py")
 )
 
+import models  # noqa: F401, E402 — populate db.metadata
 from main import create_app  # noqa: E402
 from services import db  # noqa: E402
-
-import models  # noqa: F401, E402 — populate db.metadata
 
 config = context.config
 

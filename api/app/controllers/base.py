@@ -9,7 +9,7 @@ from middleware.json_response import json_response
 from models import Election, Tag, Thesis
 from services import cache, db
 from services.logger import logger
-from sqlalchemy import func
+from sqlalchemy import func, select
 from sqlalchemy.exc import SQLAlchemyError
 
 
@@ -27,7 +27,7 @@ class BaseView(Resource):
         # Elections
 
         try:
-            elections = db.session.query(Election).all()
+            elections = db.session.execute(select(Election)).scalars().all()
         except SQLAlchemyError as e:
             logger.error(e)
             return json_response({"error": "Server Error"})
@@ -40,12 +40,11 @@ class BaseView(Resource):
 
         # Tags
 
-        tagItems = (
-            db.session.query(Tag, func.count(Thesis.id))
+        tagItems = db.session.execute(
+            select(Tag, func.count(Thesis.id))
             .join(Tag.theses)
             .group_by(Tag.title)
-            .all()
-        )
+        ).all()
 
         rv["data"]["tags"] = [
             item[0].to_dict(

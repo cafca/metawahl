@@ -17,6 +17,7 @@ from main import create_app
 from models import Tag
 from services import db
 from services.logger import setup_logger
+from sqlalchemy import select
 
 NON_DESCRIPTIONS = [
     'Wikimedia-Begriffsklärungsseite',
@@ -32,7 +33,7 @@ def update_tags(fast=False):
     logger.info("Updating all Wikidata content...")
 
     client = Client()
-    tags = db.session.query(Tag).all()
+    tags = db.session.execute(select(Tag)).scalars().all()
     num_tags = len(tags)
     last_request = None
 

@@ -1,21 +1,33 @@
 #!/usr/bin/env python
 
+from datetime import datetime
+from typing import TYPE_CHECKING
+
 from services import db
+from sqlalchemy import Boolean, DateTime, Integer, String, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from . import dt_string
+
+if TYPE_CHECKING:
+    from .result import Result
+    from .thesis import Thesis
 
 
 class Election(db.Model):
     """Represent an election for which WOM data exists."""
 
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime)
-    territory = db.Column(db.String(32), nullable=False)
-    title = db.Column(db.String(128), nullable=False)
-    wikidata_id = db.Column(db.String(16))
-    wikipedia_title = db.Column(db.Text)
-    source = db.Column(db.Text)
-    preliminary = db.Column(db.Boolean, default=False)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    date: Mapped[datetime | None] = mapped_column(DateTime)
+    territory: Mapped[str] = mapped_column(String(32), nullable=False)
+    title: Mapped[str] = mapped_column(String(128), nullable=False)
+    wikidata_id: Mapped[str | None] = mapped_column(String(16))
+    wikipedia_title: Mapped[str | None] = mapped_column(Text)
+    source: Mapped[str | None] = mapped_column(Text)
+    preliminary: Mapped[bool | None] = mapped_column(Boolean, default=False)
+
+    theses: Mapped[list["Thesis"]] = relationship(back_populates="election")
+    results: Mapped[list["Result"]] = relationship(back_populates="election", lazy="joined")
 
     def __repr__(self):
         prelim = " (preliminary)" if self.preliminary else ""
@@ -27,9 +39,7 @@ class Election(db.Model):
             "date": dt_string(self.date),
             "results": self.result_dict(),
             "source": self.source,
-            "results_source": {
-                "url": self.results[0].source_url
-            },
+            "results_source": {"url": self.results[0].source_url},
             "territory": self.territory,
             "title": self.title,
             "wikidata_id": self.wikidata_id,

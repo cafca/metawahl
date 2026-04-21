@@ -8,6 +8,7 @@ from middleware.logger import log_request_info
 from models import Tag, Thesis
 from services import cache, db
 from services.logger import logger
+from sqlalchemy import select
 
 
 class ThesisView(Resource):
@@ -19,7 +20,7 @@ class ThesisView(Resource):
         if not is_cache_filler():
             logger.info(f"Cache miss for {request.path}")
 
-        thesis = Thesis.query.get(thesis_id)
+        thesis = db.session.get(Thesis, thesis_id)
 
         if thesis is None:
             return json_response({"error": "Thesis not found"}, status=404)
@@ -33,7 +34,7 @@ class ThesisTagsView(Resource):
     def post(self, thesis_id: str):
         log_request_info("Thesis tags update", request)
 
-        thesis = db.session.query(Thesis).get(thesis_id)
+        thesis = db.session.get(Thesis, thesis_id)
         data = request.get_json()
         error = None
 
@@ -45,13 +46,13 @@ class ThesisTagsView(Resource):
             error = "Invalid admin key"
         else:
             for tag_data in data.get("add", []):
-                tag = (
-                    db.session.query(Tag)
-                    .filter(Tag.wikidata_id == tag_data["wikidata_id"])
-                    .first()
-                )
+                tag = db.session.execute(
+                    select(Tag).where(Tag.wikidata_id == tag_data["wikidata_id"])
+                ).scalar_one_or_none()
                 if tag is None:
-                    tag = db.session.query(Tag).filter_by(title=tag_data["title"]).first()
+                    tag = db.session.execute(
+                        select(Tag).where(Tag.title == tag_data["title"])
+                    ).scalar_one_or_none()
 
                 if tag is None:
                     tag = Tag(

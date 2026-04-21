@@ -7,7 +7,7 @@ from middleware.json_response import json_response
 from models import Tag, Thesis
 from services import cache, db
 from services.logger import logger
-from sqlalchemy import func
+from sqlalchemy import func, select
 
 
 class TagsView(Resource):
@@ -20,23 +20,16 @@ class TagsView(Resource):
             logger.info(f"Cache miss for {request.path}")
 
         if request.args.get("include_theses_ids", False) or filename is not None:
-            results = (
-                db.session.query(Tag)
-                .join(Tag.theses)
-                .group_by(Tag.title)
-                .order_by(Tag.title)
-                .all()
-            )
+            results = db.session.execute(
+                select(Tag).join(Tag.theses).group_by(Tag.title).order_by(Tag.title)
+            ).scalars().all()
 
             rv = {"data": [tag.to_dict(include_theses_ids=True) for tag in results]}
 
         else:
-            results = (
-                db.session.query(Tag, func.count(Thesis.id))
-                .join(Tag.theses)
-                .group_by(Tag.title)
-                .all()
-            )
+            results = db.session.execute(
+                select(Tag, func.count(Thesis.id)).join(Tag.theses).group_by(Tag.title)
+            ).all()
 
             rv = {"data": [item[0].to_dict(thesis_count=item[1]) for item in results]}
 
@@ -55,7 +48,9 @@ class TagView(Resource):
         if not is_cache_filler():
             logger.info(f"Cache miss for {request.path}")
 
-        tag = db.session.query(Tag).filter(Tag.slug == slug.lower()).first()
+        tag = db.session.execute(
+            select(Tag).where(Tag.slug == slug.lower())
+        ).scalar_one_or_none()
 
         if tag is None:
             return json_response({"error": "Tag not found"}, status=404)
@@ -76,7 +71,9 @@ class TagView(Resource):
             logger.warning("Invalid admin password")
             return json_response({"error": "Invalid admin password"}, status=401)
 
-        tag = db.session.query(Tag).filter(Tag.slug == slug).first()
+        tag = db.session.execute(
+            select(Tag).where(Tag.slug == slug)
+        ).scalar_one_or_none()
 
         if tag is None:
             return json_response({"error": "Tag not found"}, status=404)

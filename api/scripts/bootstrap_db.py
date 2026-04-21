@@ -17,6 +17,7 @@ from main import create_app
 from models import Election, Party, Position, QuizAnswer, Result, Tag, Thesis
 from services import db
 from services.logger import logger
+from sqlalchemy import select
 
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
@@ -266,7 +267,7 @@ def load_tags():
                 tag.description = None
 
         for thesis_id in tag_data["theses"]:
-            tag.theses.append(Thesis.query.get(thesis_id))
+            tag.theses.append(db.session.get(Thesis, thesis_id))
 
         yield tag
 
@@ -303,7 +304,7 @@ def make_substitutions():
         d = dateutil.parser.parse(w["date"]).date()
         we[d] = w
 
-    elections = db.session.query(Election).order_by(Election.title).all()
+    elections = db.session.execute(select(Election).order_by(Election.title)).scalars().all()
     for i, occ in enumerate(elections):
         print(occ.title)
         print(f"{i + 1} of {len(elections)}")
@@ -349,7 +350,7 @@ def load_results():
         substitutions = defaultdict(list)
         substitutions.update(json.load(f))
 
-    for occ in db.session.query(Election).all():
+    for occ in db.session.execute(select(Election)).scalars().all():
         dt = occ.date.date()
         occ_results = [
             o
