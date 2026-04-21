@@ -29,7 +29,8 @@ def backup_data(data, fname):
         "meta": META
     }
     with open(os.path.join(DATADIR, fname), "w") as f:
-        json.dump(rv, f, indent=2)
+        json.dump(rv, f, indent=2, sort_keys=True)
+        f.write("\n")
 
 
 def gen_quiz_answers():
@@ -38,7 +39,7 @@ def gen_quiz_answers():
 
     return db.session \
         .query(QuizAnswer) \
-        .order_by(QuizAnswer.date) \
+        .order_by(QuizAnswer.uuid, QuizAnswer.thesis_id) \
         .all()
 
 
