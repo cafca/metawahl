@@ -22,6 +22,17 @@ services:
     volumes:
       - ./logs:/var/log/metawahl
 
+  client:
+    build:
+      context: ./client
+      target: prod
+      args:
+        REACT_APP_API_ROOT: ${REACT_APP_API_ROOT:-https://api.metawahl.de/v3}
+    image: metawahl-client:prod
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+
   db:
     image: postgres:16-alpine
     restart: unless-stopped

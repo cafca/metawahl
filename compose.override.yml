@@ -1,0 +1,12 @@
+services:
+  client:
+    build:
+      target: dev
+    image: metawahl-client:dev
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      REACT_APP_API_ROOT: http://localhost:3001/v3
