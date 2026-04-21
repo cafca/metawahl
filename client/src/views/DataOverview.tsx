@@ -1,3 +1,7 @@
+import { lazy, Suspense } from "react";
+
+const SwaggerUILazy = lazy(() => import("./SwaggerUILazy"));
+
 export default function DataOverview() {
   return (
     <section className="mx-auto max-w-3xl px-4 pt-16 pb-12">
@@ -30,9 +34,14 @@ export default function DataOverview() {
         >
           https://api.metawahl.de/v3/
         </a>{" "}
-        erreichbar. Eine interaktive Swagger-UI-Ansicht wird in einer späteren
-        Version wieder eingebunden.
+        erreichbar.
       </p>
+
+      <div className="mt-8">
+        <Suspense fallback={<div>API-Dokumentation wird geladen…</div>}>
+          <SwaggerUILazy url="/swagger.yaml" />
+        </Suspense>
+      </div>
     </section>
   );
 }
