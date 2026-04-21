@@ -6,4 +6,4 @@ application = create_app()
 
 if __name__ == "__main__":
     port = int(os.environ.get("METAWAHL_PORT", 9000))
-    app.run(port=port)
+    application.run(port=port)
