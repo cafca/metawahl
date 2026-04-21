@@ -9,6 +9,9 @@ This workspace is intentionally isolated from `client/package.json` /
 `client/yarn.lock`: the client is frozen on Node 10 / react-scripts 2.x
 tooling for this phase. Do not merge these into the client's own deps.
 
+See [`KNOWN_ISSUES.md`](./KNOWN_ISSUES.md) for bugs captured in the baseline
+that must be fixed (not replicated) during the rewrite.
+
 ## Prerequisites
 
 1. Local Docker stack running with the API reachable at `http://127.0.0.1:3001`
