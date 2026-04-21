@@ -21,6 +21,9 @@ services:
       - "127.0.0.1:3001:3001"
     volumes:
       - ./logs:/var/log/metawahl
+      - ./userdata:/app/userdata
+      - ./qual-o-mat-data:/app/qual-o-mat-data:ro
+      - ./wahlergebnisse:/app/wahlergebnisse:ro
 
   client:
     build:

@@ -1,0 +1,123 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+      - run: pip install flake8
+      - run: flake8 api/app api/scripts
+
+  client:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "10"
+          cache: yarn
+          cache-dependency-path: client/yarn.lock
+      - run: yarn install --frozen-lockfile --network-timeout 600000
+      - run: yarn test --watchAll=false
+        env:
+          CI: "true"
+      - run: yarn build
+        env:
+          REACT_APP_API_ROOT: https://api.metawahl.de/v3
+      - name: Sanity-check client Dockerfile builds
+        working-directory: ${{ github.workspace }}
+        run: docker build --target prod --build-arg REACT_APP_API_ROOT=https://api.metawahl.de/v3 ./client
+
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+      - name: Prepare .env
+        run: cp .env.example .env
+      - name: Build API image
+        run: docker compose build api
+      - name: Start db + memcached
+        run: docker compose up -d db memcached
+      - name: Reset and bootstrap DB
+        run: |
+          docker compose run --rm -w /app/api api python scripts/reset_db.py --force
+          docker compose run --rm -w /app/api api python scripts/bootstrap_db.py
+      - name: Start API
+        run: docker compose up -d api
+      - name: Wait for API
+        run: |
+          for _ in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:3001/v3/base >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "API did not become ready"
+          docker compose logs api
+          exit 1
+      - name: Run tavern tests
+        run: |
+          pip install tavern
+          pytest api/tests -s -v
+      - name: Dump logs on failure
+        if: failure()
+        run: docker compose logs
+
+  publish:
+    needs: [lint, client, api]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push api image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: api/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/metawahl-api:latest
+            ghcr.io/${{ github.repository_owner }}/metawahl-api:${{ github.sha }}
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,mode=max,scope=api
+      - name: Build and push client image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./client
+          target: prod
+          build-args: |
+            REACT_APP_API_ROOT=https://api.metawahl.de/v3
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/metawahl-client:latest
+            ghcr.io/${{ github.repository_owner }}/metawahl-client:${{ github.sha }}
+          cache-from: type=gha,scope=client
+          cache-to: type=gha,mode=max,scope=client
