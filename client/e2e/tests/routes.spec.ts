@@ -12,7 +12,6 @@ const routes: Array<{ path: string; name: string }> = [
   { path: "/themen/", name: "themen" },
   { path: "/themenliste/", name: "themenliste" },
   { path: "/themen/wirtschaft/", name: "themen-wirtschaft" },
-  { path: "/daten/", name: "daten" },
   { path: "/legal/", name: "legal" },
   { path: "/404", name: "not-found" },
 ]
