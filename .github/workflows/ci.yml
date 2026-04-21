@@ -33,19 +33,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "10"
-          cache: yarn
-          cache-dependency-path: client/yarn.lock
-      - run: yarn install --frozen-lockfile --network-timeout 600000
-      - run: yarn test --watchAll=false
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test -- --run
+      - run: npm run build
         env:
-          CI: "true"
-      - run: yarn build
-        env:
-          REACT_APP_API_ROOT: https://api.metawahl.de/v3
+          VITE_API_ROOT: https://api.metawahl.de/v3
       - name: Sanity-check client Dockerfile builds
         working-directory: ${{ github.workspace }}
-        run: docker build --target prod --build-arg REACT_APP_API_ROOT=https://api.metawahl.de/v3 ./client
+        run: docker build --target prod --build-arg VITE_API_ROOT=https://api.metawahl.de/v3 ./client
 
   api:
     runs-on: ubuntu-latest
@@ -120,7 +120,7 @@ jobs:
           context: ./client
           target: prod
           build-args: |
-            REACT_APP_API_ROOT=https://api.metawahl.de/v3
+            VITE_API_ROOT=https://api.metawahl.de/v3
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/metawahl-client:latest
