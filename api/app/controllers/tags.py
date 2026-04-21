@@ -1,16 +1,13 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from flask import request, current_app
-from flask_restful import Resource, fields
-from sqlalchemy import func
-
-from middleware import api
+from flask import current_app, request
+from flask_restful import Resource
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from models import Tag, Thesis
 from services import cache, db
 from services.logger import logger
+from sqlalchemy import func
 
 
 class TagsView(Resource):
@@ -20,9 +17,9 @@ class TagsView(Resource):
         """List all tags."""
 
         if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
+            logger.info(f"Cache miss for {request.path}")
 
-        if request.args.get("include_theses_ids", False) or filename != None:
+        if request.args.get("include_theses_ids", False) or filename is not None:
             results = (
                 db.session.query(Tag)
                 .join(Tag.theses)
@@ -56,7 +53,7 @@ class TagView(Resource):
     def get(self, slug: str):
         """Tag metadata, list of all related theses and their elections."""
         if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
+            logger.info(f"Cache miss for {request.path}")
 
         tag = db.session.query(Tag).filter(Tag.slug == slug.lower()).first()
 
@@ -84,7 +81,7 @@ class TagView(Resource):
         if tag is None:
             return json_response({"error": "Tag not found"}, status=404)
 
-        logger.warning("Removing {}".format(tag))
+        logger.warning(f"Removing {tag}")
         db.session.delete(tag)
         db.session.commit()
 

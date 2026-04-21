@@ -1,17 +1,16 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from collections import defaultdict
+
 from flask import request
 from flask_restful import Resource
-from sqlalchemy import func
-from sqlalchemy.exc import SQLAlchemyError
-
-from models import Election, Tag, Thesis
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
-from services import db, cache
+from models import Election, Tag, Thesis
+from services import cache, db
 from services.logger import logger
+from sqlalchemy import func
+from sqlalchemy.exc import SQLAlchemyError
 
 
 class BaseView(Resource):
@@ -21,7 +20,7 @@ class BaseView(Resource):
         """Return base data set required by the web client."""
 
         if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
+            logger.info(f"Cache miss for {request.path}")
 
         rv = {"data": dict()}
 

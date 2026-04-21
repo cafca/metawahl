@@ -1,17 +1,15 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from collections import defaultdict
-from flask import request
-from flask_restful import Resource, fields
-from sqlalchemy.exc import SQLAlchemyError
 
-from models import Election
-from middleware import api
+from flask import request
+from flask_restful import Resource
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
-from services import db, cache
+from models import Election
+from services import cache
 from services.logger import logger
+from sqlalchemy.exc import SQLAlchemyError
 
 
 class ElectionView(Resource):
@@ -20,7 +18,7 @@ class ElectionView(Resource):
     def get(self, wom_id: int):
         """Election data and a list of its theses."""
         if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
+            logger.info(f"Cache miss for {request.path}")
 
         election = Election.query.get(wom_id)
 
@@ -42,7 +40,7 @@ class Elections(Resource):
         """A list of all elections."""
 
         if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
+            logger.info(f"Cache miss for {request.path}")
 
         try:
             elections = Election.query.all()

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from collections import defaultdict
 from operator import itemgetter
-from sqlalchemy import func, desc
+
 from services import db
+from sqlalchemy import desc, func
 
 from .quiz_answer import QuizAnswer
 from .tag import tags
@@ -30,7 +30,7 @@ class Thesis(db.Model):
     )
 
     def __repr__(self):
-        return "<Thesis {}>".format(self.id)
+        return f"<Thesis {self.id}>"
 
     def to_dict(self, include_tags=True):
         rv = {
@@ -90,8 +90,6 @@ class Thesis(db.Model):
         return rv
 
     def quiz_tally(self):
-        rv = None
-
         base = (
             db.session.query(Thesis.id, func.count(QuizAnswer.id))
             .join(Thesis.quiz_answers)

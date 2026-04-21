@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from services import db
+
 
 class Position(db.Model):
     """Represent a party's position towards a thesis."""
@@ -17,9 +17,7 @@ class Position(db.Model):
     thesis = db.relationship("Thesis", backref=db.backref("positions", lazy=False))
 
     def __repr__(self):
-        return "<Position {}/{}: {}>".format(
-            self.thesis_id, self.party_name, self.value
-        )
+        return f"<Position {self.thesis_id}/{self.party_name}: {self.value}>"
 
     def to_dict(self):
         rv = {"value": self.value, "party": self.party_name}

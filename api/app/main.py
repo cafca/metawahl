@@ -1,43 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 """
 Metawahl API
 
 """
-import os
-import sys
 import logging
-import json
-import requests
-import traceback
-import lxml.html
-
-from datetime import datetime
+import os
 from logging.handlers import RotatingFileHandler
-from flask import (
-    Flask,
-    jsonify,
-    request,
-    send_file,
-    g,
-    make_response,
-    abort,
-    Response,
-    url_for,
-)
-from flask_cors import CORS
-from flask_restful import Api, Resource
-
-import controllers
-from middleware import api
-from middleware.error import exceptions, page_not_found
-from middleware.logger import logger, log_request_info, before_request, after_request
-from middleware.json_response import json_response
-from middleware.cache import is_cache_filler, cache_filler
-from services import db, cache
 
 import config
+import controllers
+from flask import (
+    Flask,
+)
+from flask_cors import CORS
+from middleware import api
+from middleware.error import exceptions, page_not_found
+from middleware.logger import after_request, before_request, logger
+from services import cache, db
 
 API_NAME = config.API_NAME
 API_FULL_NAME = config.API_FULL_NAME
@@ -59,7 +39,7 @@ def create_app(config=None):
     db.init_app(app)
     cache.init_app(app, config=app.config)
 
-    CORS(app, resources={r"{}/*".format(API_ROOT): {"origins": "*"}})
+    CORS(app, resources={rf"{API_ROOT}/*": {"origins": "*"}})
 
     handler = RotatingFileHandler(
         app.config.get("METAWAHL_API_LOGFILE", None) or "../flask_api.log",
@@ -75,21 +55,21 @@ def create_app(config=None):
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    api.add_resource(controllers.BaseView, "/{}/base".format(API_VERSION))
-    api.add_resource(controllers.Elections, "/{}/elections/".format(API_VERSION))
-    api.add_resource(controllers.ElectionView, "/{}/elections/<int:wom_id>".format(API_VERSION))
-    api.add_resource(controllers.TagsView, "/{}/tags/".format(API_VERSION))
-    api.add_resource(controllers.TagsDownload, "/{}/tags.json".format(API_VERSION))
-    api.add_resource(controllers.TagView, "/{}/tags/<string:slug>".format(API_VERSION))
-    api.add_resource(controllers.ThesisView, "/{}/thesis/<string:thesis_id>".format(API_VERSION))
-    api.add_resource(controllers.ThesisTagsView, "/{}/thesis/<string:thesis_id>/tags/".format(API_VERSION))
+    api.add_resource(controllers.BaseView, f"/{API_VERSION}/base")
+    api.add_resource(controllers.Elections, f"/{API_VERSION}/elections/")
+    api.add_resource(controllers.ElectionView, f"/{API_VERSION}/elections/<int:wom_id>")
+    api.add_resource(controllers.TagsView, f"/{API_VERSION}/tags/")
+    api.add_resource(controllers.TagsDownload, f"/{API_VERSION}/tags.json")
+    api.add_resource(controllers.TagView, f"/{API_VERSION}/tags/<string:slug>")
+    api.add_resource(controllers.ThesisView, f"/{API_VERSION}/thesis/<string:thesis_id>")
+    api.add_resource(controllers.ThesisTagsView, f"/{API_VERSION}/thesis/<string:thesis_id>/tags/")
     api.add_resource(
         controllers.Quiz,
-        "/{}/quiz/<int:election_num>".format(API_VERSION),
-        "/{}/quiz/<int:election_num>/<int:thesis_num>".format(API_VERSION),
+        f"/{API_VERSION}/quiz/<int:election_num>",
+        f"/{API_VERSION}/quiz/<int:election_num>/<int:thesis_num>",
     )
 
-    api.add_resource(controllers.SitemapView, "/{}/sitemap.xml".format(API_VERSION))
+    api.add_resource(controllers.SitemapView, f"/{API_VERSION}/sitemap.xml")
 
     # MUST be after route declaration
     api.init_app(app)

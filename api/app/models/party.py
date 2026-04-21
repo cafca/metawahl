@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from services import db
 
@@ -11,7 +10,7 @@ class Party(db.Model):
     long_name = db.Column(db.Text)
 
     def __repr__(self):
-        return "<Party {}>".format(self.name)
+        return f"<Party {self.name}>"
 
     def to_dict(self):
         return {"name": self.name, "long_name": self.long_name}

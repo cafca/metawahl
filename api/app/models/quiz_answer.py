@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import datetime
-from sqlalchemy import UniqueConstraint
+
 from services import db
+from sqlalchemy import UniqueConstraint
+
 from . import dt_string
 
 
@@ -21,7 +22,7 @@ class QuizAnswer(db.Model):
     __table_args__ = (UniqueConstraint("uuid", "thesis_id", name="u_quizanswer"),)
 
     def __repr__(self):
-        return "<QuizAnswer {} / {}>".format(self.thesis_id, self.answer)
+        return f"<QuizAnswer {self.thesis_id} / {self.answer}>"
 
     def to_dict(self):
         rv = {

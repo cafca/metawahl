@@ -1,10 +1,7 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from flask import request, current_app
+from flask import current_app, request
 from flask_restful import Resource
-
-from middleware import api
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from middleware.logger import log_request_info
@@ -20,7 +17,7 @@ class ThesisView(Resource):
         """Return metadata for a specific thesis."""
 
         if not is_cache_filler():
-            logger.info("Cache miss for {}".format(request.path))
+            logger.info(f"Cache miss for {request.path}")
 
         thesis = Thesis.query.get(thesis_id)
 
@@ -66,13 +63,13 @@ class ThesisTagsView(Resource):
                     )
 
                     tag.make_slug()
-                    logger.info("New tag {}".format(tag))
+                    logger.info(f"New tag {tag}")
 
                 tag.wikipedia_title = tag_data.get("wikipedia_title", None)
                 tag.labels = ";".join(tag_data.get("labels", []))
                 tag.aliases = ";".join(tag_data.get("aliases", []))
 
-                logger.info("Appending {} to {}".format(tag, thesis))
+                logger.info(f"Appending {tag} to {thesis}")
                 thesis.tags.append(tag)
 
             if len(data.get("remove", [])) > 0:

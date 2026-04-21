@@ -1,14 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from flask import request
 from flask_restful import Resource
-from sqlalchemy.exc import IntegrityError
-
 from middleware.json_response import json_response
-from middleware.logger import logger, log_request_info
-from models import QuizAnswer, Thesis, Election
-from services import db, cache
+from middleware.logger import log_request_info, logger
+from models import Election, QuizAnswer, Thesis
+from services import cache, db
+from sqlalchemy.exc import IntegrityError
 
 
 class Quiz(Resource):
@@ -33,7 +31,7 @@ class Quiz(Resource):
 
     def post(self, election_num, thesis_num=None):
         """Record an answer given by a user in a quiz."""
-        if thesis_num == None:
+        if thesis_num is None:
             return json_response({"error": "Missing path parameter for thesis number"}, status=422)
 
         log_request_info("Quiz answer post", request)
@@ -41,7 +39,7 @@ class Quiz(Resource):
         error = None
         status = 200
 
-        thesis_id = "WOM-{:03d}-{:02d}".format(election_num, thesis_num)
+        thesis_id = f"WOM-{election_num:03d}-{thesis_num:02d}"
 
         data = request.get_json()
         if data is not None:
@@ -49,7 +47,7 @@ class Quiz(Resource):
             answer = data.get("answer", None)
 
         if data is None or uuid is None or answer is None:
-            logger.warning("Request missing data: {}".format(data))
+            logger.warning(f"Request missing data: {data}")
             error = "The request is missing data"
             status = 422
         else:
@@ -68,7 +66,7 @@ class Quiz(Resource):
                     error = "Ignored duplicate quiz answer"
                     logger.info("Ignored duplicate quiz answer")
                 else:
-                    logger.info("Added {}".format(qa))
+                    logger.info(f"Added {qa}")
 
         if error is None:
             rv = qa.to_dict()

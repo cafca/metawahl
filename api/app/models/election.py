@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from services import db
+
 from . import dt_string
+
 
 class Election(db.Model):
     """Represent an election for which WOM data exists."""
@@ -18,7 +19,7 @@ class Election(db.Model):
 
     def __repr__(self):
         prelim = " (preliminary)" if self.preliminary else ""
-        return "<Election {}: {}{}>".format(self.id, self.title, prelim)
+        return f"<Election {self.id}: {self.title}{prelim}>"
 
     def to_dict(self, thesis_data=False):
         rv = {
@@ -35,7 +36,7 @@ class Election(db.Model):
             "wikipedia_title": self.wikipedia_title,
         }
 
-        if self.results[0].source_name != None:
+        if self.results[0].source_name is not None:
             rv["results_source"]["name"] = self.results[0].source_name
 
         if self.preliminary:

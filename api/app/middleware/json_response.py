@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Middleware for providing JSON encoded responses."""
 
 import config
@@ -20,6 +19,6 @@ for licensing information",
 
     if filename is not None:
         rv.headers["Content-Type"] = "text/json"
-        rv.headers["Content-Disposition"] = "attachment; filename={}".format(filename)
+        rv.headers["Content-Disposition"] = f"attachment; filename={filename}"
 
     return rv

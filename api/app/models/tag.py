@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from collections import defaultdict
-from slugify import slugify
-from services import db
 
+from services import db
+from slugify import slugify
 
 tags = db.Table(
     "tags",
@@ -28,7 +27,7 @@ class Tag(db.Model):
     image = db.Column(db.String(255))
 
     def __repr__(self):
-        return "<Tag #{}>".format(self.title)
+        return f"<Tag #{self.title}>"
 
     def make_slug(self):
         self.slug = slugify(self.title)

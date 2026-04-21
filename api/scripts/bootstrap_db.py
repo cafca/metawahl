@@ -6,18 +6,17 @@ Bootstrap database from JSON
 import json
 import os
 import sys
-import dateutil.parser
-
 from collections import defaultdict
-from datetime import datetime
+
+import dateutil.parser
 
 sys.path.append("./app/")
 
-from models import Election, Thesis, Position, Party, Tag, Result, QuizAnswer
+from config import API_FULL_NAME
 from main import create_app
+from models import Election, Party, Position, QuizAnswer, Result, Tag, Thesis
 from services import db
 from services.logger import logger
-from config import API_FULL_NAME
 
 DATADIR = os.path.join("..", "qual-o-mat-data")
 
@@ -93,7 +92,7 @@ def load_data_file(fp, index=False):
         with open(fp) as f:
             rv = json.load(f)
     except FileNotFoundError:
-        logger.warning("File {} is missing".format(fp))
+        logger.warning(f"File {fp} is missing")
     else:
         if index:
             # Instead of returning a list, assign each item in rv to
@@ -114,7 +113,7 @@ def load_elections():
         # election_dir is like "data/2017/deutschland"
         _, year, territory = election_dir.split("/")
 
-        def path_for(fn):
+        def path_for(fn, year=year, territory=territory):
             return os.path.join(DATADIR, "data", year, territory, fn)
 
         dataset = {
@@ -156,9 +155,7 @@ def load_theses(
     """Load theses from a given ressource file."""
     rv = []
     for thesis_num in theses:
-        thesis_id = "WOM-{election:03d}-{thesis:02d}".format(
-            election=OCCASION_IDS[election_dir], thesis=thesis_num
-        )
+        thesis_id = f"WOM-{OCCASION_IDS[election_dir]:03d}-{thesis_num:02d}"
 
         thesis = Thesis(
             id=thesis_id,
@@ -309,7 +306,7 @@ def make_substitutions():
     elections = db.session.query(Election).order_by(Election.title).all()
     for i, occ in enumerate(elections):
         print(occ.title)
-        print("{} of {}".format(i + 1, len(elections)))
+        print(f"{i + 1} of {len(elections)}")
         d = occ.date.date()
         parties = dict()
         for t in occ.theses:
@@ -326,13 +323,13 @@ def make_substitutions():
             if found is False:
                 print(
                     "\n".join(
-                        "{}: {}".format(i, n)
+                        f"{i}: {n}"
                         for i, n in enumerate(we[d]["results"].keys())
                     )
                 )
 
                 choice = int(
-                    input("Welche Partei ist {}?\n{}\n\n".format(p, parties[p].text))
+                    input(f"Welche Partei ist {p}?\n{parties[p].text}\n\n")
                 )
 
                 if choice != -1:
@@ -364,7 +361,7 @@ def load_results():
         matched_results = set()
 
         if len(occ_results) == 0:
-            logger.error("Didn't find results for {}. Removing from db..".format(occ))
+            logger.error(f"Didn't find results for {occ}. Removing from db..")
             for th in occ.theses:
                 for pos in th.positions:
                     db.session.delete(pos)
@@ -373,8 +370,8 @@ def load_results():
         else:
             res = occ_results[0]
 
-            if "preliminary" in res and res["preliminary"] == True:
-                logger.warning("Marking {} as preliminary".format(occ))
+            if "preliminary" in res and res["preliminary"] is True:
+                logger.warning(f"Marking {occ} as preliminary")
                 occ.preliminary = True
                 yield occ
 
@@ -408,9 +405,9 @@ def load_results():
                         )
                 else:
                     if occ.preliminary:
-                        logger.info("{} missing vote count for  {}".format(occ, p))
+                        logger.info(f"{occ} missing vote count for  {p}")
                     else:
-                        logger.error("No vote count for {} in {}".format(p, occ))
+                        logger.error(f"No vote count for {p} in {occ}")
 
             # Add results missing in Wahl-o-Mat
             for p_name, match in res["results"].items():
@@ -458,7 +455,7 @@ if __name__ == "__main__":
         try:
             for obj in load_elections():
                 db.session.add(obj)
-                logger.info("Added {}".format(obj))
+                logger.info(f"Added {obj}")
 
             for result in load_results():
                 db.session.add(result)

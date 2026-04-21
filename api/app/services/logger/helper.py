@@ -24,8 +24,8 @@ In order to also log to a file, just add a `logfile` parameter:
 The default loglevel is `logging.DEBUG`. You can set it with the
 parameter `level`.
 """
-import sys
 import logging
+import sys
 
 try:
     import curses  # type: ignore
