@@ -1,0 +1,104 @@
+{
+  "data": {
+    "election_id": 1,
+    "id": "WOM-001-01",
+    "positions": [
+      {
+        "party": "CDU",
+        "text": "Die CDU hat erfolgreich durchgesetzt, dass es Übergangszeiträume bis zu sieben Jahren gibt.",
+        "value": -1
+      },
+      {
+        "party": "CSU",
+        "value": -1
+      },
+      {
+        "party": "SPD",
+        "text": "Die SPD geführte Bundesregierung hat sich erfolgreich dafür eingesetzt, das Übergangsfristen für die Arbeitsnehmerfreizügigkeit eingeführt werden. Damit wird die Sorge der Menschen berücksichtigt, dass es durch die EU-Erweiterung zu einem unkontrollierten Zugang zum deutschen Arbeitsmarkt kommen könnte. Wirtschaftsinstitute gehen aber davon aus, dass vor allem Deutschland von der Erweiterung profitiert wird und dadurch bestehende Arbeitsplätze gesichert und neue geschaffen werden.",
+        "value": -1
+      },
+      {
+        "party": "Bündnis 90/Die Grünen",
+        "value": -1
+      },
+      {
+        "party": "FDP",
+        "text": "Die Freizügigkeit der Arbeitnehmer ist ein Grundrecht für die Bürger der EU. Die nach 2 Jahren vorgesehene Überprüfung der von Deutschland gewollten 7jährigen Einschränkung dieser Freizügigkeit sollte ernsthaft genutzt werden, um zu prüfen, ob es tatsächlich zu Störungen des Arbeitsmarkts gekommen ist. Bereits heute wird deutlich, dass Deutschlands wirtschaftliche Anpassung an eine nach Osten erweiterte EU bereits stattgefun-den hat, sodass wenig weitere Lasten zu erwarten sind.",
+        "value": 1
+      },
+      {
+        "party": "PDS",
+        "text": "Die PDS hat sich gegen die Einschränkung der Arbeitnehmerfreizügigkeit ausgesprochen. Die den neuen Mitgliedsländern der EU von der EU-Kommission erstmalig aufgedrängten 'vereinbarten' Übergangsfristen für die Beschränkung der Freizügigkeit der Arbeitnehmerinnen und Arbeitnehmer sind eine eklatante Verletzung des Grundsatzes der Chancengleichheit in der EU. Die Bereitschaft zum Arbeitsplatzortswechsel wird bewusst übersteigert dargestellt und wider besseres Wissen die Gefahr von Massenbewegungen heraufbeschworen. Die eigene Geschichte der EU liefert genügend Beispiele, dass die Migration von Arbeitskräften aus ärmeren in reichere Regionen der EU zu keiner Zeit eine andauernde Massenbewegung gewesen ist. Zudem wird bewusst verschwiegen, dass der grenzüberschreitende Standortwechsel von Unternehmen weit größere Gefahren für den Arbeitsmarkt sowie die Wettbewerbsverschärfung in den betroffenen Ländern birgt.",
+        "value": 1
+      }
+    ],
+    "tags": [
+      {
+        "description": "Person, die bei einem Arbeitgeber arbeitet",
+        "slug": "arbeitnehmer",
+        "title": "Arbeitnehmer",
+        "url": "http://www.wikidata.org/entity/Q703534",
+        "wikidata_id": "Q703534",
+        "wikipedia_title": "Arbeitnehmer"
+      },
+      {
+        "labels": [
+          "Ausländerpolitik"
+        ],
+        "slug": "auslanderpolitik",
+        "title": "Ausländerpolitik",
+        "url": "http://www.wikidata.org/entity/Q16054486",
+        "wikidata_id": "Q16054486",
+        "wikipedia_title": "Ausländerpolitik"
+      },
+      {
+        "aliases": [
+          "Bevölkerungswanderung"
+        ],
+        "description": "Dauerhafter Wohnortwechsel von Menschen",
+        "labels": [
+          "Migration"
+        ],
+        "slug": "migration",
+        "title": "Migration",
+        "url": "http://www.wikidata.org/entity/Q177626",
+        "wikidata_id": "Q177626",
+        "wikipedia_title": "Migration"
+      },
+      {
+        "aliases": [
+          "Freizügigkeit (EU)",
+          "Personenverkehrsabkommen"
+        ],
+        "description": "Freizügigkeit von natürlichen Personen",
+        "labels": [
+          "Personenfreizügigkeit"
+        ],
+        "slug": "personenfreizugigkeit",
+        "title": "Personenfreizügigkeit",
+        "url": "http://www.wikidata.org/entity/Q2072351",
+        "wikidata_id": "Q2072351",
+        "wikipedia_title": "Personenfreizügigkeit"
+      },
+      {
+        "description": "Politikfeld, das sich mit der Wirtschaft befasst",
+        "labels": [
+          "Wirtschaftspolitik"
+        ],
+        "slug": "wirtschaftspolitik",
+        "title": "Wirtschaftspolitik",
+        "url": "http://www.wikidata.org/entity/Q582577",
+        "wikidata_id": "Q582577",
+        "wikipedia_title": "Wirtschaftspolitik"
+      }
+    ],
+    "text": "Arbeitssuchende aus den neuen Mitgliedsländern sollen ohne Übergangsfrist in allen EU-Staaten arbeiten dürfen.",
+    "title": null
+  },
+  "meta": {
+    "api": "Metawahl API v3",
+    "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information",
+    "render_time": "0.21517s"
+  },
+  "related": []
+}
