@@ -5,24 +5,23 @@
   "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
   "dependencies": {
-    "ajv": "^6.0.0",
-    "atob": "^2.1.0",
-    "fuse.js": "^3.2.0",
-    "hoek": "^5.0.4",
-    "lodash": "^4.17.10",
-    "moment": "^2.20.1",
-    "react": "^16.2.0",
+    "ajv": "^8.12.0",
+    "formdata-node": "^4.4.1",
+    "fuse.js": "^6.6.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "react": "^16.14.0",
     "react-autobind": "^1.0.6",
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.0.0",
-    "react-helmet": "^5.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "^2.0.3",
-    "semantic-ui-css": "^2.4.0",
-    "semantic-ui-react": "^0.82.5",
-    "swagger-ui": "^3.19.4",
-    "wikidata-sdk": "^5.3.1"
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^16.14.0",
+    "react-helmet": "^6.1.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "5.0.1",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^0.88.2",
+    "swagger-ui": "^3.52.5",
+    "wikidata-sdk": "^5.16.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,10 +32,8 @@
     "flow": "flow"
   },
   "devDependencies": {
-    "eslint-plugin-flowtype": "^2.42.0",
-    "flow-bin": "^0.60.1",
-    "iflow-react-router": "^1.2.1",
-    "react-snap": "^1.19.0"
+    "flow-bin": "^0.230.0",
+    "react-snap": "^1.23.0"
   },
   "reactSnap": {
     "cacheAjaxRequests": true,
@@ -52,5 +49,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "moduleNameMapper": {
+      "^swagger-ui$": "<rootDir>/src/__mocks__/swagger-ui.js"
+    }
+  }
 }
