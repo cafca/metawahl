@@ -1,11 +1,10 @@
-# Node 10 required by react-scripts 2.x. Upgrade both together later.
-FROM node:10-alpine AS deps
+FROM node:lts-alpine AS deps
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --network-timeout 600000
 
 
-FROM node:10-alpine AS dev
+FROM node:lts-alpine AS dev
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -16,7 +15,7 @@ EXPOSE 3000
 CMD ["yarn", "start"]
 
 
-FROM node:10-alpine AS builder
+FROM node:lts-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
