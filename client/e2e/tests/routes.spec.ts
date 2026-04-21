@@ -11,7 +11,7 @@ const routes: Array<{ path: string; name: string }> = [
   { path: "/wahlen/deutschland/1/1/", name: "wahlen-deutschland-1-1" },
   { path: "/themen/", name: "themen" },
   { path: "/themenliste/", name: "themenliste" },
-  { path: "/themen/wirtschaft/", name: "themen-wirtschaft" },
+  { path: "/themen/schule/", name: "themen-schule" },
   { path: "/legal/", name: "legal" },
   { path: "/404", name: "not-found" },
 ]

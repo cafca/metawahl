@@ -22,10 +22,9 @@ const endpoints = [
   { path: "/elections/1/1", file: "elections-1-1.json" },
   { path: "/thesis/WOM-001-01", file: "thesis-WOM-001-01.json" },
   { path: "/quiz/1", file: "quiz-1.json" },
-  // `wirtschaft` may not exist in the local dev DB; record anyway so the
-  // fixture at least has the error shape — tests will still render the
-  // "not found" view. Override via `TAG_SLUG=xxx` if you want a rich fixture.
-  { path: `/tags/${process.env.TAG_SLUG || "wirtschaft"}`, file: "tags-wirtschaft.json" },
+  // `schule` exists in the local dev DB and returns rich tag data.
+  // Override via `TAG_SLUG=xxx` if you want a different tag fixture.
+  { path: `/tags/${process.env.TAG_SLUG || "schule"}`, file: "tags-schule.json" },
 ]
 
 async function fetchJson(url) {

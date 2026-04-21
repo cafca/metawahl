@@ -15,7 +15,7 @@ const map: Entry[] = [
   { match: /^\/elections\/1\/1\/?$/, fixture: "elections-1-1.json" },
   { match: /^\/thesis\/WOM-001-01\/?$/, fixture: "thesis-WOM-001-01.json" },
   { match: /^\/quiz\/1\/?$/, fixture: "quiz-1.json" },
-  { match: /^\/tags\/wirtschaft\/?$/, fixture: "tags-wirtschaft.json" },
+  { match: /^\/tags\/schule\/?$/, fixture: "tags-schule.json" },
 ]
 
 function loadFixture(file: string): string | null {
