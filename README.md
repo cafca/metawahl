@@ -1,6 +1,6 @@
 ![Metawahl Logo](https://raw.githubusercontent.com/ciex/metawahl/master/metawahl_logo.png)
 
-# Metawahl [![Build Status](https://travis-ci.org/ciex/metawahl.svg?branch=master)](https://travis-ci.org/ciex/metawahl)
+# Metawahl [![CI](https://github.com/ciex/metawahl/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ciex/metawahl/actions/workflows/ci.yml)
 
 Metawahl verbindet Wahlergebnisse aus den letzten 16 Jahren mit über 21.000 Parteipositionen aus dem Wahl-o-Maten. Dabei wird sichtbar: Hat eine Mehrheit für eine Idee gestimmt – oder dagegen?
 
@@ -31,84 +31,81 @@ In den Thesen spiegelt sich auch, wie sich die Position der Wähler oder einer P
 
 # Installation
 
-## Server
+Die Anwendung läuft als Docker-Compose-Stack aus vier Services: `api` (Flask), `client` (React), `db` (Postgres) und
+`memcached`. Quellen für Server und Client liegen in `/api` bzw. `/client`.
 
-Der Server wurde als Flask app (Python) entwickelt und bietet eine JSON
-API, die vom Client angesprochen wird um Daten abzurufen und Nutzereingaben 
-zu speichern. Dazugehörige Quellen finden sich im Verzeichnis `/api`.
+## Voraussetzungen
+
+Docker Engine mit Compose-V2-Plugin. Git submodules müssen zusätzlich
+initialisiert werden, damit `bootstrap_db.py` die Wahl-o-Mat- und
+Wahlergebnis-Quellen findet:
 
     $ git clone https://github.com/ciex/metawahl.git
-    $ cd metawahl/api
-    $ pipenv sync
-    $ pipenv run python app/main.py
+    $ cd metawahl
+    $ git submodule update --init --recursive
 
-Um den Server dauerhaft laufen zu lassen, sollte dieser z.B. als uWSGI Awendung 
-über einen Webserver wie Nginx laufen. Hierzu:
+## Konfiguration
 
-1. Server-Einrichtung wie oben
-2. Firewall Port für die API öffnen (z.B. 9000)
-3. Analog zum Beispiel in `uwsgi.ini.sample` eine uWSGI Konfiguration 
-erstellen. Hierbei unbedingt die letzte Zeile ent-kommentieren und ein SECRET eintragen.
-4. Systemd Unit File erstellen um uWSGI automatisch zu starten
-5. Nginx konfigurieren, so dass Anfragen an die entsprechende Domain an den 
-Metawahl-Socket weitergeleitet werden.
-6. Memcached installieren (unter Ubuntu: `libmemcached-dev` und `zlib1g-dev` )
+Secrets und weitere Konfiguration werden über eine `.env`-Datei neben der
+`compose.yml` gesetzt. Als Ausgangspunkt dient `.env.example`:
 
-Eine ausführliche Anleitung hierzu findet sich zum Beispiel auf:
+    $ cp .env.example .env
+    $ # METAWAHL_SECRET, METAWAHL_ADMIN_KEY und POSTGRES_PASSWORD anpassen
 
-https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-16-04
+Die API liest ihre Flask-Konfiguration aus der Datei, auf die
+`METAWAHL_CONFIG` zeigt (per Default `api/app/prod.conf.py` im Container).
 
-## Dataset
+## Start (Development)
 
-The dataset needs to be downloaded and imported to a Postgresql database 
-available to the server. First, initialize the Git submodule containing the 
-dataset.
+Im Repo-Root:
 
-    $ git submodule init
-    $ git submodule update
+    $ docker compose build
+    $ docker compose up -d db memcached
+    $ docker compose run --rm -w /app/api api python scripts/reset_db.py --force
+    $ docker compose run --rm -w /app/api api python scripts/bootstrap_db.py
+    $ docker compose up -d api client
 
-Make sure that a Postgres server is running and update the server config file 
-`api/dev.conf.py` to include its connection URI.
+`compose.override.yml` wird im Dev-Modus automatisch gemerged und startet
+die API mit `flask run --reload` auf `http://localhost:3001`, der Client
+läuft unter `http://localhost:3000`. Für psql-Zugriff:
 
-    SQLALCHEMY_DATABASE_URI="postgresql://localhost/metawahl"
+    $ docker compose exec db psql -U metawahl metawahl
 
-Now you can import the dataset to the database:
+## Start (Production)
 
-    $ cd api
-    $ python run scripts/reset_db.py
-    $ python run scripts/bootstrap_db.py
+In production nur die Basis-Compose-Datei verwenden,
+damit die Dev-Overrides nicht greifen:
 
-## Client
+    $ docker compose -f compose.yml up -d
 
-Die Benutzeroberfläche ist als React-Webapp umgesetzt. Nach Installation des
-Servers:
-
-    $ cd metawahl/src/client/
-    $ npm install
-    $ npm start
+Die API läuft dann unter uWSGI hinter Port 3001, der Client liefert den
+statischen Build über Nginx aus. Beide Images werden von der CI zusätzlich
+nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client`
+gepusht.
 
 ## Daten bearbeiten
 
-Nur der Seitenbetreiber sollte Tags, Kategorien, etc. bearbeiten können um 
-Missbrauch auszuschließen. Um sich als Admin einzuloggen muss in der Browser-Konsole
-der Local Storage Schlüssel `admin_key` auf den gleichen Wert gesetzt sein, wie
-die Umgebungsvariable `METAWAHL_ADMIN_KEY` auf dem Server. 
+Nur Admins können Tags, Kategorien, etc. bearbeiten. Um sich als Admin einzuloggen muss in der Browser-Konsole
+der Local Storage Key `admin_key` auf den gleichen Wert gesetzt sein, wie
+die Umgebungsvariable `METAWAHL_ADMIN_KEY` auf dem Server.
 
-Die Umgebungsvariable kann zum Beispiel über die Konfigurationsdatei `uwsgi.ini`
-gesetzt werden. Ist sie nicht gesetzt, wird beim Start des Server eine 
-Warnung ausgegeben. 
+Die Variable wird über die `.env`-Datei gesetzt und dem `api`-Container
+durch Compose zur Laufzeit übergeben. Ist sie nicht gesetzt, wird beim
+Start der API eine Warnung ausgegeben.
 
-## Updates
+## Backups
 
-Das Skript `deploy.sample.sh` kann angepasst werden, um eine bestehende 
-Installation von metawahl durch Ausfürung eines einzelnen Skripts zu 
-aktualisieren. Hierbei bleiben alle Daten bestehen, nur die Quellen für
-Client und Server werden auf den neusten Stand des Git-Repositorys gebracht.
+Nutzergenerierte Daten (Quiz-Antworten) werden über
+`api/scripts/backup_userdata.py` nach `userdata/quiz_answers.json`
+exportiert so dass nur mit dem Repo eine komplette Umgebung wiederhergestellt werden kann. Im laufenden Stack:
+
+    $ docker compose exec -w /app/api api python scripts/backup_userdata.py
 
 # Changelog
 
 Version | Beschreibung
 --------|--------------
+2.0.0.  | Komplett modernisierter Backend- und Frontend-Stack
 1.9.0   | iFrame für Einbindung in Blogs, etc hinzugefügt. Viele Design-Verbesserungen.
 1.8.0   | Neues Design für Wahl-Übersicht, Quiz neu gestaltet
 1.7.0   | Backend Refactor und API-Dokumentation auf metawahl.de/daten/
