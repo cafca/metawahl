@@ -2,8 +2,7 @@
 
 from collections import defaultdict
 
-from flask import request
-from flask_restful import Resource
+from flask import Blueprint, request
 from middleware.cache import cache_filler, is_cache_filler
 from middleware.json_response import json_response
 from models import Election, Tag, Thesis
@@ -12,47 +11,45 @@ from services.logger import logger
 from sqlalchemy import func, select
 from sqlalchemy.exc import SQLAlchemyError
 
+base_bp = Blueprint("base", __name__)
 
-class BaseView(Resource):
-    decorators = [cache_filler(), cache.cached()]
 
-    def get(self):
-        """Return base data set required by the web client."""
+@base_bp.route("/base")
+@cache_filler()
+@cache.cached()
+def base_view():
+    """Return base data set required by the web client."""
 
-        if not is_cache_filler():
-            logger.info(f"Cache miss for {request.path}")
+    if not is_cache_filler():
+        logger.info(f"Cache miss for {request.path}")
 
-        rv = {"data": dict()}
+    rv = {"data": dict()}
 
-        # Elections
+    try:
+        elections = db.session.execute(select(Election)).scalars().all()
+    except SQLAlchemyError as e:
+        logger.error(e)
+        return json_response({"error": "Server Error"})
 
-        try:
-            elections = db.session.execute(select(Election)).scalars().all()
-        except SQLAlchemyError as e:
-            logger.error(e)
-            return json_response({"error": "Server Error"})
+    rv["data"]["elections"] = defaultdict(list)
+    for election in elections:
+        rv["data"]["elections"][election.territory].append(
+            election.to_dict(thesis_data=False)
+        )
 
-        rv["data"]["elections"] = defaultdict(list)
-        for election in elections:
-            rv["data"]["elections"][election.territory].append(
-                election.to_dict(thesis_data=False)
-            )
+    tag_items = db.session.execute(
+        select(Tag, func.count(Thesis.id))
+        .join(Tag.theses)
+        .group_by(Tag.title)
+    ).all()
 
-        # Tags
+    rv["data"]["tags"] = [
+        item[0].to_dict(
+            thesis_count=item[1],
+            query_root_status=True,
+            include_related_tags="simple",
+        )
+        for item in tag_items
+    ]
 
-        tagItems = db.session.execute(
-            select(Tag, func.count(Thesis.id))
-            .join(Tag.theses)
-            .group_by(Tag.title)
-        ).all()
-
-        rv["data"]["tags"] = [
-            item[0].to_dict(
-                thesis_count=item[1],
-                query_root_status=True,
-                include_related_tags="simple",
-            )
-            for item in tagItems
-        ]
-
-        return json_response(rv)
+    return json_response(rv)

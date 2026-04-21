@@ -10,11 +10,8 @@ from logging.handlers import RotatingFileHandler
 
 import config
 import controllers
-from flask import (
-    Flask,
-)
+from flask import Flask
 from flask_cors import CORS
-from middleware import api
 from middleware.error import exceptions, page_not_found
 from middleware.logger import after_request, before_request, logger
 from services import cache, db
@@ -48,31 +45,19 @@ def create_app(config=None):
     app.logger.addHandler(handler)
     app.logger.setLevel(logging.INFO)
 
-    # Register logger
     app.before_request(before_request)
     app.after_request(after_request)
 
     app.errorhandler(Exception)(exceptions)
     app.errorhandler(404)(page_not_found)
 
-    api.add_resource(controllers.BaseView, f"/{API_VERSION}/base")
-    api.add_resource(controllers.Elections, f"/{API_VERSION}/elections/")
-    api.add_resource(controllers.ElectionView, f"/{API_VERSION}/elections/<int:wom_id>")
-    api.add_resource(controllers.TagsView, f"/{API_VERSION}/tags/")
-    api.add_resource(controllers.TagsDownload, f"/{API_VERSION}/tags.json")
-    api.add_resource(controllers.TagView, f"/{API_VERSION}/tags/<string:slug>")
-    api.add_resource(controllers.ThesisView, f"/{API_VERSION}/thesis/<string:thesis_id>")
-    api.add_resource(controllers.ThesisTagsView, f"/{API_VERSION}/thesis/<string:thesis_id>/tags/")
-    api.add_resource(
-        controllers.Quiz,
-        f"/{API_VERSION}/quiz/<int:election_num>",
-        f"/{API_VERSION}/quiz/<int:election_num>/<int:thesis_num>",
-    )
-
-    api.add_resource(controllers.SitemapView, f"/{API_VERSION}/sitemap.xml")
-
-    # MUST be after route declaration
-    api.init_app(app)
+    prefix = f"/{API_VERSION}"
+    app.register_blueprint(controllers.base_bp, url_prefix=prefix)
+    app.register_blueprint(controllers.election_bp, url_prefix=prefix)
+    app.register_blueprint(controllers.tags_bp, url_prefix=prefix)
+    app.register_blueprint(controllers.thesis_bp, url_prefix=prefix)
+    app.register_blueprint(controllers.quiz_bp, url_prefix=prefix)
+    app.register_blueprint(controllers.sitemap_bp, url_prefix=prefix)
 
     return app
 
