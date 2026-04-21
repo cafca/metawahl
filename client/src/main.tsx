@@ -1,6 +1,20 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { persistQueryClient } from "@tanstack/react-query-persist-client";
+import { router } from "./routes";
+import { queryClient, persister, GC_TIME_MS, PERSIST_BUSTER } from "@/lib/queryClient";
 import "./index.css";
+
+if (persister) {
+  persistQueryClient({
+    queryClient,
+    persister,
+    maxAge: GC_TIME_MS,
+    buster: PERSIST_BUSTER,
+  });
+}
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -9,6 +23,8 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <h1>Metawahl — modern skeleton</h1>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </StrictMode>,
 );
