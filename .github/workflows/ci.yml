@@ -62,8 +62,8 @@ jobs:
         run: mkdir -p logs userdata && chmod 777 logs userdata
       - name: Build API image
         run: docker compose build api
-      - name: Start db + memcached
-        run: docker compose up -d db memcached
+      - name: Start db + redis
+        run: docker compose up -d db redis
       - name: Reset and bootstrap DB
         run: |
           docker compose run --rm -w /app/api api python scripts/reset_db.py --force

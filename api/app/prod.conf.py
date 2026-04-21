@@ -11,11 +11,9 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_RECORD_QUERIES = False
 
-CACHE_TYPE = "memcached"
+CACHE_TYPE = "RedisCache"
 CACHE_DEFAULT_TIMEOUT = 24 * 60 * 60
-CACHE_MEMCACHED_SERVERS = os.environ.get(
-    "CACHE_MEMCACHED_SERVERS", "127.0.0.1:11211"
-).split(",")
+CACHE_REDIS_URL = os.environ.get("CACHE_REDIS_URL", "redis://127.0.0.1:6379/0")
 
 METAWAHL_API_LOGFILE = os.environ.get(
     "METAWAHL_API_LOGFILE", "/var/log/metawahl/flask.log"
