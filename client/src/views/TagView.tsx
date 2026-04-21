@@ -135,6 +135,7 @@ export default function TagView() {
                     thesis={thesis}
                     election={elections[String(thesis.election_id)]}
                     linkElection
+                    showChart={false}
                   />
                 ))}
               </div>
