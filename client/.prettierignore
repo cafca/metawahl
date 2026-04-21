@@ -1,0 +1,7 @@
+dist
+src.legacy
+e2e
+node_modules
+*.min.*
+__screenshots__
+package-lock.json
