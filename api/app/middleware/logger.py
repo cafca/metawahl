@@ -9,8 +9,7 @@ from services.logger import logger
 
 
 def log_request_info(name, request):
-    # logger.info("{} API".format(name))
-    jsond = request.get_json()
+    jsond = request.get_json(silent=True)
     if jsond:
         logger.debug(f"Data: {pformat(jsond)}")
 
