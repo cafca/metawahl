@@ -30,7 +30,7 @@ services:
       context: ./client
       target: prod
       args:
-        REACT_APP_API_ROOT: ${REACT_APP_API_ROOT:-https://api.metawahl.de/v3}
+        VITE_API_ROOT: ${VITE_API_ROOT:-https://api.metawahl.de/v3}
     image: metawahl-client:prod
     restart: unless-stopped
     ports:

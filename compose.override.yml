@@ -23,4 +23,4 @@ services:
       - ./client:/app
       - /app/node_modules
     environment:
-      REACT_APP_API_ROOT: http://localhost:3001/v3
+      VITE_API_ROOT: http://localhost:3001/v3
