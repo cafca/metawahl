@@ -28,9 +28,9 @@ import logging
 import sys
 
 try:
-    import curses  # type: ignore
+    import curses
 except ImportError:
-    curses = None
+    curses = None  # type: ignore[assignment]
 
 # Python 2+3 compatibility settings for logger
 bytes_type = bytes

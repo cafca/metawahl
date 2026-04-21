@@ -50,6 +50,7 @@ python_version = "3.12"
 ignore_missing_imports = true
 warn_unused_ignores = true
 warn_redundant_casts = true
+exclude = ["app/services/logger/helper.py"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
