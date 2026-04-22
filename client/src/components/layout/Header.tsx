@@ -1,6 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
+import Search from "@/components/Search";
+
 function useIsMobile(breakpoint = 600): boolean {
   const [mobile, setMobile] = useState(() =>
     typeof window !== "undefined"
@@ -43,10 +45,7 @@ function DesktopMenu() {
         </NavLink>
         <div className="right menu">
           <div className="item">
-            <div className="ui small icon input searchNoBorder">
-              <input type="text" placeholder="Suchen..." aria-label="Suchen" />
-              <i className="search icon" />
-            </div>
+            <Search />
           </div>
         </div>
       </div>
@@ -90,10 +89,7 @@ function MobileMenu() {
       </div>
       <div className="right menu">
         <div className="item">
-          <div className="ui small icon input searchNoBorder">
-            <input type="text" placeholder="Suchen..." aria-label="Suchen" />
-            <i className="search icon" />
-          </div>
+          <Search />
         </div>
       </div>
     </div>

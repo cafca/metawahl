@@ -91,7 +91,7 @@ export default function Landing() {
           </div>
 
           <div className="column">
-            <h2 className="ui medium header">
+            <h2 className="ui medium header" style={{ fontSize: "1.28571429em" }}>
               Parteien fordern unterschiedliche Politik
             </h2>
             <p>
@@ -110,7 +110,7 @@ export default function Landing() {
           </div>
 
           <div className="column">
-            <h2 className="ui medium header">
+            <h2 className="ui medium header" style={{ fontSize: "1.28571429em" }}>
               Aber welche Politik hat die Wahl gewonnen?
             </h2>
             <p>
@@ -132,7 +132,7 @@ export default function Landing() {
           </div>
 
           <div className="column">
-            <h2 className="ui medium header">Oft unter einem Kompromiss</h2>
+            <h2 className="ui medium header" style={{ fontSize: "1.28571429em" }}>Oft unter einem Kompromiss</h2>
             <p>
               Die Position mit einer Mehrheit ist dabei nicht immer die, die von
               den meisten Wählern gewünscht wird. In einem repräsentativen
