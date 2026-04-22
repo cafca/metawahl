@@ -56,7 +56,7 @@ Secrets und weitere Konfiguration werden über eine `.env`-Datei neben der
 Die API liest ihre Flask-Konfiguration aus der Datei, auf die
 `METAWAHL_CONFIG` zeigt (per Default `api/app/prod.conf.py` im Container).
 
-## Start (Development)
+## Development
 
 Im Repo-Root:
 
@@ -72,20 +72,7 @@ läuft unter `http://localhost:3000`. Für psql-Zugriff:
 
     $ docker compose exec db psql -U metawahl metawahl
 
-## Start (Production)
-
-In production nur die Basis-Compose-Datei verwenden, damit die Dev-Overrides
-nicht greifen:
-
-    $ docker compose -f compose.yml up -d
-
-Die API läuft dann unter uWSGI hinter Port 3001, der Client liefert den
-statischen Build über Nginx aus. Beide Images werden von der CI zusätzlich
-nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client` gepusht.
-
-## Lokale Entwicklung ohne Container (uv)
-
-Python-Toolchain direkt via [`uv`](https://docs.astral.sh/uv/):
+### Ohne Container
 
     $ cd api
     $ uv sync
@@ -94,34 +81,24 @@ Python-Toolchain direkt via [`uv`](https://docs.astral.sh/uv/):
       METAWAHL_DB_URL=postgresql://metawahl:…@localhost:5432/metawahl \
       uv run flask --app wsgi run --port 9000
 
-### Tests
+## Production
 
-Tests laufen in-process gegen ein frisches Postgres. Port muss dafür vom
-`db`-Service exponiert sein:
+In production nur die Basis-Compose-Datei verwenden:
+
+    $ docker compose -f compose.yml up -d
+
+Die API läuft dann unter uWSGI hinter Port 3001, der Client liefert den
+statischen Build über Nginx aus. Beide Images werden von der CI zusätzlich
+nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client` gepusht.
+
+## Tests
+
+API tests
 
     $ cd api
     $ METAWAHL_DB_URL=postgresql://metawahl:…@localhost:5432/metawahl \
       METAWAHL_CONFIG=test.conf.py \
       uv run pytest
-
-### Linting und Typechecking
-
-    $ uv run ruff check
-    $ uv run mypy app
-
-## Migrations (Alembic)
-
-Das Schema wird per Alembic verwaltet. Baseline in
-`api/migrations/versions/0001_baseline.py`.
-
-**Frische DB:**
-
-    $ uv run alembic upgrade head
-
-**Bestehende DB** aus der Pre-Alembic-Zeit: einmalig stempeln, bevor neue
-Migrationen angewendet werden.
-
-    $ uv run alembic stamp 0001_baseline
 
 ## Daten bearbeiten
 
