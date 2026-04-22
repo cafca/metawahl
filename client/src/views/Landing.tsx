@@ -96,7 +96,7 @@ export default function Landing() {
         <h2 className="mb-6 text-2xl font-bold">Wie Metawahl funktioniert</h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
-            <h3 className="mb-3 text-lg font-semibold">
+            <h3 className="mb-3 text-lg font-bold">
               Parteien fordern unterschiedliche Politik
             </h3>
             <p className="mb-3">
@@ -114,7 +114,7 @@ export default function Landing() {
             </p>
           </div>
           <div>
-            <h3 className="mb-3 text-lg font-semibold">
+            <h3 className="mb-3 text-lg font-bold">
               Aber welche Politik hat die Wahl gewonnen?
             </h3>
             <p className="mb-3">
@@ -135,7 +135,7 @@ export default function Landing() {
             </p>
           </div>
           <div>
-            <h3 className="mb-3 text-lg font-semibold">Oft unter einem Kompromiss</h3>
+            <h3 className="mb-3 text-lg font-bold">Oft unter einem Kompromiss</h3>
             <p className="mb-3">
               Die Position mit einer Mehrheit ist dabei nicht immer die, die
               von den meisten Wählern gewünscht wird. In einem repräsentativen
@@ -169,18 +169,18 @@ export default function Landing() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link to="/wahlen/deutschland/" className="block">
-              <h3 className="mb-2 text-lg font-semibold">Deutschland</h3>
+              <h3 className="mb-2 text-lg font-bold">Deutschland</h3>
               <Map territory="deutschland" className="max-h-48" />
             </Link>
           </div>
           <div>
             <Link to="/wahlen/europa/" className="block">
-              <h3 className="mb-2 text-lg font-semibold">Europa</h3>
+              <h3 className="mb-2 text-lg font-bold">Europa</h3>
               <Map territory="europa" className="max-h-48" />
             </Link>
           </div>
           <div>
-            <h3 className="mb-2 text-lg font-semibold">Landtagswahlen</h3>
+            <h3 className="mb-2 text-lg font-bold">Landtagswahlen</h3>
             <ul className="space-y-1">
               {firstHalf.map((k) => (
                 <li key={k}>
@@ -190,7 +190,7 @@ export default function Landing() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-2 text-lg font-semibold">&nbsp;</h3>
+            <h3 className="mb-2 text-lg font-bold">&nbsp;</h3>
             <ul className="space-y-1">
               {secondHalf.map((k) => (
                 <li key={k}>
