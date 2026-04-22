@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       dry-run:
-        description: "If true, publish + build bundle but skip the deploy to helena"
+        description: "Publish and build, skip deploy to metawahl.de"
         required: false
         default: false
         type: boolean
@@ -15,7 +15,7 @@ on:
         required: false
         default: ""
       dry-run:
-        description: "If true, publish + build bundle but skip the deploy to helena"
+        description: "Publish and build, skip deploy to metawahl.de"
         required: false
         default: false
         type: boolean
