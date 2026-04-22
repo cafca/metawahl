@@ -5,10 +5,10 @@
 /* Semantic UI-aligned tokens (Phase A token harvest from legacy app) */
 :root {
   /* Colors — Semantic UI inverted ink + neutrals */
-  --ink-strong: rgba(0, 0, 0, 0.95);
-  --ink: rgba(0, 0, 0, 0.87);
-  --ink-muted: rgba(0, 0, 0, 0.6);
-  --ink-subtle: rgba(0, 0, 0, 0.4);
+  --ink-strong: #333;
+  --ink: #333;
+  --ink-muted: #333;
+  --ink-subtle: #333;
   --ink-soft: rgba(0, 0, 0, 0.05);
   --border-semantic: rgba(34, 36, 38, 0.15);
   --border-semantic-strong: rgba(34, 36, 38, 0.22);

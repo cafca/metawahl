@@ -44,7 +44,7 @@ export default function Landing() {
       {/* Hero */}
       <section id="hero" className="my-16 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
         <div className="flex justify-center md:justify-start">
-          <Logo className="metawahl-logo max-h-[5em]" aria-label="Metawahl Logo" />
+          <Logo className="metawahl-logo h-auto w-full max-h-[5em]" aria-label="Metawahl Logo" />
         </div>
         <div>
           <h1 className="text-2xl font-bold leading-[1.28571429em]">
