@@ -5,6 +5,7 @@ import { Hash } from "lucide-react";
 import useBase from "@/hooks/useBase";
 import type { Tag } from "@/types/api";
 import { cn } from "@/lib/utils";
+import { Search } from "@/components/Search";
 
 type SortMode = "count" | "name";
 
@@ -44,6 +45,10 @@ export default function TagList() {
         <Hash className="size-7" aria-hidden="true" />
         Alle Themen
       </h1>
+
+      <div className="mb-6">
+        <Search variant="inline" />
+      </div>
 
       <div className="mb-0 flex items-center gap-2 rounded-t-md border border-b-0 bg-muted/30 px-3 py-2">
         <SortPill

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Search } from "@/components/Search";
 
 export default function NotFound() {
   return (
@@ -18,6 +19,10 @@ export default function NotFound() {
         </Link>
         , oder du suchst einfach nach dem, was du hier erwartet hast:
       </p>
+
+      <div className="my-6">
+        <Search variant="inline" />
+      </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Button variant="outline" asChild>
