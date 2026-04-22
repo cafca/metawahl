@@ -24,12 +24,14 @@
     "@tanstack/query-sync-storage-persister": "^5.99.2",
     "@tanstack/react-query": "^5.99.2",
     "@tanstack/react-query-persist-client": "^5.99.2",
+    "@types/swagger-ui-react": "^5.18.0",
     "date-fns": "^4.1.0",
     "fomantic-ui-css": "^2.9.4",
     "fuse.js": "^7.3.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.14.2",
+    "swagger-ui-react": "^5.32.4",
     "wikidata-sdk": "^8.1.1"
   },
   "devDependencies": {

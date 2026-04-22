@@ -2,6 +2,12 @@
   max-height: 5em;
 }
 
+@media (max-width: 400px) {
+  .logo {
+    display: block;
+  }
+}
+
 .st1 {
   fill: #CCCCCC;
 }
