@@ -26,7 +26,7 @@ def base_view():
     rv = {"data": dict()}
 
     try:
-        elections = db.session.execute(select(Election)).scalars().all()
+        elections = db.session.execute(select(Election)).scalars().unique().all()
     except SQLAlchemyError as e:
         logger.error(e)
         return json_response({"error": "Server Error"})

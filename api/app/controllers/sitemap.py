@@ -19,7 +19,7 @@ def sitemap_view():
         terr = None
         query = db.session.execute(
             select(Election).order_by(Election.territory)
-        ).scalars().all()
+        ).scalars().unique().all()
         for occ in query:
             if occ.territory != terr:
                 yield f"{SITE_ROOT}/wahlen/{occ.territory}/\n"
