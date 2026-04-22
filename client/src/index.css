@@ -1,7 +1,10 @@
-/* App-level overrides on top of Fomantic UI semantic.min.css. */
+/* App-level overrides on top of Fomantic UI semantic.min.css.
+   Matches legacy client/src.legacy/index.css:
+   - Body and headers stay Lato (Fomantic default).
+   - Only h1 is globally overridden to Roboto.
+   - Additional Roboto rules live co-located with their views
+     (.headerCount2 in ElectionList, .thesesCount in TagOverview). */
 
-/* Roboto for body copy. Lato (from Fomantic) stays as the display font
-   for .ui.header and h1–h6. */
 @font-face {
   font-family: 'Roboto';
   font-display: swap;
@@ -26,16 +29,12 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 body, html { height: auto }
 
-/* Form controls don't inherit font by default — force Roboto. */
-input, textarea, select, button, .ui.input > input, .ui.form input,
-.ui.form textarea, .ui.button, .ui.menu, .ui.menu .item, .ui.label,
-.ui.list, .ui.list .item, .ui.search > .results {
-  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+h1 {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
 
 .App {
