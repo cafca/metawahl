@@ -13,6 +13,13 @@ export const SITE_ROOT: string = import.meta.env.DEV
   ? "http://localhost:3000"
   : "https://metawahl.de";
 
+/**
+ * Toggle that unlocks admin-only UI (e.g. the `WikidataTagger`). Flipped on
+ * at build time by `VITE_ADMIN=1`. Defaults to `false` in every other
+ * environment so admin surface never ships to end users.
+ */
+export const IS_ADMIN: boolean = import.meta.env.VITE_ADMIN === "1";
+
 // Language
 
 export type TerritorySlug =

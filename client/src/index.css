@@ -2,52 +2,86 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Semantic UI-aligned tokens (Phase A token harvest from legacy app) */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --radius: 0.625rem;
+  /* Colors — Semantic UI inverted ink + neutrals */
+  --ink-strong: rgba(0, 0, 0, 0.95);
+  --ink: rgba(0, 0, 0, 0.87);
+  --ink-muted: rgba(0, 0, 0, 0.6);
+  --ink-subtle: rgba(0, 0, 0, 0.4);
+  --ink-soft: rgba(0, 0, 0, 0.05);
+  --border-semantic: rgba(34, 36, 38, 0.15);
+  --border-semantic-strong: rgba(34, 36, 38, 0.22);
+  --border-inverted: rgba(255, 255, 255, 0.15);
+  --shadow-semantic: rgba(34, 36, 38, 0.15) 0px 1px 2px 0px;
+  --shadow-semantic-inset: rgba(34, 36, 38, 0.15) 0px 0px 0px 1px inset;
+
+  /* Brand & inverted surfaces */
+  --semantic-blue: #2185d0;
+  --semantic-blue-hover: #1678c2;
+  --brand: #2a4065;
+  --segment-inverted: #1b1c1d;
+  --segment-inverted-fg: rgba(255, 255, 255, 0.9);
+
+  /* shadcn-compatible tokens overridden to Semantic look */
+  --background: #ffffff;
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--semantic-blue);
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f5;
+  --secondary-foreground: var(--ink);
+  --muted: #f3f4f5;
+  --muted-foreground: var(--ink-muted);
+  --accent: #f3f4f5;
+  --accent-foreground: var(--ink);
+  --destructive: #db2828;
+  --destructive-foreground: #ffffff;
+  --border: var(--border-semantic);
+  --input: var(--border-semantic);
+  --ring: var(--semantic-blue);
+
+  /* Radius — Semantic UI uses .28571429rem (≈4px at 14px root). Keep 4px. */
+  --radius: 0.28571429rem;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.556 0 0);
+  --background: var(--segment-inverted);
+  --foreground: var(--segment-inverted-fg);
+  --card: var(--segment-inverted);
+  --card-foreground: var(--segment-inverted-fg);
+  --popover: var(--segment-inverted);
+  --popover-foreground: var(--segment-inverted-fg);
+  --primary: #54c8ff;
+  --primary-foreground: var(--segment-inverted);
+  --secondary: rgba(255, 255, 255, 0.08);
+  --secondary-foreground: var(--segment-inverted-fg);
+  --muted: rgba(255, 255, 255, 0.08);
+  --muted-foreground: rgba(255, 255, 255, 0.6);
+  --accent: rgba(255, 255, 255, 0.08);
+  --accent-foreground: var(--segment-inverted-fg);
+  --destructive: #ff695e;
+  --destructive-foreground: var(--segment-inverted);
+  --border: var(--border-inverted);
+  --input: var(--border-inverted);
+  --ring: #54c8ff;
 }
 
 @theme inline {
+  /* Font stacks mirror Semantic UI: Lato for UI chrome + headings, Roboto for body text */
+  --font-sans: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  --font-body: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  --font-heading: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+  /* Semantic UI container widths. Defaults at sm/md/lg/xl: 723/933/1127/1127 */
+  --container-semantic-sm: 723px;
+  --container-semantic-md: 933px;
+  --container-semantic-lg: 1127px;
+
+  /* Colors exposed as utility classes */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -67,17 +101,62 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-ink: var(--ink);
+  --color-ink-strong: var(--ink-strong);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-soft: var(--ink-soft);
+  --color-brand: var(--brand);
+  --color-semantic-blue: var(--semantic-blue);
+  --color-semantic-blue-hover: var(--semantic-blue-hover);
+  --color-segment-inverted: var(--segment-inverted);
+  --color-segment-inverted-fg: var(--segment-inverted-fg);
+
+  --radius-sm: calc(var(--radius) - 1px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
 }
 
 @layer base {
+  html {
+    font-size: 14px;
+  }
   * {
     @apply border-[color:var(--border)];
   }
   body {
-    @apply bg-[color:var(--background)] text-[color:var(--foreground)];
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.4285em;
+    color: var(--ink);
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.28571429em;
+    margin: 0;
+  }
+  h1 { font-size: 2rem; line-height: 1.28571429em; }     /* 28px at 14px root */
+  h2 { font-size: 1.71428571rem; }                        /* 24px */
+  h3 { font-size: 1.28571429rem; }                        /* 18px */
+  h4 { font-size: 1.07142857rem; }                        /* 15px */
+  h5 { font-size: 1rem; }
+  a {
+    color: var(--semantic-blue);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--semantic-blue-hover);
+    text-decoration: none;
+  }
+  strong, b { font-weight: 700; }
+  p { margin: 0 0 1em; line-height: 1.4285em; }
+  p:last-child { margin-bottom: 0; }
 }

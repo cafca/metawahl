@@ -9,6 +9,11 @@ const viewports = [
   { name: "wide-1920", width: 1920, height: 1080 },
 ]
 
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:4173"
+// Set PLAYWRIGHT_SKIP_WEBSERVER=1 when you want to point tests at an existing
+// dev server (e.g. the legacy Docker app on :3000).
+const manageServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER !== "1"
+
 export default defineConfig({
   testDir: "./tests",
   // Co-locate all golden PNGs under a single committed directory.
@@ -23,9 +28,19 @@ export default defineConfig({
     },
   },
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL,
     ignoreHTTPSErrors: true,
   },
+  ...(manageServer && {
+    webServer: {
+      command: "npm run build --prefix .. && npm run preview --prefix .. -- --port 4173 --host 127.0.0.1",
+      url: baseURL,
+      reuseExistingServer: !process.env.CI,
+      timeout: 180_000,
+      stdout: "pipe",
+      stderr: "pipe",
+    },
+  }),
   projects: viewports.map((v) => ({
     name: v.name,
     use: {
