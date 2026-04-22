@@ -2,21 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 import Search from "@/components/Search";
-
-function useIsMobile(breakpoint = 600): boolean {
-  const [mobile, setMobile] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia(`(max-width: ${breakpoint - 1}px)`).matches
-      : false,
-  );
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
-    const handler = (e: MediaQueryListEvent) => setMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [breakpoint]);
-  return mobile;
-}
+import useIsMobile from "@/hooks/useIsMobile";
 
 function DesktopMenu() {
   return (
