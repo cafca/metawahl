@@ -1,25 +1,41 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Search } from "@/components/Search";
+
+const linkBase =
+  "flex items-center px-4 py-[13px] font-bold text-ink border-l border-[rgba(34,36,38,0.1)] hover:bg-black/[0.03]";
+const linkActive = "bg-black/[0.05] text-ink-strong";
 
 export function Header() {
   return (
-    <header className="border-b border-[color:var(--border)] px-4 py-3">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-        <Link to="/" className="text-lg font-semibold">
+    <header className="bg-white shadow-[rgba(34,36,38,0.15)_0_1px_2px_0] border-b border-[rgba(34,36,38,0.15)]">
+      <nav className="mx-auto flex max-w-[1127px] items-stretch">
+        <Link
+          to="/"
+          className="flex items-center border-r border-[rgba(34,36,38,0.1)] px-4 py-[13px] font-bold text-ink"
+        >
           Metawahl
         </Link>
-        <ul className="flex flex-1 items-center gap-4 text-sm">
-          <li>
-            <Link to="/wahlen/">Wahlen</Link>
-          </li>
-          <li>
-            <Link to="/themen/">Themen</Link>
-          </li>
-          <li>
-            <Link to="/daten/">Daten</Link>
-          </li>
-        </ul>
-        <Search />
+        <NavLink
+          to="/wahlen/"
+          className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}
+        >
+          Wahlen
+        </NavLink>
+        <NavLink
+          to="/themen/"
+          className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}
+        >
+          Themen
+        </NavLink>
+        <NavLink
+          to="/daten/"
+          className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}
+        >
+          Daten
+        </NavLink>
+        <div className="ml-auto flex items-center border-l border-[rgba(34,36,38,0.1)] px-3 py-2">
+          <Search />
+        </div>
       </nav>
     </header>
   );
