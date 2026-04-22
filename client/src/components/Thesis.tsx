@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { Link as LinkIcon } from "lucide-react";
 
 import {
   mergePartyData,
@@ -13,6 +14,7 @@ import { COLOR_PALETTE, OPINION_COLORS } from "@/config";
 import { cn } from "@/lib/utils";
 import type { Election, Position, QuizAnswer, Thesis as ThesisModel } from "@/types/api";
 import { extractThesisId } from "@/lib/thesis";
+import { copyToClipboard, toAbsoluteUrl } from "@/lib/clipboard";
 
 type QuizProps = {
   quizMode?: boolean;
@@ -186,17 +188,39 @@ export function Thesis({
             {election.title}
           </p>
         )}
-        {permaLink != null && !quizMode ? (
-          <Link to={permaLink} className="block">
-            <h2 className="text-lg font-semibold leading-snug hover:underline md:text-xl">
+        <div className="flex items-start justify-between gap-3">
+          {permaLink != null && !quizMode ? (
+            <Link to={permaLink} className="block flex-1">
+              <h2 className="text-lg font-semibold leading-snug hover:underline md:text-xl">
+                {thesis.text}
+              </h2>
+            </Link>
+          ) : (
+            <h2 className="flex-1 text-lg font-semibold leading-snug md:text-xl">
               {thesis.text}
             </h2>
-          </Link>
-        ) : (
-          <h2 className="text-lg font-semibold leading-snug md:text-xl">
-            {thesis.text}
-          </h2>
-        )}
+          )}
+          {permaLink != null && !quizMode && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "shrink-0",
+                useColoredHeader && "text-white hover:bg-white/20 hover:text-white",
+              )}
+              aria-label="Permalink kopieren"
+              title="Permalink kopieren"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                void copyToClipboard(toAbsoluteUrl(permaLink));
+              }}
+            >
+              <LinkIcon className="size-4" aria-hidden="true" />
+            </Button>
+          )}
+        </div>
         {!headerUnansweredInQuiz && useColoredHeader && election != null && (
           <p className="mt-2 text-sm text-white/90">{subHeader}</p>
         )}

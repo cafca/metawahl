@@ -69,6 +69,7 @@ export function WikidataTagger({
   const abortRef = useRef<AbortController | null>(null);
 
   const debouncedQuery = useMemo(() => query.trim(), [query]);
+  const tooShort = debouncedQuery.length < MIN_QUERY_LENGTH;
 
   useEffect(() => {
     // Cancel any in-flight timer / request whenever the query changes.
@@ -81,14 +82,12 @@ export function WikidataTagger({
       abortRef.current = null;
     }
 
-    if (debouncedQuery.length < MIN_QUERY_LENGTH) {
-      setResults([]);
-      setIsLoading(false);
+    if (tooShort) {
       return;
     }
 
-    setIsLoading(true);
     debounceRef.current = window.setTimeout(async () => {
+      setIsLoading(true);
       const controller = new AbortController();
       abortRef.current = controller;
       try {
@@ -130,14 +129,16 @@ export function WikidataTagger({
         debounceRef.current = null;
       }
     };
-  }, [debouncedQuery]);
+  }, [debouncedQuery, tooShort]);
+
+  // Display derived from inputs: below the min-length threshold we never show
+  // stale results, regardless of what's still sitting in `results`.
+  const visibleResults = tooShort ? [] : results;
+  const showLoading = !tooShort && isLoading;
 
   if (!IS_ADMIN) return null;
 
-  const showEmpty =
-    !isLoading &&
-    debouncedQuery.length >= MIN_QUERY_LENGTH &&
-    results.length === 0;
+  const showEmpty = !showLoading && !tooShort && visibleResults.length === 0;
 
   return (
     <Command
@@ -153,13 +154,13 @@ export function WikidataTagger({
         onValueChange={setQuery}
       />
       <CommandList>
-        {isLoading && (
+        {showLoading && (
           <div className="px-3 py-2 text-sm text-muted-foreground">Lädt…</div>
         )}
         {showEmpty && <CommandEmpty>Keine Treffer</CommandEmpty>}
-        {results.length > 0 && (
+        {visibleResults.length > 0 && (
           <CommandGroup heading="Wikidata">
-            {results.map((hit) => (
+            {visibleResults.map((hit) => (
               <CommandItem
                 key={hit.id}
                 value={`${hit.label} ${hit.id}`}

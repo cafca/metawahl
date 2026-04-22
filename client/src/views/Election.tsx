@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Link as LinkIcon } from "lucide-react";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
 
@@ -14,6 +14,7 @@ import { TERRITORY_NAMES, type TerritorySlug } from "@/config";
 import useBase from "@/hooks/useBase";
 import useElection from "@/hooks/useElection";
 import type { Election, Thesis } from "@/types/api";
+import { copyToClipboard, toAbsoluteUrl } from "@/lib/clipboard";
 
 function isKnownTerritory(slug: string | undefined): slug is TerritorySlug {
   return slug != null && slug in TERRITORY_NAMES;
@@ -206,6 +207,20 @@ export default function ElectionView() {
               <ArrowRight className="size-4" aria-hidden="true" />
               Teste dein Wissen im Quiz
             </Link>
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label="Link zur Wahl kopieren"
+            title="Link zur Wahl kopieren"
+            onClick={() =>
+              void copyToClipboard(
+                toAbsoluteUrl(`/wahlen/${territory}/${electionNum}/`),
+              )
+            }
+          >
+            <LinkIcon className="size-4" aria-hidden="true" />
           </Button>
         </div>
       </div>
