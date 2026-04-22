@@ -89,6 +89,14 @@ jobs:
         with:
           name: client-bundle
           path: client-bundle
+      - name: Clean client bundle target on helena
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HELENA_SSH_HOST }}
+          username: ${{ secrets.HELENA_SSH_USER }}
+          key: ${{ secrets.HELENA_SSH_KEY }}
+          port: ${{ secrets.HELENA_SSH_PORT || 22 }}
+          script: find /var/www/metawahl/ -mindepth 1 -delete
       - name: Rsync client bundle to helena
         uses: appleboy/scp-action@v1
         with:
@@ -100,7 +108,6 @@ jobs:
           target: "/var/www/metawahl/"
           strip_components: 1
           overwrite: true
-          rm: true
       - name: Pull api image + restart + flush cache + smoke
         uses: appleboy/ssh-action@v1
         with:
