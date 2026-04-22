@@ -34,7 +34,7 @@ body {
 
 body, html { height: auto }
 
-.ui.header, .ui.menu, .ui.button {
+h1, .ui.header, .ui.menu, .ui.button {
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
