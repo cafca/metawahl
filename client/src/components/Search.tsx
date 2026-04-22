@@ -175,10 +175,14 @@ export function Search({ className = "", large = false }: SearchProps) {
               Themen
             </div>
             {tagResults.map((res) => (
-              <span
+              <a
                 className="result"
                 key={`result-tag-${res.slug}`}
-                onClick={() => handleSelect(`/themen/${res.slug}/`)}
+                href={`/themen/${res.slug}/`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSelect(`/themen/${res.slug}/`);
+                }}
               >
                 <div className="content">
                   <div className="title">
@@ -193,7 +197,7 @@ export function Search({ className = "", large = false }: SearchProps) {
                     <div className="description">{res.description}</div>
                   )}
                 </div>
-              </span>
+              </a>
             ))}
           </div>
         )}

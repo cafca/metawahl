@@ -94,7 +94,10 @@ export default function Election() {
   const base = useBase();
 
   const election = elQuery.data?.data;
-  const theses: ThesisData[] = elQuery.data?.theses ?? [];
+  const theses: ThesisData[] = useMemo(
+    () => elQuery.data?.theses ?? [],
+    [elQuery.data],
+  );
   const isLoading = elQuery.isLoading;
 
   const sortedTheses = useMemo(() => {

@@ -51,8 +51,11 @@ export function TagBadge({ active, data, remove, detail, onClick }: Props) {
       {detail != null && <span className="detail">{detail}</span>}
       {IS_ADMIN && remove != null && (
         <span className="detail">
-          <i
+          <button
+            type="button"
+            aria-label="Tag entfernen"
             className="delete icon"
+            style={{ background: "none", border: 0, padding: 0, cursor: "pointer" }}
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();

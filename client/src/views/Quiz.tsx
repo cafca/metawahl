@@ -62,7 +62,10 @@ export default function Quiz() {
   const submit = useSubmitQuizAnswer();
 
   const election = elQuery.data?.data;
-  const theses: ThesisData[] = elQuery.data?.theses ?? [];
+  const theses: ThesisData[] = useMemo(
+    () => elQuery.data?.theses ?? [],
+    [elQuery.data],
+  );
   const tally = tallyQuery.data?.data;
   const isLoading = elQuery.isLoading;
 

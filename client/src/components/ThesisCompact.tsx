@@ -151,10 +151,17 @@ export function ThesisCompact(props: Props) {
       {visible && openText != null && (
         <div>
           <div className="ui attached message positionPopup">
-            <i
+            <button
+              type="button"
+              aria-label="Schließen"
               className="close icon"
               onClick={() => toggleOpen(null)}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                background: "none",
+                border: 0,
+                padding: 0,
+              }}
             />
             <div className="header">{text}</div>
             <p>

@@ -52,8 +52,16 @@ function MobileMenu() {
     <div className="ui fluid menu">
       <div
         ref={ref}
+        role="button"
+        tabIndex={0}
         className={`ui dropdown item${open ? " active visible" : ""}`}
         onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen((v) => !v);
+          }
+        }}
       >
         Metawahl
         <i className="dropdown icon" />

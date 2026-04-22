@@ -50,9 +50,14 @@ export default function TagView() {
   const base = useBase();
 
   const tag = tagQuery.data?.data;
-  const theses: ThesisData[] = tagQuery.data?.theses ?? [];
-  const electionsById: Record<string, ElectionSummary> =
-    tagQuery.data?.elections ?? {};
+  const theses: ThesisData[] = useMemo(
+    () => tagQuery.data?.theses ?? [],
+    [tagQuery.data],
+  );
+  const electionsById: Record<string, ElectionSummary> = useMemo(
+    () => tagQuery.data?.elections ?? {},
+    [tagQuery.data],
+  );
   const loading = tagQuery.isLoading;
 
   const electionDateById = useMemo(() => {

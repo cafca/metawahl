@@ -43,6 +43,10 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       ...jsxA11y.configs.recommended.rules,
       "react/prop-types": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
     },
   },
   prettier,

@@ -109,6 +109,7 @@ export function Thesis(props: Props) {
   const [error] = useState<string | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTags(initialTags);
   }, [initialTags]);
 
@@ -164,40 +165,28 @@ export function Thesis(props: Props) {
     return arr.slice(0, 10);
   }, [related, tags]);
 
-  const [relatedState, setRelatedState] = useState<
-    (Tag & { count: number })[]
-  >([]);
-  useEffect(() => {
-    setRelatedState(relatedTagsList);
-  }, [relatedTagsList]);
+  const relatedState = relatedTagsList;
 
-  const sendTagChanges = useCallback(
-    async (_data: {
-      remove: string[];
-      add: Tag[];
-    }) => {
-      // TODO admin: wire POST /thesis/:id/tags/ for admin tag edits.
-      setLoading(true);
-      try {
-        // Stub: not wired. Kept to preserve the UX path for admin users.
-      } finally {
-        setLoading(false);
-      }
-    },
-    [],
-  );
+  const sendTagChanges = useCallback(async () => {
+    // TODO admin: wire POST /thesis/:id/tags/ for admin tag edits.
+    setLoading(true);
+    try {
+      // Stub: not wired. Kept to preserve the UX path for admin users.
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   const handleTagRemove = useCallback(
-    (title: string) => {
-      void sendTagChanges({ add: [], remove: [title] });
+    (_title: string) => {
+      void sendTagChanges();
     },
     [sendTagChanges],
   );
 
   const handleRelatedTagClick = useCallback(
-    (tag: Tag) => {
-      void sendTagChanges({ add: [tag], remove: [] });
-      setRelatedState((prev) => prev.filter((t) => t.title !== tag.title));
+    (_tag: Tag) => {
+      void sendTagChanges();
     },
     [sendTagChanges],
   );
@@ -407,9 +396,22 @@ export function Thesis(props: Props) {
               <div className="ui negative message">{error}</div>
             )}
 
-            <p className="sources" onClick={() => setShowSources(true)}>
-              Quellen
-              {showSources && <span>: {sources}</span>}
+            <p className="sources">
+              <button
+                type="button"
+                onClick={() => setShowSources(true)}
+                style={{
+                  background: "none",
+                  border: 0,
+                  padding: 0,
+                  cursor: "pointer",
+                  color: "inherit",
+                  font: "inherit",
+                }}
+              >
+                Quellen
+                {showSources && <span>: {sources}</span>}
+              </button>
             </p>
           </div>
 
