@@ -47,11 +47,11 @@ export default function Landing() {
           <img src={logoUrl} alt="Metawahl Logo" className="max-h-20" />
         </div>
         <div>
-          <h1 className="text-2xl font-semibold leading-tight md:text-3xl">
+          <h1 className="text-[28px] font-bold leading-tight md:text-[32px]">
             Metawahl zeigt, wie sich der politische Konsens in Deutschland über
             Zeit ändert.
           </h1>
-          <h2 className="mt-4 text-lg font-medium leading-snug text-muted-foreground">
+          <h2 className="mt-4 text-[15px] font-normal leading-relaxed text-ink-muted md:text-base">
             Hierzu werden die Aussagen der Parteien aus 50 Wahl-o-Maten mit den
             dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar,
             welche Politik von vielen Stimmen gestützt wird und welche Parteien
