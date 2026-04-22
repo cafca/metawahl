@@ -182,11 +182,11 @@ export default function Election() {
 
       {election && (
         <a
-          className="ui compact right floated button"
+          className="ui basic right floated left labeled icon button"
           href={quizUrl}
           style={{ marginBottom: "1rem", marginTop: "1rem" }}
         >
-          <i className="right arrow icon" />
+          <i className="arrow right icon" />
           Teste dein Wissen im Quiz
         </a>
       )}

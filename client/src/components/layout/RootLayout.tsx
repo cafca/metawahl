@@ -6,7 +6,9 @@ export function RootLayout() {
   return (
     <div className="App">
       <Header />
-      <Outlet />
+      <main style={{ marginTop: "2em" }}>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

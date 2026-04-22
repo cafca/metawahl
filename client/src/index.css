@@ -148,3 +148,14 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.ui.medium.header {
+  font-size: 1.28571429em;
+}
+
+@media (max-width: 650px) {
+  .electionContainer h1.ui.header {
+    font-size: 1.6em;
+    line-height: 1.1em;
+  }
+}

@@ -229,7 +229,7 @@ export default function TagView() {
           <div className="header item">Filter</div>
 
           <select
-            className="link item"
+            className="ui dropdown link item"
             style={{ border: "none" }}
             value={tagFilter ?? ""}
             disabled={tagFilterOptions.length === 0}
@@ -244,7 +244,7 @@ export default function TagView() {
           </select>
 
           <select
-            className="link item"
+            className="ui dropdown link item"
             style={{ border: "none" }}
             value={territoryFilter ?? ""}
             onChange={(e) =>

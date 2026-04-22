@@ -1,3 +1,23 @@
+.ui.right.floated.header .ui.basic.image.label {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ui.right.floated.header .ui.basic.image.label > img {
+  display: inline-block;
+  max-height: 1.5em;
+  width: auto;
+  vertical-align: middle;
+}
+
+.wikidataLabel {
+  filter: grayscale(100%);
+}
+.wikidataLabel:hover {
+  filter: initial;
+}
+
 @media (max-width: 767px) {
   .wikidata-label-text {
     display: none;
