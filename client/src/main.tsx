@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { router } from "./routes";
 import { queryClient, persister, GC_TIME_MS, PERSIST_BUSTER } from "@/lib/queryClient";
+import "fomantic-ui-css/semantic.min.css";
 import "./index.css";
 
 if (persister) {

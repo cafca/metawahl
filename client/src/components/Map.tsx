@@ -1,33 +1,35 @@
-import deutschlandUrl from "@/assets/maps/Deutschland.svg";
-import europaUrl from "@/assets/maps/Europa.svg";
-import { cn } from "@/lib/utils";
+import Deutschland from "@/assets/maps/Deutschland.svg?react";
+import Europa from "@/assets/maps/Europa.svg?react";
+import { TERRITORY_NAMES, type TerritorySlug } from "@/config";
 
-export type MapTerritory = "deutschland" | "europa";
+import "./Map.css";
 
 type MapProps = {
-  territory: MapTerritory;
-  className?: string;
+  territory: TerritorySlug;
+  style?: React.CSSProperties;
+  inverted?: boolean;
 };
 
-const NOTE_EUROPE =
-  "SVG Europakarte lizensiert unter Public Domain, via Wikimedia Commons (Link siehe Impressum)";
-
-const NOTE_GERMANY =
-  "SVG Deutschlandkarte lizensiert unter Creative Commons Attribution-Share Alike 2.0 Germany und basierend auf Roman Poulvas, David Liuzzo (Karte Bundesrepublik Deutschland.svg), via Wikimedia Commons (Siehe Link im Impressum).";
-
-const ALT: Record<MapTerritory, string> = {
-  europa: "Europakarte",
-  deutschland: "Karte Bundesrepublik Deutschland",
-};
-
-export function Map({ territory, className }: MapProps) {
-  const isEuropa = territory === "europa";
+function altText(territory: TerritorySlug): string {
+  if (territory === "europa") return "Europakarte";
+  if (territory === "deutschland") return "Karte Bundesrepublik Deutschland";
   return (
-    <img
-      src={isEuropa ? europaUrl : deutschlandUrl}
-      alt={ALT[territory]}
-      title={isEuropa ? NOTE_EUROPE : NOTE_GERMANY}
-      className={cn("map max-h-48", className)}
+    "Karte Bundesrepublik Deutschland mit Hervorherbung von " +
+    TERRITORY_NAMES[territory]
+  );
+}
+
+export function Map({ territory, style, inverted }: MapProps) {
+  if (territory === "europa") {
+    return <Europa aria-label={altText(territory)} style={style} className="map" />;
+  }
+  const className =
+    (inverted ? "inverted " : " ") + "map territory-" + territory;
+  return (
+    <Deutschland
+      className={className}
+      aria-label={altText(territory)}
+      style={style}
     />
   );
 }

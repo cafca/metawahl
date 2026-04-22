@@ -32,9 +32,6 @@ export const router = createBrowserRouter([
       { path: "/daten/", lazy: lazyView(() => import("@/views/DataOverview")) },
       { path: "/legal/", lazy: lazyView(() => import("@/views/Legal")) },
       { path: "/404", lazy: lazyView(() => import("@/views/NotFound")) },
-      ...(import.meta.env.DEV
-        ? [{ path: "/__lab", lazy: lazyView(() => import("@/views/Lab")) }]
-        : []),
       { path: "*", element: <Navigate to="/404" replace /> },
     ],
   },

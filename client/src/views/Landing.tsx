@@ -1,34 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 
 import Logo from "@/assets/logo.svg?react";
-import { LabeledIconButton } from "@/components/LabeledIconButton";
-import { Map } from "@/components/Map";
-import { SuggestionsGrid } from "@/components/SuggestionsGrid";
+import Map from "@/components/Map";
+import SuggestionsGrid from "@/components/SuggestionsGrid";
 import { TERRITORY_NAMES, type TerritorySlug } from "@/config";
 
-const SUGGESTIONS = [
-  {
-    subTitle: "Quiz zur Wahl",
-    title: "Wie gut kennst du Thüringen?",
-    href: "/quiz/thueringen/49/",
-  },
-  {
-    subTitle: "Alle Fragen aus der",
-    title: "Bundestagswahl 2017",
-    href: "/wahlen/deutschland/42/",
-  },
-  {
-    subTitle: "5 Wahlen im Vergleich",
-    title: "#Diesel",
-    href: "/themen/dieselkraftstoff/",
-  },
-  {
-    subTitle: "oder stöbere in weiteren",
-    title: "600+ Themen",
-    href: "/themen/",
-  },
-] as const;
+import "./Landing.css";
 
 export default function Landing() {
   const landtagSlugs = (Object.keys(TERRITORY_NAMES) as TerritorySlug[]).filter(
@@ -39,58 +16,85 @@ export default function Landing() {
   const secondHalf = landtagSlugs.slice(half);
 
   return (
-    <div className="mx-auto max-w-[var(--container-semantic-lg)] px-4">
+    <div>
       <title>Metawahl</title>
-      {/* Hero */}
-      <section id="hero" className="my-16 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-        <div className="flex justify-center md:justify-start">
-          <Logo className="metawahl-logo h-auto w-full max-h-[5em]" aria-label="Metawahl Logo" />
-        </div>
-        <div>
-          <h1 className="text-2xl font-bold leading-[1.28571429em]">
-            Metawahl zeigt, wie sich der politische Konsens in Deutschland über
-            Zeit ändert.
-          </h1>
-          <h2 className="mt-4 text-lg font-bold leading-[1.28571429em]">
-            Hierzu werden die Aussagen der Parteien aus 50 Wahl-o-Maten mit den
-            dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar,
-            welche Politik von vielen Stimmen gestützt wird und welche Parteien
-            dies möglich machen.
-          </h2>
-          <p className="mt-2 text-[0.9rem] italic text-ink-muted">
-            Von{" "}
-            <a
-              href="https://blog.vincentahrend.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-b border-black/40 text-ink-muted"
+      <div className="ui container">
+        <div className="ui two column stackable grid middle aligned" id="hero">
+          <div className="column">
+            <h1 className="ui header" style={{ fontSize: "4rem" }}>
+              <Logo className="logo" aria-label="Metawahl Logo" />
+            </h1>
+          </div>
+          <div className="column">
+            <h2 className="ui large header">
+              Metawahl zeigt, wie sich der politische Konsens in Deutschland über
+              Zeit ändert.
+            </h2>
+            <h3 className="ui medium header">
+              Hierzu werden die Aussagen der Parteien aus 50 Wahl-o-Maten mit den
+              dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar,
+              welche Politik von vielen Stimmen gestützt wird und welche Parteien
+              dies möglich machen.
+            </h3>
+
+            <div
+              className="ui sub header"
+              style={{
+                fontSize: "0.9rem",
+                fontStyle: "italic",
+                marginTop: ".5rem",
+                textTransform: "none",
+              }}
             >
-              Vincent Ahrend
-            </a>
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            <LabeledIconButton href="/wahlen/thueringen/49" icon={<ArrowRight />}>
+              Von{" "}
+              <a
+                href="https://blog.vincentahrend.com/"
+                style={{
+                  color: "rgba(0,0,0,.6)",
+                  borderBottom: "1px solid rgba(0,0,0,.4)",
+                }}
+              >
+                Vincent Ahrend
+              </a>
+            </div>
+
+            <a
+              className="ui basic left labeled icon button"
+              href="/wahlen/thueringen/49"
+              style={{ marginBottom: 5, marginTop: "1.5em" }}
+            >
+              <i className="arrow right icon" />
               Thüringen 2019
-            </LabeledIconButton>
-            <LabeledIconButton href="/quiz/thueringen/49" icon={<ArrowRight />}>
+            </a>
+            <a
+              className="ui basic left labeled icon button"
+              href="/quiz/thueringen/49"
+              style={{ marginBottom: 5 }}
+            >
+              <i className="arrow right icon" />
               Quiz zu Thüringen
-            </LabeledIconButton>
-            <LabeledIconButton href="/wahlen/" icon={<ArrowRight />}>
+            </a>
+            <a className="ui basic left labeled icon button" href="/wahlen/">
+              <i className="arrow right icon" />
               Alle Länder
-            </LabeledIconButton>
+            </a>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Wie Metawahl funktioniert */}
-      <section className="my-12">
-        <h2 className="mb-6 text-2xl font-bold">Wie Metawahl funktioniert</h2>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div>
-            <h3 className="mb-3 text-lg font-bold">
+      <div className="ui container">
+        <div className="ui stackable three column grid">
+          <div className="row">
+            <div className="column">
+              <h1>Wie Metawahl funktioniert</h1>
+            </div>
+          </div>
+
+          <div className="column">
+            <h2 className="ui medium header">
               Parteien fordern unterschiedliche Politik
-            </h3>
-            <p className="mb-3">
+            </h2>
+            <p>
               Bei Wahlen geben wir Parteien unsere Stimme, damit diese in
               unserem Namen Entscheidungen treffen. Jede Partei vertritt dabei
               unterschiedliche Positionen zu ausstehenden Entscheidungen.
@@ -104,37 +108,39 @@ export default function Landing() {
               Frage, welche Antworten auf diese Fragen die Mehrheit gewählt hat.
             </p>
           </div>
-          <div>
-            <h3 className="mb-3 text-lg font-bold">
+
+          <div className="column">
+            <h2 className="ui medium header">
               Aber welche Politik hat die Wahl gewonnen?
-            </h3>
-            <p className="mb-3">
+            </h2>
+            <p>
               Nach der Wahl wissen wir, welche Parteien die meisten Stimmen
-              bekommen haben. Wenn Parteien und Positionen sich einfach in
-              links und rechts teilen ließen, wäre damit auch klar, welche
-              Positionen gewonnen haben.
+              bekommen haben. Wenn Parteien und Positionen sich einfach in links
+              und rechts teilen ließen, wäre damit auch klar, welche Positionen
+              gewonnen haben.
             </p>
             <p>
               Aber was ist, wenn Parteien sich in vielen verschiedenen
               Richtungen gegenüberstehen? Wenn eine klassisch konservative
               Partei auch linke Postionen vertritt, oder eine klassisch linke
               Partei auch für konservative Interessen einsteht? Welche Politik
-              hat jetzt die Mehrheit der Wählerstimmen bekommen? Genau das
-              zeigt Metawahl für viele Wahlen in Deutschland, durch eine
-              Verbindung der Fragen und Antworten aus dem Wahl-o-Mat mit den
-              jeweiligen Wahlergebnissen.
+              hat jetzt die Mehrheit der Wählerstimmen bekommen? Genau das zeigt
+              Metawahl für viele Wahlen in Deutschland, durch eine Verbindung
+              der Fragen und Antworten aus dem Wahl-o-Mat mit den jeweiligen
+              Wahlergebnissen.
             </p>
           </div>
-          <div>
-            <h3 className="mb-3 text-lg font-bold">Oft unter einem Kompromiss</h3>
-            <p className="mb-3">
-              Die Position mit einer Mehrheit ist dabei nicht immer die, die
-              von den meisten Wählern gewünscht wird. In einem repräsentativen
+
+          <div className="column">
+            <h2 className="ui medium header">Oft unter einem Kompromiss</h2>
+            <p>
+              Die Position mit einer Mehrheit ist dabei nicht immer die, die von
+              den meisten Wählern gewünscht wird. In einem repräsentativen
               Wahlsystem werden auch ungewünschte Positionen mit eingekauft,
               weil es nur eine begrenzte Anzahl an Parteien auf dem Wahlzettel
               gibt.
             </p>
-            <p className="mb-3">
+            <p>
               <strong>
                 Auf Metawahl findest du heraus, welche Positionen unter diesem
                 Kompromiss eine Mehrheit der Wählerstimmen bekommen haben.
@@ -148,52 +154,77 @@ export default function Landing() {
             </p>
           </div>
         </div>
-      </section>
 
-      {/* Alle Wahlen */}
-      <section className="mt-16 mb-4">
-        <h2 className="mb-4 text-[1.71428571rem] font-bold">
-          <Link to="/wahlen" className="border-b border-black/40">
+        <h2 className="ui large header" style={{ margin: "4rem auto 1em" }}>
+          <Link
+            to="/wahlen"
+            style={{ borderBottom: "1px solid rgba(0,0,0,0.4)" }}
+          >
             Alle Wahlen
           </Link>
         </h2>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link to="/wahlen/deutschland/" className="block">
-              <h3 className="mb-2 text-lg font-bold">Deutschland</h3>
-              <Map territory="deutschland" className="max-h-48" />
+
+        <div className="ui stackable four column grid">
+          <div className="column">
+            <Link to="/wahlen/deutschland/">
+              <h3>Deutschland</h3>
+              <Map territory="deutschland" style={{ maxHeight: "12em" }} />
             </Link>
           </div>
-          <div>
-            <Link to="/wahlen/europa/" className="block">
-              <h3 className="mb-2 text-lg font-bold">Europa</h3>
-              <Map territory="europa" className="max-h-48" />
+          <div className="column">
+            <Link to="/wahlen/europa/">
+              <h3>Europa</h3>
+              <Map territory="europa" style={{ maxHeight: "12em" }} />
             </Link>
           </div>
-          <div>
-            <h3 className="mb-2 text-lg font-bold">Landtagswahlen</h3>
-            <ul className="space-y-1">
+          <div className="column">
+            <h3>Landtagswahlen</h3>
+            <div className="ui list">
               {firstHalf.map((k) => (
-                <li key={k}>
+                <div className="item" key={k}>
                   <Link to={`/wahlen/${k}/`}>{TERRITORY_NAMES[k]}</Link>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
-          <div>
-            <h3 className="mb-2 text-lg font-bold">&nbsp;</h3>
-            <ul className="space-y-1">
+          <div className="column">
+            <h3>&nbsp;</h3>
+            <div className="ui list">
               {secondHalf.map((k) => (
-                <li key={k}>
+                <div className="item" key={k}>
                   <Link to={`/wahlen/${k}/`}>{TERRITORY_NAMES[k]}</Link>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
-      </section>
 
-      <SuggestionsGrid title="Und jetzt" sections={SUGGESTIONS} />
+        <SuggestionsGrid
+          title="Und jetzt"
+          sections={[
+            {
+              subTitle: "Quiz zur Wahl",
+              title: "Wie gut kennst du Thüringen?",
+              href: "/quiz/thueringen/49/",
+            },
+            {
+              subTitle: "Alle Fragen aus der",
+              title: "Bundestagswahl 2017",
+              href: "/wahlen/deutschland/42/",
+            },
+            {
+              subTitle: "5 Wahlen im Vergleich",
+              title: "#Diesel",
+              href: "/themen/dieselkraftstoff/",
+            },
+            {
+              subTitle: "oder stöbere in weiteren",
+              title: "600+ Themen",
+              href: "/themen/",
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 }

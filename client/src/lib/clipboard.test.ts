@@ -1,13 +1,4 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-
-vi.mock("sonner", () => ({
-  toast: {
-    success: vi.fn(),
-    error: vi.fn(),
-  },
-}));
-
-import { toast } from "sonner";
 import { copyToClipboard, toAbsoluteUrl } from "./clipboard";
 import { SITE_ROOT } from "@/config";
 
@@ -39,27 +30,21 @@ describe("copyToClipboard", () => {
       configurable: true,
       value: { writeText },
     });
-    vi.mocked(toast.success).mockClear();
-    vi.mocked(toast.error).mockClear();
   });
 
   afterEach(() => {
     Reflect.deleteProperty(navigator, "clipboard");
   });
 
-  it("writes to the clipboard and fires the success toast", async () => {
+  it("writes to the clipboard and returns true", async () => {
     const ok = await copyToClipboard("https://example.com/");
     expect(ok).toBe(true);
     expect(writeText).toHaveBeenCalledWith("https://example.com/");
-    expect(toast.success).toHaveBeenCalledWith(
-      "Link in die Zwischenablage kopiert",
-    );
   });
 
-  it("reports failure via the error toast when writeText rejects", async () => {
+  it("returns false when writeText rejects", async () => {
     writeText.mockRejectedValueOnce(new Error("denied"));
     const ok = await copyToClipboard("https://example.com/");
     expect(ok).toBe(false);
-    expect(toast.error).toHaveBeenCalled();
   });
 });

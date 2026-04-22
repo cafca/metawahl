@@ -1,171 +1,121 @@
-@import "tailwindcss";
+/* App-level overrides on top of Fomantic UI semantic.min.css.
+   Copied verbatim from legacy client/src.legacy/index.css except for
+   font-face rules (fonts shipped via Fomantic bundle / system fallbacks). */
 
-@custom-variant dark (&:is(.dark *));
-
-/* Semantic UI-aligned tokens (Phase A token harvest from legacy app) */
-:root {
-  /* Colors — Semantic UI inverted ink + neutrals */
-  --ink-strong: #333;
-  --ink: #333;
-  --ink-muted: #333;
-  --ink-subtle: #333;
-  --ink-soft: rgba(0, 0, 0, 0.05);
-  --border-semantic: rgba(34, 36, 38, 0.15);
-  --border-semantic-strong: rgba(34, 36, 38, 0.22);
-  --border-inverted: rgba(255, 255, 255, 0.15);
-  --shadow-semantic: rgba(34, 36, 38, 0.15) 0px 1px 2px 0px;
-  --shadow-semantic-inset: rgba(34, 36, 38, 0.15) 0px 0px 0px 1px inset;
-
-  /* Brand & inverted surfaces */
-  --semantic-blue: #2185d0;
-  --semantic-blue-hover: #1678c2;
-  --brand: #2a4065;
-  --segment-inverted: #1b1c1d;
-  --segment-inverted-fg: rgba(255, 255, 255, 0.9);
-
-  /* shadcn-compatible tokens overridden to Semantic look */
-  --background: #ffffff;
-  --foreground: var(--ink);
-  --card: #ffffff;
-  --card-foreground: var(--ink);
-  --popover: #ffffff;
-  --popover-foreground: var(--ink);
-  --primary: var(--semantic-blue);
-  --primary-foreground: #ffffff;
-  --secondary: #f3f4f5;
-  --secondary-foreground: var(--ink);
-  --muted: #f3f4f5;
-  --muted-foreground: var(--ink-muted);
-  --accent: #f3f4f5;
-  --accent-foreground: var(--ink);
-  --destructive: #db2828;
-  --destructive-foreground: #ffffff;
-  --border: var(--border-semantic);
-  --input: var(--border-semantic);
-  --ring: var(--semantic-blue);
-
-  /* Radius — Semantic UI uses .28571429rem (≈4px at 14px root). Keep 4px. */
-  --radius: 0.28571429rem;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.dark {
-  --background: var(--segment-inverted);
-  --foreground: var(--segment-inverted-fg);
-  --card: var(--segment-inverted);
-  --card-foreground: var(--segment-inverted-fg);
-  --popover: var(--segment-inverted);
-  --popover-foreground: var(--segment-inverted-fg);
-  --primary: #54c8ff;
-  --primary-foreground: var(--segment-inverted);
-  --secondary: rgba(255, 255, 255, 0.08);
-  --secondary-foreground: var(--segment-inverted-fg);
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(255, 255, 255, 0.6);
-  --accent: rgba(255, 255, 255, 0.08);
-  --accent-foreground: var(--segment-inverted-fg);
-  --destructive: #ff695e;
-  --destructive-foreground: var(--segment-inverted);
-  --border: var(--border-inverted);
-  --input: var(--border-inverted);
-  --ring: #54c8ff;
+body, html { height: auto }
+
+h1 {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
 
-@theme inline {
-  /* Font stacks mirror Semantic UI: Lato for UI chrome + headings, Roboto for body text */
-  --font-sans: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
-  --font-body: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
-  --font-heading: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
-
-  /* Semantic UI container widths. Defaults at sm/md/lg/xl: 723/933/1127/1127 */
-  --container-semantic-sm: 723px;
-  --container-semantic-md: 933px;
-  --container-semantic-lg: 1127px;
-
-  /* Colors exposed as utility classes */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-ink: var(--ink);
-  --color-ink-strong: var(--ink-strong);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-subtle: var(--ink-subtle);
-  --color-ink-soft: var(--ink-soft);
-  --color-brand: var(--brand);
-  --color-semantic-blue: var(--semantic-blue);
-  --color-semantic-blue-hover: var(--semantic-blue-hover);
-  --color-segment-inverted: var(--segment-inverted);
-  --color-segment-inverted-fg: var(--segment-inverted-fg);
-
-  --radius-sm: calc(var(--radius) - 1px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
-  --radius-xl: calc(var(--radius) + 6px);
+.App {
+  background-color: #fcfcfc;
 }
 
-@layer base {
-  html {
-    font-size: 14px;
-  }
-  * {
-    @apply border-[color:var(--border)];
-  }
-  body {
-    font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.4285em;
-    color: var(--ink);
-    background: var(--background);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.28571429em;
+a:not(.item) {
+  /* Make this !important until the weird Semantic UI LESS compiler setup is integrated with CRA without ejecting... */
+  color: #333 !important;
+}
+
+a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .content .header {
+  color: #111;
+}
+
+.ui.segment {
+  background-color: #fcfcfc;
+}
+
+.theses li {
+  margin-bottom: 5em;
+  list-style-type: none;
+}
+
+.positionWithText:hover {
+  cursor: pointer;
+  border-bottom-width: 2px !important;
+  margin-bottom: 6px;
+}
+
+.positionsOverview {
+  margin: .5em 0;
+}
+
+.electionList .territory {
+  margin-bottom: 1em;
+}
+
+.searchNoBorder input {
+  border: none !important;
+}
+
+.tagContainer {
+  margin-bottom: -0.4em
+}
+
+.tagContainer a.label {
+  margin-left: 0;
+}
+
+.closeIcon {
+    cursor: pointer;
+    position: absolute;
     margin: 0;
-  }
-  h1 { font-size: 2rem; line-height: 1.28571429em; }     /* 28px at 14px root */
-  h2 { font-size: 1.71428571rem; }                        /* 24px */
-  h3 { font-size: 1.28571429rem; }                        /* 18px */
-  h4 { font-size: 1.07142857rem; }                        /* 15px */
-  h5 { font-size: 1rem; }
-  /* Semantic UI links inherit color inside Menu/Segment/etc. and only turn
-     blue when an explicit class opts in. Mirror that: default to inherited
-     ink, let callers apply `text-semantic-blue` (or similar) where a true
-     link accent is wanted. */
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  strong, b { font-weight: 700; }
-  p { margin: 0 0 1em; line-height: 1.4285em; }
-  p:last-child { margin-bottom: 0; }
+    top: .78575em;
+    right: .5em;
+    opacity: .7;
+    -webkit-transition: opacity .1s ease;
+    transition: opacity .1s ease;
 }
 
-/* Metawahl logo: preserve legacy interactive paint on hover */
-.metawahl-logo .st2 { fill: #cccccc; stroke: #f2f2f2; }
-.metawahl-logo .st5 { fill: #999999; stroke: #f2f2f2; }
-.metawahl-logo .st2:hover { fill: rgb(213, 0, 28); }
-.metawahl-logo .st5:hover { fill: rgb(42, 64, 101); }
+#outerContainer.ui.container {
+  max-width: 800px !important;
+  min-height: 500px;
+}
+
+.ui.comments .comment .actions {
+  visibility: hidden;
+}
+
+.ui.comments .comment:hover .actions {
+  visibility: visible;
+}
+
+/* Stack objection form buttons on small screens */
+@media only screen and (max-width: 600px) {
+  .ui.stackable.buttons{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .ui.stackable.buttons > .button{
+    width: 100%;
+  }
+}
+
+/* Display Wikidata Logo monochrome unless hovered */
+.wikidataLabel { filter: grayscale(100%) }
+.wikidataLabel:hover { filter: initial }
+
+/* Add hyphens to long words */
+.hyphenate {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

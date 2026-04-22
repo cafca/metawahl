@@ -1,182 +1,144 @@
-import { Link } from "react-router-dom";
 import { TERRITORY_NAMES, type TerritorySlug } from "@/config";
 import useBase from "@/hooks/useBase";
-import logoBmbf from "@/assets/logo-bmbf.svg";
-import logoOkfn from "@/assets/logo-okfn.svg";
+import BMBF from "@/assets/logo-bmbf.svg?react";
+import OKFN from "@/assets/logo-okfn.svg?react";
 
 export function Footer() {
   const { data } = useBase();
   const electionsByTerritory = data?.data.elections;
 
-  const territories = electionsByTerritory
+  const territorySlugs: TerritorySlug[] = electionsByTerritory
     ? (Object.keys(electionsByTerritory) as TerritorySlug[])
     : [];
+
+  const territorries = territorySlugs.map((o) => (
+    <a className="item" key={`footer-link-${o}`} href={`/wahlen/${o}/`}>
+      {TERRITORY_NAMES[o]}
+    </a>
+  ));
 
   const recentElections = electionsByTerritory
     ? Object.values(electionsByTerritory)
         .flat()
         .sort((a, b) => (a.date < b.date ? 1 : -1))
-        .slice(0, territories.length)
+        .slice(0, territorySlugs.length)
+        .map((o) => (
+          <a
+            className="item"
+            key={`footer-link-${o.id}`}
+            href={`/wahlen/${o.territory}/${o.id}/`}
+          >
+            {o.title}
+          </a>
+        ))
     : [];
 
   return (
-    <footer className="mt-20 bg-segment-inverted py-20 text-segment-inverted-fg">
-      <div className="mx-auto max-w-[var(--container-semantic-lg)] px-4">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:divide-x md:divide-white/15">
-          <section className="px-6 text-left">
-            <h4 className="mb-4 text-[15px] font-bold uppercase tracking-wide">
-              Letzte Wahlen
-            </h4>
-            <ul className="space-y-1.5">
-              {recentElections.map((e) => (
-                <li key={`footer-election-${e.id}`}>
-                  <a
-                    href={`/wahlen/${e.territory}/${e.id}/`}
-                    className="text-white/90 hover:text-white hover:underline"
-                  >
-                    {e.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+    <div
+      className="ui inverted vertical segment"
+      style={{ margin: "5em 0em 0em", padding: "5em 0em" }}
+    >
+      <div className="ui container center aligned">
+        <div className="ui stackable inverted divided three column grid">
+          <div className="row">
+            <div className="left aligned column">
+              <h4 className="ui inverted header">Letzte Wahlen</h4>
+              <div className="ui link inverted list">{recentElections}</div>
+            </div>
+            <div className="left aligned column ui inverted link list">
+              <h4 className="ui inverted header">Über Metawahl</h4>
+              <p>Metawahl — Was haben wir gewählt?</p>
+              <p>
+                Ein Projekt von{" "}
+                <a className="item" href="http://vincentahrend.com/">
+                  Vincent Ahrend
+                </a>
+              </p>
+              <p>
+                Mit Unterstützung von{" "}
+                <a className="item" href="https://denk-nach-mcfly.de">
+                  Hanno »friesenkiwi«
+                </a>{" "}
+                und{" "}
+                <a
+                  className="item"
+                  href="https://github.com/gockelhahn/qual-o-mat-data"
+                >
+                  Felix Bolte »gockelhahn«
+                </a>{" "}
+                bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der
+                Daten.
+              </p>
+              <p>
+                Mit dem Metawahl-Logo und gestalterischer Unterstützung von{" "}
+                <a className="item" href="http://linastindt.de">
+                  Lina Stindt
+                </a>
+                .
+              </p>
+              <p>
+                Alle Fragen und Antworten aus dem Wahl-o-Mat der Bundeszentrale
+                für politische Bildung. Auch wenn diese Daten hier ohne jegliche
+                inhaltliche Modifikationen abgebildet werden sollen, kann es aus
+                technischen Gründen zu Übertragunsfehlern gekommen sein. Solche
+                bitten wir{" "}
+                <a className="item" href="mailto:metawahl@vincentahrend.com">
+                  per Email
+                </a>{" "}
+                zu melden.
+              </p>
 
-          <section className="px-6 text-left">
-            <h4 className="mb-4 text-[15px] font-bold uppercase tracking-wide">
-              Über Metawahl
-            </h4>
-            <p className="mb-3 leading-relaxed">Metawahl — Was haben wir gewählt?</p>
-            <p className="mb-3 leading-relaxed">
-              Ein Projekt von{" "}
-              <a
-                href="http://vincentahrend.com/"
-                className="font-bold text-white hover:underline"
-              >
-                Vincent Ahrend
-              </a>
-            </p>
-            <p className="mb-3 leading-relaxed">
-              Mit Unterstützung von{" "}
-              <a
-                href="https://denk-nach-mcfly.de"
-                className="font-bold text-white hover:underline"
-              >
-                Hanno »friesenkiwi«
-              </a>{" "}
-              und{" "}
-              <a
-                href="https://github.com/gockelhahn/qual-o-mat-data"
-                className="font-bold text-white hover:underline"
-              >
-                Felix Bolte »gockelhahn«
-              </a>{" "}
-              bei der Konzeptfindung und beim Crawlen, Parsen und Taggen der Daten.
-            </p>
-            <p className="mb-3 leading-relaxed">
-              Mit dem Metawahl-Logo und gestalterischer Unterstützung von{" "}
-              <a
-                href="http://linastindt.de"
-                className="font-bold text-white hover:underline"
-              >
-                Lina Stindt
-              </a>
-              .
-            </p>
-            <p className="mb-3 leading-relaxed">
-              Alle Fragen und Antworten aus dem Wahl-o-Mat der Bundeszentrale für
-              politische Bildung. Auch wenn diese Daten hier ohne jegliche
-              inhaltliche Modifikationen abgebildet werden sollen, kann es aus
-              technischen Gründen zu Übertragunsfehlern gekommen sein. Solche
-              bitten wir{" "}
-              <a
-                href="mailto:metawahl@vincentahrend.com"
-                className="font-bold text-white hover:underline"
-              >
-                per Email
-              </a>{" "}
-              zu melden.
-            </p>
-            <p className="my-8 leading-relaxed">
-              Vollständiger Quellcode verfügbar auf{" "}
-              <a
-                href="https://github.com/ciex/metawahl"
-                className="font-bold text-white hover:underline"
-              >
-                Github
-              </a>
-            </p>
-            <p className="mb-6 leading-relaxed">
-              Ein{" "}
-              <a
-                href="https://prototypefund.de/"
-                className="font-bold text-white hover:underline"
-              >
-                Prototype Fund
-              </a>{" "}
-              Projekt
-            </p>
-            <p className="flex flex-wrap items-center gap-4">
-              <a href="https://bmbf.de/" aria-label="Bundesministerium für Bildung und Forschung">
-                <img
-                  src={logoBmbf}
-                  alt="gefördert von: Logo Bundesministerium für Bildung und Forschung"
-                  style={{ filter: "invert(100%)" }}
-                  className="h-16"
-                />
-              </a>
-              <a href="https://okfn.de/" aria-label="Open Knowledge Foundation">
-                <img
-                  src={logoOkfn}
-                  alt="Logo Open Knowledge Foundation"
-                  style={{ filter: "invert(100%)" }}
-                  className="h-10"
-                />
-              </a>
-            </p>
-          </section>
+              <p style={{ margin: "2em auto" }}>
+                Vollständiger Quellcode verfügbar auf{" "}
+                <a className="item" href="https://github.com/ciex/metawahl">
+                  Github
+                </a>
+              </p>
 
-          <section className="px-6 text-left">
-            <h4 className="mb-4 text-[15px] font-bold uppercase tracking-wide">
-              Gebiete
-            </h4>
-            <ul className="space-y-1.5">
-              {territories.map((t) => (
-                <li key={`footer-territory-${t}`}>
-                  <a
-                    href={`/wahlen/${t}/`}
-                    className="text-white/90 hover:text-white hover:underline"
-                  >
-                    {TERRITORY_NAMES[t]}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+              <p>
+                Ein{" "}
+                <a className="item" href="https://prototypefund.de/">
+                  Prototype Fund
+                </a>{" "}
+                Projekt
+              </p>
+              <p>
+                <a href="https://bmbf.de/">
+                  <BMBF
+                    style={{ filter: "invert(100%) grayscale(100%)" }}
+                    aria-label="gefördert von: Logo Bundesministerium für Bildung und Forschung"
+                  />
+                </a>
+                <a href="https://okfn.de/">
+                  <OKFN
+                    style={{ filter: "invert(100%)" }}
+                    aria-label="Logo Open Knowledge foundation"
+                  />
+                </a>
+              </p>
+            </div>
+            <div className="left aligned column">
+              <h4 className="ui inverted header">Gebiete</h4>
+              <div className="ui link inverted list">{territorries}</div>
+            </div>
+          </div>
         </div>
 
-        <hr className="my-10 border-t border-white/15" />
-
-        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center text-sm">
-          <li>
-            <a
-              href="mailto:metawahl@vincentahrend.com"
-              className="font-bold text-white hover:underline"
-            >
-              metawahl@vincentahrend.com
-            </a>
-          </li>
-          <li>
-            <Link to="/legal/" className="font-bold text-white hover:underline">
-              Impressum
-            </Link>
-          </li>
-          <li>
-            <Link to="/legal/#privacy" className="font-bold text-white hover:underline">
-              Datenschutzerklärung
-            </Link>
-          </li>
-        </ul>
+        <div className="ui inverted section divider" />
+        <div className="ui horizontal inverted divided link list">
+          <a className="item" href="mailto:metawahl@vincentahrend.com">
+            metawahl@vincentahrend.com
+          </a>
+          <a className="item" href="/legal">
+            Impressum
+          </a>
+          <a className="item" href="/legal#privacy">
+            Datenschutzerklärung
+          </a>
+        </div>
       </div>
-    </footer>
+    </div>
   );
 }
+
+export default Footer;
