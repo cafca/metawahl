@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-import logoUrl from "@/assets/logo.svg";
+import Logo from "@/assets/logo.svg?react";
+import { LabeledIconButton } from "@/components/LabeledIconButton";
 import { Map } from "@/components/Map";
 import { SuggestionsGrid } from "@/components/SuggestionsGrid";
-import { Button } from "@/components/ui/button";
 import { TERRITORY_NAMES, type TerritorySlug } from "@/config";
 
 const SUGGESTIONS = [
@@ -44,49 +44,40 @@ export default function Landing() {
       {/* Hero */}
       <section id="hero" className="my-16 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
         <div className="flex justify-center md:justify-start">
-          <img src={logoUrl} alt="Metawahl Logo" className="max-h-20" />
+          <Logo className="metawahl-logo max-h-[5em]" aria-label="Metawahl Logo" />
         </div>
         <div>
-          <h1 className="text-[28px] font-bold leading-tight md:text-[32px]">
+          <h1 className="text-2xl font-bold leading-[1.28571429em]">
             Metawahl zeigt, wie sich der politische Konsens in Deutschland über
             Zeit ändert.
           </h1>
-          <h2 className="mt-4 text-[15px] font-normal leading-relaxed text-ink-muted md:text-base">
+          <h2 className="mt-4 text-lg font-bold leading-[1.28571429em]">
             Hierzu werden die Aussagen der Parteien aus 50 Wahl-o-Maten mit den
             dazugehörigen Wahlergebnissen zusammengeführt. Es wird sichtbar,
             welche Politik von vielen Stimmen gestützt wird und welche Parteien
             dies möglich machen.
           </h2>
-          <p className="mt-2 text-sm italic text-muted-foreground">
+          <p className="mt-2 text-[0.9rem] italic text-ink-muted">
             Von{" "}
             <a
               href="https://blog.vincentahrend.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-b border-black/40 text-black/60"
+              className="border-b border-black/40 text-ink-muted"
             >
               Vincent Ahrend
             </a>
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            <Button variant="outline" asChild>
-              <a href="/wahlen/thueringen/49">
-                <ArrowRight />
-                Thüringen 2019
-              </a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href="/quiz/thueringen/49">
-                <ArrowRight />
-                Quiz zu Thüringen
-              </a>
-            </Button>
-            <Button variant="outline" asChild>
-              <a href="/wahlen/">
-                <ArrowRight />
-                Alle Länder
-              </a>
-            </Button>
+            <LabeledIconButton href="/wahlen/thueringen/49" icon={<ArrowRight />}>
+              Thüringen 2019
+            </LabeledIconButton>
+            <LabeledIconButton href="/quiz/thueringen/49" icon={<ArrowRight />}>
+              Quiz zu Thüringen
+            </LabeledIconButton>
+            <LabeledIconButton href="/wahlen/" icon={<ArrowRight />}>
+              Alle Länder
+            </LabeledIconButton>
           </div>
         </div>
       </section>

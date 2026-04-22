@@ -163,3 +163,9 @@
   p { margin: 0 0 1em; line-height: 1.4285em; }
   p:last-child { margin-bottom: 0; }
 }
+
+/* Metawahl logo: preserve legacy interactive paint on hover */
+.metawahl-logo .st2 { fill: #cccccc; stroke: #f2f2f2; }
+.metawahl-logo .st5 { fill: #999999; stroke: #f2f2f2; }
+.metawahl-logo .st2:hover { fill: rgb(213, 0, 28); }
+.metawahl-logo .st5:hover { fill: rgb(42, 64, 101); }
