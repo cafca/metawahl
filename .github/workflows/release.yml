@@ -1,0 +1,120 @@
+name: Release
+
+on:
+  workflow_call:
+    inputs:
+      dry-run:
+        description: "If true, publish + build bundle but skip the deploy to helena"
+        required: false
+        default: false
+        type: boolean
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Git ref (SHA/branch/tag) to build + deploy"
+        required: false
+        default: ""
+      dry-run:
+        description: "If true, publish + build bundle but skip the deploy to helena"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          submodules: recursive
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push api image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: api/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/metawahl-api:latest
+            ghcr.io/${{ github.repository_owner }}/metawahl-api:${{ inputs.ref || github.sha }}
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,mode=max,scope=api
+
+  build-client-bundle:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: yarn
+          cache-dependency-path: client/yarn.lock
+      - run: yarn install --frozen-lockfile --network-timeout 600000
+      - run: yarn build
+        env:
+          REACT_APP_API_ROOT: https://api.metawahl.de/v3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: client-bundle
+          path: client/build
+          retention-days: 7
+          if-no-files-found: error
+
+  deploy:
+    needs: [publish-api, build-client-bundle]
+    if: ${{ !inputs['dry-run'] }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download client bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: client-bundle
+          path: client-bundle
+      - name: Rsync client bundle to helena
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.HELENA_SSH_HOST }}
+          username: ${{ secrets.HELENA_SSH_USER }}
+          key: ${{ secrets.HELENA_SSH_KEY }}
+          port: ${{ secrets.HELENA_SSH_PORT || 22 }}
+          source: "client-bundle/*"
+          target: "/var/www/metawahl/"
+          strip_components: 1
+          overwrite: true
+          rm: true
+      - name: Pull api image + restart + flush cache + smoke
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HELENA_SSH_HOST }}
+          username: ${{ secrets.HELENA_SSH_USER }}
+          key: ${{ secrets.HELENA_SSH_KEY }}
+          port: ${{ secrets.HELENA_SSH_PORT || 22 }}
+          script: |
+            set -euo pipefail
+            cd /home/pv/metawahl
+            docker compose -f compose.prod.yml pull api
+            docker compose -f compose.prod.yml up -d api
+            docker compose -f compose.prod.yml exec -T redis redis-cli FLUSHALL
+            docker image prune -f
+            sleep 3
+            curl -fsS http://127.0.0.1:3001/v3/base > /dev/null
+            curl -fsS http://127.0.0.1:3001/v3/elections/ > /dev/null
