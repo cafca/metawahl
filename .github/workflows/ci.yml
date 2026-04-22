@@ -16,13 +16,20 @@ concurrency:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.8"
-      - run: pip install flake8
-      - run: flake8 api/app api/scripts --select=E9,F63,F7,F82 --show-source --statistics
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.5.14"
+      - run: uv sync --frozen
+      - run: uv run ruff check
+      - run: uv run mypy app
 
   client:
     runs-on: ubuntu-latest
@@ -49,45 +56,46 @@ jobs:
 
   api:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: metawahl
+          POSTGRES_PASSWORD: metawahl
+          POSTGRES_DB: metawahl
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U metawahl"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+    env:
+      METAWAHL_CONFIG: test.conf.py
+      METAWAHL_DB_URL: postgresql://metawahl:metawahl@localhost:5432/metawahl
+      CACHE_REDIS_URL: redis://localhost:6379/0
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.8"
-      - name: Prepare .env
-        run: cp .env.example .env
-      - name: Prepare bind-mount dirs
-        run: mkdir -p logs userdata && chmod 777 logs userdata
-      - name: Build API image
-        run: docker compose build api
-      - name: Start db + memcached
-        run: docker compose up -d db memcached
-      - name: Reset and bootstrap DB
-        run: |
-          docker compose run --rm -w /app/api api python scripts/reset_db.py --force
-          docker compose run --rm -w /app/api api python scripts/bootstrap_db.py
-      - name: Start API
-        run: docker compose up -d api
-      - name: Wait for API
-        run: |
-          for _ in $(seq 1 60); do
-            if curl -fsS http://127.0.0.1:3001/v3/base >/dev/null; then
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "API did not become ready"
-          docker compose logs api
-          exit 1
-      - name: Run tavern tests
-        run: |
-          pip install tavern
-          pytest api/tests -s -v
-      - name: Dump logs on failure
-        if: failure()
-        run: docker compose logs
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.5.14"
+      - run: uv sync --frozen
+      - name: Apply migrations
+        run: uv run alembic upgrade head
+      - name: Check for migration drift
+        run: uv run alembic check
+      - name: Run pytest
+        run: uv run pytest -v
 
   publish:
     needs: [lint, client, api]

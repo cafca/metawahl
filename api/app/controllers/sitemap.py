@@ -1,46 +1,43 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Generate plaintext sitemap."""
 
-from flask import Response
-from flask_restful import Resource
-
 from config import SITE_ROOT
+from flask import Blueprint, Response
 from models import Election, Tag
-from services import db, cache
+from services import db
+from sqlalchemy import select
+
+sitemap_bp = Blueprint("sitemap", __name__)
 
 
-class SitemapView(Resource):
-    def get(self):
-        def generate():
-            from main import create_app
+@sitemap_bp.route("/sitemap.xml")
+def sitemap_view():
+    def generate():
+        yield SITE_ROOT + "\n"
 
-            app = create_app()
-            with app.app_context():
-                yield SITE_ROOT + "\n"
+        yield f"{SITE_ROOT}/wahlen/\n"
+        terr = None
+        query = db.session.execute(
+            select(Election).order_by(Election.territory)
+        ).scalars().all()
+        for occ in query:
+            if occ.territory != terr:
+                yield f"{SITE_ROOT}/wahlen/{occ.territory}/\n"
+            yield f"{SITE_ROOT}/wahlen/{occ.territory}/{occ.id}/\n"
+            terr = occ.territory
+            for thesis in occ.theses:
+                yield f"{SITE_ROOT}/wahlen/{occ.territory}/{occ.id}/{thesis.id[-2:]}/\n"
 
-                # Elections
-                yield "{}/wahlen/\n".format(SITE_ROOT)
-                terr = None
-                query = db.session.query(Election).order_by(Election.territory).all()
-                for occ in query:
-                    if occ.territory != terr:
-                        yield "{}/wahlen/{}/\n".format(SITE_ROOT, occ.territory)
-                    yield "{}/wahlen/{}/{}/\n".format(SITE_ROOT, occ.territory, occ.id)
-                    terr = occ.territory
-                    for thesis in occ.theses:
-                        yield "{}/wahlen/{}/{}/{}/\n".format(
-                            SITE_ROOT, occ.territory, occ.id, thesis.id[-2:]
-                        )
+        yield f"{SITE_ROOT}/themen/\n"
+        yield f"{SITE_ROOT}/themenliste/\n"
+        for tag in db.session.execute(
+            select(Tag).order_by(Tag.slug)
+        ).scalars().all():
+            yield f"{SITE_ROOT}/themen/{tag.slug}/\n"
 
-                # Topics
-                yield "{}/themen/\n".format(SITE_ROOT)
-                yield "{}/themenliste/\n".format(SITE_ROOT)
-                for tag in db.session.query(Tag).order_by(Tag.slug).all():
-                    yield "{}/themen/{}/\n".format(SITE_ROOT, tag.slug)
+        yield f"{SITE_ROOT}/legal/\n"
+        yield "{}/daten/\n"
 
-                # Other
-                yield "{}/legal/\n".format(SITE_ROOT)
-                yield "{}/daten/\n"
-
-        return Response(generate(), mimetype="text/plain")
+    # The generator runs inside the current request's app context, so
+    # db.session remains valid without re-creating the app.
+    return Response(list(generate()), mimetype="text/plain")

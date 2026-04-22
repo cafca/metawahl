@@ -6,16 +6,18 @@ Request all API pages to fill cache
 
 """
 import logging
-import requests
 import sys
+
+import requests
 
 sys.path.append("./app/")
 
+from config import API_ROOT, CACHE_FILLER_LOG
 from flask import current_app
-from config import CACHE_FILLER_LOG
-from services.logger import setup_logger
-from config import API_ROOT
 from models import Election, Tag, Thesis
+from services import db
+from services.logger import setup_logger
+from sqlalchemy import select
 
 logger = setup_logger(logfile=CACHE_FILLER_LOG, level=logging.DEBUG)
 
@@ -28,7 +30,7 @@ def gen_urls():
     def url(endpoint):
         host = "http://localhost:9000" if current_app.config.get('DEBUG', True) \
             else "https://api.metawahl.de"
-        return "{}{}{}?force_cache_miss".format(host, API_ROOT, endpoint)
+        return f"{host}{API_ROOT}{endpoint}?force_cache_miss"
 
     # base
 
@@ -38,7 +40,7 @@ def gen_urls():
 
     urls.append(url('/elections'))
 
-    elections = Election.query.all()
+    elections = db.session.execute(select(Election)).scalars().all()
     for election in elections:
         urls.append(url('/elections/{}').format(election.id))
 
@@ -47,30 +49,25 @@ def gen_urls():
     urls.append(url('/tags.json'))
     urls.append(url('/tags'))
 
-    tags = Tag.query.all()
+    tags = db.session.execute(select(Tag)).scalars().all()
     for tag in tags:
         urls.append(url('/tags/{}').format(tag.slug))
 
     # theses
 
-    theses = Thesis.query.all()
+    theses = db.session.execute(select(Thesis)).scalars().all()
     for thesis in theses:
-        urls.append(url('/thesis/{}'.format(thesis.id)))
+        urls.append(url(f'/thesis/{thesis.id}'))
 
     return urls
 
 
 def make_requests(urls):
     """Fetch all URLs."""
-    l = len(urls)
+    total = len(urls)
     for i, url in enumerate(urls):
         resp = requests.get(url)
-        logger.info("{0:.1f}% - [{1}] {2:.2f}\t{3}k\t{4}".format(
-            (100.0 * i / l),
-            resp.status_code,
-            resp.elapsed.total_seconds(),
-            int(len(resp.content) / 1024),
-            url))
+        logger.info(f"{100.0 * i / total:.1f}% - [{resp.status_code}] {resp.elapsed.total_seconds():.2f}\t{int(len(resp.content) / 1024)}k\t{url}")
 
 
 if __name__ == "__main__":
@@ -81,7 +78,7 @@ if __name__ == "__main__":
         logger.info("Filling caches...")
 
         urls = gen_urls()
-        logger.info("Collected {} URLs".format(len(urls)))
+        logger.info(f"Collected {len(urls)} URLs")
         logger.info("Sample:\n{}".format("\n - ".join(urls[:5])))
 
         make_requests(urls)

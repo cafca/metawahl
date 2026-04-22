@@ -1,20 +1,17 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Logging middleware."""
 
 import time
-from flask import g, request
-from datetime import datetime
 from pprint import pformat
 
+from flask import g, request
 from services.logger import logger
 
 
 def log_request_info(name, request):
-    # logger.info("{} API".format(name))
-    jsond = request.get_json()
+    jsond = request.get_json(silent=True)
     if jsond:
-        logger.debug("Data: {}".format(pformat(jsond)))
+        logger.debug(f"Data: {pformat(jsond)}")
 
 
 def before_request():
@@ -28,7 +25,6 @@ def after_request(response):
     # This IF avoids the duplication of registry in the log,
     # since that 500 is already logged via @app.errorhandler.
     if response.status_code != 500:
-        ts = datetime.utcnow().strftime("[%Y-%b-%d %H:%M]")
         logger.debug(
             "%s %s %s %s %s",
             request.remote_addr,

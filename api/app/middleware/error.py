@@ -1,13 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Middleware to enable insertion of traceback into error logs."""
 
 import traceback
 from datetime import datetime
-from flask import request
 
-from services.logger import logger
+from flask import request
 from middleware.json_response import json_response
+from services.logger import logger
 
 
 def exceptions(e):

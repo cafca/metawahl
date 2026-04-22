@@ -1,34 +1,45 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from collections import defaultdict
-from slugify import slugify
+from typing import TYPE_CHECKING
+
 from services import db
+from slugify import slugify
+from sqlalchemy import Column, ForeignKey, String, Table, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+if TYPE_CHECKING:
+    from .thesis import Thesis
 
-tags = db.Table(
+tags = Table(
     "tags",
-    db.Column(
-        "tag_title", db.String(128), db.ForeignKey("tag.title"), primary_key=True
-    ),
-    db.Column("thesis_id", db.String(10), db.ForeignKey("thesis.id"), primary_key=True),
+    db.metadata,
+    Column("tag_title", String(128), ForeignKey("tag.title"), primary_key=True),
+    Column("thesis_id", String(10), ForeignKey("thesis.id"), primary_key=True),
 )
+
 
 class Tag(db.Model):
     """Represent a tag linked to a Wikidata ID."""
 
-    aliases = db.Column(db.Text)
-    description = db.Column(db.Text)
-    labels = db.Column(db.Text)
-    title = db.Column(db.String(128), primary_key=True)
-    slug = db.Column(db.String(128), unique=True, nullable=False)
-    url = db.Column(db.Text)
-    wikidata_id = db.Column(db.String(16))
-    wikipedia_title = db.Column(db.String(256))
-    image = db.Column(db.String(255))
+    aliases: Mapped[str | None] = mapped_column(Text)
+    description: Mapped[str | None] = mapped_column(Text)
+    labels: Mapped[str | None] = mapped_column(Text)
+    title: Mapped[str] = mapped_column(String(128), primary_key=True)
+    slug: Mapped[str] = mapped_column(String(128), unique=True, nullable=False)
+    url: Mapped[str | None] = mapped_column(Text)
+    wikidata_id: Mapped[str | None] = mapped_column(String(16))
+    wikipedia_title: Mapped[str | None] = mapped_column(String(256))
+    image: Mapped[str | None] = mapped_column(String(255))
+
+    theses: Mapped[list["Thesis"]] = relationship(
+        secondary=tags,
+        back_populates="tags",
+        order_by="desc(tags.c.thesis_id)",
+    )
 
     def __repr__(self):
-        return "<Tag #{}>".format(self.title)
+        return f"<Tag #{self.title}>"
 
     def make_slug(self):
         self.slug = slugify(self.title)
@@ -91,13 +102,13 @@ class Tag(db.Model):
             format = "simple"
 
         tag_counts = defaultdict(int)
-        tags = dict()
+        tags_map = dict()
 
         for thesis in self.theses:
             for tag in thesis.tags:
                 if tag != self:
                     tag_counts[tag.title] += 1
-                    tags[tag.title] = tag
+                    tags_map[tag.title] = tag
 
         num_related_tags = 15
         try:
@@ -115,16 +126,16 @@ class Tag(db.Model):
                 if tag_counts[tag] >= cutoff:
                     if (
                         tag_counts[tag] >= (0.8 * self_theses_count)
-                        and len(tags[tag].theses) >= self_theses_count
+                        and len(tags_map[tag].theses) >= self_theses_count
                     ):
                         relation = "parents"
                     else:
                         relation = "linked"
 
                     if format == "full":
-                        related_tag = tags[tag].to_dict()
+                        related_tag = tags_map[tag].to_dict()
                     else:
-                        related_tag = tags[tag].slug
+                        related_tag = tags_map[tag].slug
 
                     rv[relation][tag] = {"count": tag_counts[tag], "tag": related_tag}
 
@@ -133,5 +144,5 @@ class Tag(db.Model):
     @property
     def is_root(self):
         """Return true if this tag has no parent tagas in its related tags."""
-        rl = self.related_tags('simple')
+        rl = self.related_tags("simple")
         return len(rl["parents"]) == 0

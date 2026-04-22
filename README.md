@@ -31,8 +31,9 @@ In den Thesen spiegelt sich auch, wie sich die Position der Wähler oder einer P
 
 # Installation
 
-Die Anwendung läuft als Docker-Compose-Stack aus vier Services: `api` (Flask), `client` (React), `db` (Postgres) und
-`memcached`. Quellen für Server und Client liegen in `/api` bzw. `/client`.
+Die Anwendung läuft als Docker-Compose-Stack aus vier Services: `api` (Flask
+3 / Python 3.12 / uWSGI), `client` (React), `db` (Postgres 16) und `redis`
+(Flask-Caching). Quellen für Server und Client liegen in `/api` bzw. `/client`.
 
 ## Voraussetzungen
 
@@ -55,13 +56,13 @@ Secrets und weitere Konfiguration werden über eine `.env`-Datei neben der
 Die API liest ihre Flask-Konfiguration aus der Datei, auf die
 `METAWAHL_CONFIG` zeigt (per Default `api/app/prod.conf.py` im Container).
 
-## Start (Development)
+## Development
 
 Im Repo-Root:
 
     $ docker compose build
-    $ docker compose up -d db memcached
-    $ docker compose run --rm -w /app/api api python scripts/reset_db.py --force
+    $ docker compose up -d db redis
+    $ docker compose run --rm -w /app/api api uv run alembic upgrade head
     $ docker compose run --rm -w /app/api api python scripts/bootstrap_db.py
     $ docker compose up -d api client
 
@@ -71,17 +72,33 @@ läuft unter `http://localhost:3000`. Für psql-Zugriff:
 
     $ docker compose exec db psql -U metawahl metawahl
 
-## Start (Production)
+### Ohne Container
 
-In production nur die Basis-Compose-Datei verwenden,
-damit die Dev-Overrides nicht greifen:
+    $ cd api
+    $ uv sync
+    $ docker compose up -d db redis    # Datenbank + Cache weiter im Container
+    $ METAWAHL_CONFIG=dev.conf.py \
+      METAWAHL_DB_URL=postgresql://metawahl:…@localhost:5432/metawahl \
+      uv run flask --app wsgi run --port 9000
+
+## Production
+
+In production nur die Basis-Compose-Datei verwenden:
 
     $ docker compose -f compose.yml up -d
 
 Die API läuft dann unter uWSGI hinter Port 3001, der Client liefert den
 statischen Build über Nginx aus. Beide Images werden von der CI zusätzlich
-nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client`
-gepusht.
+nach `ghcr.io/ciex/metawahl-api` und `ghcr.io/ciex/metawahl-client` gepusht.
+
+## Tests
+
+API tests
+
+    $ cd api
+    $ METAWAHL_DB_URL=postgresql://metawahl:…@localhost:5432/metawahl \
+      METAWAHL_CONFIG=test.conf.py \
+      uv run pytest
 
 ## Daten bearbeiten
 
