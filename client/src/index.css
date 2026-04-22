@@ -29,12 +29,13 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 body, html { height: auto }
 
-h1 {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+.ui.header, .ui.menu, .ui.button {
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .App {
