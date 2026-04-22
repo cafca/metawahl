@@ -34,8 +34,12 @@ body {
 
 body, html { height: auto }
 
-h1, .ui.header, .ui.menu, .ui.button {
+.ui.header, .ui.menu, .ui.button {
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
 }
 
 .App {
