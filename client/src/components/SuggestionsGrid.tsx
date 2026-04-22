@@ -17,8 +17,8 @@ type SuggestionsGridProps = {
 
 export function SuggestionsGrid({ title, sections, className }: SuggestionsGridProps) {
   return (
-    <section className={cn("my-20 hyphens-auto", className)}>
-      <h2 className="mb-6 text-2xl font-semibold italic">{title}</h2>
+    <section className={cn("mt-16 mb-4 hyphens-auto", className)}>
+      <h2 className="mb-6 text-[1.71428571rem] font-bold">{title}</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {sections.map((sect, i) => (
           <Link
@@ -26,7 +26,7 @@ export function SuggestionsGrid({ title, sections, className }: SuggestionsGridP
             to={sect.href}
             className="group block h-full"
           >
-            <Card className="h-full justify-center px-6 py-6 transition-colors hover:bg-accent">
+            <Card className="h-full justify-center px-6 transition-colors hover:bg-accent">
               <div className="text-sm text-muted-foreground">{sect.subTitle}</div>
               <div className="mt-1 text-lg font-semibold group-hover:underline">
                 {sect.title}

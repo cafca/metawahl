@@ -39,7 +39,7 @@ export default function Landing() {
   const secondHalf = landtagSlugs.slice(half);
 
   return (
-    <div className="mx-auto max-w-6xl px-4">
+    <div className="mx-auto max-w-[var(--container-semantic-lg)] px-4">
       <title>Metawahl</title>
       {/* Hero */}
       <section id="hero" className="my-16 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
@@ -151,8 +151,8 @@ export default function Landing() {
       </section>
 
       {/* Alle Wahlen */}
-      <section className="my-16">
-        <h2 className="mb-8 text-2xl font-bold">
+      <section className="mt-16 mb-4">
+        <h2 className="mb-4 text-[1.71428571rem] font-bold">
           <Link to="/wahlen" className="border-b border-black/40">
             Alle Wahlen
           </Link>

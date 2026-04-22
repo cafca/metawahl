@@ -27,7 +27,7 @@ export function Map({ territory, className }: MapProps) {
       src={isEuropa ? europaUrl : deutschlandUrl}
       alt={ALT[territory]}
       title={isEuropa ? NOTE_EUROPE : NOTE_GERMANY}
-      className={cn("map max-h-48 w-full object-contain", className)}
+      className={cn("map max-h-48", className)}
     />
   );
 }

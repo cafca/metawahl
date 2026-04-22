@@ -21,7 +21,7 @@ export function Footer() {
 
   return (
     <footer className="mt-20 bg-segment-inverted py-20 text-segment-inverted-fg">
-      <div className="mx-auto max-w-[1127px] px-4 text-center">
+      <div className="mx-auto max-w-[var(--container-semantic-lg)] px-4">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:divide-x md:divide-white/15">
           <section className="px-6 text-left">
             <h4 className="mb-4 text-[15px] font-bold uppercase tracking-wide">
@@ -120,7 +120,7 @@ export function Footer() {
                 <img
                   src={logoBmbf}
                   alt="gefördert von: Logo Bundesministerium für Bildung und Forschung"
-                  style={{ filter: "invert(100%) grayscale(100%)" }}
+                  style={{ filter: "invert(100%)" }}
                   className="h-16"
                 />
               </a>
@@ -156,7 +156,7 @@ export function Footer() {
 
         <hr className="my-10 border-t border-white/15" />
 
-        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center text-sm">
           <li>
             <a
               href="mailto:metawahl@vincentahrend.com"
