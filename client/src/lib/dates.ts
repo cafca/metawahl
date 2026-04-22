@@ -1,10 +1,19 @@
-import { format, parseISO } from "date-fns";
+import { format, isValid, parseISO } from "date-fns";
 import { de } from "date-fns/locale";
 
-export function formatLongGerman(iso: string): string {
-  return format(parseISO(iso), "d. MMMM yyyy", { locale: de });
+function parse(iso: string | null | undefined): Date | null {
+  if (!iso) return null;
+  const normalized = iso.replace(" ", "T").replace(/\s*Z$/, "Z");
+  const d = parseISO(normalized);
+  return isValid(d) ? d : null;
 }
 
-export function yearOf(iso: string): number {
-  return parseISO(iso).getFullYear();
+export function formatLongGerman(iso: string | null | undefined): string {
+  const d = parse(iso);
+  return d ? format(d, "d. MMMM yyyy", { locale: de }) : "";
+}
+
+export function yearOf(iso: string | null | undefined): number {
+  const d = parse(iso);
+  return d ? d.getFullYear() : NaN;
 }
