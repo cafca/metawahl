@@ -44,7 +44,7 @@ def elections():
         logger.info(f"Cache miss for {request.path}")
 
     try:
-        all_elections = db.session.execute(select(Election)).scalars().all()
+        all_elections = db.session.execute(select(Election)).scalars().unique().all()
     except SQLAlchemyError as e:
         logger.error(e)
         return json_response({"error": "Server Error"})
