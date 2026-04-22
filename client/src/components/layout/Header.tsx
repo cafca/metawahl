@@ -43,11 +43,7 @@ function DesktopMenu() {
         >
           Daten
         </NavLink>
-        <div className="right menu">
-          <div className="item">
-            <Search />
-          </div>
-        </div>
+        <Search className="small right aligned item" large />
       </div>
     </div>
   );
@@ -87,11 +83,7 @@ function MobileMenu() {
           </Link>
         </div>
       </div>
-      <div className="right menu">
-        <div className="item">
-          <Search />
-        </div>
-      </div>
+      <Search className="small right aligned item" large />
     </div>
   );
 }
