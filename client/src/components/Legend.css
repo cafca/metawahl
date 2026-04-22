@@ -1,0 +1,48 @@
+.legend {
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.legend tr td {
+  white-space: nowrap;
+}
+
+.square {
+  width: 1.1em;
+  height: 1.1em;
+  position: relative;
+  bottom: -1.5px;
+  display: inline-block;
+}
+
+.ui.legend.small-legend {
+  display: none;
+  border: none;
+  border-spacing: 1px;
+}
+
+.ui.legend.large-legend {
+  display: block;
+  width: fit-content;
+}
+
+.ui.table.small-legend tr td {
+  padding: 3px 5px;
+  color: #ececec;
+  text-align: center;
+}
+
+.legend.ui.table tr,
+.legend.ui.table tr td {
+  border: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .ui.legend.small-legend {
+    display: block;
+  }
+
+  .ui.legend.large-legend {
+    display: none;
+  }
+}

@@ -83,10 +83,11 @@ export interface Result {
   votes: number | null;
   missing?: boolean;
   linked_position?: string;
+  name?: string;
 }
 
 export interface ResultsSource {
-  name: string;
+  name?: string;
   url: string;
 }
 
@@ -100,6 +101,23 @@ export interface ElectionSummary {
   wikipedia_title: string | null;
   results: Record<string, Result>;
   results_source?: ResultsSource;
+  preliminary?: boolean;
+}
+
+/**
+ * Party datapoint used by `PositionChart`: a merged result+position entry.
+ * `value` is `"-1" | "0" | "1"` for agree/neutral/disagree and `"missing"`
+ * when the party has no recorded position for the thesis.
+ */
+export interface MergedPartyData {
+  party: string;
+  pct: number;
+  votes?: number | null;
+  value: "1" | "0" | "-1" | "missing";
+  text?: string;
+  name?: string;
+  linked_position?: string;
+  missing?: boolean;
 }
 
 // Detail responses currently carry the same shape as the summary; theses
