@@ -26,12 +26,14 @@
     "@tanstack/react-query-persist-client": "^5.99.2",
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
+    "fuse.js": "^7.3.0",
     "lucide-react": "^1.8.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.14.2",
-    "swagger-ui-react": "^5.32.4"
+    "swagger-ui-react": "^5.32.4",
+    "wikidata-sdk": "^8.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
