@@ -6,13 +6,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     UV_COMPILE_BYTECODE=1 \
     UV_PROJECT_ENVIRONMENT=/opt/venv
 
-# Build deps: psycopg2 needs libpq; lxml needs libxml2/xslt.
-# Keep build tools only during wheel build, then strip to shrink the layer.
+# Build deps: psycopg2 needs libpq.
 RUN apt-get update && apt-get install -y --no-install-recommends \
       build-essential \
       libpq-dev \
-      libxml2-dev \
-      libxslt1-dev \
       curl \
     && rm -rf /var/lib/apt/lists/*
 
