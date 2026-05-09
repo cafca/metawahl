@@ -10,7 +10,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_RECORD_QUERIES = False
 
-CACHE_TYPE = "null"
+CACHE_TYPE = "NullCache"
 
 METAWAHL_API_LOGFILE = os.environ.get(
     "METAWAHL_API_LOGFILE", "/var/log/metawahl/flask.log"

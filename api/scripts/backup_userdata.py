@@ -8,9 +8,9 @@ import sys
 
 sys.path.append("./app/")
 
-from models import QuizAnswer
-from main import create_app, API_FULL_NAME
+from main import API_FULL_NAME, create_app
 from middleware.logger import logger
+from models import QuizAnswer
 from services import db
 
 DATADIR = os.path.join("..", "userdata")

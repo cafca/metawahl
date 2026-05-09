@@ -1,8 +1,13 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from flask_sqlalchemy import SQLAlchemy
 from flask_caching import Cache
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 
-db = SQLAlchemy()
+
+class Base(DeclarativeBase):
+    """SQLAlchemy 2.0 typed declarative base for all Metawahl models."""
+
+
+db = SQLAlchemy(model_class=Base)
 cache = Cache()

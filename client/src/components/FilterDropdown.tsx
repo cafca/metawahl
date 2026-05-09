@@ -94,10 +94,18 @@ export default function FilterDropdown({
         <div
           className={`item${value == null ? " active selected" : ""}`}
           role="option"
+          tabIndex={open ? 0 : -1}
           aria-selected={value == null}
           onClick={(e) => {
             e.stopPropagation();
             pick(null);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              pick(null);
+            }
           }}
         >
           {placeholder}
@@ -107,10 +115,18 @@ export default function FilterDropdown({
             key={o.key}
             className={`item${o.key === value ? " active selected" : ""}`}
             role="option"
+            tabIndex={open ? 0 : -1}
             aria-selected={o.key === value}
             onClick={(e) => {
               e.stopPropagation();
               pick(o.key);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                e.stopPropagation();
+                pick(o.key);
+              }
             }}
           >
             {o.label}

@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """Middleware to cache whole requests."""
 
 import logging
-from flask import request
 from functools import wraps
 
+from flask import request
 from services import cache
 
 
@@ -18,8 +17,8 @@ def cache_filler():
         @wraps(f)
         def decorated_function(*args, **kwargs):
             if is_cache_filler():
-                logging.debug("Forcing cache miss for {}".format(request.path))
-                cache.delete("view/{}".format(request.path))
+                logging.debug(f"Forcing cache miss for {request.path}")
+                cache.delete(f"view/{request.path}")
             return f(*args, **kwargs)
 
         return decorated_function

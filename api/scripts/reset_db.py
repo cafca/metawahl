@@ -1,17 +1,17 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """This module resets the database by dropping all tables and recreating."""
 
 import sys
 
-from sqlalchemy.schema import DropTable
 from sqlalchemy.ext.compiler import compiles
+from sqlalchemy.schema import DropTable
 
 sys.path.append("./app/")
 
 from main import create_app
 from services import db
 from services.logger import logger
+
 
 # Add `CASCADE` to drop table statement
 # https://stackoverflow.com/a/38679457

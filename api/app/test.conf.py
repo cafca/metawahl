@@ -6,10 +6,12 @@ TESTING = True
 SECRET_KEY = os.environ.get(
     "METAWAHL_SECRET", b"'V\x8a\x0f\x9d\xae}\xcdM\xce*\xd9QU/\t"
 )
-SQLALCHEMY_DATABASE_URI = "postgresql:///metawahl"
+SQLALCHEMY_DATABASE_URI = os.environ.get(
+    "METAWAHL_DB_URL", "postgresql:///metawahl"
+)
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = False
 SQLALCHEMY_RECORD_QUERIES = False
 
-CACHE_TYPE = "simple"
+CACHE_TYPE = "SimpleCache"

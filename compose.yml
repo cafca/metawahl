@@ -8,14 +8,14 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      memcached:
+      redis:
         condition: service_started
     environment:
       METAWAHL_CONFIG: ${METAWAHL_CONFIG}
       METAWAHL_SECRET: ${METAWAHL_SECRET}
       METAWAHL_ADMIN_KEY: ${METAWAHL_ADMIN_KEY}
       METAWAHL_DB_URL: ${METAWAHL_DB_URL}
-      CACHE_MEMCACHED_SERVERS: ${CACHE_MEMCACHED_SERVERS}
+      CACHE_REDIS_URL: ${CACHE_REDIS_URL}
       METAWAHL_API_LOGFILE: ${METAWAHL_API_LOGFILE}
     ports:
       - "127.0.0.1:3001:3001"
@@ -52,7 +52,7 @@ services:
       retries: 10
     # DB port intentionally not published; reach it via `docker compose exec db psql`.
 
-  memcached:
-    image: memcached:1.6-alpine
+  redis:
+    image: redis:7-alpine
     restart: unless-stopped
-    command: ["-m", "128"]
+    command: ["redis-server", "--maxmemory", "128mb", "--maxmemory-policy", "allkeys-lru"]
