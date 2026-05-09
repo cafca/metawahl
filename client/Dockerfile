@@ -4,16 +4,6 @@ COPY package.json package-lock.json ./
 RUN npm ci --include=dev
 
 
-FROM node:22-alpine AS dev
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-ENV HOST=0.0.0.0 \
-    CHOKIDAR_USEPOLLING=true
-EXPOSE 3000
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3000"]
-
-
 FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
