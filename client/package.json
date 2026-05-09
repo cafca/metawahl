@@ -1,58 +1,61 @@
 {
-  "name": "metawahl",
-  "version": "1.9.7",
+  "name": "metawahl-client",
+  "version": "2.0.0-alpha.0",
   "private": true,
-  "homepage": "https://metawahl.de/",
   "license": "AGPL-3.0+",
-  "dependencies": {
-    "ajv": "^8.12.0",
-    "formdata-node": "^4.4.1",
-    "fuse.js": "^6.6.2",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.4",
-    "react": "^16.14.0",
-    "react-autobind": "^1.0.6",
-    "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^16.14.0",
-    "react-helmet": "^6.1.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "5.0.1",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^0.88.2",
-    "swagger-ui": "^3.52.5",
-    "wikidata-sdk": "^5.16.2"
+  "type": "module",
+  "engines": {
+    "node": ">=22"
   },
+  "packageManager": "npm@11.6.2",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "snap": "react-snap",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "flow": "flow"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:visual": "cd e2e && npm test",
+    "test:visual:update": "cd e2e && npm run test:update"
+  },
+  "dependencies": {
+    "@tanstack/query-sync-storage-persister": "^5.99.2",
+    "@tanstack/react-query": "^5.99.2",
+    "@tanstack/react-query-persist-client": "^5.99.2",
+    "@types/swagger-ui-react": "^5.18.0",
+    "date-fns": "^4.1.0",
+    "fomantic-ui-css": "^2.9.4",
+    "fuse.js": "^7.3.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.14.2",
+    "swagger-ui-react": "^5.32.4",
+    "wikidata-sdk": "^8.1.1"
   },
   "devDependencies": {
-    "flow-bin": "^0.230.0",
-    "react-snap": "^1.23.0"
-  },
-  "reactSnap": {
-    "cacheAjaxRequests": true,
-    "minifyHtml": false,
-    "minifyCss": {
-      "level": 0
-    },
-    "concurrency": 12,
-    "fixWebpackChunksIssue": false
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "jest": {
-    "moduleNameMapper": {
-      "^swagger-ui$": "<rootDir>/src/__mocks__/swagger-ui.js"
-    }
+    "@eslint/js": "^9.37.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "@vitest/ui": "^4.1.5",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.5.0",
+    "jsdom": "^29.0.2",
+    "prettier": "^3.8.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.59.0",
+    "vite": "^7.3.2",
+    "vite-plugin-svgr": "^5.2.0",
+    "vitest": "^4.1.5"
   }
 }

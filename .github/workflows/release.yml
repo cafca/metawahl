@@ -65,17 +65,17 @@ jobs:
           ref: ${{ inputs.ref || github.sha }}
       - uses: actions/setup-node@v4
         with:
-          node-version: "lts/*"
-          cache: yarn
-          cache-dependency-path: client/yarn.lock
-      - run: yarn install --frozen-lockfile --network-timeout 600000
-      - run: yarn build
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - run: npm ci
+      - run: npm run build
         env:
-          REACT_APP_API_ROOT: https://api.metawahl.de/v3
+          VITE_API_ROOT: https://api.metawahl.de/v3
       - uses: actions/upload-artifact@v4
         with:
           name: client-bundle
-          path: client/build
+          path: client/dist
           retention-days: 7
           if-no-files-found: error
 

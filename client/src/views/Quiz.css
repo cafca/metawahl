@@ -1,0 +1,57 @@
+.quizResult {
+  margin-top: 2em;
+}
+
+.quizResult .ui.a {
+  margin-bottom: 10px;
+}
+
+.ui.primary.button {
+  background-color: rgb(42, 64, 101) !important;
+}
+
+.ui.container.electionContainer.iframe {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.quiz h1 {
+  margin-bottom: 1rem;
+}
+
+.quiz h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.quiz table.legend.large-legend {
+  margin-bottom: 0;
+}
+
+.quiz .topGrid {
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .quiz .small-legend {
+    margin-bottom: 2rem;
+    margin-top: 0;
+  }
+  .quiz .ui.stackable.grid > .legendCol.column:not(.row) {
+    padding: 0 !important;
+  }
+  .quiz .topGrid {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+@media only screen and (min-width: 501px) {
+  .quiz .topGrid {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .quiz table.ui.legend {
+    float: right;
+  }
+}

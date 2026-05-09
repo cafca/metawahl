@@ -1,0 +1,28 @@
+/* Override Fomantic's `.ui.header > .image:not(.icon) { width: 2.5em }`
+   so the wiki labels expand to fit their text. */
+.ui.right.floated.header > .ui.basic.image.label {
+  width: auto;
+  white-space: nowrap;
+}
+
+.ui.right.floated.header .ui.basic.image.label > .wikidata-label-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ui.right.floated.header + .ui.right.floated.header {
+  margin-right: 0.75em;
+}
+
+.wikidataLabel {
+  filter: grayscale(100%);
+}
+.wikidataLabel:hover {
+  filter: initial;
+}
+
+@media (max-width: 767px) {
+  .ui.right.floated.header .ui.basic.image.label > .wikidata-label-text {
+    display: none;
+  }
+}

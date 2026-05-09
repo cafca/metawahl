@@ -1,0 +1,35 @@
+.election-component {
+  padding-top: calc(2rem - 0.14285714em);
+}
+
+.thesis-compact svg {
+  cursor: pointer;
+}
+
+.thesisTitleInsert {
+  display: block;
+  position: initial;
+  padding-left: 0.5em;
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-bottom: 1rem;
+}
+
+.thesis-compact {
+  height: auto;
+}
+
+.thesis-compact .ui.header {
+  margin-bottom: 0.2em;
+  margin-top: 1.5rem;
+  line-height: 1.1em;
+}
+
+.election-component > .ui.header .sub.header,
+.election-component > .ui.header .sub.header a:not(.item) {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.quizLink {
+  margin-bottom: 1.5em;
+}

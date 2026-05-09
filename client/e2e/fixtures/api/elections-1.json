@@ -1,0 +1,2507 @@
+{
+  "data": {
+    "date": "2004-06-13 00:00:00 Z",
+    "id": 1,
+    "results": {
+      "Aufbruch": {
+        "missing": true,
+        "pct": 0.17,
+        "votes": 43128
+      },
+      "BP": {
+        "missing": true,
+        "pct": 0.14,
+        "votes": 35152
+      },
+      "BüSo": {
+        "missing": true,
+        "pct": 0.09,
+        "votes": 21983
+      },
+      "CDU": {
+        "pct": 36.5,
+        "votes": null
+      },
+      "CM": {
+        "missing": true,
+        "pct": 0.18,
+        "votes": 46037
+      },
+      "CSU": {
+        "pct": 8,
+        "votes": null
+      },
+      "DKP": {
+        "missing": true,
+        "pct": 0.14,
+        "votes": 37160
+      },
+      "DP": {
+        "missing": true,
+        "pct": 0.24,
+        "votes": 62005
+      },
+      "Deutschland": {
+        "missing": true,
+        "pct": 0.52,
+        "votes": 135015
+      },
+      "FDP": {
+        "pct": 6.1,
+        "votes": null
+      },
+      "Familie": {
+        "missing": true,
+        "pct": 1.04,
+        "votes": 268468
+      },
+      "Frauen": {
+        "linked_position": "DIE FRAUEN",
+        "missing": true,
+        "pct": 0.56,
+        "votes": 145312
+      },
+      "Graue": {
+        "linked_position": "Die Grauen",
+        "missing": true,
+        "pct": 1.22,
+        "votes": 314402
+      },
+      "Grüne": {
+        "linked_position": "Bündnis 90/Die Grünen",
+        "pct": 11.9,
+        "votes": null
+      },
+      "NPD": {
+        "missing": true,
+        "pct": 0.94,
+        "votes": 241743
+      },
+      "PBC": {
+        "missing": true,
+        "pct": 0.38,
+        "votes": 98651
+      },
+      "PDS": {
+        "pct": 6.1,
+        "votes": null
+      },
+      "PSG": {
+        "missing": true,
+        "pct": 0.1,
+        "votes": 25795
+      },
+      "REP": {
+        "missing": true,
+        "pct": 1.88,
+        "votes": 485662
+      },
+      "SPD": {
+        "pct": 21.5,
+        "votes": null
+      },
+      "Tierschutz": {
+        "linked_position": "Die Tierschutzpartei",
+        "missing": true,
+        "pct": 1.29,
+        "votes": 331388
+      },
+      "Unabhängige Kandidaten": {
+        "missing": true,
+        "pct": 0.27,
+        "votes": 70301
+      },
+      "Zentrum": {
+        "missing": true,
+        "pct": 0.1,
+        "votes": 26803
+      },
+      "ÖDP": {
+        "missing": true,
+        "pct": 0.56,
+        "votes": 145537
+      }
+    },
+    "results_source": {
+      "name": "Tagesschau Wahlarchiv",
+      "url": "https://wahl.tagesschau.de/wahlen/2004-06-13-EP-DE/index.shtml"
+    },
+    "source": "https://www.wahl-o-mat.de/europa2004/wahlomat.zip",
+    "territory": "europa",
+    "title": "Europawahl 2004",
+    "wikidata_id": null,
+    "wikipedia_title": "Europawahl in Deutschland 2004"
+  },
+  "meta": {
+    "api": "Metawahl API v3",
+    "license": "Please see https://github.com/ciex/metawahl/master/LICENSE for licensing information",
+    "render_time": "0.01479s"
+  },
+  "theses": [
+    {
+      "election_id": 1,
+      "id": "WOM-001-10",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU unterstützt jedoch den Austausch über die bestmöglichen Praktiken in den EU-Mitgliedsstaaten im Rahmen des EU-Beschäftigungskapitels.",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Die Zuständigkeit für die Arbeitsmarktpolitik muss in erster Linie bei den Mitgliedsstaaten bleiben, da Fortschritte beim Abbau der Arbeitslosigkeit vor allem auf nationaler Ebene erzielt werden können. Die Ziele der EU auf den Arbeitsmärkten müssen pragmatisch, ohne stark regulierende Eingriffe erreicht werden. Im Rahmen der offenen Koordinierung kann durch den Austausch von 'best-practice' beispielsweise zu einer Deregulierung der Arbeitsmärkte beigetragen werden, die vor allem in den großen Mitgliedsstaaten notwendig ist.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Wir sind der Ansicht, dass in der Arbeitsmarktpolitik eine Koordination auf europäischer Ebene notwendig ist. Aber wir kritisieren die neoliberale Ausrichtung der Beschäftigungspolitik in den wirtschaftspolitischen und auch in großen Teilen der beschäftigungspolitischen Leitlinien der EU. Im Kern geht es hier um die Deregulierung der Arbeitsmärkte, um eine Flexibilisierung der betrieblichen Arbeitszeiten sowie um Leistungskürzungen und Zwangsinstrumente gegen Erwerbslose. Die durchaus vorhandenen positiven Empfehlungen der EU-Beschäftigungsstrategie (etwa die zur Gleichstellung von Frauen, zum Ausbau von Kinderbetreuung und Pflege, zur Förderung lebensbegleitenden Lernens, zur Verbesserung der Qualität der Arbeitsplätze und des Arbeits- und Gesundheitsschutzes, zur besseren Integration von älteren Arbeitnehmern, Jungendlichen und Immigranten, zur Erreichung des Ziels der Vollbeschäftigung mit mehr und besseren Arbeitsplätzen bis 2010) kommen in der Praxis hingegen nur unzureichend zum Tragen. Wir fordern eine nachfrage- und investitionsorientierte EU-Wirtschaftspolitik und sozial-ökologische Strukturreformen im EU-Binnenmarkt. Beides würde neue, umweltgerechte Arbeitsplätze schaffen. Wir fordern darüber hinaus, öffentliche Dienste, die öffentliche Daseinsvorsorge sowie sozialwirtschaftliche Projekte und Initiativen auszubauen und so in einem öffentlich geförderten Beschäftigungssektor neue Stellen zu schaffen. Die Praxis hat oft genug gezeigt, dass eine Deregulierung und Flexibilisierung keine Arbeitsplätze schafft, sondern im Gegenteil über die Schwächung der Kaufkraft weitere Arbeitsplätze gefährdet. Die PDS-Europaabgeordneten fordern eine aktive Arbeitsmarktpolitik, die Jugendlichen, Langzeiterwerbslosen und anderen Gruppen von Erwerbslosen eine qualifizierte Aus- und Weiterbildung bietet. Bis 2010 soll der Anteil der Ausgaben für aktive Maßnahmen qualifizierter Aus- und Weiterbildung bzw. zukunftsfähiger Umschulung auf 50 Prozent der arbeitsmarktpolitischen Gesamtbudgets erweitert werden. Für erwerbslose Jugendliche und Langzeiterwerbslose soll eine anschließende Arbeitsplatzgarantie von mindestens zwölf Monaten eingeführt werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Aktive Arbeitsmarktpolitik",
+            "Arbeitsmarktsteuerung"
+          ],
+          "labels": [
+            "Arbeitsmarktpolitik"
+          ],
+          "slug": "arbeitsmarktpolitik",
+          "title": "Arbeitsmarktpolitik",
+          "url": "http://www.wikidata.org/entity/Q628681",
+          "wikidata_id": "Q628681",
+          "wikipedia_title": "Arbeitsmarktpolitik"
+        },
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        }
+      ],
+      "text": "Aktive Arbeitsmarktpolitik ist eine nationale Aufgabe, keine Aufgabe der EU.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-00",
+      "positions": [
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Seit 1963 hat die Türkei ein Versprechen bekommen, dass sie eine EU-Beitrittsperspektive hat. Dieses Versprechen ist wiederholt vom Alt-Kanzler Kohl erneuert worden. Wenn die Türkei die so genannten Kopenhagener Kriterien erfüllt (vor allem effektive Umsetzung von Demokratie und Minderheitenschutz), muss das gegebene Versprechen gehalten werden. Die Reformen in der Türkei sind zu begrüßen. Ein Land in der EU zu haben, das eine muslimische Mehrheitsbevölkerung hat, kann eine Antwort auf den oft prognostizierten ;Kampf der Kulturen; sein.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Vor der Eröffnung von Beitrittsverhandlungen muss die Türkei - wie alle anderen Beitrittskandidaten auch - die Menschenrechte, die Standards für den Schutz der Minderheiten in der Türkei sowie die demokratischen und wirtschaftspolitischen Anforderungen ('Kopenhagener Kriterien') erfüllen. Die FDP erkennt die Fortschritte an, die die Türkei in dieser Hinsicht bereits erzielt hat. Es gibt aber noch erhebliche Defizite.",
+          "value": 0
+        },
+        {
+          "party": "PDS",
+          "text": "Ja. Die EU ist kein exklusiver christlicher Klub. Unser Bewer-tungsmaßstab ist, ob die Türkei die politischen Kriterien von Kopenhagen erfüllt: eine demokratische und rechtsstaatliche Ordnung und institutionelle Stabilität, die Wahrung der Menschenrechte und der Schutz der Minderheiten. Wir anerkennen, dass die Türkei seit dem Jahre 2001 weitgehende Reformprozesse eingeleitet hat. Ungeachtet dessen sehen wir hinsichtlich der politischen, aber natürlich auch der ökonomischen und sozialen Situation in der Türkei nach wie vor zahlreiche schwerwiegende Probleme, die einer positiven Entscheidung über die Aufnahme von Beitrittsverhandlungen im Dezember 2004 noch entgegenstehen. Äußerst bedenklich ist, dass die Türkei viele Urteile des Europäischen Menschengerichtshofes nicht vollstreckt. Nach wie vor werden Personen wegen friedlicher Meinungsäußerung angeklagt. Folter, Benachteiligung von religiösen und ethnischen Minderheiten, insbesondere der Kurden, sind an der Tagesordnung. Ein weiteres schwerwiegendes Problem ist die ungelöste Zypernfrage. Eine Analyse der Fakten zeigt unmissverständlich, dass die Türkei zum gegenwärtigen Zeitpunkt die politischen Kriterien von Kopenhagen nicht erfüllt. Weitere grundsätzliche Reformen im politischen System der Türkei und ihre konsequente Umsetzung in der Praxis sind unerlässlich.",
+          "value": 1
+        },
+        {
+          "party": "CDU",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        },
+        {
+          "description": "2005 aufgenommene EU-Beitrittsverhandlungen",
+          "slug": "beitrittsverhandlungen-der-turkei-mit-der-europaischen-union",
+          "title": "Beitrittsverhandlungen der Türkei mit der Europäischen Union",
+          "url": "http://www.wikidata.org/entity/Q814935",
+          "wikidata_id": "Q814935",
+          "wikipedia_title": "Beitrittsverhandlungen der Türkei mit der Europäischen Union"
+        }
+      ],
+      "text": "Die Türkei soll in die EU aufgenommen werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-01",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU hat erfolgreich durchgesetzt, dass es Übergangszeiträume bis zu sieben Jahren gibt.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Die SPD geführte Bundesregierung hat sich erfolgreich dafür eingesetzt, das Übergangsfristen für die Arbeitsnehmerfreizügigkeit eingeführt werden. Damit wird die Sorge der Menschen berücksichtigt, dass es durch die EU-Erweiterung zu einem unkontrollierten Zugang zum deutschen Arbeitsmarkt kommen könnte. Wirtschaftsinstitute gehen aber davon aus, dass vor allem Deutschland von der Erweiterung profitiert wird und dadurch bestehende Arbeitsplätze gesichert und neue geschaffen werden.",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Die Freizügigkeit der Arbeitnehmer ist ein Grundrecht für die Bürger der EU. Die nach 2 Jahren vorgesehene Überprüfung der von Deutschland gewollten 7jährigen Einschränkung dieser Freizügigkeit sollte ernsthaft genutzt werden, um zu prüfen, ob es tatsächlich zu Störungen des Arbeitsmarkts gekommen ist. Bereits heute wird deutlich, dass Deutschlands wirtschaftliche Anpassung an eine nach Osten erweiterte EU bereits stattgefun-den hat, sodass wenig weitere Lasten zu erwarten sind.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS hat sich gegen die Einschränkung der Arbeitnehmerfreizügigkeit ausgesprochen. Die den neuen Mitgliedsländern der EU von der EU-Kommission erstmalig aufgedrängten 'vereinbarten' Übergangsfristen für die Beschränkung der Freizügigkeit der Arbeitnehmerinnen und Arbeitnehmer sind eine eklatante Verletzung des Grundsatzes der Chancengleichheit in der EU. Die Bereitschaft zum Arbeitsplatzortswechsel wird bewusst übersteigert dargestellt und wider besseres Wissen die Gefahr von Massenbewegungen heraufbeschworen. Die eigene Geschichte der EU liefert genügend Beispiele, dass die Migration von Arbeitskräften aus ärmeren in reichere Regionen der EU zu keiner Zeit eine andauernde Massenbewegung gewesen ist. Zudem wird bewusst verschwiegen, dass der grenzüberschreitende Standortwechsel von Unternehmen weit größere Gefahren für den Arbeitsmarkt sowie die Wettbewerbsverschärfung in den betroffenen Ländern birgt.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Bevölkerungswanderung"
+          ],
+          "description": "Dauerhafter Wohnortwechsel von Menschen",
+          "labels": [
+            "Migration"
+          ],
+          "slug": "migration",
+          "title": "Migration",
+          "url": "http://www.wikidata.org/entity/Q177626",
+          "wikidata_id": "Q177626",
+          "wikipedia_title": "Migration"
+        },
+        {
+          "aliases": [
+            "Freizügigkeit (EU)",
+            "Personenverkehrsabkommen"
+          ],
+          "description": "Freizügigkeit von natürlichen Personen",
+          "labels": [
+            "Personenfreizügigkeit"
+          ],
+          "slug": "personenfreizugigkeit",
+          "title": "Personenfreizügigkeit",
+          "url": "http://www.wikidata.org/entity/Q2072351",
+          "wikidata_id": "Q2072351",
+          "wikipedia_title": "Personenfreizügigkeit"
+        },
+        {
+          "description": "Politikfeld, das sich mit der Wirtschaft befasst",
+          "labels": [
+            "Wirtschaftspolitik"
+          ],
+          "slug": "wirtschaftspolitik",
+          "title": "Wirtschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q582577",
+          "wikidata_id": "Q582577",
+          "wikipedia_title": "Wirtschaftspolitik"
+        },
+        {
+          "description": "Person, die bei einem Arbeitgeber arbeitet",
+          "slug": "arbeitnehmer",
+          "title": "Arbeitnehmer",
+          "url": "http://www.wikidata.org/entity/Q703534",
+          "wikidata_id": "Q703534",
+          "wikipedia_title": "Arbeitnehmer"
+        },
+        {
+          "labels": [
+            "Ausländerpolitik"
+          ],
+          "slug": "auslanderpolitik",
+          "title": "Ausländerpolitik",
+          "url": "http://www.wikidata.org/entity/Q16054486",
+          "wikidata_id": "Q16054486",
+          "wikipedia_title": "Ausländerpolitik"
+        }
+      ],
+      "text": "Arbeitssuchende aus den neuen Mitgliedsländern sollen ohne Übergangsfrist in allen EU-Staaten arbeiten dürfen.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-02",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU unterstützt jedoch den Artikel I-46, Ziff. 4 des EU-Verfassungsvertrages, nach dem eine Million Bürger aus verschiedenen EU-Mitgliedsstaaten die Europäische Kommission auffordern können, geeignete Vorschläge zu Themen zu unterbreiten, zu denen es nach Ansicht der Bürger eines Rechtsaktes der EU bedarf, um den EU-Verfassungsvertrag umzusetzen.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Durch die EU-Verfassung werden die Bürger die Möglichkeit erhalten über von ihnen ergriffene Initiativen auf das europäische Gesetzgebungsverfahren einzuwirken. Dafür hat die SPD gesorgt.",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Das neue Europa kann nur erfolgreich sein, wenn es von seinen Bürgern auch angenommen wird. Die FDP kämpft für eine Volksabstimmung über die Verfassung, weil die Bürger das Recht haben sollen, über die europäische Zukunft selbst zu entscheiden.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS tritt entschieden für die umfassende Demokratisierung der EU ein. Wir wollen, dass sich die Bürgerinnen und Bürger an der Gestaltung ihrer Lebensverhältnisse auch auf europäischer Ebene beteiligen und Verantwortung übernehmen können. Die umfassende Stärkung der Demokratie ist eine Schlüsselfrage für die Entwicklung des zusammenwachsenden Europas. Die PDS wird sich dafür einsetzen, dass ein Gesetz über europäische Bürgerbegehren zügig auf den Weg gebracht wird. Auch im Deutschen Bundestag haben wir wiederholt die Einführung von mehr Demokratie gefordert, konnten uns aber nicht durchsetzen. Wir sehen in länderübergreifenden Bürgerbegehren neue Chancen, um schrittweise eine europäische Öffentlichkeit zu schaffen. Deshalb rufen wir die verschiedensten Organisationen der Zivilgesellschaft auf, schon bald Vorschläge für konkrete Inhalte dieses Gesetzes zu entwickeln.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Direktdemokratie",
+            "Unmittelbare Demokratie"
+          ],
+          "description": "Herrschaftsform",
+          "labels": [
+            "direkte Demokratie"
+          ],
+          "slug": "direkte-demokratie",
+          "title": "direkte Demokratie",
+          "url": "http://www.wikidata.org/entity/Q171174",
+          "wikidata_id": "Q171174",
+          "wikipedia_title": "Direkte Demokratie"
+        },
+        {
+          "aliases": [
+            "Politisch administratives System",
+            "Politische Ordnung",
+            "Politisch-administratives System",
+            "Politische Systeme",
+            "Politische Architektur",
+            "Politisches System"
+          ],
+          "description": "Modell der Organisation eines Staates",
+          "labels": [
+            "politisches System"
+          ],
+          "slug": "politisches-system",
+          "title": "politisches System",
+          "url": "http://www.wikidata.org/entity/Q28108",
+          "wikidata_id": "Q28108",
+          "wikipedia_title": "Politisches System"
+        }
+      ],
+      "text": "Es sollen EU-weite Volksentscheide eingeführt werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-03",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "Das geistig-religiöse Erbe, dass das Christentum und andere Religionen umfasst, die griechisch-römische Philosophie, die europäische Aufklärung, Humanismus und Pluralismus und die sozialen Bewegungen der letzten Jahrhunderte haben wichtige Impulse für das europäische Wertefundaments gegeben.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Das entscheidende Kriterium kann hier nicht der Glaube sein. Der politische rote Faden muss auch in dieser Frage ganz klar durch folgende Prinzipien gebildet werden: Freiheit, Marktwirtschaft und Rechtsstaat.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS unterstützt die ablehnende Haltung des EU-Konventspräsidenten Valery Giscard d'Estaing gegenüber einer Bezugnahme auf Gott in der künftigen Europäischen Verfassung. Der Versuch, die Europäische Union mittels der künftigen Verfassung auf ein religiöses Erbe festlegen zu wollen, muss zurückgewiesen werden, da dies ausgrenzend gegenüber Humanisten und säkular eingestellten Menschen ist. Dabei geht es ganz und gar nicht um eine negative Haltung zu Christinnen und Christen oder Menschen aus anderen Religionen. Die klare Trennung von Kirche und Staat gehört zur aufklärerischen Tradition in Europa. Mit Erleichterung haben wir auch die Klarstellung von Giscard d'Estaing aufgenommen, dass wir in einem ;weltlich-politischen System; in Europa leben. Im Konvent hat sich die PDS für eine Verfassung eingesetzt, die auf dem Laizismus beruht und die auf der Grundlage von Artikel 10 der EU-Grundrechtecharta Gedanken-, Gewissens- und Religionsfreiheit für alle Menschen in Europa garantiert.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "labels": [
+            "Christliche Werte"
+          ],
+          "slug": "christliche-werte",
+          "title": "Christliche Werte",
+          "url": "http://www.wikidata.org/entity/Q1084103",
+          "wikidata_id": "Q1084103",
+          "wikipedia_title": "Christliche Werte"
+        },
+        {
+          "aliases": [
+            "Politisch administratives System",
+            "Politische Ordnung",
+            "Politisch-administratives System",
+            "Politische Systeme",
+            "Politische Architektur",
+            "Politisches System"
+          ],
+          "description": "Modell der Organisation eines Staates",
+          "labels": [
+            "politisches System"
+          ],
+          "slug": "politisches-system",
+          "title": "politisches System",
+          "url": "http://www.wikidata.org/entity/Q28108",
+          "wikidata_id": "Q28108",
+          "wikipedia_title": "Politisches System"
+        },
+        {
+          "description": "Bezeichnung für Maßnahmen zur Formung und Beeinflussung einer menschlichen Gesellschaft",
+          "labels": [
+            "Gesellschaftspolitik"
+          ],
+          "slug": "gesellschaftspolitik",
+          "title": "Gesellschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q23542337",
+          "wikidata_id": "Q23542337",
+          "wikipedia_title": "Gesellschaftspolitik"
+        }
+      ],
+      "text": "Die christlich-abendländische Kultur muss das Fundament Europas sein.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-04",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die Parteivorsitzenden von CDU und CSU, Angela Merkel und Edmund Stoiber, haben bei einem Gespräch am 30. April 2003 in Paris mit dem Präsidenten des EU-Verfassungskonvents, Valéry Giscard d’Estaing, durchgesetzt, dass alle Kammern der nationalen Parlamente, in Deutschland Bundestag und Bundesrat, wegen Verletzung des Subisidiaritätsprinzips vor dem Europäischen Gerichtshof in Luxemburg klagen können.",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "Zur Stärkung der nationalen Parlamente treten wir für die schnelle Verabschiedung der Verfassung ein: die Parlamente der Mitgliedstaaten werden enger und früher in den EU-Gesetzgebungsprozess eingebunden. Auch das hat die SPD durchgesetzt.",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "value": 0
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS tritt entschieden für die umfassende Demokratisierung der EU ein. Wir wollen, dass sich die Bürgerinnen und Bürger an der Gestaltung ihrer Lebensverhältnisse auch auf europäischer Ebene beteiligen und Verantwortung übernehmen können. Die umfassende Stärkung der Demokratie ist eine Schlüsselfrage für die Entwicklung des zusammenwachsenden Europas. Die PDS wird sich dafür einsetzen, dass ein Gesetz über europäische Bürgerbegehren zügig auf den Weg gebracht wird. Auch im Deutschen Bundestag haben wir wiederholt die Einführung von mehr Demokratie gefordert, konnten uns aber nicht durchsetzen. Wir sehen in länderübergreifenden Bürgerbegehren neue Chancen, um schrittweise eine europäische Öffentlichkeit zu schaffen. Deshalb rufen wir die verschiedensten Organisationen der Zivilgesellschaft auf, schon bald Vorschläge für konkrete Inhalte dieses Gesetzes zu entwickeln.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Politisches Konzept, das den Ausbau der Europäischen Union mit dem Ziel der Errichtung eines föderalen europäischen Bundesstaats anstrebt",
+          "labels": [
+            "europäischer Föderalismus"
+          ],
+          "slug": "europaischer-foderalismus",
+          "title": "europäischer Föderalismus",
+          "url": "http://www.wikidata.org/entity/Q602875",
+          "wikidata_id": "Q602875",
+          "wikipedia_title": "Europäischer Föderalismus"
+        },
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        }
+      ],
+      "text": "Nationale Parlamente müssen wieder mehr Einfluss in der Europäischen Union erhalten.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-05",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "Viele in der SPD können sich vorstellen, dass ein Gottesbezug in die Präambel der Verfassung aufgenommen wird. Als SPD stehen wir hinter dem Verfassungsentwurf, wie ihn der Konvent vorgelegt hat. In diesem Entwurf ist, vor allem wegen der stark laizistischen Tradition mancher Mitgliedsstaaten, kein Gottesbezug enthalten.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Das entscheidende Kriterium kann hier nicht der Glaube sein. Der politische rote Faden muss auch in dieser Frage ganz klar durch folgende Prinzipien gebildet werden: Freiheit, Marktwirtschaft und Rechtsstaat.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS unterstützt die ablehnende Haltung des EU-Konventspräsidenten Valery Giscard d'Estaing gegenüber einer Bezugnahme auf Gott in der künftigen Europäischen Verfassung. Der Versuch, die Europäische Union mittels der künftigen Verfassung auf ein religiöses Erbe festlegen zu wollen, muss zurückgewiesen werden, da dies ausgrenzend gegenüber Humanisten und säkular eingestellten Menschen ist. Dabei geht es ganz und gar nicht um eine negative Haltung zu Christinnen und Christen oder Menschen aus anderen Religionen. Die klare Trennung von Kirche und Staat gehört zur aufklärerischen Tradition in Europa. Mit Erleichterung haben wir auch die Klarstellung von Giscard d'Estaing aufgenommen, dass wir in einem ;weltlich-politischen System; in Europa leben. Im Konvent hat sich die PDS für eine Verfassung eingesetzt, die auf dem Laizismus beruht und die auf der Grundlage von Artikel 10 der EU-Grundrechtecharta Gedanken-, Gewissens- und Religionsfreiheit für alle Menschen in Europa garantiert.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Invocations of God in national constiututions",
+          "labels": [
+            "Gottesbezug"
+          ],
+          "slug": "gottesbezug",
+          "title": "Gottesbezug",
+          "url": "http://www.wikidata.org/entity/Q1538970",
+          "wikidata_id": "Q1538970",
+          "wikipedia_title": "Gottesbezug"
+        },
+        {
+          "labels": [
+            "Christliche Werte"
+          ],
+          "slug": "christliche-werte",
+          "title": "Christliche Werte",
+          "url": "http://www.wikidata.org/entity/Q1084103",
+          "wikidata_id": "Q1084103",
+          "wikipedia_title": "Christliche Werte"
+        },
+        {
+          "aliases": [
+            "Politisch administratives System",
+            "Politische Ordnung",
+            "Politisch-administratives System",
+            "Politische Systeme",
+            "Politische Architektur",
+            "Politisches System"
+          ],
+          "description": "Modell der Organisation eines Staates",
+          "labels": [
+            "politisches System"
+          ],
+          "slug": "politisches-system",
+          "title": "politisches System",
+          "url": "http://www.wikidata.org/entity/Q28108",
+          "wikidata_id": "Q28108",
+          "wikipedia_title": "Politisches System"
+        },
+        {
+          "description": "Bezeichnung für Maßnahmen zur Formung und Beeinflussung einer menschlichen Gesellschaft",
+          "labels": [
+            "Gesellschaftspolitik"
+          ],
+          "slug": "gesellschaftspolitik",
+          "title": "Gesellschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q23542337",
+          "wikidata_id": "Q23542337",
+          "wikipedia_title": "Gesellschaftspolitik"
+        }
+      ],
+      "text": "In der europäischen Verfassung sollte ein Gottesbezug verankert werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-06",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Das Grundgesetz sieht wegen den schlechten historischen Erfahrungen in der Weimarer Republik keine Volksabstimmungen auf Bundesebene in Sachfragen vor.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "text": "CSU ist dafür offen.",
+          "value": 0
+        },
+        {
+          "party": "SPD",
+          "text": "Die SPD hat in der letzten Legislaturperiode im Bundestag versucht, Volksabstimmungen in der Verfassung zu Verankern. Dies ist am Widerstand von CDU und CSU gescheitert. Die SPD ist nicht dafür, dass für gesonderte Vorhaben (wie jetzt für die EU-Verfassung) Volksabstimmungen abgehalten werden.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "In vielen Mitgliedstaaten der Europäischen Union wird der Bevölkerung die Gelegenheit gegeben werden, über die Einführung einer Verfassung für Europa abzustimmen. In Deutschland bleibt die Entscheidung über einen Verfassungsvertrag den Volksvertretern in Bundestag und Bundesrat überlassen. Wir wollen auch den Bürgerinnen und Bürgern in Deutschland die Gelegenheit geben, der Verfassung zuzustimmen. Nur so wird es gelingen, die Idee der europäischen Einigung tiefer in den Herzen der Menschen zu verankern.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Ja. Eine Verfassung, die die EU wahrscheinlich für viele Jahre prägen wird, bedarf in allen Mitgliedstaaten, also auch in der Bundesrepublik, der direkten demokratischen Legitimation durch die Bürgerinnen und Bürger. Leider konnten wir uns bislang nicht durchsetzen. Selbst die Grünen haben mit Joschka Fischer einen prominenten Gegner des EU-Referendums. Die PDS tritt für eine entsprechende Grundgesetzänderung ein, die den Weg für einen Volksentscheid über die Europäische Verfassung frei macht. Ein solcher Volksentscheid würde auch dazu beitragen, die Entfremdung der Bürgerinnen und Bürger gegenüber den europäischen Institutionen abzubauen und der weit verbreiteten Unkenntnis über die EU entgegenzuwirken. Entscheidend aber wäre: Ein Volksentscheid würde Politikerinnen und Politiker aller Ebenen vom Bund über die Länder bis in die Kommunen zwingen, Position zu beziehen, sie zur Wahrnehmung politischer Verantwortung in Sachen Europa verpflichten. Als Termin für das Referendum über die EU-Verfassung haben wir den 8. Mai 2005 vorgeschlagen. An diesem Tag jährt sich das Ende des 2. Weltkriegs zum sechzigsten Mal.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Direktdemokratie",
+            "Unmittelbare Demokratie"
+          ],
+          "description": "Herrschaftsform",
+          "labels": [
+            "direkte Demokratie"
+          ],
+          "slug": "direkte-demokratie",
+          "title": "direkte Demokratie",
+          "url": "http://www.wikidata.org/entity/Q171174",
+          "wikidata_id": "Q171174",
+          "wikipedia_title": "Direkte Demokratie"
+        },
+        {
+          "aliases": [
+            "Politisch administratives System",
+            "Politische Ordnung",
+            "Politisch-administratives System",
+            "Politische Systeme",
+            "Politische Architektur",
+            "Politisches System"
+          ],
+          "description": "Modell der Organisation eines Staates",
+          "labels": [
+            "politisches System"
+          ],
+          "slug": "politisches-system",
+          "title": "politisches System",
+          "url": "http://www.wikidata.org/entity/Q28108",
+          "wikidata_id": "Q28108",
+          "wikipedia_title": "Politisches System"
+        }
+      ],
+      "text": "Die deutsche Bevölkerung soll in einer Volksabstimmung über die neue EU-Verfassung entscheiden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-07",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU hat nach schwierigen Verhandlungen in Europa die strikten Regeln des Stabilitäts- und Wachstumspaktes durchgesetzt, damit der Euro auch auf Dauer so stabil bleibt wie die D-Mark es war. Dass gerade eine deutsche Regierung die Stabilitätsregeln nicht einhalten würde, hat eine verheerende Wirkung auf unsere europäischen Partner. In diesem Jahr drohen schon fünf ;alte; EU-Mitgliedsstaaten den Stabilitäts- und Wachstumspakt zu brechen.",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "In den Verträgen ist der Pakt als Stabilitäts- UND Wachstumspakt verankert. Die SPD steht für seine vertragsgemäße Anwendung. Deutschland unternimmt alle Anstrengungen, um die Kriterien des Stabilitäts- UND Wachstumspaktes zu erfüllen. Erst jüngst hat die Europäische Kommission geäußert, dass sie davon ausgeht, dass Deutschland dies 2005 schafft.",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "text": "Der Stabilitätspakt sichert die dauerhafte Einhaltung der Kriterien zum Beitritt zur Währungsunion - wenn ihn alle Mitgliedstaaten einhalten. Diese Prinzipien dürfen nicht, durch wen auch immer, relativiert werden.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Nein. Die PDS-Abgeordneten im Europäischen Parlament haben die Maastrichter Währungsverfassung stets abgelehnt, da sie auf eine neoliberale, angebotsorientierte Finanzordnung zielt und damit auf eine Demontage des Sozialstaats. Ebenso hat sie sich gegen den Stabilitätspakt ausgesprochen, weil er -wie nun auch von der rot-grünen Bundesregierung eingestanden- wirtschaftliche Stabilität und Beschäftigung nicht fördert, sondern Sozialabbau vorantreibt. Wir fordern eine sozial gerechte Reform des Stabilitätspakts, damit nachhaltiges Wachstum in Europa eine Zukunft erhält und Menschen in existenzsichernde Beschäftigung gelangen können. Anreize werden benötigt, um bei Wirtschaftswachstum Budgetüberschüsse zu erzielen, um Verschuldung abzubauen und in Abschwungphasen ein Gegensteuern durch den Staat zu ermöglichen. Dazu gehört auch die Koordinierung der Geldpolitik der EZB mit der Wirtschafts- und Finanzpolitik der Mitgliedstaaten auf EU-Ebene.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Wachstumspakt",
+            "EU-Stabilitätspakt",
+            "Euro-Stabilitätspakt"
+          ],
+          "labels": [
+            "Stabilitäts- und Wachstumspakt"
+          ],
+          "slug": "stabilitats-und-wachstumspakt",
+          "title": "Stabilitäts- und Wachstumspakt",
+          "url": "http://www.wikidata.org/entity/Q832661",
+          "wikidata_id": "Q832661",
+          "wikipedia_title": "Stabilitäts- und Wachstumspakt"
+        },
+        {
+          "slug": "haushalt-der-europaischen-union",
+          "title": "Haushalt der Europäischen Union",
+          "url": "http://www.wikidata.org/entity/Q1130259",
+          "wikidata_id": "Q1130259",
+          "wikipedia_title": "Haushalt der Europäischen Union"
+        },
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        }
+      ],
+      "text": "Verstöße gegen den Europäischen Stabilitätspakt sollen strikt bestraft werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-08",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU fordert, dass die EU genauso sparsam umgehen muss, wie die EU-Mitgliedsstaaten auch. Allerdings ist klar, dass es neue EU-Instrumente wie z.B. für die Terrorismusbekämpfung nicht umsonst geben kann. Das eigentliche Problem ist, dass andere reichere Staaten zur EU-Finanzierung zu wenig beitragen (Beispiel: Britenrabatt).",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "Im Interesse künftiger Generationen müssen alle öffentlichen Haushalte sparen. Dies gilt für Deutschland ebenso wie für Europa. Seit dem Regierungsantritt von Gerhard Schröder hat Deutschland bereits weniger in EU-Töpfe gezahlt. Gleichzeitig muss gewährleistet werden, dass die erweiterte EU handlungsfähig bleibt.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Die FDP tritt dafür ein, dass sich die Beiträge der Mitgliedstaaten verstärkt nach den gleichen Kriterien für alle Länder - und zwar entsprechend ihrer Wirtschaftskraft - richten. Sonderkonditionen wie der sog. 'Britenrabatt' (der von der britischen Premierministerin Thatcher zur einseitigen Reduzierung der britischen EU-Beiträge ausgehandelt wurde) sind abzubauen.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Nein. Und dafür gibt es mehrere Gründe: 1. Wer die politische Integration Europas und damit die Erweiterung der EU will, muss auch für die größer werdenden Aufgaben und Herausforderungen mehr finanzielle Mittel aufbringen. 2. Wer das Solidaritätsprinzip der EU verteidigt, dass die wirtschaftlich stärkeren Staaten den schwächeren helfen müssen, um die riesigen regionalen Disparitäten auf wirtschaftlichem, sozialem, bildungs- und umweltpolitischem Gebiet beseitigen zu können, muss mehr Gelder bereitstellen. 3. Durch den Beitritt ergibt sich eine Verschiebung der Schengener Außengrenze, was zu einer erheblichen Mittelreduzierung führt. 5. Das Außenhandelsplus der BRD gegenüber den neuen Mitgliedsländern wird sich weiter erhöhen und schafft damit Wertschöpfung und Arbeitsplätze in der BRD, was den nationalen Haushalt positiv beeinflusst. Es erfolgt also ein indirekter Finanzrücktransfer. 6. Der absolut überwiegende Teil der an die Bundesrepublik gehenden Strukturfondsmittel landen in den ostdeutschen Ziel-1-Regionen. Hilfe aus Brüssel ist sicherer als der Glaube an die Chefsache Ost des Kanzlers oder seines Hilfsdieners Stolpe.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "slug": "haushalt-der-europaischen-union",
+          "title": "Haushalt der Europäischen Union",
+          "url": "http://www.wikidata.org/entity/Q1130259",
+          "wikidata_id": "Q1130259",
+          "wikipedia_title": "Haushalt der Europäischen Union"
+        },
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        }
+      ],
+      "text": "Die Beitragszahlungen Deutschlands an die EU müssen gesenkt werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-09",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Eine eigene EU-Steuer brächte derzeit die Gefahr mit sich, dass die EU in Zukunft auch Schulden aufnehmen dürfte und die Gesamtsteuerbelastung steigen würde. Langfristig kann man sicherlich über eine eigene EU-Steuer sprechen, wenn diese negativen Wirkungen explizit ausgeschlossen werden.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Europa braucht Steuersenkungen, nicht neue Steuern. Das Thema EU-Steuer steht für die FDP derzeit nicht zur Debatte.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Den im Europäischen Parlament in der vergangenen Legislaturperiode vorgelegten jährlichen Haushaltsentwürfen konnten die PDS-Abgeordneten kein einziges Mal ihre Zustimmung geben, denn sie entsprachen in keiner Weise den politischen Herausforderungen, denen die Gemeinschaft vor allem mit einer aktiven Haushaltspolitik begegnen muss. Dies betrifft etwa die unzumutbar hohe Arbeitslosigkeit in den Mitgliedsländern, die Osterweiterung der EU, die weiterhin bestehenden regionalen und sozialen Ungleichheiten in der Union oder die enormen Finanzmittel, die für den Wiederaufbau des durch Bürgerkrieg und durch das Eingreifen der NATO zerstörten Balkans notwendig sind. Um diesen Herausforderungen effektiv begegnen zu können, ist unserer Meinung nach ein mit deutlich höherer Haushalt unerlässlich. Zur notwendigen Erhöhung der EU-Einnahmen schlagen wir europäische Steuern vor. Das könnten sein: Die Einführung der Tobin-Steuer zur Abschöpfung von Gewinnen bei grenzüberschreitenden Finanztransaktionen und die Einführung einer europaweiten CO2-Steuer nach dem Verursacherprinzip. Beide Steuern sollten ausschließlich der EU zustehen.",
+          "value": 0
+        }
+      ],
+      "tags": [
+        {
+          "slug": "haushalt-der-europaischen-union",
+          "title": "Haushalt der Europäischen Union",
+          "url": "http://www.wikidata.org/entity/Q1130259",
+          "wikidata_id": "Q1130259",
+          "wikipedia_title": "Haushalt der Europäischen Union"
+        },
+        {
+          "description": "Maßnahmen, die Einnahmen und Ausgaben der öffentlichen Haushalte betreffen",
+          "labels": [
+            "Finanzpolitik"
+          ],
+          "slug": "finanzpolitik",
+          "title": "Finanzpolitik",
+          "url": "http://www.wikidata.org/entity/Q1404669",
+          "wikidata_id": "Q1404669",
+          "wikipedia_title": "Finanzpolitik"
+        },
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        }
+      ],
+      "text": "Anstelle der nationalen Beiträge darf die EU eine eigene Steuer erheben.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-11",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU tritt für eine neue, internationale soziale Marktwirtschaft ein mit z.B. einem klaren Wettbewerbsrahmen (z.B. gegen wirtschafts- und arbeitsplatzschädliche Monopole) auf europäischer und zunehmend globaler Ebene (faire WTO-Regeln), für eine moderne Infrastruktur (einschließlich eines guten Bildungssystems sowie Forschungseinrichtungen) sowie für Reformen auf dem Arbeitsmarkt und bei der sozialen Sicherung.",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "text": "CSU präferiert soziale Marktwirtschaft.",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Soziale Marktwirtschaft, die auch Chancengleichheit beinhaltet, ist der beste Garant zur Bekämpfung der Arbeitslosigkeit, nicht das freie Spiel der Kräfte allein.",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Die FDP ist die Partei der Sozialen Marktwirtschaft, deren Herzstück der Wettbewerb ist. Sie setzt auf die Leistungsfähigkeit des einzelnen und fördert diese. Liberale Politik wendet sich gegen Wettbewerbsverzerrungen und Wettbewerbsbeschränkungen. Wir wollen Subventionen abbauen, öffentliche Aufgaben zurückführen und staatliche Beteiligungen privatisieren. Die Staatsquote muss auf ein Drittel des Sozialproduktes gesenkt werden. Der Mittelstand muss Bedingungen vorfinden, die es ihm erlauben, seine Potenziale im Interesse einer funktionierenden Marktwirtschaft voll zu entfalten. Das ist das Rezept zum Abbau der hohen Arbeits-losigkeit.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Wir sind der Ansicht, dass in der Arbeitsmarktpolitik eine Koordination auf europäischer Ebene notwendig ist. Aber wir kritisieren die neoliberale Ausrichtung der Beschäftigungspolitik in den wirtschaftspolitischen und auch in großen Teilen der beschäftigungspolitischen Leitlinien der EU. Im Kern geht es hier um die Deregulierung der Arbeitsmärkte, um eine Flexibilisierung der betrieblichen Arbeitszeiten sowie um Leistungskürzungen und Zwangsinstrumente gegen Erwerbslose. Die durchaus vorhandenen positiven Empfehlungen der EU-Beschäftigungsstrategie (etwa die zur Gleichstellung von Frauen, zum Ausbau von Kinderbetreuung und Pflege, zur Förderung lebensbegleitenden Lernens, zur Verbesserung der Qualität der Arbeitsplätze und des Arbeits- und Gesundheitsschutzes, zur besseren Integration von älteren Arbeitnehmern, Jungendlichen und Immigranten, zur Erreichung des Ziels der Vollbeschäftigung mit mehr und besseren Arbeitsplätzen bis 2010) kommen in der Praxis hingegen nur unzureichend zum Tragen. Wir fordern eine nachfrage- und investitionsorientierte EU-Wirtschaftspolitik und sozial-ökologische Strukturreformen im EU-Binnenmarkt. Beides würde neue, umweltgerechte Arbeitsplätze schaffen. Wir fordern darüber hinaus, öffentliche Dienste, die öffentliche Daseinsvorsorge sowie sozialwirtschaftliche Projekte und Initiativen auszubauen und so in einem öffentlich geförderten Beschäftigungssektor neue Stellen zu schaffen. Die Praxis hat oft genug gezeigt, dass eine Deregulierung und Flexibilisierung keine Arbeitsplätze schafft, sondern im Gegenteil über die Schwächung der Kaufkraft weitere Arbeitsplätze gefährdet. Die PDS-Europaabgeordneten fordern eine aktive Arbeitsmarktpolitik, die Jugendlichen, Langzeiterwerbslosen und anderen Gruppen von Erwerbslosen eine qualifizierte Aus- und Weiterbildung bietet. Bis 2010 soll der Anteil der Ausgaben für aktive Maßnahmen qualifizierter Aus- und Weiterbildung bzw. zukunftsfähiger Umschulung auf 50 Prozent der arbeitsmarktpolitischen Gesamtbudgets erweitert werden. Für erwerbslose Jugendliche und Langzeiterwerbslose soll eine anschließende Arbeitsplatzgarantie von mindestens zwölf Monaten eingeführt werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Politikfeld, das sich mit der Wirtschaft befasst",
+          "labels": [
+            "Wirtschaftspolitik"
+          ],
+          "slug": "wirtschaftspolitik",
+          "title": "Wirtschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q582577",
+          "wikidata_id": "Q582577",
+          "wikipedia_title": "Wirtschaftspolitik"
+        },
+        {
+          "labels": [
+            "Arbeitspolitik"
+          ],
+          "slug": "arbeitspolitik",
+          "title": "Arbeitspolitik",
+          "url": "http://www.wikidata.org/entity/Q628875",
+          "wikidata_id": "Q628875",
+          "wikipedia_title": "Arbeitspolitik"
+        },
+        {
+          "aliases": [
+            "Sozialpolitiker",
+            "Wohlfahrtspolitik"
+          ],
+          "description": "Bezeichnung für Maßnahmen zur Verbesserung der wirtschaftlichen und sozialen Situation",
+          "labels": [
+            "Sozialpolitik"
+          ],
+          "slug": "sozialpolitik",
+          "title": "Sozialpolitik",
+          "url": "http://www.wikidata.org/entity/Q828395",
+          "wikidata_id": "Q828395",
+          "wikipedia_title": "Sozialpolitik"
+        },
+        {
+          "aliases": [
+            "Registrierte Arbeitslosigkeit",
+            "Langzeitarbeitslosigkeit",
+            "Arbeitslos",
+            "Massenarbeitslosigkeit",
+            "Konjunkturelle Arbeitslosigkeit"
+          ],
+          "description": "Fehlen bezahlter Beschäftigungsmöglichkeiten für potenzielle Erwerbspersonen",
+          "labels": [
+            "Arbeitslosigkeit"
+          ],
+          "slug": "arbeitslosigkeit",
+          "title": "Arbeitslosigkeit",
+          "url": "http://www.wikidata.org/entity/Q41171",
+          "wikidata_id": "Q41171",
+          "wikipedia_title": "Arbeitslosigkeit"
+        }
+      ],
+      "text": "Freie Marktwirtschaft ist die beste Strategie gegen Arbeitslosigkeit.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-12",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU unterstützt die bisherige Regelung, dass es einen Mindestsatz für die Mehrwertsteuer geben soll, damit es nicht zu einer zu starken Wettbewerbsverzerrung im EU-Binnenmarkt kommt. Die CDU setzt sich dafür ein, dass endlich das binnenmarktkonforme Ursprungsprinzip bei der Mehrwertsteuererhebung in der EU eingeführt wird.",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "text": "Die EU-Mitgliedstaaten sind bemüht, unfairen Steuerwettbewerb zu verhindern. Der EU-Verhaltenskodex unterscheidet zwischen 'fairem' steuerlichem Systemwettbewerb und 'unfairem' Begünstigungswettbewerb. Indizien für unfairen Steuerwettbewerb sind Steuervorteile, die ausschließlich Ausländern eingeräumt werden, ohne dass dabei eine tatsächliche Wirtschaftstätigkeit oder substanzielle wirtschaftliche Präsenz vorliegt. Dazu kommen Vorschriften (zur Gewinnermittlung), die von international allgemein anerkannten Grundsätzen abweichen, sowie fehlende Transparenz der steuerlichen Maßnahmen.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Ja. Die Erhebung unterschiedlicher Steuersätze in Europa führt zu Wettbewerbsverzerrungen. Vor allem kleinere Unternehmen und Unternehmen in Grenzregionen sind nicht zuletzt wegen der starken Steuerbelastung in einer wirtschaftlich komplizierten Situation. Wir kämpfen für die Durchsetzung des Prinzips der Besteue-rung nach der wirtschaftlichen Leistungsfähigkeit. Die PDS fordert deshalb eine Koordination der nationalen Steuerpolitik der Mitgliedstaaten mit dem Ziel, sowohl den lauteren als auch den unlauteren Steuerwettbewerb innerhalb der EU zu beenden. Leistungslose Einkommen aus Vermögen und Erbschaften sind, bei Berücksichtigung von angemessenen Freibeträgen, gemäß ihrer höheren wirtschaftlichen Leistungsfähigkeit zu besteuern, um so zu einer gerechteren Einkommens- und Vermögensverteilung beizutragen.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "MwSt",
+            "MwSt.",
+            "Umsatzsteuererklärung",
+            "Umsatzsteuerpflicht",
+            "Ust",
+            "USt",
+            "Mwst"
+          ],
+          "description": "Auf den Verkaufspreis eines Produktes oder einer Leistung aufgeschlagene Umsatzsteuer",
+          "labels": [
+            "Mehrwertsteuer"
+          ],
+          "slug": "mehrwertsteuer",
+          "title": "Mehrwertsteuer",
+          "url": "http://www.wikidata.org/entity/Q128635",
+          "wikidata_id": "Q128635",
+          "wikipedia_title": "Mehrwertsteuer"
+        },
+        {
+          "description": "Öffentlich-rechtliche Zahlung von Geld an den Staat",
+          "labels": [
+            "Steuer"
+          ],
+          "slug": "steuer",
+          "title": "Steuer",
+          "url": "http://www.wikidata.org/entity/Q8161",
+          "wikidata_id": "Q8161",
+          "wikipedia_title": "Steuer"
+        },
+        {
+          "description": "Maßnahmen, die Einnahmen und Ausgaben der öffentlichen Haushalte betreffen",
+          "labels": [
+            "Finanzpolitik"
+          ],
+          "slug": "finanzpolitik",
+          "title": "Finanzpolitik",
+          "url": "http://www.wikidata.org/entity/Q1404669",
+          "wikidata_id": "Q1404669",
+          "wikipedia_title": "Finanzpolitik"
+        }
+      ],
+      "text": "Die Mehrwertsteuer soll EU-weit vereinheitlicht werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-13",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU tritt für soziale Mindeststandards wie z.B. beim Arbeitsschutz ein. Mindeststandards, die wir nicht einmal in Deutschland haben, wie z.B. Mindestlöhne, sollten wir gemäß dem Subsidiaritätsprinzip auch nicht auf europäischer Ebene einführen.",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "text": "Aber Steuerdumping muss verhindert werden.",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Wir haben uns - gegen den Widerstand von Konservativen und Liberalen - erfolgreich dafür eingesetzt, dass soziale Grundrechte in die Europäische Grundrechtecharta integriert werden. Gerade in Zeiten von Globalisierung wollen wir das europäische Gesellschafts- und Sozialmodell gegen Angriffe verteidigen. Die SPD ist fest davon überzeugt, dass - bei allem Reformbedarf - soziale Standards ein internationaler Wettbewerbsvorteil sind. Wir wollen keine Abwärtsspirale bei Löhnen und Sozialleistungen.",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Allein mehr Freiheit und Wettbewerb im Welthandel erhöhen den Wohlstand der Völker. Der Gedanke der wirtschaftlichen Freiheit muss allumfassend durchgesetzt werden. Das schafft Arbeitsplätze und Wohlstand für alle. Offene Märkte helfen vor allem auch den ärmeren Ländern.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Ja. Wir setzen uns dafür ein, dass alle Personen, die dauerhaft in Europa leben, einen garantierten Anspruch auf ein existenzsicherndes Einkommen, sozialen Schutz und Wohlfahrt haben. Die PDS-Abgeordneten im Europäischen Parlament haben sich stets für ein hohes Niveau sozialpolitischer Mindestvorschriften eingesetzt und zusammen mit anderen politischen Kräften auch konkrete Verbesserungen bei einigen Richtlinienprojekten erreicht, so etwa zur Gerüstbaurichtlinie, zum Lärmschutz am Arbeitsplatz und zum Mutterschutz. Wir fordern, dass die EU bei der Koordinierung der Sozialpolitik künftig verbindliche quantitative und qualitative sozialpolitische Vorgaben setzt: z. B. zur Verbesserung des Gesundheitsschutzes, zum Mindestniveau einer sozialen Grundsicherung, zu europäischen Mindestlohnstandards, zur Überwindung von Armut und sozialer Ausgrenzung, von Wohnungslosigkeit und Analphabetismus. Die EU und ihre Mitgliedstaaten müssen dabei zu konkreten Maßnahmen verpflichtet werden. Wir wollen außerdem einen sozialen Stabilitätspakt, der verhindern soll, dass Mitgliedstaaten sich durch Sozialabbau und Sozialdumping Kosten- und Wettbewerbsvorteile im EU-Binnenmarkt verschaffen.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Lohnuntergrenze",
+            "Mindeststundenlohn"
+          ],
+          "description": "Festgelegtes kleinstes rechtlich zulässiges Arbeitsentgelt",
+          "labels": [
+            "Mindestlohn"
+          ],
+          "slug": "mindestlohn",
+          "title": "Mindestlohn",
+          "url": "http://www.wikidata.org/entity/Q186228",
+          "wikidata_id": "Q186228",
+          "wikipedia_title": "Mindestlohn"
+        },
+        {
+          "description": "Politikfeld, das sich mit der Wirtschaft befasst",
+          "labels": [
+            "Wirtschaftspolitik"
+          ],
+          "slug": "wirtschaftspolitik",
+          "title": "Wirtschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q582577",
+          "wikidata_id": "Q582577",
+          "wikipedia_title": "Wirtschaftspolitik"
+        },
+        {
+          "labels": [
+            "Arbeitspolitik"
+          ],
+          "slug": "arbeitspolitik",
+          "title": "Arbeitspolitik",
+          "url": "http://www.wikidata.org/entity/Q628875",
+          "wikidata_id": "Q628875",
+          "wikipedia_title": "Arbeitspolitik"
+        },
+        {
+          "aliases": [
+            "Sozialpolitiker",
+            "Wohlfahrtspolitik"
+          ],
+          "description": "Bezeichnung für Maßnahmen zur Verbesserung der wirtschaftlichen und sozialen Situation",
+          "labels": [
+            "Sozialpolitik"
+          ],
+          "slug": "sozialpolitik",
+          "title": "Sozialpolitik",
+          "url": "http://www.wikidata.org/entity/Q828395",
+          "wikidata_id": "Q828395",
+          "wikipedia_title": "Sozialpolitik"
+        }
+      ],
+      "text": "Soziale Mindeststandards wie Mindestlöhne sollen EU-weit eingeführt werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-14",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die CDU setzt sich für den Verbraucherschutz ein. Rauchen gefährdet die Gesundheit. Die Tabakindustrie sollte Jugendliche nicht mit ihrer Werbung zum Rauchen verführen. Dies ist jedoch gemäß dem Subsidiaritätsprinzip eine Frage für die Nationalstaaten und keine Frage für Europa.",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Trotz des Urteils des Europäischen Gerichtshofes aus dem vergangenen Jahr will die Kommission ein Tabakwerbeverbot durchsetzen. Das ist ein Versuch, den mündigen und aufgeklärten Verbraucher zu gängeln. Außerdem bedeutet ein Werbeverbot einen Eingriff in die Wettbewerbsrechte von Tabak- und Werbebranche. Es ist unsinnig, legal hergestellte Produkte mit einem Werbeverbot zu überziehen. Werbeverbote passen nicht zum liberalisierten Binnenmarkt.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Ja. Die Verbraucheraufklärung muss gestärkt werden. Der Schutz der Verbraucherinnen und Verbraucher vor gesundheitlichen und sozialen Risiken sowie rechtlichen und wirtschaftlichen Nachteilen muss Vorrang vor Kapitalinteressen haben. Unsere Forderungen lauten deshalb: - Schutz der Verbraucher vor Irreführung und Mani-pulation, - Sachlich-informative Werbung unter Einbeziehung von Aussagen zu Kosten, Folgen, Risiken, - Werbeverbot in Fällen, wo die Werbung offensichtlich gegen die guten Sitten verstößt.Ausdrücklich unterstützen wir die Kinderkampagne der Verbraucherzentrale Bundesverband (vzbv) gegen die 'Inva-sion der Werbung in Kinderzimmern, auf Frühstückstischen und in Klassenzimmern' (z. B. für Schokoriegel, gezuckerte Milchprodukte, Eis, Softdrinks oder Snacks, die zu Fehlernährung und Übergewicht beitragen, oder für die intensive Handy-Nutzung, die Schulden verursachen kann).",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Tabakerzeugnis",
+          "labels": [
+            "Zigarette"
+          ],
+          "slug": "zigarette",
+          "title": "Zigarette",
+          "url": "http://www.wikidata.org/entity/Q1578",
+          "wikidata_id": "Q1578",
+          "wikipedia_title": "Zigarette"
+        },
+        {
+          "description": "Politikbereich, der sich mit der Planung, Organisation, Steuerung und Finanzierung des Gesundheitssystems beschäftigt",
+          "labels": [
+            "Gesundheitspolitik"
+          ],
+          "slug": "gesundheitspolitik",
+          "title": "Gesundheitspolitik",
+          "url": "http://www.wikidata.org/entity/Q1519812",
+          "wikidata_id": "Q1519812",
+          "wikipedia_title": "Gesundheitspolitik"
+        },
+        {
+          "labels": [
+            "Drogenpolitik"
+          ],
+          "slug": "drogenpolitik",
+          "title": "Drogenpolitik",
+          "url": "http://www.wikidata.org/entity/Q1260003",
+          "wikidata_id": "Q1260003",
+          "wikipedia_title": "Drogenpolitik"
+        }
+      ],
+      "text": "Absolutes Werbeverbot für Tabakprodukte.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-15",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Eine Zusammenarbeit der EU-Staaten im Bereich der Kernenergie und Entsorgung ist sinnvoll. Zudem hat die rot-grüne Bundesregierung die Entsorgungsfrage nicht gelöst, sondern hat die Einrichtung von Zwischenlagern für abgebrannte Brennelemente an den Kernkraftwerksstandorten erzwungen. Die sichere Endlagerung radioaktiver Abfälle wird damit verzögert und kommenden Generationen aufgebürdet.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Wir sind für den Atomausstieg und haben ihn gegen große Widerstände in Deutschland durchgesetzt. Trotzdem müssen wir die Realitäten, die sich aus der Notwendigkeit zur sicheren Lagerung ergeben, bis zum endgültigen Ausstieg anerkennen.",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "text": "Es ist kein Raum für ideologisch motivierte Behinderungen der Transporte abgebrannter Brennelemente. Deutschland verstößt gegen rechtsgültige internationale Vereinbarungen. Es ist unverantwortlich, Atommüll provisorisch auf dem Gelände der Kernkraftwerke zu lagern, während andernorts weniger gefährliche Lagerstätten zur Verfügung stehen. Atommülltransporte sind eine Notwendigkeit nach Recht und Gesetz - kein Zugeständnis an die Energiewirtschaft.",
+          "value": 0
+        },
+        {
+          "party": "PDS",
+          "text": "Wir fordern den schnellstmöglichen Ausstieg aus der Atomenergie, die Beendigung des Exports von Atomkraftwerken und von AKW-Technik, die Einstellung des Betriebs atomarer Wiederaufbereitungsanlagen und den Stopp von damit verbundenen Atommülltransporten. Da der Euratom-Vertrag nicht Bestandteil des EU-Verfassungsentwurfs ist, muss er 2007 auslaufen. Die beträchtlichen Fördermittel für Atomforschung müssen zur Förderung alternativer Energien umgewandelt werden. Lediglich Programme für die Aufrechterhaltung des atomtechnischen Know-hows für die Demontage von AKW und die sichere Lagerung des angefallenen Atommülls sollen aufrechterhalten werden.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Policy addressing energy issues",
+          "labels": [
+            "Energiepolitik"
+          ],
+          "slug": "energiepolitik",
+          "title": "Energiepolitik",
+          "url": "http://www.wikidata.org/entity/Q1805337",
+          "wikidata_id": "Q1805337",
+          "wikipedia_title": "Energiepolitik"
+        },
+        {
+          "aliases": [
+            "Atomkraft",
+            "Nuklearenergie",
+            "Atomtechnologie",
+            "Atomstrom",
+            "Atomindustrie",
+            "Atomkernenergie",
+            "Atomenergie",
+            "Kernenergietechnik",
+            "Kernkraft"
+          ],
+          "description": "Durch Kernfusion oder Kernspaltung erzeugte Energie",
+          "labels": [
+            "Kernenergie"
+          ],
+          "slug": "kernenergie",
+          "title": "Kernenergie",
+          "url": "http://www.wikidata.org/entity/Q12739",
+          "wikidata_id": "Q12739",
+          "wikipedia_title": "Kernenergie"
+        }
+      ],
+      "text": "Der Transport von Atommüll zwischen den EU-Staaten muss verboten werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-16",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Die hohe Qualität des Trinkwassers ist ein kostbares Gut. Ziel der CDU ist es, dass die Kommunen wichtige Aufgaben der Daseinsvorsorge auch in Zukunft wahrnehmen können. Deshalb tritt die CDU dafür ein, dass die Wasserversorgung Aufgabe der Kommunen bleibt. Eine Liberalisierung der Wasserversorgung lehnen wir ab, weil echter Wettbewerb nur begrenzt möglich ist.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Private Leistung muss Vorrang vor staatlicher Versorgung haben, weil sie meist zu effizienteren Ergebnissen führt. Auf längere Sicht wird sich das effizientere System auch dort durchsetzen wird, wo heute noch die Staatswirtschaft dominiert. Bei jeder staatlichen Leistung muss geprüft werden, ob nicht private Anbieter die betreffende Leistung am Markt anbieten könnten. EU-Vorgaben müssen gewährleisten, dass die Kommunen in der Lage bleiben, lokalen Erfordernissen flexibel begegnen zu können, um Bedürfnisse ihrer Bürger befriedigen und sich im nationalen Standortwettbewerb positionieren zu können.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Nein! Wasser ist ein öffentliches Gut und darf nicht den EU-Binnenmarktregeln unterliegen. Das Beispiel der privatisierten Wasserversorgung in Frankreich und Großbritannien zeigt, dass die Versorgungssicherheit deutlich gesunken ist. Der französische Wassermarkt wird von nur drei multinationalen Unternehmen kontrolliert. Das Wasser der privaten Anbieter ist deutlich teurer als jenes kommunaler Anbieter, die Qualität häufig schlechter. Die PDS-Europaabgeordneten lehnen die neuen Liberalisierungsprojekte der Europäischen Kommission (etwa in der Wasserversorgung, im Gesundheitswesen, bei der Flugüberwachung, in der Bildung und im öffentlichen Nahverkehr) strikt ab. Insbesondere die vorgeschlagene Richtlinie zur Schaffung eines Binnenmarktes für Dienstleistungen bis 2010 würde zu einem Sozialdumping ohnegleichen führen und zahlreiche kleine und mittlere Unternehmen in ihrer Existenz bedrohen. Die EU muss im Gegenteil die Strukturen der öffentlichen Daseinsvorsorge vom Wettbewerbsrecht ausnehmen und damit ermöglichen, dass sie zukunftsfähig ausgebaut werden können. Wir fordern deshalb ein Moratorium für alle weiteren Liberalisierungsvorhaben.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Dienstleistung mit wichtiger Infrastruktur",
+          "labels": [
+            "Grundversorgung"
+          ],
+          "slug": "grundversorgung",
+          "title": "Grundversorgung",
+          "url": "http://www.wikidata.org/entity/Q3259956",
+          "wikidata_id": "Q3259956",
+          "wikipedia_title": "Grundversorgung"
+        },
+        {
+          "aliases": [
+            "Privatisieren",
+            "Reprivatisierung",
+            "Teilprivatisierung"
+          ],
+          "description": "Umwandlung von öffentlichem Vermögen in privates Eigentum",
+          "labels": [
+            "Privatisierung"
+          ],
+          "slug": "privatisierung",
+          "title": "Privatisierung",
+          "url": "http://www.wikidata.org/entity/Q161500",
+          "wikidata_id": "Q161500",
+          "wikipedia_title": "Privatisierung"
+        },
+        {
+          "aliases": [
+            "Öffentliche Trägerschaft",
+            "Verwaltungswesen",
+            "Administrative"
+          ],
+          "description": "Oberbegriff für die Verwaltungen, die Aufgaben des Staates einschließlich Einrichtungen des öffentlichen Rechtes wahrnehmen",
+          "labels": [
+            "öffentliche Verwaltung"
+          ],
+          "slug": "offentliche-verwaltung",
+          "title": "öffentliche Verwaltung",
+          "url": "http://www.wikidata.org/entity/Q31728",
+          "wikidata_id": "Q31728",
+          "wikipedia_title": "Öffentliche Verwaltung"
+        }
+      ],
+      "text": "Die Wasserversorgung soll privatisiert werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-17",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS schlägt die EU-weite Einführung einer Steuer auf Flugbenzin sowie einer Energiesteuer auf Primärenergie und auf den CO2-Gehalt von Energieträgern vor. Wir treten dafür ein, dass die Erfordernisse des Umweltschutzes in allen EU-Politiken integriert und nicht länger wirtschaftlichen Interessen untergeordnet werden. Insbesondere haben wir in den vergangenen Jahren im Europäischen Parlament Maßnahmen unterstützt, die zum verstärkten Einsatz von Umweltschutztechnologien, zur Erhöhung der Energie- und Ressourceneffizienz und zur Verringerung der Belastung von Boden, Wasser und Luft beitragen.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Umweltgedanken",
+            "Ökologie",
+            "Umweltvorsorge"
+          ],
+          "description": "Sammelbegriff für alle Maßnahmen, die die Erde als Lebensbereich vor Übernutzung schützen",
+          "labels": [
+            "Umweltschutz"
+          ],
+          "slug": "umweltschutz",
+          "title": "Umweltschutz",
+          "url": "http://www.wikidata.org/entity/Q832237",
+          "wikidata_id": "Q832237",
+          "wikipedia_title": "Umweltschutz"
+        },
+        {
+          "description": "Sektorale Strukturpolitik",
+          "labels": [
+            "Verkehrspolitik"
+          ],
+          "slug": "verkehrspolitik",
+          "title": "Verkehrspolitik",
+          "url": "http://www.wikidata.org/entity/Q2516371",
+          "wikidata_id": "Q2516371",
+          "wikipedia_title": "Verkehrspolitik"
+        },
+        {
+          "description": "Die Gesamtheit der politischen Bestrebungen, die den Schutz der natürlichen Umwelt fördern",
+          "labels": [
+            "Umweltpolitik"
+          ],
+          "slug": "umweltpolitik",
+          "title": "Umweltpolitik",
+          "url": "http://www.wikidata.org/entity/Q919526",
+          "wikidata_id": "Q919526",
+          "wikipedia_title": "Umweltpolitik"
+        }
+      ],
+      "text": "Die EU soll sich aktiv gegen Kurzstreckenflüge einsetzen.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-18",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Ein Ausstieg aus der Kernenergie mit ihrem Anteil von über 30 Prozent an der Stromversorgung ginge nicht nur zu Lasten von Verbrauchern, Unternehmen und Arbeitsplätzen, sondern führte auch dazu, dass durch den Wegfall dieses kohlendioxid-freien Energieträgers die eigenen Klimaschutzziele deutlich verfehlt würden. Die CDU setzt sich vielmehr für einen breit gefächerten, ausgewogenen und am Wettbewerb orientierten Energiemix ein, der auch in Zukunft die Option auf die Nutzung der Kernenergie offen hält. Darüber hinaus setzt sich die CDU dafür ein, dass die deutsche Sicherheitstechnik, die international Maßstäbe gesetzt hat, erhalten und ausgebaut wird.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "In Deutschland haben wir den geregelten Atomausstieg durchgesetzt. Auch auf europäischer Ebene werden wir uns für dieses Ziel stark machen.",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Liberale Energiepolitik orientiert sich am Leitbild der Nachhaltigkeit. Umwelt- und Sozialverträglichkeit, Wirtschaftlichkeit und Versorgungssicherheit müssen gewährleistet sein. Der Kernenergie-Ausstieg und die Subventionen für Steinkohle und erneuerbare Energien sind der falsche Weg. Wir brauchen marktwirtschaftliche Lösungen, um Fehlentwicklungen wie im Bereich der Windenergienutzung zu verhindern. Vorrang müssen Energiegewinnungstechnologien gefördert werden, die unabhängig von ihrer Erneuerbarkeit die höchsten Effizienzsteigerungen beim Klimaschutz und bei der Energiegewinnung versprechen. Der Liberalisierungsprozess in den Energiemärkten muss fortgesetzt werden.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Wir fordern den schnellstmöglichen Ausstieg aus der Atomenergie, die Beendigung des Exports von Atomkraftwerken und von AKW-Technik, die Einstellung des Betriebs atomarer Wiederaufbereitungsanlagen und den Stopp von damit verbundenen Atommülltransporten. Da der Euratom-Vertrag nicht Bestandteil des EU-Verfassungsentwurfs ist, muss er 2007 auslaufen. Die beträchtlichen Fördermittel für Atomforschung müssen zur Förderung alternativer Energien umgewandelt werden. Lediglich Programme für die Aufrechterhaltung des atomtechnischen Know-hows für die Demontage von AKW und die sichere Lagerung des angefallenen Atommülls sollen aufrechterhalten werden.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "description": "Policy addressing energy issues",
+          "labels": [
+            "Energiepolitik"
+          ],
+          "slug": "energiepolitik",
+          "title": "Energiepolitik",
+          "url": "http://www.wikidata.org/entity/Q1805337",
+          "wikidata_id": "Q1805337",
+          "wikipedia_title": "Energiepolitik"
+        },
+        {
+          "aliases": [
+            "Atomkraft",
+            "Nuklearenergie",
+            "Atomtechnologie",
+            "Atomstrom",
+            "Atomindustrie",
+            "Atomkernenergie",
+            "Atomenergie",
+            "Kernenergietechnik",
+            "Kernkraft"
+          ],
+          "description": "Durch Kernfusion oder Kernspaltung erzeugte Energie",
+          "labels": [
+            "Kernenergie"
+          ],
+          "slug": "kernenergie",
+          "title": "Kernenergie",
+          "url": "http://www.wikidata.org/entity/Q12739",
+          "wikidata_id": "Q12739",
+          "wikipedia_title": "Kernenergie"
+        }
+      ],
+      "text": "EU-weiter Ausstieg aus der Atomenergie.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-19",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Die Liberalen sind davon überzeugt, dass eine europäisch ausgerichtete (Aus-)Bildung die Grundlagen sind, auf denen die Zukunft der jungen Generation aufbaut. Entsprechend darf europäische Mobilität nicht bestraft werden, sondern ist nach allen Kräften zu unterstützen. Die Liberalen fordern daher: 1. Die Prinzipien der 'Europaschulen' sollten so weit wie möglich übernommen. 2. Erleichterung der gegenseitigen Anerkennung von Ausbildungsabschlüssen. 3. Eine zügige Umsetzung der Erklärung von Bologna, nach der die EU-Mitgliedsstaaten bereit erklärt haben, ihre Bildungssysteme enger aufeinander abzustimmen und die jeweiligen Hochschulabschlüsse anzupassen. 4. Die Verstärkung und Förderung des grenzüberschreitenden Austausches von Auszubildenden, Studierenden und Praktikanten.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS-Europaabgeordneten gehen von einem umfassenden Bildungsbegriff aus. Bildung ist für sie demnach mehr als Berufsvorbereitung. Eine Verkürzung des Bildungsgedankens lediglich auf die Schaffung der Voraussetzungen für die schnellstmögliche wirtschaftliche Verwertbarkeit lehnen wir ab. Wir betrachten Bildung als einen unverzichtbaren Kernbereich der Daseinsvorsorge, der nicht Wettbewerbsregeln unterworfen werden darf. Bildungseinrichtungen und -inhalte müssen in ihrer spezifischen Vielfalt bewahrt und weiterentwickelt werden. Gemeinsames europäisches Grundprinzip muss sein, dass jeder Mensch vom lebenslangen Lernen profitieren kann. Dafür ist es notwendig, für alle einen diskriminierungsfreien Zugang zu Bildungseinrichtungen zu sichern. Die PDS-Europaabgeordneten sind der Ansicht, dass die Bildungspolitik in der Bundesrepublik auf die positiven Erfahrungen anderer europäischer Länder zurückgreifen sollte. Eine Abschaffung des dreigliedrigen Schulsystems, das Kindern aus sozial schwachen Familien nur geringe Chancen bietet, und die Etablierung von Ganztagsschulen hätten nach Ansicht der PDS-Europaabgeordneten einen positiven Effekt sowohl auf die Lernergebnisse als auch auf die soziale Kompetenzentwicklung von Schülerinnen und Schülern. Darüber hinaus ist Ganztagsbetreuung unverzichtbar für eine Politik, die sich für die Gleichstellung von Frauen einsetzt. Wir setzen uns für studentische Freizügigkeit in Europa ein. Die Schaffung eines europäischen Hochschulraums im Rahmen des so genannten Bologna-Prozesses darf aber nicht dazu führen, Bildungsangebote zu beschränken oder inhaltlich zu vereinheitlichen. Die europaweite Anerkennung nicht nur von Studien-, sondern auch von Berufsabschlüssen muss gewährleistet werden. Die Einführung von Bachelor- und Master-Abschlüssen darf nicht zu Zugangsbeschränkungen für die Studierenden führen. Bildungsangebote aller Niveaus müssen für alle Studierenden unentgeltlich zugänglich sein. Studiengebühren müssen ausgeschlossen werden, da sie eine soziale Auslese und eine Ökonomisierung der Hochschulen und Wissenschaftsinhalte zur Folge haben.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Lernstand"
+          ],
+          "description": "Maßnahme zur Qualitätssicherung an Schulen",
+          "labels": [
+            "Lernstandserhebung"
+          ],
+          "slug": "lernstandserhebung",
+          "title": "Lernstandserhebung",
+          "url": "http://www.wikidata.org/entity/Q1820334",
+          "wikidata_id": "Q1820334",
+          "wikipedia_title": "Lernstandserhebung"
+        },
+        {
+          "aliases": [
+            "Standards"
+          ],
+          "description": "Einheitliche oder vereinheitlichte Art und Weise, etwas herzustellen oder durchzuführen",
+          "labels": [
+            "Standard"
+          ],
+          "slug": "standard",
+          "title": "Standard",
+          "url": "http://www.wikidata.org/entity/Q317623",
+          "wikidata_id": "Q317623",
+          "wikipedia_title": "Standard"
+        },
+        {
+          "aliases": [
+            "Hochschulpolitik",
+            "Schulpolitik",
+            "Erziehungspolitik"
+          ],
+          "labels": [
+            "Bildungspolitik"
+          ],
+          "slug": "bildungspolitik",
+          "title": "Bildungspolitik",
+          "url": "http://www.wikidata.org/entity/Q452348",
+          "wikidata_id": "Q452348"
+        },
+        {
+          "description": "Standards, die festlegen, welche Fähigkeiten und Kenntnisse Schüler einer bestimmten Jahrgangsstufe in den Hauptfächern und Fremdsprachen erworben haben sollten",
+          "labels": [
+            "Bildungsstandards"
+          ],
+          "slug": "bildungsstandards",
+          "title": "Bildungsstandards",
+          "url": "http://www.wikidata.org/entity/Q6510200",
+          "wikidata_id": "Q6510200",
+          "wikipedia_title": "Bildungsstandards"
+        },
+        {
+          "aliases": [
+            "Studienstrukturreform",
+            "Bologna-Prozeß",
+            "Bologna-Reform",
+            "Bologna-Erklärung",
+            "Bologna-Abkommen",
+            "Bolognaprozess"
+          ],
+          "description": "Europäische Hochschulreform",
+          "labels": [
+            "Bologna-Prozess"
+          ],
+          "slug": "bologna-prozess",
+          "title": "Bologna-Prozess",
+          "url": "http://www.wikidata.org/entity/Q187073",
+          "wikidata_id": "Q187073",
+          "wikipedia_title": "Bologna-Prozess"
+        }
+      ],
+      "text": "Wir brauchen einheitliche Bildungsstandards innerhalb der EU.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-20",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "text": "In den Bereichen Bildung, Forschung und Entwicklung sowie in der Umsetzung von Forschungs- und Entwicklungsergebnissen in innovative Produkte und Dienstleistungen weist unser Land deutliche Schwächen auf. Wir brauchen mehr Leistungsanreize für die wirklich besten kreativen Köpfe und mehr Wettbewerb. Liberale Forderung ist deshalb die Förderung der Embryonen- und der embryonalen Stammzellenforschung durch die EU. Ethische Grenzen müssen dabei selbstverständlich strikt beachtet werden, zum Beispiel das Verbot des reproduktiven Klonens von Menschen. In diesem Zusammenhang sind die Beschlüsse des Europäischen Parlaments über die ethischen Grenzen der EU Forschungsförderung nicht nur von hoher Legitimität, sondern auch von großer Bedeutung für die Verbreiterung des gemeinsamen Wertekanons der EU. Das Europäische Parlament hat seine Güterabwägung klar zugunsten der Erforschung von Therapien für bislang völlig unzureichend behandelbare Krankheiten (Parkinson, Alzheimer usw.) getroffen.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS-Europaabgeordneten stehen der Biotechnologie insgesamt kritisch gegenüber. Sie sind der Ansicht, dass die mit Stammzellforschung und Klonen verbundenen elementaren Fragen nicht aufgerechnet werden dürfen mit einem möglichen wirtschaftlichen Nutzen. Nach unserer Auffassung werden in der aktuellen Diskussion die Nöte und Hoffnungen Patientinnen und Patienten zur Durchsetzung wirtschaftlicher Interessen instrumentalisiert. Während auf der einen Seite soziale Sicherungssysteme ausgehöhlt werden und die Gesundheitsversorgung für die Allgemeinheit immer ungenügender wird, sollen andererseits Gelder in eine Forschung fließen, deren potenziellem Nutzen erhebliche Risiken gegenüberstehen und die zudem ethisch höchst problematisch ist. Die PDS-Europaabgeordneten sehen das 'therapeutische' Klonen wie auch die Präimplantationsdiagnostik (PID) als gefährliche Türöffner für eine veränderte Wahrnehmung behinderter und kranker Menschen. Wir teilen die Sorge der Behindertenverbände, dass mit dieser Diskussion die Abwertung behinderter und kranker Menschen einhergehen könnte. Indem die uneinlösbare Illusion ewiger Gesundheit für alle gefördert wird, nimmt der Druck auf diejenigen zu, die nicht einem solchen Ideal entsprechen. Krankheit und Behinderung drohen aus dem Bereich gesellschaftlicher solidarischer Verantwortung in den Bereich der so genannten Eigenverantwortung gedrängt zu werden. Die PDS-Europaabgeordneten kritisieren die von Deutschland mitverursachte Vertagung der Verhandlungen über ein Klonverbot im Rahmen der UNO und fordern, dass die EU-Staaten die Bemühungen für die Verabschiedung einer entsprechenden UN-Resolution vorantreiben. Wir lehnen die Patentierung von Genen, Gensequenzen und menschlichem Gewebe rigoros ab und setzen uns für eine Neuverhandlung der Biopatentrichtlinie der EU ein. Wir fordern die Entwicklung gemeinsamer ethischer Leitlinien für Humangenetik und die Schaffung eines europäischen Ausschusses für Ethik.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Landwirtschaftspolitik"
+          ],
+          "description": "Ein Politikfeld, das sich mit der Situation der Landwirtschaft befasst",
+          "labels": [
+            "Agrarpolitik"
+          ],
+          "slug": "agrarpolitik",
+          "title": "Agrarpolitik",
+          "url": "http://www.wikidata.org/entity/Q396198",
+          "wikidata_id": "Q396198",
+          "wikipedia_title": "Agrarpolitik"
+        },
+        {
+          "aliases": [
+            "Forschungspolitik"
+          ],
+          "description": "Politik",
+          "labels": [
+            "Wissenschaftspolitik"
+          ],
+          "slug": "wissenschaftspolitik",
+          "title": "Wissenschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q904708",
+          "wikidata_id": "Q904708",
+          "wikipedia_title": "Wissenschaftspolitik"
+        },
+        {
+          "aliases": [
+            "Tierschützer",
+            "Tierschutzbewegung",
+            "Tierrechtsorganisation",
+            "Tierschutzorganisation"
+          ],
+          "description": "Handeln, das auf den Schutz und nachhaltigen Umgang mit Tieren ausgelegt ist",
+          "labels": [
+            "Tierschutz"
+          ],
+          "slug": "tierschutz",
+          "title": "Tierschutz",
+          "url": "http://www.wikidata.org/entity/Q459426",
+          "wikidata_id": "Q459426",
+          "wikipedia_title": "Tiergerechtheit"
+        },
+        {
+          "aliases": [
+            "Gentechnisch",
+            "Rekombinante DNA-Technologie",
+            "Gentechnologisch",
+            "Genmodifikation",
+            "Gentechnologie",
+            "Genmanipulation",
+            "Graue Gentechnik"
+          ],
+          "description": "Methoden und Verfahren der Biotechnologie",
+          "labels": [
+            "Gentechnik"
+          ],
+          "slug": "gentechnik",
+          "title": "Gentechnik",
+          "url": "http://www.wikidata.org/entity/Q159236",
+          "wikidata_id": "Q159236",
+          "wikipedia_title": "Gentechnik"
+        }
+      ],
+      "text": "Jede Form von Klonforschung soll verboten werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-21",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Für den Bereich höchstqualifizierter Tätigkeit sind attraktive, großzügige Aufnahmebedingungen und Sonderkontingente für dauerhafte bzw. zeitlich unbefristete Zuwanderung zu schaffen; nicht jedoch nach den Bedingungen der Green-Card-Verordnung in Deutschland, da keine Daueraufenthaltsperspektive besteht und der Familiennachzug restriktiv geregelt ist.",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Eine fremdenfeindliche 'Festung Europa' entspricht weder dem liberalen Menschenbild noch dem wirtschaftlichen und politischen Interesse Deutschlands und Europas. Die Überlegungen, die den FDP-Entwurf für ein Einwanderungsgesetz tragen, sollten auch für die europaweite Gesetzgebung aufgegriffen werden (z.B. gesteuerte Zuwanderung ausländischer Fachkräfte nach Quote, Unterscheidung nach 'qualifizierter' und 'sonstiger Beschäftigung', befristete Aufenthaltserlaubnis mit Verlängerungsanspruch bei Weiterbeschäftigung, umfassende Integrationsregelung",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS-Europaabgeordneten treten für eine Stärkung der Rechte der Menschen ein, die in die Mitgliedstaaten einwandern oder fliehen. Ein europäisches Einwanderungsrecht muss die Interessen der Einwandernden, und nicht die der Wirtschaft an billiger Arbeitskraft, in den Mittelpunkt stellen. Nur so kann den zur Auswanderung entschlossenen Menschen eine Perspektive eröffnet und zugleich skrupellosen Schlepperorganisationen die Grundlage entzogen werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Bevölkerungswanderung"
+          ],
+          "description": "Dauerhafter Wohnortwechsel von Menschen",
+          "labels": [
+            "Migration"
+          ],
+          "slug": "migration",
+          "title": "Migration",
+          "url": "http://www.wikidata.org/entity/Q177626",
+          "wikidata_id": "Q177626",
+          "wikipedia_title": "Migration"
+        },
+        {
+          "description": "Politikfeld, das sich mit der Wirtschaft befasst",
+          "labels": [
+            "Wirtschaftspolitik"
+          ],
+          "slug": "wirtschaftspolitik",
+          "title": "Wirtschaftspolitik",
+          "url": "http://www.wikidata.org/entity/Q582577",
+          "wikidata_id": "Q582577",
+          "wikipedia_title": "Wirtschaftspolitik"
+        },
+        {
+          "description": "Person, die bei einem Arbeitgeber arbeitet",
+          "slug": "arbeitnehmer",
+          "title": "Arbeitnehmer",
+          "url": "http://www.wikidata.org/entity/Q703534",
+          "wikidata_id": "Q703534",
+          "wikipedia_title": "Arbeitnehmer"
+        },
+        {
+          "labels": [
+            "Ausländerpolitik"
+          ],
+          "slug": "auslanderpolitik",
+          "title": "Ausländerpolitik",
+          "url": "http://www.wikidata.org/entity/Q16054486",
+          "wikidata_id": "Q16054486",
+          "wikipedia_title": "Ausländerpolitik"
+        },
+        {
+          "aliases": [
+            "Blue Card"
+          ],
+          "description": "Nachweisdokument",
+          "labels": [
+            "Blaue Karte EU"
+          ],
+          "slug": "blaue-karte-eu",
+          "title": "Blaue Karte EU",
+          "url": "http://www.wikidata.org/entity/Q882507",
+          "wikidata_id": "Q882507",
+          "wikipedia_title": "Blaue Karte EU"
+        }
+      ],
+      "text": "EU-Green-Card für hochqualifizierte Fachkräfte.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-22",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "Dies dient der besseren und effizienteren Möglichkeit zur Identifizierung von Straftätern und Terroristen und führt zu größerer Sicherheit der Bürgerinnen und Bürger vor organisiertem Verbrechen, grenzüberschreitender Kriminalität und Terrorismus.",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Es muss sichere Reisedokumente für alle EU-Bürger geben. Die Einführung biometrischer Daten in Reisepässen darf dabei nicht verteufelt werden, wenn sie verhindert, dass falsche Identitäten - insbesondere von Terroristen - angenommen werden. Als Partei der Bürgerrechte fordern wir aber, dass der Datenschutz international und in allen Bereichen endlich einheitlich auf einem hohen Niveau eingeführt wird und insbesondere biometrische Daten nur dann zulässig sind, wenn jede Missbrauchsgefahr - insbesondere durch Drittstaaten - zuverlässig ausgeschlossen werden kann.",
+          "value": 0
+        },
+        {
+          "party": "PDS",
+          "text": "Im Kampf gegen den Terror besteht die große Gefahr, dass Menschen- und Bürgerrechte auf der Strecke bleiben, nicht nur durch kriegerische Handlungen nach Außen, sondern auch durch die Etablierung eines umfassenden Kontrollsystems nach Innen. Bei der Terrorismusbekämpfung müssen die Freiheitsrechte des Einzelnen gewahrt bleiben und der Grundsatz der Verhältnismäßigkeit respektiert werden. Hierzu gehört die strenge Achtung der Charta der Grundrechte der Europäischen Union und der dort verbrieften Rechte, die Einhaltung von rechtsstaatlichen Verfahren und die Zurückdrängung behördlicher Willkür gegenüber Bürgerinnen und Bürgern. Tatsache ist, dass vollständige Sicherheit nie gewährleistet werden kann. Terrorismus wird man letztlich aber nur dann erfolgreich begegnen können, wenn seine Ursachen beseitigt werden. Die wirksame Bekämpfung des internationalen Terro-rismus verlangt eine Politik, die an zivilen Konfliktlösungen, an weltweiter Gerechtigkeit und an der Verwirklichung der Menschenrechte orientiert ist. Der Kampf gegen den internationalen Terrorismus kann nur mit zivilen Mitteln und nicht mit Krieg zum Erfolg führen. Wir lehnen die Übergabe personenbezogener Daten in der Zivilluftfahrt von Fluggästen und Besatzungsmitgliedern an US-Behörden ab. Die von der Europäischen Kommission gestattete Weitergabe dieser Daten von EU-Bürgerinnen und -Bürgern an Behörden eines Drittlandes verstößt gegen europäisches Datenschutzrecht. Diese rechtswidrige Praxis muss sofort beendet werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Datenschützer"
+          ],
+          "description": "Rechtsbegriff, alle Maßnahmen zur angemessenen Nutzung von personenbezogenen Daten",
+          "labels": [
+            "Datenschutz"
+          ],
+          "slug": "datenschutz",
+          "title": "Datenschutz",
+          "url": "http://www.wikidata.org/entity/Q456632",
+          "wikidata_id": "Q456632",
+          "wikipedia_title": "Datenschutz"
+        },
+        {
+          "description": "Identitätsnachweis als amtlicher Lichtbildausweis",
+          "labels": [
+            "Personalausweis"
+          ],
+          "slug": "personalausweis",
+          "title": "Personalausweis",
+          "url": "http://www.wikidata.org/entity/Q47988",
+          "wikidata_id": "Q47988",
+          "wikipedia_title": "Personalausweis"
+        },
+        {
+          "labels": [
+            "Rechtspolitik"
+          ],
+          "slug": "rechtspolitik",
+          "title": "Rechtspolitik",
+          "url": "http://www.wikidata.org/entity/Q2135597",
+          "wikidata_id": "Q2135597",
+          "wikipedia_title": "Rechtspolitik"
+        },
+        {
+          "aliases": [
+            "Biometrische Daten",
+            "Biometrisches Merkmal",
+            "Biometrik",
+            "Biometrisch",
+            "Biometrische Merkmale"
+          ],
+          "description": "Wissenschaft zu Messungen an Lebewesen",
+          "labels": [
+            "Biometrie"
+          ],
+          "slug": "biometrie",
+          "title": "Biometrie",
+          "url": "http://www.wikidata.org/entity/Q177765",
+          "wikidata_id": "Q177765",
+          "wikipedia_title": "Biometrie"
+        }
+      ],
+      "text": "Biometrische Daten (Fingerabdrücke u.a.) sollen von allen Einwohner/innen der EU in den Ausweispapieren erfasst werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-23",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "value": 0
+        },
+        {
+          "party": "PDS",
+          "text": "Im Kampf gegen den Terror besteht die große Gefahr, dass Menschen- und Bürgerrechte auf der Strecke bleiben, nicht nur durch kriegerische Handlungen nach Außen, sondern auch durch die Etablierung eines umfassenden Kontrollsystems nach Innen. Bei der Terrorismusbekämpfung müssen die Freiheitsrechte des Einzelnen gewahrt bleiben und der Grundsatz der Verhältnismäßigkeit respektiert werden. Hierzu gehört die strenge Achtung der Charta der Grundrechte der Europäischen Union und der dort verbrieften Rechte, die Einhaltung von rechtsstaatlichen Verfahren und die Zurückdrängung behördlicher Willkür gegenüber Bürgerinnen und Bürgern. Tatsache ist, dass vollständige Sicherheit nie gewährleistet werden kann. Terrorismus wird man letztlich aber nur dann erfolgreich begegnen können, wenn seine Ursachen beseitigt werden. Die wirksame Bekämpfung des internationalen Terro-rismus verlangt eine Politik, die an zivilen Konfliktlösungen, an weltweiter Gerechtigkeit und an der Verwirklichung der Menschenrechte orientiert ist. Der Kampf gegen den internationalen Terrorismus kann nur mit zivilen Mitteln und nicht mit Krieg zum Erfolg führen. Wir lehnen die Übergabe personenbezogener Daten in der Zivilluftfahrt von Fluggästen und Besatzungsmitgliedern an US-Behörden ab. Die von der Europäischen Kommission gestattete Weitergabe dieser Daten von EU-Bürgerinnen und -Bürgern an Behörden eines Drittlandes verstößt gegen europäisches Datenschutzrecht. Diese rechtswidrige Praxis muss sofort beendet werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Polizei in Deutschland"
+          ],
+          "description": "Deutsches Exekutivorgan",
+          "labels": [
+            "deutsche Polizei"
+          ],
+          "slug": "deutsche-polizei",
+          "title": "deutsche Polizei",
+          "url": "http://www.wikidata.org/entity/Q167563",
+          "wikidata_id": "Q167563",
+          "wikipedia_title": "Polizei (Deutschland)"
+        },
+        {
+          "labels": [
+            "Flugsicherheitsbegleiter"
+          ],
+          "slug": "flugsicherheitsbegleiter",
+          "title": "Flugsicherheitsbegleiter",
+          "url": "http://www.wikidata.org/entity/Q612761",
+          "wikidata_id": "Q612761",
+          "wikipedia_title": "Flugsicherheitsbegleiter"
+        },
+        {
+          "description": "Sicherheit eines Staates vor Bedrohungen aus seinem inneren",
+          "slug": "innere-sicherheit",
+          "title": "Innere Sicherheit",
+          "url": "http://www.wikidata.org/entity/Q181467",
+          "wikidata_id": "Q181467"
+        }
+      ],
+      "text": "Alle Flugzeuge, die in der EU landen oder starten, sollen von bewaffnetem Sicherheitspersonal begleitet werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-24",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Vor dem Hintergrund der internationalen terroristischen Bedrohungslage muss die grenzüberschreitende Polizei- und Justizkooperation durch den Abbau rechtlicher und administrativer Hürden weiter optimiert werden. In Zeiten der fallenden Grenzen muss ein voller Informationsaustausch der Sicherheitsbehörden erfolgen. Erforderlich ist insbesondere die Verknüpfung der in den einzelnen EU-Mitgliedsstaaten bisher isoliert geführten polizeilichen Erkenntnisdateien zu einem Europäischen Wissensverbund.",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Im Kampf gegen den Terror besteht die große Gefahr, dass Menschen- und Bürgerrechte auf der Strecke bleiben, nicht nur durch kriegerische Handlungen nach Außen, sondern auch durch die Etablierung eines umfassenden Kontrollsystems nach Innen. Bei der Terrorismusbekämpfung müssen die Freiheitsrechte des Einzelnen gewahrt bleiben und der Grundsatz der Verhältnismäßigkeit respektiert werden. Hierzu gehört die strenge Achtung der Charta der Grundrechte der Europäischen Union und der dort verbrieften Rechte, die Einhaltung von rechtsstaatlichen Verfahren und die Zurückdrängung behördlicher Willkür gegenüber Bürgerinnen und Bürgern. Tatsache ist, dass vollständige Sicherheit nie gewährleistet werden kann. Terrorismus wird man letztlich aber nur dann erfolgreich begegnen können, wenn seine Ursachen beseitigt werden. Die wirksame Bekämpfung des internationalen Terro-rismus verlangt eine Politik, die an zivilen Konfliktlösungen, an weltweiter Gerechtigkeit und an der Verwirklichung der Menschenrechte orientiert ist. Der Kampf gegen den internationalen Terrorismus kann nur mit zivilen Mitteln und nicht mit Krieg zum Erfolg führen. Wir lehnen die Übergabe personenbezogener Daten in der Zivilluftfahrt von Fluggästen und Besatzungsmitgliedern an US-Behörden ab. Die von der Europäischen Kommission gestattete Weitergabe dieser Daten von EU-Bürgerinnen und -Bürgern an Behörden eines Drittlandes verstößt gegen europäisches Datenschutzrecht. Diese rechtswidrige Praxis muss sofort beendet werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Datenschützer"
+          ],
+          "description": "Rechtsbegriff, alle Maßnahmen zur angemessenen Nutzung von personenbezogenen Daten",
+          "labels": [
+            "Datenschutz"
+          ],
+          "slug": "datenschutz",
+          "title": "Datenschutz",
+          "url": "http://www.wikidata.org/entity/Q456632",
+          "wikidata_id": "Q456632",
+          "wikipedia_title": "Datenschutz"
+        },
+        {
+          "aliases": [
+            "Polizei in Deutschland"
+          ],
+          "description": "Deutsches Exekutivorgan",
+          "labels": [
+            "deutsche Polizei"
+          ],
+          "slug": "deutsche-polizei",
+          "title": "deutsche Polizei",
+          "url": "http://www.wikidata.org/entity/Q167563",
+          "wikidata_id": "Q167563",
+          "wikipedia_title": "Polizei (Deutschland)"
+        },
+        {
+          "aliases": [
+            "TREVI-Gruppe",
+            "PJZS",
+            "Zusammenarbeit in der Innen- und Justizpolitik",
+            "Polizeiliche und justizielle Zusammenarbeit",
+            "TREVI"
+          ],
+          "description": "Pillar of the European Union",
+          "labels": [
+            "Polizeiliche und justizielle Zusammenarbeit in Strafsachen"
+          ],
+          "slug": "polizeiliche-und-justizielle-zusammenarbeit-in-strafsachen",
+          "title": "Polizeiliche und justizielle Zusammenarbeit in Strafsachen",
+          "url": "http://www.wikidata.org/entity/Q1051031",
+          "wikidata_id": "Q1051031",
+          "wikipedia_title": "Polizeiliche und justizielle Zusammenarbeit in Strafsachen"
+        },
+        {
+          "labels": [
+            "Rechtspolitik"
+          ],
+          "slug": "rechtspolitik",
+          "title": "Rechtspolitik",
+          "url": "http://www.wikidata.org/entity/Q2135597",
+          "wikidata_id": "Q2135597",
+          "wikipedia_title": "Rechtspolitik"
+        },
+        {
+          "aliases": [
+            "Grundrecht auf informationelle Selbstbestimmung",
+            "Informationelles Selbstbestimmungsrecht",
+            "Recht auf informationelle Selbstbestimmung"
+          ],
+          "description": "Grundrecht im bundesdeutschen Recht",
+          "labels": [
+            "Informationelle Selbstbestimmung"
+          ],
+          "slug": "informationelle-selbstbestimmung",
+          "title": "Informationelle Selbstbestimmung",
+          "url": "http://www.wikidata.org/entity/Q895581",
+          "wikidata_id": "Q895581",
+          "wikipedia_title": "Informationelle Selbstbestimmung"
+        }
+      ],
+      "text": "Personenbezogene Daten sollen zur EU-weiten Verbrechensbekämpfung an einer zentralen Stelle gesammelt werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-25",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 0
+        },
+        {
+          "party": "SPD",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Zur Sicherung der europäischen Außengrenzen ist eine europäische Grenzpolizei notwendig, an der sich die Mitgliedstaaten beteiligen werden. Die FDP fordert einen schnellen Aufbau der Grenzpolizei zur Sicherung der Außengrenzen der Europäischen Union mit guter Ausstattung und Ausbildung zur Bewältigung der auch schwierigen menschlichen Situationen. Dem Bundesgrenzschutz kommt für den Beitrag Deutschlands dabei eine wichtige Aufgabe zu.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS fordert die rot-grüne Bundesregierung auf, ihre Blockadehaltung gegenüber der Schaffung fortschrittlicher europäischer Asyl- und Einwanderungsregelungen aufzugeben. SPD und Grüne dürfen nicht weiterhin auf den Erhalt ihrer besonders restriktiven Maßnahmen in der Asyl- und Flüchtlings-politik, z. B. der nur in Deutschland existierenden Residenzpflicht für Asylsuchende, beharren. Europa darf keine 'Festung' sein, die Menschen in Not abweist. Wir wollen ein offenes und demokratisches Europa. Wer aufgrund seines politischen Engagements oder aufgrund seiner nationalen Zugehörigkeit, seiner Religion, Weltanschauung oder sexuellen Orientierung flieht, muss in einem offenen Europa Schutz und Aufnahme finden können. Dazu gehört auch die Anerkennung geschlechtsspezifischer und nichtstaatlicher Verfolgung als Asylgrund und der besondere Schutz geflüchteter Kinder. Die Einrichtung geschlossener Internierungslager für Flüchtlinge außerhalb der EU-Grenzen lehnen wir als menschenverachtend ab. Solche Lager widersprechen, wie auch die Abschiebegefängnisse in Deutschland und anderen EU-Staaten, jeglichen Grundsätzen der Menschlichkeit. Die Abschiebehaft muss abgeschafft werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Frontex",
+            "frontières extérieures"
+          ],
+          "description": "Gemeinschaftsagentur der Europäischen Union zur Grenzaufsicht",
+          "labels": [
+            "Europäische Agentur für die operative Zusammenarbeit an den Außengrenzen"
+          ],
+          "slug": "europaische-agentur-fur-die-operative-zusammenarbeit-an-den-aussengrenzen",
+          "title": "Europäische Agentur für die operative Zusammenarbeit an den Außengrenzen",
+          "url": "http://www.wikidata.org/entity/Q546101",
+          "wikidata_id": "Q546101"
+        },
+        {
+          "description": "Kontrolle von Waren und Menschen an den Grenzen",
+          "labels": [
+            "Grenzkontrolle"
+          ],
+          "slug": "grenzkontrolle",
+          "title": "Grenzkontrolle",
+          "url": "http://www.wikidata.org/entity/Q218719",
+          "wikidata_id": "Q218719",
+          "wikipedia_title": "Grenzkontrolle"
+        },
+        {
+          "labels": [
+            "Militärpolitik"
+          ],
+          "slug": "verteidigungspolitik",
+          "title": "Verteidigungspolitik",
+          "url": "http://www.wikidata.org/entity/Q1766908",
+          "wikidata_id": "Q1766908",
+          "wikipedia_title": "Militärpolitik"
+        },
+        {
+          "aliases": [
+            "Aussenpolitik"
+          ],
+          "description": "Auf auswärtige Angelegenheiten bezogenes Teilgebiet der Politik",
+          "labels": [
+            "Außenpolitik"
+          ],
+          "slug": "aussenpolitik",
+          "title": "Außenpolitik",
+          "url": "http://www.wikidata.org/entity/Q181648",
+          "wikidata_id": "Q181648",
+          "wikipedia_title": "Außenpolitik"
+        },
+        {
+          "labels": [
+            "Europapolitik"
+          ],
+          "slug": "europapolitik",
+          "title": "Europapolitik",
+          "url": "http://www.wikidata.org/entity/Q1375665",
+          "wikidata_id": "Q1375665",
+          "wikipedia_title": "Europapolitik"
+        }
+      ],
+      "text": "Es muss ein gemeinsamer Grenzschutz der EU eingerichtet werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-26",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": 1
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "value": 1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 1
+        },
+        {
+          "party": "FDP",
+          "text": "Die EU sollte den Polizei-, Justiz- und Strafverfolgungsbehörden der neuen Mitgliedstaaten auch nach dem EU-Beitritt helfen, grenzüberschreitende Kriminalität zu bekämpfen und die neuen Außengrenzen der EU zu schützen.",
+          "value": 1
+        },
+        {
+          "party": "PDS",
+          "text": "Schwere grenzüberschreitende organisierte Kriminalität wie Kinder- und Frauenhandel, Kinderpornografie, illegaler Waffenhandel, Drogenhandel, Steuerhinterziehung, Betrug mit EU-Geldern oder Umweltkriminalität muss gemeinsam bekämpft werden. Wir kritisieren aber die nach wie vor fehlende demokratische Kontrolle von Europol. Die Definition der Aufgaben ist nicht klar eingegrenzt und soll nach dem Verfassungsentwurf noch weiter und damit unbestimmter werden. Wir haben daher, zuletzt bei den Verhandlungen im Europäischen Konvent, vorgeschlagen, die Tatbestände, deren Vorliegen Europol, Eurojust und Europäische Staatsanwaltschaft zum Tätigwerden ermächtigen, durch ein Rahmengesetz festzulegen. Die Schaffung eines ;Ausschusses für operative Zusammenarbeit; lehnen wir ab. Ein solches Gremium soll nach dem Verfassungsvorschlag in völlig unbestimmter Form die ;Maßnahmen der zuständigen Behörden der Mitgliedstaaten koordinieren;. Die nationalen Parlamente und das Europäische Parlament sollen nach dem Verfassungsentwurf über die Beratungen dieses Ausschusses lediglich ;auf dem Laufenden; gehalten werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Polizei in Deutschland"
+          ],
+          "description": "Deutsches Exekutivorgan",
+          "labels": [
+            "deutsche Polizei"
+          ],
+          "slug": "deutsche-polizei",
+          "title": "deutsche Polizei",
+          "url": "http://www.wikidata.org/entity/Q167563",
+          "wikidata_id": "Q167563",
+          "wikipedia_title": "Polizei (Deutschland)"
+        },
+        {
+          "aliases": [
+            "TREVI-Gruppe",
+            "PJZS",
+            "Zusammenarbeit in der Innen- und Justizpolitik",
+            "Polizeiliche und justizielle Zusammenarbeit",
+            "TREVI"
+          ],
+          "description": "Pillar of the European Union",
+          "labels": [
+            "Polizeiliche und justizielle Zusammenarbeit in Strafsachen"
+          ],
+          "slug": "polizeiliche-und-justizielle-zusammenarbeit-in-strafsachen",
+          "title": "Polizeiliche und justizielle Zusammenarbeit in Strafsachen",
+          "url": "http://www.wikidata.org/entity/Q1051031",
+          "wikidata_id": "Q1051031",
+          "wikipedia_title": "Polizeiliche und justizielle Zusammenarbeit in Strafsachen"
+        },
+        {
+          "description": "Sicherheit eines Staates vor Bedrohungen aus seinem inneren",
+          "slug": "innere-sicherheit",
+          "title": "Innere Sicherheit",
+          "url": "http://www.wikidata.org/entity/Q181467",
+          "wikidata_id": "Q181467"
+        },
+        {
+          "aliases": [
+            "Europäisches Polizeiamt"
+          ],
+          "description": "Europäisches Polizeiamt",
+          "labels": [
+            "Europol"
+          ],
+          "slug": "europol",
+          "title": "Europol",
+          "url": "http://www.wikidata.org/entity/Q207203",
+          "wikidata_id": "Q207203",
+          "wikipedia_title": "Europol"
+        }
+      ],
+      "text": "Bei der Verfolgung von Kriminellen dürfen nationale Polizisten/innen über die EU-Binnengrenzen hinweg tätig werden.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-27",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Menschenrechte sind ein außerordentlich wichtiges Kriterium bei der Vergabe von Mitteln der Entwicklungszusammenarbeit. Allerdings gibt es darüber hinaus weitere Aspekte, die in die Entscheidung mit einfließen müssen. Hierzu gehören zum Beispiel sicherheits- und umweltpolitische Gesichtspunkte oder humanitäre Beweggründe, die vor allem in besonderen Notlagen, die in der Regel zuerst die Ärmsten der Armen treffen, berücksichtigt werden müssen. Des Weiteren ist zu beachten, dass viele Projekte der Entwicklungszusammenarbeit darauf abzielen, den Menschenrechten überhaupt erst Geltung zu verschaffen. Wenn die konsequente Einhaltung der Menschenrechte in jedem Fall zu einer unverzichtbaren Voraussetzung für die Gewährung von Mitteln der Entwicklungszusammenarbeit gemacht würde, wäre Entwicklungshilfe in der absolut überwiegenden Mehrzahl der ärmsten Staaten dieser Erde nicht mehr möglich.",
+          "value": 0
+        },
+        {
+          "party": "CSU",
+          "value": 1
+        },
+        {
+          "party": "SPD",
+          "text": "Ohne Menschenrechte hat Entwicklung kein Ziel und ohne Demokratie keinen Halt. Die Verwirklichung und Einhaltung der politischen, wirtschaftlichen, sozialen und kulturellen Menschenrechte und die demokratische Beteiligung der Bevölkerung an politischen Prozessen sind notwendige Voraussetzungen für eine zukunftsfähige, nachhaltige Entwicklung. Deswegen begrüßen wir, dass die Bundesregierung die Frage der Menschenrechte in der Entwicklungszusammenarbeit und im Politikdialog aufgewertet hat. Insbesondere muss aber den Menschenrechten mehr Berücksichtigung bei der Konzeption und Durchführungspraxis der internationalen Finanz- und Entwicklungsinstitutionen, der Welthandelsorganisation sowie den relevanten Organisationen der Vereinten Nationen gegeben werden.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "text": "Der Abbau des Wohlstandsgefälles zwischen Nord und Süd ist Voraussetzung für eine sichere und stabile Welt. Handel und verbesserter Marktzugang für Entwicklungsländer sind die wirkungsvollste Entwicklungshilfe. Liberale Entwicklungspolitik setzt auf Kreativität, Kraft und Verantwortung der Menschen und will jedem Einzelnen größtmögliche Chancen ermöglichen. Dazu müssen Menschenrechte, Demokratie und Rechtsstaatlichkeit sowie persönliche und wirtschaftliche Freiheit durchgesetzt werden. Nur so kann die Armut in den Entwicklungsländern nachhaltig bekämpft werden. Investoren benötigen Rechtssicherheit, wenn sie Unternehmen, Infrastruktur oder Bildungseinrichtungen aufbauen und damit Arbeitsplätze und Einkommen in einem armen Land schaffen.",
+          "value": 0
+        },
+        {
+          "party": "PDS",
+          "text": "Terrorismus muss entschieden bekämpft werden. Wir fordern eine verstärkte Auseinandersetzung mit seinen Ursachen. Die PDS bekämpft die kapitalistische Ausbeutung der ärmeren Länder und der Masse der Menschen weltweit ebenso wie die kulturelle und ideologische Vergewaltigung durch Medien, Märkte und Fundamentalismus jeder Art. In Deutschland und europaweit gibt es viel gegen Rassismus, Nationalismus und Antisemitismus zu tun. Die PDS-Europaabgeordneten fordern, dass die EU ihr politisches und wirtschaftliches Gewicht nutzt, um die Globalisierung nach dem Leitbild einer kooperativen Weltwirtschaftsordnung sozial, ökologisch und demokratisch zu gestalten. Wir wollen eine kooperative Weltwirtschaft, in der die Entwicklungsländer die Möglichkeit erhalten, ihre eigene Wirtschaft aufzubauen, ohne ständig Forderungen nach Marktöffnung ausgesetzt zu sein. Wir setzen uns dafür ein, dass die Märkte der Industrieländer für Entwicklungsländer besser zugänglich sind. Statt die weitere Liberalisierung zu fördern, sollten auch in Entwicklungs- und Schwellenländern vor allem Maßnahmen und Projekte zur Stärkung der Binnenmarktorientierung gefördert werden.",
+          "value": -1
+        }
+      ],
+      "tags": [
+        {
+          "aliases": [
+            "Entwicklungpolitisch",
+            "Entwicklungspolitisch"
+          ],
+          "description": "Überbegriff für staatliche Programme, die die politische, wirtschaftliche und soziale Situation in Entwicklungsländern verbessern sollen",
+          "labels": [
+            "Entwicklungspolitik"
+          ],
+          "slug": "entwicklungspolitik",
+          "title": "Entwicklungspolitik",
+          "url": "http://www.wikidata.org/entity/Q865909",
+          "wikidata_id": "Q865909",
+          "wikipedia_title": "Entwicklungspolitik"
+        },
+        {
+          "aliases": [
+            "Auslandshilfe",
+            "Entwicklungshilfe"
+          ],
+          "description": "Bemühen von Industrie- und Entwicklungsländern, weltweite Unterschiede in der sozioökonomischen Entwicklung und in den Lebensbedingungen nachhaltig abzubauen",
+          "labels": [
+            "Entwicklungszusammenarbeit"
+          ],
+          "slug": "entwicklungszusammenarbeit",
+          "title": "Entwicklungszusammenarbeit",
+          "url": "http://www.wikidata.org/entity/Q2827815",
+          "wikidata_id": "Q2827815",
+          "wikipedia_title": "Entwicklungszusammenarbeit"
+        }
+      ],
+      "text": "Entwicklungshilfe erhalten nur Staaten, welche die Menschenrechte konsequent beachten.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-28",
+      "positions": [
+        {
+          "party": "CDU",
+          "text": "Es sollen aber vorher alle friedlichen Mittel ausgeschöpft sein und ein Militäreinsatz durch die Charta der Vereinten Nationen abgedeckt sein.",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Europa verfügt über spezifische Erfahrungen im Bereich Konfliktverhinderung und Konfliktlösung. Die SPD setzt auf politische und diplomatische Lösungen. Entwicklungszusammenarbeit und ein fairer Welthandel sind für uns wirksame Mittel zur Konfliktverhinderung. Es gibt aber Situationen, in denen militärisches Handeln notwendig sein kann. Dies aber nur, wenn die UNO dies genehmigt.",
+          "value": 0
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": 0
+        },
+        {
+          "party": "FDP",
+          "text": "Der weltweite Einsatz von militärischen Mitteln ist nur als ultima ratio zu verstehen, d.h. bei Versagen aller anderen stabilisierenden Maßnahmen und nur im Rahmen der internationalen Rechtsordnung (was die Abwendung humanitärer Katastrophen einschließt).",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS fordert, dass sich die EU gegen präventive Kriege, für Rüstungskontrolle und Abrüstung in Europa und die Wiederbelebung der bilateralen und multilateralen Abrüstungsprozesse einsetzt. Wir schlagen vor, eine Europäische Agentur für Abrüstung und Rüstungskonversion zu schaffen, deren Aufgabe es wäre, Kosteneinsparungen bei den Verteidigungshaushalten der Mitgliedstaaten zu erreichen, den Abrüstungsbedarf zur Schaffung struktureller Nichtangriffsfähigkeit zu ermitteln und alle dazu zweckdienlichen Maßnahmen zu unterstützen. Die EU-Sicherheitspolitik muss ursachenorientierte Krisenprävention und zivile Konfliktbearbeitung betreiben. Wir wollen den Ausbau der Konfliktprävention und eine kooperative Gestaltung der internationalen Beziehungen mit Hilfe der Diplomatie, des politischen Dialoges, durch Ausbau ökonomischer Beziehungen, durch Entwicklungszusammenarbeit, Wahlbeobachtung, internationale Moderation, durch Unterstützung beim Aufbau rechtsstaatlicher Strukturen und mittels effektiver Polizeikräfte. Wir befürworten den Aufbau eines zivilen Friedenskorps und setzen uns für den Ausbau der Krisen- und Konfliktforschung ein. Wir kritisieren die Inkonsequenz der EU-Menschenrechtspolitik und fordern einen konsequenten kritischen Dialog über Menschen- und Minderheitenrechtsverletzungen und demokratische Defizite innerhalb und außer-halb der EU.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "labels": [
+            "Militärpolitik"
+          ],
+          "slug": "verteidigungspolitik",
+          "title": "Verteidigungspolitik",
+          "url": "http://www.wikidata.org/entity/Q1766908",
+          "wikidata_id": "Q1766908",
+          "wikipedia_title": "Militärpolitik"
+        },
+        {
+          "aliases": [
+            "Europa-Armee",
+            "Europäische Armee",
+            "EU-Armee"
+          ],
+          "description": "Verteidigungsbündnis zwischen EU-Staaten",
+          "labels": [
+            "Europaarmee"
+          ],
+          "slug": "europaarmee",
+          "title": "Europaarmee",
+          "url": "http://www.wikidata.org/entity/Q1375321",
+          "wikidata_id": "Q1375321",
+          "wikipedia_title": "Europaarmee"
+        },
+        {
+          "description": "Defence policy of the European Union",
+          "labels": [
+            "Gemeinsame Sicherheits- und Verteidigungspolitik"
+          ],
+          "slug": "gemeinsame-sicherheits-und-verteidigungspolitik",
+          "title": "Gemeinsame Sicherheits- und Verteidigungspolitik",
+          "url": "http://www.wikidata.org/entity/Q511733",
+          "wikidata_id": "Q511733",
+          "wikipedia_title": "Gemeinsame Sicherheits- und Verteidigungspolitik"
+        }
+      ],
+      "text": "Die EU darf keine militärischen Mittel zur Konfliktlösung einsetzen.",
+      "title": null
+    },
+    {
+      "election_id": 1,
+      "id": "WOM-001-29",
+      "positions": [
+        {
+          "party": "CDU",
+          "value": -1
+        },
+        {
+          "party": "CSU",
+          "value": -1
+        },
+        {
+          "party": "SPD",
+          "text": "Obschon es wichtig und richtig ist, dass die EU auch in Sicherheitsfragen handlungsfähiger wird, ist und bleibt die transatlantische Partnerschaft und die NATO ein wichtiger Bestandteil der europäischen Sicherheit.",
+          "value": -1
+        },
+        {
+          "party": "Bündnis 90/Die Grünen",
+          "value": -1
+        },
+        {
+          "party": "FDP",
+          "text": "Eine effektive Gemeinsame Außen- und Sicherheitspolitik muss in enger Zusammenarbeit mit der NATO weiterentwickelt werden. Europa muss eine größere Verantwortung in der Welt auf der Grundlage des Völkerrechts und der Entscheidungen der Vereinten Nationen übernehmen. Wir treten auch für den Internationalen Strafgerichtshof als das beste Mittel für die weltweite Verteidigung der Menschenrechte ein.",
+          "value": -1
+        },
+        {
+          "party": "PDS",
+          "text": "Die PDS lehnt die Militarisierung der EU-Außenpolitik entschieden ab. Wir engagieren uns gegen die Schaffung europäischer Interventionsstreitkräfte und die Anwendung militärischer Gewalt zur Lösung internationaler Streitfälle und Konflikte. Wir widersetzen uns Forderungen nach einer Erhöhung der Rüstungsausgaben. Wir fordern die Auflösung der NATO und die Schaffung einer kohärenten, keinen Staat ausschlie-ßenden gesamteuropäischen Sicherheitsarchitektur.",
+          "value": 1
+        }
+      ],
+      "tags": [
+        {
+          "labels": [
+            "Militärpolitik"
+          ],
+          "slug": "verteidigungspolitik",
+          "title": "Verteidigungspolitik",
+          "url": "http://www.wikidata.org/entity/Q1766908",
+          "wikidata_id": "Q1766908",
+          "wikipedia_title": "Militärpolitik"
+        },
+        {
+          "aliases": [
+            "Organisation des Nordatlantikvertrags",
+            "OTAN",
+            "North Atlantic Treaty Organization",
+            "Nordatlantikpakt-Organisation",
+            "Atlantisches Bündnis"
+          ],
+          "description": "Militärisches Bündnis europäischer und nordamerikanischer Staaten",
+          "labels": [
+            "NATO"
+          ],
+          "slug": "nato",
+          "title": "NATO",
+          "url": "http://www.wikidata.org/entity/Q7184",
+          "wikidata_id": "Q7184",
+          "wikipedia_title": "NATO"
+        },
+        {
+          "labels": [
+            "Friedenspolitik"
+          ],
+          "slug": "friedenspolitik",
+          "title": "Friedenspolitik",
+          "url": "http://www.wikidata.org/entity/Q1456887",
+          "wikidata_id": "Q1456887",
+          "wikipedia_title": "Friedenspolitik"
+        }
+      ],
+      "text": "Die NATO ist entbehrlich für die Sicherheit und Stabilität in Europa.",
+      "title": null
+    }
+  ]
+}

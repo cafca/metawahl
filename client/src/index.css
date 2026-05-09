@@ -1,30 +1,27 @@
-/* roboto-regular - latin */
+/* App-level overrides on top of Fomantic UI semantic.min.css.
+   Body and headers use Fomantic's Lato; only h1 is globally Roboto.
+   Additional Roboto rules live co-located with their views
+   (.headerCount2 in ElectionList, .thesesCount in TagOverview). */
+
 @font-face {
   font-family: 'Roboto';
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/roboto-v18-latin-regular.eot'); /* IE9 Compat Modes */
   src: local('Roboto'), local('Roboto-Regular'),
-       url('./fonts/roboto-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./fonts/roboto-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('./fonts/roboto-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('./fonts/roboto-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('./fonts/roboto-v18-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+       url('/fonts/roboto-v18-latin-regular.woff2') format('woff2'),
+       url('/fonts/roboto-v18-latin-regular.woff') format('woff'),
+       url('/fonts/roboto-v18-latin-regular.ttf') format('truetype');
 }
-/* roboto-700 - latin */
 @font-face {
   font-family: 'Roboto';
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
   font-weight: 700;
-  src: url('./fonts/roboto-v18-latin-700.eot'); /* IE9 Compat Modes */
   src: local('Roboto Bold'), local('Roboto-Bold'),
-       url('./fonts/roboto-v18-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./fonts/roboto-v18-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
-       url('./fonts/roboto-v18-latin-700.woff') format('woff'), /* Modern Browsers */
-       url('./fonts/roboto-v18-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('./fonts/roboto-v18-latin-700.svg#Roboto') format('svg'); /* Legacy iOS */
+       url('/fonts/roboto-v18-latin-700.woff2') format('woff2'),
+       url('/fonts/roboto-v18-latin-700.woff') format('woff'),
+       url('/fonts/roboto-v18-latin-700.ttf') format('truetype');
 }
 
 body {
@@ -100,7 +97,7 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 #outerContainer.ui.container {
   max-width: 800px !important;
   min-height: 500px;
-};
+}
 
 .ui.comments .comment .actions {
   visibility: hidden;
@@ -129,9 +126,7 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
 .wikidataLabel { filter: grayscale(100%) }
 .wikidataLabel:hover { filter: initial }
 
-/* Add hyphens to long words
-  credit: https://justmarkup.com/log/2015/07/dealing-with-long-words-in-css/
- */
+/* Add hyphens to long words */
 .hyphenate {
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -146,3 +141,72 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media (max-width: 767px) {
+  .ui.menu .ui.dropdown.link.item > i.dropdown.icon {
+    margin-left: auto;
+  }
+}
+
+/* Reset native browser styling on `<button>` elements that act as
+   Fomantic menu items. Without this, Chrome/Safari draw a default
+   button border, background, and focus ring. */
+.ui.menu button.item {
+  appearance: none;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.ui.menu button.item:focus {
+  outline: none;
+}
+.ui.menu button.item:focus-visible {
+  outline: 2px solid rgba(34, 36, 38, 0.35);
+  outline-offset: -2px;
+}
+
+.app-main {
+  margin-top: 42px;
+}
+
+@media only screen and (max-width: 767px) {
+  .app-main {
+    margin-top: 1em;
+  }
+}
+
+/* Shared between Election and Quiz views. */
+.electionContainer {
+  min-height: 350px;
+  padding: 1em 2em;
+}
+
+@media (max-width: 991px) {
+  .ui.container.electionContainer {
+    padding: 0;
+    width: auto !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+  }
+  .electionContainer h1.ui.header {
+    line-height: 1.1em;
+  }
+  .electionContainer .ui.header > .sub.header {
+    margin-top: 0.5rem;
+    line-height: 1.3rem !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .electionContainer h1.ui.header {
+    font-size: 1.6em;
+    line-height: 1.1em;
+  }
+  .electionContainer .ui.header > .sub.header {
+    margin-top: 0.5rem;
+  }
+}
+
