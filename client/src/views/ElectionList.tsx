@@ -72,7 +72,7 @@ export default function ElectionList() {
     : 0;
 
   return (
-    <div className="ui container">
+    <main className="ui container app-main">
       <SEO title="Metawahl: Alle Wahlen im Überblick" />
       <div className="ui stackable two column padded relaxed grid electionList">
         <div className="row">
@@ -100,6 +100,6 @@ export default function ElectionList() {
             ) : null,
           )}
       </div>
-    </div>
+    </main>
   );
 }

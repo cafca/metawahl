@@ -169,7 +169,7 @@ export default function Quiz() {
   };
 
   return (
-    <div className="ui container electionContainer quiz">
+    <main className="ui container electionContainer quiz app-main">
       <SEO
         title={
           "Metawahl: " + (election ? `${election.title} Quiz` : "Quiz")
@@ -362,6 +362,6 @@ export default function Quiz() {
         iframe={true}
         context="Dieses Quiz"
       />
-    </div>
+    </main>
   );
 }

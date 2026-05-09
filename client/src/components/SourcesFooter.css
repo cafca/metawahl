@@ -1,0 +1,13 @@
+.ui.message#methodik {
+  margin-top: 3rem;
+}
+
+.source a {
+  text-decoration: underline;
+}
+
+.inlineLogo {
+  height: 5em;
+  vertical-align: middle;
+  float: left;
+}

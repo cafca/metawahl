@@ -10,7 +10,10 @@ type WikidataProps = {
 export function WikidataLabel({ wikidata_id, url }: WikidataProps) {
   if (wikidata_id == null) return null;
   return (
-    <div className="ui right floated header" style={{ marginRight: "-10.5px" }}>
+    <div
+      className="ui right floated header"
+      style={{ marginRight: "-10.5px" }}
+    >
       <a
         className="ui basic image label wikidataLabel"
         href={url}

@@ -15,11 +15,6 @@
   margin-bottom: 1rem;
 }
 
-.electionContainer {
-  min-height: 350px;
-  padding: 1em 2em;
-}
-
 .thesis-compact {
   height: auto;
 }
@@ -33,46 +28,6 @@
 .election-component > .ui.header .sub.header,
 .election-component > .ui.header .sub.header a:not(.item) {
   color: rgba(0, 0, 0, 0.7) !important;
-}
-
-@media (max-width: 991px) {
-  .ui.container.electionContainer {
-    padding: 0;
-    width: auto !important;
-    margin-left: 1em !important;
-    margin-right: 1em !important;
-  }
-  .electionContainer h1.ui.header {
-    line-height: 1.1em;
-  }
-  .electionContainer .ui.header > .sub.header {
-    margin-top: 0.5rem;
-    line-height: 1.3rem !important;
-  }
-}
-
-@media (max-width: 650px) {
-  .electionContainer h1.ui.header {
-    font-size: 1.6em;
-    line-height: 1.1em;
-  }
-  .electionContainer .ui.header > .sub.header {
-    margin-top: 0.5rem;
-  }
-}
-
-.ui.message#methodik {
-  margin-top: 3rem;
-}
-
-.source a {
-  text-decoration: underline;
-}
-
-.inlineLogo {
-  height: 5em;
-  vertical-align: middle;
-  float: left;
 }
 
 .quizLink {

@@ -156,7 +156,7 @@ export default function Election() {
     : false;
 
   return (
-    <div className="ui container electionContainer">
+    <main className="ui container electionContainer app-main">
       <SEO title={pageTitle} />
 
       <div className="ui breadcrumb">
@@ -238,6 +238,6 @@ export default function Election() {
       {!isLoading && suggestions.length > 0 && (
         <SuggestionsGrid title="Und jetzt:" sections={suggestions} />
       )}
-    </div>
+    </main>
   );
 }

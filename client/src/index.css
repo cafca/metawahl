@@ -29,14 +29,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 body, html { height: auto }
-
-.ui.header, .ui.menu, .ui.button {
-  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
 
 h1 {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
@@ -149,8 +144,64 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   text-overflow: ellipsis;
 }
 
-.ui.medium.header {
-  font-size: 1.28571429em;
+@media (max-width: 767px) {
+  .ui.menu .ui.dropdown.link.item > i.dropdown.icon {
+    margin-left: auto;
+  }
+}
+
+/* Reset native browser styling on `<button>` elements that act as
+   Fomantic menu items. Without this, Chrome/Safari draw a default
+   button border, background, and focus ring. */
+.ui.menu button.item {
+  appearance: none;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.ui.menu button.item:focus {
+  outline: none;
+}
+.ui.menu button.item:focus-visible {
+  outline: 2px solid rgba(34, 36, 38, 0.35);
+  outline-offset: -2px;
+}
+
+.app-main {
+  margin-top: 42px;
+}
+
+@media only screen and (max-width: 767px) {
+  .app-main {
+    margin-top: 1em;
+  }
+}
+
+/* Shared between Election and Quiz views (both render
+   `<main class="ui container electionContainer ...">`). Lives here so
+   the rules load regardless of which lazy route is the entry point. */
+.electionContainer {
+  min-height: 350px;
+  padding: 1em 2em;
+}
+
+@media (max-width: 991px) {
+  .ui.container.electionContainer {
+    padding: 0;
+    width: auto !important;
+    margin-left: 1em !important;
+    margin-right: 1em !important;
+  }
+  .electionContainer h1.ui.header {
+    line-height: 1.1em;
+  }
+  .electionContainer .ui.header > .sub.header {
+    margin-top: 0.5rem;
+    line-height: 1.3rem !important;
+  }
 }
 
 @media (max-width: 650px) {
@@ -158,4 +209,8 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
     font-size: 1.6em;
     line-height: 1.1em;
   }
+  .electionContainer .ui.header > .sub.header {
+    margin-top: 0.5rem;
+  }
 }
+

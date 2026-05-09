@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import Logo from "@/assets/logo.svg?react";
 import type { ElectionSummary } from "@/types/api";
 
+import "./SourcesFooter.css";
+
 type Props = {
   election: ElectionSummary | undefined;
   iframe?: boolean;

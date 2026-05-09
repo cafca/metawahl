@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { WikidataLabel, WikipediaLabel } from "@/components/DataLabel";
+import FilterDropdown from "@/components/FilterDropdown";
 import Legend from "@/components/Legend";
 import SEO from "@/components/SEO";
 import TagBadge from "@/components/TagBadge";
@@ -176,8 +177,8 @@ export default function TagView() {
   };
 
   return (
-    <div
-      className="ui container"
+    <main
+      className="ui container app-main"
       id="outerContainer"
       style={{ minHeight: 350 }}
     >
@@ -228,36 +229,26 @@ export default function TagView() {
         <div className="ui stackable menu">
           <div className="header item">Filter</div>
 
-          <select
-            className="ui dropdown link item"
-            style={{ border: "none" }}
-            value={tagFilter ?? ""}
+          <FilterDropdown
+            placeholder="Nur mit Thema..."
+            value={tagFilter}
             disabled={tagFilterOptions.length === 0}
-            onChange={(e) => setTagFilter(e.target.value || null)}
-          >
-            <option value="">Nur mit Thema...</option>
-            {tagFilterOptions.map((o) => (
-              <option key={o.key} value={o.key}>
-                {o.title} ({o.count})
-              </option>
-            ))}
-          </select>
+            options={tagFilterOptions.map((o) => ({
+              key: o.key,
+              label: `${o.title} (${o.count})`,
+            }))}
+            onChange={(v) => setTagFilter(v)}
+          />
 
-          <select
-            className="ui dropdown link item"
-            style={{ border: "none" }}
-            value={territoryFilter ?? ""}
-            onChange={(e) =>
-              setTerritoryFilter((e.target.value as TerritorySlug) || null)
-            }
-          >
-            <option value="">Nur Gebiet...</option>
-            {territoryFilterOptions.map((o) => (
-              <option key={o.key} value={o.key}>
-                {o.text} ({o.count})
-              </option>
-            ))}
-          </select>
+          <FilterDropdown
+            placeholder="Nur Gebiet..."
+            value={territoryFilter}
+            options={territoryFilterOptions.map((o) => ({
+              key: o.key,
+              label: `${o.text} (${o.count})`,
+            }))}
+            onChange={(v) => setTerritoryFilter(v as TerritorySlug | null)}
+          />
 
           {(tagFilter != null || territoryFilter != null) && (
             <button
@@ -336,6 +327,6 @@ export default function TagView() {
           )}
         </div>
       )}
-    </div>
+    </main>
   );
 }

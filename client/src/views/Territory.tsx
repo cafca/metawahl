@@ -46,7 +46,7 @@ export default function Territory() {
   const mapColumnClass = isMobile ? "six wide column" : "four wide column";
 
   return (
-    <div className="ui container" id="outerContainer">
+    <main className="ui container app-main" id="outerContainer">
       <SEO title={`Metawahl: Alle Wahlthemen in ${territoryName}`} />
 
       <div className="ui breadcrumb">
@@ -67,6 +67,6 @@ export default function Territory() {
           <div className="ui very relaxed list">{items}</div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

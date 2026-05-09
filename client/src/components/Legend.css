@@ -26,10 +26,16 @@
   width: fit-content;
 }
 
+.ui.table.small-legend {
+  table-layout: fixed;
+  width: 100%;
+}
+
 .ui.table.small-legend tr td {
   padding: 3px 5px;
   color: #ececec;
   text-align: center;
+  width: 33.3333%;
 }
 
 .legend.ui.table tr,

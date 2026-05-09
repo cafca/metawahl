@@ -46,7 +46,7 @@ export default function TagList() {
     ));
 
   return (
-    <div className="ui container" id="outerContainer">
+    <main className="ui container app-main" id="outerContainer">
       <SEO title="Metawahl: Alle Wahlthemen in Deutschland seit 2002" />
 
       <h1 className="ui header">
@@ -91,6 +91,6 @@ export default function TagList() {
           </label>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

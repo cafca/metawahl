@@ -1,14 +1,17 @@
-.ui.right.floated.header .ui.basic.image.label {
+/* Override Fomantic's `.ui.header > .image:not(.icon) { width: 2.5em }`
+   so the wiki labels expand to fit their text. */
+.ui.right.floated.header > .ui.basic.image.label {
+  width: auto;
   white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
 }
 
-.ui.right.floated.header .ui.basic.image.label > img {
+.ui.right.floated.header .ui.basic.image.label > .wikidata-label-text {
   display: inline-block;
-  max-height: 1.5em;
-  width: auto;
   vertical-align: middle;
+}
+
+.ui.right.floated.header + .ui.right.floated.header {
+  margin-right: 0.75em;
 }
 
 .wikidataLabel {
@@ -19,7 +22,7 @@
 }
 
 @media (max-width: 767px) {
-  .wikidata-label-text {
+  .ui.right.floated.header .ui.basic.image.label > .wikidata-label-text {
     display: none;
   }
 }

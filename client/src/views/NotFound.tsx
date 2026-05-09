@@ -5,7 +5,7 @@ import Search from "@/components/Search";
 
 export default function NotFound() {
   return (
-    <div className="ui container">
+    <main className="ui container app-main">
       <SEO title="Metawahl: 404 Seite nicht gefunden" />
       <h1 className="ui header">Upsi! 🙄</h1>
       <p>
@@ -19,6 +19,6 @@ export default function NotFound() {
       <div className="ui container center aligned">
         <Search />
       </div>
-    </div>
+    </main>
   );
 }

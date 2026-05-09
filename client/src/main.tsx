@@ -8,6 +8,27 @@ import { queryClient, persister, GC_TIME_MS, PERSIST_BUSTER } from "@/lib/queryC
 import "fomantic-ui-css/semantic.min.css";
 import "./index.css";
 
+/* Eagerly import every view + component stylesheet so all rules load on
+   every route, regardless of which lazy chunk is the entry point. The
+   per-view/per-component `import "./Foo.css"` lines stay where they
+   are — they're harmless duplicates once Vite has the file in the main
+   bundle. Order matters for cascade: components first (defaults), then
+   views (overrides). */
+import "@/components/DataLabel.css";
+import "@/components/Legend.css";
+import "@/components/Map.css";
+import "@/components/PositionChart.css";
+import "@/components/SourcesFooter.css";
+import "@/components/SuggestionsGrid.css";
+import "@/components/Thesis.css";
+import "@/views/DataOverview.css";
+import "@/views/Election.css";
+import "@/views/ElectionList.css";
+import "@/views/Landing.css";
+import "@/views/Quiz.css";
+import "@/views/TagOverview.css";
+import "@/views/Thesis.css";
+
 if (persister) {
   persistQueryClient({
     queryClient,

@@ -10,6 +10,8 @@ import useThesis from "@/hooks/useThesis";
 import { yearOf } from "@/lib/dates";
 import type { ElectionSummary } from "@/types/api";
 
+import "./Thesis.css";
+
 export default function ThesisView() {
   const params = useParams();
   const territory = (params.territory ?? "deutschland") as TerritorySlug;
@@ -53,7 +55,7 @@ export default function ThesisView() {
     .filter(Boolean);
 
   return (
-    <div className="ui container" id="outerContainer">
+    <main className="ui container app-main" id="outerContainer">
       <SEO
         title={
           "Metawahl: " + (election ? `${election.title} Quiz` : "Quiz")
@@ -125,6 +127,6 @@ export default function ThesisView() {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 }

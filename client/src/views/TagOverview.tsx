@@ -86,7 +86,7 @@ export default function TagOverview() {
   });
 
   return (
-    <div className="ui container tagList">
+    <main className="ui container tagList app-main">
       <SEO title="Metawahl: Alle Wahlthemen in Deutschland seit 2002" />
 
       <div className="ui relaxed divided doubling stackable padded four column grid">
@@ -141,6 +141,6 @@ export default function TagOverview() {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

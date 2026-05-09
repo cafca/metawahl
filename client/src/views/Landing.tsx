@@ -16,7 +16,7 @@ export default function Landing() {
   const secondHalf = landtagSlugs.slice(half);
 
   return (
-    <div>
+    <main className="app-main">
       <title>Metawahl</title>
       <div className="ui container">
         <div className="ui two column stackable grid middle aligned" id="hero">
@@ -225,6 +225,6 @@ export default function Landing() {
           ]}
         />
       </div>
-    </div>
+    </main>
   );
 }

@@ -2,7 +2,7 @@ import SEO from "@/components/SEO";
 
 export default function Legal() {
   return (
-    <div className="ui text container" style={{ marginTop: "4em" }}>
+    <main className="ui text container" style={{ marginTop: "4em" }}>
       <SEO title="Impressum und Datenschutzerklärung" />
 
       <h1 className="ui header">Impressum</h1>
@@ -151,6 +151,6 @@ export default function Legal() {
         </a>
         .
       </p>
-    </div>
+    </main>
   );
 }
