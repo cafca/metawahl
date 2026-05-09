@@ -14,9 +14,6 @@ table.legend.small-legend {
   margin-bottom: 1rem !important;
 }
 
-/* Legacy used `.outerContainer > h1.ui.header` (a class that legacy
-   markup never actually set). Current markup uses `id="outerContainer"`
-   on `<main>`. Porting to the id selector preserves intent. */
 #outerContainer > h1.ui.header {
   margin-bottom: 2rem;
 }

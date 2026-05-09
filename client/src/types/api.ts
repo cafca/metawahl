@@ -1,7 +1,7 @@
 // Typed API models derived from the recorded Playwright fixtures at
 // `client/e2e/fixtures/api/*.json`. Only fields observed in those responses
-// are declared here; when the legacy code consumes a field that's not in the
-// fixtures, it's marked optional.
+// are declared here; fields the API documents but doesn't always send are
+// marked optional.
 
 import type { TerritorySlug } from "@/config";
 
@@ -11,9 +11,7 @@ import type { TerritorySlug } from "@/config";
 
 export type Position = -1 | 0 | 1;
 
-// Legacy quiz.jsx typed the answer as `-1 | 0 | 1`. The front-end quiz flow
-// in Metawahl only ever sends agree/disagree (translated to 1 / -1) and
-// skip (0), so re-use the same union.
+// The quiz UI sends agree/disagree (translated to 1 / -1) or skip (0).
 export type QuizAnswer = -1 | 0 | 1;
 
 export interface ApiMeta {
@@ -176,8 +174,7 @@ export interface TagDetailResponse {
 export type ThesisId = `WOM-${string}-${string}`;
 
 /**
- * Format a thesis id the way the legacy client computes it:
- * `WOM-<electionId padded to 3>-<thesisNum padded to 2>`.
+ * Format a thesis id: `WOM-<electionId padded to 3>-<thesisNum padded to 2>`.
  */
 export function formatThesisId(electionId: number, thesisNum: number): ThesisId {
   const e = String(electionId).padStart(3, "0");

@@ -1,5 +1,5 @@
-// Settings and constants ported from the legacy CRA config (src.legacy/config/index.js).
-// Runtime values are read from Vite's `import.meta.env` instead of `process.env`.
+// App-wide settings and constants. Runtime values are read from Vite's
+// `import.meta.env`.
 
 export const DATA_DIR = "/data";
 

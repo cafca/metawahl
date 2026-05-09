@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 
-/** Scroll to top on every pathname change. RR7 doesn't do this by default. */
+/** Scroll to top on every pathname change. */
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {

@@ -9,11 +9,8 @@ import "fomantic-ui-css/semantic.min.css";
 import "./index.css";
 
 /* Eagerly import every view + component stylesheet so all rules load on
-   every route, regardless of which lazy chunk is the entry point. The
-   per-view/per-component `import "./Foo.css"` lines stay where they
-   are — they're harmless duplicates once Vite has the file in the main
-   bundle. Order matters for cascade: components first (defaults), then
-   views (overrides). */
+   every route. Order matters for cascade: components first (defaults),
+   then views (overrides). */
 import "@/components/DataLabel.css";
 import "@/components/Legend.css";
 import "@/components/Map.css";

@@ -10,8 +10,8 @@ const viewports = [
 ]
 
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:4173"
-// Set PLAYWRIGHT_SKIP_WEBSERVER=1 when you want to point tests at an existing
-// dev server (e.g. the legacy Docker app on :3000).
+// Set PLAYWRIGHT_SKIP_WEBSERVER=1 to point tests at an already-running dev or
+// preview server instead of having Playwright start its own.
 const manageServer = process.env.PLAYWRIGHT_SKIP_WEBSERVER !== "1"
 
 export default defineConfig({

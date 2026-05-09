@@ -63,10 +63,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
   return body as T;
 }
 
-/**
- * Post a JSON body and decode the JSON response. Mirrors the legacy
- * `makeJSONRequest` helper.
- */
+/** Post a JSON body and decode the JSON response. */
 export async function apiPost<TReq, TRes>(path: string, body: TReq): Promise<TRes> {
   return apiFetch<TRes>(path, {
     method: "POST",

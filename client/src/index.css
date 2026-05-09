@@ -1,9 +1,7 @@
 /* App-level overrides on top of Fomantic UI semantic.min.css.
-   Matches legacy client/src.legacy/index.css:
-   - Body and headers stay Lato (Fomantic default).
-   - Only h1 is globally overridden to Roboto.
-   - Additional Roboto rules live co-located with their views
-     (.headerCount2 in ElectionList, .thesesCount in TagOverview). */
+   Body and headers use Fomantic's Lato; only h1 is globally Roboto.
+   Additional Roboto rules live co-located with their views
+   (.headerCount2 in ElectionList, .thesesCount in TagOverview). */
 
 @font-face {
   font-family: 'Roboto';
@@ -180,9 +178,7 @@ a:hover, .ui.items a.item:hover .content .header, .ui.link.items>.item:hover .co
   }
 }
 
-/* Shared between Election and Quiz views (both render
-   `<main class="ui container electionContainer ...">`). Lives here so
-   the rules load regardless of which lazy route is the entry point. */
+/* Shared between Election and Quiz views. */
 .electionContainer {
   min-height: 350px;
   padding: 1em 2em;

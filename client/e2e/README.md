@@ -1,36 +1,25 @@
-# Metawahl e2e (Phase 0 — visual regression baseline)
+# Metawahl e2e
 
-A standalone Playwright workspace that captures full-page screenshots of the
-current (un-modernized) CRA client across six viewports. Runs against a
-**mocked** API, so the CRA dev server does not need to reach the real
-backend while tests execute.
+Standalone Playwright workspace that captures full-page screenshots of the
+client across six viewports (360, 600, 768, 1024, 1440, 1920) and diffs them
+against committed goldens. The suite runs against a **mocked** API so it stays
+deterministic — `page.route` intercepts every `/v3/**` request and serves a
+recorded response from `fixtures/api/`. Fathom is stubbed too.
 
-This workspace is intentionally isolated from `client/package.json` /
-`client/yarn.lock`: the client is frozen on Node 10 / react-scripts 2.x
-tooling for this phase. Do not merge these into the client's own deps.
-
-See [`KNOWN_ISSUES.md`](./KNOWN_ISSUES.md) for bugs captured in the baseline
-that must be fixed (not replicated) during the rewrite.
+Lives in its own workspace with its own `package.json` and lockfile so the
+Playwright + Node toolchain doesn't leak into the main client deps.
 
 ## Prerequisites
 
-1. Local Docker stack running with the API reachable at `http://127.0.0.1:3001`
-   (only required when re-recording fixtures; `npm test` itself mocks the API).
-2. CRA dev server running at `http://localhost:3000`. The easiest way:
+The Vite dev server (or built preview) must be running on
+`http://localhost:3000`. From `client/`:
 
-   ```sh
-   docker build --target dev -t metawahl-client:dev client/
-   docker run --rm -p 3000:3000 metawahl-client:dev
-   ```
+```sh
+npm run dev      # or `npm run build && npm run preview`
+```
 
-   If the dev stage fails on your machine, the classic fallback works too:
-
-   ```sh
-   nvm use 10 && (cd client && yarn install && yarn start)
-   ```
-
-   Tests mock all `/v3/**` API calls via `page.route`, so the dev server does
-   not need to reach the real API while the suite runs.
+Tests mock all `/v3/**` API calls via `page.route`, so the server doesn't need
+to reach the real backend while the suite runs.
 
 ## Install
 
@@ -40,30 +29,33 @@ npm install
 npx playwright install chromium
 ```
 
-## Re-record API fixtures
-
-Requires the local Docker API on `127.0.0.1:3001`.
-
-```sh
-npm run record-fixtures
-```
-
-This writes `fixtures/api/*.json`. The mock in `fixtures/mock.ts` maps URL
-paths to these files; keep the two lists in sync if you add endpoints.
-
-## Update golden screenshots
-
-```sh
-npm run test:update
-```
-
-Commit the PNGs under `__screenshots__/` alongside your code changes.
-
 ## Run
 
 ```sh
 npm test
 ```
+
+## Update golden screenshots
+
+When intentional visual changes land, refresh the goldens:
+
+```sh
+npm run test:update
+```
+
+Commit the PNGs under `__screenshots__/` alongside the code change.
+
+## Re-record API fixtures
+
+Requires a local API reachable at `http://127.0.0.1:3001` (e.g. the Docker
+compose stack). Then:
+
+```sh
+npm run record-fixtures
+```
+
+Writes `fixtures/api/*.json`. The mock in `fixtures/mock.ts` maps URL paths to
+these files — keep the two lists in sync if you add endpoints.
 
 ## Layout
 
@@ -78,7 +70,7 @@ e2e/
   scripts/
     record-fixtures.mjs       # refresh fixtures from local API
   tests/
-    routes.spec.ts            # 12 routes x 6 viewports
+    routes.spec.ts            # 13 routes x 6 viewports
     interactive.spec.ts       # quiz mid-flow + chart hover
   __screenshots__/            # committed goldens (per-test subdirs)
 ```

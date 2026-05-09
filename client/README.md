@@ -1,6 +1,6 @@
 # Metawahl client
 
-React 19 + Vite + TypeScript + Tailwind v4 + shadcn/ui SPA.
+React 19 + Vite + TypeScript + Fomantic-UI CSS SPA.
 
 ## Prerequisites
 
@@ -24,16 +24,14 @@ React 19 + Vite + TypeScript + Tailwind v4 + shadcn/ui SPA.
 
 ## Layout
 
-- `src/` — modernized app, grown incrementally over Phases 2–4.
-- `src.legacy/` — pre-modernization CRA source, kept as a reference during the port.
-  Deleted once every view is ported.
+- `src/` — application source.
 - `public/` — static assets (favicons, manifest, fonts, data fixtures).
-- `e2e/` — standalone Playwright visual-regression workspace (own lockfile).
-  See `e2e/README.md` and `e2e/KNOWN_ISSUES.md`.
+- `e2e/` — standalone Playwright visual-regression workspace with its own
+  lockfile. See `e2e/README.md`.
 
 ## Visual regression
 
-`npm run test:visual` runs the Phase 0 baseline suite against the built Vite bundle.
-Goldens will fail until each view is ported in Phase 4 — that's expected. Update
-goldens with `npm run test:visual:update` after each view port commit and confirm
-the diff is intentional.
+`npm run test:visual` runs the Playwright suite against the built Vite bundle
+with API responses served from `e2e/fixtures/api/*.json`. Use
+`npm run test:visual:update` to refresh golden screenshots after intentional
+visual changes.

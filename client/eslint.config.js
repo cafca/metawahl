@@ -10,7 +10,6 @@ export default tseslint.config(
   {
     ignores: [
       "dist/**",
-      "src.legacy/**",
       "e2e/**",
       "public/**",
       "node_modules/**",

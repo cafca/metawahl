@@ -28,8 +28,8 @@ test.describe("route screenshots", () => {
       // Wait for any async fetches to settle before shooting.
       await page.waitForLoadState("networkidle")
       // Wait until document.body.scrollHeight holds steady for a few ticks —
-      // CRA + Semantic UI + remote font loads cause late layout shifts that
-      // otherwise make full-page captures unstable.
+      // remote font loads cause late layout shifts that otherwise make
+      // full-page captures unstable.
       await page.waitForFunction(() => {
         const w = window as unknown as { __lastH?: number; __stableCount?: number }
         const h = document.body.scrollHeight
