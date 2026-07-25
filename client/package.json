@@ -31,7 +31,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.14.2",
-    "swagger-ui-react": "^5.32.4",
+    "swagger-ui-react": "^5.32.11",
     "wikidata-sdk": "^8.1.1"
   },
   "devDependencies": {
